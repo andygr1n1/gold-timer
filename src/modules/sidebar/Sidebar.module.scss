@@ -1,0 +1,19 @@
+.sidebar-module {
+    @apply flex h-full w-[250px] min-w-[250px] flex-col gap-8 bg-[#1d4ed8] px-5 py-10;
+}
+
+.link {
+    @apply flex items-center justify-start gap-3 text-base font-bold transition-all;
+
+    &:hover > span {
+        @apply text-yellow-500;
+    }
+}
+.link-active {
+    & > span {
+        @apply text-yellow-500;
+    }
+}
+.link-passive {
+    @apply text-white;
+}

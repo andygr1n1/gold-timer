@@ -1,3 +1,5 @@
+# // prettier-ignore in tsx if you want to ignore some block
+
 # Logs
 logs
 *.log
@@ -13,14 +15,9 @@ dist-ssr
 *.local
 
 # Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
 .DS_Store
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
-#
-.env

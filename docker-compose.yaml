@@ -1,0 +1,22 @@
+version: '3.8'
+networks:
+    gold-timer-network:
+        name: gold-timer-network
+services:
+    gold-timer:
+        container_name: gold-timer-container
+        build: .
+        ports:
+            - '9997:9997'
+        volumes:
+            - .:/app
+            - /app/node_modules
+        environment:
+            - PORT=9997
+            - VITE_CLIENT_ENDPOINT=http://0.0.0.0:6080/v1/graphql/
+            - VITE_X_HASURA_ADMIN_SECRET=grini
+            - VITE_OWNER_ID=f192b78e-399e-4fc5-9676-ce0bf65b220b
+            - VITE_PORT=9997
+        networks:
+            - gold-timer-network
+        restart: unless-stopped

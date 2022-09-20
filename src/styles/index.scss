@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;300;400;600;700;900&display=swap');
+
+:root {
+    --top-bar-height: 56px;
+
+    //colors
+    --skyblue: #0ea5e9;
+    --spaceblue: #1d4ed8;
+}
+
+@import 'normalize.css';
+@import 'material-icons/iconfont/material-icons.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import 'antd/dist/antd.css';
+@import './antrd.scss';
+@import './creator_form.scss';
+
+@layer base {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        @apply m-0 p-0;
+    }
+
+    a,
+    a:focus,
+    a:active,
+    a:visited {
+        @apply no-underline;
+    }
+}
+
+@layer utilities {
+    button {
+        @apply focus:outline-none;
+    }
+
+    .border-solid {
+        border-style: solid;
+    }
+    .border-b-solid {
+        border-bottom-style: solid;
+    }
+}
+
+html,
+body {
+    @apply flex h-full w-full flex-col overflow-hidden font-sans;
+}
+
+#root {
+    @apply flex w-full flex-auto overflow-hidden;
+}
+
+.app,
+.app-body {
+    @apply flex w-full bg-gray-200;
+}
+
+.app-body {
+    @apply flex w-full bg-gray-200;
+    height: calc(100% - var(--top-bar-height));
+}
+
+.module-wrapper {
+    @apply flex w-full flex-col overflow-auto rounded-lg bg-white p-5;
+}
