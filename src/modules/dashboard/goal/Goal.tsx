@@ -2,11 +2,10 @@ import { observer } from 'mobx-react-lite'
 import { IGoal$ } from '../../../mst/types'
 import { motion } from 'framer-motion'
 import { setGoalColor } from '@/helpers/set_goal_color'
-import { GoalBoxEditable } from './GoalBoxEditable'
 import { GoalBox } from './GoalBox'
 
 export const Goal: React.FC<{ goal: IGoal$ }> = observer(({ goal }) => {
-    const { isFrozen, isEditableGoal } = goal
+    const { isFrozen } = goal
 
     return (
         <motion.div
@@ -27,11 +26,8 @@ export const Goal: React.FC<{ goal: IGoal$ }> = observer(({ goal }) => {
                     py-2 px-2 text-sm font-bold text-white'
                 >
                     <span>{goal.slogan}</span>
-                    <span className='material-icons-round cursor-pointer !text-sm opacity-0 transition-all group-hover:opacity-100'>
-                        settings
-                    </span>
                 </div>
-                {isEditableGoal ? <GoalBoxEditable /> : <GoalBox goal={goal} />}
+                <GoalBox goal={goal} />
             </div>
         </motion.div>
     )

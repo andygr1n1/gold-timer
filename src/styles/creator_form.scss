@@ -4,7 +4,7 @@
     }
 
     .ant-form-item-label > label.ant-form-item-required:not(.ant-form-item-required-mark-optional)::before {
-        @apply text-lg font-bold text-yellow-500;
+        @apply text-lg font-bold text-yellow-300;
     }
 }
 

@@ -8,7 +8,7 @@ import DatePickerFns from '@/components/antd-date-fns/DatePickerFns'
 export const FinishDate: React.FC = observer(() => {
     const {
         goals$: {
-            new_goal$: { freeze },
+            goal_creator$: { freeze },
         },
     } = useRootStore()
 

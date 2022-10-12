@@ -3,27 +3,42 @@ import { STATUS_ENUM } from '@/helpers/enums'
 import { IGenerateGoalValues, IInsertNewGoal } from '@/helpers/interfaces/new_goal.interface'
 import { setGoalDifficulty } from '@/helpers/set_goal_difficulty'
 import { add } from 'date-fns'
+import _ from 'lodash'
 import { flow } from 'mobx'
 import { getParentOfType, toGenerator, types } from 'mobx-state-tree'
 import { IGoal$ } from '../types'
 import { Goal$ } from './Goal.store'
-import { NewGoal$ } from './NewGoal.store'
+import { GoalCreator$ } from './GoalCreator.store'
 import { Root$ } from './Root.store'
 
 export const Goals$ = types
     .model('Goals$', {
         goals: types.array(Goal$),
-        new_goal$: types.optional(NewGoal$, { id: '' }),
         editable_goal: types.safeReference(Goal$),
+
+        goal_creator$: types.optional(GoalCreator$, { id: '' }),
     })
+    .views((self) => ({
+        get goalCreatorIsOpen(): boolean {
+            return !!self.goal_creator$.id
+        },
+        get activeGoals(): IGoal$[] {
+            return _.filter(self.goals, (goal) => goal.status === STATUS_ENUM.ACTIVE)
+        },
+        get frozenGoals(): IGoal$[] {
+            return _.filter(self.goals, (goal) => goal.status === STATUS_ENUM.FROZEN)
+        },
+        get completedGoals(): IGoal$[] {
+            return _.filter(self.goals, (goal) => goal.status === STATUS_ENUM.COMPLETED)
+        },
+    }))
     .actions((self) => ({
         onChangeField<Key extends keyof typeof self>(key: Key, value: typeof self[Key]) {
             self[key] = value
         },
-        toggleEditableGoal(goal?: IGoal$): void {
-            console.log('click', goal?.id)
-            self.editable_goal = goal
-            console.log('self.editable_goal', self.editable_goal?.id)
+        goEditMode(editGoal: IGoal$): void {
+            self.editable_goal = editGoal
+            self.goal_creator$.is_open = true
         },
         generateGoal: flow(function* _generateGoal(values: IGenerateGoalValues) {
             const {

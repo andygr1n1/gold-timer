@@ -9,6 +9,8 @@ module.exports = {
     theme: {
         fontFamily: {
             sans: ['Source Sans Pro', defaultConfig.theme.fontFamily.sans],
+            mono: ['Cascadia Code', defaultConfig.theme.fontFamily.mono],
+            monoIitalic: ['Cascadia Mono Italic', defaultConfig.theme.fontFamily.sans],
         },
         extend: {
             colors: {

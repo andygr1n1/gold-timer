@@ -1,4 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;300;400;600;700;900&display=swap');
+@import url('./fonts.scss');
+
+::-webkit-scrollbar {
+    width: 0px;
+}
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: none;
+}
+::-webkit-scrollbar-thumb {
+    background: white;
+    -webkit-box-shadow: none;
+}
+::-webkit-scrollbar-thumb:window-inactive {
+    background: none;
+}
 
 :root {
     --top-bar-height: 56px;
@@ -24,7 +39,7 @@
     h4,
     h5,
     h6 {
-        @apply m-0 p-0;
+        @apply m-0 p-0 font-mono;
     }
 
     a,
@@ -43,6 +58,11 @@
     .border-solid {
         border-style: solid;
     }
+
+    .border-r-solid {
+        border-right-style: solid;
+    }
+
     .border-b-solid {
         border-bottom-style: solid;
     }

@@ -5,7 +5,7 @@ import { observer } from 'mobx-react-lite'
 export const FreezeCheckbox: React.FC = observer(() => {
     const {
         goals$: {
-            new_goal$: { freeze, onChangeField },
+            goal_creator$: { freeze, onChangeField },
         },
     } = useRootStore()
 

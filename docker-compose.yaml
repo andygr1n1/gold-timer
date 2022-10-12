@@ -13,7 +13,8 @@ services:
             - /app/node_modules
         environment:
             - PORT=9997
-            - VITE_CLIENT_ENDPOINT=http://0.0.0.0:6080/v1/graphql/
+            # - VITE_CLIENT_ENDPOINT=http://0.0.0.0:6080/v1/graphql/
+            - VITE_CLIENT_ENDPOINT=https://gold-timer-srv.herokuapp.com/v1/graphql
             - VITE_X_HASURA_ADMIN_SECRET=grini
             - VITE_OWNER_ID=f192b78e-399e-4fc5-9676-ce0bf65b220b
             - VITE_PORT=9997
