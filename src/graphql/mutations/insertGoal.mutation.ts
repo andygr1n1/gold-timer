@@ -29,7 +29,7 @@ export const insertGoal = async (newGoal: IInsertNewGoal): Promise<IGoalSnapshot
 
         return response.insert_goals_one
     } catch (e) {
-        console.log('InsertGoal error', e)
+        console.error('InsertGoal error', e)
         return
     }
 }

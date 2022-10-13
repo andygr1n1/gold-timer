@@ -16,6 +16,7 @@ export const Goals$ = types
         goals: types.array(Goal$),
         editable_goal: types.safeReference(Goal$),
 
+        is_creator_mode: false,
         goal_creator$: types.optional(GoalCreator$, { id: '' }),
     })
     .views((self) => ({

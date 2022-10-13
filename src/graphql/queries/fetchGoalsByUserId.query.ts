@@ -28,7 +28,7 @@ export const fetchGoalsByUserId = async (owner_id: string): Promise<IGoalSnapsho
 
         return response.goals
     } catch (e) {
-        console.log('fetchGoalsByUserId error:', e)
+        console.error('fetchGoalsByUserId error:', e)
         return
     }
 }

@@ -18,7 +18,7 @@ export const completeGoalMutation = async (goal_id: string): Promise<STATUS_ENUM
 
         return response.update_goals_by_pk.status
     } catch (e) {
-        console.log('completeGoal error', e)
+        console.error('completeGoal error', e)
         return
     }
 }

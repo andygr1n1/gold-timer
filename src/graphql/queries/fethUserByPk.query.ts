@@ -29,7 +29,7 @@ export const fethUserByPk = async (user_id: string): Promise<IUserByPkResponse |
 
         return response.heroes_by_pk
     } catch (e) {
-        console.log('fethUserByPk error:', e)
+        console.error('fethUserByPk error:', e)
         return
     }
 }

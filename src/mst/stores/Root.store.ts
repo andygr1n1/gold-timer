@@ -21,7 +21,6 @@ export const Root$ = types
     .actions((self) => ({
         fetchUserInfo: flow(function* _fetchUserInfo() {
             const userInfo = yield fethUserByPk(self.user$.user_id)
-            console.log('userInfo', userInfo)
             applySnapshot(self.user$, userInfo)
         }),
         fetchGoals: flow(function* _fetchGoals() {
