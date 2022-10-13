@@ -10,10 +10,7 @@
         "lint:fix": "eslint ./src --ext .jsx,.js,.ts,.tsx --quiet --fix --ignore-path ./.gitignore"
     },
     "dependencies": {
-        "@types/styled-components": "^5.1.26",
         "antd": "^4.23.2",
-        "babel": "^6.23.0",
-        "babel-plugin-styled-components": "^2.0.7",
         "date-fns": "^2.29.3",
         "framer-motion": "^7.3.6",
         "graphql": "^16.6.0",
@@ -30,18 +27,22 @@
         "react-router-dom": "^6.4.0",
         "react-spinners": "^0.13.4",
         "styled-components": "^5.3.6",
-        "uuid": "^8.3.2"
+        "uuid": "^8.3.2",
+        "vite-plugin-babel-macros": "^1.0.6"
     },
     "devDependencies": {
         "@types/lodash": "^4.14.182",
         "@types/node": "^18.7.14",
         "@types/react": "^18.0.17",
         "@types/react-dom": "^18.0.6",
+        "@types/styled-components": "^5.1.26",
         "@types/uuid": "^8.3.4",
         "@typescript-eslint/eslint-plugin": "^5.31.0",
         "@typescript-eslint/parser": "^5.31.0",
         "@vitejs/plugin-react": "^2.1.0",
         "autoprefixer": "^10.4.11",
+        "babel": "^6.23.0",
+        "babel-plugin-styled-components": "^2.0.7",
         "eslint": "^8.20.0",
         "eslint-config-prettier": "^8.5.0",
         "eslint-plugin-prettier": "^4.2.1",

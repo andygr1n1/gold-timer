@@ -8,9 +8,9 @@ services:
         build: .
         ports:
             - '9997:9997'
-        volumes:
-            - .:/app
-            - /app/node_modules
+        # volumes:
+        #     - .:/app
+        #     - /app/node_modules
         environment:
             - PORT=9997
             # - VITE_CLIENT_ENDPOINT=http://0.0.0.0:6080/v1/graphql/

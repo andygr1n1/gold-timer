@@ -1,9 +1,9 @@
 .topbar {
-    @apply flex items-center bg-[#1e40af] px-6 font-monoIitalic font-semibold shadow-xl shadow-blue-900 ring-1 ring-blue-900;
+    @apply flex items-center  justify-between  bg-[#1e40af] px-6 shadow-xl shadow-blue-900 ring-1 ring-blue-900;
     height: var(--top-bar-height);
     min-height: var(--top-bar-height);
 }
 
 .topbar-brand {
-    @apply select-none text-2xl font-bold text-yellow-300;
+    @apply select-none font-monoIitalic text-2xl font-semibold text-yellow-300;
 }

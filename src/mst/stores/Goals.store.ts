@@ -31,6 +31,9 @@ export const Goals$ = types
         get completedGoals(): IGoal$[] {
             return _.filter(self.goals, (goal) => goal.status === STATUS_ENUM.COMPLETED)
         },
+        get completedGoalsCount(): number {
+            return this.completedGoals.length
+        },
     }))
     .actions((self) => ({
         onChangeField<Key extends keyof typeof self>(key: Key, value: typeof self[Key]) {

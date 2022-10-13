@@ -1,3 +1,4 @@
+import { fethUserByPk } from '@/graphql/queries/fethUserByPk.query'
 import { types, flow, applySnapshot } from 'mobx-state-tree'
 import { fetchGoalsByUserId } from '../../graphql/queries/fetchGoalsByUserId.query'
 import { IGoalSnapshotIn } from '../types'
@@ -18,13 +19,25 @@ export const Root$ = types
         },
     }))
     .actions((self) => ({
+        fetchUserInfo: flow(function* _fetchUserInfo() {
+            const userInfo = yield fethUserByPk(self.user$.user_id)
+            console.log('userInfo', userInfo)
+            applySnapshot(self.user$, userInfo)
+        }),
         fetchGoals: flow(function* _fetchGoals() {
             try {
                 self.fetchUserId()
+                if (!self.user$.user_id) self.fetchUserId()
                 const res: IGoalSnapshotIn[] = yield fetchGoalsByUserId(self.user$.user_id)
                 applySnapshot(self.goals$.goals, res)
             } catch (e) {
                 console.error('applySavedLocation error', e)
             }
+        }),
+    }))
+    .actions((self) => ({
+        fetchInitData: flow(function* _fetchInitData() {
+            self.fetchUserId()
+            yield self.fetchUserInfo()
         }),
     }))

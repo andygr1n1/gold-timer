@@ -2,6 +2,8 @@ FROM node:16
 
 WORKDIR /app
 
+COPY yarn.lock .
+
 COPY package.json .
 
 # RUN yarn install -g ts-node

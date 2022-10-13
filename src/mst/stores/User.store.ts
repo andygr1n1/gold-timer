@@ -17,6 +17,7 @@ export const User$ = types
                 return sn
             },
         }),
+        coins: 0,
     })
     .actions((self) => ({
         onChangeField<Key extends keyof typeof self>(key: Key, value: typeof self[Key]) {

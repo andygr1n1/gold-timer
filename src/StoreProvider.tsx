@@ -21,3 +21,5 @@ export const useRootStore = (): IRoot$ => {
 }
 
 export const useGoalsStore = () => useRootStore().goals$
+
+export const useUserStore = () => useRootStore().user$

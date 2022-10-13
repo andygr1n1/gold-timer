@@ -1,6 +1,6 @@
 import { Modal, ModalProps } from 'antd'
 import { observer } from 'mobx-react-lite'
-import styled from 'styled-components'
+import styled from 'styled-components/macro'
 
 const ModalTemplate: React.FC<ModalProps> = observer((props) => {
     return <Modal {...props}>{props.children}</Modal>
