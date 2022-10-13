@@ -2,10 +2,13 @@ import { RdButton } from '@/components/antrd-button/RdButton'
 import { RdModal } from '@/components/antrd-modal/AntrdModal'
 import { useGoalsStore, useRootStore } from '@/StoreProvider'
 import { observer } from 'mobx-react-lite'
+import { BodyCreateMode } from './components/BodyCreateMode'
+import { BodyInfoMode } from './components/BodyInfoMode'
 
 export const GoalCreator: React.FC = observer(() => {
     const {
         goals$: {
+            is_creator_mode,
             goal_creator$: { is_open, onChangeField },
         },
     } = useRootStore()
@@ -22,11 +25,7 @@ export const GoalCreator: React.FC = observer(() => {
             onOk={() => onClose()}
             onCancel={() => onClose()}
         >
-            <div className='flex flex-auto flex-col'>
-                <p>Some contents...</p>
-                <p>Some contents...</p>
-                <p>Some contents...</p>
-            </div>
+            <div className='flex flex-auto flex-col'>{is_creator_mode ? <BodyCreateMode /> : <BodyInfoMode />}</div>
 
             <GoalCreatorFooter />
         </RdModal>
