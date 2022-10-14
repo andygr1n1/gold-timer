@@ -1,20 +1,20 @@
-import { RdInput } from '@/components/antrd-input/RdInput'
+import { RdTextArea } from '@/components/antrd-textarea/AntrdTextarea'
 import { useGoalsStore } from '@/StoreProvider'
 import { Divider } from 'antd'
 import { observer } from 'mobx-react-lite'
 
-export const InputTitle: React.FC = observer(() => {
+export const TextAreaDescription: React.FC = observer(() => {
     const { editable_goal } = useGoalsStore()
 
     if (!editable_goal) return null
 
-    const { title } = editable_goal
+    const { description } = editable_goal
 
     return (
         <>
             <div>
                 <h3 className='py-2'>Title: </h3>
-                <RdInput disabled value={title} />
+                <RdTextArea disabled value={description} />
             </div>
             <Divider />
         </>

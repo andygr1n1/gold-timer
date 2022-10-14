@@ -13,7 +13,7 @@ export const InputSlogan: React.FC = observer(() => {
     return (
         <>
             <div>
-                <h3 className='py-3'>Slogan: </h3>
+                <h3 className='py-2'>Slogan: </h3>
                 <RdInput disabled value={slogan} />
             </div>
             <Divider />

@@ -9,7 +9,7 @@ const ModalTemplate: React.FC<ModalProps> = observer((props) => {
 export const RdModal = styled(ModalTemplate)`
     .ant-modal-content {
         border-radius: 10px;
-        height: 70vh;
+        height: 80vh;
         overflow: auto;
     }
 

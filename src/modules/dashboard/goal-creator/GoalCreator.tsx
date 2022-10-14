@@ -24,6 +24,7 @@ export const GoalCreator: React.FC = observer(() => {
             footer={null}
             onOk={() => onClose()}
             onCancel={() => onClose()}
+            width={'70vw'}
         >
             <div className='flex flex-auto flex-col'>{is_creator_mode ? <BodyCreateMode /> : <BodyInfoMode />}</div>
 
@@ -51,7 +52,7 @@ const GoalCreatorTitle = observer(() => {
 })
 
 const GoalCreatorFooter = observer(() => {
-    const { is_creator_mode, editable_goal, onChangeField } = useGoalsStore()
+    const { is_creator_mode, onChangeField } = useGoalsStore()
 
     return is_creator_mode ? (
         <div className='flex h-[40px] w-full items-center justify-center gap-5'>
