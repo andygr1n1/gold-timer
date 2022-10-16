@@ -2,6 +2,7 @@ import { gql } from 'graphql-request'
 import { generateClient } from '../client'
 
 interface IUserByPkResponse {
+    id: string
     coins: number
     birthday: string
     email: string
@@ -15,6 +16,7 @@ export const fethUserByPk = async (user_id: string): Promise<IUserByPkResponse |
     const query = gql`
         query UserByPk($user_id: uuid!) {
             heroes_by_pk(id: $user_id) {
+                id
                 coins
                 birthday
                 email

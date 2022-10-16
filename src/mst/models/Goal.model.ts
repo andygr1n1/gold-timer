@@ -1,3 +1,4 @@
+import { PRIVACY_ENUM } from '@/helpers/enums'
 import { DIFFICULTY_ENUM, STATUS_ENUM } from './../../helpers/enums'
 import { types } from 'mobx-state-tree'
 import { v4 } from 'uuid'
@@ -14,22 +15,24 @@ export const Goal = types
         }),
         owner_id: '',
 
-        status: '',
+        status: types.optional(types.enumeration(Object.values(STATUS_ENUM)), STATUS_ENUM.ACTIVE),
         difficulty: types.optional(
             types.enumeration<DIFFICULTY_ENUM>(Object.values(DIFFICULTY_ENUM)),
             DIFFICULTY_ENUM.LIGHT,
         ),
-        privacy: '',
+        privacy: types.optional(types.enumeration(Object.values(PRIVACY_ENUM)), PRIVACY_ENUM.PUBLIC),
         round: 0,
 
         title: '',
         slogan: '',
         description: '',
 
-        created_at: types.snapshotProcessor(types.Date, {
+        freeze: false,
+
+        created_at: types.snapshotProcessor(types.maybe(types.Date), {
             preProcessor: (sn: Date | undefined | string) => {
                 if (!sn) {
-                    return new Date()
+                    return undefined
                 }
                 if (typeof sn === 'string') {
                     return new Date(sn)
@@ -37,10 +40,11 @@ export const Goal = types
                 return sn
             },
         }),
-        finished_at: types.snapshotProcessor(types.Date, {
+
+        finished_at: types.snapshotProcessor(types.maybe(types.Date), {
             preProcessor: (sn: Date | undefined | string) => {
                 if (!sn) {
-                    return new Date()
+                    return undefined
                 }
                 if (typeof sn === 'string') {
                     return new Date(sn)
@@ -54,13 +58,15 @@ export const Goal = types
             return self.status === STATUS_ENUM.FROZEN
         },
 
-        get remainingTime(): Date {
-            var createdAt = Date.now()
-            var finishedAt = toDate(self.finished_at).getTime()
-            var diff = new Date(finishedAt - createdAt)
+        get remainingTime(): Date | undefined {
+            if (!self.finished_at) return
+            const createdAt = Date.now()
+            const finishedAt = toDate(self.finished_at).getTime()
+            const diff = new Date(finishedAt - createdAt)
             return diff
         },
         get remainingTimeString(): string {
+            if (!this.remainingTime) return ''
             const years_count = this.remainingTime?.getUTCFullYear() - 1970
             let years = `${years_count} years`
             //
@@ -78,6 +84,12 @@ export const Goal = types
             return `${years} ${months} ${days}`
         },
         get remainingTimeDaysCount(): number {
+            if (!this.remainingTime) return -1
+
             return Math.floor(this.remainingTime.getTime() / (1000 * 3600 * 24))
+        },
+
+        get isNewGoal(): boolean {
+            return !!!self.created_at
         },
     }))

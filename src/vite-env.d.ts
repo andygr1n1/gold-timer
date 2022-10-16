@@ -12,3 +12,8 @@ interface ImportMetaEnv {
 interface ImportMeta {
     readonly env: ImportMetaEnv
 }
+
+declare module 'passive-events-support/src/utils' {
+    type ISupport = ({ debug: boolean }) => void
+    let passiveSupport: ISupport
+}

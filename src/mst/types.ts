@@ -10,6 +10,7 @@ export interface IGoals$ extends Instance<typeof Goals$> {}
 export interface IRoot$SnapshotIn extends SnapshotIn<typeof Root$> {}
 
 export interface IGoal$ extends Instance<typeof Goal$> {}
+export interface IGoal$SnapshotIn extends SnapshotIn<typeof Goal$> {}
 
 export interface IGoal extends Instance<typeof Goal> {}
 export interface IGoalSnapshotIn extends SnapshotIn<typeof Goal> {}

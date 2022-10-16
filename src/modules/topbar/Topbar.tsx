@@ -1,16 +1,10 @@
-import { useGoalsStore, useRootStore, useUserStore } from '@/StoreProvider'
+import { useGoalsStore, useUserStore } from '@/StoreProvider'
 import { observer } from 'mobx-react-lite'
-import { useEffect } from 'react'
 import styles from './Topbar.module.scss'
 
 export const Topbar: React.FC = observer(() => {
-    const { fetchInitData } = useRootStore()
     const { completedGoalsCount } = useGoalsStore()
     const { coins } = useUserStore()
-
-    useEffect(() => {
-        fetchInitData()
-    }, [])
 
     return (
         <div className={styles['topbar']}>

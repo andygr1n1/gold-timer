@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;300;400;600;700;900&display=swap');
-@import url('./fonts.scss');
 
 ::-webkit-scrollbar {
     width: 0px;
@@ -15,22 +14,9 @@
     background: none;
 }
 
-:root {
-    --top-bar-height: 56px;
-
-    //colors
-    --skyblue: #0ea5e9;
-    --spaceblue: #1d4ed8;
-}
-
-@import 'normalize.css';
-@import 'material-icons/iconfont/material-icons.css';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import 'antd/dist/antd.css';
-@import './antrd.scss';
-@import './creator_form.scss';
 
 @layer base {
     h1,
@@ -47,6 +33,30 @@
     a:active,
     a:visited {
         @apply no-underline;
+    }
+
+    li {
+        @apply list-none;
+    }
+
+    .noselect {
+        -webkit-touch-callout: none; /* iOS Safari */
+        -webkit-user-select: none; /* Safari */
+        -khtml-user-select: none; /* Konqueror HTML */
+        -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+        user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+    }
+
+    .allselect {
+        -webkit-touch-callout: all; /* iOS Safari */
+        -webkit-user-select: all; /* Safari */
+        -khtml-user-select: all; /* Konqueror HTML */
+        -moz-user-select: all; /* Old versions of Firefox */
+        -ms-user-select: all; /* Internet Explorer/Edge */
+        user-select: all; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
     }
 }
 
@@ -65,6 +75,10 @@
 
     .border-b-solid {
         border-bottom-style: solid;
+    }
+
+    ul {
+        @apply m-0 p-0;
     }
 }
 

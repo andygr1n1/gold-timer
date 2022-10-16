@@ -31,3 +31,11 @@ export interface IInsertNewGoal {
     finished_at?: Date
     difficulty?: DIFFICULTY_ENUM
 }
+
+// IUpsertNewGoal
+export interface IUpsertNewGoal {
+    id: string
+    title: string
+    slogan: string
+    description: string
+}

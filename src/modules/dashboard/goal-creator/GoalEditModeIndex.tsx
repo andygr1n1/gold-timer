@@ -2,31 +2,25 @@ import { RdButton } from '@/components/antrd-button/RdButton'
 import { RdModal } from '@/components/antrd-modal/AntrdModal'
 import { useGoalsStore, useRootStore } from '@/StoreProvider'
 import { observer } from 'mobx-react-lite'
-import { BodyCreateMode } from './components/BodyCreateMode'
-import { BodyInfoMode } from './components/BodyInfoMode'
+import { BodyInfoMode } from './goal-creator-components/BodyInfoMode'
 
-export const GoalCreator: React.FC = observer(() => {
+export const GoalEditModeIndex: React.FC = observer(() => {
     const {
-        goals$: {
-            is_creator_mode,
-            goal_creator$: { is_open, onChangeField },
-        },
+        goals$: { editable_goal, closeGoalCreator },
     } = useRootStore()
-
-    const onClose = () => {
-        onChangeField('is_open', false)
-    }
 
     return (
         <RdModal
             title={<GoalCreatorTitle />}
-            open={is_open}
+            open={!!editable_goal?.id}
             footer={null}
-            onOk={() => onClose()}
-            onCancel={() => onClose()}
+            onOk={closeGoalCreator}
+            onCancel={closeGoalCreator}
             width={'70vw'}
         >
-            <div className='flex flex-auto flex-col'>{is_creator_mode ? <BodyCreateMode /> : <BodyInfoMode />}</div>
+            <div className='flex flex-auto flex-col'>
+                <BodyInfoMode />
+            </div>
 
             <GoalCreatorFooter />
         </RdModal>
@@ -34,17 +28,22 @@ export const GoalCreator: React.FC = observer(() => {
 })
 
 const GoalCreatorTitle = observer(() => {
-    const { is_creator_mode, editable_goal, onChangeField } = useGoalsStore()
+    const { is_creator_mode, editable_goal, goGoalEditMode, exitGoalEditMode } = useGoalsStore()
 
     const creatorTitle = editable_goal ? 'Edit Goal' : 'Create Goal'
+
+    const onClick = () => {
+        if (is_creator_mode) {
+            exitGoalEditMode()
+        } else {
+            goGoalEditMode()
+        }
+    }
 
     return (
         <div className='flex w-full items-center justify-between pr-10'>
             <h3 className='font-mono font-semibold text-gray-700'>{is_creator_mode ? creatorTitle : 'Goal Info'}</h3>
-            <RdButton
-                className='w-[90px]'
-                onClick={() => onChangeField('is_creator_mode', is_creator_mode ? false : true)}
-            >
+            <RdButton className='w-[90px]' onClick={onClick}>
                 {is_creator_mode ? 'Back' : 'Edit Mode'}
             </RdButton>
         </div>
@@ -52,15 +51,16 @@ const GoalCreatorTitle = observer(() => {
 })
 
 const GoalCreatorFooter = observer(() => {
-    const { is_creator_mode, onChangeField } = useGoalsStore()
+    const { is_creator_mode, generateGoal, isNotValidToSaveGoalData } = useGoalsStore()
 
     return is_creator_mode ? (
         <div className='flex h-[40px] w-full items-center justify-center gap-5'>
             <RdButton
                 className='w-[150px]'
+                disabled={isNotValidToSaveGoalData}
                 type='primary'
                 size='large'
-                onClick={() => onChangeField('is_creator_mode', false)}
+                onClick={() => generateGoal()}
             >
                 Save
             </RdButton>

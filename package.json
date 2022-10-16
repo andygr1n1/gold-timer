@@ -10,6 +10,7 @@
         "lint:fix": "eslint ./src --ext .jsx,.js,.ts,.tsx --quiet --fix --ignore-path ./.gitignore"
     },
     "dependencies": {
+        "@headlessui/react": "^1.7.3",
         "antd": "^4.23.2",
         "date-fns": "^2.29.3",
         "framer-motion": "^7.3.6",
@@ -22,6 +23,7 @@
         "mobx-react-lite": "^3.4.0",
         "mobx-state-tree": "^5.1.6",
         "normalize.css": "^8.0.1",
+        "passive-events-support": "^1.0.33",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
         "react-router-dom": "^6.4.0",

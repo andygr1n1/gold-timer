@@ -1,4 +1,5 @@
 import { NavLink } from 'react-router-dom'
+import { SidebarCreator } from './sidebar-components/SidebarCreator'
 import styles from './Sidebar.module.scss'
 
 export const Sidebar: React.FC = () => {
@@ -17,18 +18,7 @@ export const Sidebar: React.FC = () => {
                     <span className='material-icons-round'>timelapse</span>
                     <span> Dashboard</span>
                 </NavLink>
-                <NavLink
-                    to={'/creator'}
-                    className={(navData) =>
-                        `${styles['link']} ${navData.isActive ? styles['link-active'] : styles['link-passive']}`
-                    }
-                    // onClick={(e) => {
-                    //     disabled ? e.preventDefault() : onClose()
-                    // }}
-                >
-                    <span className='material-icons-round '>lightbulb</span>
-                    <span>Creator</span>
-                </NavLink>
+                <SidebarCreator />
                 <NavLink
                     to={'/statistics'}
                     className={(navData) =>

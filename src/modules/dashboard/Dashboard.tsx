@@ -2,7 +2,7 @@ import { RdLoader } from '@/components/loader/RdLoader'
 import { observer } from 'mobx-react-lite'
 import { useEffect, useState } from 'react'
 import { useRootStore } from '../../StoreProvider'
-import { GoalCreator } from './goal-creator/GoalCreator'
+import { GoalCreatorIndex } from './goal-creator/GoalCreatorIndex'
 import { Goal } from './goal/Goal'
 
 export const Dashboard: React.FC = observer(() => {
@@ -50,7 +50,7 @@ export const Dashboard: React.FC = observer(() => {
                     </div>
                 </div>
             )}
-            <GoalCreator />
+            <GoalCreatorIndex />
         </div>
     )
 })

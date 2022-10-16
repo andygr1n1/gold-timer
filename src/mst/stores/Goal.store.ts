@@ -4,16 +4,21 @@ import { Goal } from '../models/Goal.model'
 import { Goals$ } from './Goals.store'
 
 export const Goal$ = types
-    .compose(Goal, types.model({}))
+    .compose(
+        Goal,
+        types.model({
+            estimation_days: 30,
+        }),
+    )
     .named('Goal$')
     .actions((self) => ({
         onChangeField<Key extends keyof typeof self>(key: Key, value: typeof self[Key]) {
             self[key] = value
         },
-        goEditMode(): void {
-            const { goEditMode } = getParentOfType(self, Goals$)
+        goGoalViewMode(): void {
+            const { goGoalViewMode } = getParentOfType(self, Goals$)
 
-            goEditMode(cast(self))
+            goGoalViewMode(cast(self))
         },
         completeGoal: flow(function* _completeGoal() {
             try {

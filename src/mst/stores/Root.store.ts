@@ -14,29 +14,19 @@ export const Root$ = types
         onChangeField<Key extends keyof typeof self>(key: Key, value: typeof self[Key]) {
             self[key] = value
         },
-        fetchUserId(): void {
-            self.user$.user_id = 'f192b78e-399e-4fc5-9676-ce0bf65b220b'
-        },
     }))
     .actions((self) => ({
         fetchUserInfo: flow(function* _fetchUserInfo() {
-            const userInfo = yield fethUserByPk(self.user$.user_id)
+            const userInfo = yield fethUserByPk('f192b78e-399e-4fc5-9676-ce0bf65b220b')
             applySnapshot(self.user$, userInfo)
         }),
         fetchGoals: flow(function* _fetchGoals() {
             try {
-                self.fetchUserId()
-                if (!self.user$.user_id) self.fetchUserId()
-                const res: IGoalSnapshotIn[] = yield fetchGoalsByUserId(self.user$.user_id)
+                if (!self.user$.id) throw new Error('User id is undefined')
+                const res: IGoalSnapshotIn[] = yield fetchGoalsByUserId(self.user$.id)
                 applySnapshot(self.goals$.goals, res)
             } catch (e) {
                 console.error('applySavedLocation error', e)
             }
-        }),
-    }))
-    .actions((self) => ({
-        fetchInitData: flow(function* _fetchInitData() {
-            self.fetchUserId()
-            yield self.fetchUserInfo()
         }),
     }))

@@ -28,5 +28,9 @@ export default ({ mode }) => {
                 },
             },
         },
+        esbuild: {},
+        build: {
+            sourcemap: true,
+        },
     })
 }

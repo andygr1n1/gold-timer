@@ -5,10 +5,10 @@ import React, { useState } from 'react'
 import { RingLoader } from 'react-spinners'
 
 export const GoalCountMenu: React.FC<{ goal: IGoal$ }> = observer(({ goal }) => {
-    const { remainingTimeDaysCount, goEditMode } = goal
+    const { remainingTimeDaysCount, goGoalViewMode } = goal
     const [loading, setLoading] = useState(false)
 
-    const onClick = () => goEditMode()
+    const onClick = () => goGoalViewMode()
 
     return (
         <div
