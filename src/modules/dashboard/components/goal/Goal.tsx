@@ -1,5 +1,5 @@
 import { observer } from 'mobx-react-lite'
-import { IGoal$ } from '../../../mst/types'
+import { IGoal$ } from '../../../../mst/types'
 import { motion } from 'framer-motion'
 import { setGoalColor } from '@/helpers/set_goal_color'
 import { GoalBox } from './GoalBox'

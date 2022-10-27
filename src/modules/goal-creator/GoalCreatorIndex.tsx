@@ -6,10 +6,10 @@ import { GoalEditModeIndex } from './GoalEditModeIndex'
 export const GoalCreatorIndex: React.FC = observer(() => {
     const {
         editable_goal,
-        new_goal: { isNewGoal },
+        new_goal: { isNewGoal, id },
     } = useGoalsStore()
 
-    if (!editable_goal) return null
+    if (!editable_goal || !id) return null
 
     return isNewGoal ? <GoalCreateModeIndex /> : <GoalEditModeIndex />
 })

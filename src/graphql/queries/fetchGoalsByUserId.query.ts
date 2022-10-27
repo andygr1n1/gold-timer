@@ -1,13 +1,17 @@
-import { IGoalSnapshotIn } from '@/mst/types'
+import { STATUS_ENUM } from '@/helpers/enums'
+import { IGoal$SnapshotIn } from '@/mst/types'
 import { gql } from 'graphql-request'
 import { generateClient } from '../client'
 
-export const fetchGoalsByUserId = async (owner_id: string): Promise<IGoalSnapshotIn[] | undefined> => {
+export const fetchGoalsByUserId = async (owner_id: string): Promise<IGoal$SnapshotIn[] | undefined> => {
     const client = generateClient()
 
     const query = gql`
         query MyQuery($owner_id: uuid) {
-            goals(where: { owner_id: { _eq: $owner_id } }, order_by: { finished_at: asc }) {
+            goals(
+                where: { owner_id: { _eq: $owner_id }, status: { _neq: ${STATUS_ENUM.DEPRECATED} } }
+                order_by: { finished_at: asc }
+            ) {
                 id
                 owner_id
                 created_at

@@ -30,6 +30,7 @@ export interface IInsertNewGoal {
     status: STATUS_ENUM
     finished_at?: Date
     difficulty?: DIFFICULTY_ENUM
+    parent_goal_id: string
 }
 
 // IUpsertNewGoal

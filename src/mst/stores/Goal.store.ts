@@ -8,6 +8,7 @@ export const Goal$ = types
         Goal,
         types.model({
             estimation_days: 30,
+            parent_goal_id: '',
         }),
     )
     .named('Goal$')
@@ -20,6 +21,11 @@ export const Goal$ = types
 
             goGoalViewMode(cast(self))
         },
+        goActivateFreezedGoal(): void {
+            const { goFreezedGoalViewMode } = getParentOfType(self, Goals$)
+            goFreezedGoalViewMode(cast(self))
+        },
+
         completeGoal: flow(function* _completeGoal() {
             try {
                 const result = yield completeGoalMutation(self.id)

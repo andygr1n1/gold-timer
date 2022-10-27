@@ -22,3 +22,14 @@ export enum DIFFICULTY_ENUM {
     FRIEND_OF_DEATH = 'friend_of_death',
     IMMORTAL = 'immortal',
 }
+
+export enum APP_ROUTES_ENUM {
+    HOME = '',
+    DASHBOARD = 'dashboard',
+    E_MONEY = 'money',
+}
+
+export enum LOG_TYPE_ENUM {
+    CREATED = 'created',
+    DEPRECATED = 'deprecated',
+}

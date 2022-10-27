@@ -73,6 +73,10 @@
         border-right-style: solid;
     }
 
+    .border-l-solid {
+        border-left-style: solid;
+    }
+
     .border-b-solid {
         border-bottom-style: solid;
     }
@@ -93,14 +97,14 @@ body {
 
 .app,
 .app-body {
-    @apply flex w-full bg-gray-200;
+    @apply flex w-full bg-slate-100;
 }
 
 .app-body {
-    @apply flex w-full bg-gray-200;
+    @apply flex w-full bg-slate-100;
     height: calc(100% - var(--top-bar-height));
 }
 
 .module-wrapper {
-    @apply flex w-full flex-col overflow-auto rounded-lg bg-white p-5;
+    @apply relative flex w-full flex-col overflow-auto;
 }

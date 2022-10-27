@@ -20,6 +20,7 @@ export const insertGoal = async (newGoal: IInsertNewGoal): Promise<IGoal$Snapsho
                 slogan
                 status
                 title
+                parent_goal_id
             }
         }
     `

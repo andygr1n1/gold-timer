@@ -1,0 +1,19 @@
+.link {
+    @apply flex cursor-pointer items-center justify-start gap-3 font-mono text-sm font-bold text-white;
+
+    &:hover > span,
+    &:hover > svg {
+        @apply text-amber-300;
+    }
+
+    &.link-active {
+        & > span,
+        & > svg {
+            @apply text-amber-300;
+        }
+
+        & > span:last-child {
+            @apply font-monoIitalic;
+        }
+    }
+}

@@ -1,6 +1,5 @@
 import { Sidebar } from './modules/sidebar/Sidebar'
 import { AppRoutes } from './AppRoutes'
-import { Topbar } from './modules/topbar/Topbar'
 import { useRootStore } from './StoreProvider'
 import { useEffect } from 'react'
 import { observer } from 'mobx-react-lite'
@@ -26,10 +25,10 @@ export const App = observer(() => {
 
     return user_id ? (
         <div className='app flex-col'>
-            <Topbar />
+            {/* <Topbar /> */}
             <div className='app-body'>
                 <Sidebar />
-                <div className='m-5 flex w-full flex-auto'>
+                <div className='flex w-full flex-auto'>
                     <AppRoutes />
                 </div>
             </div>

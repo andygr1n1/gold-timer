@@ -29,6 +29,8 @@ export const Goal = types
 
         freeze: false,
 
+        parent_goal_id: types.maybeNull(types.string),
+
         created_at: types.snapshotProcessor(types.maybe(types.Date), {
             preProcessor: (sn: Date | undefined | string) => {
                 if (!sn) {
@@ -89,7 +91,19 @@ export const Goal = types
             return Math.floor(this.remainingTime.getTime() / (1000 * 3600 * 24))
         },
 
+        get createdDaysAgo(): number {
+            if (!self.created_at) return 0
+            const today = Date.now()
+
+            const createdAt = self.created_at.getTime()
+
+            const diff = new Date(today - createdAt)
+
+            return Math.floor(diff.getTime() / (1000 * 3600 * 24))
+        },
+
         get isNewGoal(): boolean {
-            return !!!self.created_at
+            console.log('self.created_at && self.freeze', !!self.created_at && !!self.freeze)
+            return (!!self.created_at && !!self.freeze) || !!!self.created_at
         },
     }))
