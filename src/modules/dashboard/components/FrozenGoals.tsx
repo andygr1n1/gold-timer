@@ -3,7 +3,7 @@ import { observer } from 'mobx-react-lite'
 import { FreezedGoal } from './freezed-goal/FreezedGoal'
 export const FrozenGoals: React.FC = observer(() => {
     const {
-        goals$: { frozenGoals, frozenGoalsChecked },
+        goals$: { frozenGoals, frozenGoalsFilter: frozenGoalsChecked },
     } = useRootStore()
 
     return frozenGoalsChecked ? (

@@ -96,7 +96,7 @@ export const RdSelect = observer(<V extends Key, L extends unknown>(props: IRdSe
                     leaveFrom='opacity-100'
                     leaveTo='opacity-0'
                 >
-                    <Listbox.Options className='absolute top-12 z-50 flex w-full animate-opacity flex-col bg-gray-50  text-sm shadow-md transition-all duration-150'>
+                    <Listbox.Options className='animate-opacity absolute top-12 z-50 flex w-full flex-col bg-gray-50  text-sm shadow-md transition-all duration-150'>
                         {props.options.map((option) => (
                             <Listbox.Option
                                 key={option.value}

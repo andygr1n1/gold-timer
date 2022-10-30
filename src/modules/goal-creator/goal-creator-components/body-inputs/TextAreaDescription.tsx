@@ -18,6 +18,7 @@ export const TextAreaDescription: React.FC = observer(() => {
                     disabled={!is_creator_mode}
                     value={description}
                     onChange={(e) => onChangeField('description', e.target.value)}
+                    rows={8}
                 />
             </div>
             <Divider />

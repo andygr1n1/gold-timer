@@ -4,7 +4,10 @@ import { observer } from 'mobx-react-lite'
 import { useEffect, useState } from 'react'
 import { useRootStore } from '../../StoreProvider'
 import { ActiveGoals } from './components/ActiveGoals'
+import { ActiveHotGoals } from './components/ActiveHotGoals'
+import { CompletedGoals } from './components/CompletedGoals'
 import { DashboardFilter } from './components/DashboardFilter'
+import { ExpiredGoals } from './components/ExpiredGoals'
 import { FrozenGoals } from './components/FrozenGoals'
 
 export const Dashboard: React.FC = observer(() => {
@@ -28,9 +31,14 @@ export const Dashboard: React.FC = observer(() => {
             ) : (
                 <>
                     <div className='flex flex-col gap-5 p-5 xl:w-[1200px]'>
+                        <ExpiredGoals />
+                        <ActiveHotGoals />
                         <ActiveGoals />
                         <Divider />
                         <FrozenGoals />
+                        <Divider />
+                        <CompletedGoals />
+                        <Divider />
                     </div>
                     <DashboardFilter />
                 </>

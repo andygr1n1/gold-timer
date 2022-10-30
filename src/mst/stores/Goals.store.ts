@@ -2,13 +2,13 @@ import { generateLog } from '@/graphql/mutations/generateLogCreatedGoal.mutation
 import { insertGoal } from '@/graphql/mutations/insertGoal.mutation'
 import { updateGoalStatus } from '@/graphql/mutations/updateGoalStatus.mutation'
 import { upsertGoal } from '@/graphql/mutations/upsertGoal.mutation'
-import { LOG_TYPE_ENUM, STATUS_ENUM } from '@/helpers/enums'
+import { LOG_TYPE_ENUM, STATUS_ENUM, STATUS_ENUM_FILTERS } from '@/helpers/enums'
 import { IInsertNewGoal } from '@/helpers/interfaces/new_goal.interface'
 import { setGoalDifficulty } from '@/helpers/set_goal_difficulty'
 import { CheckboxChangeEvent } from 'antd/lib/checkbox'
 import { CheckboxValueType } from 'antd/lib/checkbox/Group'
-import { add } from 'date-fns'
-import _ from 'lodash'
+import { add, isFuture, isPast } from 'date-fns'
+import { filter, orderBy, differenceWith } from 'lodash'
 import { flow } from 'mobx'
 import { destroy, detach, getParentOfType, toGenerator, types, cast, applySnapshot } from 'mobx-state-tree'
 import { IGoal$ } from '../types'
@@ -24,26 +24,57 @@ export const Goals$ = types
 
         is_creator_mode: false,
 
-        goals_checked_list: types.array(types.enumeration(Object.values(STATUS_ENUM))),
+        goals_checked_list_filter: types.array(types.enumeration(Object.values(STATUS_ENUM_FILTERS))),
     })
     .views((self) => ({
-        get activeGoalsChecked(): boolean {
-            return self.goals_checked_list.includes(STATUS_ENUM.ACTIVE)
+        get activeGoalsFilter(): boolean {
+            return self.goals_checked_list_filter.includes(STATUS_ENUM_FILTERS.ACTIVE)
+        },
+        get frozenGoalsFilter(): boolean {
+            return self.goals_checked_list_filter.includes(STATUS_ENUM_FILTERS.FROZEN)
+        },
+        get completedGoalsFilter(): boolean {
+            return self.goals_checked_list_filter.includes(STATUS_ENUM_FILTERS.COMPLETED)
+        },
+    }))
+    .views((self) => ({
+        get activeExpiredGoals(): IGoal$[] {
+            const goals = filter(self.goals, (goal) => goal.status === STATUS_ENUM.ACTIVE).filter(
+                (goal) => goal.finished_at && isPast(goal.finished_at),
+            )
+            return orderBy(goals, ['finished_at'], ['asc'])
+        },
+        get activeHotGoals(): IGoal$[] {
+            const tommorowDate = () =>
+                add(Date.now(), {
+                    days: 1,
+                })
+
+            const goals = filter(self.goals, (goal) => goal.status === STATUS_ENUM.ACTIVE).filter(
+                (goal) => goal.finished_at && isFuture(goal.finished_at) && goal.finished_at < tommorowDate(),
+            )
+            return orderBy(goals, ['finished_at'], ['asc'])
         },
         get activeGoals(): IGoal$[] {
-            return _.filter(self.goals, (goal) => goal.status === STATUS_ENUM.ACTIVE)
+            const goals = differenceWith(
+                filter(self.goals, (goal) => goal.status === STATUS_ENUM.ACTIVE),
+                [...this.activeExpiredGoals, ...this.activeHotGoals],
+            )
+            return orderBy(goals, ['finished_at'], ['asc'])
         },
-        get frozenGoalsChecked(): boolean {
-            return self.goals_checked_list.includes(STATUS_ENUM.FROZEN)
-        },
+
         get frozenGoals(): IGoal$[] {
-            return _.filter(self.goals, (goal) => goal.status === STATUS_ENUM.FROZEN)
+            const goals = filter(self.goals, (goal) => goal.status === STATUS_ENUM.FROZEN)
+            return orderBy(goals, ['finished_at'], ['asc'])
         },
         get completedGoals(): IGoal$[] {
-            return _.filter(self.goals, (goal) => goal.status === STATUS_ENUM.COMPLETED)
+            const goals = filter(self.goals, (goal) => goal.status === STATUS_ENUM.COMPLETED)
+            return orderBy(goals, ['finished_at'], ['asc'])
         },
+    }))
+    .views((self) => ({
         get completedGoalsCount(): number {
-            return this.completedGoals.length
+            return self.completedGoals.length
         },
         get isNotValidToSaveGoalData(): boolean {
             return !!!self.editable_goal?.title.length
@@ -55,13 +86,13 @@ export const Goals$ = types
         },
         onCheckAllGoalsChange(e: CheckboxChangeEvent): void {
             if (e.target.checked) {
-                applySnapshot(self.goals_checked_list, Object.values(STATUS_ENUM))
+                applySnapshot(self.goals_checked_list_filter, Object.values(STATUS_ENUM_FILTERS))
             } else {
-                applySnapshot(self.goals_checked_list, [])
+                applySnapshot(self.goals_checked_list_filter, [])
             }
         },
         onChangeCheckGoals(list: CheckboxValueType[]): void {
-            applySnapshot(self.goals_checked_list, list as STATUS_ENUM[])
+            applySnapshot(self.goals_checked_list_filter, list as STATUS_ENUM_FILTERS[])
         },
         goCreateNewGoalMode(): void {
             self.is_creator_mode = true
@@ -149,7 +180,7 @@ export const Goals$ = types
                         status: self.new_goal.status,
                         difficulty: setGoalDifficulty(self.new_goal.finished_at),
                         finished_at: self.new_goal.finished_at,
-                        parent_goal_id: self.new_goal.parent_goal_id,
+                        parent_goal_id: self.new_goal.parent_goal_id ?? null,
                     }
 
                     const newGoalResult = yield* toGenerator(insertGoal(newGoal))

@@ -78,10 +78,17 @@ export const Goal = types
             const days_count = this.remainingTime?.getUTCDate() - 1
             let days = `${days_count} days`
             //
+            const hours_count = this.remainingTime?.getUTCHours()
+            let hours = `${hours_count} ${hours_count === 1 ? 'hour' : 'hours'}`
+            //
 
             if (years_count <= 0) years = ''
             if (months_count <= 0) months = ''
             if (days_count <= 0) days = ''
+            if (hours_count <= 0) hours = ''
+
+            if (Math.floor(this.remainingTime.getTime() / (1000 * 3600 * 24)) < 0) return `expired`
+            if (Math.floor(this.remainingTime.getTime() / (1000 * 3600 * 24)) === 0) return `${hours}`
 
             return `${years} ${months} ${days}`
         },
@@ -103,7 +110,6 @@ export const Goal = types
         },
 
         get isNewGoal(): boolean {
-            console.log('self.created_at && self.freeze', !!self.created_at && !!self.freeze)
             return (!!self.created_at && !!self.freeze) || !!!self.created_at
         },
     }))

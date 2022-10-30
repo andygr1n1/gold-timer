@@ -1,12 +1,12 @@
 import { observer } from 'mobx-react-lite'
 import { Icon } from '@iconify/react'
 import { Checkbox, Divider } from 'antd'
-import { STATUS_ENUM } from '@/helpers/enums'
+import { STATUS_ENUM_FILTERS } from '@/helpers/enums'
 import { useGoalsStore } from '@/StoreProvider'
 import { useState } from 'react'
 
 export const DashboardFilter: React.FC = observer(() => {
-    const { goals_checked_list, onCheckAllGoalsChange, onChangeCheckGoals } = useGoalsStore()
+    const { goals_checked_list_filter, onCheckAllGoalsChange, onChangeCheckGoals } = useGoalsStore()
 
     const [filterState, setFilterState] = useState(false)
 
@@ -16,19 +16,19 @@ export const DashboardFilter: React.FC = observer(() => {
                 <div className='flex h-[400px] w-[200px] flex-col rounded-md bg-white p-5 shadow-md'>
                     <Checkbox
                         indeterminate={
-                            goals_checked_list.length > 0 &&
-                            goals_checked_list.length < Object.values(STATUS_ENUM).length
+                            goals_checked_list_filter.length > 0 &&
+                            goals_checked_list_filter.length < Object.values(STATUS_ENUM_FILTERS).length
                         }
                         onChange={onCheckAllGoalsChange}
-                        checked={goals_checked_list.length === Object.values(STATUS_ENUM).length}
+                        checked={goals_checked_list_filter.length === Object.values(STATUS_ENUM_FILTERS).length}
                     >
                         All goals
                     </Checkbox>
                     <Divider />
                     <Checkbox.Group
                         className='flex flex-col gap-3'
-                        options={Object.values(STATUS_ENUM)}
-                        value={goals_checked_list}
+                        options={Object.values(STATUS_ENUM_FILTERS)}
+                        value={goals_checked_list_filter}
                         onChange={onChangeCheckGoals}
                     />
                 </div>

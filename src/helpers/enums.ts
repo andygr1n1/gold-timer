@@ -13,6 +13,14 @@ export enum STATUS_ENUM {
     FAILED = 'failed',
 }
 
+export enum STATUS_ENUM_FILTERS {
+    ACTIVE = 'active',
+    FROZEN = 'frozen',
+    COMPLETED = 'completed',
+    // FINISHED = 'finished',
+    // FAILED = 'failed',
+}
+
 export enum DIFFICULTY_ENUM {
     LIGHT = 'light',
     MEDIUM = 'medium',

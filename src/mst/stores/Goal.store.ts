@@ -8,7 +8,6 @@ export const Goal$ = types
         Goal,
         types.model({
             estimation_days: 30,
-            parent_goal_id: '',
         }),
     )
     .named('Goal$')

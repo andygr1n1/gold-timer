@@ -1,10 +1,11 @@
 import { createContext, ReactNode, useContext } from 'react'
 import type { IRoot$ } from './mst/types'
 import { Root$ } from './mst/stores/Root.store'
-import { STATUS_ENUM } from './helpers/enums'
+import { STATUS_ENUM_FILTERS } from './helpers/enums'
 const storeContext = createContext<IRoot$ | null>(null)
 
-const generateRoot$ = () => Root$.create({ goals$: { goals_checked_list: [STATUS_ENUM.FROZEN, STATUS_ENUM.ACTIVE] } })
+const generateRoot$ = () =>
+    Root$.create({ goals$: { goals_checked_list_filter: [STATUS_ENUM_FILTERS.FROZEN, STATUS_ENUM_FILTERS.ACTIVE] } })
 
 export const rootStore$ = generateRoot$()
 

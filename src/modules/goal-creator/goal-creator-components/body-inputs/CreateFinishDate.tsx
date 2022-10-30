@@ -40,8 +40,6 @@ export const CreateFinishDate: React.FC = observer(() => {
         return current && current.valueOf() < Date.now()
     }
 
-    console.log('freeze', freeze)
-
     return !freeze ? (
         <>
             <div>
