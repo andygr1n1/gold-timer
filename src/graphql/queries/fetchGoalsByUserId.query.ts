@@ -9,7 +9,7 @@ export const fetchGoalsByUserId = async (owner_id: string): Promise<IGoal$Snapsh
     const query = gql`
         query MyQuery($owner_id: uuid) {
             goals(
-                where: { owner_id: { _eq: $owner_id }, status: { _neq: ${STATUS_ENUM.DEPRECATED} } }
+                where: { owner_id: { _eq: $owner_id }, status: { _in: [${STATUS_ENUM.ACTIVE}, ${STATUS_ENUM.FROZEN}, ${STATUS_ENUM.COMPLETED}] } }
                 order_by: { finished_at: asc }
             ) {
                 id

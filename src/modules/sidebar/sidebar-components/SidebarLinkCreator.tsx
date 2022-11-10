@@ -5,11 +5,11 @@ import { Icon } from '@iconify/react'
 import styles from './SidebarLink.module.scss'
 
 export const SidebarLinkCreator: React.FC = observer(() => {
-    const { is_creator_mode, goCreateNewGoalMode: createNewGoalMode } = useGoalsStore()
+    const { is_creator_mode, goCreateNewGoalMode } = useGoalsStore()
     return (
         <li
             className={`${styles['link']} ${is_creator_mode ? styles['link-active'] : styles['link-passive']}`}
-            onClick={createNewGoalMode}
+            onClick={goCreateNewGoalMode}
         >
             <Icon icon='ic:round-dashboard-customize' className='text-2xl' />
             <span>Creator</span>
