@@ -5,11 +5,12 @@ import type { ValueType } from 'rc-input-number/lib/utils/MiniDecimal'
 import { Divider, Switch } from 'antd'
 import { RdInputNumber } from '@/components/rd-inputs/RdInputNumber'
 import { RdDatePicker } from '@/components/rd-datepicker/DatePickerFns'
+import { STATUS_ENUM } from '@/helpers/enums'
 
 export const CreateFinishDate: React.FC = observer(() => {
     const {
         goals$: {
-            new_goal: { freeze, estimation_days, onChangeField },
+            new_goal: { freeze, estimation_days, onChangeField, status },
         },
     } = useRootStore()
 
@@ -40,7 +41,7 @@ export const CreateFinishDate: React.FC = observer(() => {
         return current && current.valueOf() < Date.now()
     }
 
-    return !freeze ? (
+    return !freeze && status !== STATUS_ENUM.FROZEN ? (
         <>
             <div>
                 <div className='relative flex items-center justify-start gap-5 py-2'>

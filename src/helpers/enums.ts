@@ -40,4 +40,15 @@ export enum APP_ROUTES_ENUM {
 export enum LOG_TYPE_ENUM {
     CREATED = 'created',
     DEPRECATED = 'deprecated',
+    ACTIVE = 'active',
+    FINISHED = 'finished',
+    COMPLETED = 'completed',
+    FROZEN = 'frozen',
+    FAILED = 'failed',
+    RITUALIZED = 'ritualized',
+}
+
+export enum RITUAL_TYPE_ENUM {
+    INTERVAL_IN_DAYS = 'interval_in_days',
+    DAYS_OF_WEEK = 'days_of_week',
 }

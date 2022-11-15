@@ -1,19 +1,31 @@
-import { generateLog } from '@/graphql/mutations/generateLogCreatedGoal.mutation'
+import { generateNewRitualCircle } from './../../helpers/generate_new_ritual_circle'
+import { generateLog } from '@/graphql/mutations/generateLog.mutation'
 import { insertGoal } from '@/graphql/mutations/insertGoal.mutation'
+import { insertGoalsRituals } from '@/graphql/mutations/upsertGoalsRituals.mutation'
 import { updateGoalStatus } from '@/graphql/mutations/updateGoalStatus.mutation'
 import { upsertGoal } from '@/graphql/mutations/upsertGoal.mutation'
 import { LOG_TYPE_ENUM, STATUS_ENUM, STATUS_ENUM_FILTERS } from '@/helpers/enums'
-import { IInsertNewGoal } from '@/helpers/interfaces/new_goal.interface'
+import { IInsertNewGoal, IInsertRitual } from '@/helpers/interfaces/new_goal.interface'
 import { setGoalDifficulty } from '@/helpers/set_goal_difficulty'
 import { CheckboxChangeEvent } from 'antd/lib/checkbox'
 import { CheckboxValueType } from 'antd/lib/checkbox/Group'
 import { add, isFuture, isPast } from 'date-fns'
-import { filter, orderBy, differenceWith } from 'lodash'
-import { flow } from 'mobx'
-import { destroy, detach, getParentOfType, toGenerator, types, cast, applySnapshot } from 'mobx-state-tree'
+import { filter, orderBy, differenceWith, cloneDeep } from 'lodash'
+import {
+    destroy,
+    detach,
+    getParentOfType,
+    toGenerator,
+    types,
+    cast,
+    applySnapshot,
+    flow,
+    castToSnapshot,
+} from 'mobx-state-tree'
 import { IGoal$ } from '../types'
 import { Goal$ } from './Goal.store'
 import { Root$ } from './Root.store'
+import { v4 } from 'uuid'
 
 export const Goals$ = types
     .model('Goals$', {
@@ -98,9 +110,14 @@ export const Goals$ = types
             self.is_creator_mode = true
             self.editable_goal = self.new_goal
         },
+        goCreateNewChildGoal(parentGoalId: string): void {
+            self.is_creator_mode = true
+            self.new_goal.parent_goal_id = parentGoalId
+            self.editable_goal = self.new_goal
+        },
         goGoalViewMode(editGoal: IGoal$): void {
             self.editable_goal = editGoal
-            self.new_goal = { ...self.editable_goal, id: '' }
+            self.new_goal = cloneDeep({ ...self.editable_goal, id: '' })
         },
         goFreezedGoalViewMode(editGoal: IGoal$): void {
             self.is_creator_mode = true
@@ -112,6 +129,8 @@ export const Goals$ = types
                 status: STATUS_ENUM.ACTIVE,
                 parent_goal_id: editGoal.id,
             }
+
+            editGoal.onChangeField('goal_new_status', STATUS_ENUM.DEPRECATED)
             self.editable_goal = self.new_goal
         },
         goGoalEditMode(): void {
@@ -119,6 +138,9 @@ export const Goals$ = types
             self.is_creator_mode = true
         },
         exitGoalEditMode(): void {
+            if (self.editable_goal && self.editable_goal?.goal_ritualized_mode) {
+                self.editable_goal.onChangeField('goal_ritualized_mode', false)
+            }
             self.is_creator_mode = false
         },
 
@@ -191,21 +213,89 @@ export const Goals$ = types
                     if (!generateLogCreatedGoalRes) throw new Error('generateLogCreatedGoalRes error')
 
                     if (self.new_goal.parent_goal_id) {
-                        const deprecatedParentGoalStatusRes = yield* toGenerator(
-                            updateGoalStatus(self.new_goal.parent_goal_id, STATUS_ENUM.DEPRECATED),
+                        const parentGoal = self.goals.find((goal) => goal.id === self.new_goal.parent_goal_id)
+
+                        if (!parentGoal || !parentGoal?.goal_new_status)
+                            throw new Error("error: can't find parent goal")
+
+                        const parentGoalStatusRes = yield* toGenerator(
+                            updateGoalStatus(self.new_goal.parent_goal_id, parentGoal.goal_new_status),
                         )
-                        const generateLogForDeprecatedGoalRes = yield* toGenerator(
-                            generateLog(self.new_goal.parent_goal_id, LOG_TYPE_ENUM.DEPRECATED),
+                        const generateLogForParentGoalRes = yield* toGenerator(
+                            generateLog(
+                                self.new_goal.parent_goal_id,
+                                parentGoal.goal_new_status as unknown as LOG_TYPE_ENUM,
+                            ),
                         )
 
-                        if (!deprecatedParentGoalStatusRes) throw new Error('deprecatedParentGoalStatus error')
-                        if (!generateLogForDeprecatedGoalRes) throw new Error('generateLogForDeprecatedGoalRes error')
+                        if (!parentGoalStatusRes) throw new Error('deprecatedParentGoalStatus error')
+                        if (!generateLogForParentGoalRes) throw new Error('generateLogForDeprecatedGoalRes error')
 
-                        self.destroyGoal(self.new_goal.parent_goal_id)
+                        if (parentGoal.goal_new_status !== STATUS_ENUM.COMPLETED) {
+                            self.destroyGoal(self.new_goal.parent_goal_id)
+                        } else if (parentGoal.goal_new_status === STATUS_ENUM.COMPLETED) {
+                            parentGoal.onChangeField('status', STATUS_ENUM.COMPLETED)
+                        }
                     }
 
                     self.onChangeField('goals', cast([cast(newGoalResult), ...self.goals]))
                 }
+                self.closeGoalCreator()
+            } catch (e) {
+                alert(`generateGoal error, ${e}`)
+                console.error(`generateGoal error, ${e}`)
+            }
+        }),
+        ritualizeGoal: flow(function* _() {
+            const {
+                user$: { id: user_id },
+            } = getParentOfType(self, Root$)
+
+            try {
+                if (!user_id) throw new Error('user id is undefined')
+                if (!self.editable_goal || !self.editable_goal?.goal_ritual || !self.new_goal.goal_ritual) return
+
+                const ritualData: IInsertRitual = {
+                    goal_id: self.editable_goal.id,
+                    ritual_id: self.editable_goal.goal_ritual.ritual_id || v4(),
+                    ritual_power: self.editable_goal.goal_ritual.ritual_power + 1,
+                    ritual_interval: self.new_goal.goal_ritual.ritual_interval,
+                    ritual_type: self.new_goal.goal_ritual.ritual_type,
+                }
+
+                const insertRitualGoalId = yield* toGenerator(insertGoalsRituals(ritualData))
+
+                if (!insertRitualGoalId) throw new Error('insertGoalsRitualsRes error')
+
+                yield generateLog(insertRitualGoalId, LOG_TYPE_ENUM.RITUALIZED)
+
+                const { ritual_goal_created_at, ritual_goal_finished_at } = generateNewRitualCircle(self.editable_goal)
+
+                const goalData = {
+                    id: self.editable_goal.id,
+                    title: self.new_goal.title,
+                    slogan: self.new_goal.slogan,
+                    description: self.new_goal.description,
+                    owner_id: self.new_goal.owner_id,
+                    privacy: self.new_goal.privacy,
+                    status: self.new_goal.status,
+                    difficulty: self.new_goal.difficulty,
+                    created_at: ritual_goal_created_at,
+                    finished_at: ritual_goal_finished_at,
+                }
+                const updatedGoalResponse = yield* toGenerator(upsertGoal(goalData))
+
+                if (!updatedGoalResponse) throw new Error('failed to update goal data')
+
+                self.editable_goal.onChangeField('title', updatedGoalResponse.title)
+                self.editable_goal.onChangeField('slogan', updatedGoalResponse.slogan)
+                self.editable_goal.onChangeField('description', updatedGoalResponse.description)
+                self.editable_goal.onChangeField('privacy', updatedGoalResponse.privacy)
+                self.editable_goal.onChangeField('status', updatedGoalResponse.status)
+                self.editable_goal.onChangeField('created_at', updatedGoalResponse.created_at)
+                self.editable_goal.onChangeField('finished_at', updatedGoalResponse.finished_at)
+                self.editable_goal.onChangeField('goal_ritual', castToSnapshot(updatedGoalResponse.goal_ritual))
+
                 self.closeGoalCreator()
             } catch (e) {
                 alert(`generateGoal error, ${e}`)

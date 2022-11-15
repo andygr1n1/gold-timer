@@ -4,11 +4,11 @@ import { observer } from 'mobx-react-lite'
 import styled from 'styled-components/macro'
 
 interface ButtonTemplateProps extends ButtonProps {
-    animate?: boolean
+    animation?: 'true' | undefined
 }
 
 export const ButtonTemplate: React.FC<ButtonTemplateProps> = observer((props) => {
-    return props.animate ? (
+    return props.animation ? (
         <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 1 }}>
             <Button {...props}>{props.children}</Button>
         </motion.div>
@@ -92,6 +92,62 @@ export const RdButton = styled(ButtonTemplate)`
             border: 1px solid #16a34a;
             border-radius: 5px;
             background: #16a34a;
+            color: white;
+        }
+    }
+
+    /* goldbutton */
+    &.ant-btn-primary.goldbutton {
+        border: 1px solid var(--amber500);
+        background: var(--amber400);
+        border-radius: 5px;
+        color: white;
+
+        &:hover {
+            border: 1px solid var(--amber400);
+            border-radius: 5px;
+            background: var(--amber400);
+            color: white;
+        }
+    }
+
+    &.ant-btn-ghost.goldbutton {
+        border: 1px solid var(--amber400);
+        border-radius: 5px;
+        color: var(--amber500);
+
+        &:hover {
+            border: 1px solid var(--amber400);
+            border-radius: 5px;
+            background: var(--amber400);
+            color: white;
+        }
+    }
+
+    /* indigobutton */
+    &.ant-btn-primary.indigobutton {
+        border: 1px solid var(--indigo600);
+        background: var(--indigo500);
+        border-radius: 5px;
+        color: white;
+
+        &:hover {
+            border: 1px solid var(--indigo600);
+            border-radius: 5px;
+            background: var(--indigo600);
+            color: white;
+        }
+    }
+
+    &.ant-btn-ghost.indigobutton {
+        border: 1px solid var(--indigo600);
+        border-radius: 5px;
+        color: var(--amber500);
+
+        &:hover {
+            border: 1px solid var(--indigo600);
+            border-radius: 5px;
+            background: var(--indigo600);
             color: white;
         }
     }

@@ -5,7 +5,7 @@ import { Divider } from 'antd'
 import { observer } from 'mobx-react-lite'
 
 export const SelectStatus: React.FC = observer(() => {
-    const { new_goal, is_creator_mode } = useGoalsStore()
+    const { new_goal, is_creator_mode, editable_goal } = useGoalsStore()
 
     if (!new_goal) return null
 
@@ -55,7 +55,7 @@ export const SelectStatus: React.FC = observer(() => {
             <div>
                 <h3 className='py-2'>Status: </h3>
                 <RdSelect
-                    disabled={!is_creator_mode}
+                    disabled={!is_creator_mode || editable_goal?.goal_ritualized_mode}
                     value={status}
                     options={options}
                     onSelect={(value) => onChangeField('status', value)}

@@ -30,7 +30,9 @@ export const GoalEditModeIndex: React.FC = observer(() => {
 const GoalCreatorTitle = observer(() => {
     const { is_creator_mode, editable_goal, goGoalEditMode, exitGoalEditMode } = useGoalsStore()
 
-    const creatorTitle = editable_goal ? 'Edit Goal' : 'Create Goal'
+    const ritualizedMode = !!editable_goal?.goal_ritualized_mode
+
+    const creatorTitle = ritualizedMode ? 'Ritualize Goal' : 'Edit Goal'
 
     const onClick = () => {
         if (is_creator_mode) {
@@ -43,26 +45,33 @@ const GoalCreatorTitle = observer(() => {
     return (
         <div className='flex w-full items-center justify-between pr-10'>
             <h3 className='font-mono font-semibold text-gray-700'>{is_creator_mode ? creatorTitle : 'Goal Info'}</h3>
-            <RdButton className='w-[90px]' onClick={onClick}>
-                {is_creator_mode ? 'Back' : 'Edit Mode'}
-            </RdButton>
+            {!ritualizedMode && (
+                <RdButton className='w-[90px]' onClick={onClick}>
+                    {is_creator_mode ? 'Back' : 'Edit Mode'}
+                </RdButton>
+            )}
         </div>
     )
 })
 
 const GoalCreatorFooter = observer(() => {
-    const { is_creator_mode, generateGoal, isNotValidToSaveGoalData } = useGoalsStore()
+    const { is_creator_mode, generateGoal, ritualizeGoal, isNotValidToSaveGoalData, editable_goal } = useGoalsStore()
+
+    const ritualizedMode = !!editable_goal?.goal_ritualized_mode
+
+    const onClick = () => (ritualizedMode ? ritualizeGoal() : generateGoal())
+    const btnText = ritualizedMode ? 'Ritualize' : 'Save'
 
     return is_creator_mode ? (
         <div className='flex h-[40px] w-full items-center justify-center gap-5'>
             <RdButton
-                className='w-[150px]'
+                className={`${ritualizedMode ? 'indigobutton' : ''} w-[150px]`}
                 disabled={isNotValidToSaveGoalData}
                 type='primary'
                 size='large'
-                onClick={() => generateGoal()}
+                onClick={onClick}
             >
-                Save
+                {btnText}
             </RdButton>
         </div>
     ) : null

@@ -1,3 +1,4 @@
+import { RITUAL_TYPE_ENUM } from '@/helpers/enums'
 import { DIFFICULTY_ENUM, PRIVACY_ENUM, STATUS_ENUM } from '../enums'
 
 export interface IGenerateGoalCommonValues {
@@ -39,4 +40,12 @@ export interface IUpsertNewGoal {
     title: string
     slogan: string
     description: string
+}
+
+export interface IInsertRitual {
+    goal_id: string
+    ritual_power: number
+    ritual_interval: number
+    ritual_type: RITUAL_TYPE_ENUM
+    ritual_id?: string
 }

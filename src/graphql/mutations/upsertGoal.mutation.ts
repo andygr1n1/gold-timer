@@ -1,4 +1,4 @@
-import { STATUS_ENUM, PRIVACY_ENUM } from '@/helpers/enums'
+import { STATUS_ENUM, PRIVACY_ENUM, RITUAL_TYPE_ENUM } from '@/helpers/enums'
 import { IUpsertNewGoal } from '@/helpers/interfaces/new_goal.interface'
 import { gql } from 'graphql-request'
 import { generateClient } from '../client'
@@ -8,8 +8,17 @@ export interface IUpsertGoal {
     title: string
     slogan: string
     description: string
+    created_at: Date
+    finished_at: Date
     status: STATUS_ENUM
     privacy: PRIVACY_ENUM
+    goal_ritual: {
+        goal_id: string
+        ritual_id: string
+        ritual_power: number
+        ritual_interval: number
+        ritual_type: RITUAL_TYPE_ENUM
+    }
 }
 
 export const upsertGoal = async (newGoal: IUpsertNewGoal): Promise<IUpsertGoal | undefined> => {
@@ -19,7 +28,10 @@ export const upsertGoal = async (newGoal: IUpsertNewGoal): Promise<IUpsertGoal |
         mutation upsertGoal($newGoal: goals_insert_input!) {
             insert_goals_one(
                 object: $newGoal
-                on_conflict: { constraint: goals_pkey, update_columns: [title, description, slogan, privacy, status] }
+                on_conflict: {
+                    constraint: goals_pkey
+                    update_columns: [title, description, slogan, privacy, status, created_at, finished_at]
+                }
             ) {
                 id
                 title
@@ -27,6 +39,15 @@ export const upsertGoal = async (newGoal: IUpsertNewGoal): Promise<IUpsertGoal |
                 description
                 status
                 privacy
+                created_at
+                finished_at
+                goal_ritual {
+                    goal_id
+                    ritual_id
+                    ritual_power
+                    ritual_interval
+                    ritual_type
+                }
             }
         }
     `

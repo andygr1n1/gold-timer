@@ -16,7 +16,6 @@ export const insertGoal = async (newGoal: IInsertNewGoal): Promise<IGoal$Snapsho
                 difficulty
                 finished_at
                 privacy
-                round
                 slogan
                 status
                 title

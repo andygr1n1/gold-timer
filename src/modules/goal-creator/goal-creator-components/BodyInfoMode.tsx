@@ -2,13 +2,20 @@ import { InputCreatedAt } from './body-inputs/InputCreatedAt'
 import { InputDifficulty } from './body-inputs/InputDifficulty'
 import { InputFinishedAt } from './body-inputs/InputFinishedAt'
 import { SelectPrivacy } from './body-inputs/SelectPrivacy'
-import { InputRound } from './body-inputs/InputRound'
 import { InputSlogan } from './body-inputs/InputSlogan'
 import { SelectStatus } from './body-inputs/SelectStatus'
 import { InputTitle } from './body-inputs/InputTitle'
 import { TextAreaDescription } from './body-inputs/TextAreaDescription'
+import { observer } from 'mobx-react-lite'
+import { useGoalsStore } from '@/StoreProvider'
+import { SelectRitualType } from './body-inputs/SelectRitualType'
+import { InputRitualInterval } from './body-inputs/InputRitualInterval'
 
-export const BodyInfoMode: React.FC = () => {
+export const BodyInfoMode: React.FC = observer(() => {
+    const { editable_goal } = useGoalsStore()
+
+    const ritualizedMode = !!editable_goal?.goal_ritualized_mode
+
     return (
         <div className='relative flex h-full w-full gap-5 overflow-auto'>
             <div className='flex  flex-[33%] flex-col'>
@@ -23,15 +30,22 @@ export const BodyInfoMode: React.FC = () => {
 
                 <SelectPrivacy />
             </div>
-            <div className='flex  flex-[33%] flex-col'>
-                <InputDifficulty />
+            {!ritualizedMode && (
+                <div className='flex  flex-[33%] flex-col'>
+                    <InputDifficulty />
 
-                <InputRound />
+                    <InputCreatedAt />
 
-                <InputCreatedAt />
+                    <InputFinishedAt />
+                </div>
+            )}
+            {ritualizedMode && (
+                <div className='flex  flex-[33%] flex-col'>
+                    <SelectRitualType />
 
-                <InputFinishedAt />
-            </div>
+                    <InputRitualInterval />
+                </div>
+            )}
         </div>
     )
-}
+})

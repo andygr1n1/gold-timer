@@ -16,6 +16,7 @@ export const ActiveGoal: React.FC<{ goal: IGoal$ }> = observer(({ goal }) => {
         goGoalViewMode,
         remainingTimeString,
         remainingTimeDaysCount,
+        isRitualGoal,
     } = goal
 
     const [completeMode, setCompleteMode] = useState(false)
@@ -25,9 +26,10 @@ export const ActiveGoal: React.FC<{ goal: IGoal$ }> = observer(({ goal }) => {
             <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                className='
-                            border-l-solid relative relative flex min-w-[300px] flex-col gap-5 
-                            rounded-md border-l-[4px] border-l-green-400 bg-white p-5 shadow-xl'
+                className={`border-l-solid relative relative flex min-w-[350px] flex-col gap-5 
+                            rounded-md border-l-[4px] border-l-green-400 bg-white p-5 shadow-xl
+                            ${isRitualGoal ? 'border-l-indigo-400 bg-indigo-200' : 'border-l-green-400'}
+                            `}
             >
                 <div className='flex h-full flex-col'>
                     <div>

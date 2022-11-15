@@ -26,7 +26,7 @@ export const FailMode: React.FC<{ goal: IGoal$; opened: boolean; onClose: () => 
                             <span>Back</span>
                         </RdButton>
                         <RdButton
-                            animate={true}
+                            animation={'true'}
                             className='redbutton h-20 w-24 hover:font-bold'
                             type='primary'
                             onClick={failGoal}

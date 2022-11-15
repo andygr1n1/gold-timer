@@ -36,8 +36,7 @@ export const GoalCreateModeIndex: React.FC = observer(() => {
                         <SelectStatus />
 
                         {!editable_goal?.isFrozen && <SelectPrivacy />}
-
-                        {<CreateFinishDate />}
+                        <CreateFinishDate />
                     </div>
                     {/* <div className='flex  flex-[33%] flex-col'></div> */}
                 </div>

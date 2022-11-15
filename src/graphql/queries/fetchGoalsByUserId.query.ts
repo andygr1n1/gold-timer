@@ -9,7 +9,10 @@ export const fetchGoalsByUserId = async (owner_id: string): Promise<IGoal$Snapsh
     const query = gql`
         query MyQuery($owner_id: uuid) {
             goals(
-                where: { owner_id: { _eq: $owner_id }, status: { _in: [${STATUS_ENUM.ACTIVE}, ${STATUS_ENUM.FROZEN}, ${STATUS_ENUM.COMPLETED}] } }
+                where: { 
+                    owner_id: { _eq: $owner_id },
+                    status: { _in: [${STATUS_ENUM.ACTIVE}, ${STATUS_ENUM.FROZEN}, ${STATUS_ENUM.COMPLETED}] },
+                    created_at: {_lte: "now()"} }
                 order_by: { finished_at: asc }
             ) {
                 id
@@ -19,10 +22,16 @@ export const fetchGoalsByUserId = async (owner_id: string): Promise<IGoal$Snapsh
                 difficulty
                 finished_at
                 privacy
-                round
                 slogan
                 status
                 title
+                goal_ritual {
+                    ritual_id
+                    goal_id
+                    ritual_type
+                    ritual_power
+                    ritual_interval
+                }
             }
         }
     `

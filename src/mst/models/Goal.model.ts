@@ -3,6 +3,7 @@ import { DIFFICULTY_ENUM, STATUS_ENUM } from './../../helpers/enums'
 import { types } from 'mobx-state-tree'
 import { v4 } from 'uuid'
 import { toDate } from 'date-fns'
+import { GoalRitual } from './GoalRitual.model'
 
 export const Goal = types
     .model('Goal', {
@@ -21,7 +22,6 @@ export const Goal = types
             DIFFICULTY_ENUM.LIGHT,
         ),
         privacy: types.optional(types.enumeration(Object.values(PRIVACY_ENUM)), PRIVACY_ENUM.PUBLIC),
-        round: 0,
 
         title: '',
         slogan: '',
@@ -54,10 +54,17 @@ export const Goal = types
                 return sn
             },
         }),
+        goal_ritual: types.maybeNull(GoalRitual),
     })
     .views((self) => ({
         get isFrozen(): boolean {
             return self.status === STATUS_ENUM.FROZEN
+        },
+        get isRitualGoal(): boolean {
+            return !!self.goal_ritual?.ritual_power
+        },
+        get ritualGoalPower(): number {
+            return self.goal_ritual?.ritual_power ?? 0
         },
 
         get remainingTime(): Date | undefined {

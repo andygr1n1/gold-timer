@@ -27,7 +27,7 @@ export const ExpiredGoal: React.FC<{ goal: IGoal$ }> = observer(({ goal }) => {
             <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                className={`border-l-solid relative flex min-w-[300px] flex-col gap-5 
+                className={`border-l-solid relative flex min-w-[380px] flex-col gap-5 
                             rounded-md border-l-[4px] bg-red-50 bg-gray-100 p-5 shadow-xl ${
                                 completeMode ? 'border-l-green-400' : 'border-l-red-400'
                             }`}
@@ -57,17 +57,12 @@ export const ExpiredGoal: React.FC<{ goal: IGoal$ }> = observer(({ goal }) => {
                     <div>{slogan}</div>
                     <div>{description}</div>
                 </div>
-                <div className='flex flex-auto justify-between gap-3'>
+                <div className='flex flex-auto gap-3'>
                     <RdButton className='greenbutton' type='primary' onClick={() => setCompleteMode(true)}>
                         Complete
                     </RdButton>
-                    <RdButton disabled={true} onClick={goActivateFreezedGoal}>
-                        Ritualize
-                    </RdButton>
-                    <RdButton disabled={true} onClick={goActivateFreezedGoal}>
-                        New Round
-                    </RdButton>
-                    <RdButton className='redbutton' type='ghost' onClick={() => setFailMode(true)}>
+
+                    <RdButton className='redbutton ml-auto flex' type='ghost' onClick={() => setFailMode(true)}>
                         Fail
                     </RdButton>
                 </div>
