@@ -11,7 +11,8 @@ module.exports = {
         fontFamily,
         extend: {
             colors,
-            animation,
+            animation: animation.animation,
+            keyframes: animation.keyframes,
         },
     },
     plugins: [],

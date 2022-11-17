@@ -13,7 +13,10 @@ import { FrozenGoals } from './components/FrozenGoals'
 export const Dashboard: React.FC = observer(() => {
     const [loading, setLoading] = useState(true)
 
-    const { fetchGoals } = useRootStore()
+    const {
+        fetchGoals,
+        goals$: { goals_checked_list_filter, goals },
+    } = useRootStore()
 
     useEffect(() => {
         fetchGoals().finally(() => {
@@ -30,17 +33,25 @@ export const Dashboard: React.FC = observer(() => {
                 <RdLoader loading={loading} />
             ) : (
                 <>
-                    <div className='flex flex-col gap-5 p-5 xl:w-[1200px]'>
-                        <ExpiredGoals />
-                        <ActiveHotGoals />
-                        <ActiveGoals />
-                        <Divider />
-                        <FrozenGoals />
-                        <Divider />
-                        <CompletedGoals />
-                        <Divider />
+                    {goals_checked_list_filter.length && goals.length ? (
+                        <div className='relative flex flex-auto flex-col gap-5 p-5 xl:w-[1200px]'>
+                            <ExpiredGoals />
+                            <ActiveHotGoals />
+                            <ActiveGoals />
+                            <Divider />
+                            <FrozenGoals />
+                            <Divider />
+                            <CompletedGoals />
+                            <Divider />
+                        </div>
+                    ) : (
+                        <div className='font-xl flex h-full w-full animate-opacity items-center justify-center font-mono font-bold'>
+                            Nothing to show...
+                        </div>
+                    )}
+                    <div className='sticky bottom-0 flex w-full items-center bg-white py-1 px-3'>
+                        <DashboardFilter />
                     </div>
-                    <DashboardFilter />
                 </>
             )}
         </div>

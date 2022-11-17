@@ -26,6 +26,7 @@ export const Goal = types
         title: '',
         slogan: '',
         description: '',
+        is_favorite: false,
 
         freeze: false,
 
@@ -57,16 +58,6 @@ export const Goal = types
         goal_ritual: types.maybeNull(GoalRitual),
     })
     .views((self) => ({
-        get isFrozen(): boolean {
-            return self.status === STATUS_ENUM.FROZEN
-        },
-        get isRitualGoal(): boolean {
-            return !!self.goal_ritual?.ritual_power
-        },
-        get ritualGoalPower(): number {
-            return self.goal_ritual?.ritual_power ?? 0
-        },
-
         get remainingTime(): Date | undefined {
             if (!self.finished_at) return
             const createdAt = Date.now()

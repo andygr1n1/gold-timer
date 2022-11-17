@@ -25,6 +25,7 @@ export const fetchGoalsByUserId = async (owner_id: string): Promise<IGoal$Snapsh
                 slogan
                 status
                 title
+                is_favorite
                 goal_ritual {
                     ritual_id
                     goal_id

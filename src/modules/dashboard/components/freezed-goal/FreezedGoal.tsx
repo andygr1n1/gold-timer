@@ -7,7 +7,7 @@ export const FreezedGoal: React.FC<{ goal: IGoal$ }> = observer(({ goal }) => {
     const { created_at, createdDaysAgo, title, slogan, description, goActivateFreezedGoal, goEditFrozenGoal } = goal
 
     return (
-        <div className='border-l-solid flex min-w-[300px] flex-col gap-5 rounded-md border-l-[4px] border-l-blue-400 bg-blue-50 bg-gray-100 p-5 shadow-xl'>
+        <div className='border-l-solid flex min-w-[300px] flex-col gap-5 rounded-md border-l-[4px] border-l-blue-400 bg-blue-50 p-5 shadow-xl'>
             <div className='flex h-full flex-col'>
                 <div>
                     {created_at && (

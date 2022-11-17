@@ -7,7 +7,7 @@ export const completeGoalMutation = async (goal_id: string): Promise<STATUS_ENUM
 
     const mutation = gql`
         mutation completeGoal($goal_id: uuid!) {
-            update_goals_by_pk(pk_columns: { id: $goal_id }, _set: { status: completed }) {
+            update_goals_by_pk(pk_columns: { id: $goal_id }, _set: { status: ${STATUS_ENUM.COMPLETED}, finished_at: "now()" }) {
                 status
             }
         }

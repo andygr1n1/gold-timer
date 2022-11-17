@@ -5,7 +5,15 @@ import { STATUS_ENUM_FILTERS } from './helpers/enums'
 const storeContext = createContext<IRoot$ | null>(null)
 
 const generateRoot$ = () =>
-    Root$.create({ goals$: { goals_checked_list_filter: [STATUS_ENUM_FILTERS.FROZEN, STATUS_ENUM_FILTERS.ACTIVE] } })
+    Root$.create({
+        goals$: {
+            goals_checked_list_filter: [
+                STATUS_ENUM_FILTERS.FROZEN,
+                STATUS_ENUM_FILTERS.ACTIVE,
+                STATUS_ENUM_FILTERS.COMPLETED,
+            ],
+        },
+    })
 
 export const rootStore$ = generateRoot$()
 

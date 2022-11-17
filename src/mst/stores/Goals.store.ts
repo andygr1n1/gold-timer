@@ -2,7 +2,7 @@ import { generateNewRitualCircle } from './../../helpers/generate_new_ritual_cir
 import { generateLog } from '@/graphql/mutations/generateLog.mutation'
 import { insertGoal } from '@/graphql/mutations/insertGoal.mutation'
 import { insertGoalsRituals } from '@/graphql/mutations/upsertGoalsRituals.mutation'
-import { updateGoalStatus } from '@/graphql/mutations/updateGoalStatus.mutation'
+import { updateGoalStatusToCompleted } from '@/graphql/mutations/updateGoalStatus.mutation'
 import { upsertGoal } from '@/graphql/mutations/upsertGoal.mutation'
 import { LOG_TYPE_ENUM, STATUS_ENUM, STATUS_ENUM_FILTERS } from '@/helpers/enums'
 import { IInsertNewGoal, IInsertRitual } from '@/helpers/interfaces/new_goal.interface'
@@ -10,7 +10,7 @@ import { setGoalDifficulty } from '@/helpers/set_goal_difficulty'
 import { CheckboxChangeEvent } from 'antd/lib/checkbox'
 import { CheckboxValueType } from 'antd/lib/checkbox/Group'
 import { add, isFuture, isPast } from 'date-fns'
-import { filter, orderBy, differenceWith, cloneDeep } from 'lodash'
+import { filter, orderBy, differenceWith, cloneDeep, compact } from 'lodash'
 import {
     destroy,
     detach,
@@ -33,8 +33,9 @@ export const Goals$ = types
         new_goal: types.optional(Goal$, {}),
 
         editable_goal: types.safeReference(Goal$),
-
         is_creator_mode: false,
+
+        complete_goal_modal: types.safeReference(Goal$),
 
         goals_checked_list_filter: types.array(types.enumeration(Object.values(STATUS_ENUM_FILTERS))),
     })
@@ -68,9 +69,16 @@ export const Goals$ = types
             return orderBy(goals, ['finished_at'], ['asc'])
         },
         get activeGoals(): IGoal$[] {
-            const goals = differenceWith(
-                filter(self.goals, (goal) => goal.status === STATUS_ENUM.ACTIVE),
-                [...this.activeExpiredGoals, ...this.activeHotGoals],
+            const goals: IGoal$[] = compact(
+                differenceWith(
+                    filter(
+                        self.goals,
+                        (goal) =>
+                            goal.status === STATUS_ENUM.ACTIVE &&
+                            !!(goal.created_at && goal.created_at <= new Date(Date.now())),
+                    ),
+                    [...this.activeExpiredGoals, ...this.activeHotGoals],
+                ),
             )
             return orderBy(goals, ['finished_at'], ['asc'])
         },
@@ -147,7 +155,14 @@ export const Goals$ = types
         closeGoalCreator(): void {
             self.is_creator_mode = false
             self.editable_goal = undefined
+            self.complete_goal_modal = undefined
             destroy(detach(self.new_goal))
+        },
+        goCompleteGoalMode(goal: IGoal$): void {
+            self.complete_goal_modal = goal
+        },
+        closeGoalCompleteMode(): void {
+            self.complete_goal_modal = undefined
         },
 
         destroyGoal(goal_id: string): void {
@@ -175,6 +190,7 @@ export const Goals$ = types
                         privacy: self.new_goal.privacy,
                         status: self.new_goal.status,
                         difficulty: self.new_goal.difficulty,
+                        finished_at: self.new_goal.finished_at,
                     }
                     const updatedGoalResponse = yield* toGenerator(upsertGoal(goalData))
                     if (!updatedGoalResponse) throw new Error('failed to update goal data')
@@ -183,6 +199,7 @@ export const Goals$ = types
                     self.editable_goal.onChangeField('description', updatedGoalResponse.description)
                     self.editable_goal.onChangeField('privacy', updatedGoalResponse.privacy)
                     self.editable_goal.onChangeField('status', updatedGoalResponse.status)
+                    self.editable_goal.onChangeField('finished_at', updatedGoalResponse.finished_at)
                 } else {
                     if (!self.editable_goal) return
 
@@ -207,6 +224,10 @@ export const Goals$ = types
 
                     const newGoalResult = yield* toGenerator(insertGoal(newGoal))
                     if (!newGoalResult || !newGoalResult.id) throw new Error('newGoalResult error')
+
+                    console.warn('parent_goal_id', self.new_goal.parent_goal_id)
+                    console.warn('newGoalResult_id', newGoalResult.id)
+
                     const generateLogCreatedGoalRes = yield* toGenerator(
                         generateLog(newGoalResult.id, LOG_TYPE_ENUM.CREATED),
                     )
@@ -215,26 +236,27 @@ export const Goals$ = types
                     if (self.new_goal.parent_goal_id) {
                         const parentGoal = self.goals.find((goal) => goal.id === self.new_goal.parent_goal_id)
 
-                        if (!parentGoal || !parentGoal?.goal_new_status)
-                            throw new Error("error: can't find parent goal")
+                        if (!parentGoal) throw new Error("error: can't find parent goal")
 
-                        const parentGoalStatusRes = yield* toGenerator(
-                            updateGoalStatus(self.new_goal.parent_goal_id, parentGoal.goal_new_status),
-                        )
-                        const generateLogForParentGoalRes = yield* toGenerator(
-                            generateLog(
-                                self.new_goal.parent_goal_id,
-                                parentGoal.goal_new_status as unknown as LOG_TYPE_ENUM,
-                            ),
-                        )
+                        if (parentGoal?.goal_new_status) {
+                            const parentGoalStatusRes = yield* toGenerator(
+                                updateGoalStatusToCompleted(self.new_goal.parent_goal_id),
+                            )
+                            const generateLogForParentGoalRes = yield* toGenerator(
+                                generateLog(
+                                    self.new_goal.parent_goal_id,
+                                    parentGoal.goal_new_status as unknown as LOG_TYPE_ENUM,
+                                ),
+                            )
 
-                        if (!parentGoalStatusRes) throw new Error('deprecatedParentGoalStatus error')
-                        if (!generateLogForParentGoalRes) throw new Error('generateLogForDeprecatedGoalRes error')
+                            if (!parentGoalStatusRes) throw new Error('deprecatedParentGoalStatus error')
+                            if (!generateLogForParentGoalRes) throw new Error('generateLogForDeprecatedGoalRes error')
 
-                        if (parentGoal.goal_new_status !== STATUS_ENUM.COMPLETED) {
-                            self.destroyGoal(self.new_goal.parent_goal_id)
-                        } else if (parentGoal.goal_new_status === STATUS_ENUM.COMPLETED) {
-                            parentGoal.onChangeField('status', STATUS_ENUM.COMPLETED)
+                            if (parentGoal.goal_new_status !== STATUS_ENUM.COMPLETED) {
+                                self.destroyGoal(self.new_goal.parent_goal_id)
+                            } else if (parentGoal.goal_new_status === STATUS_ENUM.COMPLETED) {
+                                parentGoal.onChangeField('status', STATUS_ENUM.COMPLETED)
+                            }
                         }
                     }
 

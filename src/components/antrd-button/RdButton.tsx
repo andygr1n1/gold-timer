@@ -70,28 +70,28 @@ export const RdButton = styled(ButtonTemplate)`
     }
 
     &.ant-btn-primary.greenbutton {
-        border: 1px solid #16a34a;
+        border: 1px solid var(--green600);
         background: #22c55e;
         border-radius: 5px;
         color: white;
 
         &:hover {
-            border: 1px solid #16a34a;
+            border: 1px solid var(--green600);
             border-radius: 5px;
-            background: #16a34a;
+            background: var(--green600);
             color: white;
         }
     }
 
     &.ant-btn-ghost.greenbutton {
-        border: 1px solid #16a34a;
+        border: 1px solid var(--green600);
         border-radius: 5px;
-        color: #16a34a;
+        color: var(--green600);
 
         &:hover {
-            border: 1px solid #16a34a;
+            border: 1px solid var(--green600);
             border-radius: 5px;
-            background: #16a34a;
+            background: var(--green600);
             color: white;
         }
     }
