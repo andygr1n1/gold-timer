@@ -21,9 +21,12 @@ export enum STATUS_ENUM {
 }
 
 export enum STATUS_ENUM_FILTERS {
+    FAVORITE = 'favorite',
     ACTIVE = 'active',
+    RITUALIZED = 'ritualized',
     FROZEN = 'frozen',
     COMPLETED = 'completed',
+
     // FINISHED = 'finished',
     // FAILED = 'failed',
 }
@@ -40,7 +43,7 @@ export enum DIFFICULTY_ENUM {
 
 export enum APP_ROUTES_ENUM {
     HOME = '',
-    DASHBOARD = 'dashboard',
+    GOALS = 'goals',
     E_MONEY = 'money',
 }
 

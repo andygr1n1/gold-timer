@@ -6,7 +6,7 @@ import { Icon } from '@iconify/react'
 export const SidebarLinksTop: React.FC = () => {
     return (
         <div className=' flex flex-auto flex-col gap-8 '>
-            <SidebarLink to={APP_ROUTES_ENUM.DASHBOARD}>
+            <SidebarLink to={APP_ROUTES_ENUM.GOALS}>
                 <Icon icon='ic:round-dashboard' className='text-2xl' />
             </SidebarLink>
             <SidebarLinkCreator />

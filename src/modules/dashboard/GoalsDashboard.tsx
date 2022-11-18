@@ -1,5 +1,4 @@
 import { RdLoader } from '@/components/loader/RdLoader'
-import { Divider } from 'antd'
 import { observer } from 'mobx-react-lite'
 import { useEffect, useState } from 'react'
 import { useRootStore } from '../../StoreProvider'
@@ -8,9 +7,11 @@ import { ActiveHotGoals } from './components/ActiveHotGoals'
 import { CompletedGoals } from './components/CompletedGoals'
 import { DashboardFilter } from './components/DashboardFilter'
 import { ExpiredGoals } from './components/ExpiredGoals'
+import { FavoriteGoals } from './components/FavoriteGoals'
 import { FrozenGoals } from './components/FrozenGoals'
+import { RitualGoals } from './components/RitualGoals'
 
-export const Dashboard: React.FC = observer(() => {
+export const GoalsDashboard: React.FC = observer(() => {
     const [loading, setLoading] = useState(true)
 
     const {
@@ -36,13 +37,12 @@ export const Dashboard: React.FC = observer(() => {
                     {goals_checked_list_filter.length && goals.length ? (
                         <div className='relative flex flex-auto flex-col gap-5 p-5 xl:w-[1200px]'>
                             <ExpiredGoals />
+                            <FavoriteGoals />
                             <ActiveHotGoals />
                             <ActiveGoals />
-                            <Divider />
+                            <RitualGoals />
                             <FrozenGoals />
-                            <Divider />
                             <CompletedGoals />
-                            <Divider />
                         </div>
                     ) : (
                         <div className='font-xl flex h-full w-full animate-opacity items-center justify-center font-mono font-bold'>

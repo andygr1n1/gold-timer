@@ -11,6 +11,7 @@ const generateRoot$ = () =>
                 STATUS_ENUM_FILTERS.FROZEN,
                 STATUS_ENUM_FILTERS.ACTIVE,
                 STATUS_ENUM_FILTERS.COMPLETED,
+                STATUS_ENUM_FILTERS.FAVORITE,
             ],
         },
     })

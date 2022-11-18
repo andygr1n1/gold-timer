@@ -107,6 +107,10 @@ export const Goal = types
             return Math.floor(diff.getTime() / (1000 * 3600 * 24))
         },
 
+        get createdInFuture(): boolean {
+            return !!self.created_at && self.created_at > new Date(Date.now())
+        },
+
         get isNewGoal(): boolean {
             return (!!self.created_at && !!self.freeze) || !!!self.created_at
         },

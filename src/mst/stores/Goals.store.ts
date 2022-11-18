@@ -26,6 +26,8 @@ import { IGoal$ } from '../types'
 import { Goal$ } from './Goal.store'
 import { Root$ } from './Root.store'
 import { v4 } from 'uuid'
+import { getCoinsFromRitual } from '@/helpers/get_coins_from_ritual'
+import { addCoinsMutation } from '@/graphql/mutations/addCoins.mutation'
 
 export const Goals$ = types
     .model('Goals$', {
@@ -48,6 +50,12 @@ export const Goals$ = types
         },
         get completedGoalsFilter(): boolean {
             return self.goals_checked_list_filter.includes(STATUS_ENUM_FILTERS.COMPLETED)
+        },
+        get ritualGoalsFilter(): boolean {
+            return self.goals_checked_list_filter.includes(STATUS_ENUM_FILTERS.RITUALIZED)
+        },
+        get favoriteGoalsFilter(): boolean {
+            return self.goals_checked_list_filter.includes(STATUS_ENUM_FILTERS.FAVORITE)
         },
     }))
     .views((self) => ({
@@ -89,6 +97,14 @@ export const Goals$ = types
         },
         get completedGoals(): IGoal$[] {
             const goals = filter(self.goals, (goal) => goal.status === STATUS_ENUM.COMPLETED)
+            return orderBy(goals, ['finished_at'], ['asc'])
+        },
+        get ritualGoals(): IGoal$[] {
+            const goals = filter(self.goals, (goal) => goal.ritualGoalPower > 0 && goal.status === STATUS_ENUM.ACTIVE)
+            return orderBy(goals, ['finished_at'], ['asc'])
+        },
+        get favoriteGoals(): IGoal$[] {
+            const goals = filter(self.goals, (goal) => goal.is_favorite)
             return orderBy(goals, ['finished_at'], ['asc'])
         },
     }))
@@ -317,6 +333,19 @@ export const Goals$ = types
                 self.editable_goal.onChangeField('created_at', updatedGoalResponse.created_at)
                 self.editable_goal.onChangeField('finished_at', updatedGoalResponse.finished_at)
                 self.editable_goal.onChangeField('goal_ritual', castToSnapshot(updatedGoalResponse.goal_ritual))
+
+                // ritual coins
+                const {
+                    user$: { onChangeField: userOnChangeField, coins },
+                } = getParentOfType(self, Root$)
+
+                const mPoints = getCoinsFromRitual(self.editable_goal.ritualGoalPower, coins)
+
+                const resGoalCoins = yield* toGenerator(addCoinsMutation(mPoints))
+
+                if (resGoalCoins === undefined) throw new Error('addMPointsMutation error')
+
+                userOnChangeField('coins', resGoalCoins)
 
                 self.closeGoalCreator()
             } catch (e) {
