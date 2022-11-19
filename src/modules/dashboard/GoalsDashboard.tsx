@@ -3,7 +3,6 @@ import { observer } from 'mobx-react-lite'
 import { useEffect, useState } from 'react'
 import { useRootStore } from '../../StoreProvider'
 import { ActiveGoals } from './components/ActiveGoals'
-import { ActiveHotGoals } from './components/ActiveHotGoals'
 import { CompletedGoals } from './components/CompletedGoals'
 import { DashboardFilter } from './components/DashboardFilter'
 import { ExpiredGoals } from './components/ExpiredGoals'
@@ -36,9 +35,8 @@ export const GoalsDashboard: React.FC = observer(() => {
                 <>
                     {goals_checked_list_filter.length && goals.length ? (
                         <div className='relative flex flex-auto flex-col gap-5 p-5 xl:w-[1200px]'>
-                            <ExpiredGoals />
                             <FavoriteGoals />
-                            <ActiveHotGoals />
+                            <ExpiredGoals />
                             <ActiveGoals />
                             <RitualGoals />
                             <FrozenGoals />

@@ -4,10 +4,10 @@ import { Goal } from './goal/Goal'
 
 export const ExpiredGoals: React.FC = observer(() => {
     const {
-        goals$: { activeExpiredGoals, activeGoalsFilter },
+        goals$: { activeExpiredGoals, expiredGoalsFilter },
     } = useRootStore()
 
-    return activeGoalsFilter && activeExpiredGoals.length ? (
+    return expiredGoalsFilter && activeExpiredGoals.length ? (
         <div className='flex flex-col'>
             <h3 className='flex pb-4 font-mono font-bold'>
                 <span>Expired</span>({activeExpiredGoals.length})

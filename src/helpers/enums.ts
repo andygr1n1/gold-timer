@@ -22,6 +22,7 @@ export enum STATUS_ENUM {
 
 export enum STATUS_ENUM_FILTERS {
     FAVORITE = 'favorite',
+    EXPIRED = 'expired',
     ACTIVE = 'active',
     RITUALIZED = 'ritualized',
     FROZEN = 'frozen',

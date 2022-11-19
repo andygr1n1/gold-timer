@@ -45,6 +45,9 @@ export const Goals$ = types
         get activeGoalsFilter(): boolean {
             return self.goals_checked_list_filter.includes(STATUS_ENUM_FILTERS.ACTIVE)
         },
+        get expiredGoalsFilter(): boolean {
+            return self.goals_checked_list_filter.includes(STATUS_ENUM_FILTERS.EXPIRED)
+        },
         get frozenGoalsFilter(): boolean {
             return self.goals_checked_list_filter.includes(STATUS_ENUM_FILTERS.FROZEN)
         },
@@ -65,7 +68,7 @@ export const Goals$ = types
             )
             return orderBy(goals, ['finished_at'], ['asc'])
         },
-        get activeHotGoals(): IGoal$[] {
+        /*         get activeHotGoals(): IGoal$[] {
             const tommorowDate = () =>
                 add(Date.now(), {
                     days: 1,
@@ -75,7 +78,7 @@ export const Goals$ = types
                 (goal) => goal.finished_at && isFuture(goal.finished_at) && goal.finished_at < tommorowDate(),
             )
             return orderBy(goals, ['finished_at'], ['asc'])
-        },
+        }, */
         get activeGoals(): IGoal$[] {
             const goals: IGoal$[] = compact(
                 differenceWith(
@@ -85,7 +88,7 @@ export const Goals$ = types
                             goal.status === STATUS_ENUM.ACTIVE &&
                             !!(goal.created_at && goal.created_at <= new Date(Date.now())),
                     ),
-                    [...this.activeExpiredGoals, ...this.activeHotGoals],
+                    [...this.activeExpiredGoals /* ...this.activeHotGoals */],
                 ),
             )
             return orderBy(goals, ['finished_at'], ['asc'])
