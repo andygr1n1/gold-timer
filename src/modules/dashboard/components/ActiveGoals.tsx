@@ -1,6 +1,6 @@
 import { useRootStore } from '@/StoreProvider'
 import { observer } from 'mobx-react-lite'
-import { ActiveGoal } from './active-goal/ActiveGoal'
+import { Goal } from './goal/Goal'
 
 export const ActiveGoals: React.FC = observer(() => {
     const {
@@ -14,7 +14,7 @@ export const ActiveGoals: React.FC = observer(() => {
             </h3>
             <div className='flex flex-wrap gap-8 pb-4'>
                 {activeGoals.map((goal) => (
-                    <ActiveGoal key={goal.id} goal={goal} />
+                    <Goal key={goal.id} goal={goal} />
                 ))}
             </div>
         </div>

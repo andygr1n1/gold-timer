@@ -11,7 +11,7 @@ export const SidebarLinkCreator: React.FC = observer(() => {
             className={`${styles['link']} ${is_creator_mode ? styles['link-active'] : styles['link-passive']}`}
             onClick={goCreateNewGoalMode}
         >
-            <Icon icon='ic:round-dashboard-customize' className='text-2xl' />
+            <Icon icon='ic:round-dashboard-customize' width={25} height={25} />
             <span>Creator</span>
         </li>
     )

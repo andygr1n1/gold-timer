@@ -3,8 +3,8 @@ import { observer } from 'mobx-react-lite'
 import { useState } from 'react'
 import type { ValueType } from 'rc-input-number/lib/utils/MiniDecimal'
 import { Divider, Switch } from 'antd'
-import { RdInputNumber } from '@/components/rd-inputs/RdInputNumber'
-import { RdDatePicker } from '@/components/rd-datepicker/DatePickerFns'
+import { RdInputNumber } from '@/components/rd/rd-inputs/RdInputNumber'
+import { RdDatePicker } from '@/components/rd/rd-datepicker/DatePickerFns'
 import { STATUS_ENUM } from '@/helpers/enums'
 
 export const CreateFinishDate: React.FC = observer(() => {
@@ -45,7 +45,8 @@ export const CreateFinishDate: React.FC = observer(() => {
         <>
             <div>
                 <div className='relative flex items-center justify-start gap-5 py-2'>
-                    <Switch className='absolute' onChange={onSwitchMedthod} /> <h3 className='pl-16'>Estimation: </h3>
+                    <Switch className='absolute w-5' onChange={onSwitchMedthod} />{' '}
+                    <h3 className='pl-16'>Estimation: </h3>
                 </div>
                 {methodDatePicker ? (
                     <RdDatePicker

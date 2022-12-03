@@ -1,19 +1,19 @@
 import { useRootStore } from '@/StoreProvider'
 import { observer } from 'mobx-react-lite'
-import { FreezedGoal } from './freezed-goal/FreezedGoal'
+import { Goal } from './goal/Goal'
 export const FrozenGoals: React.FC = observer(() => {
     const {
-        goals$: { frozenGoals, frozenGoalsFilter: frozenGoalsChecked },
+        goals$: { frozenGoals, frozenGoalsFilter },
     } = useRootStore()
 
-    return frozenGoalsChecked ? (
+    return frozenGoalsFilter ? (
         <div className='flex flex-col'>
             <h3 className='flex pb-4 font-mono font-bold'>
                 <span>Frozen</span>({frozenGoals.length})
             </h3>
             <div className='flex flex-wrap gap-5 pb-4'>
                 {frozenGoals.map((goal) => (
-                    <FreezedGoal key={goal.id} goal={goal} />
+                    <Goal key={goal.id} goal={goal} />
                 ))}
             </div>
         </div>

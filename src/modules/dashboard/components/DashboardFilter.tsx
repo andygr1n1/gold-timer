@@ -11,9 +11,14 @@ export const DashboardFilter: React.FC = observer(() => {
     const [filterState, setFilterState] = useState(false)
 
     return (
-        <div className='fixed bottom-20 right-20 flex flex-col items-end gap-10 font-mono'>
+        <div className='relative flex flex-col items-end gap-10 px-3 font-mono'>
             {filterState && (
-                <div className='flex h-[400px] w-[200px] flex-col rounded-md bg-white p-5 shadow-md'>
+                <div
+                    className='
+                                absolute top-[50px] left-4 z-40 flex
+                                h-[400px] w-[200px] animate-opacity flex-col
+                                rounded-md bg-white p-5 shadow-md'
+                >
                     <Checkbox
                         indeterminate={
                             goals_checked_list_filter.length > 0 &&
@@ -35,7 +40,9 @@ export const DashboardFilter: React.FC = observer(() => {
             )}
             <Icon
                 icon='mdi:filter-cog'
-                className=' mr-5 cursor-pointer text-[50px] text-slate-500 transition-all duration-300 hover:text-spaceblue'
+                className='ml-auto flex cursor-pointer self-end text-gray-700 transition-all duration-300 hover:text-sky-600'
+                height={25}
+                width={25}
                 onClick={() => setFilterState(!filterState)}
             />
         </div>

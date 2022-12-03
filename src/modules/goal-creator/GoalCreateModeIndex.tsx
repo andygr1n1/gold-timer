@@ -1,5 +1,5 @@
-import { RdButton } from '@/components/antrd-button/RdButton'
-import { RdModal } from '@/components/antrd-modal/AntrdModal'
+import { RdButton } from '@/components/rd/antrd-button/RdButton'
+import { RdModal } from '@/components/rd/antrd-modal/AntrdModal'
 import { useGoalsStore, useRootStore } from '@/StoreProvider'
 import { observer } from 'mobx-react-lite'
 import { CreateFinishDate } from './goal-creator-components/body-inputs/CreateFinishDate'

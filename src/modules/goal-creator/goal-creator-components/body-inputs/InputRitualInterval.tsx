@@ -2,7 +2,7 @@ import { useRootStore } from '@/StoreProvider'
 import { observer } from 'mobx-react-lite'
 import type { ValueType } from 'rc-input-number/lib/utils/MiniDecimal'
 import { Divider } from 'antd'
-import { RdInputNumber } from '@/components/rd-inputs/RdInputNumber'
+import { RdInputNumber } from '@/components/rd/rd-inputs/RdInputNumber'
 
 export const InputRitualInterval: React.FC = observer(() => {
     const {

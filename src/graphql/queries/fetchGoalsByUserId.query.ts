@@ -12,7 +12,8 @@ export const fetchGoalsByUserId = async (owner_id: string): Promise<IGoal$Snapsh
                 where: { 
                     owner_id: { _eq: $owner_id },
                     status: { _in: [${STATUS_ENUM.ACTIVE}, ${STATUS_ENUM.FROZEN}, ${STATUS_ENUM.COMPLETED}] },
-                    created_at: {_lte: "now()"} }
+                    # created_at: {_lte: "now()"}
+                    }
                 order_by: { finished_at: asc }
             ) {
                 id
@@ -25,6 +26,7 @@ export const fetchGoalsByUserId = async (owner_id: string): Promise<IGoal$Snapsh
                 slogan
                 status
                 title
+                is_favorite
                 goal_ritual {
                     ritual_id
                     goal_id

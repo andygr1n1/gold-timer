@@ -1,9 +1,11 @@
-import { Sidebar } from './modules/sidebar/Sidebar'
 import { AppRoutes } from './AppRoutes'
-import { useRootStore } from './StoreProvider'
+import { rootStore$, useRootStore } from './StoreProvider'
 import { useEffect } from 'react'
 import { observer } from 'mobx-react-lite'
 import { RdLoader } from './components/loader/RdLoader'
+import { getGoalFiltersStore, setGoalFiltersStore } from './functions/indexdb_manager'
+import { onSnapshot } from 'mobx-state-tree'
+import { GoalsTopbar } from './components/topbar/Topbar'
 
 export const App = observer(() => {
     const {
@@ -12,6 +14,19 @@ export const App = observer(() => {
     } = useRootStore()
 
     useEffect(() => {
+        ;(async () => {
+            const filtersRes: typeof rootStore$.goals$.goals_checked_list_filter | null = await getGoalFiltersStore()
+
+            if (filtersRes) {
+                console.log('filtersRes', filtersRes)
+                rootStore$.goals$.onChangeField('goals_checked_list_filter', filtersRes)
+            } else {
+                setGoalFiltersStore(rootStore$.goals$.goals_checked_list_filter)
+            }
+
+            onSnapshot(rootStore$.goals$.goals_checked_list_filter, (sn) => setGoalFiltersStore(sn))
+        })()
+
         fetchUserInfo()
 
         const handler = () => {
@@ -25,9 +40,8 @@ export const App = observer(() => {
 
     return user_id ? (
         <div className='app flex-col'>
-            {/* <Topbar /> */}
             <div className='app-body'>
-                <Sidebar />
+                {/* <Sidebar /> */}
                 <div className='flex w-full flex-auto'>
                     <AppRoutes />
                 </div>

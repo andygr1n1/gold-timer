@@ -1,3 +1,10 @@
+export enum GOAL_TYPE_ENUM {
+    ACTIVE = 'active',
+    EXPIRIED = 'expired',
+    RITUALIZED = 'ritualized',
+    FROZEN = 'frozen',
+}
+
 export enum PRIVACY_ENUM {
     PUBLIC = 'public',
     PRIVATE = 'private',
@@ -14,9 +21,13 @@ export enum STATUS_ENUM {
 }
 
 export enum STATUS_ENUM_FILTERS {
+    FAVORITE = 'favorite',
+    EXPIRED = 'expired',
     ACTIVE = 'active',
+    RITUALIZED = 'ritualized',
     FROZEN = 'frozen',
     COMPLETED = 'completed',
+
     // FINISHED = 'finished',
     // FAILED = 'failed',
 }
@@ -33,8 +44,8 @@ export enum DIFFICULTY_ENUM {
 
 export enum APP_ROUTES_ENUM {
     HOME = '',
-    DASHBOARD = 'dashboard',
-    E_MONEY = 'money',
+    GOALS = 'goals',
+    // E_MONEY = 'money',
 }
 
 export enum LOG_TYPE_ENUM {
