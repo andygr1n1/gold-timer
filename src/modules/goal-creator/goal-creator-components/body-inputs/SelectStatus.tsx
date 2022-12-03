@@ -1,4 +1,4 @@
-import { RdSelect } from '@/components/rd-select/RdSelect'
+import { RdSelect } from '@/components/rd/rd-select/RdSelect'
 import { STATUS_ENUM } from '@/helpers/enums'
 import { useGoalsStore } from '@/StoreProvider'
 import { Divider } from 'antd'

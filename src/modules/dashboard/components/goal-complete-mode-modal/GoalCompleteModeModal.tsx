@@ -1,5 +1,5 @@
-import { RdButton } from '@/components/antrd-button/RdButton'
-import { RdModal } from '@/components/antrd-modal/AntrdModal'
+import { RdButton } from '@/components/rd/antrd-button/RdButton'
+import { RdModal } from '@/components/rd/antrd-modal/AntrdModal'
 import { useRootStore } from '@/StoreProvider'
 import { observer } from 'mobx-react-lite'
 
@@ -10,7 +10,7 @@ export const GoalCompleteModeModal: React.FC = observer(() => {
 
     if (!complete_goal_modal) return null
 
-    const { completeGoal, completeGoalAndCreateNewChild, goGoalRitualizedMode, failGoal } = complete_goal_modal
+    const { completeGoal, goGoalRitualizedMode, failGoal } = complete_goal_modal
 
     return (
         <RdModal
@@ -33,13 +33,13 @@ export const GoalCompleteModeModal: React.FC = observer(() => {
                     >
                         Ritualize
                     </RdButton>
-                    <RdButton
+                    {/*    <RdButton
                         className='goldbutton flex h-full w-40 flex-col items-center justify-center hover:font-bold'
                         type='primary'
                         onClick={completeGoalAndCreateNewChild}
                     >
                         <div>New child goal</div>
-                    </RdButton>
+                    </RdButton> */}
 
                     <RdButton
                         className='redbutton ml-auto h-full w-24 hover:font-bold'

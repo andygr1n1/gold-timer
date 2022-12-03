@@ -45,7 +45,7 @@ export enum DIFFICULTY_ENUM {
 export enum APP_ROUTES_ENUM {
     HOME = '',
     GOALS = 'goals',
-    E_MONEY = 'money',
+    // E_MONEY = 'money',
 }
 
 export enum LOG_TYPE_ENUM {

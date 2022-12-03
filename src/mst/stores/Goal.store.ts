@@ -115,11 +115,11 @@ export const Goal$ = types
             }
         }),
 
-        completeGoalAndCreateNewChild(): void {
+        /*         completeGoalAndCreateNewChild(): void {
             self.goal_new_status = STATUS_ENUM.COMPLETED
             const { goCreateNewChildGoal } = getParentOfType(self, Goals$)
             goCreateNewChildGoal(self.id)
-        },
+        }, */
         createNewChild(): void {
             const { goCreateNewChildGoal } = getParentOfType(self, Goals$)
             goCreateNewChildGoal(self.id)

@@ -9,7 +9,7 @@ import { IInsertNewGoal, IInsertRitual } from '@/helpers/interfaces/new_goal.int
 import { setGoalDifficulty } from '@/helpers/set_goal_difficulty'
 import { CheckboxChangeEvent } from 'antd/lib/checkbox'
 import { CheckboxValueType } from 'antd/lib/checkbox/Group'
-import { add, isFuture, isPast } from 'date-fns'
+import { add, isPast } from 'date-fns'
 import { filter, orderBy, differenceWith, cloneDeep, compact } from 'lodash'
 import {
     destroy,
@@ -40,8 +40,22 @@ export const Goals$ = types
         complete_goal_modal: types.safeReference(Goal$),
 
         goals_checked_list_filter: types.array(types.enumeration(Object.values(STATUS_ENUM_FILTERS))),
+        global_filtered_title_value: '',
     })
     .views((self) => ({
+        get globalFilteredGoals(): IGoal$[] {
+            return self.goals.filter(
+                (goal) =>
+                    goal.title
+                        .trim()
+                        .toLocaleLowerCase()
+                        .includes(self.global_filtered_title_value.trim().toLocaleLowerCase()) ||
+                    goal.slogan
+                        .trim()
+                        .toLocaleLowerCase()
+                        .includes(self.global_filtered_title_value.trim().toLocaleLowerCase()),
+            )
+        },
         get activeGoalsFilter(): boolean {
             return self.goals_checked_list_filter.includes(STATUS_ENUM_FILTERS.ACTIVE)
         },
@@ -63,7 +77,7 @@ export const Goals$ = types
     }))
     .views((self) => ({
         get activeExpiredGoals(): IGoal$[] {
-            const goals = filter(self.goals, (goal) => goal.status === STATUS_ENUM.ACTIVE).filter(
+            const goals = filter(self.globalFilteredGoals, (goal) => goal.status === STATUS_ENUM.ACTIVE).filter(
                 (goal) => goal.finished_at && isPast(goal.finished_at),
             )
             return orderBy(goals, ['finished_at'], ['asc'])
@@ -83,7 +97,7 @@ export const Goals$ = types
             const goals: IGoal$[] = compact(
                 differenceWith(
                     filter(
-                        self.goals,
+                        self.globalFilteredGoals,
                         (goal) =>
                             goal.status === STATUS_ENUM.ACTIVE &&
                             !!(goal.created_at && goal.created_at <= new Date(Date.now())),
@@ -95,19 +109,22 @@ export const Goals$ = types
         },
 
         get frozenGoals(): IGoal$[] {
-            const goals = filter(self.goals, (goal) => goal.status === STATUS_ENUM.FROZEN)
+            const goals = filter(self.globalFilteredGoals, (goal) => goal.status === STATUS_ENUM.FROZEN)
             return orderBy(goals, ['finished_at'], ['asc'])
         },
         get completedGoals(): IGoal$[] {
-            const goals = filter(self.goals, (goal) => goal.status === STATUS_ENUM.COMPLETED)
+            const goals = filter(self.globalFilteredGoals, (goal) => goal.status === STATUS_ENUM.COMPLETED)
             return orderBy(goals, ['finished_at'], ['asc'])
         },
         get ritualGoals(): IGoal$[] {
-            const goals = filter(self.goals, (goal) => goal.ritualGoalPower > 0 && goal.status === STATUS_ENUM.ACTIVE)
+            const goals = filter(
+                self.globalFilteredGoals,
+                (goal) => goal.ritualGoalPower > 0 && goal.status === STATUS_ENUM.ACTIVE,
+            )
             return orderBy(goals, ['finished_at'], ['asc'])
         },
         get favoriteGoals(): IGoal$[] {
-            const goals = filter(self.goals, (goal) => goal.is_favorite)
+            const goals = filter(self.globalFilteredGoals, (goal) => goal.is_favorite)
             return orderBy(goals, ['finished_at'], ['asc'])
         },
     }))
@@ -310,7 +327,10 @@ export const Goals$ = types
 
                 yield generateLog(insertRitualGoalId, LOG_TYPE_ENUM.RITUALIZED)
 
-                const { ritual_goal_created_at, ritual_goal_finished_at } = generateNewRitualCircle(self.editable_goal)
+                const { ritual_goal_created_at, ritual_goal_finished_at } = generateNewRitualCircle(
+                    self.editable_goal,
+                    self.new_goal.goal_ritual.ritual_interval,
+                )
 
                 const goalData = {
                     id: self.editable_goal.id,
@@ -336,6 +356,8 @@ export const Goals$ = types
                 self.editable_goal.onChangeField('created_at', updatedGoalResponse.created_at)
                 self.editable_goal.onChangeField('finished_at', updatedGoalResponse.finished_at)
                 self.editable_goal.onChangeField('goal_ritual', castToSnapshot(updatedGoalResponse.goal_ritual))
+
+                self.editable_goal.onChangeField('goal_ritualized_mode', false)
 
                 // ritual coins
                 const {

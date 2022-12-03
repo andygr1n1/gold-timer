@@ -16,7 +16,7 @@ export const RdModal = styled(ModalTemplate)`
     .ant-modal-body {
         display: flex;
         flex-direction: column;
-        height: calc(100% - 70px);
+        height: calc(100% - 100px);
     }
 
     .ant-modal-header {
@@ -24,5 +24,11 @@ export const RdModal = styled(ModalTemplate)`
         border-top-right-radius: 6px;
         background: transparent;
         height: 65px;
+    }
+
+    .ant-modal-close-x {
+        width: auto;
+        line-height: auto;
+        height: auto;
     }
 `

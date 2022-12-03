@@ -1,15 +1,15 @@
 .link {
-    @apply flex cursor-pointer items-center justify-start gap-3 font-mono text-sm font-bold text-white;
+    @apply flex cursor-pointer items-center justify-start gap-3 font-mono text-sm font-bold text-sky-600 transition-all duration-300;
 
     &:hover > span,
     &:hover > svg {
-        @apply text-amber-300;
+        @apply text-sky-800;
     }
 
     &.link-active {
         & > span,
         & > svg {
-            @apply text-amber-300;
+            @apply text-sky-800;
         }
 
         & > span:last-child {

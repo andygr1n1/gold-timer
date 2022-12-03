@@ -12,7 +12,7 @@
     "dependencies": {
         "@headlessui/react": "^1.7.3",
         "@types/localforage": "^0.0.34",
-        "antd": "^4.23.2",
+        "antd": "^5.0.3",
         "date-fns": "^2.29.3",
         "framer-motion": "^7.3.6",
         "graphql": "^16.6.0",
@@ -21,7 +21,6 @@
         "less": "^4.1.3",
         "localforage": "^1.10.0",
         "lodash": "^4.17.21",
-        "material-icons": "^1.11.11",
         "mobx": "^6.6.2",
         "mobx-react-lite": "^3.4.0",
         "mobx-state-tree": "^5.1.6",

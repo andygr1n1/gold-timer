@@ -1,4 +1,4 @@
-import { RdButton } from '@/components/antrd-button/RdButton'
+import { RdButton } from '@/components/rd/antrd-button/RdButton'
 import { IGoal$ } from '@/mst/types'
 import { format } from 'date-fns'
 import { observer } from 'mobx-react-lite'

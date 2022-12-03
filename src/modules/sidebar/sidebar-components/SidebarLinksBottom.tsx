@@ -12,7 +12,6 @@ export const SidebarLinksBottom: React.FC = observer(() => {
                 //     disabled ? e.preventDefault() : onClose()
                 // }}
             >
-                <span className='material-icons-round'>settings</span>
                 <span>Settings</span>
             </NavLink>
             <NavLink
@@ -24,7 +23,6 @@ export const SidebarLinksBottom: React.FC = observer(() => {
                 //     disabled ? e.preventDefault() : onClose()
                 // }}
             >
-                <span className='material-icons-round'>help</span>
                 <span>Help</span>
             </NavLink>
             <NavLink
@@ -36,7 +34,6 @@ export const SidebarLinksBottom: React.FC = observer(() => {
                 //     disabled ? e.preventDefault() : onClose()
                 // }}
             >
-                <span className='material-icons-round '>logout</span>
                 <span>Log out</span>
             </NavLink> */}
         </div>

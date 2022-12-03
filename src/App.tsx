@@ -1,4 +1,3 @@
-import { Sidebar } from './modules/sidebar/Sidebar'
 import { AppRoutes } from './AppRoutes'
 import { rootStore$, useRootStore } from './StoreProvider'
 import { useEffect } from 'react'
@@ -6,6 +5,7 @@ import { observer } from 'mobx-react-lite'
 import { RdLoader } from './components/loader/RdLoader'
 import { getGoalFiltersStore, setGoalFiltersStore } from './functions/indexdb_manager'
 import { onSnapshot } from 'mobx-state-tree'
+import { GoalsTopbar } from './components/topbar/Topbar'
 
 export const App = observer(() => {
     const {
@@ -40,9 +40,8 @@ export const App = observer(() => {
 
     return user_id ? (
         <div className='app flex-col'>
-            {/* <Topbar /> */}
             <div className='app-body'>
-                <Sidebar />
+                {/* <Sidebar /> */}
                 <div className='flex w-full flex-auto'>
                     <AppRoutes />
                 </div>

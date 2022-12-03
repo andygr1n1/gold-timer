@@ -1,13 +1,14 @@
 import { RdLoader } from '@/components/loader/RdLoader'
+import { GoalsTopbar } from '@/components/topbar/Topbar'
 import { observer } from 'mobx-react-lite'
 import { useEffect, useState } from 'react'
 import { useRootStore } from '../../StoreProvider'
 import { ActiveGoals } from './components/ActiveGoals'
 import { CompletedGoals } from './components/CompletedGoals'
-import { DashboardFilter } from './components/DashboardFilter'
 import { ExpiredGoals } from './components/ExpiredGoals'
 import { FavoriteGoals } from './components/FavoriteGoals'
 import { FrozenGoals } from './components/FrozenGoals'
+import { GoalsGlobalSearch } from './components/GoalsGlobalSearch'
 import { RitualGoals } from './components/RitualGoals'
 
 export const GoalsDashboard: React.FC = observer(() => {
@@ -33,6 +34,8 @@ export const GoalsDashboard: React.FC = observer(() => {
                 <RdLoader loading={loading} />
             ) : (
                 <>
+                    <GoalsTopbar />
+                    <GoalsGlobalSearch />
                     {goals_checked_list_filter.length && goals.length ? (
                         <div className='relative flex flex-auto flex-col gap-5 p-5 xl:w-[1200px]'>
                             <FavoriteGoals />
@@ -47,9 +50,6 @@ export const GoalsDashboard: React.FC = observer(() => {
                             Nothing to show...
                         </div>
                     )}
-                    <div className='sticky bottom-0 flex w-full items-center bg-white py-1 px-3'>
-                        <DashboardFilter />
-                    </div>
                 </>
             )}
         </div>
