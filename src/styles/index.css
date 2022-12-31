@@ -83,6 +83,10 @@
         border-bottom-style: solid;
     }
 
+    .border-t-solid {
+        border-top-style: solid;
+    }
+
     ul {
         @apply m-0 p-0;
     }

@@ -11,7 +11,7 @@ export const DashboardFilter: React.FC = observer(() => {
     const [filterState, setFilterState] = useState(false)
 
     return (
-        <div className='relative flex flex-col items-end gap-10 px-3 font-mono'>
+        <div className='relative flex flex-col items-end gap-10 font-mono'>
             {filterState && (
                 <div
                     className='

@@ -1,8 +1,8 @@
 import { RdLoader } from '@/components/loader/RdLoader'
-import { GoalsTopbar } from '@/components/topbar/Topbar'
 import { observer } from 'mobx-react-lite'
 import { useEffect, useState } from 'react'
 import { useRootStore } from '../../StoreProvider'
+import { Achievements } from './components/achievements/Achievements'
 import { ActiveGoals } from './components/ActiveGoals'
 import { CompletedGoals } from './components/CompletedGoals'
 import { ExpiredGoals } from './components/ExpiredGoals'
@@ -34,22 +34,28 @@ export const GoalsDashboard: React.FC = observer(() => {
                 <RdLoader loading={loading} />
             ) : (
                 <>
-                    <GoalsTopbar />
-                    <GoalsGlobalSearch />
-                    {goals_checked_list_filter.length && goals.length ? (
-                        <div className='relative flex flex-auto flex-col gap-5 p-5 xl:w-[1200px]'>
-                            <FavoriteGoals />
-                            <ExpiredGoals />
-                            <ActiveGoals />
-                            <RitualGoals />
-                            <FrozenGoals />
-                            <CompletedGoals />
+                    <Achievements />
+                    <div className='flex w-full'>
+                        <div className='hidden w-full min-w-[300px] flex-auto flex-col bg-white xl:flex'></div>
+                        <div className='bg-white'>
+                            <GoalsGlobalSearch />
+                            {goals_checked_list_filter.length && goals.length ? (
+                                <div className='relative flex  flex-auto flex-col gap-5 p-5 '>
+                                    <FavoriteGoals />
+                                    <ExpiredGoals />
+                                    <ActiveGoals />
+                                    <RitualGoals />
+                                    <FrozenGoals />
+                                    <CompletedGoals />
+                                </div>
+                            ) : (
+                                <div className='font-xl flex h-full w-full animate-opacity items-center justify-center font-mono font-bold'>
+                                    Nothing to show...
+                                </div>
+                            )}
                         </div>
-                    ) : (
-                        <div className='font-xl flex h-full w-full animate-opacity items-center justify-center font-mono font-bold'>
-                            Nothing to show...
-                        </div>
-                    )}
+                        <div className='hidden w-full min-w-[300px] flex-auto flex-col bg-white xl:flex'></div>
+                    </div>
                 </>
             )}
         </div>

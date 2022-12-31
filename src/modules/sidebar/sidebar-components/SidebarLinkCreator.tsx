@@ -12,7 +12,7 @@ export const SidebarLinkCreator: React.FC = observer(() => {
             onClick={goCreateNewGoalMode}
         >
             <Icon icon='ic:round-dashboard-customize' width={25} height={25} />
-            <span>Creator</span>
+            {/* <span>Creator</span> */}
         </li>
     )
 })

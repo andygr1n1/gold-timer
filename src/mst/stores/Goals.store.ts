@@ -41,6 +41,8 @@ export const Goals$ = types
 
         goals_checked_list_filter: types.array(types.enumeration(Object.values(STATUS_ENUM_FILTERS))),
         global_filtered_title_value: '',
+        //
+        achievements_edit_mode: false,
     })
     .views((self) => ({
         get globalFilteredGoals(): IGoal$[] {
