@@ -40,6 +40,7 @@ export const App = observer(() => {
 
     return user_id ? (
         <div className='app flex-col'>
+            <GoalsTopbar />
             <div className='app-body'>
                 {/* <Sidebar /> */}
                 <div className='flex w-full flex-auto'>

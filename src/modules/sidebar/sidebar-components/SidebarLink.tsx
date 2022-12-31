@@ -1,5 +1,5 @@
 import { APP_ROUTES_ENUM } from '@/helpers/enums'
-import capitalize from 'lodash/capitalize'
+// import capitalize from 'lodash/capitalize'
 import { observer } from 'mobx-react-lite'
 import { ReactNode } from 'react'
 import { NavLink } from 'react-router-dom'
@@ -9,12 +9,16 @@ export const SidebarLink: React.FC<{ to: APP_ROUTES_ENUM; children?: ReactNode }
     return (
         <NavLink
             to={`/${to}`}
-            className={(navData) =>
-                `${linkStyles['link']} ${navData.isActive ? linkStyles['link-active'] : linkStyles['link-passive']}`
-            }
+            className={(navData) => {
+                console.log('nn', navData, to)
+
+                return `${linkStyles['link']} ${
+                    navData.isActive ? linkStyles['link-active'] : linkStyles['link-passive']
+                }`
+            }}
         >
             {children}
-            <span>{capitalize(to)}</span>
+            {/* <span>{capitalize(to)}</span> */}
         </NavLink>
     )
 })
