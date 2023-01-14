@@ -24,7 +24,7 @@ export const SidemenuLink: React.FC<{
             {title ? (
                 <button
                     className='flex h-[25px] w-full cursor-pointer items-center justify-start gap-2 border-none bg-transparent text-left 
-                    text-sm outline-none duration-300 hover:text-white disabled:cursor-default disabled:text-gray-500 '
+                    text-sm text-inherit outline-none duration-300 hover:text-white disabled:cursor-default disabled:text-gray-500 '
                     disabled={disabled}
                 >
                     {icon ? icon : null}

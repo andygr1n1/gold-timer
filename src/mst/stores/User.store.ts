@@ -18,6 +18,7 @@ export const User$ = types
             },
         }),
         coins: 0,
+        avatar: types.maybeNull(types.string),
     })
     .actions((self) => ({
         onChangeField<Key extends keyof typeof self>(key: Key, value: typeof self[Key]) {

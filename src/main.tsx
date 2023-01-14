@@ -5,7 +5,6 @@ import { StoreProvider } from './StoreProvider'
 import 'normalize.css'
 import './styles/fonts.scss'
 import './styles/root_variables.scss'
-import './styles/antd.css'
 import './styles/index.css'
 
 import { passiveSupport } from 'passive-events-support/src/utils'

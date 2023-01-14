@@ -5,7 +5,7 @@ import { observer } from 'mobx-react-lite'
 import { Divider } from '../divider/Divider'
 import { CloseSideMenu } from './components/Close.sidemenu'
 import { UserAvatarSidemenu } from './components/UserAvatar.sidemenu'
-import { SidemenuLink } from './SidemenuLink'
+import { SidemenuLink } from './components/SidemenuLink'
 
 export const Sidemenu: React.FC = observer(() => {
     return (
@@ -13,7 +13,7 @@ export const Sidemenu: React.FC = observer(() => {
             className={`
             absolute left-0 z-20  flex h-full rounded-r-lg bg-[#151c2c] font-sofia
             text-white  lg:static  lg:m-5 lg:flex lg:h-[calc(100%-40px)] lg:rounded-lg
-            ${useSideMenu.is_open ? 'animate-slide-in' : 'animate-slide-out ml-[-320px] lg:animate-opacity '}
+            ${useSideMenu.is_open ? 'animate-slide-in' : 'ml-[-320px] animate-slide-out lg:animate-opacity '}
             `}
         >
             <div className='flex w-[200px] min-w-[200px] flex-col  gap-10 overflow-auto py-5'>
@@ -111,8 +111,8 @@ export const Sidemenu: React.FC = observer(() => {
 
                 <SidemenuLink to={APP_ROUTES_ENUM.DASHBOARD}>
                     <button
-                        className='relative h-[46px] w-[125px] cursor-pointer rounded-sm border border-transparent 
-                        bg-blue-600 p-3 text-sm  outline-none duration-300 hover:bg-blue-700 hover:text-white
+                        className='relative h-[46px] w-[125px] cursor-pointer rounded-sm border border-transparent bg-blue-600 
+                        p-3 text-sm text-inherit  outline-none duration-300 hover:bg-blue-700 hover:text-white
                         focus:border-blue-700 focus:bg-blue-700 focus:text-white focus:shadow-sm focus:shadow-blue-700 active:border-blue-700 active:bg-blue-700 active:text-gray-200'
                     >
                         <span className='absolute left-1/2 top-1/2 w-[125px] -translate-x-1/2 -translate-y-1/2 '>
