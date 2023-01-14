@@ -5,6 +5,9 @@ module.exports = {
         'fade-in-down': 'fade-in-down 1s ease-out',
         'zoom-in-out': 'zoom-in-out 1.0s infinite',
         opacity: 'opacity 0.150s ease-in',
+        // sidemenu
+        'slide-in': 'slide-in 0.3s linear',
+        'slide-out': 'slide-out 0.3s linear',
     },
     keyframes: {
         wiggle: {
@@ -39,6 +42,15 @@ module.exports = {
             '100%': {
                 opacity: '1',
             },
+        },
+        // sidemenu
+        'slide-in': {
+            '0%': { margin: '0 0 0 -320px' },
+            '100%': { margin: '0' },
+        },
+        'slide-out': {
+            '0%': { margin: '0' },
+            '100%': { margin: '0 0 0 -320px' },
         },
     },
 }

@@ -85,7 +85,6 @@ export const CreateNewAchievement: React.FC = observer(() => {
                             name='image'
                             onChange={(res) => {
                                 if (res.file.response && res.file.status === 'done') {
-                                    console.log(res.file.response.image)
                                     onChangeField('img_path', res.file.response.image)
                                 }
                             }}

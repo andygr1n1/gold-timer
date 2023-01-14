@@ -7,7 +7,6 @@ const goalFiltersStore = localForage.createInstance({
 })
 
 export const setGoalFiltersStore = (value: STATUS_ENUM_FILTERS[]) => {
-    console.log('value', JSON.parse(JSON.stringify(value)))
     goalFiltersStore.setItem('goal_filters', JSON.parse(JSON.stringify(value)))
 }
 

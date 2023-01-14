@@ -6,6 +6,7 @@ import { RdLoader } from './components/loader/RdLoader'
 import { getGoalFiltersStore, setGoalFiltersStore } from './functions/indexdb_manager'
 import { onSnapshot } from 'mobx-state-tree'
 import { GoalsTopbar } from './components/topbar/Topbar'
+import { Sidemenu } from './components/sidemenu/Sidemenu'
 
 export const App = observer(() => {
     const {
@@ -18,7 +19,6 @@ export const App = observer(() => {
             const filtersRes: typeof rootStore$.goals$.goals_checked_list_filter | null = await getGoalFiltersStore()
 
             if (filtersRes) {
-                console.log('filtersRes', filtersRes)
                 rootStore$.goals$.onChangeField('goals_checked_list_filter', filtersRes)
             } else {
                 setGoalFiltersStore(rootStore$.goals$.goals_checked_list_filter)
@@ -36,12 +36,15 @@ export const App = observer(() => {
         document.addEventListener('touchstart', handler, { passive: true })
         document.addEventListener('touchend', handler, { passive: true })
         document.addEventListener('wheel', handler, { passive: true })
+
+        document.querySelector('html')!.setAttribute('data-theme', 'night')
     }, [])
 
     return user_id ? (
-        <div className='app flex-col'>
-            <GoalsTopbar />
-            <div className='app-body'>
+        <div className='app'>
+            <Sidemenu />
+            <div className='app-body flex-col'>
+                <GoalsTopbar />
                 {/* <Sidebar /> */}
                 <div className='flex w-full flex-auto'>
                     <AppRoutes />

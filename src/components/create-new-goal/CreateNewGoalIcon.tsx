@@ -2,9 +2,9 @@ import { useGoalsStore } from '@/StoreProvider'
 import { observer } from 'mobx-react-lite'
 import { Icon } from '@iconify/react'
 
-import styles from './SidebarLink.module.scss'
+import styles from './CreateNewGoalIcon.module.scss'
 
-export const SidebarLinkCreator: React.FC = observer(() => {
+export const CreateNewGoalIcon: React.FC = observer(() => {
     const { is_creator_mode, goCreateNewGoalMode } = useGoalsStore()
     return (
         <li

@@ -44,7 +44,18 @@ export enum DIFFICULTY_ENUM {
 
 export enum APP_ROUTES_ENUM {
     HOME = '',
+    PROFILE = 'profile',
+    FRIENDS = 'friends',
+    SEARCH = 'search',
+    ACHIEVEMENTS = 'achievements',
+    TASKS = 'tasks',
     GOALS = 'goals',
+    SPRINTS = 'sprints',
+    DASHBOARD = 'dashboard',
+    SANCTUARY = 'sanctuary',
+    BIT_WARDEN = 'bitwarden',
+    WALLET = 'wallet',
+    SUGGESTIONS = 'suggestions',
     SETTINGS = 'settings',
 }
 

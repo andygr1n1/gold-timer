@@ -36,6 +36,7 @@ export const Achievements: React.FC = observer(() => {
                 <div className='flex h-full w-full items-center justify-center gap-5'>
                     {visibleAchievements.map((ach) => (
                         <img
+                            key={ach.id}
                             src={`${import.meta.env.VITE_FIRE_BUNNY_STORAGE}${ach.img_path}`}
                             width={80}
                             height={80}

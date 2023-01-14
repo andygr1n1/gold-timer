@@ -23,11 +23,6 @@ const MediaQuery = {
  *
  * const { isDesktop, isMobile, isTablet } = useWindowMatchMedia()
  *
- * console.log('isDesk', isDesktop)
- *
- * console.log('isMobile', isMobile)
- *
- * console.log('isTablet', isTablet)
  *
  */
 export const useWindowMatchMedia = (media?: (keyof typeof MediaQuery)[]) => {
