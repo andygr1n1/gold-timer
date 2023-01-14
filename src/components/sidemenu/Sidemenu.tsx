@@ -1,5 +1,5 @@
 import { APP_ROUTES_ENUM } from '@/helpers/enums'
-import { useSideMenu } from '@/hooks/useToggleSideMenu.hook'
+import { useSideMenu } from '@/hooks/useSideMenu.hook'
 import { Icon } from '@iconify/react'
 import { observer } from 'mobx-react-lite'
 import { Divider } from '../divider/Divider'

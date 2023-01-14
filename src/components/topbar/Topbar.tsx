@@ -1,7 +1,8 @@
-import { useSideMenu } from '@/hooks/useToggleSideMenu.hook'
+import { useSideMenu } from '@/hooks/useSideMenu.hook'
 import { useUserStore } from '@/StoreProvider'
 import { Icon } from '@iconify/react'
 import { observer } from 'mobx-react-lite'
+import { ThemeSwitcher } from '../theme-switcher/ThemeSwitcher'
 
 export const GoalsTopbar: React.FC = observer(() => {
     const { coins } = useUserStore()
@@ -26,6 +27,7 @@ export const GoalsTopbar: React.FC = observer(() => {
                     <Icon icon='material-symbols:settings-rounded' width={25} height={25} />
                 </SidebarLink>
             </div> */}
+            <ThemeSwitcher />
         </div>
     )
 })

@@ -7,6 +7,7 @@ import { getGoalFiltersStore, setGoalFiltersStore } from './functions/indexdb_ma
 import { onSnapshot } from 'mobx-state-tree'
 import { GoalsTopbar } from './components/topbar/Topbar'
 import { Sidemenu } from './components/sidemenu/Sidemenu'
+import { useThemming } from './hooks/useThemming.hook'
 
 export const App = observer(() => {
     const {
@@ -16,6 +17,8 @@ export const App = observer(() => {
 
     useEffect(() => {
         ;(async () => {
+            useThemming.applyLocalStorage()
+
             const filtersRes: typeof rootStore$.goals$.goals_checked_list_filter | null = await getGoalFiltersStore()
 
             if (filtersRes) {
@@ -36,8 +39,6 @@ export const App = observer(() => {
         document.addEventListener('touchstart', handler, { passive: true })
         document.addEventListener('touchend', handler, { passive: true })
         document.addEventListener('wheel', handler, { passive: true })
-
-        document.querySelector('html')!.setAttribute('data-theme', 'night')
     }, [])
 
     return user_id ? (

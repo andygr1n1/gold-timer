@@ -1,4 +1,4 @@
-import { useSideMenu } from '@/hooks/useToggleSideMenu.hook'
+import { useSideMenu } from '@/hooks/useSideMenu.hook'
 import { Icon } from '@iconify/react'
 import { observer } from 'mobx-react-lite'
 
