@@ -1,4 +1,5 @@
 import { APP_ROUTES_ENUM } from '@/helpers/enums'
+import { useSideMenu } from '@/hooks/useSideMenu.hook'
 import { useUserStore } from '@/StoreProvider'
 import { Icon } from '@iconify/react'
 import { observer } from 'mobx-react-lite'
@@ -9,16 +10,16 @@ export const UserAvatarSidemenu: React.FC = observer(() => {
     return (
         <div
             className={`
-                    relative ml-4 flex h-16 min-h-[64px] w-16 items-center justify-center rounded-full
-                    border-2 border-solid border-global-bg font-bold text-gray-500 ${!avatar ? 'bg-gray-300' : ''}`}
+                    relative ml-4 flex h-[64px] min-h-[64px] w-[64px] items-center justify-center rounded-full
+                    font-bold text-gray-500 ${!avatar ? 'bg-gray-300' : ''}`}
         >
             {avatar ? (
-                <NavLink to={APP_ROUTES_ENUM.PROFILE}>
+                <NavLink to={APP_ROUTES_ENUM.PROFILE} onClick={() => useSideMenu.is_open && useSideMenu.onChange()}>
                     <img
                         title={name}
                         src={`${import.meta.env.VITE_FIRE_BUNNY_STORAGE}/avatars/${avatar}`}
-                        width={64}
-                        height={64}
+                        width={70}
+                        height={70}
                         className='rounded-full'
                     />
                 </NavLink>

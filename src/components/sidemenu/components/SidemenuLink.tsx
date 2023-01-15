@@ -1,4 +1,5 @@
 import { APP_ROUTES_ENUM } from '@/helpers/enums'
+import { useSideMenu } from '@/hooks/useSideMenu.hook'
 import { observer } from 'mobx-react-lite'
 import { ReactNode } from 'react'
 import { NavLink } from 'react-router-dom'
@@ -13,27 +14,36 @@ export const SidemenuLink: React.FC<{
 }> = observer(({ title, icon, disabled = false, badge, to, children }) => {
     return (
         <NavLink
-            onClick={(e) => disabled && e.preventDefault()}
+            onClick={(e) => {
+                if (disabled) {
+                    e.preventDefault()
+                } else {
+                    useSideMenu.is_open && useSideMenu.onChange()
+                }
+            }}
             to={`/${to}`}
             className={(navData) => {
                 return `flex w-full items-center justify-center ${
-                    navData.isActive ? 'text-white [&>*]:font-bold' : 'text-gray-300'
+                    navData.isActive ? 'text-navlink-active [&>*]:font-bold' : 'text-navlink'
                 }`
             }}
         >
             {title ? (
                 <button
-                    className='flex h-[25px] w-full cursor-pointer items-center justify-start gap-2 border-none bg-transparent text-left 
-                    text-sm text-inherit outline-none duration-300 hover:text-white disabled:cursor-default disabled:text-gray-500 '
+                    className='
+                    hover:text-navlink-active relative flex h-[25px] w-full cursor-pointer items-center justify-start gap-2 border-none bg-transparent 
+                    text-left text-sm text-inherit outline-none duration-300  disabled:cursor-default disabled:text-gray-500 '
                     disabled={disabled}
                 >
                     {icon ? icon : null}
-                    <p className='m-0 p-0'>{title}</p>
-                    {badge ? (
-                        <span className='flex min-w-[20px] items-center justify-center rounded-full bg-blue-600 px-1 text-xs font-normal'>
-                            {badge}
-                        </span>
-                    ) : null}
+                    <p className='relative m-0 h-5 w-full p-0'>
+                        <span className='absolute top-0'>{title}</span>
+                        {badge ? (
+                            <span className='bg-badge-bg absolute right-1 top-[2px] flex min-w-[20px] items-center justify-center rounded-full px-1 text-xs font-normal text-white'>
+                                {badge}
+                            </span>
+                        ) : null}
+                    </p>
                 </button>
             ) : (
                 <>{children}</>

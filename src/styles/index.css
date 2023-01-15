@@ -33,7 +33,7 @@
     a,
     button,
     li {
-        @apply duration-300;
+        @apply duration-100;
     }
 
     a,

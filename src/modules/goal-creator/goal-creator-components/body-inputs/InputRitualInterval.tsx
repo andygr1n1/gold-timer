@@ -1,6 +1,6 @@
 import { useRootStore } from '@/StoreProvider'
 import { observer } from 'mobx-react-lite'
-import type { ValueType } from 'rc-input-number/lib/utils/MiniDecimal'
+import type { ValueType } from '@rc-component/mini-decimal'
 import { Divider } from 'antd'
 import { RdInputNumber } from '@/components/rd/rd-inputs/RdInputNumber'
 

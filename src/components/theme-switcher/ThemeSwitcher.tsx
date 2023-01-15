@@ -11,18 +11,18 @@ export const ThemeSwitcher: React.FC = observer(() => {
             >
                 {!useThemming.night && (
                     <Icon
-                        icon='line-md:moon-alt-to-sunny-outline-loop-transition'
+                        icon='line-md:sunny-filled-loop-to-moon-filled-loop-transition'
                         width={20}
                         height={20}
-                        className='text-indigo-500'
+                        className='text-navlink hover:text-navlink-active duration-300'
                     />
                 )}
                 {useThemming.night && (
                     <Icon
-                        icon='line-md:sunny-filled-loop-to-moon-filled-loop-transition'
+                        icon='line-md:moon-alt-to-sunny-outline-loop-transition'
                         width={20}
                         height={20}
-                        color='gold'
+                        className='text-navlink hover:text-navlink-active duration-300'
                     />
                 )}
             </div>
