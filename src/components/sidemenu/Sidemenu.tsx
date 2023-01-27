@@ -34,17 +34,17 @@ export const Sidemenu: React.FC = observer(() => {
                 leave='transition-opacity duration-300'
                 leaveFrom='opacity-40'
                 leaveTo='opacity-0'
-                className={'fixed z-40 h-full w-full lg:hidden'}
+                className={'fixed z-40 h-full w-full xl:hidden'}
             >
-                <div className='fixed z-40 h-full w-full bg-gray-500 lg:hidden' />
+                <div className='fixed z-40 h-full w-full bg-gray-500 xl:hidden' />
             </Transition>
             {/*  */}
             <div
                 ref={wrapperRef}
                 className={`
-                bg-global-2-bg absolute left-0  z-50 flex h-full rounded-r-lg font-sofia
-                text-global-text  lg:static  lg:m-5 lg:flex lg:h-[calc(100%-40px)] lg:rounded-lg
-                ${useSideMenu.is_open ? 'animate-slide-in' : 'ml-[-320px] animate-slide-out lg:animate-opacity '}
+                text-global-text absolute left-0  z-50 flex h-full rounded-r-lg bg-global-2-bg
+                font-sofia  xl:static  xl:m-5 xl:flex xl:h-[calc(100%-40px)] xl:rounded-lg
+                ${useSideMenu.is_open ? 'animate-slide-in' : 'ml-[-320px] animate-slide-out xl:animate-opacity '}
             `}
             >
                 <div className='flex w-[200px] min-w-[200px] flex-col  gap-10 overflow-auto py-5'>
@@ -142,11 +142,12 @@ export const Sidemenu: React.FC = observer(() => {
 
                     <SidemenuLink to={APP_ROUTES_ENUM.DASHBOARD}>
                         <button
-                            className='bg-button-bg text-button-text hover:bg-button-bg-focus hover:to-button-text-focus focus:border-button-border-focus focus:bg-button-bg-focus focus:text-button-text-focus focus:shadow-button-bg-focus
-                            active:border-button-border-active active:bg-button-bg-active active:text-button-text-active  relative h-[46px] 
-                            w-[125px] cursor-pointer
-                            rounded-sm border border-transparent p-3 text-sm 
-                            outline-none duration-300 focus:shadow-sm'
+                            className='relative h-[46px] w-[125px] cursor-pointer rounded-sm border border-transparent bg-button-bg
+                            p-3 text-sm text-button-text  outline-none duration-300 
+                            hover:bg-button-bg-focus hover:to-button-text-focus
+                            focus:border-button-border-focus focus:bg-button-bg-focus focus:text-button-text-focus
+                            focus:shadow-sm focus:shadow-button-bg-focus 
+                            active:border-button-border-active active:bg-button-bg-active active:text-button-text-active'
                         >
                             <span className='absolute left-1/2 top-1/2 w-[125px] -translate-x-1/2 -translate-y-1/2 '>
                                 Go to Dashboard

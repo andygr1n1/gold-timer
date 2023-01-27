@@ -9,6 +9,7 @@ module.exports = {
     //
     'global-bg': 'var(--colors-darknight)',
     'global-2-bg': 'var(--colors-twilight)',
+    'global-3-bg': 'var(--colors-evening)',
     'global-text': 'var(--colors-white)',
     // navlink
     navlink: 'var(--colors-gray-300)',

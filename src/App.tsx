@@ -5,7 +5,6 @@ import { observer } from 'mobx-react-lite'
 import { RdLoader } from './components/loader/RdLoader'
 import { getGoalFiltersStore, setGoalFiltersStore } from './functions/indexdb_manager'
 import { onSnapshot } from 'mobx-state-tree'
-import { GoalsTopbar } from './components/topbar/Topbar'
 import { Sidemenu } from './components/sidemenu/Sidemenu'
 import { useThemming } from './hooks/useThemming.hook'
 
@@ -44,12 +43,8 @@ export const App = observer(() => {
     return user_id ? (
         <div className='app'>
             <Sidemenu />
-            <div className='app-body flex-col'>
-                <GoalsTopbar />
-                {/* <Sidebar /> */}
-                <div className='flex w-full flex-auto'>
-                    <AppRoutes />
-                </div>
+            <div className='app-body w-full flex-auto flex-col'>
+                <AppRoutes />
             </div>
         </div>
     ) : (

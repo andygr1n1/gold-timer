@@ -9,6 +9,7 @@ module.exports = {
     //
     'global-bg': '#f8fafc',
     'global-2-bg': 'var(--colors-white)',
+    'global-3-bg': 'var(--colors-indigos)',
     'global-text': 'var(--colors-magic)',
     // navlink
     navlink: 'var(--colors-indigos)',

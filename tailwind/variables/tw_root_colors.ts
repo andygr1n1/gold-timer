@@ -2,6 +2,7 @@ module.exports = {
     white: '#ffffff',
     darknight: '#10141d',
     twilight: '#151c2c',
+    evening: '#29416f',
     text: '#4c4c4c',
     magic: '#223399',
     'indigos-light': '#ea59f2',

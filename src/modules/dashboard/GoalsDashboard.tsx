@@ -1,10 +1,11 @@
 import { RdLoader } from '@/components/loader/RdLoader'
+import { GoalsTopbar } from '@/components/topbar/Topbar'
 import { observer } from 'mobx-react-lite'
 import { useEffect, useState } from 'react'
 import { useRootStore } from '../../StoreProvider'
-import { Achievements } from './components/achievements/Achievements'
 import { ActiveGoals } from './components/ActiveGoals'
 import { CompletedGoals } from './components/CompletedGoals'
+import { DbAchievements } from './components/dashboard-achievements/DbAchievements'
 import { ExpiredGoals } from './components/ExpiredGoals'
 import { FavoriteGoals } from './components/FavoriteGoals'
 import { FrozenGoals } from './components/FrozenGoals'
@@ -24,20 +25,19 @@ export const GoalsDashboard: React.FC = observer(() => {
             const timeoutId = setTimeout(() => {
                 setLoading(false)
                 clearTimeout(timeoutId)
-            }, 1000)
+            }, 200)
         })
     }, [])
 
     return (
-        <div className='module-wrapper items-center'>
+        <div className='module-wrapper'>
             {loading ? (
                 <RdLoader loading={loading} />
             ) : (
-                <>
-                    <Achievements />
-                    <div className='flex w-full'>
-                        <div className='hidden w-full min-w-[300px] flex-auto flex-col bg-white xl:flex'></div>
-                        <div className='bg-white'>
+                <div className='flex'>
+                    <div className='my-5 mr-5 flex-auto overflow-auto rounded-lg bg-global-2-bg'>
+                        <GoalsTopbar />
+                        <div className='flex h-[calc(100vh-105px)] w-full flex-col overflow-auto'>
                             <GoalsGlobalSearch />
                             {goals_checked_list_filter.length && goals.length ? (
                                 <div className='relative flex  flex-auto flex-col gap-5 p-5 '>
@@ -54,9 +54,9 @@ export const GoalsDashboard: React.FC = observer(() => {
                                 </div>
                             )}
                         </div>
-                        <div className='hidden w-full min-w-[300px] flex-auto flex-col bg-white xl:flex'></div>
                     </div>
-                </>
+                    <DbAchievements />
+                </div>
             )}
         </div>
     )

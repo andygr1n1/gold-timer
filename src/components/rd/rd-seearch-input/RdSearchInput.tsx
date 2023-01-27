@@ -4,38 +4,29 @@ import { observer } from 'mobx-react-lite'
 import styled from 'styled-components/macro'
 
 const StyledSearch = styled(Input)`
-    padding: 20px;
+    margin: 10px;
+    padding: 5px;
+    padding-left: 15px;
     border-radius: 20px;
-    border: 2px solid var(--skyblue);
-    box-shadow: 2px 2px 0 2px rgb(24 144 255 / 20%);
-
-    &:hover {
-        border: 2px solid var(--skyblue);
-    }
+    background-color: var(--colors-global-3-bg);
+    border: none;
 
     &:focus,
     &.ant-input-affix-wrapper-focused {
-        border: 2px solid var(--skyblue);
-        box-shadow: 3px 3px 3px 3px rgb(24 144 255 / 20%);
-    }
-
-    &.ant-input-affix-wrapper:not(.ant-input-affix-wrapper-disabled):hover {
-        border-color: #40a9ff;
-        border-right-width: 2px;
-        z-index: 1;
+        border: none;
+        box-shadow: 0 0 0 0 rgb(5 145 255 / 10%);
+        border-inline-end-width: 0px;
     }
 
     input {
-        color: var(--skyblue-600);
-        font-style: italic;
         font-family: 'Cascadia Code', Courier, monospace;
-        font-weight: bold;
-    }
+        font-size: 10px !important;
+        background-color: var(--colors-global-3-bg);
+        color: white;
 
-    &:disabled {
-        border: 1px solid transparent;
-        cursor: default;
-        color: #475569; //slate-600
+        &::placeholder {
+            color: var(--colors-gray-300);
+        }
     }
 `
 
