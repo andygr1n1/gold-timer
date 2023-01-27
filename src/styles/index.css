@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;300;400;600;700;900&display=swap');
-
 /*
 ::-webkit-scrollbar {
     width: 0px;
@@ -28,6 +26,14 @@
     h5,
     h6 {
         @apply m-0 p-0 font-mono;
+    }
+
+    span,
+    div,
+    a,
+    button,
+    li {
+        @apply duration-100;
     }
 
     a,
@@ -94,7 +100,7 @@
 
 html,
 body {
-    @apply flex h-full w-full flex-col overflow-hidden font-sans;
+    @apply flex h-full w-full flex-col overflow-hidden bg-global-bg font-sans;
 }
 
 #root {
@@ -103,7 +109,7 @@ body {
 
 .app,
 .app-body {
-    @apply flex w-full bg-slate-100;
+    @apply flex w-full bg-global-bg;
 }
 
 .app-body {

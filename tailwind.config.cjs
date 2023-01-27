@@ -1,6 +1,7 @@
 const colors = require('./tailwind/colors.ts')
 const fontFamily = require('./tailwind/font_family.ts')
 const animation = require('./tailwind/animation.ts')
+const variables = require('./tailwind/variables.ts')
 
 module.exports = {
     content: ['./src/**/*.{js,jsx,ts,tsx}'],
@@ -8,6 +9,7 @@ module.exports = {
         preflight: false,
     },
     theme: {
+        variables,
         fontFamily,
         extend: {
             colors,
@@ -15,5 +17,5 @@ module.exports = {
             keyframes: animation.keyframes,
         },
     },
-    plugins: [],
+    plugins: [require('@mertasan/tailwindcss-variables')],
 }

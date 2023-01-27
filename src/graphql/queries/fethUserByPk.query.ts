@@ -22,6 +22,7 @@ export const fethUserByPk = async (user_id: string): Promise<IUserByPkResponse |
                 email
                 name
                 phone
+                avatar
             }
         }
     `

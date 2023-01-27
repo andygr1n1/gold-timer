@@ -36,7 +36,6 @@ export const SelectRitualType: React.FC = observer(() => {
                     value={options.find((opt) => opt.key === ritual_type)?.value ?? RITUAL_TYPE_ENUM.INTERVAL_IN_DAYS}
                     options={options}
                     onSelect={(value) => {
-                        console.log('val', value)
                         onChangeField(
                             'ritual_type',
                             options.find((opt) => opt.value === value)?.key ?? RITUAL_TYPE_ENUM.INTERVAL_IN_DAYS,

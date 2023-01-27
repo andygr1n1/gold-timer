@@ -15,7 +15,7 @@ export const Achievements: React.FC = observer(() => {
     }, [])
 
     return (
-        <div className=' border-b-solid group relative flex min-h-[80px] w-full flex-col border border-sky-500 bg-white py-2 shadow-lg'>
+        <div className='border-b-solid group relative flex min-h-[80px] w-full flex-col border border-sky-500 bg-white py-2 shadow-lg'>
             {/*   <button
                 title={achievements_edit_mode ? 'close' : 'edit'}
                 onClick={() => onChangeField('achievements_edit_mode', !achievements_edit_mode)}
@@ -36,6 +36,7 @@ export const Achievements: React.FC = observer(() => {
                 <div className='flex h-full w-full items-center justify-center gap-5'>
                     {visibleAchievements.map((ach) => (
                         <img
+                            key={ach.id}
                             src={`${import.meta.env.VITE_FIRE_BUNNY_STORAGE}${ach.img_path}`}
                             width={80}
                             height={80}

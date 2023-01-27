@@ -1,11 +1,11 @@
 import { useRootStore } from '@/StoreProvider'
 import { observer } from 'mobx-react-lite'
 import { useState } from 'react'
-import type { ValueType } from 'rc-input-number/lib/utils/MiniDecimal'
 import { Divider, Switch } from 'antd'
 import { RdInputNumber } from '@/components/rd/rd-inputs/RdInputNumber'
 import { RdDatePicker } from '@/components/rd/rd-datepicker/DatePickerFns'
 import { STATUS_ENUM } from '@/helpers/enums'
+import type { ValueType } from '@rc-component/mini-decimal'
 
 export const CreateFinishDate: React.FC = observer(() => {
     const {
