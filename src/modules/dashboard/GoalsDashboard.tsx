@@ -37,7 +37,7 @@ export const GoalsDashboard: React.FC = observer(() => {
                 <div className='flex'>
                     <div className='my-5 mr-5 flex-auto overflow-auto rounded-lg bg-global-2-bg'>
                         <GoalsTopbar />
-                        <div className='flex h-[calc(100vh-105px)] w-full flex-col overflow-auto'>
+                        <div className='flex w-full flex-col overflow-auto xl:h-[calc(100vh-105px)]'>
                             <GoalsGlobalSearch />
                             {goals_checked_list_filter.length && goals.length ? (
                                 <div className='relative flex  flex-auto flex-col gap-5 p-5 '>
