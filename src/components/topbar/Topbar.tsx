@@ -10,7 +10,7 @@ export const GoalsTopbar: React.FC = observer(() => {
     return (
         <div className='flex  h-[100px] min-h-[100px] w-full flex-col-reverse items-center justify-between xl:h-[65px] xl:min-h-[65px] xl:flex-row '>
             <TopbarSearch />
-            <div className='flex items-center'>
+            <div className='mx-3 flex items-center'>
                 <div className='flex items-center justify-center gap-4'>
                     <Coins />
                     <div className='flex h-6 w-6 items-center justify-center'>

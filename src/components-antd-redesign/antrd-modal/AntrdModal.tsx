@@ -31,4 +31,10 @@ export const RdModal = styled(ModalTemplate)`
         line-height: auto;
         height: auto;
     }
+
+    .ant-modal-title {
+        font-weight: bold;
+        font-family: 'Cascadia Mono', Courier, monospace;
+        font-size: 20px;
+    }
 `

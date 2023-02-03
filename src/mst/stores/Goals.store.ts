@@ -129,6 +129,20 @@ export const Goals$ = types
             const goals = filter(self.globalFilteredGoals, (goal) => goal.is_favorite)
             return orderBy(goals, ['finished_at'], ['asc'])
         },
+        get topActiveGoals(): IGoal$[] {
+            const goals = filter(self.goals, (goal) => goal.ritualGoalPower === 0 && goal.status === STATUS_ENUM.ACTIVE)
+            return orderBy(goals, ['finished_at'], ['asc']).slice(0, 4)
+        },
+        get topRitualGoals(): IGoal$[] {
+            const goals = filter(self.goals, (goal) => goal.ritualGoalPower > 0)
+            return orderBy(goals, ['finished_at'], ['asc']).slice(0, 4)
+        },
+        get topExpiredGoals(): IGoal$[] {
+            const goals = filter(self.goals, (goal) => goal.status === STATUS_ENUM.ACTIVE).filter(
+                (goal) => goal.finished_at && isPast(goal.finished_at),
+            )
+            return orderBy(goals, ['finished_at'], ['asc']).slice(0, 4)
+        },
     }))
     .views((self) => ({
         get completedGoalsCount(): number {
@@ -153,6 +167,7 @@ export const Goals$ = types
             applySnapshot(self.goals_checked_list_filter, list as STATUS_ENUM_FILTERS[])
         },
         goCreateNewGoalMode(): void {
+            console.log('goCreateNewGoalMode')
             self.is_creator_mode = true
             self.editable_goal = self.new_goal
         },

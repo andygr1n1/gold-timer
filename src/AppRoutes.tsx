@@ -1,4 +1,6 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
+import { GoalsFilterModal } from './components/modals/goals-filter-modal/GoalsFilterModal'
+import { TasksModal } from './components/modals/tasks-modal/TasksModal'
 import { APP_ROUTES_ENUM } from './helpers/enums'
 import { GoalCompleteModeModal } from './modules/dashboard/components/goal-complete-mode-modal/GoalCompleteModeModal'
 import { GoalsDashboard } from './modules/dashboard/GoalsDashboard'
@@ -13,6 +15,8 @@ export const AppRoutes: React.FC = () => {
             </Routes>
             <GoalCreatorIndex />
             <GoalCompleteModeModal />
+            <GoalsFilterModal />
+            <TasksModal />
         </>
     )
 }

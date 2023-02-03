@@ -7,7 +7,7 @@ export const fetchGoalsByUserId = async (owner_id: string): Promise<IGoal$Snapsh
     const client = generateClient()
 
     const query = gql`
-        query MyQuery($owner_id: uuid) {
+        query fetchGoalsByUserId($owner_id: uuid) {
             goals(
                 where: { 
                     owner_id: { _eq: $owner_id },
@@ -27,7 +27,7 @@ export const fetchGoalsByUserId = async (owner_id: string): Promise<IGoal$Snapsh
                 status
                 title
                 is_favorite
-                goal_ritual {
+                goals_rituals {
                     ritual_id
                     goal_id
                     ritual_type

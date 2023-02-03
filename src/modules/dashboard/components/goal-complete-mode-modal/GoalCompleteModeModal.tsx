@@ -1,5 +1,5 @@
-import { RdButton } from '@/components/rd/antrd-button/RdButton'
-import { RdModal } from '@/components/rd/antrd-modal/AntrdModal'
+import { RdButton } from '@/components-antd-redesign/antrd-button/RdButton'
+import { RdModal } from '@/components-antd-redesign/antrd-modal/AntrdModal'
 import { useRootStore } from '@/StoreProvider'
 import { observer } from 'mobx-react-lite'
 

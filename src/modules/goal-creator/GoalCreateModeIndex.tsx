@@ -1,5 +1,5 @@
-import { RdButton } from '@/components/rd/antrd-button/RdButton'
-import { RdModal } from '@/components/rd/antrd-modal/AntrdModal'
+import { RdButton } from '@/components-antd-redesign/antrd-button/RdButton'
+import { RdModal } from '@/components-antd-redesign/antrd-modal/AntrdModal'
 import { useGoalsStore, useRootStore } from '@/StoreProvider'
 import { observer } from 'mobx-react-lite'
 import { CreateFinishDate } from './goal-creator-components/body-inputs/CreateFinishDate'
@@ -16,7 +16,7 @@ export const GoalCreateModeIndex: React.FC = observer(() => {
 
     return (
         <RdModal
-            title={<GoalCreatorTitle />}
+            title={'Create Goal'}
             open={!!editable_goal?.id}
             footer={null}
             onOk={closeGoalCreator}
@@ -46,14 +46,6 @@ export const GoalCreateModeIndex: React.FC = observer(() => {
         </RdModal>
     )
 })
-
-const GoalCreatorTitle = () => {
-    return (
-        <div className='flex w-full items-center justify-between pr-10'>
-            <h3 className='font-mono font-semibold text-gray-700'>Create Goal</h3>
-        </div>
-    )
-}
 
 const GoalCreatorFooter = observer(() => {
     const { generateGoal, isNotValidToSaveGoalData } = useGoalsStore()

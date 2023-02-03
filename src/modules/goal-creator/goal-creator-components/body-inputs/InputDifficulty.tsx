@@ -1,4 +1,4 @@
-import { RdInput } from '@/components/rd/rd-inputs/RdInput'
+import { RdInput } from '@/components-antd-redesign/rd-inputs/RdInput'
 import { useGoalsStore } from '@/StoreProvider'
 import { Divider } from 'antd'
 import { observer } from 'mobx-react-lite'

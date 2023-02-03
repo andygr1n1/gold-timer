@@ -1,4 +1,4 @@
-import { RdTextArea } from '@/components/rd/rd-textarea/RdTextarea'
+import { RdTextArea } from '@/components-antd-redesign/rd-textarea/RdTextarea'
 import { useGoalsStore } from '@/StoreProvider'
 import { Divider } from 'antd'
 import { observer } from 'mobx-react-lite'

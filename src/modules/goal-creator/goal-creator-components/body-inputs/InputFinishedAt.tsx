@@ -1,5 +1,5 @@
-import { RdDatePicker } from '@/components/rd/rd-datepicker/DatePickerFns'
-import { RdInput } from '@/components/rd/rd-inputs/RdInput'
+import { RdDatePicker } from '@/components-antd-redesign/rd-datepicker/DatePickerFns'
+import { RdInput } from '@/components-antd-redesign/rd-inputs/RdInput'
 import { useGoalsStore } from '@/StoreProvider'
 import { Divider } from 'antd'
 import { observer } from 'mobx-react-lite'
