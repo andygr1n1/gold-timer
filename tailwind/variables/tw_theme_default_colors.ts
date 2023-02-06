@@ -15,7 +15,7 @@ module.exports = {
     navlink: 'var(--colors-indigos)',
     'navlink-active': 'var(--colors-indigos-dark)',
     //badge
-    'badge-bg': 'var(--colors-indigos)',
+    'badge-bg': 'var(--colors-indigos-dark)',
     // button
     'button-bg': 'var(--colors-indigos)',
     'button-border': 'var(--colors-indigos)',

@@ -8,9 +8,9 @@ import { GoalsDashboardSlider } from './components/goals-dashboard-slider/GoalsD
 import { GoalsActions } from './components/goals-actions/GoalsActions'
 import { FavoriteGoalsWidget } from './components/favorite-goals-widget/FavoriteGoalsWidget'
 import { GoalsButtonsOverviewWidget } from './components/goals-buttons-overview-widget/GoalsButtonsOverviewWidget'
-import { TopActiveGoalsWidget } from './components/top-active-goals-widget/TopActiveGoalsWidget'
-import { TopRitualGoalsWidget } from './components/top-ritual-goals-widget/TopRitualGoalsWidget'
-import { TopExpiredGoalsWidget } from './components/top-expired-goals-widget/TopExpiredGoalsWidget'
+import { TopActiveGoalsWidget } from './components/top-goals-widgets/TopActiveGoalsWidget'
+import { TopRitualGoalsWidget } from './components/top-goals-widgets/TopRitualGoalsWidget'
+import { TopExpiredGoalsWidget } from './components/top-goals-widgets/TopExpiredGoalsWidget'
 
 export const GoalsDashboard: React.FC = observer(() => {
     const [loading, setLoading] = useState(true)

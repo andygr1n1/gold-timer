@@ -9,7 +9,7 @@ import { SelectPrivacy } from './goal-creator-components/body-inputs/SelectPriva
 import { SelectStatus } from './goal-creator-components/body-inputs/SelectStatus'
 import { TextAreaDescription } from './goal-creator-components/body-inputs/TextAreaDescription'
 
-export const GoalCreateModeIndex: React.FC = observer(() => {
+export const CreateNewGoalModal: React.FC = observer(() => {
     const {
         goals$: { editable_goal, closeGoalCreator },
     } = useRootStore()

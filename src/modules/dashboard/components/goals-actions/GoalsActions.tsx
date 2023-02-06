@@ -6,11 +6,32 @@ import { observer } from 'mobx-react-lite'
 
 export const GoalsActions: React.FC = observer(() => {
     return (
-        <div className='flex h-[260px] w-[260px] flex-wrap justify-end gap-5 rounded-md bg-global-bg p-5'>
-            <CreateNewGoalAction />
-            <FilterGoalsAction />
-            <DashboardTasksAction />
+        <div className='flex h-[265px] w-[260px] flex-col gap-5 rounded-md bg-global-bg p-5'>
+            <div className='flex h-[125px] gap-2'>
+                <AllGoalsViewAction />
+                <CreateNewGoalAction />
+            </div>
+            <div className='flex h-[125px] gap-2'>
+                <DashboardTasksAction />
+            </div>
         </div>
+    )
+})
+
+const AllGoalsViewAction = observer(() => {
+    return (
+        <button
+            disabled
+            title='view all goals'
+            onClick={toggleGoalsFilterModalVisibility}
+            className='
+            flex flex-auto cursor-pointer flex-col items-center justify-center 
+            gap-2 rounded-lg bg-navlink text-gray-700 shadow-lg shadow-black/30 hover:bg-navlink-active hover:text-amber-400
+            disabled:cursor-not-allowed disabled:bg-gray-100 disabled:text-gray-300'
+        >
+            <Icon icon='bxs:dashboard' height={25} width={25} />
+            <span className='font-mono font-bold'>Goals</span>
+        </button>
     )
 })
 
@@ -19,27 +40,13 @@ const CreateNewGoalAction = observer(() => {
 
     return (
         <button
-            title='Create new goal'
+            title='create new goal'
             onClick={goCreateNewGoalMode}
             className='
-            flex flex-[40%] cursor-pointer items-center justify-center 
-            rounded-lg bg-navlink text-gray-700 shadow-lg shadow-black/30 hover:bg-navlink-active hover:text-amber-400'
+            flex w-[60px] cursor-pointer flex-col items-center 
+            justify-center gap-2 rounded-lg bg-navlink text-gray-700 shadow-lg shadow-black/30 hover:bg-navlink-active hover:text-amber-400'
         >
-            <Icon icon='ic:round-dashboard-customize' width={25} height={25} />
-        </button>
-    )
-})
-
-const FilterGoalsAction = observer(() => {
-    return (
-        <button
-            title='Filter goals menu'
-            onClick={toggleGoalsFilterModalVisibility}
-            className='
-            flex flex-[40%] cursor-pointer items-center justify-center 
-            rounded-lg bg-navlink text-gray-700 shadow-lg shadow-black/30 hover:bg-navlink-active hover:text-amber-400'
-        >
-            <Icon icon='mdi:filter-cog' height={25} width={25} />
+            <Icon icon='ic:round-dashboard-customize' width={25} height={25} className='mb-6' />
         </button>
     )
 })
@@ -47,11 +54,13 @@ const FilterGoalsAction = observer(() => {
 const DashboardTasksAction = observer(() => {
     return (
         <button
+            disabled
             title='open tasks menu'
             onClick={toggleTasksModalVisibility}
             className='
-            flex flex-[40%] cursor-pointer items-center justify-center 
-            gap-5 rounded-lg bg-navlink text-gray-700 shadow-lg shadow-black/30 hover:bg-navlink-active hover:text-amber-400'
+            flex flex-[40%] cursor-pointer flex-col items-center 
+            justify-center gap-2 rounded-lg bg-navlink text-gray-700 shadow-lg shadow-black/30 hover:bg-navlink-active hover:text-amber-400
+            disabled:cursor-not-allowed disabled:bg-gray-100 disabled:text-gray-300'
         >
             <Icon icon='fluent:task-list-square-settings-20-filled' height={27} width={27} />
             <span className='font-mono font-bold'>Tasks</span>

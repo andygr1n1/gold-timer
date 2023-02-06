@@ -9,7 +9,7 @@ export const generateLog = async (
     const client = generateClient()
 
     const mutation = gql`
-        mutation upsertGoal($goal_id: uuid!, $log_description: goal_logs_enum_enum) {
+        mutation upsertGoal($goal_id: uuid!, $log_description: String) {
             insert_goals_logs_one(object: { goal_id: $goal_id, log_description: $log_description }) {
                 log_description
             }

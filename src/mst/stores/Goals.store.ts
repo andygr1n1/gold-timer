@@ -130,11 +130,20 @@ export const Goals$ = types
             return orderBy(goals, ['finished_at'], ['asc'])
         },
         get topActiveGoals(): IGoal$[] {
-            const goals = filter(self.goals, (goal) => goal.ritualGoalPower === 0 && goal.status === STATUS_ENUM.ACTIVE)
-            return orderBy(goals, ['finished_at'], ['asc']).slice(0, 4)
+            const today = new Date(Date.now())
+            const goals = filter(
+                this.activeGoals,
+                (goal) =>
+                    goal.ritualGoalPower === 0 && !!goal.finished_at && goal.finished_at < add(today, { days: 1 }),
+            )
+            return goals.slice(0, 4)
         },
         get topRitualGoals(): IGoal$[] {
-            const goals = filter(self.goals, (goal) => goal.ritualGoalPower > 0)
+            const today = new Date(Date.now())
+            const goals = filter(
+                this.activeGoals,
+                (goal) => goal.ritualGoalPower > 0 && !!goal.finished_at && goal.finished_at < add(today, { days: 1 }),
+            )
             return orderBy(goals, ['finished_at'], ['asc']).slice(0, 4)
         },
         get topExpiredGoals(): IGoal$[] {

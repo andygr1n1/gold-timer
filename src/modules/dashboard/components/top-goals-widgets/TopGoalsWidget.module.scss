@@ -1,0 +1,12 @@
+.wrapper {
+    @apply relative my-5 ml-7 flex w-[565px] flex-wrap rounded-lg bg-global-bg p-5;
+}
+
+.goals-container {
+    @apply ml-9 flex gap-2;
+}
+
+.goal {
+    @apply h-[40px] w-[110px] cursor-pointer items-center justify-center
+    rounded-lg p-2 text-sm text-white shadow-lg shadow-black/30;
+}
