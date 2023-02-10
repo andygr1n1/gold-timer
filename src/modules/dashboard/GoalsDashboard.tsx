@@ -7,10 +7,12 @@ import { DbAchievement } from './components/dashboard-achievements/DbAchievement
 import { GoalsDashboardSlider } from './components/goals-dashboard-slider/GoalsDashboardSlider'
 import { GoalsActions } from './components/goals-actions/GoalsActions'
 import { FavoriteGoalsWidget } from './components/favorite-goals-widget/FavoriteGoalsWidget'
-import { GoalsButtonsOverviewWidget } from './components/goals-buttons-overview-widget/GoalsButtonsOverviewWidget'
 import { TopActiveGoalsWidget } from './components/top-goals-widgets/TopActiveGoalsWidget'
 import { TopRitualGoalsWidget } from './components/top-goals-widgets/TopRitualGoalsWidget'
 import { TopExpiredGoalsWidget } from './components/top-goals-widgets/TopExpiredGoalsWidget'
+import { NoGoalsInfo } from './components/top-goals-widgets/NoGoalsInfo'
+import { NoSprintsInfo } from './components/sprints-widgets/NoSprintsInfo'
+import { CreateNewTaskWidget } from '@/widgets/tasks/create-new-task-widget/CreateNewTaskWidget'
 
 export const GoalsDashboard: React.FC = observer(() => {
     const [loading, setLoading] = useState(true)
@@ -41,28 +43,17 @@ export const GoalsDashboard: React.FC = observer(() => {
                                 <GoalsActions />
                             </div>
                             <div className='flex items-start justify-between gap-20 p-5'>
-                                <div>
+                                <div className='w-[633px]'>
                                     <TopExpiredGoalsWidget />
                                     <TopActiveGoalsWidget />
                                     <TopRitualGoalsWidget />
+                                    <NoGoalsInfo />
                                 </div>
-                                <GoalsButtonsOverviewWidget />
+                                <div className='h-[290px] w-[400px]'>
+                                    <NoSprintsInfo />
+                                </div>
+                                <CreateNewTaskWidget />
                             </div>
-
-                            {/* {goals_checked_list_filter.length && goals.length ? (
-                                <div className='relative flex  flex-auto flex-col gap-5 p-5 '>
-                                    <FavoriteGoals />
-                                    <ExpiredGoals />
-                                    <ActiveGoals />
-                                    <RitualGoals />
-                                    <FrozenGoals />
-                                    <CompletedGoals />
-                                </div>
-                            ) : (
-                                <div className='font-xl flex h-full w-full animate-opacity items-center justify-center font-mono font-bold'>
-                                    Nothing to show...
-                                </div>
-                            )} */}
                         </div>
                     </div>
                     <DbAchievement />

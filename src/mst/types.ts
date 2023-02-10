@@ -5,6 +5,8 @@ import { Goal$ } from './stores/Goal.store'
 import { Goals$ } from './stores/Goals.store'
 import type { Root$ } from './stores/Root.store'
 import { GoalRitual } from './models/GoalRitual.model'
+import { Task$ } from './stores/Task.store'
+import { Task } from './models/Task.model'
 
 export interface IRoot$ extends Instance<typeof Root$> {}
 export interface IGoals$ extends Instance<typeof Goals$> {}
@@ -22,3 +24,7 @@ export interface IGoalRitualSnapshotIn extends SnapshotIn<typeof GoalRitual> {}
 
 export interface IAchievement extends Instance<typeof Achievement> {}
 export interface IAchievementSnapshotIn extends SnapshotIn<typeof Achievement> {}
+
+export interface ITask extends Instance<typeof Task> {}
+export interface ITask$ extends Instance<typeof Task$> {}
+export interface ITask$SnapshotIn extends SnapshotIn<typeof Task$> {}

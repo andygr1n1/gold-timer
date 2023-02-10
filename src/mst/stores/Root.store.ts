@@ -6,12 +6,14 @@ import { IGoal$SnapshotIn } from '../types'
 import { Achievements$ } from './Achievements.store'
 import { Goals$ } from './Goals.store'
 import { User$ } from './User.store'
+import { Tasks$ } from './Tasks.store'
 
 export const Root$ = types
     .model('Root$', {
         user$: types.optional(User$, {}),
         goals$: types.optional(Goals$, {}),
         achievements$: types.optional(Achievements$, {}),
+        tasks$: types.optional(Tasks$, {}),
     })
     .actions((self) => ({
         onChangeField<Key extends keyof typeof self>(key: Key, value: typeof self[Key]) {

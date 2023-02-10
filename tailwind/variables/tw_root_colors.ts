@@ -7,7 +7,8 @@ module.exports = {
     magic: '#223399',
     'indigos-light': '#ea59f2',
     indigos: '#b947c3',
-    'indigos-dark': '#6535b1',
+    // indigos: '#b947c3',
+    'indigos-dark': 'black',
     //
     'red-100': '#fdeae9',
     'red-500': '#ef4444',

@@ -152,6 +152,13 @@ export const Goals$ = types
             )
             return orderBy(goals, ['finished_at'], ['asc']).slice(0, 4)
         },
+
+        get noGoalsForToday(): boolean {
+            return !this.topActiveGoals.length && !this.topRitualGoals.length && !this.topExpiredGoals.length
+        },
+        get noActiveSprints(): boolean {
+            return true
+        },
     }))
     .views((self) => ({
         get completedGoalsCount(): number {

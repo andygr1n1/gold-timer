@@ -1,6 +1,6 @@
 import { toggleGoalsFilterModalVisibility } from '@/components/modals/goals-filter-modal/GoalsFilterModal'
-import { toggleTasksModalVisibility } from '@/components/modals/tasks-modal/TasksModal'
 import { useGoalsStore } from '@/StoreProvider'
+import { toggleTasksModalVisibility } from '@/widgets-modals/tasks/TasksModal'
 import { Icon } from '@iconify/react'
 import { observer } from 'mobx-react-lite'
 
@@ -54,7 +54,6 @@ const CreateNewGoalAction = observer(() => {
 const DashboardTasksAction = observer(() => {
     return (
         <button
-            disabled
             title='open tasks menu'
             onClick={toggleTasksModalVisibility}
             className='
