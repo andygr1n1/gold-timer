@@ -1,9 +1,9 @@
 .wrapper {
-    @apply relative my-5 ml-7 flex w-[565px] flex-wrap rounded-lg bg-global-bg p-5;
+    @apply relative m-5  flex max-w-[600px] flex-col flex-wrap rounded-lg bg-global-bg xl:w-[600px] xl:flex-row;
 }
 
 .goals-container {
-    @apply ml-9 flex gap-2;
+    @apply flex max-w-[600px]  flex-col items-center justify-center gap-4 p-5 xl:ml-9 xl:flex-row xl:gap-2;
 }
 
 .goal {

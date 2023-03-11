@@ -11,7 +11,8 @@ import { useThemming } from './hooks/useThemming.hook'
 export const App = observer(() => {
     const {
         user$: { id: user_id },
-        fetchUserInfo,
+        fetchAppData,
+        loading,
     } = useRootStore()
 
     useEffect(() => {
@@ -29,7 +30,7 @@ export const App = observer(() => {
             onSnapshot(rootStore$.goals$.goals_checked_list_filter, (sn) => setGoalFiltersStore(sn))
         })()
 
-        fetchUserInfo()
+        fetchAppData()
 
         const handler = () => {
             // e.preventDefault()
@@ -40,7 +41,7 @@ export const App = observer(() => {
         document.addEventListener('wheel', handler, { passive: true })
     }, [])
 
-    return user_id ? (
+    return user_id && !loading ? (
         <div className='app'>
             <Sidemenu />
             <div className='app-body w-full flex-auto flex-col'>

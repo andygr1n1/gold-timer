@@ -3,7 +3,7 @@ import { PRIVACY_ENUM } from '@/helpers/enums'
 import { DIFFICULTY_ENUM, STATUS_ENUM } from './../../helpers/enums'
 import { types } from 'mobx-state-tree'
 import { v4 } from 'uuid'
-import { toDate } from 'date-fns'
+import { add, toDate } from 'date-fns'
 import { GoalRitual } from './GoalRitual.model'
 
 export const Goal = types
@@ -48,7 +48,7 @@ export const Goal = types
         finished_at: types.snapshotProcessor(types.maybe(types.Date), {
             preProcessor: (sn: Date | undefined | string) => {
                 if (!sn) {
-                    return undefined
+                    return add(new Date(Date.now()), { days: 30 })
                 }
                 if (typeof sn === 'string') {
                     return new Date(sn)

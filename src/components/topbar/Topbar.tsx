@@ -9,13 +9,11 @@ import { TopbarSearch } from './TopbarSearch'
 
 export const GoalsTopbar: React.FC = observer(() => {
     return (
-        <div className='flex  h-[100px] min-h-[100px] w-full flex-col-reverse items-center justify-between xl:h-[65px] xl:min-h-[65px] xl:flex-row '>
-            <TopbarSearch />
-            <div className='mx-3 flex items-center'>
-                <div className='flex items-center justify-center gap-4'>
-                    <Coins />
-                    <NotificationBell />
-                    <div className='mx-6 flex h-6 w-6 items-center justify-center'>
+        <div className='flex  h-[65px] min-h-[65px] w-full items-center justify-between  xl:flex-row '>
+            <div className='relative mx-3 flex w-full items-center justify-between '>
+                <TopbarSearch />
+                <div className='flex w-[100px] items-center justify-center gap-4 '>
+                    <div className='flex h-6 w-6 flex-auto items-center justify-center xl:mx-6'>
                         {!useSideMenu.is_open ? (
                             <Icon
                                 icon='line-md:close-to-menu-transition'
@@ -28,13 +26,13 @@ export const GoalsTopbar: React.FC = observer(() => {
                         null}
                     </div>
                 </div>
-                {/*  <div className='mr-5 flex gap-2'>
-                <SidebarLink to={APP_ROUTES_ENUM.SETTINGS}>
-                    <Icon icon='material-symbols:settings-rounded' width={25} height={25} />
-                </SidebarLink>
-                </div> */}
 
-                <div className='flex items-center'>
+                <div className='flex w-[100px] items-center gap-2'>
+                    <Coins />
+                    <NotificationBell />
+                </div>
+
+                <div className='flex w-[100px] items-center gap-2'>
                     <ThemeSwitcher />
                     <Logout />
                 </div>

@@ -7,6 +7,7 @@ import styles from './TopGoalsWidget.module.scss'
 
 export const TopActiveGoalsWidget: React.FC = observer(() => {
     const { topActiveGoals } = useGoalsStore()
+
     return topActiveGoals.length ? (
         <div className={styles['wrapper']}>
             <WidgetInfoIcon icon='ic:baseline-rocket-launch' iconColor='text-white' bgColor='bg-teal-500 top-3' />

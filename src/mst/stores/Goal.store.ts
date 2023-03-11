@@ -12,7 +12,7 @@ export const Goal$ = types
     .compose(
         Goal,
         types.model({
-            estimation_days: 30,
+            estimation_days: 0,
             //
             // to understand how to update goal, when a child is creating
             // parent goal can be failed, completed or deprecated if was frozen

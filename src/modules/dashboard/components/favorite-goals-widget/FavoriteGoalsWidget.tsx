@@ -12,41 +12,34 @@ export const FavoriteGoalsWidget: React.FC = observer(() => {
         goals$: { favoriteGoals },
     } = useRootStore()
 
-    return (
-        <div className='relative flex h-[300px] w-[400px] rounded-lg bg-global-bg bg-rose-500 shadow-lg shadow-black/30'>
+    return favoriteGoals.length ? (
+        <div className='relative hidden h-[300px] w-full max-w-[600px] rounded-lg bg-global-bg bg-rose-500 shadow-lg shadow-black/30 3xl:flex 3xl:w-[400px]'>
             <WidgetInfoIcon icon='carbon:favorite-filled' iconColor='text-amber-500' bgColor='bg-rose-700' />
-
-            {favoriteGoals.length ? (
-                <Carousel
-                    autoplaySpeed={5000}
-                    ref={slider}
-                    effect='fade'
-                    autoplay
-                    dotPosition={'left'}
-                    className={'z-0 h-[300px] w-[400px] rounded-lg'}
-                >
-                    {favoriteGoals.map((g) => (
-                        <div key={g.id} className=' h-[300px] w-[400px] rounded-lg bg-amber-400'>
-                            <div
-                                className='flex h-full w-full items-center justify-center rounded-lg bg-amber-400'
-                                onContextMenu={(e) => {
-                                    e.preventDefault()
-                                    console.log('e->', e.type)
-                                    slider.current?.prev()
-                                }}
-                                onClick={(e) => {
-                                    console.log('e->', e.type)
-                                    slider.current?.next()
-                                }}
-                            >
-                                {g.title}
-                            </div>
+            <Carousel
+                autoplaySpeed={5000}
+                ref={slider}
+                effect='fade'
+                autoplay
+                dotPosition={'left'}
+                className={'z-0  h-[300px] w-full max-w-[600px] rounded-lg 3xl:w-[400px]'}
+            >
+                {favoriteGoals.map((g) => (
+                    <div key={g.id} className=' h-[300px] rounded-lg bg-amber-400 3xl:w-[400px]'>
+                        <div
+                            className='flex h-full w-full max-w-[600px] items-center justify-center rounded-lg bg-amber-400'
+                            onContextMenu={(e) => {
+                                e.preventDefault()
+                                slider.current?.prev()
+                            }}
+                            onClick={(e) => {
+                                slider.current?.next()
+                            }}
+                        >
+                            {g.title}
                         </div>
-                    ))}
-                </Carousel>
-            ) : (
-                <span>no favorite goals</span>
-            )}
+                    </div>
+                ))}
+            </Carousel>
         </div>
-    )
+    ) : null
 })

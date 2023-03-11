@@ -7,7 +7,7 @@ export const WidgetInfoIcon: React.FC<{ icon: string; bgColor: string; iconColor
 }) => {
     return (
         <div
-            className={`absolute -top-8 -left-8 z-10 flex items-center justify-center rounded-full p-4 shadow-lg shadow-black/30 ${bgColor}`}
+            className={`absolute -top-6 -left-3 z-10 flex items-center justify-center rounded-full p-2 shadow-lg shadow-black/30 xl:-top-8 xl:-left-8 xl:p-4 ${bgColor}`}
         >
             <Icon icon={icon} className={iconColor} width={35} height={35} />
         </div>

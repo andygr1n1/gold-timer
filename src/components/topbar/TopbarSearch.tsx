@@ -8,7 +8,7 @@ export const TopbarSearch: React.FC = observer(() => {
     return (
         <RdSearchInput
             value={global_filtered_title_value}
-            className='!mx-5 w-[200px] font-mono'
+            className='absolute !mx-2 hidden w-[300px] !p-2 font-mono 3xl:flex'
             placeholder='find your goal...'
             onChange={(e) => onChangeField('global_filtered_title_value', e.target.value)}
             size='large'

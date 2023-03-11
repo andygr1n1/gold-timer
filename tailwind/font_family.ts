@@ -6,4 +6,5 @@ module.exports = {
     sofia: ['Sofia Sans', defaultConfig.theme.fontFamily.sans],
     mono: ['Cascadia Code', defaultConfig.theme.fontFamily.mono],
     monoIitalic: ['Cascadia Mono Italic', defaultConfig.theme.fontFamily.sans],
+    neon: ['Tilt Neon', defaultConfig.theme.fontFamily.sans],
 }

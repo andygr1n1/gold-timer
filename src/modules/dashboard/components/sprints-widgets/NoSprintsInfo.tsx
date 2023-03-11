@@ -7,7 +7,7 @@ export const NoSprintsInfo: React.FC = observer(() => {
 
     return noActiveSprints ? (
         <div className={styles['wrapper']}>
-            <div className='flex h-[290px] w-full items-center justify-center text-navlink-active text-gray-500 '>
+            <div className='flex h-full w-full items-center justify-center text-navlink-active text-gray-500 '>
                 no sprints, feel free
             </div>
         </div>

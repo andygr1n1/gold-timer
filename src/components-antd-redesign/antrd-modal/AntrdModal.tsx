@@ -9,21 +9,21 @@ const ModalTemplate: React.FC<ModalProps> = observer((props) => {
 export const RdModal = styled(ModalTemplate)`
     .ant-modal-content {
         border-radius: 10px;
-        height: 80vh;
+        /* height: 80vh; */
         overflow: auto;
     }
 
     .ant-modal-body {
         display: flex;
         flex-direction: column;
-        height: calc(100% - 100px);
+        /* height: calc(100% - 100px); */
     }
 
     .ant-modal-header {
         border-top-left-radius: 6px;
         border-top-right-radius: 6px;
         background: transparent;
-        height: 65px;
+        /* height: 65px; */
     }
 
     .ant-modal-close-x {
@@ -34,7 +34,8 @@ export const RdModal = styled(ModalTemplate)`
 
     .ant-modal-title {
         font-weight: bold;
-        font-family: 'Cascadia Mono', Courier, monospace;
+        font-family: 'Tilt Neon', cursive;
+        /* font-family: 'Sofia Sans', Courier, monospace; */
         font-size: 20px;
     }
 `

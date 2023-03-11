@@ -1,6 +1,5 @@
 import { RdInput } from '@/components-antd-redesign/rd-inputs/RdInput'
 import { useGoalsStore } from '@/StoreProvider'
-import { Divider } from 'antd'
 import { observer } from 'mobx-react-lite'
 
 export const InputSlogan: React.FC = observer(() => {
@@ -11,16 +10,14 @@ export const InputSlogan: React.FC = observer(() => {
     const { slogan, onChangeField } = new_goal
 
     return (
-        <>
-            <div>
-                <h3 className='py-2'>Slogan: </h3>
-                <RdInput
-                    disabled={!is_creator_mode}
-                    value={slogan}
-                    onChange={(e) => onChangeField('slogan', e.target.value)}
-                />
-            </div>
-            <Divider />
-        </>
+        <div className='py-2'>
+            <h5 className='mb-1'>Slogan: </h5>
+            <RdInput
+                size='large'
+                disabled={!is_creator_mode}
+                value={slogan}
+                onChange={(e) => onChangeField('slogan', e.target.value)}
+            />
+        </div>
     )
 })

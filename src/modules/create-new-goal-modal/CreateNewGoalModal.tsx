@@ -1,12 +1,11 @@
-import { RdButton } from '@/components-antd-redesign/antrd-button/RdButton'
 import { RdModal } from '@/components-antd-redesign/antrd-modal/AntrdModal'
+import { XButton } from '@/components-x/xbutton/XButton'
 import { useGoalsStore, useRootStore } from '@/StoreProvider'
+import { Divider } from 'antd'
 import { observer } from 'mobx-react-lite'
 import { CreateFinishDate } from './goal-creator-components/body-inputs/CreateFinishDate'
 import { InputSlogan } from './goal-creator-components/body-inputs/InputSlogan'
 import { InputTitle } from './goal-creator-components/body-inputs/InputTitle'
-import { SelectPrivacy } from './goal-creator-components/body-inputs/SelectPrivacy'
-import { SelectStatus } from './goal-creator-components/body-inputs/SelectStatus'
 import { TextAreaDescription } from './goal-creator-components/body-inputs/TextAreaDescription'
 
 export const CreateNewGoalModal: React.FC = observer(() => {
@@ -17,32 +16,24 @@ export const CreateNewGoalModal: React.FC = observer(() => {
     return (
         <RdModal
             title={'Create Goal'}
-            open={!!editable_goal?.id}
+            open={!!editable_goal?.id && !editable_goal?.created_at}
             footer={null}
             onOk={closeGoalCreator}
             onCancel={closeGoalCreator}
-            width={'70vw'}
         >
-            <div className='flex flex-auto flex-col'>
-                <div className='relative flex h-full w-full gap-5 overflow-auto'>
-                    <div className='flex  flex-[33%] flex-col'>
-                        <InputTitle />
+            <div className='relative flex  flex-col '>
+                <InputTitle />
 
-                        <InputSlogan />
+                <InputSlogan />
 
-                        <TextAreaDescription />
-                    </div>
-                    <div className='flex  flex-[33%] flex-col'>
-                        <SelectStatus />
+                <TextAreaDescription />
 
-                        {!editable_goal?.isFrozen && <SelectPrivacy />}
-                        <CreateFinishDate />
-                    </div>
-                    {/* <div className='flex  flex-[33%] flex-col'></div> */}
-                </div>
+                <CreateFinishDate />
+
+                <Divider />
+
+                <GoalCreatorFooter />
             </div>
-
-            <GoalCreatorFooter />
         </RdModal>
     )
 })
@@ -51,16 +42,10 @@ const GoalCreatorFooter = observer(() => {
     const { generateGoal, isNotValidToSaveGoalData } = useGoalsStore()
 
     return (
-        <div className='flex h-[40px] w-full items-center justify-center gap-5'>
-            <RdButton
-                className='w-[150px]'
-                disabled={isNotValidToSaveGoalData}
-                type='primary'
-                size='large'
-                onClick={() => generateGoal()}
-            >
+        <div className='flex h-[40px] w-full items-center justify-center pb-5'>
+            <XButton disabled={isNotValidToSaveGoalData} onClick={generateGoal}>
                 Create new goal
-            </RdButton>
+            </XButton>
         </div>
     )
 })

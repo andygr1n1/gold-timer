@@ -15,6 +15,9 @@ module.exports = {
             colors,
             animation: animation.animation,
             keyframes: animation.keyframes,
+            screens: {
+                '3xl': '1920px',
+            },
         },
     },
     plugins: [require('@mertasan/tailwindcss-variables')],

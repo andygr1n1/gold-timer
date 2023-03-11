@@ -8,7 +8,7 @@ export const TopExpiredGoalsWidget: React.FC = observer(() => {
     const { topExpiredGoals } = useGoalsStore()
     return topExpiredGoals.length ? (
         <div className={styles['wrapper']}>
-            <WidgetInfoIcon icon='pajamas:expire' iconColor='text-white' bgColor='bg-rose-700 top-3 -left-8' />
+            <WidgetInfoIcon icon='pajamas:expire' iconColor='text-white' bgColor='bg-rose-700  -left-5' />
             <div className={styles['goals-container']}>
                 {topExpiredGoals.map((goal) => (
                     <div key={goal.id} className={`${styles['goal']} bg-rose-700 hover:bg-rose-600`}>
