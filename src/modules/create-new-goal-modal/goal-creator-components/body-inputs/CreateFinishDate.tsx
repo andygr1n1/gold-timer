@@ -60,6 +60,7 @@ export const CreateFinishDate: React.FC = observer(() => {
                         disabledDate={disabledDate}
                         showTime
                         value={finished_at}
+                        format='Do MMMM YYYY HH:mm:ss '
                     />
                 ) : (
                     <div className='flex items-center gap-4'>

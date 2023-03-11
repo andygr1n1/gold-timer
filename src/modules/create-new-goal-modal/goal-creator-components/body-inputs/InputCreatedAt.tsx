@@ -1,6 +1,6 @@
 import { RdInput } from '@/components-antd-redesign/rd-inputs/RdInput'
 import { useGoalsStore } from '@/StoreProvider'
-import { Divider } from 'antd'
+import { format } from 'date-fns'
 import { observer } from 'mobx-react-lite'
 
 export const InputCreatedAt: React.FC = observer(() => {
@@ -12,11 +12,14 @@ export const InputCreatedAt: React.FC = observer(() => {
 
     return (
         <>
-            <div>
-                <h3 className='py-2'>Create Date: </h3>
-                <RdInput disabled value={created_at?.toDateString()} />
+            <div className='py-2'>
+                <h5>Created: </h5>
+                <RdInput
+                    disabled
+                    className='m-0 p-0 disabled:bg-transparent'
+                    value={format(created_at!, 'do MMMM yyyy HH:mm:ss')}
+                />
             </div>
-            <Divider />
         </>
     )
 })

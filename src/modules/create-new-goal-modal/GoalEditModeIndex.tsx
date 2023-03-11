@@ -9,6 +9,7 @@ export const GoalEditModeIndex: React.FC = observer(() => {
         goals$: { editable_goal, closeGoalCreator },
     } = useRootStore()
 
+    return null
     return (
         <RdModal
             title={<GoalCreatorTitle />}

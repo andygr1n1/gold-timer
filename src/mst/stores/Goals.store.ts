@@ -17,7 +17,6 @@ import {
     getParentOfType,
     toGenerator,
     types,
-    cast,
     applySnapshot,
     flow,
     castToSnapshot,
@@ -43,6 +42,8 @@ export const Goals$ = types
         global_filtered_title_value: '',
         //
         achievements_edit_mode: false,
+        //
+        active_collapse_key: types.maybe(types.string),
     })
     .views((self) => ({
         get globalFilteredGoals(): IGoal$[] {
@@ -124,7 +125,7 @@ export const Goals$ = types
             )
             return orderBy(goals, ['finished_at'], ['asc'])
         },
-        get topActiveGoals(): IGoal$[] {
+        get topActiveGoals(): { topFour: IGoal$[]; all: IGoal$[] } {
             const today = new Date(Date.now())
             const goals = filter(
                 this.activeGoals,
@@ -132,7 +133,12 @@ export const Goals$ = types
                     goal.ritualGoalPower === 0 && !!goal.finished_at && goal.finished_at < add(today, { days: 1 }),
             )
 
-            return goals.slice(0, 4)
+            const all = filter(this.activeGoals, (goal) => goal.ritualGoalPower === 0)
+
+            return {
+                topFour: goals.slice(0, 4),
+                all,
+            }
         },
 
         get frozenGoals(): IGoal$[] {
@@ -170,7 +176,7 @@ export const Goals$ = types
         },
 
         get noGoalsForToday(): boolean {
-            return !this.topActiveGoals.length && !this.topRitualGoals.length && !this.topExpiredGoals.length
+            return !this.topActiveGoals.topFour.length && !this.topRitualGoals.length && !this.topExpiredGoals.length
         },
         get noActiveSprints(): boolean {
             return true
@@ -229,6 +235,12 @@ export const Goals$ = types
         goGoalEditMode(): void {
             if (!self.editable_goal) return
             self.is_creator_mode = true
+        },
+        goCreateEditMode(goal: IGoal$): void {
+            self.editable_goal = goal
+            self.new_goal = cloneDeep({ ...self.editable_goal, id: '' })
+            self.is_creator_mode = true
+            console.log('editable goal -> ', cloneDeep(self.editable_goal))
         },
         exitGoalEditMode(): void {
             if (self.editable_goal && self.editable_goal?.goal_ritualized_mode) {

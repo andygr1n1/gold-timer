@@ -59,6 +59,9 @@ export const Goal = types
         goals_rituals: types.array(GoalRitual),
     })
     .views((self) => ({
+        get isValidForMutation(): boolean {
+            return !!self.title.length
+        },
         get goal_ritual(): IGoalRitual | null {
             return self.goals_rituals[0] || null
         },

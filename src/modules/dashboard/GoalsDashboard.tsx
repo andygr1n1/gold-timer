@@ -4,7 +4,7 @@ import { DbAchievement } from './components/dashboard-achievements/DbAchievement
 import { GoalsDashboardSlider } from './components/goals-dashboard-slider/GoalsDashboardSlider'
 import { CreateNewGoalWidget } from './components/create-new-goal-widget/CreateNewGoalWidget'
 import { FavoriteGoalsWidget } from './components/favorite-goals-widget/FavoriteGoalsWidget'
-import { TopActiveGoalsWidget } from './components/top-goals-widgets/TopActiveGoalsWidget'
+import { TopActiveGoalsWidget } from './components/top-goals-widgets/top-active-goals-widget/TopActiveGoalsWidget'
 import { TopRitualGoalsWidget } from './components/top-goals-widgets/TopRitualGoalsWidget'
 import { TopExpiredGoalsWidget } from './components/top-goals-widgets/TopExpiredGoalsWidget'
 import { NoGoalsInfo } from './components/top-goals-widgets/NoGoalsInfo'

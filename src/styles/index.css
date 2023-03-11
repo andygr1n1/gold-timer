@@ -70,7 +70,7 @@
 
 @layer utilities {
     button {
-        @apply animate-opacity border-none outline-none transition-all duration-300 focus:outline-none;
+        @apply animate-opacity border-none bg-transparent outline-none transition-all duration-300 focus:outline-none;
     }
 
     .border-solid {

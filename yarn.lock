@@ -490,10 +490,12 @@
   resolved "https://registry.yarnpkg.com/@graphql-typed-document-node/core/-/core-3.1.1.tgz#076d78ce99822258cf813ecc1e7fa460fa74d052"
   integrity sha512-NQ17ii0rK1b34VZonlmT2QMJFI70m0TRwbknO/ihlbatXyaktDhN/98vBiUU6kNBPljqGqyIrl2T4nY2RpFANg==
 
-"@headlessui/react@^1.7.3":
-  version "1.7.3"
-  resolved "https://registry.yarnpkg.com/@headlessui/react/-/react-1.7.3.tgz#853c598ff47b37cdd192c5cbee890d9b610c3ec0"
-  integrity sha512-LGp06SrGv7BMaIQlTs8s2G06moqkI0cb0b8stgq7KZ3xcHdH3qMP+cRyV7qe5x4XEW/IGY48BW4fLesD6NQLng==
+"@headlessui/react@^1.7.13":
+  version "1.7.13"
+  resolved "https://registry.yarnpkg.com/@headlessui/react/-/react-1.7.13.tgz#fd150b394954e9f1d86ed2340cffd1217d6e7628"
+  integrity sha512-9n+EQKRtD9266xIHXdY5MfiXPDfYwl7zBM7KOx2Ae3Gdgxy8QML1FkCMjq6AsOf0l6N9uvI4HcFtuFlenaldKg==
+  dependencies:
+    client-only "^0.0.1"
 
 "@humanwhocodes/config-array@^0.10.4":
   version "0.10.4"
@@ -1245,6 +1247,11 @@ classnames@2.x, classnames@^2.2.1, classnames@^2.2.3, classnames@^2.2.5, classna
   version "2.3.2"
   resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.3.2.tgz#351d813bf0137fcc6a76a16b88208d2560a0d924"
   integrity sha512-CSbhY4cFEJRe6/GQzIk5qXZ4Jeg5pcsP7b5peFSDpffpe1cqjASH/n9UTjBwOp6XpMSTwQ8Za2K5V02ueA7Tmw==
+
+client-only@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/client-only/-/client-only-0.0.1.tgz#38bba5d403c41ab150bff64a95c85013cf73bca1"
+  integrity sha512-IV3Ou0jSMzZrd3pZ48nLkT9DA7Ag1pnPzaiQhpW7c3RbcqqzvzzVu+L8gfqMp/8IM2MQtSiqaCxrrcfu8I8rMA==
 
 color-convert@^1.9.0:
   version "1.9.3"

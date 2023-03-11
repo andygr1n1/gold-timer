@@ -18,8 +18,8 @@ export const InputFinishedAt: React.FC = observer(() => {
 
     return (
         <>
-            <div>
-                <h3 className='py-2'>Finish Date: </h3>
+            <div className='py-2'>
+                <h5>Finish Date: </h5>
                 {!is_creator_mode ? (
                     <RdInput disabled value={finished_at?.toDateString()} />
                 ) : (
@@ -27,9 +27,10 @@ export const InputFinishedAt: React.FC = observer(() => {
                         className='!w-full'
                         popupClassName='creator-form-finished-date'
                         onChange={(e) => onChangeField('finished_at', e || undefined)}
-                        // showToday={false}
                         disabledDate={disabledDate}
+                        showTime
                         value={finished_at}
+                        format='Do MMMM YYYY HH:mm:ss '
                     />
                 )}
             </div>
