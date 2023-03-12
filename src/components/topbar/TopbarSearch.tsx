@@ -3,7 +3,9 @@ import { useGoalsStore } from '@/StoreProvider'
 import { observer } from 'mobx-react-lite'
 
 export const TopbarSearch: React.FC = observer(() => {
-    const { onChangeField, global_filtered_title_value } = useGoalsStore()
+    const {
+        filter$: { global_filtered_title_value, onChangeField },
+    } = useGoalsStore()
 
     return (
         <RdSearchInput

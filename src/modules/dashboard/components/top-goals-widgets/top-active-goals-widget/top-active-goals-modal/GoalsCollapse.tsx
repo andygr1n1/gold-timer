@@ -1,7 +1,8 @@
+import { GoalFormFilters } from '@/components/goal-form-filters/GoalFormFilters'
 import { useGoalsStore } from '@/StoreProvider'
-import { Collapse } from 'antd'
+import { Collapse, Divider } from 'antd'
 import { observer } from 'mobx-react-lite'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { PanelBody } from './components/PanelBody'
 import { PanelHeader } from './components/PanelHeader'
 import { PanelSettings } from './components/PanelSettings'
@@ -10,7 +11,7 @@ const { Panel } = Collapse
 
 export const GoalsCollapse = observer(() => {
     const {
-        topActiveGoals: { all },
+        filter$: { activeFilteredGoals },
         active_collapse_key,
         onChangeField,
     } = useGoalsStore()
@@ -26,9 +27,11 @@ export const GoalsCollapse = observer(() => {
 
     return (
         <div className='mb-5'>
-            <h1>ActiveGoalsModal Filters</h1>
+            <Divider />
+            <GoalFormFilters />
+            <Divider />
             <Collapse accordion activeKey={active_collapse_key} onChange={setActiveKey}>
-                {all.map((goal) => (
+                {activeFilteredGoals.map((goal) => (
                     <Panel
                         showArrow={false}
                         header={<PanelHeader goal={goal} />}

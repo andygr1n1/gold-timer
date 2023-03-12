@@ -2,17 +2,11 @@ import { observer } from 'mobx-react-lite'
 import { Breadcrumb } from 'antd'
 import { useGoalsStore } from '@/StoreProvider'
 import { cast } from 'mobx-state-tree'
-import { useEffect } from 'react'
 
 export const Breadcrumbs: React.FC = observer(() => {
-    const { onChangeField } = useGoalsStore()
+    const { onChangeField, new_goal } = useGoalsStore()
 
-    useEffect(() => {
-        return () => {
-            onChangeField('editable_goal', undefined)
-            onChangeField('new_goal', cast({}))
-        }
-    }, [])
+    const crumb = new_goal.parent_goal_id ? 'Create child' : 'Edit goal'
 
     return (
         <Breadcrumb
@@ -31,7 +25,7 @@ export const Breadcrumbs: React.FC = observer(() => {
                     ),
                 },
                 {
-                    title: <span className='cursor-default p-1'>Edit Goal</span>,
+                    title: <span className='cursor-default p-1'>{crumb}</span>,
                 },
             ]}
         />

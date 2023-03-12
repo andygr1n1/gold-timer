@@ -23,6 +23,9 @@ export const Goal$ = types
     )
     .named('Goal$')
     .views((self) => ({
+        get isChildGoal(): boolean {
+            return !!self.parent_goal_id
+        },
         get isFrozen(): boolean {
             return self.status === STATUS_ENUM.FROZEN
         },

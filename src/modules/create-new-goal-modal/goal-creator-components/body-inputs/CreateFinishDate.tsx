@@ -61,6 +61,7 @@ export const CreateFinishDate: React.FC = observer(() => {
                         showTime
                         value={finished_at}
                         format='Do MMMM YYYY HH:mm:ss '
+                        className='!w-full'
                     />
                 ) : (
                     <div className='flex items-center gap-4'>

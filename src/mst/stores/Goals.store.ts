@@ -27,9 +27,11 @@ import { Root$ } from './Root.store'
 import { v4 } from 'uuid'
 import { getCoinsFromRitual } from '@/helpers/get_coins_from_ritual'
 import { addCoinsMutation } from '@/graphql/mutations/addCoins.mutation'
+import { Filter$ } from './Filter.store'
 
 export const Goals$ = types
     .model('Goals$', {
+        filter$: types.optional(Filter$, { goals_estimation_filter: add(new Date(Date.now()), { days: 60 }) }),
         goals: types.array(Goal$),
         new_goal: types.optional(Goal$, {}),
 
@@ -39,7 +41,7 @@ export const Goals$ = types
         complete_goal_modal: types.safeReference(Goal$),
 
         goals_checked_list_filter: types.array(types.enumeration(Object.values(STATUS_ENUM_FILTERS))),
-        global_filtered_title_value: '',
+
         //
         achievements_edit_mode: false,
         //
@@ -52,11 +54,15 @@ export const Goals$ = types
                     goal.title
                         .trim()
                         .toLocaleLowerCase()
-                        .includes(self.global_filtered_title_value.trim().toLocaleLowerCase()) ||
+                        .includes(self.filter$.global_filtered_title_value.trim().toLocaleLowerCase()) ||
                     goal.slogan
                         .trim()
                         .toLocaleLowerCase()
-                        .includes(self.global_filtered_title_value.trim().toLocaleLowerCase()),
+                        .includes(self.filter$.global_filtered_title_value.trim().toLocaleLowerCase()) ||
+                    goal.description
+                        .trim()
+                        .toLocaleLowerCase()
+                        .includes(self.filter$.global_filtered_title_value.trim().toLocaleLowerCase()),
             )
         },
         get activeGoalsFilter(): boolean {
@@ -113,7 +119,7 @@ export const Goals$ = types
         get activeGoals(): IGoal$[] {
             const goals: IGoal$[] = compact(
                 differenceWith(
-                    filter(self.goals, (goal) => {
+                    filter(self.globalFilteredGoals, (goal) => {
                         return (
                             !!goal.created_at &&
                             isPast(sub(goal.created_at, { seconds: 3 })) &&

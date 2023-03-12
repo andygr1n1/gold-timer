@@ -19,7 +19,7 @@ export const InputFinishedAt: React.FC = observer(() => {
     return (
         <>
             <div className='py-2'>
-                <h5>Finish Date: </h5>
+                <h5>Estimation: </h5>
                 {!is_creator_mode ? (
                     <RdInput disabled value={finished_at?.toDateString()} />
                 ) : (

@@ -15,9 +15,9 @@ export const InputCreatedAt: React.FC = observer(() => {
             <div className='py-2'>
                 <h5>Created: </h5>
                 <RdInput
-                    disabled
+                    disabled={!!created_at}
                     className='m-0 p-0 disabled:bg-transparent'
-                    value={format(created_at!, 'do MMMM yyyy HH:mm:ss')}
+                    value={created_at && format(created_at, 'do MMMM yyyy HH:mm:ss')}
                 />
             </div>
         </>

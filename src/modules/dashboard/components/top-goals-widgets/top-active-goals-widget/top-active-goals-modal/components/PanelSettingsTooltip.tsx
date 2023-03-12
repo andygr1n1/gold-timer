@@ -37,6 +37,7 @@ export const PanelSettingsTooltip: React.FC<{ goal: IGoal$ }> = observer(({ goal
                                     className='w-fit min-w-[150px]  overflow-hidden  rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5'
                                 >
                                     <div
+                                        title='Edit goal'
                                         onClick={() => {
                                             onChangeField('active_collapse_key', goal.id)
                                             goCreateEditMode(goal)
@@ -45,7 +46,14 @@ export const PanelSettingsTooltip: React.FC<{ goal: IGoal$ }> = observer(({ goal
                                     >
                                         Edit mode
                                     </div>
-                                    <div className='border-b-solid border-gray-500/20 p-2 font-neon text-xs hover:bg-sky-100'>
+                                    <div
+                                        onClick={() => {
+                                            onChangeField('active_collapse_key', goal.id)
+                                            goal.createNewChild()
+                                        }}
+                                        title='New Child'
+                                        className='border-b-solid border-gray-500/20 p-2 font-neon text-xs hover:bg-sky-100'
+                                    >
                                         Create child goal
                                     </div>
                                     <div
@@ -58,13 +66,14 @@ export const PanelSettingsTooltip: React.FC<{ goal: IGoal$ }> = observer(({ goal
                                     </div>
                                     {finishExtension && (
                                         <>
-                                            <div
-                                                className='
-                                                    border-b-solid border-gray-500/20 bg-emerald-500 p-2
+                                            <button
+                                                onClick={goal.completeGoal}
+                                                className='border-b-solid w-full cursor-pointer
+                                                    border-gray-500/20 bg-emerald-500 p-2 text-left
                                                     font-neon text-xs text-white duration-300 hover:bg-emerald-700'
                                             >
                                                 Goal Completed
-                                            </div>
+                                            </button>
                                             <div
                                                 className='
                                                     border-b-solid border-gray-500/20 bg-indigo-500 p-2

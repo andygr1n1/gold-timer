@@ -4,8 +4,6 @@ import { observer } from 'mobx-react-lite'
 export const ActiveGoalDeadline: React.FC<{ goal: IGoal$ }> = observer(({ goal }) => {
     const { remainingTimeString } = goal
 
-    console.log('remainingTimeString', remainingTimeString)
-
     return (
         <div className='flex items-center gap-2  '>
             <span className='text-sm text-slate-500'>
