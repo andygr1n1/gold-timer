@@ -1,6 +1,5 @@
 import { IGoal$ } from '@/mst/types'
 import { observer } from 'mobx-react-lite'
-import { GoalRightMenu } from '../goal/GoalRightMenu'
 import { Icon } from '@iconify/react'
 import { GoalWrapper } from './goal-components/GoalWrapper'
 import { GoalCreatedAt } from './goal-components/GoalCreatedAt'
@@ -31,7 +30,6 @@ export const Goal: React.FC<{ goal: IGoal$ }> = observer(({ goal }) => {
                     )}
                 </div>
             </div>
-            <GoalRightMenu goal={goal} />
         </GoalWrapper>
     )
 })

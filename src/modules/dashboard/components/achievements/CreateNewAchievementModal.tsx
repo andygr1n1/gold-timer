@@ -1,13 +1,13 @@
-import { RdButton } from '@/components-antd-redesign/antrd-button/RdButton'
-import { RdModal } from '@/components-antd-redesign/antrd-modal/AntrdModal'
-import { RdInput } from '@/components-antd-redesign/rd-inputs/RdInput'
-import { RdTextArea } from '@/components-antd-redesign/rd-textarea/RdTextarea'
+import { RdModal } from '@/components-rd/rdmodal/RdModal'
+import { RdInput } from '@/components-rd/rdinput/RdInput'
 import { useRootStore } from '@/StoreProvider'
 import { Icon } from '@iconify/react'
 import { Divider, Upload } from 'antd'
 import axios from 'axios'
 import { observer } from 'mobx-react-lite'
 import { useState } from 'react'
+import TextArea from 'antd/lib/input/TextArea'
+import { XButton } from '@/components-x/xbutton/XButton'
 
 export const CreateNewAchievement: React.FC = observer(() => {
     const [openedModal, setOpenModal] = useState(false)
@@ -60,7 +60,7 @@ export const CreateNewAchievement: React.FC = observer(() => {
                         <Divider />
                         <div>
                             <h3 className='py-2'>Description: </h3>
-                            <RdTextArea
+                            <TextArea
                                 value={description}
                                 autoFocus={true}
                                 onChange={(e) => onChangeField('description', e.target.value)}
@@ -103,23 +103,14 @@ export const CreateNewAchievement: React.FC = observer(() => {
                                 })
                             }}
                         >
-                            <RdButton>Upload</RdButton>
+                            <XButton>Upload</XButton>
                         </Upload>
-                        {/* <RdButton className='' onClick={onCreate}>
-                            Create Achievement
-                        </RdButton> */}
                     </div>
                 </div>
                 <div className='flex h-[40px] w-full items-center justify-center gap-5'>
-                    <RdButton
-                        disabled={onCreateAchievementDisabled}
-                        className='w-[200px]'
-                        type='primary'
-                        size='large'
-                        onClick={() => onCreate()}
-                    >
+                    <XButton disabled={onCreateAchievementDisabled} className='w-[200px]' onClick={() => onCreate()}>
                         Create Achievement
-                    </RdButton>
+                    </XButton>
                 </div>
             </RdModal>
         </>

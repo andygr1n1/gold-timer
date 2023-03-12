@@ -2,10 +2,10 @@ import { AppRoutes } from './AppRoutes'
 import { rootStore$, useRootStore } from './StoreProvider'
 import { useEffect } from 'react'
 import { observer } from 'mobx-react-lite'
-import { RdLoader } from './components/loader/RdLoader'
+import { RdLoader } from './components/RdLoader'
 import { getGoalFiltersStore, setGoalFiltersStore } from './functions/indexdb_manager'
 import { onSnapshot } from 'mobx-state-tree'
-import { Sidemenu } from './components/sidemenu/Sidemenu'
+import { Sidemenu } from './layout/sidemenu/Sidemenu'
 import { useThemming } from './hooks/useThemming.hook'
 
 export const App = observer(() => {
@@ -45,7 +45,9 @@ export const App = observer(() => {
         <div className='app'>
             <Sidemenu />
             <div className='app-body w-full flex-auto flex-col'>
-                <AppRoutes />
+                <div className='module-wrapper'>
+                    <AppRoutes />
+                </div>
             </div>
         </div>
     ) : (

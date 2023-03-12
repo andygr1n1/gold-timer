@@ -1,11 +1,12 @@
 import { XButton } from '@/components-x/xbutton/XButton'
-import { CreateFinishDate } from '@/modules/create-new-goal-modal/goal-creator-components/body-inputs/CreateFinishDate'
-import { InputSlogan } from '@/modules/create-new-goal-modal/goal-creator-components/body-inputs/InputSlogan'
-import { InputTitle } from '@/modules/create-new-goal-modal/goal-creator-components/body-inputs/InputTitle'
-import { TextAreaDescription } from '@/modules/create-new-goal-modal/goal-creator-components/body-inputs/TextAreaDescription'
+import { CreateFinishDate } from '@/components-modals/create-new-goal-modal/components/CreateFinishDate'
+
 import { useGoalsStore } from '@/StoreProvider'
 import { Divider } from 'antd'
 import { observer } from 'mobx-react-lite'
+import { InputTitle } from '@/components-modals/create-new-goal-modal/components/InputTitle'
+import { InputSlogan } from '@/components-modals/create-new-goal-modal/components/InputSlogan'
+import { TextAreaDescription } from '@/components-modals/create-new-goal-modal/components/TextAreaDescription'
 
 export const CreateGoalForm: React.FC = observer(() => {
     return (

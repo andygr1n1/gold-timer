@@ -3,7 +3,7 @@ import { ACTIVE_GOAL_TYPE_ENUM } from '@/helpers/enums'
 import { useGoalsStore } from '@/StoreProvider'
 import { truncate } from 'lodash'
 import { observer } from 'mobx-react-lite'
-import { toggleModalState } from '../goals-list-modal/GoalsListModal'
+import { toggleModalState } from '../../../../../components-modals/goals-list-modal/GoalsListModal'
 import styles from '../TopGoalsWidget.module.scss'
 
 export const TopExpiredGoalsWidget: React.FC = observer(() => {

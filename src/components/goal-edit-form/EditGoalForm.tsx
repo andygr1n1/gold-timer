@@ -1,9 +1,10 @@
+import { InputCreatedAt } from '@/components-modals/create-new-goal-modal/components/InputCreatedAt'
+import { InputFinishedAt } from '@/components-modals/create-new-goal-modal/components/InputFinishedAt'
+import { InputSlogan } from '@/components-modals/create-new-goal-modal/components/InputSlogan'
+import { InputTitle } from '@/components-modals/create-new-goal-modal/components/InputTitle'
+import { TextAreaDescription } from '@/components-modals/create-new-goal-modal/components/TextAreaDescription'
 import { XButton } from '@/components-x/xbutton/XButton'
-import { InputCreatedAt } from '@/modules/create-new-goal-modal/goal-creator-components/body-inputs/InputCreatedAt'
-import { InputFinishedAt } from '@/modules/create-new-goal-modal/goal-creator-components/body-inputs/InputFinishedAt'
-import { InputSlogan } from '@/modules/create-new-goal-modal/goal-creator-components/body-inputs/InputSlogan'
-import { InputTitle } from '@/modules/create-new-goal-modal/goal-creator-components/body-inputs/InputTitle'
-import { TextAreaDescription } from '@/modules/create-new-goal-modal/goal-creator-components/body-inputs/TextAreaDescription'
+
 import { useGoalsStore } from '@/StoreProvider'
 import { observer } from 'mobx-react-lite'
 

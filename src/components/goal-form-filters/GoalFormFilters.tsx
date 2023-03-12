@@ -1,4 +1,4 @@
-import { RdDatePicker } from '@/components-antd-redesign/rd-datepicker/DatePickerFns'
+import { RdDatePicker } from '@/components-rd/rddatepicker/RdDatePicker'
 import { useGoalsStore } from '@/StoreProvider'
 import { Input } from 'antd'
 import { observer } from 'mobx-react-lite'

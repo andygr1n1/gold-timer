@@ -5,7 +5,7 @@ import { observer } from 'mobx-react-lite'
 
 import styles from '../TopGoalsWidget.module.scss'
 import { ACTIVE_GOAL_TYPE_ENUM } from '@/helpers/enums'
-import { toggleModalState } from '../goals-list-modal/GoalsListModal'
+import { toggleModalState } from '../../../../../components-modals/goals-list-modal/GoalsListModal'
 
 export const TopActiveGoalsWidget: React.FC = observer(() => {
     const {
