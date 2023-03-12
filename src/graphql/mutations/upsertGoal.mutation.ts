@@ -18,7 +18,7 @@ export interface IUpsertGoal {
         ritual_power: number
         ritual_interval: number
         ritual_type: RITUAL_TYPE_ENUM
-    }
+    }[]
 }
 
 export const upsertGoalMutation = async (newGoal: IUpsertNewGoal): Promise<IUpsertGoal | undefined> => {

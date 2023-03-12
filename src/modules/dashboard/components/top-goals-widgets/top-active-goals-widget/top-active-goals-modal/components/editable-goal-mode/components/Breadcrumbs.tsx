@@ -2,11 +2,10 @@ import { observer } from 'mobx-react-lite'
 import { Breadcrumb } from 'antd'
 import { useGoalsStore } from '@/StoreProvider'
 import { cast } from 'mobx-state-tree'
+import { IGoal$ } from '@/mst/types'
 
 export const Breadcrumbs: React.FC = observer(() => {
     const { onChangeField, new_goal } = useGoalsStore()
-
-    const crumb = new_goal.parent_goal_id ? 'Create child' : 'Edit goal'
 
     return (
         <Breadcrumb
@@ -25,9 +24,16 @@ export const Breadcrumbs: React.FC = observer(() => {
                     ),
                 },
                 {
-                    title: <span className='cursor-default p-1'>{crumb}</span>,
+                    title: <span className='cursor-default p-1'>{generateCrumb(new_goal)}</span>,
                 },
             ]}
         />
     )
 })
+
+const generateCrumb = (new_goal: IGoal$): string => {
+    let crumb = 'Edit goal'
+    if (new_goal.parent_goal_id) crumb = 'Create child'
+    if (new_goal.goal_ritualized_mode) crumb = 'Ritualize goal'
+    return crumb
+}

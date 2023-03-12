@@ -26,20 +26,6 @@ export const GoalCompleteModeModal: React.FC = observer(() => {
                     <RdButton className='greenbutton h-full w-72 hover:font-bold' type='primary' onClick={completeGoal}>
                         Complete
                     </RdButton>
-                    <RdButton
-                        className='indigobutton h-full w-40 hover:font-bold'
-                        type='primary'
-                        onClick={goGoalRitualizedMode}
-                    >
-                        Ritualize
-                    </RdButton>
-                    {/*    <RdButton
-                        className='goldbutton flex h-full w-40 flex-col items-center justify-center hover:font-bold'
-                        type='primary'
-                        onClick={completeGoalAndCreateNewChild}
-                    >
-                        <div>New child goal</div>
-                    </RdButton> */}
 
                     <RdButton
                         className='redbutton ml-auto h-full w-24 hover:font-bold'

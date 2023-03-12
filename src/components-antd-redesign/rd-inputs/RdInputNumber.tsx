@@ -3,7 +3,7 @@ import { observer } from 'mobx-react-lite'
 import styled from 'styled-components/macro'
 
 const StyledInputNumber = styled(InputNumber)`
-    padding: 4px 4px;
+    padding: 4px;
     font-size: 16px;
 
     &:disabled {

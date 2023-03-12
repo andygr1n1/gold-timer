@@ -6,6 +6,7 @@ import { useEffect } from 'react'
 import { EditableGoalMode } from './components/editable-goal-mode/EditableGoalMode'
 import { GoalsCollapse } from './GoalsCollapse'
 import { cast } from 'mobx-state-tree'
+import { TopActiveGoalsModalTitle } from './components/TopActiveGoalsModalTitle'
 
 interface IBaseState {
     is_open: boolean
@@ -17,13 +18,10 @@ export const toggleModalState = action(() => {
 })
 
 export const TopActiveGoalsModal: React.FC = observer(() => {
-    const { editable_goal } = useGoalsStore()
-
     return (
         <RdModal
-            title={<div>{editable_goal ? 'Goal Creator Mode' : 'Active Goals'}</div>}
+            title={<TopActiveGoalsModalTitle />}
             open={modalState.is_open}
-            // open={true}
             footer={null}
             onOk={toggleModalState}
             onCancel={toggleModalState}
@@ -42,7 +40,7 @@ const Body = observer(() => {
             onChangeField('active_collapse_key', '')
             onChangeField('new_goal', cast({}))
             onChangeField('editable_goal', undefined)
-    }
+        }
     }, [])
 
     return editable_goal ? (

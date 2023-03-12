@@ -34,7 +34,6 @@ export const InputFinishedAt: React.FC = observer(() => {
                     />
                 )}
             </div>
-            <Divider />
         </>
     )
 })

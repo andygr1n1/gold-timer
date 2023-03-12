@@ -1,7 +1,6 @@
 import { useRootStore } from '@/StoreProvider'
 import { observer } from 'mobx-react-lite'
 import type { ValueType } from '@rc-component/mini-decimal'
-import { Divider } from 'antd'
 import { RdInputNumber } from '@/components-antd-redesign/rd-inputs/RdInputNumber'
 
 export const InputRitualInterval: React.FC = observer(() => {
@@ -21,20 +20,21 @@ export const InputRitualInterval: React.FC = observer(() => {
     }
 
     return (
-        <>
-            <h3 className='py-2'>Ritual interval: </h3>
-            <div className='flex items-center gap-5'>
-                <RdInputNumber
-                    disabled={!is_creator_mode}
-                    min={1}
-                    max={31}
-                    keyboard={true}
-                    value={ritual_interval}
-                    onChange={onRitualIntervalChange}
-                />
+        <div className='py-2'>
+            <h5>Ritual interval: </h5>
+            <div className='flex items-center gap-2'>
+                <div className='flex w-16 items-center gap-2'>
+                    <RdInputNumber
+                        disabled={!is_creator_mode}
+                        min={1}
+                        max={31}
+                        keyboard={true}
+                        value={ritual_interval}
+                        onChange={onRitualIntervalChange}
+                    />
+                </div>
                 {ritual_interval === 1 ? 'day' : 'days'}
             </div>
-            <Divider />
-        </>
+        </div>
     )
 })

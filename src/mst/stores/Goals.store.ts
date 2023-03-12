@@ -242,11 +242,13 @@ export const Goals$ = types
             if (!self.editable_goal) return
             self.is_creator_mode = true
         },
+        /**
+         *edit | ritual existing goal
+         */
         goCreateEditMode(goal: IGoal$): void {
             self.editable_goal = goal
             self.new_goal = cloneDeep({ ...self.editable_goal, id: '' })
             self.is_creator_mode = true
-            console.log('editable goal -> ', cloneDeep(self.editable_goal))
         },
         exitGoalEditMode(): void {
             if (self.editable_goal && self.editable_goal?.goal_ritualized_mode) {
@@ -422,7 +424,7 @@ export const Goals$ = types
                 self.editable_goal.onChangeField('status', updatedGoalResponse.status)
                 self.editable_goal.onChangeField('created_at', updatedGoalResponse.created_at)
                 self.editable_goal.onChangeField('finished_at', updatedGoalResponse.finished_at)
-                self.editable_goal.onChangeField('goal_ritual', castToSnapshot(updatedGoalResponse.goals_rituals))
+                self.editable_goal.onChangeField('goals_rituals', castToSnapshot(updatedGoalResponse.goals_rituals))
 
                 self.editable_goal.onChangeField('goal_ritualized_mode', false)
 
@@ -441,8 +443,8 @@ export const Goals$ = types
 
                 self.closeGoalCreator()
             } catch (e) {
-                alert(`generateGoal error, ${e}`)
-                console.error(`generateGoal error, ${e}`)
+                alert(`ritualizeGoal error, ${e}`)
+                console.error(`ritualizeGoal error, ${e}`)
             }
         }),
     }))

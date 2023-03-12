@@ -82,13 +82,12 @@ export const Goal$ = types
             goGoalViewMode(cast(self))
         },
         goGoalRitualizedMode(): void {
-            const { goGoalViewMode, goGoalEditMode } = getParentOfType(self, Goals$)
+            const { goCreateEditMode } = getParentOfType(self, Goals$)
 
             self.goal_ritualized_mode = true
 
             if (!self.goal_ritual) {
-                this.onChangeField(
-                    'goal_ritual',
+                self.goals_rituals.push(
                     castToSnapshot({
                         ritual_id: '',
                         ritual_goal: '',
@@ -98,9 +97,7 @@ export const Goal$ = types
                     }),
                 )
             }
-
-            goGoalViewMode(cast(self))
-            goGoalEditMode()
+            goCreateEditMode(cast(self))
         },
 
         completeGoal: flow(function* _completeGoal() {
