@@ -2,20 +2,27 @@ import { WidgetInfoIcon } from '@/components/icons/WidgetInfoIcon'
 import { useGoalsStore } from '@/StoreProvider'
 import { truncate } from 'lodash'
 import { observer } from 'mobx-react-lite'
-import { toggleModalState, TopActiveGoalsModal } from './top-active-goals-modal/TopActiveGoalsModal'
 
 import styles from '../TopGoalsWidget.module.scss'
+import { ACTIVE_GOAL_TYPE_ENUM } from '@/helpers/enums'
+import { toggleModalState } from '../goals-list-modal/GoalsListModal'
 
 export const TopActiveGoalsWidget: React.FC = observer(() => {
     const {
         onChangeField,
+        filter$: { onChangeField: onFilterStoreChangeField },
         topActiveGoals: { topFour },
     } = useGoalsStore()
+
+    const handleModalState = () => {
+        onFilterStoreChangeField('goals_collapse_type', ACTIVE_GOAL_TYPE_ENUM.ACTIVE)
+        toggleModalState()
+    }
 
     return (
         <div className={styles['wrapper']}>
             <WidgetInfoIcon
-                onClick={toggleModalState}
+                onClick={handleModalState}
                 icon='ic:baseline-rocket-launch'
                 iconColor='text-white'
                 bgColor='bg-teal-500 hover:bg-teal-400 cursor-pointer'
@@ -29,7 +36,7 @@ export const TopActiveGoalsWidget: React.FC = observer(() => {
                                 className={`${styles['goal']} bg-teal-500 hover:bg-teal-400`}
                                 onClick={() => {
                                     onChangeField('active_collapse_key', goal.id)
-                                    toggleModalState()
+                                    handleModalState()
                                 }}
                             >
                                 {truncate(goal.title, { length: 35 })}
@@ -42,7 +49,6 @@ export const TopActiveGoalsWidget: React.FC = observer(() => {
                     </div>
                 )}
             </div>
-            <TopActiveGoalsModal />
         </div>
     )
 })

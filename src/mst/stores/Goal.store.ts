@@ -52,22 +52,9 @@ export const Goal$ = types
         },
     }))
     .actions((self) => ({
-        closeGoalCompleteMode(): void {
-            const { closeGoalCompleteMode } = getParentOfType(self, Goals$)
-
-            closeGoalCompleteMode()
-        },
-    }))
-    .actions((self) => ({
         onChangeField<Key extends keyof typeof self>(key: Key, value: typeof self[Key]) {
             self[key] = value
         },
-        goCompleteGoalMode(): void {
-            const { goCompleteGoalMode } = getParentOfType(self, Goals$)
-
-            goCompleteGoalMode(cast(self))
-        },
-
         goGoalViewMode(): void {
             const { goGoalViewMode } = getParentOfType(self, Goals$)
 
@@ -108,10 +95,8 @@ export const Goal$ = types
 
                 const completeLog = generateLog(self.id, LOG_TYPE_ENUM.COMPLETED)
                 if (!completeLog) throw new Error('completeLog error')
-                self.closeGoalCompleteMode()
             } catch (e) {
                 alert(e)
-                self.closeGoalCompleteMode()
             }
         }),
 

@@ -3,6 +3,7 @@ import { isBefore } from 'date-fns'
 import { types, getParentOfType } from 'mobx-state-tree'
 import { IGoal$ } from '../types'
 import { Goals$ } from './Goals.store'
+import { ACTIVE_GOAL_TYPE_ENUM } from '@/helpers/enums'
 
 export const Filter$ = types
     .model('Filter$', {
@@ -19,16 +20,33 @@ export const Filter$ = types
             },
         }),
         global_filtered_title_value: '',
+
+        goals_collapse_type: types.optional(
+            types.enumeration(Object.values(ACTIVE_GOAL_TYPE_ENUM)),
+            ACTIVE_GOAL_TYPE_ENUM.ACTIVE,
+        ),
     })
     .views((self) => ({
-        get activeGoals(): IGoal$[] {
-            const { activeGoals } = getParentOfType(self, Goals$)
+        get goalsByCollapseType(): IGoal$[] {
+            const { activeGoalsWithoutRitualPower, ritualGoals, activeExpiredGoals } = getParentOfType(self, Goals$)
 
-            return activeGoals
+            switch (self.goals_collapse_type) {
+                case ACTIVE_GOAL_TYPE_ENUM.ACTIVE:
+                    return activeGoalsWithoutRitualPower
+                case ACTIVE_GOAL_TYPE_ENUM.RITUALIZED:
+                    return ritualGoals
+                case ACTIVE_GOAL_TYPE_ENUM.EXPIRIED:
+                    return activeExpiredGoals
+                case ACTIVE_GOAL_TYPE_ENUM.FAVORITE:
+                    return []
+                default:
+                    return activeGoalsWithoutRitualPower
+            }
         },
-        get activeFilteredGoals(): IGoal$[] {
-            let allActive = filter(this.activeGoals, (goal) => goal.ritualGoalPower === 0)
-            allActive = allActive.filter(
+        get filteredGoals(): IGoal$[] {
+            let filtered = this.goalsByCollapseType
+
+            filtered = filtered.filter(
                 (goal) =>
                     goal.title
                         .trim()
@@ -45,12 +63,30 @@ export const Filter$ = types
             )
 
             self.goals_estimation_filter &&
-                (allActive = filter(
-                    allActive,
+                (filtered = filter(
+                    filtered,
                     (goal) => !!goal.finished_at && isBefore(goal.finished_at, self.goals_estimation_filter!),
                 ))
 
-            return allActive
+            return filtered
+        },
+        get goalsCollapseData(): { title: string; data: IGoal$[] } {
+            let title = 'Active Goals'
+            switch (self.goals_collapse_type) {
+                case ACTIVE_GOAL_TYPE_ENUM.RITUALIZED:
+                    title = 'Ritual Goals'
+                    break
+                case ACTIVE_GOAL_TYPE_ENUM.EXPIRIED:
+                    title = 'Expired Goals'
+                    break
+                case ACTIVE_GOAL_TYPE_ENUM.FAVORITE:
+                    title = 'Favorite Goals'
+                    break
+                default:
+                    title = 'Active Goals'
+                    break
+            }
+            return { title, data: this.filteredGoals }
         },
     }))
     .actions((self) => ({

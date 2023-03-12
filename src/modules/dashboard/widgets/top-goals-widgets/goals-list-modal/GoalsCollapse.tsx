@@ -9,11 +9,11 @@ import { PanelSettings } from './components/PanelSettings'
 
 const { Panel } = Collapse
 
-export const GoalsCollapse = observer(() => {
+export const GoalsCollapse: React.FC = observer(() => {
     const {
-        filter$: { activeFilteredGoals },
         active_collapse_key,
         onChangeField,
+        filter$: { goalsCollapseData },
     } = useGoalsStore()
 
     const setActiveKey = (key: string | string[]) => onChangeField('active_collapse_key', key.toString())
@@ -31,7 +31,7 @@ export const GoalsCollapse = observer(() => {
             <GoalFormFilters />
             <Divider />
             <Collapse accordion activeKey={active_collapse_key} onChange={setActiveKey}>
-                {activeFilteredGoals.map((goal) => (
+                {goalsCollapseData.data.map((goal) => (
                     <Panel
                         showArrow={false}
                         header={<PanelHeader goal={goal} />}

@@ -10,11 +10,9 @@ export const GoalRightMenu: React.FC<{ goal: IGoal$ }> = observer(({ goal }) => 
         createNewChild,
         remainingTimeDaysCount,
         is_favorite,
-        goCompleteGoalMode,
         goalType,
         isFrozen,
         isCompleted,
-        goActivateFreezedGoal,
         isRitualGoal,
         isExpired,
         favoriteGoal,
@@ -86,24 +84,6 @@ export const GoalRightMenu: React.FC<{ goal: IGoal$ }> = observer(({ goal }) => 
                 />
             </div>
             <Divider className='my-2 bg-gray-400 ' />
-            {/* Complete Goal */}
-            {isFrozen ? (
-                <div title='Activate Goal' className='flex w-full items-center justify-center '>
-                    <Icon
-                        icon='material-symbols:verified'
-                        className='cursor-pointer !text-2xl  transition-colors duration-300 hover:text-blue-600'
-                        onClick={goActivateFreezedGoal}
-                    />
-                </div>
-            ) : (
-                <div title='Complete Goal' className='flex w-full items-center justify-center '>
-                    <Icon
-                        icon='ic:baseline-check-circle'
-                        className={`cursor-pointer !text-2xl  transition-colors duration-300 ${styleByGoalType}`}
-                        onClick={goCompleteGoalMode}
-                    />
-                </div>
-            )}
         </div>
     )
 })

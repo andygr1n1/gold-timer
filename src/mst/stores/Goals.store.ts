@@ -4,7 +4,7 @@ import { insertGoalMutation } from '@/graphql/mutations/insertGoal.mutation'
 import { insertGoalsRituals } from '@/graphql/mutations/upsertGoalsRituals.mutation'
 import { updateGoalStatusToCompleted } from '@/graphql/mutations/updateGoalStatus.mutation'
 import { upsertGoalMutation } from '@/graphql/mutations/upsertGoal.mutation'
-import { LOG_TYPE_ENUM, STATUS_ENUM, STATUS_ENUM_FILTERS } from '@/helpers/enums'
+import { ACTIVE_GOAL_TYPE_ENUM, LOG_TYPE_ENUM, STATUS_ENUM, STATUS_ENUM_FILTERS } from '@/helpers/enums'
 import { IInsertNewGoal, IInsertRitual } from '@/helpers/interfaces/new_goal.interface'
 import { setGoalDifficulty } from '@/helpers/set_goal_difficulty'
 import { CheckboxChangeEvent } from 'antd/lib/checkbox'
@@ -34,11 +34,8 @@ export const Goals$ = types
         filter$: types.optional(Filter$, { goals_estimation_filter: add(new Date(Date.now()), { days: 60 }) }),
         goals: types.array(Goal$),
         new_goal: types.optional(Goal$, {}),
-
         editable_goal: types.safeReference(Goal$),
         is_creator_mode: false,
-
-        complete_goal_modal: types.safeReference(Goal$),
 
         goals_checked_list_filter: types.array(types.enumeration(Object.values(STATUS_ENUM_FILTERS))),
 
@@ -91,31 +88,6 @@ export const Goals$ = types
             )
             return orderBy(goals, ['finished_at'], ['asc'])
         },
-        /*         get activeHotGoals(): IGoal$[] {
-            const tommorowDate = () =>
-                add(Date.now(), {
-                    days: 1,
-                })
-
-            const goals = filter(self.goals, (goal) => goal.status === STATUS_ENUM.ACTIVE).filter(
-                (goal) => goal.finished_at && isFuture(goal.finished_at) && goal.finished_at < tommorowDate(),
-            )
-            return orderBy(goals, ['finished_at'], ['asc'])
-        }, */
-        // get activeGoals(): IGoal$[] {
-        //     const goals: IGoal$[] = compact(
-        //         differenceWith(
-        //             filter(
-        //                 self.goals,
-        //                 (goal) =>
-        //                     goal.status === STATUS_ENUM.ACTIVE &&
-        //                     !!(goal.created_at && goal.created_at <= new Date(Date.now())),
-        //             ),
-        //             this.activeExpiredGoals,
-        //         ),
-        //     )
-        //     return orderBy(goals, ['finished_at'], ['asc'])
-        // },
         get activeGoals(): IGoal$[] {
             const goals: IGoal$[] = compact(
                 differenceWith(
@@ -130,6 +102,9 @@ export const Goals$ = types
                 ),
             )
             return orderBy(goals, ['finished_at'], ['asc'])
+        },
+        get activeGoalsWithoutRitualPower(): IGoal$[] {
+            return filter(this.activeGoals, (goal) => goal.ritualGoalPower === 0)
         },
         get topActiveGoals(): { topFour: IGoal$[]; all: IGoal$[] } {
             const today = new Date(Date.now())
@@ -157,13 +132,9 @@ export const Goals$ = types
         },
         get ritualGoals(): IGoal$[] {
             const goals = filter(
-                self.globalFilteredGoals,
+                this.activeGoals,
                 (goal) => goal.ritualGoalPower > 0 && goal.status === STATUS_ENUM.ACTIVE,
             )
-            return orderBy(goals, ['finished_at'], ['asc'])
-        },
-        get favoriteGoals(): IGoal$[] {
-            const goals = filter(self.globalFilteredGoals, (goal) => goal.is_favorite)
             return orderBy(goals, ['finished_at'], ['asc'])
         },
         get topRitualGoals(): IGoal$[] {
@@ -174,6 +145,11 @@ export const Goals$ = types
             )
             return orderBy(goals, ['finished_at'], ['asc']).slice(0, 4)
         },
+        get favoriteGoals(): IGoal$[] {
+            const goals = filter(self.globalFilteredGoals, (goal) => goal.is_favorite)
+            return orderBy(goals, ['finished_at'], ['asc'])
+        },
+
         get topExpiredGoals(): IGoal$[] {
             const goals = filter(self.goals, (goal) => goal.status === STATUS_ENUM.ACTIVE).filter(
                 (goal) => goal.finished_at && isPast(goal.finished_at),
@@ -181,9 +157,6 @@ export const Goals$ = types
             return orderBy(goals, ['finished_at'], ['asc']).slice(0, 4)
         },
 
-        get noGoalsForToday(): boolean {
-            return !this.topActiveGoals.topFour.length && !this.topRitualGoals.length && !this.topExpiredGoals.length
-        },
         get noActiveSprints(): boolean {
             return true
         },
@@ -260,14 +233,7 @@ export const Goals$ = types
         closeGoalCreator(): void {
             self.is_creator_mode = false
             self.editable_goal = undefined
-            self.complete_goal_modal = undefined
             destroy(detach(self.new_goal))
-        },
-        goCompleteGoalMode(goal: IGoal$): void {
-            self.complete_goal_modal = goal
-        },
-        closeGoalCompleteMode(): void {
-            self.complete_goal_modal = undefined
         },
 
         destroyGoal(goal_id: string): void {

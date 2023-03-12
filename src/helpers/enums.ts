@@ -1,3 +1,13 @@
+/**
+ * use this ENUM to control what type of goals must be rendered in goals collapse list
+ */
+export enum ACTIVE_GOAL_TYPE_ENUM {
+    ACTIVE = 'active',
+    EXPIRIED = 'expired',
+    RITUALIZED = 'ritualized',
+    FAVORITE = 'favorite',
+}
+
 export enum GOAL_TYPE_ENUM {
     ACTIVE = 'active',
     EXPIRIED = 'expired',
