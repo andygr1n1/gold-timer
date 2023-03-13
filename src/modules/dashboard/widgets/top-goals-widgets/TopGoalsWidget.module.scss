@@ -1,9 +1,9 @@
 .wrapper {
-    @apply relative m-5  flex max-w-[600px] flex-col flex-wrap rounded-lg bg-global-bg xl:w-[600px] xl:flex-row;
+    @apply relative m-5  flex max-w-[600px] flex-col flex-wrap rounded-lg bg-global-bg 3xl:w-[600px] 3xl:flex-row;
 }
 
 .goals-container {
-    @apply  flex min-h-[56px] max-w-[600px] flex-col items-center justify-center gap-4 p-5 xl:ml-9 xl:flex-row xl:gap-2;
+    @apply  flex min-h-[56px] min-w-[250px] max-w-[600px] flex-col items-center justify-center gap-4 p-5 3xl:ml-9 3xl:flex-row 3xl:gap-2;
 }
 
 .goal {

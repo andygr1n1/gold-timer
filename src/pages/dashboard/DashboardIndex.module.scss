@@ -1,0 +1,35 @@
+.grid-parent {
+    @apply flex w-full flex-col overflow-auto pt-5 3xl:h-[calc(100vh-125px)];
+
+    .grid-child {
+        @apply flex min-h-[100px] flex-col items-center gap-5 py-5;
+    }
+
+    .alpha {
+        @apply order-1;
+    }
+    .beta {
+        @apply order-3 flex-auto;
+    }
+    .gama {
+        @apply order-2;
+    }
+
+    @media screen and (min-width: 1920px) {
+        @apply flex flex-row;
+
+        .grid-child {
+            @apply min-h-[100px] min-w-[400px];
+        }
+
+        .alpha {
+            @apply order-1;
+        }
+        .beta {
+            @apply order-2;
+        }
+        .gama {
+            @apply order-3;
+        }
+    }
+}

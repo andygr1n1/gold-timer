@@ -5,13 +5,13 @@ import { Coins } from './components/Coins'
 import { ThemeSwitcher } from './components/ThemeSwitcher'
 import { Logout } from './components/Logout'
 import { NotificationBell } from './components/NotificationBell'
-import { TopbarSearch } from './components/TopbarSearch'
+// import { TopbarSearch } from './components/TopbarSearch'
 
 export const TopBar: React.FC = observer(() => {
     return (
         <div className='flex  h-[65px] min-h-[65px] w-full items-center justify-between  xl:flex-row '>
             <div className='relative mx-3 flex w-full items-center justify-between '>
-                <TopbarSearch />
+                {/*  <TopbarSearch /> */}
                 <div className='flex w-[100px] items-center justify-center gap-4 '>
                     <div className='flex h-6 w-6 flex-auto items-center justify-center xl:mx-6'>
                         {!useSideMenu.is_open ? (

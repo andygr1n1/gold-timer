@@ -24,7 +24,7 @@ export const TopRitualGoalsWidget: React.FC = observer(() => {
                 onClick={handleModalState}
                 icon='game-icons:magic-gate'
                 iconColor='text-white'
-                bgColor='bg-indigo-700 top-3 hover:bg-indigo-600 cursor-pointer'
+                bgColor='bg-indigo-700 hover:bg-indigo-600 cursor-pointer -left-5'
             />
             <div className={styles['goals-container']}>
                 {topRitualGoals.length ? (
