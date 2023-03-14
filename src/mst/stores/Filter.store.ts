@@ -28,7 +28,10 @@ export const Filter$ = types
     })
     .views((self) => ({
         get goalsByCollapseType(): IGoal$[] {
-            const { activeGoalsWithoutRitualPower, ritualGoals, activeExpiredGoals } = getParentOfType(self, Goals$)
+            const { activeGoalsWithoutRitualPower, ritualGoals, activeExpiredGoals, favoriteGoals } = getParentOfType(
+                self,
+                Goals$,
+            )
 
             switch (self.goals_collapse_type) {
                 case ACTIVE_GOAL_TYPE_ENUM.ACTIVE:
@@ -38,7 +41,7 @@ export const Filter$ = types
                 case ACTIVE_GOAL_TYPE_ENUM.EXPIRIED:
                     return activeExpiredGoals
                 case ACTIVE_GOAL_TYPE_ENUM.FAVORITE:
-                    return []
+                    return favoriteGoals
                 default:
                     return activeGoalsWithoutRitualPower
             }
@@ -70,7 +73,7 @@ export const Filter$ = types
 
             return filtered
         },
-        get goalsCollapseData(): { title: string; data: IGoal$[] } {
+        get goalsCollapseData(): { title: string; data: IGoal$[]; isFavorite: boolean } {
             let title = 'Active Goals'
             switch (self.goals_collapse_type) {
                 case ACTIVE_GOAL_TYPE_ENUM.RITUALIZED:
@@ -86,7 +89,9 @@ export const Filter$ = types
                     title = 'Active Goals'
                     break
             }
-            return { title, data: this.filteredGoals }
+
+            const isFavorite = self.goals_collapse_type === ACTIVE_GOAL_TYPE_ENUM.FAVORITE
+            return { title, data: this.filteredGoals, isFavorite }
         },
     }))
     .actions((self) => ({

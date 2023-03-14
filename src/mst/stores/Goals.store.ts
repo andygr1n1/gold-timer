@@ -146,7 +146,10 @@ export const Goals$ = types
             return orderBy(goals, ['finished_at'], ['asc']).slice(0, 4)
         },
         get favoriteGoals(): IGoal$[] {
-            const goals = filter(self.globalFilteredGoals, (goal) => goal.is_favorite)
+            const goals = filter(
+                self.globalFilteredGoals,
+                (goal) => goal.is_favorite && goal.status === STATUS_ENUM.ACTIVE,
+            )
             return orderBy(goals, ['finished_at'], ['asc'])
         },
 
@@ -155,6 +158,10 @@ export const Goals$ = types
                 (goal) => goal.finished_at && isPast(goal.finished_at),
             )
             return orderBy(goals, ['finished_at'], ['asc']).slice(0, 4)
+        },
+
+        get topFavoriteGoals(): IGoal$[] {
+            return this.favoriteGoals.slice(0, 4)
         },
 
         get noActiveSprints(): boolean {
