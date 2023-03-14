@@ -1,4 +1,3 @@
-import { RdModal } from '@/components-rd/rdmodal/RdModal'
 import { useGoalsStore } from '@/StoreProvider'
 import { action, observable } from 'mobx'
 import { observer } from 'mobx-react-lite'
@@ -7,6 +6,7 @@ import { EditableGoalMode } from './components/editable-goal-mode/EditableGoalMo
 import { GoalsCollapse } from './GoalsCollapse'
 import { cast } from 'mobx-state-tree'
 import { GoalsListModalTitle } from './components/GoalsListModalTitle'
+import { XModal } from '@/components-x/xmodal/XModal'
 
 interface IBaseState {
     is_open: boolean
@@ -19,16 +19,9 @@ export const toggleModalState = action(() => {
 
 export const GoalsListModal: React.FC = observer(() => {
     return (
-        <RdModal
-            title={<GoalsListModalTitle />}
-            open={modalState.is_open}
-            footer={null}
-            onOk={toggleModalState}
-            onCancel={toggleModalState}
-            destroyOnClose
-        >
+        <XModal height='h-[80vh]' title={<GoalsListModalTitle />} open={modalState.is_open} onCancel={toggleModalState}>
             <Body />
-        </RdModal>
+        </XModal>
     )
 })
 

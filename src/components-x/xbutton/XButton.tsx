@@ -4,7 +4,7 @@ export const XButton: React.FC<ButtonHTMLAttributes<HTMLButtonElement>> = (props
     return (
         <button
             {...props}
-            className={`relative cursor-pointer rounded-sm border border-transparent bg-button-bg p-3 text-sm
+            className={`relative cursor-pointer rounded-md border border-transparent bg-button-bg p-3 text-sm font-medium
             text-button-text shadow-lg shadow-black/30  outline-none duration-300 
             hover:bg-button-bg-focus hover:to-button-text-focus
             focus:border-button-border-focus focus:bg-button-bg-focus focus:text-button-text-focus
@@ -16,3 +16,5 @@ export const XButton: React.FC<ButtonHTMLAttributes<HTMLButtonElement>> = (props
         </button>
     )
 }
+
+// bg-blue-100 text-blue-900 hover:bg-blue-200

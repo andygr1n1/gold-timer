@@ -1,4 +1,4 @@
-import { RdModal } from '@/components-rd/rdmodal/RdModal'
+import { XModal } from '@/components-x/xmodal/XModal'
 import { CreateGoalForm } from '@/components/goal-create-form/CreateGoalForm'
 import { useRootStore } from '@/StoreProvider'
 import { observer } from 'mobx-react-lite'
@@ -9,14 +9,14 @@ export const CreateNewGoalModal: React.FC = observer(() => {
     } = useRootStore()
 
     return (
-        <RdModal
+        <XModal
             title={'Create Goal'}
             open={!!editable_goal?.id && !editable_goal?.created_at && !active_collapse_key}
-            footer={null}
-            onOk={closeGoalCreator}
+            // footer={null}
+            // onOk={closeGoalCreator}
             onCancel={closeGoalCreator}
         >
             <CreateGoalForm />
-        </RdModal>
+        </XModal>
     )
 })

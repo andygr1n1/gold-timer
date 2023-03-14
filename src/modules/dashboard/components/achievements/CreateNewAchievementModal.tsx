@@ -1,4 +1,3 @@
-import { RdModal } from '@/components-rd/rdmodal/RdModal'
 import { RdInput } from '@/components-rd/rdinput/RdInput'
 import { useRootStore } from '@/StoreProvider'
 import { Icon } from '@iconify/react'
@@ -8,6 +7,7 @@ import { observer } from 'mobx-react-lite'
 import { useState } from 'react'
 import TextArea from 'antd/lib/input/TextArea'
 import { XButton } from '@/components-x/xbutton/XButton'
+import { XModal } from '@/components-x/xmodal/XModal'
 
 export const CreateNewAchievement: React.FC = observer(() => {
     const [openedModal, setOpenModal] = useState(false)
@@ -38,13 +38,10 @@ export const CreateNewAchievement: React.FC = observer(() => {
             >
                 <Icon icon='ic:round-plus' width={50} onClick={onOpen} />
             </div>
-            <RdModal
+            <XModal
                 title={<h3 className='font-mono font-semibold text-gray-700'>Create Achievement</h3>}
                 open={openedModal}
-                footer={null}
-                onOk={onCreate}
                 onCancel={onClose}
-                width={'70vw'}
             >
                 <div className='flex flex-auto flex-col'>
                     <div className='relative flex h-full w-full flex-col overflow-auto'>
@@ -112,7 +109,7 @@ export const CreateNewAchievement: React.FC = observer(() => {
                         Create Achievement
                     </XButton>
                 </div>
-            </RdModal>
+            </XM>
         </>
     )
 })
