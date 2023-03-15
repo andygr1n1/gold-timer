@@ -1,6 +1,6 @@
 import { useGoalsStore } from '@/StoreProvider'
 import { observer } from 'mobx-react-lite'
-import styles from './TopGoalsWidget.module.scss'
+import styles from './TopGoalsWidgets.module.scss'
 
 export const NoSprintsInfo: React.FC = observer(() => {
     const { noActiveSprints } = useGoalsStore()

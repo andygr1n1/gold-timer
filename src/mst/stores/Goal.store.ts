@@ -12,6 +12,8 @@ export const Goal$ = types
     .compose(
         Goal,
         types.model({
+            /* just for goal create mode */
+            /*  */
             estimation_days: 0,
             //
             // to understand how to update goal, when a child is creating
@@ -39,6 +41,9 @@ export const Goal$ = types
             if (!self.finished_at) return false
             return !!(self.finished_at < new Date(Date.now()))
         },
+        get isFavorite(): boolean {
+            return self.is_favorite
+        },
         get ritualGoalPower(): number {
             return self.goal_ritual?.ritual_power ?? 0
         },
@@ -49,6 +54,11 @@ export const Goal$ = types
             if (this.isRitualGoal) return GOAL_TYPE_ENUM.RITUALIZED
 
             return GOAL_TYPE_ENUM.ACTIVE
+        },
+
+        get daysEstimationCount(): number {
+            if (this.isExpired) return self.expiredDaysCount
+            return self.remainingDays
         },
     }))
     .actions((self) => ({

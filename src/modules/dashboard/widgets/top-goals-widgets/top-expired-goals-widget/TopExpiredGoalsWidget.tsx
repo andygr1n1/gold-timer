@@ -1,14 +1,13 @@
 import { WidgetInfoIcon } from '@/components/icons/WidgetInfoIcon'
 import { ACTIVE_GOAL_TYPE_ENUM } from '@/helpers/enums'
 import { useGoalsStore } from '@/StoreProvider'
-import { truncate } from 'lodash'
 import { observer } from 'mobx-react-lite'
 import { toggleModalState } from '../../../../../components-modals/goals-list-modal/GoalsListModal'
-import styles from '../TopGoalsWidget.module.scss'
+import { TopGoal } from '../TopGoal'
+import styles from '../TopGoalsWidgets.module.scss'
 
 export const TopExpiredGoalsWidget: React.FC = observer(() => {
     const {
-        onChangeField,
         topExpiredGoals,
         filter$: { onChangeField: onFilterStoreChangeField },
     } = useGoalsStore()
@@ -30,16 +29,7 @@ export const TopExpiredGoalsWidget: React.FC = observer(() => {
                 {topExpiredGoals.length ? (
                     <>
                         {topExpiredGoals.map((goal) => (
-                            <div
-                                key={goal.id}
-                                className={`${styles['goal']} bg-rose-700 hover:bg-rose-600`}
-                                onClick={() => {
-                                    onChangeField('active_collapse_key', goal.id)
-                                    handleModalState()
-                                }}
-                            >
-                                {truncate(goal.title, { length: 26 })}
-                            </div>
+                            <TopGoal key={goal.id} goal={goal} type={ACTIVE_GOAL_TYPE_ENUM.EXPIRIED} />
                         ))}
                     </>
                 ) : (

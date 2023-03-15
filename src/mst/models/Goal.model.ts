@@ -72,6 +72,10 @@ export const Goal = types
             const diff = new Date(finishedAt - createdAt)
             return diff
         },
+        get remainingDays(): number {
+            if (!this.remainingTime) return 0
+            return this.remainingTime?.getUTCDate() - 1
+        },
         get remainingTimeString(): string {
             if (!this.remainingTime) return ''
             const years_count = this.remainingTime?.getUTCFullYear() - 1970
@@ -80,7 +84,7 @@ export const Goal = types
             const months_count = this.remainingTime?.getUTCMonth()
             let months = `${months_count} months`
             //
-            const days_count = this.remainingTime?.getUTCDate() - 1
+            const days_count = this.remainingDays
             let days = `${days_count} days`
             //
             const hours_count = this.remainingTime?.getUTCHours()
@@ -97,10 +101,11 @@ export const Goal = types
 
             return `${years} ${months} ${days}`
         },
-        get remainingTimeDaysCount(): number {
+        get expiredDaysCount(): number {
             if (!this.remainingTime) return -1
 
-            return Math.floor(this.remainingTime.getTime() / (1000 * 3600 * 24))
+            const remainingTimeDaysCount = Math.floor(this.remainingTime.getTime() / (1000 * 3600 * 24))
+            return Math.abs(remainingTimeDaysCount)
         },
 
         get createdDaysAgo(): number {

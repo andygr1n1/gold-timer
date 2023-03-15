@@ -4,7 +4,7 @@ import { insertGoalMutation } from '@/graphql/mutations/insertGoal.mutation'
 import { insertGoalsRituals } from '@/graphql/mutations/upsertGoalsRituals.mutation'
 import { updateGoalStatusToCompleted } from '@/graphql/mutations/updateGoalStatus.mutation'
 import { upsertGoalMutation } from '@/graphql/mutations/upsertGoal.mutation'
-import { ACTIVE_GOAL_TYPE_ENUM, LOG_TYPE_ENUM, STATUS_ENUM, STATUS_ENUM_FILTERS } from '@/helpers/enums'
+import { LOG_TYPE_ENUM, STATUS_ENUM, STATUS_ENUM_FILTERS } from '@/helpers/enums'
 import { IInsertNewGoal, IInsertRitual } from '@/helpers/interfaces/new_goal.interface'
 import { setGoalDifficulty } from '@/helpers/set_goal_difficulty'
 import { CheckboxChangeEvent } from 'antd/lib/checkbox'
@@ -111,7 +111,7 @@ export const Goals$ = types
             const goals = filter(
                 this.activeGoals,
                 (goal) =>
-                    goal.ritualGoalPower === 0 && !!goal.finished_at && goal.finished_at < add(today, { days: 1 }),
+                    goal.ritualGoalPower === 0 && !!goal.finished_at && goal.finished_at < add(today, { days: 3 }),
             )
 
             const all = filter(this.activeGoals, (goal) => goal.ritualGoalPower === 0)
@@ -141,7 +141,7 @@ export const Goals$ = types
             const today = new Date(Date.now())
             const goals = filter(
                 this.activeGoals,
-                (goal) => goal.ritualGoalPower > 0 && !!goal.finished_at && goal.finished_at < add(today, { days: 1 }),
+                (goal) => goal.ritualGoalPower > 0 && !!goal.finished_at && goal.finished_at < add(today, { days: 3 }),
             )
             return orderBy(goals, ['finished_at'], ['asc']).slice(0, 4)
         },
