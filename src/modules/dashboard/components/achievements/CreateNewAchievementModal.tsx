@@ -109,7 +109,7 @@ export const CreateNewAchievement: React.FC = observer(() => {
                         Create Achievement
                     </XButton>
                 </div>
-            </XM>
+            </XModal>
         </>
     )
 })
