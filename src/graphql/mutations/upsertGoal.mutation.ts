@@ -12,20 +12,20 @@ export interface IUpsertGoal {
     finished_at: Date
     status: STATUS_ENUM
     privacy: PRIVACY_ENUM
-    goal_ritual: {
+    goals_rituals: {
         goal_id: string
         ritual_id: string
         ritual_power: number
         ritual_interval: number
         ritual_type: RITUAL_TYPE_ENUM
-    }
+    }[]
 }
 
-export const upsertGoal = async (newGoal: IUpsertNewGoal): Promise<IUpsertGoal | undefined> => {
+export const upsertGoalMutation = async (newGoal: IUpsertNewGoal): Promise<IUpsertGoal | undefined> => {
     const client = generateClient()
 
     const mutation = gql`
-        mutation upsertGoal($newGoal: goals_insert_input!) {
+        mutation upsertGoalMutation($newGoal: goals_insert_input!) {
             insert_goals_one(
                 object: $newGoal
                 on_conflict: {
@@ -41,7 +41,7 @@ export const upsertGoal = async (newGoal: IUpsertNewGoal): Promise<IUpsertGoal |
                 privacy
                 created_at
                 finished_at
-                goal_ritual {
+                goals_rituals {
                     goal_id
                     ritual_id
                     ritual_power
@@ -57,8 +57,8 @@ export const upsertGoal = async (newGoal: IUpsertNewGoal): Promise<IUpsertGoal |
 
         return response.insert_goals_one
     } catch (e) {
-        console.error('InsertGoal error', e)
-        alert(`InsertGoal error::: ${e}`)
+        console.error('upsertGoalMutation error', e)
+        alert(`upsertGoalMutation error::: ${e}`)
         return
     }
 }

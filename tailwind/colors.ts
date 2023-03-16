@@ -5,6 +5,7 @@ module.exports = {
     darkblue: 'var(--darkblue)',
     'global-bg': 'var(--colors-global-bg)',
     'global-2-bg': 'var(--colors-global-2-bg)',
+    'global-3-bg': 'var(--colors-global-3-bg)',
     // navlink
     navlink: 'var(--colors-navlink)',
     'navlink-active': 'var(--colors-navlink-active)',

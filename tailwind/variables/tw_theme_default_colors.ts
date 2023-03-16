@@ -9,12 +9,13 @@ module.exports = {
     //
     'global-bg': '#f8fafc',
     'global-2-bg': 'var(--colors-white)',
+    'global-3-bg': 'var(--colors-indigos)',
     'global-text': 'var(--colors-magic)',
     // navlink
     navlink: 'var(--colors-indigos)',
     'navlink-active': 'var(--colors-indigos-dark)',
     //badge
-    'badge-bg': 'var(--colors-indigos)',
+    'badge-bg': 'var(--colors-indigos-dark)',
     // button
     'button-bg': 'var(--colors-indigos)',
     'button-border': 'var(--colors-indigos)',

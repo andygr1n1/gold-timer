@@ -1,8 +1,11 @@
 import { IGoal$ } from '@/mst/types'
 import { observer } from 'mobx-react-lite'
 
+/**
+ * @deprecated old code
+ */
 export const GoalDeadline: React.FC<{ goal: IGoal$ }> = observer(({ goal }) => {
-    const { remainingTimeString, isExpired, isFrozen, remainingTimeDaysCount, isRitualGoal, isCompleted } = goal
+    const { remainingTimeString, isExpired, isFrozen, expiredDaysCount, isRitualGoal, isCompleted } = goal
 
     let styleByGoalType = 'text-green-600'
 
@@ -12,10 +15,10 @@ export const GoalDeadline: React.FC<{ goal: IGoal$ }> = observer(({ goal }) => {
         return (
             <div className='flex items-center gap-2 py-4 font-bold  text-amber-600'>
                 <span className='capitalize'>Completed</span>
-                {remainingTimeDaysCount ? (
+                {expiredDaysCount ? (
                     <>
-                        <span className='text-xl font-bold'>{Math.abs(remainingTimeDaysCount)}</span>
-                        <span>{Math.abs(remainingTimeDaysCount) === 1 ? 'day' : 'days'} ago</span>
+                        <span className='text-xl font-bold'>{expiredDaysCount}</span>
+                        <span>{expiredDaysCount === 1 ? 'day' : 'days'} ago</span>
                     </>
                 ) : (
                     <span>today</span>
@@ -28,7 +31,7 @@ export const GoalDeadline: React.FC<{ goal: IGoal$ }> = observer(({ goal }) => {
             {isFrozen ? null : isExpired ? (
                 <div className='flex items-center gap-2 font-bold  text-red-700'>
                     <span className='capitalize'>{remainingTimeString}</span>
-                    <span className='text-xl font-bold'>{Math.abs(remainingTimeDaysCount)}</span>
+                    <span className='text-xl font-bold'>{expiredDaysCount}</span>
                     <span>days ago</span>
                 </div>
             ) : (

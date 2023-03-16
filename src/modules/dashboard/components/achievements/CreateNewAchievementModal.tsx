@@ -1,13 +1,13 @@
-import { RdButton } from '@/components/rd/antrd-button/RdButton'
-import { RdModal } from '@/components/rd/antrd-modal/AntrdModal'
-import { RdInput } from '@/components/rd/rd-inputs/RdInput'
-import { RdTextArea } from '@/components/rd/rd-textarea/RdTextarea'
+import { RdInput } from '@/components-rd/rdinput/RdInput'
 import { useRootStore } from '@/StoreProvider'
 import { Icon } from '@iconify/react'
 import { Divider, Upload } from 'antd'
 import axios from 'axios'
 import { observer } from 'mobx-react-lite'
 import { useState } from 'react'
+import TextArea from 'antd/lib/input/TextArea'
+import { XButton } from '@/components-x/xbutton/XButton'
+import { XModal } from '@/components-x/xmodal/XModal'
 
 export const CreateNewAchievement: React.FC = observer(() => {
     const [openedModal, setOpenModal] = useState(false)
@@ -38,13 +38,10 @@ export const CreateNewAchievement: React.FC = observer(() => {
             >
                 <Icon icon='ic:round-plus' width={50} onClick={onOpen} />
             </div>
-            <RdModal
+            <XModal
                 title={<h3 className='font-mono font-semibold text-gray-700'>Create Achievement</h3>}
                 open={openedModal}
-                footer={null}
-                onOk={onCreate}
                 onCancel={onClose}
-                width={'70vw'}
             >
                 <div className='flex flex-auto flex-col'>
                     <div className='relative flex h-full w-full flex-col overflow-auto'>
@@ -60,7 +57,7 @@ export const CreateNewAchievement: React.FC = observer(() => {
                         <Divider />
                         <div>
                             <h3 className='py-2'>Description: </h3>
-                            <RdTextArea
+                            <TextArea
                                 value={description}
                                 autoFocus={true}
                                 onChange={(e) => onChangeField('description', e.target.value)}
@@ -103,25 +100,16 @@ export const CreateNewAchievement: React.FC = observer(() => {
                                 })
                             }}
                         >
-                            <RdButton>Upload</RdButton>
+                            <XButton>Upload</XButton>
                         </Upload>
-                        {/* <RdButton className='' onClick={onCreate}>
-                            Create Achievement
-                        </RdButton> */}
                     </div>
                 </div>
                 <div className='flex h-[40px] w-full items-center justify-center gap-5'>
-                    <RdButton
-                        disabled={onCreateAchievementDisabled}
-                        className='w-[200px]'
-                        type='primary'
-                        size='large'
-                        onClick={() => onCreate()}
-                    >
+                    <XButton disabled={onCreateAchievementDisabled} className='w-[200px]' onClick={() => onCreate()}>
                         Create Achievement
-                    </RdButton>
+                    </XButton>
                 </div>
-            </RdModal>
+            </XModal>
         </>
     )
 })

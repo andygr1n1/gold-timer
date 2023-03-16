@@ -9,10 +9,11 @@ module.exports = {
     //
     'global-bg': 'var(--colors-darknight)',
     'global-2-bg': 'var(--colors-twilight)',
+    'global-3-bg': 'var(--colors-evening)',
     'global-text': 'var(--colors-white)',
     // navlink
     navlink: 'var(--colors-gray-300)',
-    'navlink-active': 'var(--colors-white)',
+    'navlink-active': 'var(--colors-blue-100)',
     // badge
     'badge-bg': 'var(--colors-blue-600)',
     // button
@@ -26,5 +27,5 @@ module.exports = {
     //
     'button-bg-active': 'var(--colors-blue-600)',
     'button-border-active': 'var(--colors-blue-600)',
-    'button-text-active': 'var(--colors-white)',
+    'button-text-active': 'var(--colors-blue-200)',
 }

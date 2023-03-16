@@ -7,20 +7,20 @@ export const GoalWrapper: React.FC<{ children: ReactNode; goal: IGoal$ }> = ({ c
 
     let styleByGoalType = 'border-l-green-400 bg-white'
 
-    if (isRitualGoal) styleByGoalType = 'border-l-indigo-400 bg-indigo-300 shadow-indigo-200'
+    if (isRitualGoal) styleByGoalType = 'border-l-indigo-400 bg-indigo-300 '
 
-    if (isExpired) styleByGoalType = 'border-l-red-400 bg-red-300 shadow-red-200'
+    if (isExpired) styleByGoalType = 'border-l-red-400 bg-red-300 '
 
-    if (isFrozen) styleByGoalType = 'border-l-blue-400 bg-blue-300 shadow-blue-200'
+    if (isFrozen) styleByGoalType = 'border-l-blue-400 bg-blue-300 '
 
-    if (isCompleted) styleByGoalType = 'border-l-amber-400 bg-amber-300 shadow-amber-200'
+    if (isCompleted) styleByGoalType = 'border-l-amber-400 bg-amber-300'
 
     return (
         <MotionConfig transition={{ duration: 0.3 }}>
             <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                className={`border-l-solid relative flex min-w-[350px] flex-col gap-5 
+                className={`border-l-solid relative flex min-w-[150px] flex-col gap-5 
                             rounded-md border-l-[4px]  pb-4 shadow-xl
                             ${styleByGoalType}
                             `}

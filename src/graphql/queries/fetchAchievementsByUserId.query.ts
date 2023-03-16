@@ -7,7 +7,7 @@ export const fetchAchievementsByUserId = async (owner_id: string): Promise<IAchi
 
     const query = gql`
         query MyAchievements($owner_id: uuid) {
-            achievements(where: { owner_id: { _eq: $owner_id } }) {
+            achievements(where: { owner_id: { _eq: $owner_id } }, order_by: { created_at: desc }) {
                 id
                 img_path
                 title

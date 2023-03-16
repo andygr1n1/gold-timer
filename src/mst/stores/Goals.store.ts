@@ -1,15 +1,15 @@
 import { generateNewRitualCircle } from './../../helpers/generate_new_ritual_circle'
 import { generateLog } from '@/graphql/mutations/generateLog.mutation'
-import { insertGoal } from '@/graphql/mutations/insertGoal.mutation'
+import { insertGoalMutation } from '@/graphql/mutations/insertGoal.mutation'
 import { insertGoalsRituals } from '@/graphql/mutations/upsertGoalsRituals.mutation'
 import { updateGoalStatusToCompleted } from '@/graphql/mutations/updateGoalStatus.mutation'
-import { upsertGoal } from '@/graphql/mutations/upsertGoal.mutation'
+import { upsertGoalMutation } from '@/graphql/mutations/upsertGoal.mutation'
 import { LOG_TYPE_ENUM, STATUS_ENUM, STATUS_ENUM_FILTERS } from '@/helpers/enums'
 import { IInsertNewGoal, IInsertRitual } from '@/helpers/interfaces/new_goal.interface'
 import { setGoalDifficulty } from '@/helpers/set_goal_difficulty'
 import { CheckboxChangeEvent } from 'antd/lib/checkbox'
 import { CheckboxValueType } from 'antd/lib/checkbox/Group'
-import { add, isPast } from 'date-fns'
+import { add, isPast, sub } from 'date-fns'
 import { filter, orderBy, differenceWith, cloneDeep, compact } from 'lodash'
 import {
     destroy,
@@ -17,7 +17,6 @@ import {
     getParentOfType,
     toGenerator,
     types,
-    cast,
     applySnapshot,
     flow,
     castToSnapshot,
@@ -28,21 +27,22 @@ import { Root$ } from './Root.store'
 import { v4 } from 'uuid'
 import { getCoinsFromRitual } from '@/helpers/get_coins_from_ritual'
 import { addCoinsMutation } from '@/graphql/mutations/addCoins.mutation'
+import { Filter$ } from './Filter.store'
 
 export const Goals$ = types
     .model('Goals$', {
+        filter$: types.optional(Filter$, { goals_estimation_filter: add(new Date(Date.now()), { days: 60 }) }),
         goals: types.array(Goal$),
         new_goal: types.optional(Goal$, {}),
-
         editable_goal: types.safeReference(Goal$),
         is_creator_mode: false,
 
-        complete_goal_modal: types.safeReference(Goal$),
-
         goals_checked_list_filter: types.array(types.enumeration(Object.values(STATUS_ENUM_FILTERS))),
-        global_filtered_title_value: '',
+
         //
         achievements_edit_mode: false,
+        //
+        active_collapse_key: types.maybe(types.string),
     })
     .views((self) => ({
         get globalFilteredGoals(): IGoal$[] {
@@ -51,11 +51,15 @@ export const Goals$ = types
                     goal.title
                         .trim()
                         .toLocaleLowerCase()
-                        .includes(self.global_filtered_title_value.trim().toLocaleLowerCase()) ||
+                        .includes(self.filter$.global_filtered_title_value.trim().toLocaleLowerCase()) ||
                     goal.slogan
                         .trim()
                         .toLocaleLowerCase()
-                        .includes(self.global_filtered_title_value.trim().toLocaleLowerCase()),
+                        .includes(self.filter$.global_filtered_title_value.trim().toLocaleLowerCase()) ||
+                    goal.description
+                        .trim()
+                        .toLocaleLowerCase()
+                        .includes(self.filter$.global_filtered_title_value.trim().toLocaleLowerCase()),
             )
         },
         get activeGoalsFilter(): boolean {
@@ -84,30 +88,38 @@ export const Goals$ = types
             )
             return orderBy(goals, ['finished_at'], ['asc'])
         },
-        /*         get activeHotGoals(): IGoal$[] {
-            const tommorowDate = () =>
-                add(Date.now(), {
-                    days: 1,
-                })
-
-            const goals = filter(self.goals, (goal) => goal.status === STATUS_ENUM.ACTIVE).filter(
-                (goal) => goal.finished_at && isFuture(goal.finished_at) && goal.finished_at < tommorowDate(),
-            )
-            return orderBy(goals, ['finished_at'], ['asc'])
-        }, */
         get activeGoals(): IGoal$[] {
             const goals: IGoal$[] = compact(
                 differenceWith(
-                    filter(
-                        self.globalFilteredGoals,
-                        (goal) =>
-                            goal.status === STATUS_ENUM.ACTIVE &&
-                            !!(goal.created_at && goal.created_at <= new Date(Date.now())),
-                    ),
-                    [...this.activeExpiredGoals /* ...this.activeHotGoals */],
+                    filter(self.globalFilteredGoals, (goal) => {
+                        return (
+                            !!goal.created_at &&
+                            isPast(sub(goal.created_at, { seconds: 3 })) &&
+                            goal.status === STATUS_ENUM.ACTIVE
+                        )
+                    }),
+                    this.activeExpiredGoals,
                 ),
             )
             return orderBy(goals, ['finished_at'], ['asc'])
+        },
+        get activeGoalsWithoutRitualPower(): IGoal$[] {
+            return filter(this.activeGoals, (goal) => goal.ritualGoalPower === 0)
+        },
+        get topActiveGoals(): { topFour: IGoal$[]; all: IGoal$[] } {
+            const today = new Date(Date.now())
+            const goals = filter(
+                this.activeGoals,
+                (goal) =>
+                    goal.ritualGoalPower === 0 && !!goal.finished_at && goal.finished_at < add(today, { days: 3 }),
+            )
+
+            const all = filter(this.activeGoals, (goal) => goal.ritualGoalPower === 0)
+
+            return {
+                topFour: goals.slice(0, 4),
+                all,
+            }
         },
 
         get frozenGoals(): IGoal$[] {
@@ -120,14 +132,40 @@ export const Goals$ = types
         },
         get ritualGoals(): IGoal$[] {
             const goals = filter(
-                self.globalFilteredGoals,
+                this.activeGoals,
                 (goal) => goal.ritualGoalPower > 0 && goal.status === STATUS_ENUM.ACTIVE,
             )
             return orderBy(goals, ['finished_at'], ['asc'])
         },
+        get topRitualGoals(): IGoal$[] {
+            const today = new Date(Date.now())
+            const goals = filter(
+                this.activeGoals,
+                (goal) => goal.ritualGoalPower > 0 && !!goal.finished_at && goal.finished_at < add(today, { days: 3 }),
+            )
+            return orderBy(goals, ['finished_at'], ['asc']).slice(0, 4)
+        },
         get favoriteGoals(): IGoal$[] {
-            const goals = filter(self.globalFilteredGoals, (goal) => goal.is_favorite)
+            const goals = filter(
+                self.globalFilteredGoals,
+                (goal) => goal.is_favorite && goal.status === STATUS_ENUM.ACTIVE,
+            )
             return orderBy(goals, ['finished_at'], ['asc'])
+        },
+
+        get topExpiredGoals(): IGoal$[] {
+            const goals = filter(self.goals, (goal) => goal.status === STATUS_ENUM.ACTIVE).filter(
+                (goal) => goal.finished_at && isPast(goal.finished_at),
+            )
+            return orderBy(goals, ['finished_at'], ['asc']).slice(0, 4)
+        },
+
+        get topFavoriteGoals(): IGoal$[] {
+            return this.favoriteGoals.slice(0, 4)
+        },
+
+        get noActiveSprints(): boolean {
+            return true
         },
     }))
     .views((self) => ({
@@ -135,7 +173,8 @@ export const Goals$ = types
             return self.completedGoals.length
         },
         get isNotValidToSaveGoalData(): boolean {
-            return !!!self.editable_goal?.title.length
+            if (!self.editable_goal || !self.editable_goal.finished_at) return false
+            return !!!self.editable_goal?.title.length || self.editable_goal.finished_at < new Date(Date.now())
         },
     }))
     .actions((self) => ({
@@ -183,6 +222,14 @@ export const Goals$ = types
             if (!self.editable_goal) return
             self.is_creator_mode = true
         },
+        /**
+         *edit | ritual existing goal
+         */
+        goCreateEditMode(goal: IGoal$): void {
+            self.editable_goal = goal
+            self.new_goal = cloneDeep({ ...self.editable_goal, id: '' })
+            self.is_creator_mode = true
+        },
         exitGoalEditMode(): void {
             if (self.editable_goal && self.editable_goal?.goal_ritualized_mode) {
                 self.editable_goal.onChangeField('goal_ritualized_mode', false)
@@ -193,14 +240,7 @@ export const Goals$ = types
         closeGoalCreator(): void {
             self.is_creator_mode = false
             self.editable_goal = undefined
-            self.complete_goal_modal = undefined
             destroy(detach(self.new_goal))
-        },
-        goCompleteGoalMode(goal: IGoal$): void {
-            self.complete_goal_modal = goal
-        },
-        closeGoalCompleteMode(): void {
-            self.complete_goal_modal = undefined
         },
 
         destroyGoal(goal_id: string): void {
@@ -230,7 +270,7 @@ export const Goals$ = types
                         difficulty: self.new_goal.difficulty,
                         finished_at: self.new_goal.finished_at,
                     }
-                    const updatedGoalResponse = yield* toGenerator(upsertGoal(goalData))
+                    const updatedGoalResponse = yield* toGenerator(upsertGoalMutation(goalData))
                     if (!updatedGoalResponse) throw new Error('failed to update goal data')
                     self.editable_goal.onChangeField('title', updatedGoalResponse.title)
                     self.editable_goal.onChangeField('slogan', updatedGoalResponse.slogan)
@@ -260,7 +300,7 @@ export const Goals$ = types
                         parent_goal_id: self.new_goal.parent_goal_id ?? null,
                     }
 
-                    const newGoalResult = yield* toGenerator(insertGoal(newGoal))
+                    const newGoalResult = yield* toGenerator(insertGoalMutation(newGoal))
                     if (!newGoalResult || !newGoalResult.id) throw new Error('newGoalResult error')
 
                     console.warn('parent_goal_id', self.new_goal.parent_goal_id)
@@ -298,7 +338,7 @@ export const Goals$ = types
                         }
                     }
 
-                    self.onChangeField('goals', cast([cast(newGoalResult), ...self.goals]))
+                    self.goals.push(newGoalResult)
                 }
                 self.closeGoalCreator()
             } catch (e) {
@@ -346,7 +386,7 @@ export const Goals$ = types
                     created_at: ritual_goal_created_at,
                     finished_at: ritual_goal_finished_at,
                 }
-                const updatedGoalResponse = yield* toGenerator(upsertGoal(goalData))
+                const updatedGoalResponse = yield* toGenerator(upsertGoalMutation(goalData))
 
                 if (!updatedGoalResponse) throw new Error('failed to update goal data')
 
@@ -357,7 +397,7 @@ export const Goals$ = types
                 self.editable_goal.onChangeField('status', updatedGoalResponse.status)
                 self.editable_goal.onChangeField('created_at', updatedGoalResponse.created_at)
                 self.editable_goal.onChangeField('finished_at', updatedGoalResponse.finished_at)
-                self.editable_goal.onChangeField('goal_ritual', castToSnapshot(updatedGoalResponse.goal_ritual))
+                self.editable_goal.onChangeField('goals_rituals', castToSnapshot(updatedGoalResponse.goals_rituals))
 
                 self.editable_goal.onChangeField('goal_ritualized_mode', false)
 
@@ -376,8 +416,8 @@ export const Goals$ = types
 
                 self.closeGoalCreator()
             } catch (e) {
-                alert(`generateGoal error, ${e}`)
-                console.error(`generateGoal error, ${e}`)
+                alert(`ritualizeGoal error, ${e}`)
+                console.error(`ritualizeGoal error, ${e}`)
             }
         }),
     }))

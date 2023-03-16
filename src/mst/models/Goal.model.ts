@@ -1,8 +1,9 @@
+import { IGoalRitual } from './../types'
 import { PRIVACY_ENUM } from '@/helpers/enums'
 import { DIFFICULTY_ENUM, STATUS_ENUM } from './../../helpers/enums'
 import { types } from 'mobx-state-tree'
 import { v4 } from 'uuid'
-import { toDate } from 'date-fns'
+import { add, toDate } from 'date-fns'
 import { GoalRitual } from './GoalRitual.model'
 
 export const Goal = types
@@ -47,7 +48,7 @@ export const Goal = types
         finished_at: types.snapshotProcessor(types.maybe(types.Date), {
             preProcessor: (sn: Date | undefined | string) => {
                 if (!sn) {
-                    return undefined
+                    return add(new Date(Date.now()), { days: 30 })
                 }
                 if (typeof sn === 'string') {
                     return new Date(sn)
@@ -55,15 +56,25 @@ export const Goal = types
                 return sn
             },
         }),
-        goal_ritual: types.maybeNull(GoalRitual),
+        goals_rituals: types.array(GoalRitual),
     })
     .views((self) => ({
+        get isValidForMutation(): boolean {
+            return !!self.title.length
+        },
+        get goal_ritual(): IGoalRitual | null {
+            return self.goals_rituals[0] || null
+        },
         get remainingTime(): Date | undefined {
             if (!self.finished_at) return
             const createdAt = Date.now()
             const finishedAt = toDate(self.finished_at).getTime()
             const diff = new Date(finishedAt - createdAt)
             return diff
+        },
+        get remainingDays(): number {
+            if (!this.remainingTime) return 0
+            return this.remainingTime?.getUTCDate() - 1
         },
         get remainingTimeString(): string {
             if (!this.remainingTime) return ''
@@ -73,7 +84,7 @@ export const Goal = types
             const months_count = this.remainingTime?.getUTCMonth()
             let months = `${months_count} months`
             //
-            const days_count = this.remainingTime?.getUTCDate() - 1
+            const days_count = this.remainingDays
             let days = `${days_count} days`
             //
             const hours_count = this.remainingTime?.getUTCHours()
@@ -90,10 +101,11 @@ export const Goal = types
 
             return `${years} ${months} ${days}`
         },
-        get remainingTimeDaysCount(): number {
+        get expiredDaysCount(): number {
             if (!this.remainingTime) return -1
 
-            return Math.floor(this.remainingTime.getTime() / (1000 * 3600 * 24))
+            const remainingTimeDaysCount = Math.floor(this.remainingTime.getTime() / (1000 * 3600 * 24))
+            return Math.abs(remainingTimeDaysCount)
         },
 
         get createdDaysAgo(): number {

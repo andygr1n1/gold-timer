@@ -6,12 +6,15 @@ import { IGoal$SnapshotIn } from '../types'
 import { Achievements$ } from './Achievements.store'
 import { Goals$ } from './Goals.store'
 import { User$ } from './User.store'
+import { Tasks$ } from './Tasks.store'
 
 export const Root$ = types
     .model('Root$', {
         user$: types.optional(User$, {}),
         goals$: types.optional(Goals$, {}),
         achievements$: types.optional(Achievements$, {}),
+        tasks$: types.optional(Tasks$, {}),
+        loading: false,
     })
     .actions((self) => ({
         onChangeField<Key extends keyof typeof self>(key: Key, value: typeof self[Key]) {
@@ -44,6 +47,20 @@ export const Root$ = types
                 applySnapshot(self.achievements$.achievements, res)
             } catch (e) {
                 console.error('applySavedLocation error', e)
+            }
+        }),
+    }))
+    .actions((self) => ({
+        fetchAppData: flow(function* _fetchAppData() {
+            try {
+                self.loading = true
+                yield self.fetchUserInfo()
+                yield self.fetchGoals()
+                yield self.fetchAchievements()
+                self.loading = false
+            } catch (e) {
+                self.loading = false
+                console.error('fetchAppData error', e)
             }
         }),
     }))

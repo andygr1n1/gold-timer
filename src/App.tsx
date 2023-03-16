@@ -2,17 +2,17 @@ import { AppRoutes } from './AppRoutes'
 import { rootStore$, useRootStore } from './StoreProvider'
 import { useEffect } from 'react'
 import { observer } from 'mobx-react-lite'
-import { RdLoader } from './components/loader/RdLoader'
+import { RdLoader } from './components/RdLoader'
 import { getGoalFiltersStore, setGoalFiltersStore } from './functions/indexdb_manager'
 import { onSnapshot } from 'mobx-state-tree'
-import { GoalsTopbar } from './components/topbar/Topbar'
-import { Sidemenu } from './components/sidemenu/Sidemenu'
+import { Sidemenu } from './layout/sidemenu/Sidemenu'
 import { useThemming } from './hooks/useThemming.hook'
 
 export const App = observer(() => {
     const {
         user$: { id: user_id },
-        fetchUserInfo,
+        fetchAppData,
+        loading,
     } = useRootStore()
 
     useEffect(() => {
@@ -30,7 +30,7 @@ export const App = observer(() => {
             onSnapshot(rootStore$.goals$.goals_checked_list_filter, (sn) => setGoalFiltersStore(sn))
         })()
 
-        fetchUserInfo()
+        fetchAppData()
 
         const handler = () => {
             // e.preventDefault()
@@ -41,13 +41,11 @@ export const App = observer(() => {
         document.addEventListener('wheel', handler, { passive: true })
     }, [])
 
-    return user_id ? (
+    return user_id && !loading ? (
         <div className='app'>
             <Sidemenu />
-            <div className='app-body flex-col'>
-                <GoalsTopbar />
-                {/* <Sidebar /> */}
-                <div className='flex w-full flex-auto'>
+            <div className='app-body w-full flex-auto flex-col'>
+                <div className='module-wrapper'>
                     <AppRoutes />
                 </div>
             </div>

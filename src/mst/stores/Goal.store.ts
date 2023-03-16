@@ -12,7 +12,9 @@ export const Goal$ = types
     .compose(
         Goal,
         types.model({
-            estimation_days: 30,
+            /* just for goal create mode */
+            /*  */
+            estimation_days: 0,
             //
             // to understand how to update goal, when a child is creating
             // parent goal can be failed, completed or deprecated if was frozen
@@ -23,6 +25,9 @@ export const Goal$ = types
     )
     .named('Goal$')
     .views((self) => ({
+        get isChildGoal(): boolean {
+            return !!self.parent_goal_id
+        },
         get isFrozen(): boolean {
             return self.status === STATUS_ENUM.FROZEN
         },
@@ -36,6 +41,9 @@ export const Goal$ = types
             if (!self.finished_at) return false
             return !!(self.finished_at < new Date(Date.now()))
         },
+        get isFavorite(): boolean {
+            return self.is_favorite
+        },
         get ritualGoalPower(): number {
             return self.goal_ritual?.ritual_power ?? 0
         },
@@ -47,24 +55,16 @@ export const Goal$ = types
 
             return GOAL_TYPE_ENUM.ACTIVE
         },
-    }))
-    .actions((self) => ({
-        closeGoalCompleteMode(): void {
-            const { closeGoalCompleteMode } = getParentOfType(self, Goals$)
 
-            closeGoalCompleteMode()
+        get daysEstimationCount(): number {
+            if (this.isExpired) return self.expiredDaysCount
+            return self.remainingDays
         },
     }))
     .actions((self) => ({
         onChangeField<Key extends keyof typeof self>(key: Key, value: typeof self[Key]) {
             self[key] = value
         },
-        goCompleteGoalMode(): void {
-            const { goCompleteGoalMode } = getParentOfType(self, Goals$)
-
-            goCompleteGoalMode(cast(self))
-        },
-
         goGoalViewMode(): void {
             const { goGoalViewMode } = getParentOfType(self, Goals$)
 
@@ -79,13 +79,12 @@ export const Goal$ = types
             goGoalViewMode(cast(self))
         },
         goGoalRitualizedMode(): void {
-            const { goGoalViewMode, goGoalEditMode } = getParentOfType(self, Goals$)
+            const { goCreateEditMode } = getParentOfType(self, Goals$)
 
             self.goal_ritualized_mode = true
 
             if (!self.goal_ritual) {
-                this.onChangeField(
-                    'goal_ritual',
+                self.goals_rituals.push(
                     castToSnapshot({
                         ritual_id: '',
                         ritual_goal: '',
@@ -95,9 +94,7 @@ export const Goal$ = types
                     }),
                 )
             }
-
-            goGoalViewMode(cast(self))
-            goGoalEditMode()
+            goCreateEditMode(cast(self))
         },
 
         completeGoal: flow(function* _completeGoal() {
@@ -108,10 +105,8 @@ export const Goal$ = types
 
                 const completeLog = generateLog(self.id, LOG_TYPE_ENUM.COMPLETED)
                 if (!completeLog) throw new Error('completeLog error')
-                self.closeGoalCompleteMode()
             } catch (e) {
                 alert(e)
-                self.closeGoalCompleteMode()
             }
         }),
 

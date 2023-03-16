@@ -6,11 +6,7 @@ export const useOutsideAlerter = (
     callback: () => void,
     isDesktop?: MEDIA_QUERY_VALUES_ENUM,
 ) => {
-    console.log('isDesktop!!', isDesktop)
-
     useEffect(() => {
-        console.log('isDesktop', isDesktop)
-
         function handleClickOutside(event: { target: EventTarget | null }) {
             if (ref.current && !ref.current.contains(event.target as Node)) {
                 console.warn('useOutsideAlerter: clicked outside')

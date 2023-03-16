@@ -25,7 +25,7 @@
     h4,
     h5,
     h6 {
-        @apply m-0 p-0 font-mono;
+        @apply m-0 p-0 font-neon font-extrabold;
     }
 
     span,
@@ -70,7 +70,7 @@
 
 @layer utilities {
     button {
-        @apply focus:outline-none;
+        @apply animate-opacity border-none bg-transparent outline-none transition-all duration-300 focus:outline-none;
     }
 
     .border-solid {
@@ -96,6 +96,10 @@
     ul {
         @apply m-0 p-0;
     }
+
+    .absolute-center {
+        @apply absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2;
+    }
 }
 
 html,
@@ -112,11 +116,10 @@ body {
     @apply flex w-full bg-global-bg;
 }
 
-.app-body {
-    @apply flex w-full bg-slate-100;
+/* .app-body {
     height: calc(100% - var(--top-bar-height));
-}
+} */
 
 .module-wrapper {
-    @apply relative flex w-full flex-col overflow-auto;
+    @apply relative flex h-full w-full animate-opacity flex-col overflow-auto bg-transparent transition-all duration-300;
 }
