@@ -8,7 +8,7 @@ export const XModal: React.FC<{
     onCancel: () => void
     children: ReactNode
     height?: string
-}> = ({ height = 'h-auto', onCancel, open, children, title = '' }) => {
+}> = ({ height = '', onCancel, open, children, title = '' }) => {
     return (
         <>
             <Transition appear show={open} as={Fragment}>
@@ -37,11 +37,13 @@ export const XModal: React.FC<{
                                 leaveTo='opacity-0 scale-95'
                             >
                                 <Dialog.Panel
-                                    className={`${height} w-full  max-w-md transform  overflow-auto rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all`}
+                                    className={`${height} h-[75vh] max-h-[75vh]  w-full  max-w-md transform  overflow-auto rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all`}
                                 >
                                     <Dialog.Title
                                         as='h3'
-                                        className='border-b-solid sticky -top-6 z-[1000] flex h-14 items-center justify-between gap-5 border-b border-b-gray-500/30 bg-white pb-2 leading-6 text-gray-900'
+                                        className=' border-b-solid sticky top-[-24px] z-50
+                                                mb-2 flex  items-center justify-between gap-5 border-b border-b-gray-500/30
+                                                bg-white py-2 leading-6 text-gray-900'
                                     >
                                         <span>{title}</span>
                                         <Icon
@@ -50,7 +52,7 @@ export const XModal: React.FC<{
                                             className='cursor-pointer hover:text-xl hover:font-bold'
                                         />
                                     </Dialog.Title>
-                                    {children}
+                                    <div className='my-2'>{children}</div>
                                 </Dialog.Panel>
                             </Transition.Child>
                         </div>

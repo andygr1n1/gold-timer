@@ -4,14 +4,15 @@ import { CreateFinishDate } from '@/components-modals/create-new-goal-modal/comp
 import { useGoalsStore } from '@/StoreProvider'
 import { Divider } from 'antd'
 import { observer } from 'mobx-react-lite'
-import { InputTitle } from '@/components-modals/create-new-goal-modal/components/InputTitle'
+import { GoalFormTitleOption } from '@/components/goal-form-options/GoalFormTitleOption'
 import { InputSlogan } from '@/components-modals/create-new-goal-modal/components/InputSlogan'
 import { TextAreaDescription } from '@/components-modals/create-new-goal-modal/components/TextAreaDescription'
+import { GoalFormIsFavoriteOption } from '../goal-form-options/GoalFormIsFavoriteOption'
 
 export const CreateGoalForm: React.FC = observer(() => {
     return (
         <div className='relative flex  flex-col '>
-            <InputTitle />
+            <GoalFormTitleOption />
 
             <InputSlogan />
 
@@ -30,8 +31,9 @@ const Footer = observer(() => {
     const { generateGoal, isNotValidToSaveGoalData } = useGoalsStore()
 
     return (
-        <div className='flex h-[40px] w-full items-center justify-end pb-5'>
-            <XButton disabled={isNotValidToSaveGoalData} onClick={generateGoal}>
+        <div className='flex h-[40px] w-full items-center justify-between gap-5'>
+            <GoalFormIsFavoriteOption />
+            <XButton className='h-[40px] w-[400px]' disabled={isNotValidToSaveGoalData} onClick={generateGoal}>
                 Create new goal
             </XButton>
         </div>

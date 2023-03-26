@@ -21,7 +21,6 @@ export const GoalFormFilters: React.FC = observer(() => {
     }
 
     useEffect(() => {
-        console.log('isFavorite', isFavorite)
         !isFavorite && onChangeField('goals_estimation_filter', add(new Date(Date.now()), { days: 60 }))
         isFavorite && onChangeField('goals_estimation_filter', undefined)
     }, [])
@@ -34,6 +33,8 @@ export const GoalFormFilters: React.FC = observer(() => {
                 onChange={(e) => onChangeField('goals_input_filter', e.target.value)}
                 size='large'
                 allowClear
+                autoFocus={false}
+                tabIndex={-1}
             />
             <RdDatePicker
                 popupClassName='creator-form-finished-date'
@@ -42,6 +43,7 @@ export const GoalFormFilters: React.FC = observer(() => {
                 format='Do MMMM YYYY'
                 className='!w-full'
                 placeholder='estimation'
+                tabIndex={-1}
             />
         </div>
     )

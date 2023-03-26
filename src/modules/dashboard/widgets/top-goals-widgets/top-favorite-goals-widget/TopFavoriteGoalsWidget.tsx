@@ -18,8 +18,6 @@ export const TopFavoriteGoalsWidget: React.FC = observer(() => {
         toggleModalState()
     }
 
-    console.log('topFavoriteGoals.length', topFavoriteGoals.length)
-
     return (
         <div className={styles['wrapper']}>
             {topFavoriteGoals.length ? (

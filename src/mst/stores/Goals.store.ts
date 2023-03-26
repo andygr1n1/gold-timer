@@ -269,6 +269,7 @@ export const Goals$ = types
                         status: self.new_goal.status,
                         difficulty: self.new_goal.difficulty,
                         finished_at: self.new_goal.finished_at,
+                        is_favorite: self.new_goal.is_favorite,
                     }
                     const updatedGoalResponse = yield* toGenerator(upsertGoalMutation(goalData))
                     if (!updatedGoalResponse) throw new Error('failed to update goal data')
@@ -278,6 +279,7 @@ export const Goals$ = types
                     self.editable_goal.onChangeField('privacy', updatedGoalResponse.privacy)
                     self.editable_goal.onChangeField('status', updatedGoalResponse.status)
                     self.editable_goal.onChangeField('finished_at', updatedGoalResponse.finished_at)
+                    self.editable_goal.onChangeField('is_favorite', updatedGoalResponse.is_favorite)
                 } else {
                     if (!self.editable_goal) return
 
@@ -298,6 +300,7 @@ export const Goals$ = types
                         difficulty: setGoalDifficulty(self.new_goal.finished_at),
                         finished_at: self.new_goal.finished_at,
                         parent_goal_id: self.new_goal.parent_goal_id ?? null,
+                        is_favorite: self.new_goal.is_favorite,
                     }
 
                     const newGoalResult = yield* toGenerator(insertGoalMutation(newGoal))

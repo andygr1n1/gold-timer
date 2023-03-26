@@ -20,7 +20,7 @@ export const toggleModalState = action(() => {
 export const GoalsListModal: React.FC = observer(() => {
     return (
         <XModal height='h-[80vh]' title={<GoalsListModalTitle />} open={modalState.is_open} onCancel={toggleModalState}>
-            <Body />
+            {modalState.is_open ? <Body /> : null}
         </XModal>
     )
 })
@@ -39,12 +39,12 @@ const Body: React.FC = observer(() => {
     return editable_goal ? (
         <EditableGoalMode />
     ) : (
-        <div className='flex h-[70vh] flex-auto flex-col'>
-            <div className='relative flex w-full flex-col gap-5 '>
-                <div className='flex flex-col gap-2'>
-                    <GoalsCollapse />
-                </div>
+        // <div className='flex h-[70vh] flex-auto flex-col'>
+        <div className='relative flex w-full flex-col gap-5 '>
+            <div className='flex flex-col gap-2 overflow-auto'>
+                <GoalsCollapse />
             </div>
         </div>
+        // </div>
     )
 })

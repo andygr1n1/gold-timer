@@ -20,6 +20,7 @@ export const insertGoalMutation = async (newGoal: IInsertNewGoal): Promise<IGoal
                 status
                 title
                 parent_goal_id
+                is_favorite
             }
         }
     `

@@ -7,10 +7,10 @@ import { Breadcrumbs } from './components/Breadcrumbs'
 
 export const EditableGoalMode: React.FC = observer(() => {
     return (
-        <div className='h-[70vh]'>
+        <>
             <Breadcrumbs />
             <EditableGoalForm />
-        </div>
+        </>
     )
 })
 

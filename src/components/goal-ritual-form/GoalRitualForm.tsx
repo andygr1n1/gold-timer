@@ -2,7 +2,7 @@ import { InputCreatedAt } from '@/components-modals/create-new-goal-modal/compon
 import { InputFinishedAt } from '@/components-modals/create-new-goal-modal/components/InputFinishedAt'
 import { InputRitualInterval } from '@/components-modals/create-new-goal-modal/components/InputRitualInterval'
 import { InputSlogan } from '@/components-modals/create-new-goal-modal/components/InputSlogan'
-import { InputTitle } from '@/components-modals/create-new-goal-modal/components/InputTitle'
+import { GoalFormTitleOption } from '@/components/goal-form-options/GoalFormTitleOption'
 import { TextAreaDescription } from '@/components-modals/create-new-goal-modal/components/TextAreaDescription'
 import { XButton } from '@/components-x/xbutton/XButton'
 
@@ -22,7 +22,7 @@ export const GoalRitualForm: React.FC = observer(() => {
     return (
         <>
             <div className='relative my-5 flex flex-col '>
-                <InputTitle />
+                <GoalFormTitleOption />
                 <InputSlogan />
                 <TextAreaDescription />
                 <InputCreatedAt />
@@ -38,7 +38,7 @@ const Footer = observer(() => {
     const { ritualizeGoal, new_goal } = useGoalsStore()
 
     return (
-        <div className='flex justify-end'>
+        <div className='my-2 flex justify-end'>
             <XButton disabled={!new_goal.isValidForMutation} onClick={ritualizeGoal} className='flex self-end'>
                 Ritualize
             </XButton>

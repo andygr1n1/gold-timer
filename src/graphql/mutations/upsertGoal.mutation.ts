@@ -12,6 +12,7 @@ export interface IUpsertGoal {
     finished_at: Date
     status: STATUS_ENUM
     privacy: PRIVACY_ENUM
+    is_favorite: boolean
     goals_rituals: {
         goal_id: string
         ritual_id: string
@@ -41,6 +42,7 @@ export const upsertGoalMutation = async (newGoal: IUpsertNewGoal): Promise<IUpse
                 privacy
                 created_at
                 finished_at
+                is_favorite
                 goals_rituals {
                     goal_id
                     ritual_id
