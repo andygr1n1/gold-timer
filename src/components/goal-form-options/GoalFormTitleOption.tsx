@@ -2,7 +2,7 @@ import { RdInput } from '@/components-rd/rdinput/RdInput'
 import { useGoalsStore } from '@/StoreProvider'
 import { observer } from 'mobx-react-lite'
 
-export const InputTitle: React.FC = observer(() => {
+export const GoalFormTitleOption: React.FC = observer(() => {
     const { new_goal, is_creator_mode } = useGoalsStore()
 
     if (!new_goal) return null

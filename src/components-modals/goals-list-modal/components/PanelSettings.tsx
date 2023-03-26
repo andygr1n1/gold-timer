@@ -10,7 +10,7 @@ export const PanelSettings: React.FC<{ goal: IGoal$ }> = observer(({ goal }) => 
         <div className='flex flex-col items-center justify-center  gap-2'>
             <PanelSettingsTooltip goal={goal} />
             {is_favorite ? (
-                <button title='Unfavorite' className='flex w-full items-center justify-center '>
+                <button title='Unfavorite' className='flex w-full items-center justify-center'>
                     <Icon
                         icon='ic:outline-favorite'
                         className='cursor-pointer text-red-700 transition-colors duration-300 hover:text-red-600'

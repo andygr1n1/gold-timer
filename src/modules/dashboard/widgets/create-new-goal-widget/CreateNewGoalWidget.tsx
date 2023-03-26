@@ -7,8 +7,8 @@ export const CreateNewGoalWidget: React.FC = observer(() => {
     return (
         <div
             className='
-                        m-auto flex w-full max-w-[600px] justify-center rounded-md 
-                        3xl:m-0
+                        flex w-[280px] max-w-[600px] justify-center rounded-md bg-global-bg 
+                        3xl:my-5
                         3xl:max-h-[210px] 3xl:w-[260px] 3xl:flex-col 3xl:flex-nowrap 3xl:p-5'
         >
             <CreateNewGoalAction />
@@ -22,7 +22,9 @@ const CreateNewGoalAction = observer(() => {
     return (
         <div
             onClick={goCreateNewGoalMode}
-            className='group mx-10 my-5 flex w-[260px] cursor-pointer items-center gap-5 rounded-lg bg-button-bg p-5 3xl:m-0 3xl:h-[125px] 3xl:w-auto 3xl:px-5'
+            className='
+                    group mx-10 my-5 flex w-[260px] cursor-pointer items-center justify-center gap-5 rounded-lg bg-button-bg
+                    p-5 3xl:m-0 3xl:h-[125px] 3xl:w-auto 3xl:px-5'
         >
             <XButton
                 title='create new goal'
@@ -30,7 +32,7 @@ const CreateNewGoalAction = observer(() => {
             >
                 <Icon icon='ic:round-dashboard-customize' width={25} height={25} className='' />
             </XButton>
-            <div className='font-semibold text-white'>Create new goal</div>
+            <div className='hidden font-semibold text-white 3xl:flex'>Create new goal</div>
         </div>
     )
 })

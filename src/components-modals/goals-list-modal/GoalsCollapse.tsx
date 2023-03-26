@@ -21,7 +21,11 @@ export const GoalsCollapse: React.FC = observer(() => {
     useEffect(() => {
         const element = document.getElementById(`${active_collapse_key}`)
         if (element) {
-            element.scrollIntoView({ behavior: 'smooth', block: 'center' })
+            // wrapped in setTimeout to fix scrollIntoView bahavior
+            const timer = setTimeout(() => {
+                element.scrollIntoView({ behavior: 'smooth', block: 'center' })
+                clearTimeout(timer)
+            }, 100)
         }
     }, [])
 

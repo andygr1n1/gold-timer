@@ -32,6 +32,7 @@ export interface IInsertNewGoal {
     finished_at?: Date
     difficulty?: DIFFICULTY_ENUM
     parent_goal_id: string | null
+    is_favorite: boolean
 }
 
 // IUpsertNewGoal

@@ -8,6 +8,6 @@
 }
 
 .goal {
-    @apply h-[40px] w-[110px] cursor-pointer items-center justify-center
+    @apply h-[40px] w-[110px] cursor-pointer select-none items-center justify-center
     rounded-lg p-2 text-sm text-white shadow-lg shadow-black/30;
 }
