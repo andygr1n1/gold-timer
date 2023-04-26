@@ -25,7 +25,7 @@ export const Goal: React.FC<{ goal: IGoal$ }> = observer(({ goal }) => {
                     {!!ritualGoalPower && (
                         <div className='gap flex items-end  justify-center'>
                             <Icon icon='fluent-emoji:magic-wand' className='text-4xl' />
-                            <span className='text-3xl font-bold  text-indigo-800'>{ritualGoalPower}</span>
+                            <span className='text-2xl font-bold  text-indigo-800'>{ritualGoalPower}</span>
                         </div>
                     )}
                 </div>

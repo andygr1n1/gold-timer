@@ -1,7 +1,6 @@
-import { RdDatePicker } from '@/components-rd/rddatepicker/RdDatePicker'
+import { DatePickerFns } from '@/components-rd/rddatepicker/RdDatePicker'
 import { RdInput } from '@/components-rd/rdinput/RdInput'
 import { useGoalsStore } from '@/StoreProvider'
-import { Divider } from 'antd'
 import { observer } from 'mobx-react-lite'
 
 export const InputFinishedAt: React.FC = observer(() => {
@@ -23,15 +22,35 @@ export const InputFinishedAt: React.FC = observer(() => {
                 {!is_creator_mode ? (
                     <RdInput disabled value={finished_at?.toDateString()} />
                 ) : (
-                    <RdDatePicker
-                        className='!w-full'
-                        popupClassName='creator-form-finished-date'
-                        onChange={(e) => onChangeField('finished_at', e || undefined)}
-                        disabledDate={disabledDate}
-                        showTime
-                        value={finished_at}
-                        format='Do MMMM YYYY HH:mm:ss '
-                    />
+                    // <DatePickerFns
+                    //     className='!w-full'
+                    //     onChange={(e) => onChangeField('finished_at', e || undefined)}
+                    //     disabledDate={disabledDate}
+                    //     showTime
+                    //     value={finished_at}
+                    //     format='Do MMMM YYYY HH:mm:ss '
+                    // />
+                    <div className='flex flex-col gap-5 2xl:flex-row'>
+                        <DatePickerFns
+                            size='large'
+                            onChange={(e) => onChangeField('finished_at', e || undefined)}
+                            disabledDate={disabledDate}
+                            value={finished_at}
+                            format='Do MMMM YYYY  '
+                            className='!w-full'
+                        />
+                        <DatePickerFns
+                            picker='time'
+                            size='large'
+                            onChange={(e) => onChangeField('finished_at', e || undefined)}
+                            disabledDate={disabledDate}
+                            value={finished_at}
+                            format=' HH:mm'
+                            className='w-full 2xl:w-[150px]'
+                            minuteStep={15}
+                            showNow={false}
+                        />
+                    </div>
                 )}
             </div>
         </>

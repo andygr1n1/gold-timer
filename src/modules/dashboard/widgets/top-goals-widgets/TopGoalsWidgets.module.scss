@@ -1,10 +1,10 @@
 .wrapper {
-    @apply relative m-5  flex max-w-[600px] flex-col flex-wrap rounded-lg bg-global-bg 3xl:w-[600px] 3xl:flex-row;
+    @apply relative m-5 flex max-w-[600px] flex-col flex-wrap rounded-lg bg-global-bg 2xl:w-[500px] 2xl:flex-row 3xl:w-[600px];
 }
 
 .goals-container {
-    @apply flex min-h-[56px] min-w-[250px] max-w-[600px] flex-col items-center justify-center
-    gap-4  p-5 3xl:ml-9 3xl:flex-row 3xl:justify-start 3xl:gap-2;
+    @apply flex min-h-[56px] min-w-[250px] max-w-[600px] flex-col items-center justify-center gap-4
+    p-5 2xl:ml-9 2xl:flex-row 2xl:flex-wrap 2xl:justify-start 2xl:gap-2 3xl:flex-nowrap;
 }
 
 .goal {

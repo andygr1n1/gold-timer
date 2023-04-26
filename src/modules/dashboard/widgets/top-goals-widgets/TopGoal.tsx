@@ -40,7 +40,7 @@ export const TopGoal: React.FC<{ goal: IGoal$; type: ACTIVE_GOAL_TYPE_ENUM }> = 
                         handleModalState()
                     }}
                 >
-                    <span>{truncate(goal.title, { length: 33 })}</span>
+                    <span>{truncate(goal.title, { length: 25 })}</span>
                 </div>
             </RdBadge>
         </XTooltip>

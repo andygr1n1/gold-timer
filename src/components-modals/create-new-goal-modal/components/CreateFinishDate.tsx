@@ -3,7 +3,7 @@ import { observer } from 'mobx-react-lite'
 import { useState } from 'react'
 import { Switch } from 'antd'
 import { RdInputNumber } from '@/components-rd/rdinputnumber/RdInputNumber'
-import { RdDatePicker } from '@/components-rd/rddatepicker/RdDatePicker'
+import { DatePickerFns } from '@/components-rd/rddatepicker/RdDatePicker'
 import { STATUS_ENUM } from '@/helpers/enums'
 import type { ValueType } from '@rc-component/mini-decimal'
 
@@ -53,16 +53,27 @@ export const CreateFinishDate: React.FC = observer(() => {
                     <h5 className='pl-16'>Estimation: </h5>
                 </div>
                 {methodDatePicker ? (
-                    <RdDatePicker
-                        popupClassName='creator-form-finished-date'
-                        onChange={onDatePickerChange}
-                        // showToday={false}
-                        disabledDate={disabledDate}
-                        showTime
-                        value={finished_at}
-                        format='Do MMMM YYYY HH:mm:ss '
-                        className='!w-full'
-                    />
+                    <div className='flex flex-col gap-5 2xl:flex-row'>
+                        <DatePickerFns
+                            size='large'
+                            onChange={onDatePickerChange}
+                            disabledDate={disabledDate}
+                            value={finished_at}
+                            format='Do MMMM YYYY  '
+                            className='!w-full'
+                        />
+                        <DatePickerFns
+                            picker='time'
+                            size='large'
+                            onChange={onDatePickerChange}
+                            disabledDate={disabledDate}
+                            value={finished_at}
+                            format=' HH:mm'
+                            className='w-full 2xl:w-[150px]'
+                            minuteStep={15}
+                            showNow={false}
+                        />
+                    </div>
                 ) : (
                     <div className='flex items-center gap-4'>
                         <RdInputNumber

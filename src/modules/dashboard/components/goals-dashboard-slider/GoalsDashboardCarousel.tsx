@@ -5,7 +5,7 @@ import { Carousel } from 'react-responsive-carousel'
 
 export const GoalsDashboardCarousel: React.FC = observer(() => {
     return (
-        <div className='relative flex rounded-lg bg-global-bg p-5 3xl:my-5'>
+        <div className='relative flex rounded-lg bg-global-bg p-5 2xl:my-5'>
             <WidgetInfoIcon icon='bi:info-lg' iconColor='text-white' bgColor='bg-sky-500 -left-3' />
             <Carousel
                 verticalSwipe='standard'
@@ -17,7 +17,7 @@ export const GoalsDashboardCarousel: React.FC = observer(() => {
                 showIndicators={false}
                 showStatus={false}
                 swipeable
-                className='pointer-events-none cursor-pointer 3xl:pointer-events-auto'
+                className='pointer-events-none cursor-pointer 2xl:pointer-events-auto'
                 showArrows={false}
                 showThumbs={false}
             >
