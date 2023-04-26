@@ -14,7 +14,7 @@ export const TopbarSearch: React.FC = observer(() => {
     return isDashboard || isGoals ? (
         <RdInput
             value={global_filtered_title_value}
-            className='absolute hidden w-[300px]  font-neon 3xl:flex'
+            className='absolute hidden w-[300px]  font-neon 2xl:flex'
             placeholder='find your goal...'
             onChange={(e) => onChangeField('global_filtered_title_value', e.target.value)}
             allowClear

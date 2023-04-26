@@ -1,5 +1,5 @@
 .grid-parent {
-    @apply flex w-full flex-col overflow-auto pt-5 3xl:h-[calc(100vh-125px)];
+    @apply flex w-full flex-col overflow-auto pt-5 2xl:h-[calc(100vh-125px)];
 
     .grid-child {
         @apply flex min-h-[100px] flex-col items-center gap-5 py-5;
@@ -15,7 +15,7 @@
         @apply order-2;
     }
 
-    @media screen and (min-width: 1920px) {
+    @media screen and (min-width: 1536px) {
         @apply flex flex-row;
 
         .grid-child {

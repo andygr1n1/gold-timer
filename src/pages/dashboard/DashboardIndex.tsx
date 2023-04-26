@@ -10,7 +10,7 @@ import { GoalsDashboardCarousel } from '@/modules/dashboard/components/goals-das
 export const DashboardIndex: React.FC = observer(() => {
     return (
         <div className={'flex'}>
-            <div className=' my-5 mx-5 flex-auto overflow-auto rounded-lg bg-global-2-bg xl:ml-0 '>
+            <div className=' my-5 mx-5 flex-auto overflow-auto rounded-lg bg-global-2-bg 2xl:ml-0 '>
                 <TopBar />
                 <div className={styles['grid-parent']}>
                     <div className={`${styles['grid-child']} ${styles['alpha']}`}>

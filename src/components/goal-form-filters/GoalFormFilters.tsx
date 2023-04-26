@@ -1,4 +1,4 @@
-import { RdDatePicker } from '@/components-rd/rddatepicker/RdDatePicker'
+import { DatePickerFns } from '@/components-rd/rddatepicker/RdDatePicker'
 import { useGoalsStore } from '@/StoreProvider'
 import { Input } from 'antd'
 import { observer } from 'mobx-react-lite'
@@ -36,8 +36,8 @@ export const GoalFormFilters: React.FC = observer(() => {
                 autoFocus={false}
                 tabIndex={-1}
             />
-            <RdDatePicker
-                popupClassName='creator-form-finished-date'
+            <DatePickerFns
+                size='large'
                 onChange={onDatePickerChange}
                 value={goals_estimation_filter}
                 format='Do MMMM YYYY'
