@@ -4,9 +4,10 @@ import { GOAL_TYPE_ENUM } from '@/helpers/enums'
 
 export const ritualizeGoalMutation = async (
     goal_id: string,
+    created_at: Date,
     finished_at: Date,
     ritual_power: number,
-): Promise<{ ritual_power: number; finished_at: Date } | undefined> => {
+) => {
     const client = generateClient()
 
     const log_description = GOAL_TYPE_ENUM.RITUALIZED
@@ -14,11 +15,15 @@ export const ritualizeGoalMutation = async (
     const mutation = gql`
         mutation ritualizeGoalGoal(
             $goal_id: uuid!
+            $created_at: timestamptz
             $finished_at: timestamptz
             $ritual_power: Int
             $log_description: goal_logs_enum_enum
         ) {
-            update_goals_by_pk(pk_columns: { id: $goal_id }, _set: { created_at: "now()", finished_at: $finished_at }) {
+            update_goals_by_pk(
+                pk_columns: { id: $goal_id }
+                _set: { created_at: $created_at, finished_at: $finished_at }
+            ) {
                 finished_at
             }
             update_goals_rituals(where: { goal_id: { _eq: $goal_id } }, _set: { ritual_power: $ritual_power }) {
@@ -31,7 +36,13 @@ export const ritualizeGoalMutation = async (
     `
 
     try {
-        const response = await client.request(mutation, { goal_id, finished_at, ritual_power, log_description })
+        const response = await client.request(mutation, {
+            goal_id,
+            created_at,
+            finished_at,
+            ritual_power,
+            log_description,
+        })
 
         return response.update_goals_by_pk
     } catch (e) {
