@@ -1,9 +1,9 @@
-import { RdInput } from '@/components-rd/rdinput/RdInput'
 import { useGoalsStore } from '@/StoreProvider'
+import { Input } from 'antd'
 import { observer } from 'mobx-react-lite'
 import { useMatch } from 'react-router-dom'
 
-export const TopbarSearch: React.FC = observer(() => {
+export const TopBarSearch: React.FC = observer(() => {
     const {
         filter$: { global_filtered_title_value, onChangeField },
     } = useGoalsStore()
@@ -12,7 +12,8 @@ export const TopbarSearch: React.FC = observer(() => {
     let isGoals = useMatch('/goals')
 
     return isDashboard || isGoals ? (
-        <RdInput
+        <Input
+            size='large'
             value={global_filtered_title_value}
             className='absolute hidden w-[300px]  font-neon 2xl:flex'
             placeholder='find your goal...'

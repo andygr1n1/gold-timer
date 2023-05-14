@@ -1,7 +1,6 @@
-import { RdInput } from '@/components-rd/rdinput/RdInput'
 import { useRootStore } from '@/StoreProvider'
 import { Icon } from '@iconify/react'
-import { Divider, Upload } from 'antd'
+import { Divider, Input, Upload } from 'antd'
 import axios from 'axios'
 import { observer } from 'mobx-react-lite'
 import { useState } from 'react'
@@ -47,7 +46,8 @@ export const CreateNewAchievement: React.FC = observer(() => {
                     <div className='relative flex h-full w-full flex-col overflow-auto'>
                         <div>
                             <h3 className='py-2'>Title: </h3>
-                            <RdInput
+                            <Input
+                                size='large'
                                 status={!!title.length ? undefined : 'error'}
                                 value={title}
                                 autoFocus={true}

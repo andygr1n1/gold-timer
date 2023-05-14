@@ -1,9 +1,8 @@
 import { useRootStore } from '@/StoreProvider'
 import { observer } from 'mobx-react-lite'
 import { useState } from 'react'
-import { Switch } from 'antd'
-import { RdInputNumber } from '@/components-rd/rdinputnumber/RdInputNumber'
-import { DatePickerFns } from '@/components-rd/rddatepicker/RdDatePicker'
+import { InputNumber, Switch } from 'antd'
+import { XDatePicker } from '@/components-x/x-date-picker/XDatePicker'
 import { STATUS_ENUM } from '@/helpers/enums'
 import type { ValueType } from '@rc-component/mini-decimal'
 
@@ -54,7 +53,7 @@ export const CreateFinishDate: React.FC = observer(() => {
                 </div>
                 {methodDatePicker ? (
                     <div className='flex flex-col gap-5 2xl:flex-row'>
-                        <DatePickerFns
+                        <XDatePicker
                             size='large'
                             onChange={onDatePickerChange}
                             disabledDate={disabledDate}
@@ -62,7 +61,7 @@ export const CreateFinishDate: React.FC = observer(() => {
                             format='Do MMMM YYYY  '
                             className='!w-full'
                         />
-                        <DatePickerFns
+                        <XDatePicker
                             picker='time'
                             size='large'
                             onChange={onDatePickerChange}
@@ -76,7 +75,8 @@ export const CreateFinishDate: React.FC = observer(() => {
                     </div>
                 ) : (
                     <div className='flex items-center gap-4'>
-                        <RdInputNumber
+                        <InputNumber
+                            size='large'
                             min={1}
                             max={33000}
                             keyboard={true}

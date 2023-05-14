@@ -1,6 +1,5 @@
-import { RdInput } from '@/components-rd/rdinput/RdInput'
 import { useGoalsStore } from '@/StoreProvider'
-import { Divider } from 'antd'
+import { Divider, Input } from 'antd'
 import { observer } from 'mobx-react-lite'
 
 export const InputDifficulty: React.FC = observer(() => {
@@ -14,7 +13,7 @@ export const InputDifficulty: React.FC = observer(() => {
         <>
             <div>
                 <h3 className='py-2'>Difficulty: </h3>
-                <RdInput disabled value={difficulty} />
+                <Input size='large' disabled value={difficulty} />
             </div>
             <Divider />
         </>

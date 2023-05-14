@@ -1,5 +1,5 @@
-import { RdInput } from '@/components-rd/rdinput/RdInput'
 import { useGoalsStore } from '@/StoreProvider'
+import { Input } from 'antd'
 import { observer } from 'mobx-react-lite'
 
 export const GoalFormTitleOption: React.FC = observer(() => {
@@ -12,7 +12,7 @@ export const GoalFormTitleOption: React.FC = observer(() => {
     return (
         <div className='py-2'>
             <h5 className='mb-1'>Title: </h5>
-            <RdInput
+            <Input
                 size='large'
                 status={!!title.length ? undefined : 'error'}
                 disabled={!is_creator_mode}
