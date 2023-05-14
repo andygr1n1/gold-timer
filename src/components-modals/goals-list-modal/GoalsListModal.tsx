@@ -6,21 +6,39 @@ import { EditableGoalMode } from './components/editable-goal-mode/EditableGoalMo
 import { GoalsCollapse } from './GoalsCollapse'
 import { cast } from 'mobx-state-tree'
 import { GoalsListModalTitle } from './components/GoalsListModalTitle'
-import { XModal } from '@/components-x/xmodal/XModal'
+import { XModal } from '@/components-x/x-modal/XModal'
 
 interface IBaseState {
     is_open: boolean
+    force_edit: boolean
 }
 
-export const modalState: IBaseState = observable({ is_open: false })
-export const toggleModalState = action(() => {
-    modalState.is_open = !modalState.is_open
+export const GoalsListModalState$$: IBaseState = observable({ is_open: false, force_edit: false })
+export const toggleGoalsListModalVisibility = action((options: { force_edit: boolean } = { force_edit: false }) => {
+    console.log('here')
+
+    if (GoalsListModalState$$.force_edit) {
+        GoalsListModalState$$.is_open = false
+        GoalsListModalState$$.force_edit = false
+        return
+    }
+
+    if (options.force_edit) {
+        GoalsListModalState$$.force_edit = options.force_edit
+    }
+
+    GoalsListModalState$$.is_open = !GoalsListModalState$$.is_open
 })
 
 export const GoalsListModal: React.FC = observer(() => {
     return (
-        <XModal height='h-[80vh]' title={<GoalsListModalTitle />} open={modalState.is_open} onCancel={toggleModalState}>
-            {modalState.is_open ? <Body /> : null}
+        <XModal
+            height='h-[80vh]'
+            title={<GoalsListModalTitle />}
+            open={GoalsListModalState$$.is_open}
+            onCancel={toggleGoalsListModalVisibility}
+        >
+            {GoalsListModalState$$.is_open ? <Body /> : null}
         </XModal>
     )
 })

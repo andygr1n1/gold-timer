@@ -38,7 +38,7 @@ export const Filter$ = types
                     return activeGoalsWithoutRitualPower
                 case ACTIVE_GOAL_TYPE_ENUM.RITUALIZED:
                     return ritualGoals
-                case ACTIVE_GOAL_TYPE_ENUM.EXPIRIED:
+                case ACTIVE_GOAL_TYPE_ENUM.EXPIRED:
                     return activeExpiredGoals
                 case ACTIVE_GOAL_TYPE_ENUM.FAVORITE:
                     return favoriteGoals
@@ -79,7 +79,7 @@ export const Filter$ = types
                 case ACTIVE_GOAL_TYPE_ENUM.RITUALIZED:
                     title = 'Ritual Goals'
                     break
-                case ACTIVE_GOAL_TYPE_ENUM.EXPIRIED:
+                case ACTIVE_GOAL_TYPE_ENUM.EXPIRED:
                     title = 'Expired Goals'
                     break
                 case ACTIVE_GOAL_TYPE_ENUM.FAVORITE:

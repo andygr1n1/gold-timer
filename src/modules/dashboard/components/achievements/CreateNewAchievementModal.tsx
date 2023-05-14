@@ -6,8 +6,8 @@ import axios from 'axios'
 import { observer } from 'mobx-react-lite'
 import { useState } from 'react'
 import TextArea from 'antd/lib/input/TextArea'
-import { XButton } from '@/components-x/xbutton/XButton'
-import { XModal } from '@/components-x/xmodal/XModal'
+import { XButton } from '@/components-x/x-button/XButton'
+import { XModal } from '@/components-x/x-modal/XModal'
 
 export const CreateNewAchievement: React.FC = observer(() => {
     const [openedModal, setOpenModal] = useState(false)

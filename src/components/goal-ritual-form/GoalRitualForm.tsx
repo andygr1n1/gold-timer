@@ -4,7 +4,7 @@ import { InputRitualInterval } from '@/components-modals/create-new-goal-modal/c
 import { InputSlogan } from '@/components-modals/create-new-goal-modal/components/InputSlogan'
 import { GoalFormTitleOption } from '@/components/goal-form-options/GoalFormTitleOption'
 import { TextAreaDescription } from '@/components-modals/create-new-goal-modal/components/TextAreaDescription'
-import { XButton } from '@/components-x/xbutton/XButton'
+import { XButton } from '@/components-x/x-button/XButton'
 
 import { useGoalsStore } from '@/StoreProvider'
 import { observer } from 'mobx-react-lite'

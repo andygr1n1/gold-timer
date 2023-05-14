@@ -52,7 +52,7 @@ export const XModal: React.FC<{
                                             className='cursor-pointer hover:text-xl hover:font-bold'
                                         />
                                     </Dialog.Title>
-                                    <div className='my-2'>{children}</div>
+                                    <div className='my-2 h-[calc(100%-60px)]'>{children}</div>
                                 </Dialog.Panel>
                             </Transition.Child>
                         </div>

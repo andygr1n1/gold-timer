@@ -1,4 +1,4 @@
-import { RdBadge } from '@/components-rd/rdbadge/RdBadge'
+import { RdBadge } from '@/components-rd/rd-badge/RdBadge'
 import { APP_ROUTES_ENUM } from '@/helpers/enums'
 import { useSideMenu } from '@/hooks/useSideMenu.hook'
 import { observer } from 'mobx-react-lite'

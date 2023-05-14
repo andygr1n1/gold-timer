@@ -1,4 +1,4 @@
-import { XModal } from '@/components-x/xmodal/XModal'
+import { XModal } from '@/components-x/x-modal/XModal'
 import { CreateGoalForm } from '@/components/goal-create-form/CreateGoalForm'
 import { useRootStore } from '@/StoreProvider'
 import { observer } from 'mobx-react-lite'
