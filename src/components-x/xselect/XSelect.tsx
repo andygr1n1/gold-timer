@@ -106,8 +106,8 @@ export const XSelect = observer(<V extends Key, L extends unknown>(props: IRdSel
                                 {({ active, selected }) => (
                                     <span
                                         className={`flex h-10 w-full items-center px-2 transition-all duration-150  ${
-                                            active && !selected ? 'bg-blue-50 text-spaceblue' : ' bg-transparent'
-                                        } ${selected ? 'bg-blue-100 text-spaceblue' : ''}`}
+                                            active && !selected ? 'text-space-blue bg-blue-50' : ' bg-transparent'
+                                        } ${selected ? 'text-space-blue bg-blue-100' : ''}`}
                                     >
                                         {option.value}
                                     </span>

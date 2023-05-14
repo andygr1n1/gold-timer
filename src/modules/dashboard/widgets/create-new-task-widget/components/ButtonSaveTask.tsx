@@ -1,4 +1,4 @@
-import { XButton } from '@/components-x/xbutton/XButton'
+import { XButton } from '@/components-x/x-button/XButton'
 import { useTasksStore } from '@/StoreProvider'
 import { observer } from 'mobx-react-lite'
 

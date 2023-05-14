@@ -1,4 +1,4 @@
-import { XButton } from '@/components-x/xbutton/XButton'
+import { XButton } from '@/components-x/x-button/XButton'
 import { CreateFinishDate } from '@/components-modals/create-new-goal-modal/components/CreateFinishDate'
 
 import { useGoalsStore } from '@/StoreProvider'

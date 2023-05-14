@@ -3,14 +3,14 @@
  */
 export enum ACTIVE_GOAL_TYPE_ENUM {
     ACTIVE = 'active',
-    EXPIRIED = 'expired',
+    EXPIRED = 'expired',
     RITUALIZED = 'ritualized',
     FAVORITE = 'favorite',
 }
 
 export enum GOAL_TYPE_ENUM {
     ACTIVE = 'active',
-    EXPIRIED = 'expired',
+    EXPIRED = 'expired',
     RITUALIZED = 'ritualized',
     FROZEN = 'frozen',
 }

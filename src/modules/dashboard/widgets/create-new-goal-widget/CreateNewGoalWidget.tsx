@@ -1,4 +1,4 @@
-import { XButton } from '@/components-x/xbutton/XButton'
+import { XButton } from '@/components-x/x-button/XButton'
 import { useGoalsStore } from '@/StoreProvider'
 import { Icon } from '@iconify/react'
 import { observer } from 'mobx-react-lite'

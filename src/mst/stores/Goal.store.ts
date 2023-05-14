@@ -7,6 +7,9 @@ import { Goal } from '../models/Goal.model'
 import { Goals$ } from './Goals.store'
 import { generateLog } from '@/graphql/mutations/generateLog.mutation'
 import { favoriteGoalMutation } from '@/graphql/mutations/favoriteGoal.mutation'
+import { message } from 'antd'
+import { ritualizeGoalMutation } from '@/graphql/mutations/ritualizeGoal.mutation'
+import { add } from 'date-fns'
 
 export const Goal$ = types
     .compose(
@@ -47,10 +50,13 @@ export const Goal$ = types
         get ritualGoalPower(): number {
             return self.goal_ritual?.ritual_power ?? 0
         },
+        get ritualGoalInterval(): number {
+            return self.goal_ritual?.ritual_interval ?? 0
+        },
 
         get goalType(): GOAL_TYPE_ENUM {
             if (this.isFrozen) return GOAL_TYPE_ENUM.FROZEN
-            if (this.isExpired) return GOAL_TYPE_ENUM.EXPIRIED
+            if (this.isExpired) return GOAL_TYPE_ENUM.EXPIRED
             if (this.isRitualGoal) return GOAL_TYPE_ENUM.RITUALIZED
 
             return GOAL_TYPE_ENUM.ACTIVE
@@ -101,20 +107,46 @@ export const Goal$ = types
             try {
                 const result = yield completeGoalMutation(self.id)
                 if (!result) throw new Error('completeGoal error')
+
                 self.status = result
 
                 const completeLog = generateLog(self.id, LOG_TYPE_ENUM.COMPLETED)
                 if (!completeLog) throw new Error('completeLog error')
+
+                message.success({
+                    content: 'Goal successfully completed',
+                })
             } catch (e) {
                 alert(e)
+
+                message.error({
+                    content: 'Server error, failed to complete goal',
+                })
             }
         }),
+        ritualizeGoal: flow(function* _ritualizeGoal() {
+            try {
+                if (!self.finished_at) throw new Error('Goal has no estimation endpoint')
 
-        /*         completeGoalAndCreateNewChild(): void {
-            self.goal_new_status = STATUS_ENUM.COMPLETED
-            const { goCreateNewChildGoal } = getParentOfType(self, Goals$)
-            goCreateNewChildGoal(self.id)
-        }, */
+                const newRitualPower = self.ritualGoalPower + 1
+                const ritualMoment = add(self.finished_at, { days: self.ritualGoalInterval })
+                const result = yield* toGenerator(ritualizeGoalMutation(self.id, ritualMoment, newRitualPower))
+                if (!result) throw new Error('ritualize goal error')
+
+                self.finished_at = ritualMoment
+                self.goals_rituals?.[0].onChangeField('ritual_power', newRitualPower)
+
+                message.success({
+                    content: 'Goal successfully ritualized',
+                })
+            } catch (e) {
+                alert(e)
+
+                message.error({
+                    content: 'Server error, failed to ritualize goal',
+                })
+            }
+        }),
         createNewChild(): void {
             const { goCreateNewChildGoal } = getParentOfType(self, Goals$)
             goCreateNewChildGoal(self.id)

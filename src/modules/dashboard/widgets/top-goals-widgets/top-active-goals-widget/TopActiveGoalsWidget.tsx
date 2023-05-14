@@ -4,7 +4,7 @@ import { observer } from 'mobx-react-lite'
 
 import styles from '../TopGoalsWidgets.module.scss'
 import { ACTIVE_GOAL_TYPE_ENUM } from '@/helpers/enums'
-import { toggleModalState } from '../../../../../components-modals/goals-list-modal/GoalsListModal'
+import { toggleGoalsListModalVisibility } from '../../../../../components-modals/goals-list-modal/GoalsListModal'
 import { TopGoal } from '../TopGoal'
 
 export const TopActiveGoalsWidget: React.FC = observer(() => {
@@ -15,7 +15,7 @@ export const TopActiveGoalsWidget: React.FC = observer(() => {
 
     const handleModalState = () => {
         onFilterStoreChangeField('goals_collapse_type', ACTIVE_GOAL_TYPE_ENUM.ACTIVE)
-        toggleModalState()
+        toggleGoalsListModalVisibility()
     }
 
     return (

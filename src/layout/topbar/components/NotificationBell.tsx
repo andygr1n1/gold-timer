@@ -1,4 +1,4 @@
-import { RdBadge } from '@/components-rd/rdbadge/RdBadge'
+import { RdBadge } from '@/components-rd/rd-badge/RdBadge'
 import { Icon } from '@iconify/react'
 import { observer } from 'mobx-react-lite'
 
