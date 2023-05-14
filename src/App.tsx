@@ -3,10 +3,10 @@ import { rootStore$, useRootStore } from './StoreProvider'
 import { useEffect } from 'react'
 import { observer } from 'mobx-react-lite'
 import { RdLoader } from './components/RdLoader'
-import { getGoalFiltersStore, setGoalFiltersStore } from './functions/indexdb_manager'
+import { getGoalFiltersStore, setGoalFiltersStore } from './functions/indexDbManager'
 import { onSnapshot } from 'mobx-state-tree'
-import { Sidemenu } from './layout/sidemenu/Sidemenu'
-import { useThemming } from './hooks/useThemming.hook'
+import { SideMenu } from './layout/side-menu/SideMenu'
+import { useTheming } from './hooks/useTheming.hook'
 
 export const App = observer(() => {
     const {
@@ -17,7 +17,7 @@ export const App = observer(() => {
 
     useEffect(() => {
         ;(async () => {
-            useThemming.applyLocalStorage()
+            useTheming.applyLocalStorage()
 
             const filtersRes: typeof rootStore$.goals$.goals_checked_list_filter | null = await getGoalFiltersStore()
 
@@ -43,7 +43,7 @@ export const App = observer(() => {
 
     return user_id && !loading ? (
         <div className='app'>
-            <Sidemenu />
+            <SideMenu />
             <div className='app-body w-full flex-auto flex-col'>
                 <div className='module-wrapper'>
                     <AppRoutes />

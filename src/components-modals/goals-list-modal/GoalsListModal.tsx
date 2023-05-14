@@ -15,8 +15,6 @@ interface IBaseState {
 
 export const GoalsListModalState$$: IBaseState = observable({ is_open: false, force_edit: false })
 export const toggleGoalsListModalVisibility = action((options: { force_edit: boolean } = { force_edit: false }) => {
-    console.log('here')
-
     if (GoalsListModalState$$.force_edit) {
         GoalsListModalState$$.is_open = false
         GoalsListModalState$$.force_edit = false
