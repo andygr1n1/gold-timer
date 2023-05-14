@@ -55,7 +55,6 @@ export const TopGoal: React.FC<{ goal: IGoal$; type: ACTIVE_GOAL_TYPE_ENUM }> = 
                         }}
                         onContextMenu={(e) => {
                             e.preventDefault()
-                            console.log('context menu')
                             setPopoverOpen(true)
                         }}
                     >

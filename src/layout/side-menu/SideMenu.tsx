@@ -4,14 +4,14 @@ import { Icon } from '@iconify/react'
 import { observer } from 'mobx-react-lite'
 import { Divider } from '../../components/Divider'
 import { CloseSideMenu } from './components/Close.sidemenu'
-import { UserAvatarSidemenu } from './components/UserAvatar.sidemenu'
+import { UserAvatarSideMenu } from './components/UserAvatar.sidemenu'
 import { SidemenuLink } from './components/SidemenuLink'
 import { useOutsideAlerter } from '@/hooks/useClickOutside.hook'
 import { useEffect, useRef } from 'react'
 import { useWindowMatchMedia } from '@/hooks/useMatchMedia.hook.'
 import { Transition } from '@headlessui/react'
 
-export const Sidemenu: React.FC = observer(() => {
+export const SideMenu: React.FC = observer(() => {
     const wrapperRef = useRef<HTMLDivElement | null>(null)
     const { isDesktop } = useWindowMatchMedia(['isDesktop'])
 
@@ -49,7 +49,7 @@ export const Sidemenu: React.FC = observer(() => {
             >
                 <div className='flex w-[200px] min-w-[200px] flex-col  gap-10 overflow-auto py-5'>
                     <div className='relative'>
-                        <UserAvatarSidemenu />
+                        <UserAvatarSideMenu />
                         <CloseSideMenu />
                     </div>
                     <div className='ml-4 flex flex-auto flex-col gap-5 overflow-auto  pl-5'>

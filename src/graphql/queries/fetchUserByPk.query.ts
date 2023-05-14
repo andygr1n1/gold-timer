@@ -10,7 +10,7 @@ interface IUserByPkResponse {
     phone: string
 }
 
-export const fethUserByPk = async (user_id: string): Promise<IUserByPkResponse | undefined> => {
+export const fetchUserByPk = async (user_id: string): Promise<IUserByPkResponse | undefined> => {
     const client = generateClient()
 
     const query = gql`

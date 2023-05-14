@@ -16,7 +16,7 @@ export const TopGoalPopoverContent: React.FC<{ goal: IGoal$; action: () => void 
                         {goal.isRitualGoal && (
                             <MenuItem
                                 action={() => {
-                                    goal.ritualizeGoal().finally(() => onClose())
+                                    goal.enforceGoalRitual().finally(() => onClose())
                                 }}
                                 icon='game-icons:magic-gate'
                                 iconClassName='text-indigo-700'

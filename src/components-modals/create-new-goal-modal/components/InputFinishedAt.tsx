@@ -1,6 +1,6 @@
-import { DatePickerFns } from '@/components-rd/rddatepicker/RdDatePicker'
-import { RdInput } from '@/components-rd/rdinput/RdInput'
+import { XDatePicker } from '@/components-x/x-date-picker/XDatePicker'
 import { useGoalsStore } from '@/StoreProvider'
+import { Input } from 'antd'
 import { observer } from 'mobx-react-lite'
 
 export const InputFinishedAt: React.FC = observer(() => {
@@ -20,7 +20,7 @@ export const InputFinishedAt: React.FC = observer(() => {
             <div className='py-2'>
                 <h5>Estimation: </h5>
                 {!is_creator_mode ? (
-                    <RdInput disabled value={finished_at?.toDateString()} />
+                    <Input size='large' disabled value={finished_at?.toDateString()} />
                 ) : (
                     // <DatePickerFns
                     //     className='!w-full'
@@ -31,7 +31,7 @@ export const InputFinishedAt: React.FC = observer(() => {
                     //     format='Do MMMM YYYY HH:mm:ss '
                     // />
                     <div className='flex flex-col gap-5 2xl:flex-row'>
-                        <DatePickerFns
+                        <XDatePicker
                             size='large'
                             onChange={(e) => onChangeField('finished_at', e || undefined)}
                             disabledDate={disabledDate}
@@ -39,7 +39,7 @@ export const InputFinishedAt: React.FC = observer(() => {
                             format='Do MMMM YYYY  '
                             className='!w-full'
                         />
-                        <DatePickerFns
+                        <XDatePicker
                             picker='time'
                             size='large'
                             onChange={(e) => onChangeField('finished_at', e || undefined)}

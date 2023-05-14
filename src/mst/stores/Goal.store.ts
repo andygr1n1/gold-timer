@@ -9,7 +9,7 @@ import { generateLog } from '@/graphql/mutations/generateLog.mutation'
 import { favoriteGoalMutation } from '@/graphql/mutations/favoriteGoal.mutation'
 import { message } from 'antd'
 import { ritualizeGoalMutation } from '@/graphql/mutations/ritualizeGoal.mutation'
-import { add } from 'date-fns'
+import { generateNewRitualCircle } from '@/helpers/generate_new_ritual_circle'
 
 export const Goal$ = types
     .compose(
@@ -124,21 +124,31 @@ export const Goal$ = types
                 })
             }
         }),
-        ritualizeGoal: flow(function* _ritualizeGoal() {
+        enforceGoalRitual: flow(function* _ritualizeGoal(
+            options: { messageSuccess: boolean } = { messageSuccess: true },
+        ) {
             try {
                 if (!self.finished_at) throw new Error('Goal has no estimation endpoint')
 
-                const newRitualPower = self.ritualGoalPower + 1
-                const ritualMoment = add(self.finished_at, { days: self.ritualGoalInterval })
-                const result = yield* toGenerator(ritualizeGoalMutation(self.id, ritualMoment, newRitualPower))
+                const newRitualPower = self.isExpired ? self.ritualGoalPower : self.ritualGoalPower + 1
+                const { ritual_goal_created_at, ritual_goal_finished_at } = generateNewRitualCircle(
+                    self.ritualGoalInterval,
+                    self.created_at,
+                    self.finished_at,
+                )
+                const result = yield* toGenerator(
+                    ritualizeGoalMutation(self.id, ritual_goal_created_at, ritual_goal_finished_at, newRitualPower),
+                )
                 if (!result) throw new Error('ritualize goal error')
 
-                self.finished_at = ritualMoment
+                self.created_at = ritual_goal_created_at
+                self.finished_at = ritual_goal_finished_at
                 self.goals_rituals?.[0].onChangeField('ritual_power', newRitualPower)
 
-                message.success({
-                    content: 'Goal successfully ritualized',
-                })
+                options.messageSuccess &&
+                    message.success({
+                        content: 'Goal successfully ritualized',
+                    })
             } catch (e) {
                 alert(e)
 

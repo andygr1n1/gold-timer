@@ -1,5 +1,5 @@
-import { RdInput } from '@/components-rd/rdinput/RdInput'
 import { useGoalsStore } from '@/StoreProvider'
+import { Input } from 'antd'
 import { observer } from 'mobx-react-lite'
 
 export const InputSlogan: React.FC = observer(() => {
@@ -12,7 +12,7 @@ export const InputSlogan: React.FC = observer(() => {
     return (
         <div className='py-2'>
             <h5 className='mb-1'>Slogan: </h5>
-            <RdInput
+            <Input
                 size='large'
                 disabled={!is_creator_mode}
                 value={slogan}

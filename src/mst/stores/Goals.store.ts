@@ -88,6 +88,9 @@ export const Goals$ = types
             )
             return orderBy(goals, ['finished_at'], ['asc'])
         },
+        get expiredRitualGoals(): IGoal$[] {
+            return this.activeExpiredGoals.filter((goal) => goal.isRitualGoal)
+        },
         get activeGoals(): IGoal$[] {
             const goals: IGoal$[] = compact(
                 differenceWith(
@@ -373,8 +376,9 @@ export const Goals$ = types
                 yield generateLog(insertRitualGoalId, LOG_TYPE_ENUM.RITUALIZED)
 
                 const { ritual_goal_created_at, ritual_goal_finished_at } = generateNewRitualCircle(
-                    self.editable_goal,
                     self.new_goal.goal_ritual.ritual_interval,
+                    self.editable_goal.created_at,
+                    self.editable_goal.finished_at,
                 )
 
                 const goalData = {

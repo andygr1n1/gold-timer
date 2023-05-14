@@ -1,16 +1,10 @@
 import { useRootStore } from '@/StoreProvider'
 import { observer } from 'mobx-react-lite'
-import { useEffect } from 'react'
 
 export const DbAchievementList: React.FC = observer(() => {
     const {
-        fetchAchievements,
         achievements$: { visibleAchievements },
     } = useRootStore()
-
-    useEffect(() => {
-        fetchAchievements()
-    }, [])
 
     return (
         <div className='flex flex-col gap-5'>

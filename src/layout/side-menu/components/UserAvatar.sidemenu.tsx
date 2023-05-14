@@ -5,7 +5,7 @@ import { Icon } from '@iconify/react'
 import { observer } from 'mobx-react-lite'
 import { NavLink } from 'react-router-dom'
 
-export const UserAvatarSidemenu: React.FC = observer(() => {
+export const UserAvatarSideMenu: React.FC = observer(() => {
     const { avatar, name } = useUserStore()
     return (
         <div
