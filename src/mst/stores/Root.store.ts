@@ -7,6 +7,7 @@ import { Achievements$ } from './Achievements.store'
 import { Goals$ } from './Goals.store'
 import { User$ } from './User.store'
 import { Tasks$ } from './Tasks.store'
+import { ModalWindows$ } from './ModalWindows.store'
 
 export const Root$ = types
     .model('Root$', {
@@ -15,6 +16,7 @@ export const Root$ = types
         achievements$: types.optional(Achievements$, {}),
         tasks$: types.optional(Tasks$, {}),
         loading: false,
+        modal_windows$: types.optional(ModalWindows$, {}),
     })
     .views((self) => ({
         get isValidating(): boolean {

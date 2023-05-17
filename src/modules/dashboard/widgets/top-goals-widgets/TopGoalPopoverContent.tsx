@@ -1,12 +1,14 @@
-import { useGoalsStore } from '@/StoreProvider'
-import { toggleGoalsListModalVisibility } from '@/components-modals/goals-list-modal/GoalsListModal'
+import { useRootStore } from '@/StoreProvider'
 import { IGoal$ } from '@/mst/types'
 import { Icon } from '@iconify/react'
 import { observer } from 'mobx-react-lite'
 
 export const TopGoalPopoverContent: React.FC<{ goal: IGoal$; action: () => void }> = observer(
     ({ goal, action: onClose }) => {
-        const { goCreateEditMode } = useGoalsStore()
+        const {
+            goals$: { goCreateEditMode },
+            modal_windows$: { goals_manager_mw$ },
+        } = useRootStore()
 
         return (
             <div className='flex min-w-[120px] flex-col gap-4'>
@@ -26,8 +28,9 @@ export const TopGoalPopoverContent: React.FC<{ goal: IGoal$; action: () => void 
                         )}
                         <MenuItem
                             action={() => {
-                                toggleGoalsListModalVisibility({ force_edit: true })
                                 goCreateEditMode(goal)
+                                goals_manager_mw$.onChangeField('visible', true)
+                                goals_manager_mw$.onChangeField('force_mode', true)
                                 onClose()
                             }}
                             icon='material-symbols:edit-square'

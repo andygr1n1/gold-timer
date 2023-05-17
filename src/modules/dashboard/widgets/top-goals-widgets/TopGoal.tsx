@@ -1,9 +1,8 @@
-import { toggleGoalsListModalVisibility } from '@/components-modals/goals-list-modal/GoalsListModal'
 import { RdBadge } from '@/components-rd/rd-badge/RdBadge'
 import { XTooltip } from '@/components-x/x-tooltip/XTooltip'
 import { ACTIVE_GOAL_TYPE_ENUM } from '@/helpers/enums'
 import { IGoal$ } from '@/mst/types'
-import { useGoalsStore } from '@/StoreProvider'
+import { useGoalsStore, useRootStore } from '@/StoreProvider'
 import { Icon } from '@iconify/react'
 import { truncate } from 'lodash'
 import { observer } from 'mobx-react-lite'
@@ -15,9 +14,12 @@ import { TopGoalPopoverContent } from './TopGoalPopoverContent'
 
 export const TopGoal: React.FC<{ goal: IGoal$; type: ACTIVE_GOAL_TYPE_ENUM }> = observer(({ goal, type }) => {
     const {
-        onChangeField,
-        filter$: { onChangeField: onFilterStoreChangeField },
-    } = useGoalsStore()
+        goals$: {
+            onChangeField,
+            filter$: { onChangeField: onFilterStoreChangeField },
+        },
+        modal_windows$: { goals_manager_mw$ },
+    } = useRootStore()
 
     const [popoverOpen, setPopoverOpen] = useState(false)
 
@@ -26,7 +28,7 @@ export const TopGoal: React.FC<{ goal: IGoal$; type: ACTIVE_GOAL_TYPE_ENUM }> = 
 
     const handleModalState = () => {
         onFilterStoreChangeField('goals_collapse_type', type)
-        toggleGoalsListModalVisibility()
+        goals_manager_mw$.onChangeField('visible', true)
     }
 
     const tooltipTitle = goal.isRitualGoal ? `${goal.title} (${goal.ritualGoalPower})` : goal.title

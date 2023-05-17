@@ -1,20 +1,22 @@
 import { WidgetInfoIcon } from '@/components/icons/WidgetInfoIcon'
 import { ACTIVE_GOAL_TYPE_ENUM } from '@/helpers/enums'
-import { useGoalsStore } from '@/StoreProvider'
+import { useRootStore } from '@/StoreProvider'
 import { observer } from 'mobx-react-lite'
-import { toggleGoalsListModalVisibility } from '../../../../../components-modals/goals-list-modal/GoalsListModal'
 import { TopGoal } from '../TopGoal'
 import styles from '../TopGoalsWidgets.module.scss'
 
 export const TopRitualGoalsWidget: React.FC = observer(() => {
     const {
-        topRitualGoals,
-        filter$: { onChangeField: onFilterStoreChangeField },
-    } = useGoalsStore()
+        goals$: {
+            topRitualGoals,
+            filter$: { onChangeField: onFilterStoreChangeField },
+        },
+        modal_windows$: { goals_manager_mw$ },
+    } = useRootStore()
 
     const handleModalState = () => {
         onFilterStoreChangeField('goals_collapse_type', ACTIVE_GOAL_TYPE_ENUM.RITUALIZED)
-        toggleGoalsListModalVisibility()
+        goals_manager_mw$.onChangeField('visible', true)
     }
 
     return (

@@ -82,7 +82,7 @@ export const PanelSettingsTooltip: React.FC<{ goal: IGoal$ }> = observer(({ goal
                                             >
                                                 Create Ritual
                                             </button>
-                                            <button
+                                            {/* <button
                                                 onClick={goal.failGoal}
                                                 className='
                                                     border-b-solid w-full cursor-pointer
@@ -90,7 +90,7 @@ export const PanelSettingsTooltip: React.FC<{ goal: IGoal$ }> = observer(({ goal
                                                     font-neon text-xs text-white duration-300 hover:bg-rose-700'
                                             >
                                                 Goal Failed
-                                            </button>
+                                            </button> */}
                                         </>
                                     )}
                                 </div>
