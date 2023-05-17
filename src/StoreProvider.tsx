@@ -36,3 +36,6 @@ export const useGoalsStore = () => useRootStore().goals$
 export const useUserStore = () => useRootStore().user$
 
 export const useTasksStore = () => useRootStore().tasks$
+
+// modal windows
+export const useGoalsManagerStore = () => useRootStore().modal_windows$.goals_manager_mw$

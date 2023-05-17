@@ -17,7 +17,6 @@ export const InputCreatedAt: React.FC = observer(() => {
                 <Input
                     size='large'
                     disabled={!!created_at}
-                    className='m-0 p-0 disabled:bg-transparent'
                     value={created_at && format(created_at, 'do MMMM yyyy HH:mm:ss')}
                 />
             </div>

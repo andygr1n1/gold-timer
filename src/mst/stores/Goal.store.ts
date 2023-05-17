@@ -10,6 +10,7 @@ import { favoriteGoalMutation } from '@/graphql/mutations/favoriteGoal.mutation'
 import { message } from 'antd'
 import { ritualizeGoalMutation } from '@/graphql/mutations/ritualizeGoal.mutation'
 import { generateNewRitualCircle } from '@/helpers/generate_new_ritual_circle'
+import { deleteGoalMutation } from '@/graphql/mutations/deleteGoal.mutation'
 
 export const Goal$ = types
     .compose(
@@ -161,10 +162,20 @@ export const Goal$ = types
             const { goCreateNewChildGoal } = getParentOfType(self, Goals$)
             goCreateNewChildGoal(self.id)
         },
-        failGoal: flow(function* _completeGoal() {
+        failGoal: flow(function* _failGoal() {
             try {
                 const result = yield failGoalMutation(self.id)
                 if (!result) throw new Error('failGoal error')
+                const { destroyGoal } = getParentOfType(self, Goals$)
+                destroyGoal(self.id)
+            } catch (e) {
+                alert(e)
+            }
+        }),
+        deleteGoal: flow(function* _deleteGoal() {
+            try {
+                const result = yield deleteGoalMutation(self.id)
+                if (!result) throw new Error('deleteGoal error')
                 const { destroyGoal } = getParentOfType(self, Goals$)
                 destroyGoal(self.id)
             } catch (e) {

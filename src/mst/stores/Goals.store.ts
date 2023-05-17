@@ -20,6 +20,7 @@ import {
     applySnapshot,
     flow,
     castToSnapshot,
+    cast,
 } from 'mobx-state-tree'
 import { IGoal$ } from '../types'
 import { Goal$ } from './Goal.store'
@@ -43,6 +44,8 @@ export const Goals$ = types
         achievements_edit_mode: false,
         //
         active_collapse_key: types.maybe(types.string),
+        //
+        goal_on_delete: types.safeReference(Goal$),
     })
     .views((self) => ({
         get globalFilteredGoals(): IGoal$[] {
@@ -184,6 +187,12 @@ export const Goals$ = types
         onChangeField<Key extends keyof typeof self>(key: Key, value: typeof self[Key]) {
             self[key] = value
         },
+        exitEditMode(): void {
+            this.onChangeField('editable_goal', undefined)
+            this.onChangeField('new_goal', cast({}))
+            this.onChangeField('goal_on_delete', undefined)
+        },
+
         onCheckAllGoalsChange(e: CheckboxChangeEvent): void {
             if (e.target.checked) {
                 applySnapshot(self.goals_checked_list_filter, Object.values(STATUS_ENUM_FILTERS))
@@ -230,8 +239,8 @@ export const Goals$ = types
          */
         goCreateEditMode(goal: IGoal$): void {
             self.editable_goal = goal
-            self.new_goal = cloneDeep({ ...self.editable_goal, id: '' })
             self.is_creator_mode = true
+            self.new_goal = cloneDeep({ ...self.editable_goal, id: '' })
         },
         exitGoalEditMode(): void {
             if (self.editable_goal && self.editable_goal?.goal_ritualized_mode) {
@@ -427,4 +436,11 @@ export const Goals$ = types
                 console.error(`ritualizeGoal error, ${e}`)
             }
         }),
+        toggleDeleteGoalMenu(close?: 'close'): void {
+            if (close === 'close') {
+                self.goal_on_delete = undefined
+            } else {
+                self.goal_on_delete = self.editable_goal
+            }
+        },
     }))

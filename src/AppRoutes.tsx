@@ -1,7 +1,7 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
 import { APP_ROUTES_ENUM } from './helpers/enums'
-import { CreateNewGoalModal } from './components-modals/create-new-goal-modal/CreateNewGoalModal'
-import { GoalsListModal } from './components-modals/goals-list-modal/GoalsListModal'
+import { CreateNewGoalModal } from './components-modal-windows/create-new-goal-modal/CreateNewGoalModal'
+import { GoalsManagerMw } from './components-modal-windows/goals-manager-mw/GoalsManagerMw'
 import { AchievementsIndex } from './pages/achievements/AchievementsIndex'
 import { DashboardIndex } from './pages/dashboard/DashboardIndex'
 import { GoalsIndex } from './pages/goals/GoalsIndex'
@@ -23,7 +23,7 @@ export const AppRoutes: React.FC = () => {
                 <Route path={`/${APP_ROUTES_ENUM.DASHBOARD}`} element={<DashboardIndex />} />
             </Routes>
             <CreateNewGoalModal />
-            <GoalsListModal />
+            <GoalsManagerMw />
         </>
     )
 }
