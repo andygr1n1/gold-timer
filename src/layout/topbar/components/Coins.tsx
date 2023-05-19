@@ -7,10 +7,10 @@ export const Coins: React.FC = observer(() => {
 
     return (
         <div className='flex h-[41px] items-center gap-2'>
-            <div className='cursor-default font-mono text-base font-extrabold text-navlink' title='coins'>
+            <div className='text-navLink cursor-default font-mono text-base font-extrabold' title='coins'>
                 {coins}
             </div>
-            <Icon icon='ri:coins-fill' width={20} height={20} className='text-navlink ' />
+            <Icon icon='ri:coins-fill' width={20} height={20} className='text-navLink ' />
         </div>
     )
 })

@@ -11,9 +11,9 @@ module.exports = {
     'global-2-bg': 'var(--colors-twilight)',
     'global-3-bg': 'var(--colors-evening)',
     'global-text': 'var(--colors-white)',
-    // navlink
-    navlink: 'var(--colors-gray-300)',
-    'navlink-active': 'var(--colors-blue-100)',
+    // navLink
+    navLink: 'var(--colors-gray-300)',
+    'navLink-active': 'var(--colors-blue-100)',
     // badge
     'badge-bg': 'var(--colors-blue-600)',
     // button

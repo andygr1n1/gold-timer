@@ -6,9 +6,9 @@ module.exports = {
     'global-bg': 'var(--colors-global-bg)',
     'global-2-bg': 'var(--colors-global-2-bg)',
     'global-3-bg': 'var(--colors-global-3-bg)',
-    // navlink
-    navlink: 'var(--colors-navlink)',
-    'navlink-active': 'var(--colors-navlink-active)',
+    // navLink
+    navLink: 'var(--colors-navLink)',
+    'navLink-active': 'var(--colors-navLink-active)',
     // badge
     'badge-bg': 'var(--colors-badge-bg)',
     // button

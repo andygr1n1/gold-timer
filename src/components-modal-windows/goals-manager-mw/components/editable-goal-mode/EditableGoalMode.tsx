@@ -8,10 +8,10 @@ import { GoalOnDelete } from './components/GoalOnDelete'
 
 export const EditableGoalMode: React.FC = observer(() => {
     return (
-        <>
+        <div className='my-2 py-2'>
             <Breadcrumbs />
             <EditableGoalForm />
-        </>
+        </div>
     )
 })
 

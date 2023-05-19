@@ -2,15 +2,16 @@ import { RdBadge } from '@/components-rd/rd-badge/RdBadge'
 import { XTooltip } from '@/components-x/x-tooltip/XTooltip'
 import { ACTIVE_GOAL_TYPE_ENUM } from '@/helpers/enums'
 import { IGoal$ } from '@/mst/types'
-import { useGoalsStore, useRootStore } from '@/StoreProvider'
+import { useRootStore } from '@/StoreProvider'
 import { Icon } from '@iconify/react'
 import { truncate } from 'lodash'
 import { observer } from 'mobx-react-lite'
 import { getTopGoalColor } from './helpers/getTopGoalColor'
 import styles from './TopGoalsWidgets.module.scss'
 import { Popover } from 'antd'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { TopGoalPopoverContent } from './TopGoalPopoverContent'
+import { useWindowMatchMedia } from '@/hooks/useMatchMedia.hook.'
 
 export const TopGoal: React.FC<{ goal: IGoal$; type: ACTIVE_GOAL_TYPE_ENUM }> = observer(({ goal, type }) => {
     const {
@@ -20,9 +21,8 @@ export const TopGoal: React.FC<{ goal: IGoal$; type: ACTIVE_GOAL_TYPE_ENUM }> = 
         },
         modal_windows$: { goals_manager_mw$ },
     } = useRootStore()
-
+    const { isDesktop } = useWindowMatchMedia(['isDesktop'])
     const [popoverOpen, setPopoverOpen] = useState(false)
-
     const goalClass = getTopGoalColor(goal).containerClass
     const badgeClass = getTopGoalColor(goal).badgeStyle
 
@@ -32,6 +32,12 @@ export const TopGoal: React.FC<{ goal: IGoal$; type: ACTIVE_GOAL_TYPE_ENUM }> = 
     }
 
     const tooltipTitle = goal.isRitualGoal ? `${goal.title} (${goal.ritualGoalPower})` : goal.title
+
+    let touchTrigger = useRef(false)
+
+    const useMobileTrigger = () => {
+        touchTrigger!.current = !touchTrigger!.current
+    }
 
     return (
         <XTooltip title={tooltipTitle}>
@@ -57,7 +63,17 @@ export const TopGoal: React.FC<{ goal: IGoal$; type: ACTIVE_GOAL_TYPE_ENUM }> = 
                         }}
                         onContextMenu={(e) => {
                             e.preventDefault()
-                            setPopoverOpen(true)
+                            isDesktop && setPopoverOpen(true)
+                        }}
+                        onTouchStart={() => {
+                            const timer = setTimeout(() => {
+                                useMobileTrigger()
+                                touchTrigger?.current && setPopoverOpen(() => true)
+                                clearTimeout(timer)
+                            }, 500)
+                        }}
+                        onTouchEnd={() => {
+                            useMobileTrigger()
                         }}
                     >
                         <span>{truncate(goal.title, { length: 25 })}</span>

@@ -6,7 +6,7 @@ export const CloseSideMenu: React.FC<{ className?: string }> = observer(({ class
     return (
         <Icon
             icon='line-md:menu-to-close-transition'
-            className={`absolute right-4 top-2 cursor-pointer font-bold text-navlink hover:text-navlink-active xl:hidden ${className}`}
+            className={`text-nav-link hover:text-nav-link-active absolute right-4 top-2 cursor-pointer font-bold xl:hidden ${className}`}
             width={23}
             height={23}
             onClick={useSideMenu.onChange}

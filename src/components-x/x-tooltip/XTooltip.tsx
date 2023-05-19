@@ -37,7 +37,7 @@ export const XTooltip: React.FC<{ title: string; children: ReactNode }> = observ
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         className='
-                        absolute top-0 left-0 z-[1000]  w-max max-w-[150px] translate-x-[5%] translate-y-[-120%]
+                        absolute left-0 top-0 z-[1000]  w-max max-w-[150px] translate-x-[5%] translate-y-[-120%]
                         cursor-default rounded-md bg-zinc-900 bg-opacity-90 p-2 
                         text-sm text-gray-100'
                     >

@@ -9,12 +9,12 @@ export const TopGoalPopoverContent: React.FC<{ goal: IGoal$; action: () => void 
             goals$: { goCreateEditMode },
             modal_windows$: { goals_manager_mw$ },
         } = useRootStore()
-
+        
         return (
             <div className='flex min-w-[120px] flex-col gap-4'>
                 <div className='flex flex-col gap-1'>
                     <div className='text-gray-400'>Actions</div>
-                    <div className='ml-2'>
+                    <div className='ml-2 flex flex-col gap-2'>
                         {goal.isRitualGoal && (
                             <MenuItem
                                 action={() => {
@@ -51,7 +51,7 @@ export const TopGoalPopoverContent: React.FC<{ goal: IGoal$; action: () => void 
                 </div>
                 <div className='flex flex-col gap-1'>
                     <div className='text-gray-400'>Change State</div>
-                    <div className='ml-2'>
+                    <div className='ml-2 flex flex-col gap-2'>
                         <MenuItem
                             action={() => {
                                 goal.completeGoal().finally(() => onClose())
