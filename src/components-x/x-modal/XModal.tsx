@@ -12,7 +12,7 @@ export const XModal: React.FC<{
     return (
         <>
             <Transition appear show={open} as={Fragment}>
-                <Dialog as='div' className='relative z-10 font-neon' onClose={onCancel}>
+                <Dialog as='div' className='relative z-[60] font-neon' onClose={onCancel}>
                     <Transition.Child
                         as={Fragment}
                         enter='ease-out duration-300'
@@ -41,7 +41,7 @@ export const XModal: React.FC<{
                                 >
                                     <Dialog.Title
                                         as='h3'
-                                        className=' border-b-solid sticky top-[-24px] z-50
+                                        className='border-b-solid sticky top-[-24px] z-50
                                                 mb-2 flex  items-center justify-between gap-5 border-b border-b-gray-500/30
                                                 bg-white py-2 leading-6 text-gray-900'
                                     >

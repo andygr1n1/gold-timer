@@ -29,6 +29,7 @@ import { v4 } from 'uuid'
 import { getCoinsFromRitual } from '@/helpers/get_coins_from_ritual'
 import { addCoinsMutation } from '@/graphql/mutations/addCoins.mutation'
 import { Filter$ } from './Filter.store'
+import { updateRitualInterval } from '@/graphql/mutations/updateRitualInterval.mutation'
 
 export const Goals$ = types
     .model('Goals$', {
@@ -268,6 +269,8 @@ export const Goals$ = types
 
             try {
                 if (!user_id) throw new Error('user id is undefined')
+                console.log('self.new_goal.goal_ritual?.ritual_interval', self.new_goal.goal_ritual?.ritual_interval)
+                // return
 
                 if (self.editable_goal?.created_at) {
                     // goal exists
@@ -292,6 +295,16 @@ export const Goals$ = types
                     self.editable_goal.onChangeField('status', updatedGoalResponse.status)
                     self.editable_goal.onChangeField('finished_at', updatedGoalResponse.finished_at)
                     self.editable_goal.onChangeField('is_favorite', updatedGoalResponse.is_favorite)
+
+                    // update ritual interval if is ritual goal
+                    if (self.new_goal.goal_ritual?.ritual_interval) {
+                        const goalRitualIntervalRes = yield updateRitualInterval(
+                            updatedGoalResponse.id,
+                            self.new_goal.goal_ritual?.ritual_interval,
+                        )
+
+                        self.editable_goal.goal_ritual?.onChangeField('ritual_interval', goalRitualIntervalRes)
+                    }
                 } else {
                     if (!self.editable_goal) return
 
