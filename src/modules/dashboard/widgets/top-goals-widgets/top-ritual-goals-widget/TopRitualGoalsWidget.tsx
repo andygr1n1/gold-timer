@@ -1,4 +1,4 @@
-import { WidgetInfoIcon } from '@/components/icons/WidgetInfoIcon'
+import { WidgetInfoIcon } from '@/components-icons/WidgetInfoIcon'
 import { ACTIVE_GOAL_TYPE_ENUM } from '@/helpers/enums'
 import { useRootStore } from '@/StoreProvider'
 import { observer } from 'mobx-react-lite'

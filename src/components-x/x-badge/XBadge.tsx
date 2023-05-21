@@ -7,7 +7,7 @@ const style = {
     borderColor: 'var(--colors-badge-bg)',
 }
 
-export const RdBadge: React.FC<BadgeProps> = (props) => {
+export const XBadge: React.FC<BadgeProps> = (props) => {
     return (
         <AntdBadge {...props} style={props.style || style}>
             {props.children}

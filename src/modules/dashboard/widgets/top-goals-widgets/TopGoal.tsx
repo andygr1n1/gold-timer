@@ -1,4 +1,4 @@
-import { RdBadge } from '@/components-rd/rd-badge/RdBadge'
+import { XBadge } from '@/components-x/x-badge/XBadge'
 import { XTooltip } from '@/components-x/x-tooltip/XTooltip'
 import { ACTIVE_GOAL_TYPE_ENUM } from '@/helpers/enums'
 import { IGoal$ } from '@/mst/types'
@@ -48,7 +48,7 @@ export const TopGoal: React.FC<{ goal: IGoal$; type: ACTIVE_GOAL_TYPE_ENUM }> = 
                 content={<TopGoalPopoverContent action={() => setPopoverOpen(false)} goal={goal} />}
                 placement='bottom'
             >
-                <RdBadge
+                <XBadge
                     style={badgeClass}
                     offset={[-6, 1]}
                     count={goal.daysEstimationCount || <Icon icon='emojione-v1:ringing-bell' width={20} height={20} />}
@@ -78,7 +78,7 @@ export const TopGoal: React.FC<{ goal: IGoal$; type: ACTIVE_GOAL_TYPE_ENUM }> = 
                     >
                         <span>{truncate(goal.title, { length: 25 })}</span>
                     </div>
-                </RdBadge>
+                </XBadge>
             </Popover>
         </XTooltip>
     )

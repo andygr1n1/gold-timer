@@ -54,6 +54,9 @@ export const Goal$ = types
         get ritualGoalInterval(): number {
             return self.goal_ritual?.ritual_interval ?? 0
         },
+        get ritualGoalType(): RITUAL_TYPE_ENUM {
+            return self.goal_ritual?.ritual_type || RITUAL_TYPE_ENUM.INTERVAL_IN_DAYS
+        },
 
         get goalType(): GOAL_TYPE_ENUM {
             if (this.isFrozen) return GOAL_TYPE_ENUM.FROZEN
@@ -132,11 +135,12 @@ export const Goal$ = types
                 if (!self.finished_at) throw new Error('Goal has no estimation endpoint')
 
                 const newRitualPower = self.isExpired ? self.ritualGoalPower : self.ritualGoalPower + 1
-                const { ritual_goal_created_at, ritual_goal_finished_at } = generateNewRitualCircle(
-                    self.ritualGoalInterval,
-                    self.created_at,
-                    self.finished_at,
-                )
+                const { ritual_goal_created_at, ritual_goal_finished_at } = generateNewRitualCircle({
+                    ritual_type: self.ritualGoalType,
+                    new_ritual_interval: self.ritualGoalInterval,
+                    goal_created_at: self.created_at,
+                    goal_finished_at: self.finished_at,
+                })
                 const result = yield* toGenerator(
                     ritualizeGoalMutation(self.id, ritual_goal_created_at, ritual_goal_finished_at, newRitualPower),
                 )

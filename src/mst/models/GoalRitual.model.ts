@@ -10,8 +10,14 @@ export const GoalRitual = types
             RITUAL_TYPE_ENUM.INTERVAL_IN_DAYS,
         ),
         ritual_power: 0,
-        ritual_interval: 7,
+        ritual_interval: 1,
     })
+    .views((self) => ({
+        get isIntervalDayOfWeek(): boolean {
+            return self.ritual_type === RITUAL_TYPE_ENUM.DAYS_OF_WEEK
+        },
+    }))
+
     .actions((self) => ({
         onChangeField<Key extends keyof typeof self>(key: Key, value: typeof self[Key]) {
             self[key] = value
