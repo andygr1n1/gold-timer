@@ -1,9 +1,9 @@
 import { AppRoutes } from './AppRoutes'
 import { useRootStore } from './StoreProvider'
 import { observer } from 'mobx-react-lite'
-import { RdLoader } from './components/RdLoader'
 import { SideMenu } from './layout/side-menu/SideMenu'
 import { useAppInit } from './hooks/useAppInit.hook'
+import { XLoader } from './components-x/x-loader/XLoader'
 
 export const App = observer(() => {
     const { isValidating } = useRootStore()
@@ -11,7 +11,7 @@ export const App = observer(() => {
     useAppInit()
 
     return isValidating ? (
-        <RdLoader />
+        <XLoader />
     ) : (
         <div className='app'>
             <SideMenu />

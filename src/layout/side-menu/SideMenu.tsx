@@ -2,7 +2,7 @@ import { APP_ROUTES_ENUM } from '@/helpers/enums'
 import { useSideMenu } from '@/hooks/useSideMenu.hook'
 import { Icon } from '@iconify/react'
 import { observer } from 'mobx-react-lite'
-import { Divider } from '../../components/Divider'
+import { XDivider } from '../../components-x/x-divider/XDivider'
 import { CloseSideMenu } from './components/Close.sidemenu'
 import { UserAvatarSideMenu } from './components/UserAvatar.sidemenu'
 import { SidemenuLink } from './components/SidemenuLink'
@@ -70,7 +70,7 @@ export const SideMenu: React.FC = observer(() => {
                             disabled
                         /> */}
                         {/*  */}
-                        <Divider className='w-[125px] bg-gray-700' />
+                        <XDivider className='w-[125px] bg-gray-700' />
                         {/* <SidemenuLink
                             to={APP_ROUTES_ENUM.SEARCH}
                             title='Search'
@@ -126,7 +126,7 @@ export const SideMenu: React.FC = observer(() => {
                             disabled
                         /> */}
                         {/*  */}
-                        <Divider className='w-[125px] bg-gray-700' />
+                        <XDivider className='w-[125px] bg-gray-700' />
                         {/*  */}
                         {/* <SidemenuLink
                             to={APP_ROUTES_ENUM.SUGGESTIONS}

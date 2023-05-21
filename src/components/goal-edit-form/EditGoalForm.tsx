@@ -7,7 +7,7 @@ import { TextAreaDescription } from '@/components-modal-windows/create-new-goal-
 import { observer } from 'mobx-react-lite'
 
 import { EditGoalFormFooter } from './EditGoalFormFooter'
-import { InputRitualInterval } from '@/components-modal-windows/create-new-goal-modal/components/InputRitualInterval'
+import { InputRitualInterval } from '@/components/input-ritual-type/InputRitualType'
 
 export const EditGoalForm: React.FC = observer(() => {
     return (

@@ -1,4 +1,4 @@
-import { RdBadge } from '@/components-rd/rd-badge/RdBadge'
+import { XBadge } from '@/components-x/x-badge/XBadge'
 import { APP_ROUTES_ENUM } from '@/helpers/enums'
 import { useSideMenu } from '@/hooks/useSideMenu.hook'
 import { observer } from 'mobx-react-lite'
@@ -33,8 +33,8 @@ export const SidemenuLink: React.FC<{
                 <>
                     <button
                         className='
-                    hover:text-navLink-active relative flex h-[25px] w-full cursor-pointer items-center justify-start gap-2 border-none bg-transparent 
-                    text-left text-sm text-inherit outline-none duration-300  disabled:cursor-default disabled:text-gray-500 '
+                    relative flex h-[25px] w-full cursor-pointer items-center justify-start gap-2 border-none bg-transparent text-left 
+                    text-sm text-inherit outline-none duration-300 hover:text-navLink-active  disabled:cursor-default disabled:text-gray-500 '
                         disabled={disabled}
                     >
                         {icon ? icon : null}
@@ -42,7 +42,7 @@ export const SidemenuLink: React.FC<{
                             <span className='absolute top-0'>{title}</span>
                         </p>
                     </button>
-                    <RdBadge count={badge} offset={[-5, 0]} />
+                    <XBadge count={badge} offset={[-5, 0]} />
                 </>
             ) : (
                 <>{children}</>

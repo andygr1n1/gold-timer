@@ -1,4 +1,4 @@
-import { WidgetInfoIcon } from '@/components/icons/WidgetInfoIcon'
+import { WidgetInfoIcon } from '@/components-icons/WidgetInfoIcon'
 import { observer } from 'mobx-react-lite'
 import 'react-responsive-carousel/lib/styles/carousel.min.css' // requires a loader
 import { Carousel } from 'react-responsive-carousel'

@@ -11,7 +11,7 @@ export const WidgetInfoIcon: React.FC<{
         <button
             disabled={disabled}
             onClick={onClick}
-            className={`absolute -top-6 -left-3 z-10 flex items-center justify-center rounded-full p-2 shadow-lg shadow-black/30 xl:-top-8 xl:-left-8 xl:p-4 ${bgColor}`}
+            className={`absolute -left-3 -top-6 z-10 flex items-center justify-center rounded-full p-2 shadow-lg shadow-black/30 xl:-left-8 xl:-top-8 xl:p-4 ${bgColor}`}
         >
             <Icon icon={icon} className={iconColor} width={35} height={35} />
         </button>
