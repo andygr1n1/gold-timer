@@ -6,7 +6,7 @@ import { GoalFormTitleOption } from '@/components/goal-form-options/GoalFormTitl
 import { TextAreaDescription } from '@/components-modal-windows/create-new-goal-modal/components/TextAreaDescription'
 import { XButton } from '@/components-x/x-button/XButton'
 
-import { useGoalsStore } from '@/StoreProvider'
+import { useGoalsStore, useRootStore } from '@/StoreProvider'
 import { observer } from 'mobx-react-lite'
 import { useEffect } from 'react'
 
@@ -35,11 +35,22 @@ export const GoalRitualForm: React.FC = observer(() => {
 })
 
 const Footer = observer(() => {
-    const { ritualizeGoal, new_goal } = useGoalsStore()
+    const {
+        goals$: { ritualizeGoal, new_goal },
+        modal_windows$: {
+            goals_manager_mw$: { forceClose },
+        },
+    } = useRootStore()
+
+    const handleRitualize = () => {
+        ritualizeGoal().then(() => {
+            forceClose()
+        })
+    }
 
     return (
         <div className='my-2 flex justify-end'>
-            <XButton disabled={!new_goal.isValidForMutation} onClick={ritualizeGoal} className='flex self-end'>
+            <XButton disabled={!new_goal.isValidForMutation} onClick={handleRitualize} className='flex self-end'>
                 Ritualize
             </XButton>
         </div>

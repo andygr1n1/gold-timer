@@ -74,14 +74,14 @@ export const PanelSettingsTooltip: React.FC<{ goal: IGoal$ }> = observer(({ goal
                                             >
                                                 Goal Completed
                                             </button>
-                                            <button
+                                            {/* <button
                                                 onClick={goal.goGoalRitualizedMode}
                                                 className='
                                                     border-b-solid w-full cursor-pointer border-gray-500/20 bg-indigo-500 p-2 text-left
                                                     font-neon text-xs text-white duration-300 hover:bg-indigo-700'
                                             >
                                                 Create Ritual
-                                            </button>
+                                            </button> */}
                                             {/* <button
                                                 onClick={goal.failGoal}
                                                 className='

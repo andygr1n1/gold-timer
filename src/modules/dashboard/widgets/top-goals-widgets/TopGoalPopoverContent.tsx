@@ -9,13 +9,13 @@ export const TopGoalPopoverContent: React.FC<{ goal: IGoal$; action: () => void 
             goals$: { goCreateEditMode },
             modal_windows$: { goals_manager_mw$ },
         } = useRootStore()
-        
+
         return (
             <div className='flex min-w-[120px] flex-col gap-4'>
                 <div className='flex flex-col gap-1'>
                     <div className='text-gray-400'>Actions</div>
                     <div className='ml-2 flex flex-col gap-2'>
-                        {goal.isRitualGoal && (
+                        {goal.isRitualGoal ? (
                             <MenuItem
                                 action={() => {
                                     goal.enforceGoalRitual().finally(() => onClose())
@@ -24,6 +24,20 @@ export const TopGoalPopoverContent: React.FC<{ goal: IGoal$; action: () => void 
                                 iconClassName='text-indigo-700'
                                 className='hover:text-indigo-700'
                                 title='ritualize'
+                            />
+                        ) : (
+                            <MenuItem
+                                action={() => {
+                                    goal.goGoalRitualizedMode()
+                                    //    goCreateEditMode(goal)
+                                    goals_manager_mw$.onChangeField('visible', true)
+                                    goals_manager_mw$.onChangeField('force_mode', true)
+                                    onClose()
+                                }}
+                                icon='game-icons:magic-gate'
+                                iconClassName='text-indigo-700'
+                                className='hover:text-indigo-700'
+                                title='create ritual'
                             />
                         )}
                         <MenuItem
