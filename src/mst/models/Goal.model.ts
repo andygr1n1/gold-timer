@@ -1,4 +1,3 @@
-import { IGoalRitual } from './../types'
 import { PRIVACY_ENUM } from '@/helpers/enums'
 import { DIFFICULTY_ENUM, STATUS_ENUM } from './../../helpers/enums'
 import { types } from 'mobx-state-tree'
@@ -56,14 +55,11 @@ export const Goal = types
                 return sn
             },
         }),
-        goals_rituals: types.array(GoalRitual),
+        goal_ritual: types.maybeNull(GoalRitual),
     })
     .views((self) => ({
         get isValidForMutation(): boolean {
             return !!self.title.length
-        },
-        get goal_ritual(): IGoalRitual | null {
-            return self.goals_rituals[0] || null
         },
         get remainingTime(): Date | undefined {
             if (!self.finished_at) return

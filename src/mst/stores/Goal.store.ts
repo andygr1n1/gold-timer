@@ -2,7 +2,7 @@ import { GOAL_TYPE_ENUM } from './../../helpers/enums'
 import { LOG_TYPE_ENUM, RITUAL_TYPE_ENUM, STATUS_ENUM } from '@/helpers/enums'
 import { completeGoalMutation } from '@/graphql/mutations/completeGoal.mutation'
 import { failGoalMutation } from '@/graphql/mutations/failGoal.mutation'
-import { cast, castToSnapshot, flow, getParentOfType, toGenerator, types } from 'mobx-state-tree'
+import { cast, flow, getParentOfType, toGenerator, types } from 'mobx-state-tree'
 import { Goal } from '../models/Goal.model'
 import { Goals$ } from './Goals.store'
 import { generateLog } from '@/graphql/mutations/generateLog.mutation'
@@ -94,15 +94,13 @@ export const Goal$ = types
             self.goal_ritualized_mode = true
 
             if (!self.goal_ritual) {
-                self.goals_rituals.push(
-                    castToSnapshot({
-                        ritual_id: '',
-                        ritual_goal: '',
-                        ritual_type: RITUAL_TYPE_ENUM.INTERVAL_IN_DAYS,
-                        ritual_power: 0,
-                        ritual_interval: 7,
-                    }),
-                )
+                self.goal_ritual = cast({
+                    goal_id: self.id,
+                    ritual_id: '',
+                    ritual_type: RITUAL_TYPE_ENUM.INTERVAL_IN_DAYS,
+                    ritual_power: 0,
+                    ritual_interval: 7,
+                })
             }
             goCreateEditMode(cast(self))
         },
@@ -148,7 +146,7 @@ export const Goal$ = types
 
                 self.created_at = ritual_goal_created_at
                 self.finished_at = ritual_goal_finished_at
-                self.goals_rituals?.[0].onChangeField('ritual_power', newRitualPower)
+                self.goal_ritual?.onChangeField('ritual_power', newRitualPower)
 
                 options.messageSuccess &&
                     message.success({

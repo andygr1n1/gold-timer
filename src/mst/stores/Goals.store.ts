@@ -432,7 +432,7 @@ export const Goals$ = types
                 self.editable_goal.onChangeField('status', updatedGoalResponse.status)
                 self.editable_goal.onChangeField('created_at', updatedGoalResponse.created_at)
                 self.editable_goal.onChangeField('finished_at', updatedGoalResponse.finished_at)
-                self.editable_goal.onChangeField('goals_rituals', castToSnapshot(updatedGoalResponse.goals_rituals))
+                self.editable_goal.onChangeField('goal_ritual', castToSnapshot(updatedGoalResponse.goal_ritual))
 
                 self.editable_goal.onChangeField('goal_ritualized_mode', false)
 

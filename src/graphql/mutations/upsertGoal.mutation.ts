@@ -13,7 +13,7 @@ export interface IUpsertGoal {
     status: STATUS_ENUM
     privacy: PRIVACY_ENUM
     is_favorite: boolean
-    goals_rituals: {
+    goal_ritual: {
         goal_id: string
         ritual_id: string
         ritual_power: number
@@ -43,7 +43,7 @@ export const upsertGoalMutation = async (newGoal: IUpsertNewGoal): Promise<IUpse
                 created_at
                 finished_at
                 is_favorite
-                goals_rituals {
+                goal_ritual {
                     goal_id
                     ritual_id
                     ritual_power
