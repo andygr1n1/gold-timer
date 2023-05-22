@@ -31,6 +31,15 @@ export default ({ mode }) => {
         esbuild: {},
         build: {
             sourcemap: true,
+            chunkSizeWarningLimit: 1500,
+            rollupOptions: {
+                output: {
+                    manualChunks: {
+                        antd: ['antd'],
+                        lodash: ['lodash'],
+                    },
+                },
+            },
         },
     })
 }
