@@ -40,7 +40,7 @@ export const Root$ = types
 
                 const res: IGoal$SnapshotIn[] = yield fetchGoalsByUserId(userId)
                 if (!res) throw new Error('fetchGoals error')
-
+                console.log('res', res)
                 applySnapshot(self.goals$.goals, res)
             } catch (e) {
                 console.error('fetchGoals error', e)
