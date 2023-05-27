@@ -11,6 +11,7 @@ export const GoalRitual = types
         ),
         ritual_power: 0,
         ritual_interval: 1,
+        goal_title: '',
     })
     .views((self) => ({
         get isIntervalDayOfWeek(): boolean {

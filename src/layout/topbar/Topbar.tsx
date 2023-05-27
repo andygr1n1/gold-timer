@@ -7,6 +7,7 @@ import { Logout } from './components/Logout'
 import { NotificationBell } from './components/NotificationBell'
 import { useWindowMatchMedia } from '@/hooks/useMatchMedia.hook.'
 import { GithubLink } from './components/GithubLink'
+import { RitualPower } from './components/RitualPower/RitualPower'
 
 export const TopBar: React.FC = observer(() => {
     const { isDesktop } = useWindowMatchMedia(['isDesktop'])
@@ -33,10 +34,11 @@ export const TopBar: React.FC = observer(() => {
 
                 <div className='flex w-[100px] items-center gap-2'>
                     <Coins />
-                    <NotificationBell />
+                    <RitualPower />
                 </div>
 
-                <div className='flex w-[100px] items-center gap-2'>
+                <div className='flex w-[150px] items-center gap-2'>
+                    <NotificationBell />
                     <ThemeSwitcher />
                     <Logout />
                 </div>

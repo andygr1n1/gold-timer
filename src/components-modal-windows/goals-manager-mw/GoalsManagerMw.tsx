@@ -8,14 +8,9 @@ import { GoalsListModalTitle } from './components/GoalsListModalTitle'
 import { XModal } from '@/components-x/x-modal/XModal'
 
 export const GoalsManagerMw: React.FC = observer(() => {
-    const { visible, onChangeField } = useGoalsManagerStore()
+    const { visible, forceClose } = useGoalsManagerStore()
     return (
-        <XModal
-            height='h-[80vh]'
-            title={<GoalsListModalTitle />}
-            open={visible}
-            onCancel={() => onChangeField('visible', false)}
-        >
+        <XModal height='h-[80vh]' title={<GoalsListModalTitle />} open={visible} onCancel={() => forceClose()}>
             {visible ? <Body /> : null}
         </XModal>
     )

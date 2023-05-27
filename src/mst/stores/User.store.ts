@@ -1,4 +1,5 @@
 import { types } from 'mobx-state-tree'
+import { GoalRitual } from '../models/GoalRitual.model'
 
 export const User$ = types
     .model('User$', {
@@ -18,6 +19,9 @@ export const User$ = types
             },
         }),
         coins: 0,
+        total_ritual_power: 0,
+        number_of_rituals: 0,
+        most_powerful_ritual: types.optional(GoalRitual, {}),
         avatar: types.maybeNull(types.string),
     })
     .actions((self) => ({
