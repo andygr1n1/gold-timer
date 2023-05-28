@@ -1,7 +1,7 @@
 import { AppRoutes } from './AppRoutes'
 import { useRootStore } from './StoreProvider'
 import { observer } from 'mobx-react-lite'
-import { SideMenu } from './layout/side-menu/SideMenu'
+import { SideMenu } from './components-layout/side-menu/SideMenu'
 import { useAppInit } from './hooks/useAppInit.hook'
 import { XLoader } from './components-x/x-loader/XLoader'
 

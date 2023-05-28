@@ -1,4 +1,4 @@
-import { TopBar } from '@/layout/topBar/TopBar'
+import { TopBar } from '@/components-layout/top-bar/TopBar'
 import { observer } from 'mobx-react-lite'
 
 export const ModuleWrapper: React.FC<{ title?: string; children: React.ReactNode }> = observer(

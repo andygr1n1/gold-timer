@@ -1,4 +1,4 @@
-import { TopBar } from '@/layout/topBar/TopBar'
+import { TopBar } from '@/components-layout/top-bar/TopBar'
 import { UserInfo } from '@/modules/profile/UserInfo'
 import { observer } from 'mobx-react-lite'
 

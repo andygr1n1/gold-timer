@@ -7,7 +7,7 @@ import { Logout } from './components/Logout'
 import { NotificationBell } from './components/NotificationBell'
 import { useWindowMatchMedia } from '@/hooks/useMatchMedia.hook.'
 import { GithubLink } from './components/GithubLink'
-import { RitualPower } from './components/RitualPower/RitualPower'
+import { RitualPower } from './components/ritual-power/RitualPower'
 
 export const TopBar: React.FC = observer(() => {
     const { isDesktop } = useWindowMatchMedia(['isDesktop'])

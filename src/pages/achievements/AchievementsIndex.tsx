@@ -1,4 +1,4 @@
-import { TopBar } from '@/layout/topBar/TopBar'
+import { TopBar } from '@/components-layout/top-bar/TopBar'
 import { DbAchievementList } from '@/modules/dashboard/components/dashboard-achievements/DbAchievementList'
 import { observer } from 'mobx-react-lite'
 

@@ -1,5 +1,5 @@
 import { useUserStore } from '@/StoreProvider'
-import { TopBar } from '@/layout/topBar/TopBar'
+import { TopBar } from '@/components-layout/top-bar/TopBar'
 import { TasksWidget } from '@/modules/tasks/TasksWidget'
 import { observer } from 'mobx-react-lite'
 
