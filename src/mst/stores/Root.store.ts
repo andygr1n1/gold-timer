@@ -9,6 +9,7 @@ import { User$ } from './User.store'
 import { Tasks$ } from './Tasks.store'
 import { ModalWindows$ } from './ModalWindows.store'
 import { fetchRitualPowerInfo } from '@/graphql/queries/fetchRitualPowerInfo.query'
+import { Links$ } from './links/Links.store'
 
 export const Root$ = types
     .model('Root$', {
@@ -16,6 +17,7 @@ export const Root$ = types
         goals$: types.optional(Goals$, {}),
         achievements$: types.optional(Achievements$, {}),
         tasks$: types.optional(Tasks$, {}),
+        links$: types.optional(Links$, {}),
         loading: false,
         modal_windows$: types.optional(ModalWindows$, {}),
     })

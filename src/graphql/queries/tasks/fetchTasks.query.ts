@@ -7,7 +7,7 @@ export const fetchTasks = async (user_id: string): Promise<ITask$SnapshotIn[] | 
     const client = generateClient()
 
     const query = gql`
-        query tasks($user_id: uuid) {
+        query fetchTasks($user_id: uuid) {
             tasks(where: { user_id: { _eq: $user_id } }, order_by: { created_at: asc }) {
                 description
                 tag

@@ -2,6 +2,7 @@ import { createContext, ReactNode, useContext } from 'react'
 import type { IRoot$ } from './mst/types'
 import { Root$ } from './mst/stores/Root.store'
 import { STATUS_ENUM_FILTERS } from './helpers/enums'
+import { LinksDb } from './mst/stores/links/Links.localDatabase'
 const storeContext = createContext<IRoot$ | null>(null)
 
 const generateRoot$ = () =>
@@ -14,6 +15,7 @@ const generateRoot$ = () =>
                 STATUS_ENUM_FILTERS.FAVORITE,
             ],
         },
+        links$: { links: LinksDb },
     })
 
 export const rootStore$ = generateRoot$()
@@ -36,6 +38,8 @@ export const useGoalsStore = () => useRootStore().goals$
 export const useUserStore = () => useRootStore().user$
 
 export const useTasksStore = () => useRootStore().tasks$
+
+export const useLinksStore = () => useRootStore().links$
 
 // modal windows
 export const useGoalsManagerStore = () => useRootStore().modal_windows$.goals_manager_mw$

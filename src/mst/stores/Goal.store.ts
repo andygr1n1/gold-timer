@@ -11,6 +11,10 @@ import { message } from 'antd'
 import { ritualizeGoalMutation } from '@/graphql/mutations/ritualizeGoal.mutation'
 import { generateNewRitualCircle } from '@/helpers/generate_new_ritual_circle'
 import { deleteGoalMutation } from '@/graphql/mutations/deleteGoal.mutation'
+import { Root$ } from './Root.store'
+import { IRoot$, IUser$ } from '../types'
+import { addCoinsMutation } from '@/graphql/mutations/addCoins.mutation'
+import { getCoinsFromRitual } from '@/helpers/get_coins_from_ritual'
 
 export const Goal$ = types
     .compose(
@@ -147,6 +151,20 @@ export const Goal$ = types
                 self.created_at = ritual_goal_created_at
                 self.finished_at = ritual_goal_finished_at
                 self.goal_ritual?.onChangeField('ritual_power', newRitualPower)
+
+                // coins
+                if (!self.isExpired) {
+                    const user$: IUser$ = getParentOfType(self, Root$).user$
+
+                    const mPoints = getCoinsFromRitual(newRitualPower, user$.coins)
+
+                    const resGoalCoins = yield* toGenerator(addCoinsMutation(mPoints))
+
+                    if (resGoalCoins === undefined) throw new Error('addMPointsMutation error')
+
+                    user$.onChangeField('coins', resGoalCoins)
+                }
+                // coins
 
                 options.messageSuccess &&
                     message.success({

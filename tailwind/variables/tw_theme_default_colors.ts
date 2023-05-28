@@ -1,6 +1,6 @@
 module.exports = {
-    'text-component': '#ffffff',
-    'active-component': 'var(--colors-blue-500)',
+    cText: 'black',
+    cTextHover: 'var(--colors-blue-600)',
     //
     'alpha-100': 'var(--colors-blue-100)',
     'alpha-500': 'var(--colors-blue-500)',

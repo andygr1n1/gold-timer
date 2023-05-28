@@ -7,9 +7,11 @@ import type { Root$ } from './stores/Root.store'
 import { GoalRitual } from './models/GoalRitual.model'
 import { Task$ } from './stores/Task.store'
 import { Task } from './models/Task.model'
+import { User$ } from './stores/User.store'
 
-export interface IRoot$ extends Instance<typeof Root$> {}
 export interface IGoals$ extends Instance<typeof Goals$> {}
+export interface IUser$ extends Instance<typeof User$> {}
+export interface IRoot$ extends Instance<typeof Root$> {}
 
 export interface IRoot$SnapshotIn extends SnapshotIn<typeof Root$> {}
 

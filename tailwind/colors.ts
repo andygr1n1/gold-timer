@@ -1,4 +1,6 @@
 module.exports = {
+    cText: 'var(--colors-cText)',
+    cTextHover: 'var(--colors-cTextHover)',
     skyblue: 'var(--skyblue)',
     'space-blue': 'var(--space-blue)',
     // blue800: '#252e43',
