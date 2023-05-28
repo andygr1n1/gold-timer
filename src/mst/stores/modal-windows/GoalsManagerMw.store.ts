@@ -12,8 +12,8 @@ export const GoalsManager$ = types
             self[key] = value
         },
         forceClose(): void {
+            this.onChangeField('visible', false)
             if (self.force_mode) {
-                this.onChangeField('visible', false)
                 this.onChangeField('force_mode', false)
             }
         },

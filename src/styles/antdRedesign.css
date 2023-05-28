@@ -1,0 +1,17 @@
+.ant-collapse-expand-icon {
+    @apply !text-cText;
+}
+
+.ant-segmented-group {
+    display: flex;
+    overflow: auto;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+}
+
+:where(.css-dev-only-do-not-override-ph9edi).ant-collapse-borderless > .ant-collapse-item {
+    /* border-bottom: 1px solid rgba(63, 63, 63, 0.304); */
+    /* @apply border border-b-cText; */
+    @apply border border-b-transparent;
+}

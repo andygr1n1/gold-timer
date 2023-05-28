@@ -8,10 +8,10 @@ import { truncate } from 'lodash'
 import { observer } from 'mobx-react-lite'
 import { getTopGoalColor } from './helpers/getTopGoalColor'
 import styles from './TopGoalsWidgets.module.scss'
-import { Popover } from 'antd'
-import { useRef, useState } from 'react'
-import { TopGoalPopoverContent } from './TopGoalPopoverContent'
+import { useRef } from 'react'
 import { useWindowMatchMedia } from '@/hooks/useMatchMedia.hook.'
+import { PopoverGoalActions } from '@/components/popover-goal-actions/PopoverGoalActions'
+import { useTogglePopoverState } from '@/hooks/useTogglePopoverState'
 
 export const TopGoal: React.FC<{ goal: IGoal$; type: ACTIVE_GOAL_TYPE_ENUM }> = observer(({ goal, type }) => {
     const {
@@ -22,7 +22,7 @@ export const TopGoal: React.FC<{ goal: IGoal$; type: ACTIVE_GOAL_TYPE_ENUM }> = 
         modal_windows$: { goals_manager_mw$ },
     } = useRootStore()
     const { isDesktop } = useWindowMatchMedia(['isDesktop'])
-    const [popoverOpen, setPopoverOpen] = useState(false)
+    const { popoverState, setPopoverState } = useTogglePopoverState()
     const goalClass = getTopGoalColor(goal).containerClass
     const badgeClass = getTopGoalColor(goal).badgeStyle
 
@@ -41,12 +41,11 @@ export const TopGoal: React.FC<{ goal: IGoal$; type: ACTIVE_GOAL_TYPE_ENUM }> = 
 
     return (
         <XTooltip title={tooltipTitle}>
-            <Popover
-                open={popoverOpen}
-                onOpenChange={() => popoverOpen && setPopoverOpen(!popoverOpen)}
-                overlayClassName=''
-                content={<TopGoalPopoverContent action={() => setPopoverOpen(false)} goal={goal} />}
-                placement='bottom'
+            <PopoverGoalActions
+                popoverState={popoverState}
+                setPopoverState={setPopoverState}
+                goal={goal}
+                forceMode={true}
             >
                 <XBadge
                     style={badgeClass}
@@ -63,12 +62,12 @@ export const TopGoal: React.FC<{ goal: IGoal$; type: ACTIVE_GOAL_TYPE_ENUM }> = 
                         }}
                         onContextMenu={(e) => {
                             e.preventDefault()
-                            isDesktop && setPopoverOpen(true)
+                            isDesktop && setPopoverState(true)
                         }}
                         onTouchStart={() => {
                             const timer = setTimeout(() => {
                                 useMobileTrigger()
-                                touchTrigger?.current && setPopoverOpen(() => true)
+                                touchTrigger?.current && setPopoverState(() => true)
                                 clearTimeout(timer)
                             }, 500)
                         }}
@@ -79,7 +78,7 @@ export const TopGoal: React.FC<{ goal: IGoal$; type: ACTIVE_GOAL_TYPE_ENUM }> = 
                         <span>{truncate(goal.title, { length: 25 })}</span>
                     </div>
                 </XBadge>
-            </Popover>
+            </PopoverGoalActions>
         </XTooltip>
     )
 })

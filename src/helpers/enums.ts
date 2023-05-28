@@ -67,6 +67,9 @@ export enum APP_ROUTES_ENUM {
     WALLET = 'wallet',
     SUGGESTIONS = 'suggestions',
     SETTINGS = 'settings',
+    DOCUMENTATION = 'documentation',
+    LINKS = 'links',
+    MISSIONS = 'missions',
 }
 
 export enum LOG_TYPE_ENUM {

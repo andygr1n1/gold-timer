@@ -6,6 +6,7 @@ import 'normalize.css'
 import './styles/fonts.scss'
 import './styles/root_variables.scss'
 import './styles/index.css'
+import './styles/antdRedesign.css'
 
 import { passiveSupport } from 'passive-events-support/src/utils'
 passiveSupport({ debug: false })

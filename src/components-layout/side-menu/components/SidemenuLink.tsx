@@ -5,7 +5,7 @@ import { observer } from 'mobx-react-lite'
 import { ReactNode } from 'react'
 import { NavLink } from 'react-router-dom'
 
-export const SidemenuLink: React.FC<{
+export const SideMenuLink: React.FC<{
     title?: string
     icon?: ReactNode
     disabled?: boolean

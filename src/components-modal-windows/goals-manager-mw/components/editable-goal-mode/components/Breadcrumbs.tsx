@@ -3,6 +3,7 @@ import { Breadcrumb } from 'antd'
 import { useRootStore } from '@/StoreProvider'
 import { IGoal$ } from '@/mst/types'
 import { ItemType } from 'antd/es/breadcrumb/Breadcrumb'
+import { ReactElement, ReactNode } from 'react'
 
 export const Breadcrumbs: React.FC = observer(() => {
     const {
@@ -12,10 +13,10 @@ export const Breadcrumbs: React.FC = observer(() => {
         },
     } = useRootStore()
 
-    const items = []
+    let items: ItemType[] = []
 
     !force_mode &&
-        items.unshift([
+        (items = [
             {
                 title: (
                     <button
@@ -36,7 +37,7 @@ export const Breadcrumbs: React.FC = observer(() => {
                     </button>
                 ),
             },
-        ])
+        ] as ItemType[])
 
     goal_on_delete &&
         items.push({

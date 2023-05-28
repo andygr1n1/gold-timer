@@ -378,11 +378,10 @@ export const Goals$ = types
                 console.error(`generateGoal error, ${e}`)
             }
         }),
-        ritualizeGoal: flow(function* _() {
+        ritualizeGoal: flow(function* _ritualizeGoal() {
             const {
                 user$: { id: user_id },
             } = getParentOfType(self, Root$)
-
             try {
                 if (!user_id) throw new Error('user id is undefined')
                 if (!self.editable_goal || !self.editable_goal?.goal_ritual || !self.new_goal.goal_ritual) return

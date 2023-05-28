@@ -3,8 +3,8 @@ import { IGoal$ } from '@/mst/types'
 import { Icon } from '@iconify/react'
 import { observer } from 'mobx-react-lite'
 
-export const TopGoalPopoverContent: React.FC<{ goal: IGoal$; action: () => void }> = observer(
-    ({ goal, action: onClose }) => {
+export const PopoverGoalActionsContent: React.FC<{ goal: IGoal$; action: () => void; forceMode?: boolean }> = observer(
+    ({ goal, action: onClose, forceMode = false }) => {
         const {
             goals$: { goCreateEditMode },
             modal_windows$: { goals_manager_mw$ },
@@ -31,7 +31,7 @@ export const TopGoalPopoverContent: React.FC<{ goal: IGoal$; action: () => void 
                                     goal.goGoalRitualizedMode()
                                     //    goCreateEditMode(goal)
                                     goals_manager_mw$.onChangeField('visible', true)
-                                    goals_manager_mw$.onChangeField('force_mode', true)
+                                    forceMode && goals_manager_mw$.onChangeField('force_mode', true)
                                     onClose()
                                 }}
                                 icon='game-icons:magic-gate'
@@ -44,7 +44,7 @@ export const TopGoalPopoverContent: React.FC<{ goal: IGoal$; action: () => void 
                             action={() => {
                                 goCreateEditMode(goal)
                                 goals_manager_mw$.onChangeField('visible', true)
-                                goals_manager_mw$.onChangeField('force_mode', true)
+                                forceMode && goals_manager_mw$.onChangeField('force_mode', true)
                                 onClose()
                             }}
                             icon='material-symbols:edit-square'
@@ -52,13 +52,26 @@ export const TopGoalPopoverContent: React.FC<{ goal: IGoal$; action: () => void 
                             iconClassName='text-teal-700'
                             className='hover:text-teal-700'
                         />
+
+                        <MenuItem
+                            action={() => {
+                                goal.createNewChild()
+                                goals_manager_mw$.onChangeField('visible', true)
+                                forceMode && goals_manager_mw$.onChangeField('force_mode', true)
+                                onClose()
+                            }}
+                            icon='material-symbols:check-circle-rounded'
+                            title='new child goal'
+                            iconClassName='text-green-700'
+                            className='hover:text-green-700'
+                        />
                         <MenuItem
                             action={() => {
                                 goal.favoriteGoal()
                             }}
                             icon={goal.is_favorite ? 'ic:baseline-favorite-border' : 'ic:outline-favorite'}
                             title={goal.is_favorite ? 'unfavorite' : 'favorite'}
-                            iconClassName={goal.is_favorite ? 'text-rose-700' : 'text-rose-700'}
+                            iconClassName={'text-rose-700'}
                             className='hover:text-rose-700'
                         />
                     </div>

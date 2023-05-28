@@ -6,11 +6,11 @@ export const Coins: React.FC = observer(() => {
     const { coins } = useUserStore()
 
     return (
-        <div className='flex h-[41px] items-center gap-2'>
-            <div className='text-navLink cursor-default font-mono text-base font-extrabold' title='coins'>
+        <div className='flex h-[41px] items-center gap-1'>
+            <Icon icon='ri:coins-fill' width={20} height={20} className='text-emerald-600' />
+            <div className='cursor-default font-mono text-base font-extrabold text-emerald-600' title='coins'>
                 {coins}
             </div>
-            <Icon icon='ri:coins-fill' width={20} height={20} className='text-navLink ' />
         </div>
     )
 })

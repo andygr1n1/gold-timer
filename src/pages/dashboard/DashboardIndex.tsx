@@ -1,4 +1,4 @@
-import { TopBar } from '@/layout/topbar/Topbar'
+import { TopBar } from '@/components-layout/top-bar/TopBar'
 import { CreateNewGoalWidget } from '@/modules/dashboard/widgets/create-new-goal-widget/CreateNewGoalWidget'
 import { DbAchievement } from '@/modules/dashboard/components/dashboard-achievements/DbAchievements'
 import { TopGoalsWidgets } from '@/modules/dashboard/widgets/top-goals-widgets/TopGoalsWidgets'
@@ -10,7 +10,7 @@ import { GoalsDashboardCarousel } from '@/modules/dashboard/components/goals-das
 export const DashboardIndex: React.FC = observer(() => {
     return (
         <div className={'flex'}>
-            <div className=' my-5 mx-5 flex-auto overflow-auto rounded-lg bg-global-2-bg 2xl:ml-0 '>
+            <div className=' mx-5 my-5 flex-auto overflow-auto rounded-lg bg-global-2-bg 2xl:ml-0 '>
                 <TopBar />
                 <div className={styles['grid-parent']}>
                     <div className={`${styles['grid-child']} ${styles['alpha']}`}>

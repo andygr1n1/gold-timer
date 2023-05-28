@@ -17,8 +17,19 @@
 }
 
 @font-face {
-    font-family: 'Cascadia Mono Italic';
-    src: url('/fonts/cascadia-ttf/CascadiaMonoPLItalic.ttf');
-    src: url('/fonts/cascadia-woff2/CascadiaMonoItalic.woff2') format('woff'),
-        url('/fonts/cascadia-otf/CascadiaMonoPL-Italic.otf') format('opentype');
+    font-family: 'Vi Mono';
+    src: url('/fonts/vi-ttf/VictorMono-Regular.ttf');
+    src: url('/fonts/vi-woff/VictorMono-Regular.woff') format('woff'),
+        url('/fonts/vi-otf/VictorMono-Regular.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'Vi Mono Italic';
+    src: url('/fonts/vi-ttf/VictorMono-Italic.ttf');
+    src: url('/fonts/vi-woff/VictorMono-Italic.woff') format('woff'),
+        url('/fonts/vi-otf/VictorMono-Italic.otf') format('opentype');
+}
+
+.x {
+    border: rgba(63, 63, 63, 0.304);
 }

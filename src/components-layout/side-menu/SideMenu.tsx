@@ -3,9 +3,9 @@ import { useSideMenu } from '@/hooks/useSideMenu.hook'
 import { Icon } from '@iconify/react'
 import { observer } from 'mobx-react-lite'
 import { XDivider } from '../../components-x/x-divider/XDivider'
-import { CloseSideMenu } from './components/Close.sidemenu'
-import { UserAvatarSideMenu } from './components/UserAvatar.sidemenu'
-import { SidemenuLink } from './components/SidemenuLink'
+import { CloseSideMenu } from './components/Close.sideMenu'
+import { UserAvatarSideMenu } from './components/UserAvatar.sideMenu'
+import { SideMenuLink } from './components/SidemenuLink'
 import { useOutsideAlerter } from '@/hooks/useClickOutside.hook'
 import { useEffect, useRef } from 'react'
 import { useWindowMatchMedia } from '@/hooks/useMatchMedia.hook.'
@@ -53,12 +53,12 @@ export const SideMenu: React.FC = observer(() => {
                         <CloseSideMenu />
                     </div>
                     <div className='ml-4 flex flex-auto flex-col gap-5 overflow-auto  pl-5'>
-                        <SidemenuLink
+                        <SideMenuLink
                             to={APP_ROUTES_ENUM.PROFILE}
                             title='Profile'
                             icon={<Icon icon='fluent:share-screen-person-16-regular' width={25} height={25} />}
                         />
-                        <SidemenuLink
+                        <SideMenuLink
                             to={APP_ROUTES_ENUM.ACHIEVEMENTS}
                             title='Achievements'
                             icon={<Icon icon='game-icons:achievement' width={23} height={23} />}
@@ -81,21 +81,28 @@ export const SideMenu: React.FC = observer(() => {
                         {/* <Divider className='w-[125px] bg-gray-700' /> */}
                         {/*  */}
 
-                        <SidemenuLink
+                        <SideMenuLink
                             to={APP_ROUTES_ENUM.SPRINTS}
                             title='Sprints'
                             icon={<Icon icon='game-icons:sprint' width={25} height={25} />}
                             disabled
                         />
 
-                        <SidemenuLink
+                        <SideMenuLink
+                            to={APP_ROUTES_ENUM.MISSIONS}
+                            title='Missions'
+                            icon={<Icon icon='game-icons:sprint' width={25} height={25} />}
+                            disabled
+                        />
+
+                        <SideMenuLink
                             to={APP_ROUTES_ENUM.GOALS}
                             title='Goals'
                             icon={<Icon icon='octicon:goal-16' width={20} height={20} />}
                             badge={99}
                         />
 
-                        <SidemenuLink
+                        <SideMenuLink
                             to={APP_ROUTES_ENUM.TASKS}
                             title='Tasks'
                             icon={<Icon icon='fluent:task-list-square-ltr-16-filled' width={25} height={25} />}
@@ -140,9 +147,19 @@ export const SideMenu: React.FC = observer(() => {
                             icon={<Icon icon='material-symbols:settings-applications' width={25} height={25} />}
                             disabled
                         /> */}
+                        <SideMenuLink
+                            to={APP_ROUTES_ENUM.LINKS}
+                            title='Links'
+                            icon={<Icon icon='solar:link-square-bold' width={25} height={25} />}
+                        />
+                        <SideMenuLink
+                            to={APP_ROUTES_ENUM.DOCUMENTATION}
+                            title='Documentation'
+                            icon={<Icon icon='subway:book' width={25} height={25} />}
+                        />
                     </div>
 
-                    <SidemenuLink to={APP_ROUTES_ENUM.DASHBOARD}>
+                    <SideMenuLink to={APP_ROUTES_ENUM.DASHBOARD}>
                         <button
                             className='relative h-[46px] w-[125px] cursor-pointer rounded-sm border border-transparent bg-button-bg
                             p-3 text-sm text-button-text  outline-none duration-300 
@@ -155,7 +172,7 @@ export const SideMenu: React.FC = observer(() => {
                                 Go to Dashboard
                             </span>
                         </button>
-                    </SidemenuLink>
+                    </SideMenuLink>
                 </div>
             </div>
         </>

@@ -1,13 +1,15 @@
 import { fetchAchievementsByUserId } from '@/graphql/queries/fetchAchievementsByUserId.query'
 import { fetchUserByPk } from '@/graphql/queries/fetchUserByPk.query'
-import { types, flow, applySnapshot, toGenerator } from 'mobx-state-tree'
+import { types, flow, applySnapshot, toGenerator, cast } from 'mobx-state-tree'
 import { fetchGoalsByUserId } from '../../graphql/queries/fetchGoalsByUserId.query'
-import { IGoal$SnapshotIn } from '../types'
+import { IGoal$SnapshotIn, IGoalRitual, IGoalRitualSnapshotIn } from '../types'
 import { Achievements$ } from './Achievements.store'
 import { Goals$ } from './Goals.store'
 import { User$ } from './User.store'
 import { Tasks$ } from './Tasks.store'
 import { ModalWindows$ } from './ModalWindows.store'
+import { fetchRitualPowerInfo } from '@/graphql/queries/fetchRitualPowerInfo.query'
+import { Links$ } from './links/Links.store'
 
 export const Root$ = types
     .model('Root$', {
@@ -15,6 +17,7 @@ export const Root$ = types
         goals$: types.optional(Goals$, {}),
         achievements$: types.optional(Achievements$, {}),
         tasks$: types.optional(Tasks$, {}),
+        links$: types.optional(Links$, {}),
         loading: false,
         modal_windows$: types.optional(ModalWindows$, {}),
     })
@@ -34,13 +37,38 @@ export const Root$ = types
             applySnapshot(self.user$, userInfo)
             return userInfo
         }),
+        fetchRitualPowerInfo: flow(function* _fetchRitualPowerInfo(userId?: string) {
+            try {
+                if (!userId) throw new Error('User id is undefined')
+
+                const fetchRitualPowerInfoResponse = yield* toGenerator(fetchRitualPowerInfo(userId))
+
+                if (!fetchRitualPowerInfoResponse) throw new Error('fetchGoals error')
+                const allRitualsCount = fetchRitualPowerInfoResponse.length
+                const maxPoweredGoal: IGoalRitualSnapshotIn = {
+                    ritual_power: fetchRitualPowerInfoResponse[0].ritual_power,
+                    goal_title: fetchRitualPowerInfoResponse[0].goal.title,
+                }
+                const totalRitualPower = fetchRitualPowerInfoResponse.reduce(
+                    (acc: number, item: IGoalRitual) => acc + item.ritual_power,
+                    0,
+                )
+
+                self.user$.onChangeField('total_ritual_power', totalRitualPower)
+                self.user$.onChangeField('number_of_rituals', allRitualsCount)
+                self.user$.onChangeField('most_powerful_ritual', cast(maxPoweredGoal))
+            } catch (e) {
+                console.error('fetchGoals error', e)
+            }
+        }),
         fetchGoals: flow(function* _fetchGoals(userId?: string) {
             try {
                 if (!userId) throw new Error('User id is undefined')
 
                 const res: IGoal$SnapshotIn[] = yield fetchGoalsByUserId(userId)
+
                 if (!res) throw new Error('fetchGoals error')
-                console.log('res', res)
+
                 applySnapshot(self.goals$.goals, res)
             } catch (e) {
                 console.error('fetchGoals error', e)
@@ -72,6 +100,10 @@ export const Root$ = types
                 self.loading = true
                 const userInfo = yield* toGenerator(self.fetchUserInfo())
                 if (!userInfo) throw new Error('fetchAndStabilizeAppData error: user id')
+                //
+                // fetch ritual power info
+                yield self.fetchRitualPowerInfo(userInfo?.id)
+                //
                 yield self.fetchGoals(userInfo?.id)
                 yield self.fetchAchievements(userInfo?.id)
                 //

@@ -1,7 +1,7 @@
 import { useTasksStore } from '@/StoreProvider'
 import { observer } from 'mobx-react-lite'
 import { useEffect } from 'react'
-import { Task } from './compoents/Task'
+import { Task } from './components/Task'
 
 export const TasksWidget: React.FC = observer(() => {
     const { tasks, fetchTasks } = useTasksStore()
