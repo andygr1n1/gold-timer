@@ -12,7 +12,7 @@ import { ritualizeGoalMutation } from '@/graphql/mutations/ritualizeGoal.mutatio
 import { generateNewRitualCircle } from '@/helpers/generate_new_ritual_circle'
 import { deleteGoalMutation } from '@/graphql/mutations/deleteGoal.mutation'
 import { Root$ } from './Root.store'
-import { IRoot$, IUser$ } from '../types'
+import { IUser$ } from '../types'
 import { addCoinsMutation } from '@/graphql/mutations/addCoins.mutation'
 import { getCoinsFromRitual } from '@/helpers/get_coins_from_ritual'
 
@@ -60,6 +60,10 @@ export const Goal$ = types
         },
         get ritualGoalType(): RITUAL_TYPE_ENUM {
             return self.goal_ritual?.ritual_type || RITUAL_TYPE_ENUM.INTERVAL_IN_DAYS
+        },
+        get isFromFuture(): boolean {
+            if (!self.created_at) return false
+            return !!(self.created_at > new Date(Date.now()))
         },
 
         get goalType(): GOAL_TYPE_ENUM {
@@ -151,6 +155,7 @@ export const Goal$ = types
                 self.created_at = ritual_goal_created_at
                 self.finished_at = ritual_goal_finished_at
                 self.goal_ritual?.onChangeField('ritual_power', newRitualPower)
+                //
 
                 // coins
                 if (!self.isExpired) {
@@ -163,7 +168,9 @@ export const Goal$ = types
                     if (resGoalCoins === undefined) throw new Error('addMPointsMutation error')
 
                     user$.onChangeField('coins', resGoalCoins)
+                    user$.onChangeField('total_ritual_power', user$.total_ritual_power + 1)
                 }
+
                 // coins
 
                 options.messageSuccess &&

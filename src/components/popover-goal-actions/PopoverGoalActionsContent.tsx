@@ -15,7 +15,7 @@ export const PopoverGoalActionsContent: React.FC<{ goal: IGoal$; action: () => v
                 <div className='flex flex-col gap-1'>
                     <div className='text-gray-400'>Actions</div>
                     <div className='ml-2 flex flex-col gap-2'>
-                        {goal.isRitualGoal ? (
+                        {goal.isRitualGoal && !goal.isFromFuture && (
                             <MenuItem
                                 action={() => {
                                     goal.enforceGoalRitual().finally(() => onClose())
@@ -25,7 +25,8 @@ export const PopoverGoalActionsContent: React.FC<{ goal: IGoal$; action: () => v
                                 className='hover:text-indigo-700'
                                 title='ritualize'
                             />
-                        ) : (
+                        )}
+                        {!goal.isRitualGoal && (
                             <MenuItem
                                 action={() => {
                                     goal.goGoalRitualizedMode()
