@@ -437,7 +437,7 @@ export const Goals$ = types
 
                 // ritual coins
                 const {
-                    user$: { onChangeField: userOnChangeField, coins },
+                    user$: { onChangeField: userOnChangeField, coins, total_ritual_power },
                 } = getParentOfType(self, Root$)
 
                 const mPoints = getCoinsFromRitual(self.editable_goal.ritualGoalPower, coins)
@@ -447,6 +447,7 @@ export const Goals$ = types
                 if (resGoalCoins === undefined) throw new Error('addMPointsMutation error')
 
                 userOnChangeField('coins', resGoalCoins)
+                userOnChangeField('total_ritual_power', total_ritual_power + 1)
 
                 self.closeGoalCreator()
             } catch (e) {
