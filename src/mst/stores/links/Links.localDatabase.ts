@@ -77,6 +77,20 @@ export const LinksDb = [
             },
         ],
     },
+    {
+        id: '3',
+        title: 'Git',
+        avatar: 'links/git.png',
+        link: '',
+        related_links: [
+            {
+                id: '3-1',
+                title: 'Keep Changelog',
+                avatar: 'links/changelog.png',
+                link: 'https://keepachangelog.com/en/1.1.0/',
+            },
+        ],
+    },
     //
     //
     //
