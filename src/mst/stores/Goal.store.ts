@@ -9,12 +9,13 @@ import { generateLog } from '@/graphql/mutations/generateLog.mutation'
 import { favoriteGoalMutation } from '@/graphql/mutations/favoriteGoal.mutation'
 import { message } from 'antd'
 import { ritualizeGoalMutation } from '@/graphql/mutations/ritualizeGoal.mutation'
-import { generateNewRitualCircle } from '@/helpers/generate_new_ritual_circle'
+import { generateNewRitualCircle } from '@/helpers/generateNewRitualCircle'
 import { deleteGoalMutation } from '@/graphql/mutations/deleteGoal.mutation'
 import { Root$ } from './Root.store'
 import { IUser$ } from '../types'
 import { addCoinsMutation } from '@/graphql/mutations/addCoins.mutation'
-import { getCoinsFromRitual } from '@/helpers/get_coins_from_ritual'
+import { getCoinsFromRitual } from '@/helpers/getCoinsFromRitual'
+import { getCoinsFromCompletedGoal } from '@/helpers/getCoinsFromCompletedGoal'
 
 export const Goal$ = types
     .compose(
@@ -123,6 +124,19 @@ export const Goal$ = types
                 const completeLog = generateLog(self.id, LOG_TYPE_ENUM.COMPLETED)
                 if (!completeLog) throw new Error('completeLog error')
 
+                // >> coins
+                const user$: IUser$ = getParentOfType(self, Root$).user$
+
+                const mPoints = getCoinsFromCompletedGoal(cast(self), user$.coins)
+
+                const resGoalCoins = yield* toGenerator(addCoinsMutation(mPoints))
+
+                if (resGoalCoins === undefined) throw new Error('addMPointsMutation error')
+
+                user$.onChangeField('coins', resGoalCoins)
+
+                // << coins
+
                 message.success({
                     content: 'Goal successfully completed',
                 })
@@ -134,6 +148,7 @@ export const Goal$ = types
                 })
             }
         }),
+        // autoRitualize
         enforceGoalRitual: flow(function* _ritualizeGoal(
             options: { messageSuccess: boolean } = { messageSuccess: true },
         ) {
@@ -157,7 +172,7 @@ export const Goal$ = types
                 self.goal_ritual?.onChangeField('ritual_power', newRitualPower)
                 //
 
-                // coins
+                // >> coins
                 if (!self.isExpired) {
                     const user$: IUser$ = getParentOfType(self, Root$).user$
 
@@ -171,7 +186,7 @@ export const Goal$ = types
                     user$.onChangeField('total_ritual_power', user$.total_ritual_power + 1)
                 }
 
-                // coins
+                // << coins
 
                 options.messageSuccess &&
                     message.success({

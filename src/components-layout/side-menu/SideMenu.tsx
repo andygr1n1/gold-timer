@@ -5,7 +5,7 @@ import { observer } from 'mobx-react-lite'
 import { XDivider } from '../../components-x/x-divider/XDivider'
 import { CloseSideMenu } from './components/Close.sideMenu'
 import { UserAvatarSideMenu } from './components/UserAvatar.sideMenu'
-import { SideMenuLink } from './components/SidemenuLink'
+import { SideMenuLink } from './components/SideMenuLink'
 import { useOutsideAlerter } from '@/hooks/useClickOutside.hook'
 import { useEffect, useRef } from 'react'
 import { useWindowMatchMedia } from '@/hooks/useMatchMedia.hook.'
@@ -88,12 +88,12 @@ export const SideMenu: React.FC = observer(() => {
                             disabled
                         />
 
-                        <SideMenuLink
+                        {/* <SideMenuLink
                             to={APP_ROUTES_ENUM.MISSIONS}
                             title='Missions'
                             icon={<Icon icon='game-icons:sprint' width={25} height={25} />}
                             disabled
-                        />
+                        /> */}
 
                         <SideMenuLink
                             to={APP_ROUTES_ENUM.GOALS}
@@ -103,8 +103,8 @@ export const SideMenu: React.FC = observer(() => {
                         />
 
                         <SideMenuLink
-                            to={APP_ROUTES_ENUM.TASKS}
-                            title='Tasks'
+                            to={APP_ROUTES_ENUM.NOTES}
+                            title='Notes'
                             icon={<Icon icon='fluent:task-list-square-ltr-16-filled' width={25} height={25} />}
                         />
 
@@ -126,12 +126,11 @@ export const SideMenu: React.FC = observer(() => {
                             icon={<Icon icon='mdi:shield-network' width={25} height={25} />}
                             disabled
                         /> */}
-                        {/* <SidemenuLink
+                        <SideMenuLink
                             to={APP_ROUTES_ENUM.WALLET}
                             title='Wallet'
                             icon={<Icon icon='ion:wallet' width={23} height={23} />}
-                            disabled
-                        /> */}
+                        />
                         {/*  */}
                         <XDivider className='w-[125px] bg-gray-700' />
                         {/*  */}

@@ -58,7 +58,7 @@ export enum APP_ROUTES_ENUM {
     FRIENDS = 'friends',
     SEARCH = 'search',
     ACHIEVEMENTS = 'achievements',
-    TASKS = 'tasks',
+    NOTES = 'notes',
     GOALS = 'goals',
     SPRINTS = 'sprints',
     DASHBOARD = 'dashboard',

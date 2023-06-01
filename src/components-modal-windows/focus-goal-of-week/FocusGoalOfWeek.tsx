@@ -4,8 +4,7 @@ import { useState } from 'react'
 
 export const FocusGoalOfWeek: React.FC = observer(() => {
     const [open, setOpen] = useState(!import.meta.env.DEV)
-    console.log('dev', import.meta.env.DEV)
-    console.log('prod', import.meta.env.PROD)
+
     return (
         <XModal title={'Goal of Week'} open={open} onCancel={() => setOpen(false)}>
             <div className='relative flex h-full flex-col items-center justify-center gap-5 px-10'>

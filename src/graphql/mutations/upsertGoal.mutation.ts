@@ -1,5 +1,5 @@
 import { STATUS_ENUM, PRIVACY_ENUM, RITUAL_TYPE_ENUM } from '@/helpers/enums'
-import { IUpsertNewGoal } from '@/helpers/interfaces/new_goal.interface'
+import { IUpsertNewGoal } from '@/helpers/interfaces/newGoal.interface'
 import { gql } from 'graphql-request'
 import { generateClient } from '../client'
 

@@ -32,7 +32,7 @@
     a:focus,
     a:active,
     a:visited {
-        @apply no-underline;
+        @apply text-inherit no-underline;
     }
 
     li {

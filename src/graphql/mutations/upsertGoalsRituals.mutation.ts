@@ -1,4 +1,4 @@
-import { IInsertRitual } from '@/helpers/interfaces/new_goal.interface'
+import { IInsertRitual } from '@/helpers/interfaces/newGoal.interface'
 import { gql } from 'graphql-request'
 import { generateClient } from '../client'
 

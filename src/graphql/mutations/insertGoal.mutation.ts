@@ -1,4 +1,4 @@
-import { IInsertNewGoal } from '@/helpers/interfaces/new_goal.interface'
+import { IInsertNewGoal } from '@/helpers/interfaces/newGoal.interface'
 import { IGoal$SnapshotIn } from '@/mst/types'
 import { gql } from 'graphql-request'
 import { generateClient } from '../client'

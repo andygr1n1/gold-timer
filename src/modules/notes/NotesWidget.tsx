@@ -1,9 +1,9 @@
 import { useTasksStore } from '@/StoreProvider'
 import { observer } from 'mobx-react-lite'
 import { useEffect } from 'react'
-import { Task } from './components/Task'
+import { Note } from './components/Note'
 
-export const TasksWidget: React.FC = observer(() => {
+export const NotesWidget: React.FC = observer(() => {
     const { tasks, fetchTasks } = useTasksStore()
 
     useEffect(() => {
@@ -13,7 +13,7 @@ export const TasksWidget: React.FC = observer(() => {
     return (
         <div>
             {tasks.map((t) => (
-                <Task key={t.id} t={t} />
+                <Note key={t.id} t={t} />
             ))}
         </div>
     )
