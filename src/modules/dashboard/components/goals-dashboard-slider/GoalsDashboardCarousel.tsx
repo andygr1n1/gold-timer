@@ -37,7 +37,7 @@ export const GoalsDashboardCarousel: React.FC = observer(() => {
                 </div>
                 <div>
                     <img
-                        src={`${import.meta.env.VITE_FIRE_BUNNY_STORAGE}/goals-slider/mac-book-max.png`}
+                        src={`${import.meta.env.VITE_FIRE_BUNNY_STORAGE}/goals-slider/ipro.png`}
                         title={'Faro'}
                         className='h-[250px] w-[250px] rounded-lg shadow-lg shadow-black/30'
                     />
@@ -51,7 +51,7 @@ export const GoalsDashboardCarousel: React.FC = observer(() => {
                 </div>
                 <div>
                     <img
-                        src={`${import.meta.env.VITE_FIRE_BUNNY_STORAGE}/goals-slider/simple_plan_wake_me_up.png`}
+                        src={`${import.meta.env.VITE_FIRE_BUNNY_STORAGE}/goals-slider/azor.png`}
                         title={'Simple Plan'}
                         className='h-[250px] w-[250px] rounded-lg shadow-lg shadow-black/30'
                     />

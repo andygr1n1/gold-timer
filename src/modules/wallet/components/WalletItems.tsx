@@ -19,6 +19,15 @@ export const WalletItems: React.FC = observer(() => {
                 <span> JSON CRACK</span> <span>-</span>
                 <span>6**1</span>
             </a>
+
+            <a
+                href='https://bunny.net/'
+                target='_blank'
+                className='flex cursor-pointer items-center gap-5 rounded-md bg-global-2-bg px-3 py-5 text-cText shadow-lg shadow-black/30 hover:text-cTextHover'
+            >
+                <span>BUNNY CDN</span> <span>-</span>
+                <span>1**1</span>
+            </a>
         </div>
     )
 })
