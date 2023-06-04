@@ -1,9 +1,9 @@
 import { useUserStore } from '@/StoreProvider'
 import { Button, Checkbox, Form, Input, notification } from 'antd'
 import { observer } from 'mobx-react-lite'
-import Cookies from 'universal-cookie'
 import { IValues } from './helpers/login.interface'
 import { sendLoginData } from './helpers/sendLoginData.helper'
+import { setRememberUserCookie } from '@/helpers/universalCookie.helper'
 
 export const LoginIndex: React.FC = observer(() => {
     const { onChangeField } = useUserStore()
@@ -12,16 +12,20 @@ export const LoginIndex: React.FC = observer(() => {
     const onFinish = async (values: IValues) => {
         const loginUserRes = await sendLoginData(values)
 
-        // TODO if no res to create a notification
-
         if (loginUserRes) {
             onChangeField('id', loginUserRes.user_id)
         }
 
         if (loginUserRes?.remember) {
-            const cookies = new Cookies()
-            cookies.set('user', loginUserRes.user_id, { path: '/' })
-            // if remember me to setup cookie
+            setRememberUserCookie(loginUserRes.user_id)
+        }
+
+        if (!loginUserRes) {
+            api.info({
+                message: `Login error`,
+                description: 'Your credentials are wrong, Please try again',
+                placement: 'top',
+            })
         }
     }
 
