@@ -19,6 +19,10 @@
 @tailwind utilities;
 
 @layer base {
+    label {
+        @apply !text-cText;
+    }
+
     h1,
     h2,
     h3,

@@ -1,5 +1,5 @@
 import { fetchAchievementsByUserId } from '@/graphql/queries/fetchAchievementsByUserId.query'
-import { fetchUserByPk } from '@/graphql/queries/fetchUserByPk.query'
+// import { IUserByPkResponse, fetchUserByPk } from '@/graphql/queries/fetchUserByPk.query'
 import { types, flow, applySnapshot, toGenerator, cast } from 'mobx-state-tree'
 import { fetchGoalsByUserId } from '../../graphql/queries/fetchGoalsByUserId.query'
 import { IGoal$SnapshotIn, IGoalRitual, IGoalRitualSnapshotIn } from '../types'
@@ -10,6 +10,7 @@ import { Tasks$ } from './Tasks.store'
 import { ModalWindows$ } from './ModalWindows.store'
 import { fetchRitualPowerInfo } from '@/graphql/queries/fetchRitualPowerInfo.query'
 import { Links$ } from './links/Links.store'
+import { IUserByPkResponse, fetchUserByPk } from '@/graphql/queries/fetchUserByPk.query'
 
 export const Root$ = types
     .model('Root$', {
@@ -33,10 +34,15 @@ export const Root$ = types
     }))
     .actions((self) => ({
         fetchUserInfo: flow(function* _fetchUserInfo() {
-            const userInfo = yield* toGenerator(fetchUserByPk('f192b78e-399e-4fc5-9676-ce0bf65b220b'))
-            applySnapshot(self.user$, userInfo)
-            return userInfo
-        }),
+            try {
+                if (!self.user$.id) throw new Error('fetchUserInfo::: no userId')
+                const userInfo = yield* toGenerator(fetchUserByPk(self.user$.id))
+                applySnapshot(self.user$, userInfo)
+            } catch (e) {
+                console.error(e)
+                alert(e)
+            }
+        }) as () => Promise<IUserByPkResponse | undefined>,
         fetchRitualPowerInfo: flow(function* _fetchRitualPowerInfo(userId?: string) {
             try {
                 if (!userId) throw new Error('User id is undefined')
@@ -96,16 +102,19 @@ export const Root$ = types
     }))
     .actions((self) => ({
         fetchAndStabilizeAppData: flow(function* _fetchAppData() {
+            // TODO refacktoring
             try {
                 self.loading = true
-                const userInfo = yield* toGenerator(self.fetchUserInfo())
-                if (!userInfo) throw new Error('fetchAndStabilizeAppData error: user id')
-                //
+                const userId = self.user$.id
+                if (!userId) throw new Error('fetchAndStabilizeAppData error: user id')
+
+                // fetch details related to user
+                yield self.fetchUserInfo()
                 // fetch ritual power info
-                yield self.fetchRitualPowerInfo(userInfo?.id)
+                yield self.fetchRitualPowerInfo(userId)
                 //
-                yield self.fetchGoals(userInfo?.id)
-                yield self.fetchAchievements(userInfo?.id)
+                yield self.fetchGoals(userId)
+                yield self.fetchAchievements(userId)
                 //
                 self.autoRitualizeExpiredRitualizedGoals()
                 self.loading = false

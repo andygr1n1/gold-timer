@@ -24,6 +24,11 @@ export const User$ = types
         most_powerful_ritual: types.optional(GoalRitual, {}),
         avatar: types.maybeNull(types.string),
     })
+    .views((self) => ({
+        get isAuthenticated(): boolean {
+            return !!self.id
+        },
+    }))
     .actions((self) => ({
         onChangeField<Key extends keyof typeof self>(key: Key, value: typeof self[Key]) {
             self[key] = value
