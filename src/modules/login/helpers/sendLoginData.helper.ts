@@ -6,20 +6,24 @@ export const sendLoginData = async (loginData: {
     password: string
     remember: boolean
 }): Promise<ILoginRes | undefined> => {
-    const endpoint = import.meta.env.VITE_NODE_HEROKU_ORIGIN
-    const xapikey = import.meta.env.VITE_X_API_KEY
+    try {
+        const endpoint = import.meta.env.VITE_NODE_HEROKU_ORIGIN
+        const xapikey = import.meta.env.VITE_X_API_KEY
 
-    if (!loginData) return
+        if (!loginData) return
 
-    const { data, status } = await axios<ILoginRes>({
-        method: 'post',
-        headers: {
-            'x-api-key': xapikey,
-        },
-        url: `${endpoint}login`,
-        data: loginData,
-    })
+        const { data, status } = await axios<ILoginRes>({
+            method: 'post',
+            headers: {
+                'x-api-key': xapikey,
+            },
+            url: `${endpoint}login`,
+            data: loginData,
+        })
 
-    console.warn('login status:', status)
-    return data
+        console.warn('login status:', status)
+        return data
+    } catch (e) {
+        console.error('sendLoginData Error:::', e)
+    }
 }

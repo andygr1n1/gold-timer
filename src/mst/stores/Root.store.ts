@@ -43,11 +43,11 @@ export const Root$ = types
                 alert(e)
             }
         }) as () => Promise<IUserByPkResponse | undefined>,
-        fetchRitualPowerInfo: flow(function* _fetchRitualPowerInfo(userId?: string) {
+        fetchRitualPowerInfo: flow(function* _fetchRitualPowerInfo() {
             try {
-                if (!userId) throw new Error('User id is undefined')
+                if (!self.user$.id) throw new Error('User id is undefined')
 
-                const fetchRitualPowerInfoResponse = yield* toGenerator(fetchRitualPowerInfo(userId))
+                const fetchRitualPowerInfoResponse = yield* toGenerator(fetchRitualPowerInfo(self.user$.id))
 
                 if (!fetchRitualPowerInfoResponse) throw new Error('fetchGoals error')
                 const allRitualsCount = fetchRitualPowerInfoResponse.length
@@ -67,11 +67,11 @@ export const Root$ = types
                 console.error('fetchGoals error', e)
             }
         }),
-        fetchGoals: flow(function* _fetchGoals(userId?: string) {
+        fetchGoals: flow(function* _fetchGoals() {
             try {
-                if (!userId) throw new Error('User id is undefined')
+                if (!self.user$.id) throw new Error('User id is undefined')
 
-                const res: IGoal$SnapshotIn[] = yield fetchGoalsByUserId(userId)
+                const res: IGoal$SnapshotIn[] = yield fetchGoalsByUserId(self.user$.id)
 
                 if (!res) throw new Error('fetchGoals error')
 
@@ -80,12 +80,11 @@ export const Root$ = types
                 console.error('fetchGoals error', e)
             }
         }),
-        fetchAchievements: flow(function* _fetchGoals(userId?: string) {
-            const uId = userId || self.user$.id
+        fetchAchievements: flow(function* _fetchGoals() {
             try {
-                if (!uId) throw new Error('User id is undefined')
+                if (!self.user$.id) throw new Error('User id is undefined')
 
-                const res: IGoal$SnapshotIn[] = yield fetchAchievementsByUserId(uId)
+                const res: IGoal$SnapshotIn[] = yield fetchAchievementsByUserId(self.user$.id)
                 if (!res) throw new Error('fetchGoals error')
                 applySnapshot(self.achievements$.achievements, res)
             } catch (e) {
@@ -102,7 +101,6 @@ export const Root$ = types
     }))
     .actions((self) => ({
         fetchAndStabilizeAppData: flow(function* _fetchAppData() {
-            // TODO refacktoring
             try {
                 self.loading = true
                 const userId = self.user$.id
@@ -111,10 +109,10 @@ export const Root$ = types
                 // fetch details related to user
                 yield self.fetchUserInfo()
                 // fetch ritual power info
-                yield self.fetchRitualPowerInfo(userId)
+                yield self.fetchRitualPowerInfo()
                 //
-                yield self.fetchGoals(userId)
-                yield self.fetchAchievements(userId)
+                yield self.fetchGoals()
+                yield self.fetchAchievements()
                 //
                 self.autoRitualizeExpiredRitualizedGoals()
                 self.loading = false

@@ -8,6 +8,7 @@ import { NotificationBell } from './components/NotificationBell'
 import { useWindowMatchMedia } from '@/hooks/useMatchMedia.hook.'
 import { GithubLink } from './components/GithubLink'
 import { RitualPower } from './components/ritual-power/RitualPower'
+import { FigmaLink } from './components/FigmaLink'
 
 export const TopBar: React.FC = observer(() => {
     const { isDesktop } = useWindowMatchMedia(['isDesktop'])
@@ -27,9 +28,12 @@ export const TopBar: React.FC = observer(() => {
                                 />
                             ) : null}
                         </div>
-                    ) : (
-                        <GithubLink />
-                    )}
+                    ) : import.meta.env.DEV ? (
+                        <div className='flex items-center gap-2'>
+                            <GithubLink />
+                            <FigmaLink />
+                        </div>
+                    ) : null}
                 </div>
 
                 {isDesktop && (
