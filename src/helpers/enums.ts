@@ -53,6 +53,8 @@ export enum DIFFICULTY_ENUM {
 }
 
 export enum APP_ROUTES_ENUM {
+    LOGIN = 'login',
+    REGISTER = 'register',
     HOME = '',
     PROFILE = 'profile',
     FRIENDS = 'friends',

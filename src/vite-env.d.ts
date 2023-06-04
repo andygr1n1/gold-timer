@@ -6,6 +6,8 @@ interface ImportMetaEnv {
     readonly VITE_X_HASURA_ADMIN_SECRET: string
     readonly VITE_OWNER_ID: string
     readonly VITE_NODE_ENV: string
+    readonly VITE_NODE_HEROKU_ORIGIN: string
+    readonly VITE_X_API_KEY: string
     // more env variables...
 }
 

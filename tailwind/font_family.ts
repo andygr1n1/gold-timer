@@ -9,4 +9,5 @@ module.exports = {
     neon: ['Tilt Neon', defaultConfig.theme.fontFamily.sans],
     vi: ['Vi Mono', defaultConfig.theme.fontFamily.sans],
     vii: ['Vi Mono Italic', defaultConfig.theme.fontFamily.sans],
+    satisfy: ['Satisfy', defaultConfig.theme.fontFamily.sans],
 }

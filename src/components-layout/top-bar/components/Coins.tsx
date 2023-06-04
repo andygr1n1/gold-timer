@@ -4,7 +4,7 @@ import { observer } from 'mobx-react-lite'
 
 export const Coins: React.FC = observer(() => {
     const { coins } = useUserStore()
-
+    console.log('coins', coins)
     return (
         <div className='flex h-[41px] items-center gap-1'>
             <Icon icon='ri:coins-fill' width={20} height={20} className='text-emerald-600' />

@@ -15,3 +15,7 @@
     /* @apply border border-b-cText; */
     @apply border border-b-transparent;
 }
+
+.form-field-email .ant-col.ant-form-item-label {
+    @apply mr-8;
+}

@@ -1,7 +1,7 @@
 import { gql } from 'graphql-request'
 import { generateClient } from '../client'
 
-interface IUserByPkResponse {
+export interface IUserByPkResponse {
     id: string
     coins: number
     birthday: string

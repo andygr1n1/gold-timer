@@ -2,21 +2,21 @@ import { STATUS_ENUM } from '@/helpers/enums'
 import { IGoal$SnapshotIn } from '@/mst/types'
 import { gql } from 'graphql-request'
 import { generateClient } from '../client'
-import { add } from 'date-fns'
+// import { add } from 'date-fns'
 
 export const fetchGoalsByUserId = async (owner_id: string): Promise<IGoal$SnapshotIn[] | undefined> => {
     const client = generateClient()
 
-    const finishedAtFilter = add(new Date(Date.now()), { days: 2 })
+    // const finishedAtFilter = add(new Date(Date.now()), { days: 2 })
 
     const query = gql`
-        query fetchGoalsByUserId($owner_id: uuid, $finishedAtFilter:timestamptz) {
+        query fetchGoalsByUserId($owner_id: uuid) {
             goals(
                 where: {_or: [
                     {
                         owner_id: {_eq:  $owner_id},
                         status: {_in: [${STATUS_ENUM.ACTIVE}]},
-                        finished_at: {_lte: $finishedAtFilter}
+                        # finished_at: {_lte: $finishedAtFilter}
                     },
                     {
                         owner_id: {_eq:  $owner_id},
@@ -48,7 +48,7 @@ export const fetchGoalsByUserId = async (owner_id: string): Promise<IGoal$Snapsh
     `
 
     try {
-        const response = await client.request(query, { owner_id, finishedAtFilter })
+        const response = await client.request(query, { owner_id })
 
         return response.goals
     } catch (e) {
