@@ -1,5 +1,5 @@
 import { AppRoutes } from './AppRoutes'
-import { useRootStore } from './StoreProvider'
+import { StoreProvider, useRootStore } from './StoreProvider'
 import { observer } from 'mobx-react-lite'
 import { SideMenu } from './components-layout/side-menu/SideMenu'
 import { useAppInit } from './hooks/useAppInit.hook'
@@ -8,6 +8,9 @@ import { FocusGoalOfWeek } from './components-modal-windows/focus-goal-of-week/F
 import { AnonymousRoutes } from './AnonymousRoutes'
 import { useEffect } from 'react'
 import { getUserCookie } from './helpers/universalCookie.helper'
+import { useTheming } from './hooks/useTheming.hook'
+import { LoginStoreProvider } from './modules/login/mst/LoginStoreProvider'
+
 export const App = observer(() => {
     const {
         user$: { isAuthenticated, onChangeField },
@@ -15,11 +18,36 @@ export const App = observer(() => {
 
     useEffect(() => {
         const getUserIdCookie = getUserCookie()
-        if (getUserIdCookie) onChangeField('id', getUserIdCookie)
+        if (getUserIdCookie)
+            onChangeField('id', getUserIdCookie)
+            //
+        ;(async () => {
+            useTheming.applyLocalStorage()
+
+            // const filtersRes: typeof rootStore$.goals$.goals_checked_list_filter | null = await getGoalFiltersStore()
+            // if (filtersRes) {
+            //     rootStore$.goals$.onChangeField('goals_checked_list_filter', filtersRes)
+            // } else {
+            //     setGoalFiltersStore(rootStore$.goals$.goals_checked_list_filter)
+            // }
+            // onSnapshot(rootStore$.goals$.goals_checked_list_filter, (sn) => setGoalFiltersStore(sn))
+        })()
+
+        const handler = () => {
+            // e.preventDefault()
+        }
+
+        document.addEventListener('touchstart', handler, { passive: true })
+        document.addEventListener('touchend', handler, { passive: true })
+        document.addEventListener('wheel', handler, { passive: true })
     }, [])
 
     if (!isAuthenticated) {
-        return <AnonymousRoutes />
+        return (
+            <LoginStoreProvider>
+                <AnonymousRoutes />
+            </LoginStoreProvider>
+        )
     }
 
     return <ProtectedSide />

@@ -36,6 +36,12 @@ export const LinksDb = [
                 avatar: 'links/fretex_logo.png',
                 link: 'https://dev.adopus.no/login',
             },
+            {
+                id: '1-7',
+                title: 'Avans Admin',
+                avatar: 'links/carasent_logo.jpeg',
+                link: 'https://admin-dev.avans.no/advoca/users',
+            },
         ],
     },
     {
@@ -91,6 +97,8 @@ export const LinksDb = [
             },
         ],
     },
+
+    //
     //
     //
     //
