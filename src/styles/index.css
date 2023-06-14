@@ -119,3 +119,7 @@ body {
 .module-wrapper {
     @apply relative flex h-full w-full animate-opacity flex-col overflow-auto bg-transparent transition-all duration-300;
 }
+
+.login-form {
+    @apply !m-0 flex h-[400px] flex-auto flex-col items-center !p-5 !text-cText;
+}

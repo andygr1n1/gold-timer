@@ -11,7 +11,7 @@ export const LinkSegment: React.FC<{ linkSegment: ILink$ }> = observer(({ linkSe
     const isSelected = linkSegment.isSelected
     return (
         <div
-            className={`hover:text-cTextHover flex w-full cursor-pointer flex-col items-center gap-3 rounded-lg bg-global-2-bg px-4 py-3 text-sm shadow-lg shadow-black/30 xl:w-auto ${
+            className={`flex w-full cursor-pointer flex-col items-center gap-3 rounded-lg bg-global-2-bg px-4 py-3 text-sm shadow-lg shadow-black/30 hover:text-cTextHover xl:w-auto ${
                 isSelected ? 'text-cTextHover' : ''
             }`}
             onClick={handleClickOnSegment}

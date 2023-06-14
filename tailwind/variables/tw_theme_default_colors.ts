@@ -1,6 +1,6 @@
 module.exports = {
     cText: 'black',
-    cTextHover: 'var(--colors-blue-600)',
+    cTextHover: '#41313B',
     //
     'alpha-100': 'var(--colors-blue-100)',
     'alpha-500': 'var(--colors-blue-500)',

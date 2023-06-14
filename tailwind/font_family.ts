@@ -10,4 +10,5 @@ module.exports = {
     vi: ['Vi Mono', defaultConfig.theme.fontFamily.sans],
     vii: ['Vi Mono Italic', defaultConfig.theme.fontFamily.sans],
     satisfy: ['Satisfy', defaultConfig.theme.fontFamily.sans],
+    cinzel: ['Cinzel Decorative', defaultConfig.theme.fontFamily.sans],
 }
