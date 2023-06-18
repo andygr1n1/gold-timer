@@ -30,8 +30,8 @@ export const GoalsDashboardCarousel: React.FC = observer(() => {
                 </div>
                 <div>
                     <img
-                        src={`${import.meta.env.VITE_FIRE_BUNNY_STORAGE}/goals-slider/bergen_april_2023.png`}
-                        title={'Faro'}
+                        src={`${import.meta.env.VITE_FIRE_BUNNY_STORAGE}/goals-slider/optimized_porsche_way.png`}
+                        title={'me porsche'}
                         className='h-[250px] w-[250px] rounded-lg shadow-lg shadow-black/30'
                     />
                 </div>
