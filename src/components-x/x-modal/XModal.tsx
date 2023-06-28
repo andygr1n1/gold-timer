@@ -1,6 +1,6 @@
 import { Dialog, Transition } from '@headlessui/react'
 import { Icon } from '@iconify/react'
-import { Fragment, ReactNode } from 'react'
+import { Fragment, ReactNode, useRef } from 'react'
 
 export const XModal: React.FC<{
     open: boolean
@@ -9,6 +9,8 @@ export const XModal: React.FC<{
     children: ReactNode
     height?: string
 }> = ({ height = '', onCancel, open, children, title = '' }) => {
+    const cancelButtonRef = useRef<HTMLButtonElement | null>(null)
+
     return (
         <>
             <Transition appear show={open} as={Fragment}>
@@ -46,11 +48,13 @@ export const XModal: React.FC<{
                                                 bg-white py-2 leading-6 text-gray-900'
                                     >
                                         <span>{title}</span>
-                                        <Icon
-                                            icon='mdi:close'
-                                            onClick={onCancel}
-                                            className='cursor-pointer hover:text-xl hover:font-bold'
-                                        />
+                                        <button ref={cancelButtonRef}>
+                                            <Icon
+                                                icon='mdi:close'
+                                                onClick={onCancel}
+                                                className='cursor-pointer text-xl text-gray-500 hover:font-bold hover:text-black'
+                                            />
+                                        </button>
                                     </Dialog.Title>
                                     <div className='my-2 h-[calc(100%-60px)]'>{children}</div>
                                 </Dialog.Panel>

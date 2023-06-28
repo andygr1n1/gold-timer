@@ -10,7 +10,7 @@ export const ButtonSaveTask: React.FC = observer(() => {
 
     return (
         <XButton className='flex w-full items-center justify-center' onClick={saveTask} disabled={!description}>
-            Create Task
+            Create Note
         </XButton>
     )
 })

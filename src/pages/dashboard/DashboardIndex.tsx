@@ -6,8 +6,13 @@ import { CreateNewTaskWidget } from '@/modules/dashboard/widgets/create-new-task
 import { observer } from 'mobx-react-lite'
 import styles from './DashboardIndex.module.scss'
 import { GoalsDashboardCarousel } from '@/modules/dashboard/components/goals-dashboard-slider/GoalsDashboardCarousel'
+import { useUserStore } from '@/StoreProvider'
+import { useWindowMatchMedia } from '@/hooks/useMatchMedia.hook.'
 
 export const DashboardIndex: React.FC = observer(() => {
+    const { hasGoalsSliderAddon } = useUserStore()
+
+    const { isDesktop } = useWindowMatchMedia(['isDesktop'])
     return (
         <div className={'flex'}>
             <div className=' mx-5 my-5 flex-auto overflow-auto rounded-lg bg-global-2-bg 2xl:ml-0 '>
@@ -20,9 +25,12 @@ export const DashboardIndex: React.FC = observer(() => {
                     <div className={`${styles['grid-child']} ${styles['beta']}`}>
                         <TopGoalsWidgets />
                     </div>
-                    <div className={`${styles['grid-child']} ${styles['gama']}`}>
-                        <GoalsDashboardCarousel />
-                    </div>
+
+                    {!hasGoalsSliderAddon && !isDesktop ? null : (
+                        <div className={`${styles['grid-child']} ${styles['beta']}`}>
+                            {hasGoalsSliderAddon && <GoalsDashboardCarousel />}
+                        </div>
+                    )}
                 </div>
             </div>
             <DbAchievement />

@@ -13,7 +13,7 @@ export const TagInput = observer(() => {
             onChange={(e) => {
                 onChangeField('tag', e.target.value)
             }}
-            placeholder='tag...'
+            placeholder='Type a tag...'
         />
     )
 })

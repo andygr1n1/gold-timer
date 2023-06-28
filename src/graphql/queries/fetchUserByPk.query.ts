@@ -23,16 +23,18 @@ export const fetchUserByPk = async (user_id: string): Promise<IUserByPkResponse 
                 name
                 phone
                 avatar
+                addons {
+                    addon
+                }
             }
         }
     `
 
     try {
         const response = await client.request(query, { user_id })
-
         return response.heroes_by_pk
     } catch (e) {
-        console.error('fethUserByPk error:', e)
+        console.error('fetchUserByPk error:', e)
         return
     }
 }
