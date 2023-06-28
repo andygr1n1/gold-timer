@@ -11,7 +11,7 @@ export const DescriptionTextArea = observer(() => {
         <TextArea
             className='flex h-full w-full flex-auto'
             value={description}
-            placeholder='task...'
+            placeholder='Type a note...'
             onChange={(e) => {
                 onChangeField('description', e.target.value)
             }}

@@ -21,12 +21,14 @@ export const TopRitualGoalsWidget: React.FC = observer(() => {
 
     return (
         <div className={styles['wrapper']}>
-            <WidgetInfoIcon
-                onClick={handleModalState}
-                icon='game-icons:magic-gate'
-                iconColor='text-white'
-                bgColor='bg-indigo-700 hover:bg-indigo-600 cursor-pointer -left-5'
-            />
+            {!!topRitualGoals.length && (
+                <WidgetInfoIcon
+                    onClick={handleModalState}
+                    icon='game-icons:magic-gate'
+                    iconColor='text-white'
+                    bgColor='bg-indigo-700 hover:bg-indigo-600 cursor-pointer -left-5'
+                />
+            )}
             <div className={styles['goals-container']}>
                 {topRitualGoals.length ? (
                     <>
@@ -36,7 +38,7 @@ export const TopRitualGoalsWidget: React.FC = observer(() => {
                     </>
                 ) : (
                     <div className='absolute-center flex w-full items-center justify-center self-center font-neon text-gray-500'>
-                        💫 enjoy the moment 💫
+                        💫 enjoy the moment, no rituals 💫
                     </div>
                 )}
             </div>

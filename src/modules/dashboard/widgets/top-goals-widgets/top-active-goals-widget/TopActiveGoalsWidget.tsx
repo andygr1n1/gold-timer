@@ -22,12 +22,14 @@ export const TopActiveGoalsWidget: React.FC = observer(() => {
 
     return (
         <div className={styles['wrapper']}>
-            <WidgetInfoIcon
-                onClick={handleModalState}
-                icon='ic:baseline-rocket-launch'
-                iconColor='text-white'
-                bgColor='bg-teal-500 hover:bg-teal-400 cursor-pointer'
-            />
+            {!!topFour.length && (
+                <WidgetInfoIcon
+                    onClick={handleModalState}
+                    icon='ic:baseline-rocket-launch'
+                    iconColor='text-white'
+                    bgColor='bg-teal-500 hover:bg-teal-400 cursor-pointer'
+                />
+            )}
             <div className={styles['goals-container']}>
                 {topFour.length ? (
                     <>
@@ -37,7 +39,7 @@ export const TopActiveGoalsWidget: React.FC = observer(() => {
                     </>
                 ) : (
                     <div className='absolute-center flex w-full items-center justify-center self-center font-neon text-gray-500'>
-                        🍀 take it easy today 🍀
+                        🍀 take it easy today, no goals 🍀
                     </div>
                 )}
             </div>

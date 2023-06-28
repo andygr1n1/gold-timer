@@ -1,5 +1,5 @@
 import { AppRoutes } from './AppRoutes'
-import { StoreProvider, useRootStore } from './StoreProvider'
+import { useRootStore } from './StoreProvider'
 import { observer } from 'mobx-react-lite'
 import { SideMenu } from './components-layout/side-menu/SideMenu'
 import { useAppInit } from './hooks/useAppInit.hook'
@@ -15,12 +15,10 @@ export const App = observer(() => {
     const {
         user$: { isAuthenticated, onChangeField },
     } = useRootStore()
+    const getUserIdCookie = getUserCookie()
+    if (getUserIdCookie) onChangeField('id', getUserIdCookie)
 
     useEffect(() => {
-        const getUserIdCookie = getUserCookie()
-        if (getUserIdCookie)
-            onChangeField('id', getUserIdCookie)
-            //
         ;(async () => {
             useTheming.applyLocalStorage()
 
@@ -41,8 +39,9 @@ export const App = observer(() => {
         document.addEventListener('touchend', handler, { passive: true })
         document.addEventListener('wheel', handler, { passive: true })
     }, [])
-
     if (!isAuthenticated) {
+        if (getUserIdCookie) return null
+
         return (
             <LoginStoreProvider>
                 <AnonymousRoutes />
@@ -54,7 +53,10 @@ export const App = observer(() => {
 })
 
 export const ProtectedSide = observer(() => {
-    const { isValidating } = useRootStore()
+    const {
+        isValidating,
+        user$: { hasGoalsOfWeekAddon },
+    } = useRootStore()
 
     useAppInit()
 
@@ -62,7 +64,7 @@ export const ProtectedSide = observer(() => {
         <XLoader />
     ) : (
         <>
-            <FocusGoalOfWeek />
+            {hasGoalsOfWeekAddon && <FocusGoalOfWeek />}
             <div className='app'>
                 <SideMenu />
                 <div className='app-body w-full flex-auto flex-col'>

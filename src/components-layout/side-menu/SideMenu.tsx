@@ -10,8 +10,10 @@ import { useOutsideAlerter } from '@/hooks/useClickOutside.hook'
 import { useEffect, useRef } from 'react'
 import { useWindowMatchMedia } from '@/hooks/useMatchMedia.hook.'
 import { Transition } from '@headlessui/react'
+import { useUserStore } from '@/StoreProvider'
 
 export const SideMenu: React.FC = observer(() => {
+    const { hasWalletAddon, hasLinksAddon } = useUserStore()
     const wrapperRef = useRef<HTMLDivElement | null>(null)
     const { isDesktop } = useWindowMatchMedia(['isDesktop'])
 
@@ -127,6 +129,7 @@ export const SideMenu: React.FC = observer(() => {
                             disabled
                         /> */}
                         <SideMenuLink
+                            disabled={!hasWalletAddon}
                             to={APP_ROUTES_ENUM.WALLET}
                             title='Wallet'
                             icon={<Icon icon='ion:wallet' width={23} height={23} />}
@@ -147,6 +150,7 @@ export const SideMenu: React.FC = observer(() => {
                             disabled
                         /> */}
                         <SideMenuLink
+                            disabled={!hasLinksAddon}
                             to={APP_ROUTES_ENUM.LINKS}
                             title='Links'
                             icon={<Icon icon='solar:link-square-bold' width={25} height={25} />}

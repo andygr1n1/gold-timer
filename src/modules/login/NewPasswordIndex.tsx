@@ -27,9 +27,7 @@ export const NewPasswordIndex: React.FC = observer(() => {
             return
         }
 
-        console.log('values->', values.password)
         const code = getCodeFromUrlParams()
-        console.log('code ->', code)
         if (!code) {
             onFinishFailed('Token has been expired, please create a new one')
             setUserStatus('restore')
@@ -37,7 +35,6 @@ export const NewPasswordIndex: React.FC = observer(() => {
         }
 
         const emailRes = await fetchEmailByRestoreCode(code)
-        console.log('emailRes->', emailRes)
 
         if (!emailRes) {
             onFinishFailed('Token has been expired, please create a new one')

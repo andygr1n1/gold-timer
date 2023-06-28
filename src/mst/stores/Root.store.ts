@@ -48,18 +48,16 @@ export const Root$ = types
                 if (!self.user$.id) throw new Error('User id is undefined')
 
                 const fetchRitualPowerInfoResponse = yield* toGenerator(fetchRitualPowerInfo(self.user$.id))
-
                 if (!fetchRitualPowerInfoResponse) throw new Error('fetchGoals error')
                 const allRitualsCount = fetchRitualPowerInfoResponse.length
                 const maxPoweredGoal: IGoalRitualSnapshotIn = {
-                    ritual_power: fetchRitualPowerInfoResponse[0].ritual_power,
-                    goal_title: fetchRitualPowerInfoResponse[0].goal.title,
+                    ritual_power: fetchRitualPowerInfoResponse[0]?.ritual_power || 0,
+                    goal_title: fetchRitualPowerInfoResponse[0]?.goal.title || '',
                 }
                 const totalRitualPower = fetchRitualPowerInfoResponse.reduce(
                     (acc: number, item: IGoalRitual) => acc + item.ritual_power,
                     0,
                 )
-
                 self.user$.onChangeField('total_ritual_power', totalRitualPower)
                 self.user$.onChangeField('number_of_rituals', allRitualsCount)
                 self.user$.onChangeField('most_powerful_ritual', cast(maxPoweredGoal))

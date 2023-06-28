@@ -41,7 +41,7 @@ export const TopFavoriteGoalsWidget: React.FC = observer(() => {
                     </>
                 ) : (
                     <div className='absolute-center flex w-full items-center justify-center self-center font-neon text-gray-500'>
-                        💛 live your life 💛
+                        💛 live your life, no favorites 💛
                     </div>
                 )}
             </div>
