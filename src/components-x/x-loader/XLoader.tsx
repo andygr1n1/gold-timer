@@ -1,10 +1,9 @@
-import { HashLoader } from 'react-spinners'
-import { LoaderSizeProps } from 'react-spinners/helpers/props'
+import { Icon } from '@iconify/react'
 
-export const XLoader: React.FC<LoaderSizeProps> = (props) => {
+export const XLoader = () => {
     return (
         <div className='flex h-full w-full items-center justify-center'>
-            <HashLoader {...props} color='var(--space-blue)' />
+            <Icon icon='eos-icons:bubble-loading' color='var(--space-blue)' width={100} height={100} />
         </div>
     )
 }

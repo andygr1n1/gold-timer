@@ -1,4 +1,4 @@
-import { filter } from 'lodash'
+import { filter } from 'lodash-es'
 import { isBefore } from 'date-fns'
 import { types, getParentOfType } from 'mobx-state-tree'
 import { IGoal$ } from '../types'

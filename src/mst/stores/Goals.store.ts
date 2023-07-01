@@ -10,7 +10,7 @@ import { setGoalDifficulty } from '@/helpers/setGoalDifficulty'
 import { CheckboxChangeEvent } from 'antd/lib/checkbox'
 import { CheckboxValueType } from 'antd/lib/checkbox/Group'
 import { add, isPast, sub } from 'date-fns'
-import { filter, orderBy, differenceWith, cloneDeep, compact } from 'lodash'
+import { filter, orderBy, differenceWith, cloneDeep, compact } from 'lodash-es'
 import {
     destroy,
     detach,
@@ -25,7 +25,6 @@ import {
 import { IGoal$ } from '../types'
 import { Goal$ } from './Goal.store'
 import { Root$ } from './Root.store'
-import { v4 } from 'uuid'
 import { getCoinsFromRitual } from '@/helpers/getCoinsFromRitual'
 import { addCoinsMutation } from '@/graphql/mutations/addCoins.mutation'
 import { Filter$ } from './Filter.store'
@@ -388,7 +387,7 @@ export const Goals$ = types
 
                 const ritualData: IInsertRitual = {
                     goal_id: self.editable_goal.id,
-                    ritual_id: self.editable_goal.goal_ritual.ritual_id || v4(),
+                    ritual_id: self.editable_goal.goal_ritual.ritual_id || crypto.randomUUID(),
                     ritual_power: self.editable_goal.goal_ritual.ritual_power + 1,
                     ritual_interval: self.new_goal.goal_ritual.ritual_interval,
                     ritual_type: self.new_goal.goal_ritual.ritual_type,

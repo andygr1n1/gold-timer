@@ -1,7 +1,6 @@
 import { PRIVACY_ENUM } from '@/helpers/enums'
 import { DIFFICULTY_ENUM, STATUS_ENUM } from './../../helpers/enums'
 import { types } from 'mobx-state-tree'
-import { v4 } from 'uuid'
 import { add, toDate } from 'date-fns'
 import { GoalRitual } from './GoalRitual.model'
 
@@ -9,7 +8,7 @@ export const Goal = types
     .model('Goal', {
         id: types.snapshotProcessor(types.identifier, {
             preProcessor(sn: string | undefined) {
-                if (!sn) return v4()
+                if (!sn) return crypto.randomUUID()
 
                 return sn
             },
