@@ -15,7 +15,7 @@ export const fetchUserByPk = async (user_id: string): Promise<IUserByPkResponse 
     const client = generateClient()
 
     const query = gql`
-        query UserByPk($user_id: uuid!) {
+        query fetchUserByPk($user_id: uuid!) {
             heroes_by_pk(id: $user_id) {
                 id
                 coins
@@ -24,16 +24,18 @@ export const fetchUserByPk = async (user_id: string): Promise<IUserByPkResponse 
                 name
                 phone
                 avatar
+                addons {
+                    addon
+                }
             }
         }
     `
 
     try {
         const response = await client.request(query, { user_id })
-
         return response.heroes_by_pk
     } catch (e) {
-        processError(e)
+        processError(e, 'fetchUserByPk')
         return
     }
 }

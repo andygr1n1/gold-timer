@@ -4,6 +4,7 @@ import { IUser$ } from '../types'
 import { fetchUserSecret } from '@/graphql/queries/fetchUserSecret.query'
 import { IBaseUserData, updateUserData } from '@/graphql/mutations/updateUserData.mutation'
 import { processError } from '@/helpers/processError.helper'
+import { UserAddon } from '../models/UserAddon.model'
 
 export const User$ = types
     .model('User$', {
@@ -28,6 +29,7 @@ export const User$ = types
         number_of_rituals: 0,
         most_powerful_ritual: types.optional(GoalRitual, {}),
         avatar: types.maybeNull(types.string),
+        addons: types.array(UserAddon),
     })
     .views((self) => ({
         get isAuthenticated(): boolean {
@@ -35,6 +37,18 @@ export const User$ = types
         },
         get userStore(): IUser$ {
             return self as IUser$
+        },
+        get hasGoalsOfWeekAddon(): boolean {
+            return !!self.addons.find((addon) => addon.isGoalsOfWeek)?.isGoalsOfWeek
+        },
+        get hasWalletAddon(): boolean {
+            return !!self.addons.find((addon) => addon.isWallet)?.isWallet
+        },
+        get hasGoalsSliderAddon(): boolean {
+            return !!self.addons.find((addon) => addon.isGoalsSlider)?.isGoalsSlider
+        },
+        get hasLinksAddon(): boolean {
+            return !!self.addons.find((addon) => addon.isLinks)?.isLinks
         },
     }))
     .actions((self) => ({

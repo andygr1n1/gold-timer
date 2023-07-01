@@ -27,7 +27,6 @@ export const RestoreAccountIndex: React.FC = observer(() => {
 
     const onFinish = async (values: IRestoreAccRes) => {
         const restorePasswordRes = await restoreAccount(values)
-        console.log('restorePasswordRes', restorePasswordRes)
         if (!restorePasswordRes?.email) {
             onFinishFailed()
             return

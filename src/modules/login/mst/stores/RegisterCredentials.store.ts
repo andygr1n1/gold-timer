@@ -9,7 +9,6 @@ export const RegisterCredentials$ = types
     })
     .views((self) => ({
         get registerEmailInUseError(): boolean {
-            console.log('self.register_email_in_use', self.register_email_in_use)
             return !!self.register_email_input.length && self.register_email_in_use
         },
     }))

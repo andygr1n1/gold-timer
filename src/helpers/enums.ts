@@ -91,3 +91,9 @@ export enum RITUAL_TYPE_ENUM {
     INTERVAL_IN_DAYS = 'interval_in_days',
     DAYS_OF_WEEK = 'days_of_week',
 }
+export enum ADDONS_ENUM {
+    GOALS_OF_WEEK = 'goals_of_week',
+    WALLET = 'wallet',
+    GOALS_SLIDER = 'goals_slider',
+    LINKS = 'links',
+}
