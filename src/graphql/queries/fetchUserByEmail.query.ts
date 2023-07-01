@@ -1,5 +1,6 @@
 import { gql } from 'graphql-request'
 import { generateClient } from '../client'
+import { processError } from '@/helpers/processError.helper'
 
 export interface IFetchUserByEmailResponse {
     id: string
@@ -21,7 +22,7 @@ export const fetchUserByEmail = async (email: string): Promise<IFetchUserByEmail
 
         return response.heroes
     } catch (e) {
-        console.error('fetchUserByEmail error:', e)
+        processError(e, 'fetchUserByEmail error')
         return
     }
 }

@@ -2,6 +2,7 @@ import { IInsertNewGoal } from '@/helpers/interfaces/newGoal.interface'
 import { IGoal$SnapshotIn } from '@/mst/types'
 import { gql } from 'graphql-request'
 import { generateClient } from '../client'
+import { processError } from '@/helpers/processError.helper'
 
 export const insertGoalMutation = async (newGoal: IInsertNewGoal): Promise<IGoal$SnapshotIn | undefined> => {
     const client = generateClient()
@@ -30,7 +31,7 @@ export const insertGoalMutation = async (newGoal: IInsertNewGoal): Promise<IGoal
 
         return response.insert_goals_one
     } catch (e) {
-        console.error('insertGoalMutation error', e)
+        processError(e, 'insertGoalMutation error')
         return
     }
 }

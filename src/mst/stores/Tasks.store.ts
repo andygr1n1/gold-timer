@@ -4,6 +4,7 @@ import { getUserId } from '@/helpers/getUserId'
 import { applySnapshot, destroy, flow, types } from 'mobx-state-tree'
 import { ITask$SnapshotIn } from '../types'
 import { Task$ } from './Task.store'
+import { processError } from '@/helpers/processError.helper'
 
 export const Tasks$ = types
     .model({
@@ -21,8 +22,7 @@ export const Tasks$ = types
                 if (!res) throw new Error('fetchTasks error')
                 applySnapshot(self.tasks, res)
             } catch (e) {
-                console.error('fetchTasks error', e)
-                alert(e)
+                processError(e, 'fetchTasks error')
             }
         }),
         saveTask: flow(function* _saveTask() {
@@ -36,8 +36,7 @@ export const Tasks$ = types
                 self.tasks.push(res)
                 destroy(self.new_task$)
             } catch (e) {
-                console.error('saveTask error', e)
-                alert(e)
+                processError(e, 'saveTask error')
             }
         }),
     }))

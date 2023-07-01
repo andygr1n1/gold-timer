@@ -1,6 +1,7 @@
 import { STATUS_ENUM } from '@/helpers/enums'
 import { gql } from 'graphql-request'
 import { generateClient } from '../client'
+import { processError } from '@/helpers/processError.helper'
 
 export const fetchRitualPowerInfo = async (owner_id: string) => {
     const client = generateClient()
@@ -23,8 +24,7 @@ export const fetchRitualPowerInfo = async (owner_id: string) => {
         const response = await client.request(query, { owner_id })
         return response.goals_rituals
     } catch (e) {
-        console.error('fetchRitualPowerInfo error:', e)
-        alert(e)
+        processError(e, 'fetchRitualPowerInfo error')
         return
     }
 }

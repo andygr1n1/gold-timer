@@ -1,6 +1,5 @@
 import ReactDOM from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
-import { App } from './App'
 import { StoreProvider } from './StoreProvider'
 import { ConfigProvider } from 'antd'
 import 'normalize.css'
@@ -10,13 +9,14 @@ import './styles/index.css'
 import './styles/antdRedesign.css'
 
 import { passiveSupport } from 'passive-events-support/src/utils'
+import { AppConfigWrapper } from './AppConfigWrapper'
 passiveSupport({ debug: false })
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     <BrowserRouter>
         <StoreProvider>
             <ConfigProvider theme={{ token: { colorPrimary: '#60a5fa' } }}>
-                <App />
+                <AppConfigWrapper />
             </ConfigProvider>
         </StoreProvider>
     </BrowserRouter>,

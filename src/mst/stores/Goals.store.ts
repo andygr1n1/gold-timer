@@ -30,6 +30,7 @@ import { getCoinsFromRitual } from '@/helpers/getCoinsFromRitual'
 import { addCoinsMutation } from '@/graphql/mutations/addCoins.mutation'
 import { Filter$ } from './Filter.store'
 import { updateRitualInterval } from '@/graphql/mutations/updateRitualInterval.mutation'
+import { processError } from '@/helpers/processError.helper'
 
 export const Goals$ = types
     .model('Goals$', {
@@ -374,8 +375,7 @@ export const Goals$ = types
                 }
                 self.closeGoalCreator()
             } catch (e) {
-                alert(`generateGoal error, ${e}`)
-                console.error(`generateGoal error, ${e}`)
+                processError(e, 'generateGoal error')
             }
         }),
         ritualizeGoal: flow(function* _ritualizeGoal() {
@@ -451,8 +451,7 @@ export const Goals$ = types
 
                 self.closeGoalCreator()
             } catch (e) {
-                alert(`ritualizeGoal error, ${e}`)
-                console.error(`ritualizeGoal error, ${e}`)
+                processError(e, 'ritualizeGoal error')
             }
         }),
         toggleDeleteGoalMenu(close?: 'close'): void {

@@ -5,13 +5,13 @@ import { GoalsManagerMw } from './components-modal-windows/goals-manager-mw/Goal
 import { AchievementsIndex } from './pages/achievements/AchievementsIndex'
 import { DashboardIndex } from './pages/dashboard/DashboardIndex'
 import { GoalsIndex } from './pages/goals/GoalsIndex'
-import { ProfileIndex } from './pages/profile/ProfileIndex'
+import { ProfileIndex } from './modules/profile/ProfileIndex'
 import { TasksIndex } from './modules/notes/NotesIndex'
 import { DocumentationIndex } from './modules/documentation/DocumentationIndex'
 import { LinksIndex } from './modules/links/LinksIndex'
 import { WalletIndex } from './modules/wallet/WalletIndex'
 
-export const AppRoutes: React.FC = () => {
+export const AppProtectedRoutes: React.FC = () => {
     return (
         <>
             <Routes>

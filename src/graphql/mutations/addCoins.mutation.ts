@@ -1,6 +1,7 @@
 import { rootStore$ } from '@/StoreProvider'
 import { gql } from 'graphql-request'
 import { generateClient } from '../client'
+import { processError } from '@/helpers/processError.helper'
 
 export const addCoinsMutation = async (coins: number): Promise<number | undefined> => {
     const client = generateClient()
@@ -21,8 +22,7 @@ export const addCoinsMutation = async (coins: number): Promise<number | undefine
 
         return response.update_heroes_by_pk.coins
     } catch (e) {
-        console.error('addCoins error', e)
-        alert(`addCoins error: ${e}`)
+        processError(e, 'addCoins error')
         return
     }
 }
