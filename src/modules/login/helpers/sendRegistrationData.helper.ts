@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { ILoginRes } from './login.interface'
+import { processError } from '@/helpers/processError.helper'
 
 export const sendRegistrationData = async (registrationData: {
     name: string
@@ -24,7 +25,6 @@ export const sendRegistrationData = async (registrationData: {
         console.warn('registration status:', status)
         return data
     } catch (e) {
-        console.error('sendRegistrationData Error:::', (e as { code: string }).code)
-        alert(`sendRegistrationData Error:::, ${(e as { code: string }).code}`)
+        processError((e as { code: string }).code, 'sendRegistrationData error')
     }
 }

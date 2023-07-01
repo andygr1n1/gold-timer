@@ -1,5 +1,6 @@
 import { gql } from 'graphql-request'
 import { generateClient } from '../client'
+import { processError } from '@/helpers/processError.helper'
 
 export interface IFetchEmailByRestoreCode {
     restore_codes_by_pk: { email: string }
@@ -21,7 +22,7 @@ export const fetchEmailByRestoreCode = async (code: string): Promise<string | un
 
         return response.restore_codes_by_pk?.email
     } catch (e) {
-        console.error('fetchEmailByRestoreCode error:', e)
+        processError(e, 'fetchEmailByRestoreCode error')
         return
     }
 }

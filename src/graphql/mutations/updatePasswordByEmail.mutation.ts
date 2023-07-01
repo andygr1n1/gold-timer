@@ -1,5 +1,6 @@
 import { gql } from 'graphql-request'
 import { generateClient } from '../client'
+import { processError } from '@/helpers/processError.helper'
 
 export const updatePasswordByEmail = async (email: string, password: string): Promise<string | undefined> => {
     const client = generateClient()
@@ -17,8 +18,7 @@ export const updatePasswordByEmail = async (email: string, password: string): Pr
 
         return response.update_heroes.affected_rows
     } catch (e) {
-        console.error('updatePasswordByEmail error', e)
-        alert(`updatePasswordByEmail error: ${e}`)
+        processError(e, 'updatePasswordByEmail error')
         return
     }
 }

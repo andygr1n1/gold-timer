@@ -36,7 +36,6 @@ export default ({ mode }) => {
                 output: {
                     manualChunks: {
                         antd: ['antd'],
-                        lodash: ['lodash'],
                     },
                 },
             },

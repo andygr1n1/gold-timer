@@ -1,6 +1,7 @@
 import { gql } from 'graphql-request'
 import { generateClient } from '../client'
 import { RITUAL_TYPE_ENUM } from '@/helpers/enums'
+import { processError } from '@/helpers/processError.helper'
 
 export const updateRitualInterval = async (
     goal_id: string,
@@ -27,8 +28,7 @@ export const updateRitualInterval = async (
 
         return response.update_goals_rituals.returning?.[0]?.ritual_interval
     } catch (e) {
-        console.error('insertGoalsRituals error', e)
-        alert(`InsertGoal error: ${e}`)
+        processError(e, 'updateRitualInterval error')
         return
     }
 }

@@ -1,4 +1,4 @@
-import { processError } from './../../../helpers/processError'
+import { processError } from '../../../helpers/processError.helper'
 import { generateClient } from '@/graphql/client'
 import { ITask$SnapshotIn } from '@/mst/types'
 import { gql } from 'graphql-request'

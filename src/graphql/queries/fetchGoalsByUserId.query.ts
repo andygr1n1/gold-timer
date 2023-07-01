@@ -2,6 +2,7 @@ import { STATUS_ENUM } from '@/helpers/enums'
 import { IGoal$SnapshotIn } from '@/mst/types'
 import { gql } from 'graphql-request'
 import { generateClient } from '../client'
+import { processError } from '@/helpers/processError.helper'
 // import { add } from 'date-fns'
 
 export const fetchGoalsByUserId = async (owner_id: string): Promise<IGoal$SnapshotIn[] | undefined> => {
@@ -52,8 +53,7 @@ export const fetchGoalsByUserId = async (owner_id: string): Promise<IGoal$Snapsh
 
         return response.goals
     } catch (e) {
-        console.error('fetchGoalsByUserId error:', e)
-        alert(e)
+        processError(e, 'fetchGoalsByUserId error')
         return
     }
 }

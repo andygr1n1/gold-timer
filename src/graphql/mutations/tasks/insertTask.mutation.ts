@@ -1,4 +1,5 @@
 import { generateClient } from '@/graphql/client'
+import { processError } from '@/helpers/processError.helper'
 import { ITask, ITask$ } from '@/mst/types'
 import { gql } from 'graphql-request'
 
@@ -21,7 +22,7 @@ export const insertTask = async (newTask: ITask): Promise<ITask$ | undefined> =>
 
         return response.insert_tasks_one
     } catch (e) {
-        console.error('InsertGoal error', e)
+        processError(e, 'insertTask error')
         return
     }
 }

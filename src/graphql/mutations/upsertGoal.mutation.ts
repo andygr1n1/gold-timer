@@ -2,6 +2,7 @@ import { STATUS_ENUM, PRIVACY_ENUM, RITUAL_TYPE_ENUM } from '@/helpers/enums'
 import { IUpsertNewGoal } from '@/helpers/interfaces/newGoal.interface'
 import { gql } from 'graphql-request'
 import { generateClient } from '../client'
+import { processError } from '@/helpers/processError.helper'
 
 export interface IUpsertGoal {
     id: string
@@ -59,8 +60,7 @@ export const upsertGoalMutation = async (newGoal: IUpsertNewGoal): Promise<IUpse
 
         return response.insert_goals_one
     } catch (e) {
-        console.error('upsertGoalMutation error', e)
-        alert(`upsertGoalMutation error::: ${e}`)
+        processError(e, 'upsertGoalMutation error')
         return
     }
 }

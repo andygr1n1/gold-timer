@@ -1,12 +1,13 @@
 import { STATUS_ENUM } from '@/helpers/enums'
 import { gql } from 'graphql-request'
 import { generateClient } from '../client'
+import { processError } from '@/helpers/processError.helper'
 
 export const updateGoalStatusToCompleted = async (goal_id: string): Promise<STATUS_ENUM | undefined> => {
     const client = generateClient()
 
     const mutation = gql`
-        mutation updateGoalStatus($goal_id: uuid!, $goal_status: goal_status_enum_enum) {
+        mutation updateGoalStatusToCompleted($goal_id: uuid!, $goal_status: goal_status_enum_enum) {
             update_goals_by_pk(pk_columns: { id: $goal_id }, _set: { status: ${STATUS_ENUM.COMPLETED}, finished_at: "now()" }) {
                 status
             }
@@ -18,8 +19,7 @@ export const updateGoalStatusToCompleted = async (goal_id: string): Promise<STAT
 
         return response.update_goals_by_pk
     } catch (e) {
-        console.error('InsertGoal error', e)
-        alert(`InsertGoal error::: ${e}`)
+        processError(e, 'updateGoalStatusToCompleted error')
         return
     }
 }

@@ -1,5 +1,4 @@
 import { fetchAchievementsByUserId } from '@/graphql/queries/fetchAchievementsByUserId.query'
-// import { IUserByPkResponse, fetchUserByPk } from '@/graphql/queries/fetchUserByPk.query'
 import { types, flow, applySnapshot, toGenerator, cast } from 'mobx-state-tree'
 import { fetchGoalsByUserId } from '../../graphql/queries/fetchGoalsByUserId.query'
 import { IGoal$SnapshotIn, IGoalRitual, IGoalRitualSnapshotIn } from '../types'
@@ -11,6 +10,7 @@ import { ModalWindows$ } from './ModalWindows.store'
 import { fetchRitualPowerInfo } from '@/graphql/queries/fetchRitualPowerInfo.query'
 import { Links$ } from './links/Links.store'
 import { IUserByPkResponse, fetchUserByPk } from '@/graphql/queries/fetchUserByPk.query'
+import { processError } from '@/helpers/processError.helper'
 
 export const Root$ = types
     .model('Root$', {
@@ -39,8 +39,7 @@ export const Root$ = types
                 const userInfo = yield* toGenerator(fetchUserByPk(self.user$.id))
                 applySnapshot(self.user$, userInfo)
             } catch (e) {
-                console.error(e)
-                alert(e)
+                processError(e)
             }
         }) as () => Promise<IUserByPkResponse | undefined>,
         fetchRitualPowerInfo: flow(function* _fetchRitualPowerInfo() {
@@ -62,7 +61,7 @@ export const Root$ = types
                 self.user$.onChangeField('number_of_rituals', allRitualsCount)
                 self.user$.onChangeField('most_powerful_ritual', cast(maxPoweredGoal))
             } catch (e) {
-                console.error('fetchGoals error', e)
+                processError(e, 'fetchRitualPowerInfo error')
             }
         }),
         fetchGoals: flow(function* _fetchGoals() {
@@ -75,7 +74,7 @@ export const Root$ = types
 
                 applySnapshot(self.goals$.goals, res)
             } catch (e) {
-                console.error('fetchGoals error', e)
+                processError(e, 'fetchGoals error')
             }
         }),
         fetchAchievements: flow(function* _fetchGoals() {
@@ -86,7 +85,7 @@ export const Root$ = types
                 if (!res) throw new Error('fetchGoals error')
                 applySnapshot(self.achievements$.achievements, res)
             } catch (e) {
-                console.error('fetchAchievements error', e)
+                processError(e, 'fetchAchievements error')
             }
         }),
         autoRitualizeExpiredRitualizedGoals(): void {
@@ -116,7 +115,7 @@ export const Root$ = types
                 self.loading = false
             } catch (e) {
                 self.loading = false
-                console.error('fetchAppData error', e)
+                processError(e, 'fetchAndStabilizeAppData error')
             }
         }),
     }))

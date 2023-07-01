@@ -1,5 +1,6 @@
 import { gql } from 'graphql-request'
 import { generateClient } from '../client'
+import { processError } from '@/helpers/processError.helper'
 
 export interface IUserByPkResponse {
     id: string
@@ -14,7 +15,7 @@ export const fetchUserByPk = async (user_id: string): Promise<IUserByPkResponse 
     const client = generateClient()
 
     const query = gql`
-        query UserByPk($user_id: uuid!) {
+        query fetchUserByPk($user_id: uuid!) {
             heroes_by_pk(id: $user_id) {
                 id
                 coins
@@ -34,7 +35,7 @@ export const fetchUserByPk = async (user_id: string): Promise<IUserByPkResponse 
         const response = await client.request(query, { user_id })
         return response.heroes_by_pk
     } catch (e) {
-        console.error('fetchUserByPk error:', e)
+        processError(e, 'fetchUserByPk')
         return
     }
 }
