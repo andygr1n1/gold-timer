@@ -5,6 +5,8 @@ module.exports = {
         'fade-in-down': 'fade-in-down 1s ease-out',
         'zoom-in-out': 'zoom-in-out 1.0s infinite',
         opacity: 'opacity 0.150s ease-in',
+        'opacity-3': 'opacity 0.300s ease-in',
+        'opacity-5': 'opacity 0.500s ease-in',
         // sidemenu
         'slide-in': 'slide-in 0.3s linear',
         'slide-out': 'slide-out 0.3s linear',

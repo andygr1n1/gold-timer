@@ -101,7 +101,6 @@ export const SideMenu: React.FC = observer(() => {
                             to={APP_ROUTES_ENUM.GOALS}
                             title='Goals'
                             icon={<Icon icon='octicon:goal-16' width={20} height={20} />}
-                            badge={99}
                         />
 
                         <SideMenuLink
