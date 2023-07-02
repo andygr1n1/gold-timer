@@ -26,8 +26,6 @@ export const UserAvatarSideMenu: React.FC = observer(() => {
             ) : (
                 <Icon icon={'material-symbols:person'} className='text-[#151c2c]' width={30} height={30} />
             )}
-
-            <span className='absolute right-[1px] bottom-0 h-3 w-3 rounded-full border-2 border-solid border-global-bg bg-lime-500' />
         </div>
     )
 })
