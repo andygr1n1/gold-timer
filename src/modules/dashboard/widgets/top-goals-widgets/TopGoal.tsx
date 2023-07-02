@@ -1,5 +1,4 @@
 import { XBadge } from '@/components-x/x-badge/XBadge'
-import { XTooltip } from '@/components-x/x-tooltip/XTooltip'
 import { ACTIVE_GOAL_TYPE_ENUM } from '@/helpers/enums'
 import { IGoal$ } from '@/mst/types'
 import { useRootStore } from '@/StoreProvider'
@@ -31,8 +30,6 @@ export const TopGoal: React.FC<{ goal: IGoal$; type: ACTIVE_GOAL_TYPE_ENUM }> = 
         goals_manager_mw$.onChangeField('visible', true)
     }
 
-    const tooltipTitle = goal.isRitualGoal ? `${goal.title} (${goal.ritualGoalPower})` : goal.title
-
     let touchTrigger = useRef(false)
 
     const useMobileTrigger = () => {
@@ -40,45 +37,38 @@ export const TopGoal: React.FC<{ goal: IGoal$; type: ACTIVE_GOAL_TYPE_ENUM }> = 
     }
 
     return (
-        <XTooltip title={tooltipTitle}>
-            <PopoverGoalActions
-                popoverState={popoverState}
-                setPopoverState={setPopoverState}
-                goal={goal}
-                forceMode={true}
+        <PopoverGoalActions popoverState={popoverState} setPopoverState={setPopoverState} goal={goal} forceMode={true}>
+            <XBadge
+                style={badgeClass}
+                offset={[-6, 1]}
+                count={goal.daysEstimationCount || <Icon icon='emojione-v1:ringing-bell' width={20} height={20} />}
             >
-                <XBadge
-                    style={badgeClass}
-                    offset={[-6, 1]}
-                    count={goal.daysEstimationCount || <Icon icon='emojione-v1:ringing-bell' width={20} height={20} />}
-                >
-                    <div
-                        // title={goal.title}
-                        key={goal.id}
-                        className={`${styles['goal']} ${goalClass}`}
-                        onClick={() => {
-                            onChangeField('active_collapse_key', goal.id)
-                            handleModalState()
-                        }}
-                        onContextMenu={(e) => {
-                            e.preventDefault()
-                            isDesktop && setPopoverState(true)
-                        }}
-                        onTouchStart={() => {
-                            const timer = setTimeout(() => {
-                                useMobileTrigger()
-                                touchTrigger?.current && setPopoverState(() => true)
-                                clearTimeout(timer)
-                            }, 500)
-                        }}
-                        onTouchEnd={() => {
+                <div
+                    // title={goal.title}
+                    key={goal.id}
+                    className={`${styles['goal']} ${goalClass}`}
+                    onClick={() => {
+                        onChangeField('active_collapse_key', goal.id)
+                        handleModalState()
+                    }}
+                    onContextMenu={(e) => {
+                        e.preventDefault()
+                        isDesktop && setPopoverState(true)
+                    }}
+                    onTouchStart={() => {
+                        const timer = setTimeout(() => {
                             useMobileTrigger()
-                        }}
-                    >
-                        <span>{truncate(goal.title, { length: 25 })}</span>
-                    </div>
-                </XBadge>
-            </PopoverGoalActions>
-        </XTooltip>
+                            touchTrigger?.current && setPopoverState(() => true)
+                            clearTimeout(timer)
+                        }, 500)
+                    }}
+                    onTouchEnd={() => {
+                        useMobileTrigger()
+                    }}
+                >
+                    <span>{truncate(goal.title, { length: 25 })}</span>
+                </div>
+            </XBadge>
+        </PopoverGoalActions>
     )
 })
