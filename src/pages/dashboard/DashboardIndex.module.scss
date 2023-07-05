@@ -9,10 +9,10 @@
         @apply order-1;
     }
     .beta {
-        @apply order-3 flex-auto;
+        @apply order-2 flex-auto;
     }
     .gama {
-        @apply order-2;
+        @apply order-1;
     }
 
     @media screen and (min-width: 1536px) {

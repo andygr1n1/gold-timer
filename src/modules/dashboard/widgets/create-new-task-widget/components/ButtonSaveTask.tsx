@@ -1,16 +1,12 @@
 import { XButton } from '@/components-x/x-button/XButton'
 import { useTasksStore } from '@/StoreProvider'
-import { observer } from 'mobx-react-lite'
 
-export const ButtonSaveTask: React.FC = observer(() => {
-    const {
-        saveTask,
-        new_task$: { description },
-    } = useTasksStore()
+export const ButtonSaveTask: React.FC<{ disabled: boolean }> = function ButtonSaveTask({ disabled }) {
+    const { saveTask } = useTasksStore()
 
     return (
-        <XButton className='flex w-full items-center justify-center' onClick={saveTask} disabled={!description}>
+        <XButton className='flex w-full items-center justify-center' onClick={saveTask} disabled={disabled}>
             Create Note
         </XButton>
     )
-})
+}

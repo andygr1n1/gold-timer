@@ -10,10 +10,11 @@ export const Tasks$ = types
     .model({
         tasks: types.array(Task$),
         new_task$: types.optional(Task$, {}),
+        new_task_dialog: false,
     })
     .views(() => ({}))
     .actions((self) => ({
-        onChangeField<Key extends keyof typeof self>(key: Key, value: typeof self[Key]) {
+        onChangeField<Key extends keyof typeof self>(key: Key, value: (typeof self)[Key]) {
             self[key] = value
         },
         fetchTasks: flow(function* _fetchTasks() {

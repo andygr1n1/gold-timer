@@ -1,16 +1,13 @@
 import { observer } from 'mobx-react-lite'
 import { App } from './App'
-import { notification } from 'antd'
-import { NotificationInstance } from 'antd/es/notification/interface'
 import { useEffect } from 'react'
 import { useTheming } from './hooks/useTheming.hook'
-
-export let notificationApi: NotificationInstance | undefined = undefined
+import { notification } from 'antd'
+import { useRootStore } from './StoreProvider'
 
 export const AppConfigWrapper: React.FC = observer(() => {
+    const { onChangeField } = useRootStore()
     const [api, contextHolder] = notification.useNotification()
-    notificationApi = api
-
     useEffect(() => {
         ;(async () => {
             useTheming.applyLocalStorage()
@@ -31,6 +28,7 @@ export const AppConfigWrapper: React.FC = observer(() => {
         document.addEventListener('touchstart', handler, { passive: true })
         document.addEventListener('touchend', handler, { passive: true })
         document.addEventListener('wheel', handler, { passive: true })
+        onChangeField('notificationApi', api)
     }, [])
 
     return (
