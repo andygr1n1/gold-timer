@@ -9,6 +9,7 @@ export const TagInput = observer(() => {
 
     return (
         <Input
+            size='large'
             value={tag}
             onChange={(e) => {
                 onChangeField('tag', e.target.value)

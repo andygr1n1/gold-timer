@@ -9,7 +9,7 @@ import { InputSlogan } from '@/components-modal-windows/create-new-goal-modal/co
 import { TextAreaDescription } from '@/components-modal-windows/create-new-goal-modal/components/TextAreaDescription'
 import { GoalFormIsFavoriteOption } from '../goal-form-options/GoalFormIsFavoriteOption'
 
-export const CreateGoalForm: React.FC = observer(() => {
+export const CreateGoalForm: React.FC = observer(function CreateGoalForm() {
     return (
         <div className='relative flex  flex-col '>
             <GoalFormTitleOption />

@@ -10,7 +10,8 @@ export enum MEDIA_QUERY_VALUES_ENUM {
     IS_MOBILE = '(max-width: 766px)',
     IS_TABLET = '(min-width: 767px) and (max-width: 1279px)',
     // IS_DESKTOP = '(min-width: 1280px) and (max-width: 1920px)',
-    IS_DESKTOP = '(min-width: 1280px)',
+    // IS_DESKTOP = '(min-width: 1280px)',
+    IS_DESKTOP = '(min-width: 1536px)',
 }
 
 const MediaQuery = {

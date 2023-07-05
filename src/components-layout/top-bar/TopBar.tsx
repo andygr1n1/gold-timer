@@ -17,11 +17,11 @@ export const TopBar: React.FC = observer(() => {
             <div className='relative mx-3 flex w-full items-center justify-between'>
                 <div className='flex w-[100px] items-start justify-start gap-4'>
                     {!isDesktop ? (
-                        <div className='flex h-6 w-6 flex-auto items-center justify-start xl:mx-6'>
+                        <div className='flex h-6 w-6 flex-auto items-center justify-start 2xl:mx-6'>
                             {!useSideMenu.is_open ? (
                                 <Icon
                                     icon='line-md:close-to-menu-transition'
-                                    className={`cursor-pointer text-navLink hover:text-navLink-active xl:hidden`}
+                                    className={`cursor-pointer text-navLink hover:text-navLink-active 2xl:hidden`}
                                     width={23}
                                     height={23}
                                     onClick={useSideMenu.onChange}

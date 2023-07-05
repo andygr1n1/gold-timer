@@ -27,7 +27,7 @@ export const DashboardIndex: React.FC = observer(() => {
                     </div>
 
                     {!hasGoalsSliderAddon && !isDesktop ? null : (
-                        <div className={`${styles['grid-child']} ${styles['beta']}`}>
+                        <div className={`${styles['grid-child']} ${styles['gama']}`}>
                             {hasGoalsSliderAddon && <GoalsDashboardCarousel />}
                         </div>
                     )}

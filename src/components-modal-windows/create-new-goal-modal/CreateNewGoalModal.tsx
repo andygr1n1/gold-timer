@@ -3,7 +3,7 @@ import { CreateGoalForm } from '@/components/goal-create-form/CreateGoalForm'
 import { useRootStore } from '@/StoreProvider'
 import { observer } from 'mobx-react-lite'
 
-export const CreateNewGoalModal: React.FC = observer(() => {
+export const CreateNewGoalModal: React.FC = observer(function CreateNewGoalModal() {
     const {
         goals$: { editable_goal, closeGoalCreator, active_collapse_key },
     } = useRootStore()

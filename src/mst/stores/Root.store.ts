@@ -1,3 +1,4 @@
+import { type NotificationInstance } from 'antd/es/notification/interface'
 import { fetchAchievementsByUserId } from '@/graphql/queries/fetchAchievementsByUserId.query'
 import { types, flow, applySnapshot, toGenerator, cast } from 'mobx-state-tree'
 import { fetchGoalsByUserId } from '../../graphql/queries/fetchGoalsByUserId.query'
@@ -21,6 +22,7 @@ export const Root$ = types
         links$: types.optional(Links$, {}),
         loading: false,
         modal_windows$: types.optional(ModalWindows$, {}),
+        notificationApi: types.maybe(types.frozen<NotificationInstance>()),
     })
     .views((self) => ({
         get isValidating(): boolean {
@@ -28,7 +30,7 @@ export const Root$ = types
         },
     }))
     .actions((self) => ({
-        onChangeField<Key extends keyof typeof self>(key: Key, value: typeof self[Key]) {
+        onChangeField<Key extends keyof typeof self>(key: Key, value: (typeof self)[Key]) {
             self[key] = value
         },
     }))
