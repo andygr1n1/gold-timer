@@ -17,7 +17,7 @@ export const XModal: React.FC<{
                 <Dialog as='div' className='relative z-[60] font-neon' onClose={onCancel}>
                     <Transition.Child
                         as={Fragment}
-                        enter='ease-out duration-300'
+                        enter='ease-out duration-300 '
                         enterFrom='opacity-0'
                         enterTo='opacity-100'
                         leave='ease-in duration-200'
@@ -39,13 +39,13 @@ export const XModal: React.FC<{
                                 leaveTo='opacity-0 scale-95'
                             >
                                 <Dialog.Panel
-                                    className={`${height} h-[75vh] max-h-[75vh]  w-full  max-w-md transform  overflow-auto rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all`}
+                                    className={`${height} h-[75vh] max-h-[75vh]  w-full  max-w-md transform  overflow-auto rounded-2xl bg-global-2-bg p-6 text-left align-middle shadow-xl transition-all`}
                                 >
                                     <Dialog.Title
                                         as='h3'
-                                        className='border-b-solid sticky top-[-24px] z-50
-                                                mb-2 flex  items-center justify-between gap-5 border-b border-b-gray-500/30
-                                                bg-white py-2 leading-6 text-gray-900'
+                                        className='border-b-solid top-[-24px] z-50
+                                                mb-2 flex  items-center justify-between gap-5 border-b border-b-gray-500/20
+                                                bg-transparent py-2 leading-6 text-cText'
                                     >
                                         <span>{title}</span>
                                         <button ref={cancelButtonRef}>

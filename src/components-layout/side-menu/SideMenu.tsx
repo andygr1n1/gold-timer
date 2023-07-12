@@ -87,7 +87,6 @@ export const SideMenu: React.FC = observer(() => {
                             to={APP_ROUTES_ENUM.SPRINTS}
                             title='Sprints'
                             icon={<Icon icon='game-icons:sprint' width={25} height={25} />}
-                            disabled
                         />
 
                         {/* <SideMenuLink

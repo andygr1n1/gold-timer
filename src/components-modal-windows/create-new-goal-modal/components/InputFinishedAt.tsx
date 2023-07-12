@@ -1,4 +1,4 @@
-import { XDatePicker } from '@/components-x/x-date-picker/XDatePicker'
+import { XDayTimeSelector } from '@/components-x/x-date-picker/XDayTimeSelector'
 import { useGoalsStore } from '@/StoreProvider'
 import { Input } from 'antd'
 import { observer } from 'mobx-react-lite'
@@ -22,33 +22,11 @@ export const InputFinishedAt: React.FC = observer(() => {
                 {!is_creator_mode ? (
                     <Input size='large' disabled value={finished_at?.toDateString()} />
                 ) : (
-                    // <DatePickerFns
-                    //     className='!w-full'
-                    //     onChange={(e) => onChangeField('finished_at', e || undefined)}
-                    //     disabledDate={disabledDate}
-                    //     showTime
-                    //     value={finished_at}
-                    //     format='Do MMMM YYYY HH:mm:ss '
-                    // />
                     <div className='flex flex-col gap-5 2xl:flex-row'>
-                        <XDatePicker
-                            size='large'
+                        <XDayTimeSelector
                             onChange={(e) => onChangeField('finished_at', e || undefined)}
                             disabledDate={disabledDate}
                             value={finished_at}
-                            format='Do MMMM YYYY  '
-                            className='!w-full'
-                        />
-                        <XDatePicker
-                            picker='time'
-                            size='large'
-                            onChange={(e) => onChangeField('finished_at', e || undefined)}
-                            disabledDate={disabledDate}
-                            value={finished_at}
-                            format=' HH:mm'
-                            className='w-full 2xl:w-[150px]'
-                            minuteStep={15}
-                            showNow={false}
                         />
                     </div>
                 )}

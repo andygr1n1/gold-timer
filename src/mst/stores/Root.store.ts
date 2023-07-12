@@ -12,6 +12,7 @@ import { fetchRitualPowerInfo } from '@/graphql/queries/fetchRitualPowerInfo.que
 import { Links$ } from './links/Links.store'
 import { IUserByPkResponse, fetchUserByPk } from '@/graphql/queries/fetchUserByPk.query'
 import { processError } from '@/helpers/processError.helper'
+import { Sprints$ } from './Sprints.store'
 
 export const Root$ = types
     .model('Root$', {
@@ -20,6 +21,7 @@ export const Root$ = types
         achievements$: types.optional(Achievements$, {}),
         tasks$: types.optional(Tasks$, {}),
         links$: types.optional(Links$, {}),
+        sprints$: types.optional(Sprints$, {}),
         loading: false,
         modal_windows$: types.optional(ModalWindows$, {}),
         notificationApi: types.maybe(types.frozen<NotificationInstance>()),

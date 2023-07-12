@@ -33,6 +33,8 @@ export const useRootStore = (): IRoot$ => {
     return store
 }
 
+export const useSprintsStore = () => useRootStore().sprints$
+
 export const useGoalsStore = () => useRootStore().goals$
 
 export const useUserStore = () => useRootStore().user$

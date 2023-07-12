@@ -2,9 +2,9 @@ import { useRootStore } from '@/StoreProvider'
 import { observer } from 'mobx-react-lite'
 import { useState } from 'react'
 import { InputNumber, Switch } from 'antd'
-import { XDatePicker } from '@/components-x/x-date-picker/XDatePicker'
 import { STATUS_ENUM } from '@/helpers/enums'
 import type { ValueType } from '@rc-component/mini-decimal'
+import { XDayTimeSelector } from '@/components-x/x-date-picker/XDayTimeSelector'
 
 export const CreateFinishDate: React.FC = observer(() => {
     const {
@@ -20,7 +20,7 @@ export const CreateFinishDate: React.FC = observer(() => {
         return e
     }
 
-    const onSwitchMedthod = () => {
+    const onSwitchMethod = () => {
         setMethodDate((prev) => {
             const newState = !prev
 
@@ -48,31 +48,11 @@ export const CreateFinishDate: React.FC = observer(() => {
         <>
             <div>
                 <div className='relative flex items-center justify-start gap-5 py-2'>
-                    <Switch className='absolute w-5' checked={methodDatePicker} onChange={onSwitchMedthod} />{' '}
+                    <Switch className='absolute w-5' checked={methodDatePicker} onChange={onSwitchMethod} />{' '}
                     <h5 className='pl-16'>Estimation: </h5>
                 </div>
                 {methodDatePicker ? (
-                    <div className='flex flex-col gap-5 2xl:flex-row'>
-                        <XDatePicker
-                            size='large'
-                            onChange={onDatePickerChange}
-                            disabledDate={disabledDate}
-                            value={finished_at}
-                            format='Do MMMM YYYY  '
-                            className='!w-full'
-                        />
-                        <XDatePicker
-                            picker='time'
-                            size='large'
-                            onChange={onDatePickerChange}
-                            disabledDate={disabledDate}
-                            value={finished_at}
-                            format=' HH:mm'
-                            className='w-full 2xl:w-[150px]'
-                            minuteStep={15}
-                            showNow={false}
-                        />
-                    </div>
+                    <XDayTimeSelector onChange={onDatePickerChange} disabledDate={disabledDate} value={finished_at} />
                 ) : (
                     <div className='flex items-center gap-4'>
                         <InputNumber

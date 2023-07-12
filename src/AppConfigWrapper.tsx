@@ -28,6 +28,9 @@ export const AppConfigWrapper: React.FC = observer(() => {
         document.addEventListener('touchstart', handler, { passive: true })
         document.addEventListener('touchend', handler, { passive: true })
         document.addEventListener('wheel', handler, { passive: true })
+        document.addEventListener('touchstart', handler, { passive: true })
+        document.addEventListener('touchend', handler, { passive: true })
+        document.addEventListener('wheel', handler, { passive: true })
         onChangeField('notificationApi', api)
     }, [])
 

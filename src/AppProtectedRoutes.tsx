@@ -10,6 +10,7 @@ import { TasksIndex } from './modules/notes/NotesIndex'
 import { DocumentationIndex } from './modules/documentation/DocumentationIndex'
 import { LinksIndex } from './modules/links/LinksIndex'
 import { WalletIndex } from './modules/wallet/WalletIndex'
+import { SprintsIndex } from './modules/sprints/SprintsIndex'
 
 export const AppProtectedRoutes: React.FC = () => {
     return (
@@ -20,6 +21,7 @@ export const AppProtectedRoutes: React.FC = () => {
                 <Route path={`/${APP_ROUTES_ENUM.PROFILE}`} element={<ProfileIndex />} />
                 <Route path={`/${APP_ROUTES_ENUM.ACHIEVEMENTS}`} element={<AchievementsIndex />} />
                 {/*  */}
+                <Route path={`/${APP_ROUTES_ENUM.SPRINTS}`} element={<SprintsIndex />} />
                 <Route path={`/${APP_ROUTES_ENUM.GOALS}`} element={<GoalsIndex />} />
                 <Route path={`/${APP_ROUTES_ENUM.NOTES}`} element={<TasksIndex />} />
                 {/*  */}

@@ -33,3 +33,11 @@ div.profile-date-picker div.ant-picker input {
     @apply !text-sm;
 }
 /* Profile DatePicker */
+
+.ant-slider-step {
+    @apply !rounded-full !bg-blue-300;
+}
+
+.ant-btn:disabled {
+    @apply cursor-not-allowed bg-gray-300;
+}
