@@ -8,6 +8,9 @@ import { GoalRitual } from './models/GoalRitual.model'
 import { Task$ } from './stores/Task.store'
 import { Task } from './models/Task.model'
 import { User$ } from './stores/User.store'
+import { SprintGoal } from './models/SprintGoal.model'
+import { Sprint$ } from './stores/Sprint.store'
+import { SprintDay } from './models/SprintDay.model'
 
 export interface IGoals$ extends Instance<typeof Goals$> {}
 export interface IUser$ extends Instance<typeof User$> {}
@@ -30,3 +33,10 @@ export interface IAchievementSnapshotIn extends SnapshotIn<typeof Achievement> {
 export interface ITask extends Instance<typeof Task> {}
 export interface ITask$ extends Instance<typeof Task$> {}
 export interface ITask$SnapshotIn extends SnapshotIn<typeof Task$> {}
+
+export interface ISprint$ extends Instance<typeof Sprint$> {}
+export interface ISprint$SnIn extends SnapshotIn<typeof Sprint$> {}
+
+export interface ISprintDay extends Instance<typeof SprintDay> {}
+
+export interface ISprintGoal extends Instance<typeof SprintGoal> {}

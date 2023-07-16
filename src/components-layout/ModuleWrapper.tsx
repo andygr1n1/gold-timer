@@ -6,13 +6,11 @@ export const ModuleWrapper: React.FC<{ title?: string; children: React.ReactNode
     title,
 }) {
     return (
-        <div className={'flex'}>
-            <div className=' mx-5 my-5 flex-auto overflow-auto rounded-lg bg-global-2-bg xl:ml-0 '>
-                <TopBar />
-                <div className='flex min-h-[calc(100vh-200px)] w-[calc(100%-40px)] flex-col overflow-auto p-4 xl:h-[calc(100vh-140px)]'>
-                    {title && <h3 className='my-5'>{title}</h3>}
-                    {children}
-                </div>
+        <div className=' mx-5 my-5 flex-auto rounded-lg bg-global-2-bg xl:ml-0 2xl:h-full 2xl:min-h-[calc(100vh-350px)]'>
+            <TopBar />
+            <div className='flex w-[calc(100%-40px)] flex-col p-4'>
+                {title && <h3 className='my-5'>{title}</h3>}
+                {children}
             </div>
         </div>
     )

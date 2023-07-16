@@ -8,6 +8,7 @@ import styles from './DashboardIndex.module.scss'
 import { GoalsDashboardCarousel } from '@/modules/dashboard/components/goals-dashboard-slider/GoalsDashboardCarousel'
 import { useUserStore } from '@/StoreProvider'
 import { useWindowMatchMedia } from '@/hooks/useMatchMedia.hook.'
+import { CreateNewTaskWidgetDialog } from '@/modules/dashboard/widgets/create-new-task-widget/CreateNewTaskWidgetDialog'
 
 export const DashboardIndex: React.FC = observer(() => {
     const { hasGoalsSliderAddon } = useUserStore()

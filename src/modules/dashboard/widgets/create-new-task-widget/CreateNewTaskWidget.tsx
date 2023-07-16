@@ -22,6 +22,7 @@ export const CreateNewTaskWidget: React.FC = observer(() => {
                     '
         >
             <CreateNewTaskAction />
+            <CreateNewTaskWidgetDialog />
         </div>
     )
 })
@@ -42,7 +43,6 @@ const CreateNewTaskAction = observer(() => {
             >
                 <Icon icon='ph:pen-fill' width={25} height={25} className='' />
             </XButton>
-            <CreateNewTaskWidgetDialog />
         </div>
     )
 })
