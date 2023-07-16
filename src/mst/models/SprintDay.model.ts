@@ -1,5 +1,7 @@
-import { types } from 'mobx-state-tree'
+import { flow, toGenerator, types } from 'mobx-state-tree'
 import { generateMstId } from '../mst.helper'
+import { processError } from '@/helpers/processError.helper'
+import { updateSprintDayStatus } from '@/graphql/mutations/sprints/updateSprintDayStatus.mutation'
 
 export const SprintDay = types
     .model('SprintDay', {
@@ -21,4 +23,13 @@ export const SprintDay = types
         onChangeField<Key extends keyof typeof self>(key: Key, value: (typeof self)[Key]) {
             self[key] = value
         },
+        changeStatus: flow(function* _changeStatus() {
+            try {
+                const statusRes = yield* toGenerator(updateSprintDayStatus(self.id, !self.status))
+                if (statusRes === undefined) throw new Error('changeStatus error: SprintDay')
+                self.status = statusRes
+            } catch (e) {
+                processError(e)
+            }
+        }),
     }))

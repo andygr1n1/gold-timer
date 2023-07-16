@@ -25,6 +25,13 @@ export const Sprint$ = types
             },
         }),
     })
+    .views((self) => ({
+        get progress(): number {
+            let totalProgress = self.duration
+            let currentProgress = self.sprints_days.filter((day) => day.status).length
+            return Math.floor((currentProgress * 100) / totalProgress)
+        },
+    }))
 
     .actions((/* self */) => ({
         // onChangeField<Key extends keyof typeof self>(key: Key, value: (typeof self)[Key]) {

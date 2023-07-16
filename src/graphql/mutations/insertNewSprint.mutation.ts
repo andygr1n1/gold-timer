@@ -25,6 +25,7 @@ export interface IInsertNewSprint {
     started_at: Date
     sprints_days: { data: ISprintsDays[] }
     sprints_goals: { data: ISprintsGoals[] }
+    owner_id: string
 }
 
 export const insertNewSprint = async (newSprint: IInsertNewSprint): Promise<ISprint$SnIn | undefined> => {

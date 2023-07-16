@@ -11,6 +11,7 @@ import { useEffect, useRef } from 'react'
 import { useWindowMatchMedia } from '@/hooks/useMatchMedia.hook.'
 import { Transition } from '@headlessui/react'
 import { useUserStore } from '@/StoreProvider'
+import { format } from 'date-fns'
 
 export const SideMenu: React.FC = observer(() => {
     const { hasWalletAddon, hasLinksAddon } = useUserStore()
@@ -159,7 +160,9 @@ export const SideMenu: React.FC = observer(() => {
                             icon={<Icon icon='subway:book' width={25} height={25} />}
                         />
                     </div>
-
+                    <div className=' m-auto mt-10 w-[125px] cursor-default'>
+                        {format(new Date(Date.now()), 'dd MMMM, cccc')}
+                    </div>
                     <SideMenuLink to={APP_ROUTES_ENUM.DASHBOARD}>
                         <button
                             className='relative h-[46px] w-[125px] cursor-pointer rounded-sm border border-transparent bg-button-bg

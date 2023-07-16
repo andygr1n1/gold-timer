@@ -1,12 +1,14 @@
 import { ModuleWrapper } from '@/components-layout/ModuleWrapper'
-import { NewSprintButton } from './components/ new-sprint-button/NewSprintButton'
-import { NewSprintDialog } from './components/new-sprint-dialog/NewSprintDialog'
+import { NewSprint } from './components/NewSprint'
+import { SprintsList } from './components/SprintsList'
 
 export const SprintsIndex: React.FC = () => {
     return (
         <ModuleWrapper title={'Sprints'}>
-            <NewSprintButton />
-            <NewSprintDialog />
+            <div className='flex flex-col gap-5 2xl:flex-row'>
+                <NewSprint />
+                <SprintsList />
+            </div>
         </ModuleWrapper>
     )
 }

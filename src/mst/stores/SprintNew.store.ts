@@ -6,6 +6,7 @@ import { uploadNewSprintLogo } from './sprint.service'
 import { processError } from '@/helpers/processError.helper'
 import { add } from 'date-fns'
 import { Sprints$ } from './Sprints.store'
+import { getUserId } from '@/helpers/getUserId'
 
 export const SprintNew$ = types
     .compose(
@@ -62,6 +63,7 @@ export const SprintNew$ = types
                     started_at: self.started_at,
                     sprints_days: { data: self.sprints_days },
                     sprints_goals: { data: self.sprints_goals },
+                    owner_id: getUserId(),
                 }
 
                 self.loading = true
