@@ -37,7 +37,7 @@ export const SprintNew$ = types
                 if (self.img_cropped_src) {
                     const uploadedImgPath = yield* toGenerator(uploadNewSprintLogo(self.img_cropped_src))
 
-                    if (!uploadedImgPath) throw new Error('activateNewSpring error')
+                    if (!uploadedImgPath) throw new Error('activateNewSprint error')
 
                     self.img_path = uploadedImgPath
                 }
