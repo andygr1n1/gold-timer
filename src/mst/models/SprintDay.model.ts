@@ -1,7 +1,8 @@
-import { flow, toGenerator, types } from 'mobx-state-tree'
+import { flow, getParentOfType, toGenerator, types } from 'mobx-state-tree'
 import { generateMstId } from '../mst.helper'
 import { processError } from '@/helpers/processError.helper'
 import { updateSprintDayStatus } from '@/graphql/mutations/sprints/updateSprintDayStatus.mutation'
+import { Sprint$ } from '../stores/Sprint.store'
 
 export const SprintDay = types
     .model('SprintDay', {
@@ -19,6 +20,14 @@ export const SprintDay = types
             },
         }),
     })
+    .views((self) => ({
+        get isStatusFreezed(): boolean {
+            return getParentOfType(self, Sprint$)?.isStatusFreezed
+        },
+        get isStatusChecked(): boolean {
+            return getParentOfType(self, Sprint$)?.todayIsChecked
+        },
+    }))
     .actions((self) => ({
         onChangeField<Key extends keyof typeof self>(key: Key, value: (typeof self)[Key]) {
             self[key] = value

@@ -8,7 +8,7 @@ export const NewSprintButton: React.FC = observer(() => {
         <div
             className='
             flex items-center justify-center rounded-md bg-global-bg
-            2xl:max-h-[160px] 2xl:w-[260px] 2xl:min-w-[260px]'
+            p-6 2xl:h-[80px] 2xl:w-[200px] 2xl:min-w-[260px]'
         >
             <NewSprintButtonAction />
         </div>
@@ -16,18 +16,18 @@ export const NewSprintButton: React.FC = observer(() => {
 })
 
 const NewSprintButtonAction = observer(() => {
-    const { activateNewSprintCreator: generateNewSprint } = useSprintsStore()
+    const { activateNewSprintCreator } = useSprintsStore()
 
     const handleOpenNewSprintDialog = () => {
-        generateNewSprint()
+        activateNewSprintCreator()
     }
 
     return (
         <div
             onClick={handleOpenNewSprintDialog}
             className='
-                    group flex w-full cursor-pointer items-center justify-center gap-5 rounded-lg bg-cyan-500
-                    p-5  2xl:h-[80px] 2xl:w-auto'
+                    group flex w-full max-w-[460px]  cursor-pointer items-center justify-center gap-5 rounded-lg bg-cyan-500
+                    p-5  2xl:h-[40px]'
         >
             <XButton
                 title='create new sprint'
@@ -35,7 +35,7 @@ const NewSprintButtonAction = observer(() => {
             >
                 <Icon icon='game-icons:sprint' width={25} height={25} className='' />
             </XButton>
-            <div className='hidden font-semibold text-white 2xl:flex'>Create sprint</div>
+            <div className='hidden font-droid-bold text-sm text-white 2xl:flex'>New sprint</div>
         </div>
     )
 })

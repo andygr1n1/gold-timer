@@ -1,5 +1,4 @@
-import { IInsertNewSprint, insertNewSprint } from './../../graphql/mutations/insertNewSprint.mutation'
-import { cloneDeep } from 'lodash-es'
+import { IInsertNewSprint, insertNewSprint } from '../../graphql/mutations/sprints/insertNewSprint.mutation'
 import { cast, flow, getParentOfType, toGenerator, types } from 'mobx-state-tree'
 import { Sprint$ } from './Sprint.store'
 import { uploadNewSprintLogo } from './sprint.service'
@@ -50,8 +49,6 @@ export const SprintNew$ = types
                 }))
 
                 self.onChangeField('sprints_days', cast(sprints_days))
-
-                console.log('sprint snIn', cloneDeep(self))
 
                 const newSprint: IInsertNewSprint = {
                     id: self.id,

@@ -29,7 +29,7 @@
     h4,
     h5,
     h6 {
-        @apply m-0 p-0 font-vi font-extrabold tracking-wider text-cText;
+        @apply m-0 p-0 font-droid-bold tracking-wider text-cText;
     }
 
     a,

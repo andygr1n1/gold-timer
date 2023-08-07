@@ -1,9 +1,12 @@
-import { types, cast, flow, toGenerator, applySnapshot } from 'mobx-state-tree'
+import { types, cast, flow, toGenerator, applySnapshot, destroy, detach } from 'mobx-state-tree'
 import { SprintNew$ } from './SprintNew.store'
 import { Sprint$ } from './Sprint.store'
-import { ISprint$SnIn } from '../types'
+import { ISprint$, ISprint$SnIn } from '../types'
 import { processError } from '@/helpers/processError.helper'
 import { fetchSprints } from '@/graphql/queries/sprints/fetchSprints.query'
+import { IInsertNewSprint, insertNewSprint } from '@/graphql/mutations/sprints/insertNewSprint.mutation'
+import { add } from 'date-fns'
+import { deletedAtSprint } from '@/graphql/mutations/sprints/deletedAtSprint.mutation'
 
 export const Sprints$ = types
     .model('Sprints$', {
@@ -33,4 +36,55 @@ export const Sprints$ = types
                 processError(e)
             }
         }),
+        createNewSprintInstance: flow(function* _createNewInstance(sprint: ISprint$) {
+            try {
+                const successPointsArray: number[] = Array(sprint.duration).fill(0)
+                const startedAt = new Date(Date.now())
+                const sprints_days = successPointsArray.map((_, index) => ({
+                    date: add(startedAt, { days: index }),
+                    status: null,
+                }))
+
+                const newSprint: IInsertNewSprint = {
+                    title: sprint.title,
+                    description: sprint.description,
+                    duration: sprint.duration,
+                    img_path: sprint.img_path,
+                    achievement: sprint.achievement,
+                    started_at: startedAt,
+                    sprints_days: { data: sprints_days },
+                    owner_id: sprint.owner_id,
+                    parent_sprint_id: sprint.parent_sprint_id || sprint.id,
+                }
+
+                const createdSprint = yield* toGenerator(insertNewSprint(newSprint))
+                if (!createdSprint) throw new Error('createNewSprintInstance: creating sprint failed')
+
+                const deletedParent = yield* toGenerator(deletedAtSprint(sprint.id))
+                if (!deletedParent) throw new Error('createNewSprintInstance: deleting parent sprint failed')
+
+                deletedParent && destroy(detach(sprint))
+                console.log('createdSprint', createdSprint)
+                self.pushNewSprint(createdSprint)
+            } catch (e) {
+                processError(e)
+            }
+        }),
+    }))
+    .views((self) => ({
+        get sprintsRender(): ISprint$[] {
+            const activeNotChecked: ISprint$[] = []
+            const freezed: ISprint$[] = []
+            const sprints: ISprint$[] = []
+            self.sprints.forEach((sprint) => {
+                if (sprint.isStatusActive && !sprint.todayIsChecked) {
+                    activeNotChecked.push(sprint)
+                } else if (sprint.isStatusFreezed) {
+                    freezed.push(sprint)
+                } else {
+                    sprints.push(sprint)
+                }
+            })
+            return [...activeNotChecked, ...freezed, ...sprints]
+        },
     }))
