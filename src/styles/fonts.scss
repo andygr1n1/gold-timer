@@ -5,6 +5,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&display=swap');
 
 @font-face {
+    font-family: 'Droid Sans';
+    src: url('/fonts/droid-sans/DroidSans.ttf');
+}
+
+@font-face {
+    font-family: 'Droid Sans Bold';
+    src: url('/fonts/droid-sans/DroidSans-Bold.ttf');
+}
+
+@font-face {
     font-family: 'Cascadia Code';
     src: url('/fonts/cascadia-ttf/CascadiaCode.ttf');
     src: url('/fonts/cascadia-woff2/CascadiaCode.woff2') format('woff'),

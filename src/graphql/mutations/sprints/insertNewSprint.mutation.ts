@@ -1,10 +1,10 @@
 import { gql } from 'graphql-request'
-import { generateClient } from '../client'
+import { generateClient } from '../../client'
 import { processError } from '@/helpers/processError.helper'
 import { ISprint$SnIn } from '@/mst/types'
 
 interface ISprintsDays {
-    id: string
+    id?: string
     date: Date | null
     status: boolean | null
 }
@@ -16,7 +16,7 @@ interface ISprintsGoals {
 }
 
 export interface IInsertNewSprint {
-    id: string
+    id?: string
     title: string
     description: string | null
     duration: number
@@ -24,8 +24,9 @@ export interface IInsertNewSprint {
     achievement: string | null
     started_at: Date
     sprints_days: { data: ISprintsDays[] }
-    sprints_goals: { data: ISprintsGoals[] }
+    sprints_goals?: { data: ISprintsGoals[] }
     owner_id: string
+    parent_sprint_id?: string | null
 }
 
 export const insertNewSprint = async (newSprint: IInsertNewSprint): Promise<ISprint$SnIn | undefined> => {
@@ -43,6 +44,8 @@ export const insertNewSprint = async (newSprint: IInsertNewSprint): Promise<ISpr
                 started_at
                 title
                 updated_at
+                parent_sprint_id
+                owner_id
                 sprints_days {
                     id
                     status

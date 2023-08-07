@@ -2,6 +2,8 @@
 const defaultConfig = require('tailwindcss/defaultConfig')
 
 module.exports = {
+    droid: ['Droid Sans', defaultConfig.theme.fontFamily.sans],
+    'droid-bold': ['Droid Sans Bold', defaultConfig.theme.fontFamily.sans],
     sans: ['Source Sans Pro', defaultConfig.theme.fontFamily.sans],
     sofia: ['Sofia Sans', defaultConfig.theme.fontFamily.sans],
     mono: ['Cascadia Code', defaultConfig.theme.fontFamily.mono],

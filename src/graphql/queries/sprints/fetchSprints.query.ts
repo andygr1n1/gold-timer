@@ -10,7 +10,10 @@ export const fetchSprints = async (): Promise<ISprint$SnIn[] | undefined> => {
 
     const query = gql`
         query fetchSprints($user_id: uuid) {
-            sprints(where: { owner_id: { _eq: $user_id } }, order_by: { created_at: desc }) {
+            sprints(
+                where: { owner_id: { _eq: $user_id }, deleted_at: { _is_null: true } }
+                order_by: { started_at: desc }
+            ) {
                 achievement
                 title
                 started_at
@@ -21,6 +24,8 @@ export const fetchSprints = async (): Promise<ISprint$SnIn[] | undefined> => {
                 duration
                 description
                 created_at
+                parent_sprint_id
+                owner_id
                 sprints_days(order_by: { date: asc }) {
                     date
                     id

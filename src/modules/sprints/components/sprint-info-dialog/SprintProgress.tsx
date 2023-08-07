@@ -6,7 +6,6 @@ export const SprintProgress: React.FC<{ progress: number }> = observer(({ progre
         <Progress
             className='flex h-full items-center justify-center [&_*]:!text-cText'
             type='circle'
-            size={'small'}
             percent={progress}
             strokeColor={{ '0%': '#108ee9', '100%': '#87d068' }}
         />
