@@ -5,7 +5,7 @@ import { ISprint$, ISprint$SnIn } from '../types'
 import { processError } from '@/helpers/processError.helper'
 import { fetchSprints } from '@/graphql/queries/sprints/fetchSprints.query'
 import { IInsertNewSprint, insertNewSprint } from '@/graphql/mutations/sprints/insertNewSprint.mutation'
-import { add } from 'date-fns'
+import { add, set } from 'date-fns'
 import { deletedAtSprint } from '@/graphql/mutations/sprints/deletedAtSprint.mutation'
 
 export const Sprints$ = types
@@ -39,7 +39,7 @@ export const Sprints$ = types
         createNewSprintInstance: flow(function* _createNewInstance(sprint: ISprint$) {
             try {
                 const successPointsArray: number[] = Array(sprint.duration).fill(0)
-                const startedAt = new Date(Date.now())
+                const startedAt = add(set(new Date(Date.now()), { hours: 1, minutes: 1, seconds: 1 }), { days: 1 })
                 const sprints_days = successPointsArray.map((_, index) => ({
                     date: add(startedAt, { days: index }),
                     status: null,
