@@ -37,7 +37,7 @@ export const Achievements: React.FC = observer(() => {
                     {visibleAchievements.map((ach) => (
                         <img
                             key={ach.id}
-                            src={`${import.meta.env.VITE_FIRE_BUNNY_STORAGE}${ach.img_path}`}
+                            src={`${import.meta.env.VITE_FIRE_BUNNY_STORAGE}achievements/${ach.img_path}`}
                             width={80}
                             height={80}
                             title={ach.title}
