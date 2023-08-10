@@ -31,7 +31,6 @@ export interface IInsertNewSprint {
 
 export const insertNewSprint = async (newSprint: IInsertNewSprint): Promise<ISprint$SnIn | undefined> => {
     const client = generateClient()
-
     const mutation = gql`
         mutation insertNewSprint($newSprint: sprints_insert_input!) {
             insert_sprints_one(object: $newSprint) {
