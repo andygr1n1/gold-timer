@@ -1,11 +1,13 @@
 import { observer } from 'mobx-react-lite'
+import styles from './AnonymousFooter.module.scss'
 import { LoginLogoSm } from './LoginLogo'
-
 export const AnonymousFooter: React.FC = observer(() => {
     return (
-        <div className='relative flex h-10 items-center justify-between  bg-global-2-bg px-10  text-xs xl:h-20'>
+        <div className='relative flex h-20 items-center justify-between bg-transparent'>
+            <div className={styles['triangle-left']} />
+            <div className={styles['triangle-right']} />
+            <div className={styles['bottom']} />
             <LoginLogoSm />
-            <span className='absolute right-0 mx-10 cursor-default text-[10px]'> Energy bit production</span>
         </div>
     )
 })

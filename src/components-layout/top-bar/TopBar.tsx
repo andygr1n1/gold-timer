@@ -21,7 +21,7 @@ export const TopBar: React.FC = observer(() => {
                             {!useSideMenu.is_open ? (
                                 <Icon
                                     icon='line-md:close-to-menu-transition'
-                                    className={`cursor-pointer text-navLink hover:text-navLink-active 2xl:hidden`}
+                                    className={`text-navLink hover:text-navLink-active cursor-pointer 2xl:hidden`}
                                     width={23}
                                     height={23}
                                     onClick={useSideMenu.onChange}

@@ -41,3 +41,7 @@ div.profile-date-picker div.ant-picker input {
 .ant-btn:disabled {
     @apply cursor-not-allowed bg-gray-300;
 }
+
+.ant-collapse-content-box {
+    @apply bg-global-2-bg
+}

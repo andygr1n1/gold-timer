@@ -68,11 +68,8 @@ export enum APP_ROUTES_ENUM {
     DASHBOARD = 'dashboard',
     SANCTUARY = 'sanctuary',
     BIT_WARDEN = 'bitwarden',
-    WALLET = 'wallet',
     SUGGESTIONS = 'suggestions',
     SETTINGS = 'settings',
-    DOCUMENTATION = 'documentation',
-    LINKS = 'links',
     MISSIONS = 'missions',
 }
 
@@ -93,7 +90,5 @@ export enum RITUAL_TYPE_ENUM {
 }
 export enum ADDONS_ENUM {
     GOALS_OF_WEEK = 'goals_of_week',
-    WALLET = 'wallet',
     GOALS_SLIDER = 'goals_slider',
-    LINKS = 'links',
 }

@@ -1,8 +1,8 @@
-const twRootColors = require('./variables/tw_root_colors.ts')
-const twThemeDefaultColors = require('./variables/tw_theme_default_colors.ts')
-const twThemeNightColors = require('./variables/tw_theme_night_colors.ts')
+import twRootColors from './variables/twRootColors'
+import twThemeDefaultColors from './variables/twLightColors'
+import twThemeNightColors from './variables/twDarkColors'
 
-module.exports = {
+export default {
     DEFAULT: {
         colors: {
             ...twRootColors,

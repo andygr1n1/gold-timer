@@ -1,4 +1,4 @@
-module.exports = {
+export default {
     cText: 'white',
     cTextHover: 'var(--colors-blue-100)',
     //
@@ -10,6 +10,7 @@ module.exports = {
     'global-bg': 'var(--colors-darknight)',
     'global-2-bg': 'var(--colors-twilight)',
     'global-3-bg': 'var(--colors-evening)',
+    'global-bg-regal': 'rgba(19, 19, 44, 0.9)',
     'global-text': 'var(--colors-white)',
     // navLink
     navLink: 'var(--colors-gray-300)',

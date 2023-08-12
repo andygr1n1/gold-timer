@@ -40,9 +40,6 @@ export const Goals$ = types
         is_creator_mode: false,
 
         goals_checked_list_filter: types.array(types.enumeration(Object.values(STATUS_ENUM_FILTERS))),
-
-        //
-        achievements_edit_mode: false,
         //
         active_collapse_key: types.maybe(types.string),
         //
@@ -185,7 +182,7 @@ export const Goals$ = types
         },
     }))
     .actions((self) => ({
-        onChangeField<Key extends keyof typeof self>(key: Key, value: typeof self[Key]) {
+        onChangeField<Key extends keyof typeof self>(key: Key, value: (typeof self)[Key]) {
             self[key] = value
         },
         exitEditMode(): void {
