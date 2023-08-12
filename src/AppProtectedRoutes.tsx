@@ -7,9 +7,6 @@ import { DashboardIndex } from './pages/dashboard/DashboardIndex'
 import { GoalsIndex } from './pages/goals/GoalsIndex'
 import { ProfileIndex } from './modules/profile/ProfileIndex'
 import { TasksIndex } from './modules/notes/NotesIndex'
-import { DocumentationIndex } from './modules/documentation/DocumentationIndex'
-import { LinksIndex } from './modules/links/LinksIndex'
-import { WalletIndex } from './modules/wallet/WalletIndex'
 import { SprintsIndex } from './modules/sprints/SprintsIndex'
 
 export const AppProtectedRoutes: React.FC = () => {
@@ -25,10 +22,7 @@ export const AppProtectedRoutes: React.FC = () => {
                 <Route path={`/${APP_ROUTES_ENUM.GOALS}`} element={<GoalsIndex />} />
                 <Route path={`/${APP_ROUTES_ENUM.NOTES}`} element={<TasksIndex />} />
                 {/*  */}
-                <Route path={`/${APP_ROUTES_ENUM.DOCUMENTATION}`} element={<DocumentationIndex />} />
                 <Route path={`/${APP_ROUTES_ENUM.DASHBOARD}`} element={<DashboardIndex />} />
-                <Route path={`/${APP_ROUTES_ENUM.LINKS}`} element={<LinksIndex />} />
-                <Route path={`/${APP_ROUTES_ENUM.WALLET}`} element={<WalletIndex />} />
             </Routes>
             <CreateNewGoalModal />
             <GoalsManagerMw />

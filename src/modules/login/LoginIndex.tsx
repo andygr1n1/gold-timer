@@ -13,6 +13,9 @@ import { RememberMe } from './components/login/RememberMe'
 import { LoginEmail } from './components/login/LoginEmail'
 import { LoginPassword } from './components/login/LoginPassword'
 import { LoginFooter } from './components/login/LoginFooter'
+import styles from './LoginIndex.module.scss'
+import clsx from 'clsx'
+import { is4G } from '@/functions/navigatorConnection'
 
 export const LoginIndex: React.FC = observer(() => {
     const { onChangeField } = useUserStore()
@@ -48,7 +51,7 @@ export const LoginIndex: React.FC = observer(() => {
     }
 
     return (
-        <div className='flex h-full w-full flex-col '>
+        <div className={clsx([styles['login-bg'], is4G() && styles['login-4g']])}>
             <LoginContainer>
                 {contextHolder}
                 <LoginLogo />

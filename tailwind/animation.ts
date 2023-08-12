@@ -1,4 +1,4 @@
-module.exports = {
+export default {
     animation: {
         'spin-slow': 'spin 10s linear infinite',
         wiggle: 'wiggle 1s ease-in-out infinite',

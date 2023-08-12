@@ -41,18 +41,12 @@ export const User$ = types
         get hasGoalsOfWeekAddon(): boolean {
             return !!self.addons.find((addon) => addon.isGoalsOfWeek)?.isGoalsOfWeek
         },
-        get hasWalletAddon(): boolean {
-            return !!self.addons.find((addon) => addon.isWallet)?.isWallet
-        },
         get hasGoalsSliderAddon(): boolean {
             return !!self.addons.find((addon) => addon.isGoalsSlider)?.isGoalsSlider
         },
-        get hasLinksAddon(): boolean {
-            return !!self.addons.find((addon) => addon.isLinks)?.isLinks
-        },
     }))
     .actions((self) => ({
-        onChangeField<Key extends keyof typeof self>(key: Key, value: typeof self[Key]) {
+        onChangeField<Key extends keyof typeof self>(key: Key, value: (typeof self)[Key]) {
             self[key] = value
         },
         fetchUserPassword: flow(function* _fetchUserPassword() {

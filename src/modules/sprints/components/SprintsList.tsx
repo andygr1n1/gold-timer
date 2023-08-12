@@ -10,7 +10,7 @@ export const SprintsList: React.FC = observer(() => {
     }, [])
 
     return (
-        <div className='flex h-full w-[calc(100%-40px)]   flex-col items-start justify-start gap-5 rounded-md bg-global-bg p-5  '>
+        <div className='bg-global-bg flex h-full   w-[calc(100%-40px)] flex-col items-start justify-start gap-5 rounded-md p-5  '>
             {sprintsRender.map((sprint) => (
                 <SprintInfo key={sprint.id} sprint={sprint} />
             ))}

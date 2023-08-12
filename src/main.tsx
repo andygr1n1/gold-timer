@@ -15,7 +15,7 @@ passiveSupport({ debug: false })
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     <BrowserRouter>
         <StoreProvider>
-            <ConfigProvider theme={{ token: { colorPrimary: '#60a5fa' } }}>
+            <ConfigProvider theme={{ token: { colorPrimary: '#2563EB' } }}>
                 <AppConfigWrapper />
             </ConfigProvider>
         </StoreProvider>

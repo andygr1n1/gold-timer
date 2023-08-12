@@ -1,6 +1,5 @@
 import { TopBar } from '@/components-layout/top-bar/TopBar'
 import { CreateNewGoalWidget } from '@/modules/dashboard/widgets/create-new-goal-widget/CreateNewGoalWidget'
-import { DbAchievement } from '@/modules/dashboard/components/dashboard-achievements/DbAchievements'
 import { TopGoalsWidgets } from '@/modules/dashboard/widgets/top-goals-widgets/TopGoalsWidgets'
 import { CreateNewTaskWidget } from '@/modules/dashboard/widgets/create-new-task-widget/CreateNewTaskWidget'
 import { observer } from 'mobx-react-lite'
@@ -15,7 +14,7 @@ export const DashboardIndex: React.FC = observer(() => {
     const { isDesktop } = useWindowMatchMedia(['isDesktop'])
     return (
         <div className={'flex'}>
-            <div className=' mx-5 my-5 flex-auto overflow-auto rounded-lg bg-global-2-bg 2xl:ml-0 '>
+            <div className=' bg-global-2-bg mx-5 my-5 flex-auto overflow-auto rounded-lg 2xl:ml-0 '>
                 <TopBar />
                 <div className={styles['grid-parent']}>
                     <div className={`${styles['grid-child']} ${styles['alpha']}`}>
@@ -33,7 +32,6 @@ export const DashboardIndex: React.FC = observer(() => {
                     )}
                 </div>
             </div>
-            <DbAchievement />
         </div>
     )
 })

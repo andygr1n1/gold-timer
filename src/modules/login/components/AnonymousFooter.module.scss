@@ -1,0 +1,28 @@
+.triangle-left {
+    @apply absolute bottom-[15px] left-0 flex w-[50%];
+    height: 60px;
+    background: linear-gradient(
+        to bottom left,
+        transparent 0%,
+        transparent 50%,
+        rgba(37, 99, 235, 0.35) 55%,
+        rgba(37, 99, 235, 0.35) 80%
+    );
+}
+
+.triangle-right {
+    @apply absolute bottom-[15px] right-0 flex w-[50%];
+    height: 60px;
+    background: linear-gradient(
+        to bottom right,
+        transparent 0%,
+        transparent 50%,
+        rgba(37, 99, 235, 0.35) 55%,
+        rgba(37, 99, 235, 0.35) 80%
+    );
+}
+
+.bottom {
+    background: rgba(37, 99, 235, 0.35);
+    @apply absolute bottom-0 h-[15px] w-full;
+}

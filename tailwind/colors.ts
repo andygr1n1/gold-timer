@@ -1,4 +1,5 @@
-module.exports = {
+export default {
+    regalBlue: 'rgba(19, 19, 44, 0.9)',
     cText: 'var(--colors-cText)',
     cTextHover: 'var(--colors-cTextHover)',
     skyblue: 'var(--skyblue)',
@@ -8,6 +9,7 @@ module.exports = {
     'global-bg': 'var(--colors-global-bg)',
     'global-2-bg': 'var(--colors-global-2-bg)',
     'global-3-bg': 'var(--colors-global-3-bg)',
+    'global-bg-regal': 'var(--colors-global-bg-regal)',
     // navLink
     navLink: 'var(--colors-navLink)',
     'navLink-active': 'var(--colors-navLink-active)',

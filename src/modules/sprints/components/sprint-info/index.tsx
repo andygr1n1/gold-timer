@@ -17,11 +17,11 @@ export const SprintInfo: React.FC<{ sprint: ISprint$ }> = observer(({ sprint }) 
     return (
         <div
             className={clsx([
-                'relative m-auto flex w-[calc(100%-20px)] max-w-[500px] flex-col items-center justify-between rounded-md bg-global-2-bg py-2 2xl:w-[calc(80%-80px)] 2xl:max-w-[100%] 2xl:flex-row 2xl:py-0',
+                'bg-global-2-bg relative m-auto flex w-[calc(100%-20px)] max-w-[500px] flex-col items-center justify-between rounded-md py-2 2xl:w-[calc(80%-80px)] 2xl:max-w-[100%] 2xl:flex-row 2xl:py-0',
                 getSprintBgByStatus(status, todayIsChecked),
             ])}
         >
-            <div className='absolute -left-[60px] hidden w-[100px] -rotate-90 items-center justify-center truncate whitespace-nowrap bg-transparent font-droid-bold opacity-50 2xl:bottom-10 2xl:flex '>
+            <div className='font-droid-bold absolute -left-[60px] hidden w-[100px] -rotate-90 items-center justify-center truncate whitespace-nowrap bg-transparent opacity-50 2xl:bottom-10 2xl:flex '>
                 {upperCase(status)}
             </div>
             {/*  */}
