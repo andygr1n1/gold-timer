@@ -86,7 +86,7 @@ export const SideMenu: React.FC = observer(() => {
                         <XDivider className='w-[125px] bg-gray-700' />
                     </div>
                     <SideMenuLink to={APP_ROUTES_ENUM.DASHBOARD}>
-                        <RoundedButton className='my-10'>Go to Dashboard</RoundedButton>
+                        <RoundedButton className='my-10 w-[150px]'>Go to Dashboard</RoundedButton>
                     </SideMenuLink>
                 </div>
             </div>

@@ -66,7 +66,7 @@ export const TopGoal: React.FC<{ goal: IGoal$; type: ACTIVE_GOAL_TYPE_ENUM }> = 
                         useMobileTrigger()
                     }}
                 >
-                    <span>{truncate(goal.title, { length: 25 })}</span>
+                    <span>{truncate(goal.title, { length: 22 })}</span>
                 </div>
             </XBadge>
         </PopoverGoalActions>

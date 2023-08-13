@@ -5,14 +5,14 @@ import { useSprintsStore } from '../../../../../StoreProvider'
 import styles from './SprintActions.module.scss'
 
 export const FreezedCreateNewInstance: React.FC<{ sprint: ISprint$ }> = observer(({ sprint }) => {
-    const { createNewSprintInstance } = useSprintsStore()
+    const { restartSelectedSprint: createNewSprintInstance } = useSprintsStore()
     const createNewInstance = () => {
         createNewSprintInstance(sprint)
     }
 
     return (
         <Button className={styles['button']} onClick={() => createNewInstance()} type='primary'>
-            Create new instance
+            Restarrt
         </Button>
     )
 })

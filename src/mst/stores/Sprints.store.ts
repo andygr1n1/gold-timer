@@ -36,7 +36,7 @@ export const Sprints$ = types
                 processError(e)
             }
         }),
-        createNewSprintInstance: flow(function* _createNewInstance(sprint: ISprint$) {
+        restartSelectedSprint: flow(function* _createNewInstance(sprint: ISprint$) {
             try {
                 const successPointsArray: number[] = Array(sprint.duration).fill(0)
                 const startedAt = add(set(new Date(Date.now()), { hours: 1, minutes: 1, seconds: 1 }), { days: 1 })
@@ -69,6 +69,10 @@ export const Sprints$ = types
             } catch (e) {
                 processError(e)
             }
+        }),
+        deleteSelectedSprint: flow(function* _deleteSelectedSprint(sprint: ISprint$) {
+            const deletedSprint = yield* toGenerator(deletedAtSprint(sprint.id))
+            deletedSprint && destroy(detach(sprint))
         }),
     }))
     .views((self) => ({

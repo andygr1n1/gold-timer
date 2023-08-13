@@ -5,15 +5,18 @@ import { SprintInfo } from './sprint-info'
 
 export const SprintsList: React.FC = observer(() => {
     const { fetchSprints, sprintsRender } = useSprintsStore()
+
     useEffect(() => {
         fetchSprints()
     }, [])
 
     return (
-        <div className='bg-global-bg flex h-full   w-[calc(100%-40px)] flex-col items-start justify-start gap-5 rounded-md p-5  '>
-            {sprintsRender.map((sprint) => (
-                <SprintInfo key={sprint.id} sprint={sprint} />
-            ))}
-        </div>
+        <>
+            <div className='bg-global-bg flex h-full   w-[calc(100%-40px)] flex-col items-start justify-start gap-5 rounded-md p-5  '>
+                {sprintsRender.map((sprint) => (
+                    <SprintInfo key={sprint.id} sprint={sprint} />
+                ))}
+            </div>
+        </>
     )
 })

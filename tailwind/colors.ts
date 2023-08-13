@@ -1,4 +1,5 @@
 export default {
+    colorPrimary: '#2563EB',
     regalBlue: 'rgba(19, 19, 44, 0.9)',
     cText: 'var(--colors-cText)',
     cTextHover: 'var(--colors-cTextHover)',
