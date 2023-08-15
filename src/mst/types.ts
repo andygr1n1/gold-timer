@@ -11,6 +11,7 @@ import { User$ } from './stores/User.store'
 import { SprintGoal } from './models/SprintGoal.model'
 import { Sprint$ } from './stores/Sprint.store'
 import { SprintDay } from './models/SprintDay.model'
+import { SprintNew$ } from './stores/SprintNew.store'
 
 export interface IGoals$ extends Instance<typeof Goals$> {}
 export interface IUser$ extends Instance<typeof User$> {}
@@ -37,6 +38,9 @@ export interface ITask$SnapshotIn extends SnapshotIn<typeof Task$> {}
 export interface ISprint$ extends Instance<typeof Sprint$> {}
 export interface ISprint$SnIn extends SnapshotIn<typeof Sprint$> {}
 
+export interface ISprintNew$ extends Instance<typeof SprintNew$> {}
+
 export interface ISprintDay extends Instance<typeof SprintDay> {}
+export interface ISprintDaySnIn extends SnapshotIn<typeof SprintDay> {}
 
 export interface ISprintGoal extends Instance<typeof SprintGoal> {}

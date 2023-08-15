@@ -12,7 +12,7 @@ export const FreezedCreateNewInstance: React.FC<{ sprint: ISprint$ }> = observer
 
     return (
         <Button className={styles['button']} onClick={() => createNewInstance()} type='primary'>
-            Restarrt
+            Restart
         </Button>
     )
 })

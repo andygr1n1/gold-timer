@@ -14,7 +14,7 @@ export const XModal: React.FC<{
     return (
         <>
             <Transition appear show={open} as={Fragment}>
-                <Dialog as='div' className='font-neon relative z-[60]' onClose={onCancel}>
+                <Dialog as='div' className='font-neon relative z-[1100]' onClose={onCancel}>
                     <Transition.Child
                         as={Fragment}
                         enter='ease-out duration-300 '

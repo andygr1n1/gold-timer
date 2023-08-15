@@ -30,6 +30,7 @@ export const Sprint$ = types
                 return sn
             },
         }),
+        menu_action: types.maybeNull(types.union(types.literal('restart'), types.literal('delete'))),
     })
     .views((self) => ({
         get today(): Date {
@@ -103,8 +104,8 @@ export const Sprint$ = types
         },
     }))
 
-    .actions((/* self */) => ({
-        // onChangeField<Key extends keyof typeof self>(key: Key, value: (typeof self)[Key]) {
-        //     self[key] = value
-        // },
+    .actions((self) => ({
+        onChangeField<Key extends keyof typeof self>(key: Key, value: (typeof self)[Key]) {
+            self[key] = value
+        },
     }))

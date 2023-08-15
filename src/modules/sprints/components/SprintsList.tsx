@@ -2,6 +2,7 @@ import { useSprintsStore } from '@/StoreProvider'
 import { observer } from 'mobx-react-lite'
 import { useEffect } from 'react'
 import { SprintInfo } from './sprint-info'
+import { SprintMenuDialogConfirm } from './sprint-info/SprintMenuDialogConfirm'
 
 export const SprintsList: React.FC = observer(() => {
     const { fetchSprints, sprintsRender } = useSprintsStore()
@@ -17,6 +18,10 @@ export const SprintsList: React.FC = observer(() => {
                     <SprintInfo key={sprint.id} sprint={sprint} />
                 ))}
             </div>
+            {/*  */}
+            {/* D I A L O G */}
+            {/*  */}
+            <SprintMenuDialogConfirm />
         </>
     )
 })

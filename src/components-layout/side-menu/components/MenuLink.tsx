@@ -33,11 +33,11 @@ export const SideMenuLink: React.FC<{
                 <>
                     <button
                         className='
-                    relative flex h-[25px] w-full cursor-pointer items-center justify-start gap-2 border-none bg-transparent text-left 
-                    text-sm text-inherit outline-none duration-300 hover:text-navLink-active  disabled:cursor-default disabled:text-gray-500 '
+                    hover:text-navLink-active relative flex h-[25px] w-full cursor-pointer items-center justify-start gap-2 border-none bg-transparent 
+                    text-left text-xs text-inherit outline-none duration-300  disabled:cursor-default disabled:text-gray-500 '
                         disabled={disabled}
                     >
-                        {icon ? icon : null}
+                        <div className='flex h-5 w-10 items-center justify-center'> {icon ? icon : null}</div>
                         <p className='relative m-0 h-5 w-full p-0'>
                             <span className='absolute top-0'>{title}</span>
                         </p>

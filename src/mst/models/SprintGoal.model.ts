@@ -6,6 +6,7 @@ export const SprintGoal = types
         id: generateMstId(),
         title: '',
         status: types.maybeNull(types.boolean),
+        deleted_at: types.maybeNull(types.Date),
     })
     .actions((self) => ({
         onChangeField<Key extends keyof typeof self>(key: Key, value: (typeof self)[Key]) {

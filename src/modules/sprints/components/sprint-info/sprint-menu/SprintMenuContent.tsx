@@ -1,12 +1,12 @@
 import { PopoverItem } from '@/components/popover-settings/PopoverItem'
 import { ISprint$ } from '@/mst/types'
 import { observer } from 'mobx-react-lite'
-import { Dispatch, SetStateAction, useState } from 'react'
-import { SprintMenuDialogConfirm } from './SprintMenuDialogConfirm'
+import { Dispatch, SetStateAction } from 'react'
+import { useSprintsStore } from '@/StoreProvider'
 
 export const SprintMenuContent: React.FC<{ sprint: ISprint$; setPopoverState: Dispatch<SetStateAction<boolean>> }> =
     observer(({ sprint, setPopoverState }) => {
-        const [dialogState, setDialogState] = useState<'restart' | 'delete' | null>(null)
+        const { activateEditSprintCreator, selectSprintAndActivateMenuAction } = useSprintsStore()
 
         return (
             <div className='flex min-w-[120px] flex-col gap-4'>
@@ -15,7 +15,7 @@ export const SprintMenuContent: React.FC<{ sprint: ISprint$; setPopoverState: Di
                     <div className='ml-2 flex flex-col gap-2'>
                         <PopoverItem
                             action={() => {
-                                console.log('click')
+                                setPopoverState(false)
                             }}
                             icon='fluent:open-24-filled'
                             iconClassName='text-colorPrimary'
@@ -24,7 +24,8 @@ export const SprintMenuContent: React.FC<{ sprint: ISprint$; setPopoverState: Di
                         />
                         <PopoverItem
                             action={() => {
-                                console.log('click')
+                                setPopoverState(false)
+                                activateEditSprintCreator(sprint)
                             }}
                             icon='uil:edit'
                             iconClassName='text-colorPrimary'
@@ -33,7 +34,8 @@ export const SprintMenuContent: React.FC<{ sprint: ISprint$; setPopoverState: Di
                         />
                         <PopoverItem
                             action={() => {
-                                setDialogState('restart')
+                                setPopoverState(false)
+                                selectSprintAndActivateMenuAction(sprint, 'restart')
                             }}
                             icon='solar:restart-circle-broken'
                             iconClassName='text-colorPrimary'
@@ -42,7 +44,8 @@ export const SprintMenuContent: React.FC<{ sprint: ISprint$; setPopoverState: Di
                         />
                         <PopoverItem
                             action={() => {
-                                setDialogState('delete')
+                                setPopoverState(false)
+                                selectSprintAndActivateMenuAction(sprint, 'delete')
                             }}
                             icon='fluent:delete-dismiss-28-regular'
                             iconClassName='text-red-700'
@@ -53,18 +56,6 @@ export const SprintMenuContent: React.FC<{ sprint: ISprint$; setPopoverState: Di
                         />
                     </div>
                 </div>
-                {/*  */}
-                {/* D I A L O G */}
-                {/*  */}
-                <SprintMenuDialogConfirm
-                    setPopoverState={setPopoverState}
-                    dialogState={dialogState}
-                    onCancel={() => {
-                        setDialogState(null)
-                        setPopoverState(false)
-                    }}
-                    sprint={sprint}
-                />
             </div>
         )
     })

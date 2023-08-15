@@ -48,12 +48,12 @@ export const SideMenu: React.FC = observer(() => {
                 ${useSideMenu.is_open ? 'animate-slide-in' : 'animate-slide-out xl:animate-opacity ml-[-320px] '}
             `}
             >
-                <div className='flex w-[200px] min-w-[200px] flex-col  gap-10 overflow-auto py-5'>
+                <div className='flex w-[170px] min-w-[170px] flex-col  overflow-auto py-5'>
                     <div className='relative flex justify-center'>
                         <UserAvatarSideMenu />
                         <CloseSideMenu />
                     </div>
-                    <div className='ml-4 flex flex-auto flex-col gap-5 overflow-auto  pl-5'>
+                    <div className='ml-4 flex flex-auto flex-col gap-5 overflow-auto  '>
                         <SideMenuLink
                             to={APP_ROUTES_ENUM.PROFILE}
                             title='Profile'
@@ -86,7 +86,7 @@ export const SideMenu: React.FC = observer(() => {
                         <XDivider className='w-[125px] bg-gray-700' />
                     </div>
                     <SideMenuLink to={APP_ROUTES_ENUM.DASHBOARD}>
-                        <RoundedButton className='my-10 w-[150px]'>Go to Dashboard</RoundedButton>
+                        <RoundedButton className='my-10 w-[130px] px-2 !text-xs'>Go to Dashboard</RoundedButton>
                     </SideMenuLink>
                 </div>
             </div>

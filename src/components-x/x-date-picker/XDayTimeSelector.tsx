@@ -5,10 +5,12 @@ export const XDayTimeSelector: React.FC<{
     disabledDate: (current: Date) => boolean
     onChange: (e: Date | null) => void
     value: Date | null | undefined
-}> = observer(({ disabledDate, onChange, value }) => {
+    disabled?: boolean
+}> = observer(({ disabledDate, onChange, value, disabled = false }) => {
     return (
         <div className='flex flex-col gap-5 2xl:flex-row'>
             <XDatePicker
+                disabled={disabled}
                 size='large'
                 onChange={onChange}
                 disabledDate={disabledDate}
@@ -17,6 +19,7 @@ export const XDayTimeSelector: React.FC<{
                 className='!w-full'
             />
             <XDatePicker
+                disabled={disabled}
                 picker='time'
                 size='large'
                 onChange={onChange}
