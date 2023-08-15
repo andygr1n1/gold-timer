@@ -10,7 +10,7 @@ export const UserAvatarSideMenu: React.FC = observer(() => {
     return (
         <div
             className={`
-                    relative my-10 flex h-[100px] min-h-[100px] w-[100px] items-center justify-center rounded-full
+                    relative my-10 flex h-[80px] min-h-[80px] w-[80px] items-center justify-center rounded-full
                     font-bold text-gray-500 ${!avatar ? 'bg-gray-300' : ''}`}
         >
             {avatar ? (
@@ -18,8 +18,8 @@ export const UserAvatarSideMenu: React.FC = observer(() => {
                     <img
                         title={name}
                         src={`${import.meta.env.VITE_FIRE_BUNNY_STORAGE}/avatars/${avatar}`}
-                        width={100}
-                        height={100}
+                        width={80}
+                        height={80}
                         className='rounded-full'
                     />
                 </NavLink>

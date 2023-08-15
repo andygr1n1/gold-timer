@@ -30,7 +30,6 @@ export const SprintDay: React.FC<{ sprintDay: ISprintDay }> = observer(({ sprint
     }
     // set(startDate, { hours: 0, minutes: 0, seconds: 0 }
     const disabled = today !== sprintDate
-    console.log('disabled', disabled)
     return (
         sprintDay.date && (
             <button

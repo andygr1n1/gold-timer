@@ -2,32 +2,7 @@ import { gql } from 'graphql-request'
 import { generateClient } from '../../client'
 import { processError } from '@/helpers/processError.helper'
 import { ISprint$SnIn } from '@/mst/types'
-
-interface ISprintsDays {
-    id?: string
-    date: Date | null
-    status: boolean | null
-}
-
-interface ISprintsGoals {
-    id: string
-    title: string
-    status: boolean | null
-}
-
-export interface IInsertNewSprint {
-    id?: string
-    title: string
-    description: string | null
-    duration: number
-    img_path: string | null
-    achievement: string | null
-    started_at: Date
-    sprints_days: { data: ISprintsDays[] }
-    sprints_goals?: { data: ISprintsGoals[] }
-    owner_id: string
-    parent_sprint_id?: string | null
-}
+import { IInsertNewSprint } from './helpers/interface'
 
 export const insertNewSprint = async (newSprint: IInsertNewSprint): Promise<ISprint$SnIn | undefined> => {
     const client = generateClient()

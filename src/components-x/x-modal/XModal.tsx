@@ -4,17 +4,17 @@ import { Fragment, ReactNode, useRef } from 'react'
 
 export const XModal: React.FC<{
     open: boolean
-    title: ReactNode
+    title?: ReactNode
     onCancel: () => void
     children: ReactNode
     height?: string
-}> = ({ height = '', onCancel, open, children, title = '' }) => {
+    header?: boolean
+}> = ({ height = '', onCancel, open, children, title = '', header = true }) => {
     const cancelButtonRef = useRef<HTMLButtonElement | null>(null)
-
     return (
         <>
             <Transition appear show={open} as={Fragment}>
-                <Dialog as='div' className='relative z-[60] font-neon' onClose={onCancel}>
+                <Dialog as='div' className='font-neon relative z-[60]' onClose={onCancel}>
                     <Transition.Child
                         as={Fragment}
                         enter='ease-out duration-300 '
@@ -39,23 +39,27 @@ export const XModal: React.FC<{
                                 leaveTo='opacity-0 scale-95'
                             >
                                 <Dialog.Panel
-                                    className={`${height} h-[75vh] max-h-[75vh]  w-full  max-w-md transform  overflow-auto rounded-2xl bg-global-2-bg p-6 text-left align-middle shadow-xl transition-all`}
+                                    className={`${
+                                        height || 'h-[75vh]'
+                                    } bg-global-2-bg  max-h-[75vh]  w-full max-w-md  transform overflow-auto rounded-2xl p-6 text-left align-middle shadow-xl transition-all`}
                                 >
-                                    <Dialog.Title
-                                        as='h3'
-                                        className='border-b-solid top-[-24px] z-50
-                                                mb-2 flex  items-center justify-between gap-5 border-b border-b-gray-500/20
-                                                bg-transparent py-2 leading-6 text-cText'
-                                    >
-                                        <span>{title}</span>
-                                        <button ref={cancelButtonRef}>
-                                            <Icon
-                                                icon='mdi:close'
-                                                onClick={onCancel}
-                                                className='cursor-pointer text-xl text-gray-500 hover:font-bold hover:text-black'
-                                            />
-                                        </button>
-                                    </Dialog.Title>
+                                    {header && (
+                                        <Dialog.Title
+                                            as='h3'
+                                            className='border-b-solid text-cText top-[-24px]
+                                                z-50 mb-2  flex items-center justify-between gap-5 border-b
+                                                border-b-gray-500/20 bg-transparent py-2 leading-6'
+                                        >
+                                            <span>{title}</span>
+                                            <button ref={cancelButtonRef}>
+                                                <Icon
+                                                    icon='mdi:close'
+                                                    onClick={onCancel}
+                                                    className='cursor-pointer text-xl text-gray-500 hover:font-bold hover:text-black'
+                                                />
+                                            </button>
+                                        </Dialog.Title>
+                                    )}
                                     <div className='my-2 h-[calc(100%-60px)]'>{children}</div>
                                 </Dialog.Panel>
                             </Transition.Child>

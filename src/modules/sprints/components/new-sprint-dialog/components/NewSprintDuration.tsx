@@ -7,15 +7,18 @@ export const NewSprintDuration: React.FC = observer(() => {
 
     if (!new_sprint) return null
 
-    const { duration, onChangeField } = new_sprint
+    const { duration, onChangeField, edit_mode } = new_sprint
 
     const options = [
         { id: 7, value: 7 },
         { id: 14, value: 14 },
     ]
 
-    return (
+    return edit_mode ? (
+        <div className='text-cText text-base '>{duration + ' days'}</div>
+    ) : (
         <Select
+            disabled={edit_mode}
             size='large'
             value={duration + ' days'}
             autoFocus={true}

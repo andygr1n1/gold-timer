@@ -2,12 +2,12 @@ import { ISprint$ } from '@/mst/types'
 import { observer } from 'mobx-react-lite'
 import { SprintProgress } from './SprintProgress'
 import { SprintImg } from './SprintImg'
-import { Icon } from '@iconify/react'
 import { format } from 'date-fns'
 import { upperCase } from 'lodash-es'
 import clsx from 'clsx'
 import { getSprintBgByStatus } from '../../helpers/generateSprintStyleByStatus'
 import { SprintActions } from './sprint-actions'
+import { SprintMenu } from './sprint-menu/SprintMenu'
 
 export const SprintInfo: React.FC<{ sprint: ISprint$ }> = observer(({ sprint }) => {
     const { progress, focusSprintDay, started_at, finishedAt, status, todayIsChecked } = sprint
@@ -17,7 +17,7 @@ export const SprintInfo: React.FC<{ sprint: ISprint$ }> = observer(({ sprint }) 
     return (
         <div
             className={clsx([
-                'bg-global-2-bg relative m-auto flex w-[calc(100%-20px)] max-w-[500px] flex-col items-center justify-between rounded-md py-2 2xl:w-[calc(80%-80px)] 2xl:max-w-[100%] 2xl:flex-row 2xl:py-0',
+                'bg-global-2-bg relative m-auto flex w-[calc(100%-20px)] max-w-[500px] flex-col items-center justify-between rounded-md py-2 2xl:w-[calc(80%-80px)] 2xl:max-w-[700px] 2xl:flex-row 2xl:py-0',
                 getSprintBgByStatus(status, todayIsChecked),
             ])}
         >
@@ -42,12 +42,7 @@ export const SprintInfo: React.FC<{ sprint: ISprint$ }> = observer(({ sprint }) 
                 <SprintProgress progress={progress} />
             </div>
             <SprintActions sprint={sprint} />
-            <div className='absolute -right-3 -top-9 flex min-h-[50px] min-w-[50px] rotate-90 items-center justify-center 2xl:static 2xl:rotate-0'>
-                <Icon
-                    icon='simple-line-icons:options-vertical'
-                    className='W-[50px] cursor-pointer duration-300 hover:text-blue-200 2xl:mr-5'
-                />
-            </div>
+            <SprintMenu sprint={sprint} />
         </div>
     )
 })

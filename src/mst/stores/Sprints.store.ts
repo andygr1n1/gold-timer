@@ -1,17 +1,20 @@
 import { types, cast, flow, toGenerator, applySnapshot, destroy, detach } from 'mobx-state-tree'
 import { SprintNew$ } from './SprintNew.store'
 import { Sprint$ } from './Sprint.store'
-import { ISprint$, ISprint$SnIn } from '../types'
+import { ISprint$, ISprint$SnIn, ISprintNew$ } from '../types'
 import { processError } from '@/helpers/processError.helper'
 import { fetchSprints } from '@/graphql/queries/sprints/fetchSprints.query'
-import { IInsertNewSprint, insertNewSprint } from '@/graphql/mutations/sprints/insertNewSprint.mutation'
+import { insertNewSprint } from '@/graphql/mutations/sprints/insertNewSprint.mutation'
 import { add, set } from 'date-fns'
 import { deletedAtSprint } from '@/graphql/mutations/sprints/deletedAtSprint.mutation'
+import { cloneDeep } from 'lodash-es'
+import { IInsertNewSprint } from '@/graphql/mutations/sprints/helpers/interface'
 
 export const Sprints$ = types
     .model('Sprints$', {
         new_sprint: types.maybe(SprintNew$),
         sprints: types.array(Sprint$),
+        selected_sprint: types.safeReference(Sprint$),
     })
 
     .actions((self) => ({
@@ -21,8 +24,27 @@ export const Sprints$ = types
         activateNewSprintCreator(): void {
             self.new_sprint = cast({ title: '', sprints_goals: [{ title: '', id: '' }] })
         },
-        pushNewSprint(newSPrint: ISprint$SnIn): void {
-            self.sprints.unshift(newSPrint)
+        activateEditSprintCreator(sprint: ISprint$): void {
+            const convertedSprint: ISprintNew$ = cloneDeep(sprint) as ISprintNew$
+            self.new_sprint = convertedSprint
+            self.new_sprint.onChangeField('edit_mode', true)
+            sprint.img_path &&
+                self.new_sprint.onChangeField(
+                    'img_cropped_src',
+                    `${import.meta.env.VITE_FIRE_BUNNY_STORAGE}/sprints/${convertedSprint.img_path}`,
+                )
+            !self.new_sprint.sprints_goals.length && self.new_sprint.addNewSprintGoal()
+        },
+        selectSprintAndActivateMenuAction(sprint: ISprint$, menuAction: 'restart' | 'delete'): void {
+            self.selected_sprint = sprint
+            self.selected_sprint.onChangeField('menu_action', menuAction)
+        },
+        pushNewSprint(newSprint: ISprint$SnIn, editMode?: boolean): void {
+            if (editMode) {
+                const editedSprint = self.sprints.find((sprint) => sprint.id === newSprint.id)
+                editedSprint && destroy(detach(editedSprint))
+            }
+            self.sprints.unshift(newSprint)
             self.new_sprint = undefined
         },
     }))
@@ -36,7 +58,7 @@ export const Sprints$ = types
                 processError(e)
             }
         }),
-        createNewSprintInstance: flow(function* _createNewInstance(sprint: ISprint$) {
+        restartSelectedSprint: flow(function* _createNewInstance(sprint: ISprint$) {
             try {
                 const successPointsArray: number[] = Array(sprint.duration).fill(0)
                 const startedAt = add(set(new Date(Date.now()), { hours: 1, minutes: 1, seconds: 1 }), { days: 1 })
@@ -64,11 +86,14 @@ export const Sprints$ = types
                 if (!deletedParent) throw new Error('createNewSprintInstance: deleting parent sprint failed')
 
                 deletedParent && destroy(detach(sprint))
-                console.log('createdSprint', createdSprint)
                 self.pushNewSprint(createdSprint)
             } catch (e) {
                 processError(e)
             }
+        }),
+        deleteSelectedSprint: flow(function* _deleteSelectedSprint(sprint: ISprint$) {
+            const deletedSprint = yield* toGenerator(deletedAtSprint(sprint.id))
+            deletedSprint && destroy(detach(sprint))
         }),
     }))
     .views((self) => ({

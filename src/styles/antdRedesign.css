@@ -19,7 +19,7 @@
 .form-field-email .ant-col.ant-form-item-label {
     @apply mr-8;
 }
-
+ 
 /* Profile DatePicker */
 div.profile-date-picker div.ant-picker-disabled {
     @apply !cursor-default;
@@ -44,4 +44,12 @@ div.profile-date-picker div.ant-picker input {
 
 .ant-collapse-content-box {
     @apply bg-global-2-bg
+}
+
+.ant-select-disabled, .ant-picker-disabled {
+    @apply !bg-gray-50 [&_*]:!text-gray-400 !rounded-md !text-cText;
+}
+
+.ant-notification {
+    @apply z-[99999999];
 }

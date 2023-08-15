@@ -18,7 +18,7 @@ export const NewSprintDialog: React.FC = observer(() => {
     const onCancel = () => onChangeField('new_sprint', undefined)
 
     return (
-        <XModal title={'Create Sprint'} open={!!new_sprint} onCancel={onCancel}>
+        <XModal title={new_sprint?.edit_mode ? 'Edit Sprint' : 'Create Sprint'} open={!!new_sprint} onCancel={onCancel}>
             {new_sprint?.loading ? (
                 <XLoader />
             ) : (
