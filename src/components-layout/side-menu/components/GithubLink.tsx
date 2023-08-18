@@ -10,9 +10,9 @@ export const GithubLink: React.FC = observer(() => {
         >
             <Icon
                 icon='ps:github-alt'
-                width={25}
-                height={25}
-                className='cursor-pointer text-navLink  duration-300 hover:text-blue-500'
+                width={20}
+                height={20}
+                className='text-navLink cursor-pointer  duration-300 hover:text-blue-500'
             />
         </a>
     )

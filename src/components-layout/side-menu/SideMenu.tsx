@@ -3,14 +3,15 @@ import { useSideMenu } from '@/hooks/useSideMenu.hook'
 import { Icon } from '@iconify/react'
 import { observer } from 'mobx-react-lite'
 import { XDivider } from '../../components-x/x-divider/XDivider'
-import { CloseSideMenu } from './components/Close.sideMenu'
-import { UserAvatarSideMenu } from './components/UserAvatar.sideMenu'
-import { SideMenuLink } from './components/MenuLink'
+import { CloseSideMenu } from './components/CloseSideMenu'
+import { UserAvatarSideMenu } from './components/UserAvatar'
+import { SideMenuLink } from './components/SideMenuLink'
 import { useOutsideAlerter } from '@/hooks/useClickOutside.hook'
 import { useEffect, useRef } from 'react'
 import { useWindowMatchMedia } from '@/hooks/useMatchMedia.hook.'
 import { Transition } from '@headlessui/react'
-import { RoundedButton } from '@/components-x/RoundedButton'
+import { UserCoins } from './components/UserCoins'
+import { GoToDashboard } from './components/GoToDashboard'
 
 export const SideMenu: React.FC = observer(() => {
     const wrapperRef = useRef<HTMLDivElement | null>(null)
@@ -23,7 +24,6 @@ export const SideMenu: React.FC = observer(() => {
     }, [isDesktop])
 
     if (!isDesktop && useSideMenu.is_detached_from_DOM) return null
-
     return (
         <>
             <Transition
@@ -48,9 +48,10 @@ export const SideMenu: React.FC = observer(() => {
                 ${useSideMenu.is_open ? 'animate-slide-in' : 'animate-slide-out xl:animate-opacity ml-[-320px] '}
             `}
             >
-                <div className='flex w-[170px] min-w-[170px] flex-col  overflow-auto py-5'>
-                    <div className='relative flex justify-center'>
+                <div className='flex w-[170px] min-w-[170px] flex-col overflow-auto py-5 '>
+                    <div className='relative  flex flex-col items-center justify-center'>
                         <UserAvatarSideMenu />
+                        <UserCoins />
                         <CloseSideMenu />
                     </div>
                     <div className='ml-4 flex flex-auto flex-col gap-5 overflow-auto  '>
@@ -85,9 +86,8 @@ export const SideMenu: React.FC = observer(() => {
 
                         <XDivider className='w-[125px] bg-gray-700' />
                     </div>
-                    <SideMenuLink to={APP_ROUTES_ENUM.DASHBOARD}>
-                        <RoundedButton className='my-10 w-[130px] px-2 !text-xs'>Go to Dashboard</RoundedButton>
-                    </SideMenuLink>
+
+                    <GoToDashboard />
                 </div>
             </div>
         </>
