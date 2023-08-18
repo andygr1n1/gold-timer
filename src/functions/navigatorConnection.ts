@@ -6,9 +6,8 @@ const browserNavigator = navigator as Navigator & {
 
 export const browserNavigatorConnection = (): string => {
     const connection =
-        browserNavigator.connection || browserNavigator.mozConnection || browserNavigator.webkitConnection
-    console.warn(connection.effectiveType)
-    return connection.effectiveType
+        browserNavigator?.connection || browserNavigator?.mozConnection || browserNavigator?.webkitConnection
+    return connection?.effectiveType || ''
 }
 
 export const is4G = (): boolean => {

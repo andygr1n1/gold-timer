@@ -50,8 +50,10 @@ export const LoginIndex: React.FC = observer(() => {
         })
     }
 
+    const is4GConnection = is4G()
+
     return (
-        <div className={clsx([styles['login-bg'], is4G() && styles['login-4g']])}>
+        <div className={clsx([styles['login-bg'], is4GConnection && styles['login-4g']])}>
             <LoginContainer>
                 {contextHolder}
                 <LoginLogo />
