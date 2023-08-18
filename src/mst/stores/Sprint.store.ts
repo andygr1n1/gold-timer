@@ -5,7 +5,7 @@ import { SprintDay } from '../models/SprintDay.model'
 import { ISprintDay } from '../types'
 import { isFuture, isPast, isToday, set } from 'date-fns'
 import { last } from 'lodash-es'
-import { SPRINT_STATUS } from '@/modules/sprints/helpers/sprints.enum'
+import { SPRINT_STATUS_ENUM } from '@/modules/sprints/helpers/sprints.enum'
 
 export const Sprint$ = types
     .model('Sprint$', {
@@ -80,27 +80,30 @@ export const Sprint$ = types
 
             return !!result
         },
-        get status(): SPRINT_STATUS {
+        get status(): SPRINT_STATUS_ENUM {
             const today = this.today
-            if (!this.finishedAt || !self.started_at) return SPRINT_STATUS.ERROR
+            if (!this.finishedAt || !self.started_at) return SPRINT_STATUS_ENUM.ERROR
             if (today.getTime() <= this.finishedAt.getTime() && today.getTime() >= self.started_at.getTime()) {
-                if (!this.allIsCheckedBeforeToday) return SPRINT_STATUS.FREEZED
+                if (!this.allIsCheckedBeforeToday) return SPRINT_STATUS_ENUM.FREEZED
                 // if (this.todayIsChecked) return SPRINT_STATUS.CHECKED
-                return SPRINT_STATUS.ACTIVE
+                return SPRINT_STATUS_ENUM.ACTIVE
             }
 
-            if (today.getTime() > this.finishedAt.getTime()) return SPRINT_STATUS.FINISHED
-            if (today.getTime() < self.started_at.getTime()) return SPRINT_STATUS.FUTURE
-            return SPRINT_STATUS.ERROR
+            if (today.getTime() > this.finishedAt.getTime()) return SPRINT_STATUS_ENUM.FINISHED
+            if (today.getTime() < self.started_at.getTime()) return SPRINT_STATUS_ENUM.FUTURE
+            return SPRINT_STATUS_ENUM.ERROR
         },
         get isStatusActive(): boolean {
-            return this.status === SPRINT_STATUS.ACTIVE
+            return this.status === SPRINT_STATUS_ENUM.ACTIVE
         },
         get isStatusFreezed(): boolean {
-            return this.status === SPRINT_STATUS.FREEZED
+            return this.status === SPRINT_STATUS_ENUM.FREEZED
         },
         get isStatusFuture(): boolean {
-            return this.status === SPRINT_STATUS.FUTURE
+            return this.status === SPRINT_STATUS_ENUM.FUTURE
+        },
+        get isStatusCompleted(): boolean {
+            return this.status === SPRINT_STATUS_ENUM.FINISHED
         },
     }))
 

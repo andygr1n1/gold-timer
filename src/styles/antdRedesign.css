@@ -53,3 +53,17 @@ div.profile-date-picker div.ant-picker input {
 .ant-notification {
     @apply z-[99999999];
 }
+
+/* Input */
+
+input.ant-input {
+    @apply text-cText bg-global-2-bg placeholder:text-gray-500 text-sm border-transparent;
+}
+
+span.ant-input-affix-wrapper.dynamic-filter {
+    @apply  bg-global-2-bg border-transparent ;
+}
+
+input.ant-input.dynamic-filter, .ant-input-affix-wrapper.dynamic-filter input {
+    @apply h-12;
+}

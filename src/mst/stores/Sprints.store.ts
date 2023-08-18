@@ -7,14 +7,18 @@ import { fetchSprints } from '@/graphql/queries/sprints/fetchSprints.query'
 import { insertNewSprint } from '@/graphql/mutations/sprints/insertNewSprint.mutation'
 import { add, set } from 'date-fns'
 import { deletedAtSprint } from '@/graphql/mutations/sprints/deletedAtSprint.mutation'
-import { cloneDeep } from 'lodash-es'
+import { cloneDeep, orderBy } from 'lodash-es'
 import { IInsertNewSprint } from '@/graphql/mutations/sprints/helpers/interface'
+import { SprintsFilter$ } from './SprintsFilter.store'
+import { filterSprintByInput } from './sprints.helper'
+import { SPRINT_STATUS_ENUM, SPRINT_FILTER_STATUS_TYPE } from '@/modules/sprints/helpers/sprints.enum'
 
 export const Sprints$ = types
     .model('Sprints$', {
         new_sprint: types.maybe(SprintNew$),
         sprints: types.array(Sprint$),
         selected_sprint: types.safeReference(Sprint$),
+        sprints_filter$: types.optional(SprintsFilter$, {}),
     })
 
     .actions((self) => ({
@@ -97,19 +101,65 @@ export const Sprints$ = types
         }),
     }))
     .views((self) => ({
-        get sprintsRender(): ISprint$[] {
-            const activeNotChecked: ISprint$[] = []
-            const freezed: ISprint$[] = []
-            const sprints: ISprint$[] = []
-            self.sprints.forEach((sprint) => {
-                if (sprint.isStatusActive && !sprint.todayIsChecked) {
-                    activeNotChecked.push(sprint)
-                } else if (sprint.isStatusFreezed) {
-                    freezed.push(sprint)
-                } else {
-                    sprints.push(sprint)
-                }
-            })
-            return [...activeNotChecked, ...freezed, ...sprints]
+        get sprintsStatusRender() {
+            const sprintsFilterStatuses: SPRINT_FILTER_STATUS_TYPE[] = [
+                'all',
+                'active',
+                'completed',
+                'finished',
+                'future',
+                'freezed',
+                'checked',
+            ]
+            return sprintsFilterStatuses
+        },
+        get activeSprintsRender(): ISprint$[] {
+            return orderBy(
+                self.sprints.filter(
+                    (sprint) =>
+                        sprint.isStatusActive &&
+                        !sprint.todayIsChecked &&
+                        filterSprintByInput(sprint, self.sprints_filter$.sprints_input_filter),
+                ),
+                'started_at',
+            )
+        },
+        get checkedSprintsRender(): ISprint$[] {
+            return orderBy(
+                self.sprints.filter(
+                    (sprint) =>
+                        sprint.todayIsChecked && filterSprintByInput(sprint, self.sprints_filter$.sprints_input_filter),
+                ),
+                'started_at',
+            )
+        },
+        get freezedSprintsRender(): ISprint$[] {
+            return orderBy(
+                self.sprints.filter(
+                    (sprint) =>
+                        sprint.isStatusFreezed &&
+                        filterSprintByInput(sprint, self.sprints_filter$.sprints_input_filter),
+                ),
+                'started_at',
+            )
+        },
+        get futureSprintsRender(): ISprint$[] {
+            return orderBy(
+                self.sprints.filter(
+                    (sprint) =>
+                        sprint.isStatusFuture && filterSprintByInput(sprint, self.sprints_filter$.sprints_input_filter),
+                ),
+                'started_at',
+            )
+        },
+        get completedSprintsRender(): ISprint$[] {
+            return orderBy(
+                self.sprints.filter(
+                    (sprint) =>
+                        sprint.isStatusCompleted &&
+                        filterSprintByInput(sprint, self.sprints_filter$.sprints_input_filter),
+                ),
+                'started_at',
+            )
         },
     }))

@@ -7,7 +7,7 @@ export default {
     'alpha-600': 'var(--colors-slate-600)',
     'alpha-700': 'var(--colors-slate-700)',
     //
-    'global-bg': 'var(--colors-darknight)',
+    'global-bg': 'var(--colors-darkNight)',
     'global-2-bg': 'var(--colors-twilight)',
     'global-3-bg': 'var(--colors-evening)',
     'global-bg-regal': 'rgba(19, 19, 44, 0.9)',
@@ -15,18 +15,4 @@ export default {
     // navLink
     navLink: 'var(--colors-gray-300)',
     'navLink-active': 'var(--colors-blue-100)',
-    // badge
-    'badge-bg': 'var(--colors-blue-600)',
-    // button
-    'button-bg': 'var(--colors-blue-600)',
-    'button-border': 'var(--colors-blue-600)',
-    'button-text': 'var(--colors-white)',
-    //
-    'button-bg-focus': 'var(--colors-blue-700)',
-    'button-border-focus': 'var(--colors-blue-700)',
-    'button-text-focus': 'var(--colors-white)',
-    //
-    'button-bg-active': 'var(--colors-blue-600)',
-    'button-border-active': 'var(--colors-blue-600)',
-    'button-text-active': 'var(--colors-blue-200)',
 }

@@ -1,4 +1,4 @@
-import { TopBar } from '@/components-layout/top-bar/TopBar'
+import { TopBar } from '@/components-layout/top-bar'
 import { CreateNewGoalWidget } from '@/modules/dashboard/widgets/create-new-goal-widget/CreateNewGoalWidget'
 import { TopGoalsWidgets } from '@/modules/dashboard/widgets/top-goals-widgets/TopGoalsWidgets'
 import { CreateNewTaskWidget } from '@/modules/dashboard/widgets/create-new-task-widget/CreateNewTaskWidget'

@@ -1,17 +1,13 @@
-import { TopBar } from '@/components-layout/top-bar/TopBar'
+import { TopBar } from '@/components-layout/top-bar'
 import { observer } from 'mobx-react-lite'
 
 export const ModuleWrapper: React.FC<{ title?: string; children: React.ReactNode }> = observer(function ModuleWrapper({
     children,
-    title,
 }) {
     return (
-        <div className='mx-5 my-5 flex-auto rounded-lg bg-global-2-bg xl:ml-0'>
+        <div className='bg-global-bg mx-5 my-5 flex-auto rounded-lg xl:ml-0'>
             <TopBar />
-            <div className='flex w-[calc(100%-34px)] flex-col p-4 font-droid'>
-                {title && <h3 className='my-5'>{title}</h3>}
-                {children}
-            </div>
+            <div className='font-droid flex w-[calc(100%-34px)] flex-col p-4'>{children}</div>
         </div>
     )
 })

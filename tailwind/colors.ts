@@ -1,4 +1,14 @@
 export default {
+    'x-red': 'var(--colors-red)',
+    'x-gold': 'var(--colors-gold)',
+    'x-sky': 'var(--colors-sky)',
+    'x-sky-darker': 'var(--colors-sky-darker)',
+    'x-darkNight': 'var(--colors-darkNight)',
+    'x-twilight': 'var(--colors-twilight)',
+    'x-tiffany': 'var(--colors-tiffany)',
+    'x-green': 'var(--colors-green)',
+    'x-white': 'var(--colors-white)',
+    'x-snow': 'var(--colors-snow)',
     colorPrimary: '#2563EB',
     regalBlue: 'rgba(19, 19, 44, 0.9)',
     cText: 'var(--colors-cText)',
@@ -14,18 +24,4 @@ export default {
     // navLink
     navLink: 'var(--colors-navLink)',
     'navLink-active': 'var(--colors-navLink-active)',
-    // badge
-    'badge-bg': 'var(--colors-badge-bg)',
-    // button
-    'button-bg': 'var(--colors-button-bg)',
-    'button-border': 'var(--colors-button-border)',
-    'button-text': 'var(--colors-button-text)',
-    //
-    'button-bg-focus': 'var(--colors-button-bg-focus)',
-    'button-border-focus': 'var(--colors-button-border-focus)',
-    'button-text-focus': 'var(--colors-button-text-focus)',
-    //
-    'button-bg-active': 'var(--colors-button-bg-active)',
-    'button-border-active': 'var(--colors-button-border-active)',
-    'button-text-active': 'var(--colors-button-text-active)',
 }

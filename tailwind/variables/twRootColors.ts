@@ -1,7 +1,15 @@
 export default {
-    white: '#ffffff',
-    darknight: '#10141d',
+    red: '#9C0B1D',
+    gold: '#F9B53D',
+    sky: '#2563EB',
+    'sky-darker': '#1d4ed8',
+    darkNight: '#10141d',
     twilight: '#151c2c',
+    tiffany: '#2DD4BF',
+    green: '#059669',
+    white: '#ffffff',
+    snow: '#F8FAFC',
+
     evening: '#29416f',
     text: '#4c4c4c',
     magic: '#223399',
