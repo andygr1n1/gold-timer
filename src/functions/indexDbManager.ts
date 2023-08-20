@@ -1,15 +1,15 @@
-import { STATUS_ENUM_FILTERS } from '@/helpers/enums'
+import { ISprintsFilter$ } from '@/mst/types'
 import { rootStore$ } from '@/StoreProvider'
 import localForage from 'localforage'
 
 const goalFiltersStore = localForage.createInstance({
-    name: 'goal_filters_store',
+    name: 'sprints_filters_store',
 })
 
-export const setGoalFiltersStore = (value: STATUS_ENUM_FILTERS[]) => {
-    goalFiltersStore.setItem('goal_filters', JSON.parse(JSON.stringify(value)))
+export const setSprintsFilter$ = (store: ISprintsFilter$) => {
+    goalFiltersStore.setItem('sprints_filters_store', JSON.parse(JSON.stringify(store)))
 }
 
-export const getGoalFiltersStore = (): Promise<typeof rootStore$.goals$.goals_checked_list_filter | null> => {
-    return goalFiltersStore.getItem('goal_filters')
+export const getSprintsFilter$ = (): Promise<typeof rootStore$.goals$.goals_checked_list_filter | null> => {
+    return goalFiltersStore.getItem('sprints_filters_store')
 }

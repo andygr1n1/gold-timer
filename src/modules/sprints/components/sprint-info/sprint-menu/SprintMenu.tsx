@@ -19,7 +19,7 @@ export const SprintMenu: React.FC<{ sprint: ISprint$ }> = observer(({ sprint }) 
             content={<SprintMenuContent sprint={sprint} setPopoverState={setPopoverState} />}
             placement='bottom'
         >
-            <div className='absolute -right-3 -top-4 flex min-w-[50px] rotate-90 items-center justify-center 2xl:static 2xl:rotate-0'>
+            <div className='absolute -right-3 -top-4 flex min-w-[50px] rotate-90 items-center justify-center md:static md:rotate-0'>
                 <Icon
                     icon='simple-line-icons:options-vertical'
                     className='cursor-pointer duration-300 hover:text-blue-200 '

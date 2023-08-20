@@ -8,4 +8,10 @@ export enum SPRINT_STATUS_ENUM {
     ERROR = 'error',
 }
 
-export type SPRINT_FILTER_STATUS_TYPE = 'all' | 'active' | 'completed' | 'finished' | 'future' | 'freezed' | 'checked'
+export enum SPRINT_FILTER_STATUS_ENUM {
+    ACTIVE = 'active',
+    FREEZED = 'freezed',
+    FUTURE = 'future',
+    FINISHED = 'finished',
+    COMPLETED = 'completed',
+}

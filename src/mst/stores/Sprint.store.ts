@@ -102,7 +102,7 @@ export const Sprint$ = types
         get isStatusFuture(): boolean {
             return this.status === SPRINT_STATUS_ENUM.FUTURE
         },
-        get isStatusCompleted(): boolean {
+        get isStatusFinished(): boolean {
             return this.status === SPRINT_STATUS_ENUM.FINISHED
         },
     }))

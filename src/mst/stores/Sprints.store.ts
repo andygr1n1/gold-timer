@@ -11,7 +11,7 @@ import { cloneDeep, orderBy } from 'lodash-es'
 import { IInsertNewSprint } from '@/graphql/mutations/sprints/helpers/interface'
 import { SprintsFilter$ } from './SprintsFilter.store'
 import { filterSprintByInput } from './sprints.helper'
-import { SPRINT_STATUS_ENUM, SPRINT_FILTER_STATUS_TYPE } from '@/modules/sprints/helpers/sprints.enum'
+import { SPRINT_FILTER_STATUS_ENUM } from '@/modules/sprints/helpers/sprints.enum'
 
 export const Sprints$ = types
     .model('Sprints$', {
@@ -102,64 +102,83 @@ export const Sprints$ = types
     }))
     .views((self) => ({
         get sprintsStatusRender() {
-            const sprintsFilterStatuses: SPRINT_FILTER_STATUS_TYPE[] = [
-                'all',
-                'active',
-                'completed',
-                'finished',
-                'future',
-                'freezed',
-                'checked',
-            ]
-            return sprintsFilterStatuses
+            return Object.values(SPRINT_FILTER_STATUS_ENUM)
         },
-        get activeSprintsRender(): ISprint$[] {
-            return orderBy(
-                self.sprints.filter(
-                    (sprint) =>
-                        sprint.isStatusActive &&
-                        !sprint.todayIsChecked &&
-                        filterSprintByInput(sprint, self.sprints_filter$.sprints_input_filter),
-                ),
-                'started_at',
+        get filteredSprints(): ISprint$[] {
+            let filtered: ISprint$[] = self.sprints
+            if (self.sprints_filter$.sprints_input_filter.length) {
+                filtered = filtered.filter((sprint) =>
+                    filterSprintByInput(sprint, self.sprints_filter$.sprints_input_filter),
+                )
+            }
+            return filtered
+        },
+        // ACTIVE
+        get activeSprintsActiveStatus(): boolean {
+            return (
+                !self.sprints_filter$.sprints_selected_statuses.length ||
+                self.sprints_filter$.sprints_selected_statuses.includes(SPRINT_FILTER_STATUS_ENUM.ACTIVE)
             )
         },
+        get activeSprintsRender(): ISprint$[] {
+            return this.activeSprintsActiveStatus
+                ? orderBy(
+                      this.filteredSprints.filter((sprint) => sprint.isStatusActive && !sprint.todayIsChecked),
+                      'started_at',
+                  )
+                : []
+        },
         get checkedSprintsRender(): ISprint$[] {
-            return orderBy(
-                self.sprints.filter(
-                    (sprint) =>
-                        sprint.todayIsChecked && filterSprintByInput(sprint, self.sprints_filter$.sprints_input_filter),
-                ),
-                'started_at',
+            return this.activeSprintsActiveStatus
+                ? orderBy(
+                      this.filteredSprints.filter((sprint) => sprint.todayIsChecked),
+                      'started_at',
+                  )
+                : []
+        },
+        // FREEZED
+        get freezedSprintsActiveStatus(): boolean {
+            return (
+                !self.sprints_filter$.sprints_selected_statuses.length ||
+                self.sprints_filter$.sprints_selected_statuses.includes(SPRINT_FILTER_STATUS_ENUM.FREEZED)
             )
         },
         get freezedSprintsRender(): ISprint$[] {
-            return orderBy(
-                self.sprints.filter(
-                    (sprint) =>
-                        sprint.isStatusFreezed &&
-                        filterSprintByInput(sprint, self.sprints_filter$.sprints_input_filter),
-                ),
-                'started_at',
+            return this.freezedSprintsActiveStatus
+                ? orderBy(
+                      this.filteredSprints.filter((sprint) => sprint.isStatusFreezed),
+                      'started_at',
+                  )
+                : []
+        },
+        // FUTURE
+        get futureSprintsActiveStatus(): boolean {
+            return (
+                !self.sprints_filter$.sprints_selected_statuses.length ||
+                self.sprints_filter$.sprints_selected_statuses.includes(SPRINT_FILTER_STATUS_ENUM.FUTURE)
             )
         },
         get futureSprintsRender(): ISprint$[] {
-            return orderBy(
-                self.sprints.filter(
-                    (sprint) =>
-                        sprint.isStatusFuture && filterSprintByInput(sprint, self.sprints_filter$.sprints_input_filter),
-                ),
-                'started_at',
+            return this.futureSprintsActiveStatus
+                ? orderBy(
+                      this.filteredSprints.filter((sprint) => sprint.isStatusFuture),
+                      'started_at',
+                  )
+                : []
+        },
+        // FINISHED
+        get finishedSprintsActiveStatus(): boolean {
+            return (
+                !self.sprints_filter$.sprints_selected_statuses.length ||
+                self.sprints_filter$.sprints_selected_statuses.includes(SPRINT_FILTER_STATUS_ENUM.FINISHED)
             )
         },
-        get completedSprintsRender(): ISprint$[] {
-            return orderBy(
-                self.sprints.filter(
-                    (sprint) =>
-                        sprint.isStatusCompleted &&
-                        filterSprintByInput(sprint, self.sprints_filter$.sprints_input_filter),
-                ),
-                'started_at',
-            )
+        get finishedSprintsRender(): ISprint$[] {
+            return this.finishedSprintsActiveStatus
+                ? orderBy(
+                      this.filteredSprints.filter((sprint) => sprint.isStatusFinished),
+                      'started_at',
+                  )
+                : []
         },
     }))
