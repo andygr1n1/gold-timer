@@ -11,7 +11,7 @@ export const SprintImg: React.FC<{ sprint: ISprint$ }> = observer(({ sprint }) =
                 src={`${import.meta.env.VITE_FIRE_BUNNY_STORAGE}sprints/${img_path ? img_path : 'sprint_logo.jpeg'}`}
                 width={100}
                 height={100}
-                className='rounded-md 2xl:rounded-l-none'
+                className='rounded-md md:rounded-l-none'
             />
         </div>
     )

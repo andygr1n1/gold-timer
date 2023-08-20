@@ -1,24 +1,25 @@
 import { useSprintsStore } from '@/StoreProvider'
 import { observer } from 'mobx-react-lite'
 import { useEffect } from 'react'
-import { SprintInfo } from './sprint-info'
+import { SprintInfo } from './sprint-info/SprintInfo'
 import { SprintMenuDialogConfirm } from './sprint-info/SprintMenuDialogConfirm'
 
 export const SprintsList: React.FC = observer(() => {
     const { fetchSprints } = useSprintsStore()
 
     useEffect(() => {
+        console.log('SprintsList')
         fetchSprints()
     }, [])
 
     return (
         <>
-            <div className='bg-global-bg flex h-full   w-[calc(100%-40px)] flex-col items-start justify-start gap-5 rounded-md p-5  '>
+            <div className='bg-global-bg mt-5 flex h-full flex-col items-start justify-start gap-5 rounded-md '>
                 <ActiveSprintsList />
                 <FreezedSprintsList />
                 <CheckedSprintsList />
                 <FutureSprintsList />
-                <CompletedSprintsList />
+                <FinishedSprintsList />
             </div>
             {/*  */}
             {/* D I A L O G */}
@@ -72,11 +73,11 @@ const FutureSprintsList: React.FC = observer(() => {
     )
 })
 
-const CompletedSprintsList: React.FC = observer(() => {
-    const { completedSprintsRender } = useSprintsStore()
+const FinishedSprintsList: React.FC = observer(() => {
+    const { finishedSprintsRender } = useSprintsStore()
     return (
         <>
-            {completedSprintsRender.map((sprint) => (
+            {finishedSprintsRender.map((sprint) => (
                 <SprintInfo key={sprint.id} sprint={sprint} />
             ))}
         </>

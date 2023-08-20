@@ -4,7 +4,7 @@ import { observer } from 'mobx-react-lite'
 export const SprintProgress: React.FC<{ progress: number }> = observer(({ progress }) => {
     return (
         <Progress
-            className='flex h-full items-center justify-center [&_*]:!text-cText'
+            className='[&_*]:!text-cText flex h-full items-center justify-center'
             type='circle'
             size={'small'}
             percent={progress}
