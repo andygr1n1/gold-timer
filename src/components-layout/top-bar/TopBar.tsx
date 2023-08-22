@@ -10,7 +10,7 @@ export const TopBar: React.FC = observer(() => {
     const { isDesktop } = useWindowMatchMedia(['isDesktop'])
     return (
         <div className='flex  h-[65px] min-h-[65px] w-full items-center justify-between xl:flex-row '>
-            <div className='relative mx-3 flex w-full items-center justify-between'>
+            <div className='relative flex w-full items-center justify-between'>
                 {!isDesktop && (
                     <div className='flex w-[60px] items-start justify-start gap-4'>
                         <div className='flex h-6 w-6 flex-auto items-center justify-start 2xl:mx-6'>

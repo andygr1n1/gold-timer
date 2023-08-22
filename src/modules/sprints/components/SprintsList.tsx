@@ -8,23 +8,18 @@ export const SprintsList: React.FC = observer(() => {
     const { fetchSprints } = useSprintsStore()
 
     useEffect(() => {
-        console.log('SprintsList')
         fetchSprints()
     }, [])
 
     return (
         <>
-            <div className='bg-global-bg mt-5 flex h-full flex-col items-start justify-start gap-5 rounded-md '>
+            <div className='bg-global-bg mt-5 flex h-full flex-col items-start justify-start gap-5 rounded-md md:mt-0 '>
                 <ActiveSprintsList />
                 <FreezedSprintsList />
                 <CheckedSprintsList />
                 <FutureSprintsList />
                 <FinishedSprintsList />
             </div>
-            {/*  */}
-            {/* D I A L O G */}
-            {/*  */}
-            <SprintMenuDialogConfirm />
         </>
     )
 })

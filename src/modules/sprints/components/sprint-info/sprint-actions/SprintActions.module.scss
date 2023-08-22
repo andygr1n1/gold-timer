@@ -1,5 +1,5 @@
 .button {
-    @apply text-cText m-5 flex h-[60px] w-[200px] items-center justify-center whitespace-normal text-sm md:h-[calc(100%-40px)] md:w-[500px];
+    @apply text-cText m-5 flex h-[60px] w-[200px] items-center justify-center whitespace-normal text-sm md:h-[calc(100%-40px)];
 }
 
 .buttonDisabled {

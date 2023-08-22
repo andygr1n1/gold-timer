@@ -10,6 +10,7 @@ export const useOutsideAlerter = (
         function handleClickOutside(event: { target: EventTarget | null }) {
             if (ref.current && !ref.current.contains(event.target as Node)) {
                 console.warn('useOutsideAlerter: clicked outside')
+                console.log('ref.current', ref.current)
                 callback()
             }
         }
