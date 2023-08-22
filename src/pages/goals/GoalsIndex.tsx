@@ -1,4 +1,4 @@
-import { TopBar } from '@/components-layout/top-bar'
+import { TopBar } from '@/components-layout/top-bar/TopBar'
 import { PageGoals } from '@/modules/goals/PageGoals'
 import { observer } from 'mobx-react-lite'
 

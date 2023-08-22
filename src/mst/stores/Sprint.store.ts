@@ -89,7 +89,8 @@ export const Sprint$ = types
                 return SPRINT_STATUS_ENUM.ACTIVE
             }
 
-            if (today.getTime() > this.finishedAt.getTime()) return SPRINT_STATUS_ENUM.FINISHED
+            if (today.getTime() > set(this.finishedAt, { hours: 23, minutes: 59, seconds: 59 }).getTime())
+                return SPRINT_STATUS_ENUM.FINISHED
             if (today.getTime() < self.started_at.getTime()) return SPRINT_STATUS_ENUM.FUTURE
             return SPRINT_STATUS_ENUM.ERROR
         },

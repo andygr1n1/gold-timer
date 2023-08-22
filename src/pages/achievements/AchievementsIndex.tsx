@@ -1,5 +1,5 @@
 import { useRootStore } from '@/StoreProvider'
-import { TopBar } from '@/components-layout/top-bar'
+import { TopBar } from '@/components-layout/top-bar/TopBar'
 import { observer } from 'mobx-react-lite'
 
 export const AchievementsIndex: React.FC = observer(() => {

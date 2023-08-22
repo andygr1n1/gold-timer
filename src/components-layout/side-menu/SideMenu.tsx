@@ -3,7 +3,7 @@ import { useSideMenu } from '@/hooks/useSideMenu.hook'
 import { Icon } from '@iconify/react'
 import { observer } from 'mobx-react-lite'
 import { XDivider } from '../../components-x/x-divider/XDivider'
-import { CloseSideMenu } from './components/CloseSideMenu'
+import { CloseSideMenu } from '../../components-icons/CloseSideMenu'
 import { UserAvatarSideMenu } from './components/UserAvatar'
 import { SideMenuLink } from './components/SideMenuLink'
 import { useOutsideAlerter } from '@/hooks/useClickOutside.hook'
@@ -24,6 +24,7 @@ export const SideMenu: React.FC = observer(() => {
     }, [isDesktop])
 
     if (!isDesktop && useSideMenu.is_detached_from_DOM) return null
+
     return (
         <>
             <Transition
@@ -42,17 +43,19 @@ export const SideMenu: React.FC = observer(() => {
             {/*  */}
             <div
                 ref={wrapperRef}
-                className={`
+                className={`${
+                    useSideMenu.is_open ? 'animate-slide-in' : 'animate-slide-out xl:animate-opacity ml-[-320px] '
+                }
                 text-global-text bg-global-2-bg font-sofia  absolute left-0 z-50 flex h-full
-                rounded-r-lg  xl:static  xl:m-5 xl:flex xl:h-[calc(100%-40px)] xl:rounded-lg
-                ${useSideMenu.is_open ? 'animate-slide-in' : 'animate-slide-out xl:animate-opacity ml-[-320px] '}
+                rounded-r-lg  xl:static  xl:m-5 xl:mr-0 xl:flex xl:h-[calc(100%-40px)] xl:rounded-lg
+              
             `}
             >
                 <div className='flex w-[170px] min-w-[170px] flex-col overflow-auto py-5 '>
                     <div className='relative  flex flex-col items-center justify-center'>
                         <UserAvatarSideMenu />
                         <UserCoins />
-                        <CloseSideMenu />
+                        <CloseSideMenu onClose={useSideMenu.onChange} />
                     </div>
                     <div className='ml-4 flex flex-auto flex-col gap-5 overflow-auto  '>
                         <SideMenuLink
