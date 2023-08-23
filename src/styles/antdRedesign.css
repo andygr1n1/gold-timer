@@ -65,5 +65,9 @@ span.ant-input-affix-wrapper.dynamic-filter {
 }
 
 input.ant-input.dynamic-filter, .ant-input-affix-wrapper.dynamic-filter input {
-    @apply h-12;
+    @apply h-8;
+}
+
+textarea.ant-input {
+        @apply bg-global-2-bg text-cText text-sm border-transparent;
 }

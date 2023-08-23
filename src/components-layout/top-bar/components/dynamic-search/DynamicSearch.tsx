@@ -58,7 +58,6 @@ const SearchInput: React.FC<{ route: APP_ROUTES_ENUM }> = observer(({ route }) =
                             height={20}
                             className='text-cText hover:text-x-sky cursor-pointer pr-2 duration-300'
                             onClick={() => {
-                                console.log('here')
                                 filterAction?.()
                             }}
                         />

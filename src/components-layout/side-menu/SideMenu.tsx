@@ -36,18 +36,18 @@ export const SideMenu: React.FC = observer(() => {
                 leave='transition-opacity duration-300'
                 leaveFrom='opacity-40'
                 leaveTo='opacity-0'
-                className={'fixed z-40 h-full w-full xl:hidden'}
+                className={'fixed z-40 h-full w-full lg:hidden'}
             >
-                <div className='fixed z-40 h-full w-full bg-gray-500 xl:hidden' />
+                <div className='fixed z-40 h-full w-full bg-gray-500 lg:hidden' />
             </Transition>
             {/*  */}
             <div
                 ref={wrapperRef}
                 className={`${
-                    useSideMenu.is_open ? 'animate-slide-in' : 'animate-slide-out xl:animate-opacity ml-[-320px] '
+                    useSideMenu.is_open ? 'animate-slide-in' : 'animate-slide-out lg:animate-opacity ml-[-320px] '
                 }
                 text-global-text bg-global-2-bg font-sofia  absolute left-0 z-50 flex h-full
-                rounded-r-lg  xl:static  xl:m-5 xl:mr-0 xl:flex xl:h-[calc(100%-40px)] xl:rounded-lg
+                rounded-r-lg  lg:static  lg:m-5 lg:mr-0 lg:flex lg:h-[calc(100%-40px)] lg:rounded-lg
               
             `}
             >

@@ -9,14 +9,21 @@ export const NewSprintGoalIndex: React.FC = observer(() => {
 
     return (
         <Form.Item>
-            <h5 className='!my-5'>Sprint goals:</h5>
-            <div className='flex flex-col gap-2'>
-                {new_sprint?.sprints_goals.map((goal) => (
-                    <NewSprintGoal key={goal.id} goal={goal} />
+            <div className='flex flex-col gap-5'>
+                {new_sprint?.sprints_goals.map((goal, i) => (
+                    <div className='flex items-center justify-center gap-2'>
+                        <div
+                            className='bg-x-sky flex h-4 w-4 items-center justify-center rounded-full
+                        p-1 text-[10px] leading-[0px] text-white'
+                        >
+                            {i + 1}
+                        </div>
+                        <NewSprintGoal key={goal.id} goal={goal} />
+                    </div>
                 ))}
             </div>
             <Button
-                className='my-2 w-full disabled:bg-gray-200'
+                className='my-5 w-full disabled:bg-gray-200'
                 type='primary'
                 onClick={new_sprint?.addNewSprintGoal}
                 disabled={!!!last(new_sprint?.sprints_goals)?.title}

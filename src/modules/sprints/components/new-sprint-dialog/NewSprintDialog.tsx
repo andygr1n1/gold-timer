@@ -8,7 +8,7 @@ import { NewSprintImageIndex } from './components/NewSprintImageIndex'
 import { NewSprintGoalIndex } from './components/NewSprintGoalIndex'
 import { NewSprintAchievementIndex } from './components/NewSprintAchievementIndex'
 import { NewSprintDurationIndex } from './components/NewSprintDurationIndex'
-import { NewSprintRushButton } from './components/NewSprintRushButton'
+import { NewSprintFooter } from './components/NewSprintFooter'
 import { NewSprintStartDateIndex } from './components/NewSprintStartDateIndex'
 import { XLoader } from '@/components-x/x-loader/XLoader'
 
@@ -24,16 +24,19 @@ export const NewSprintDialog: React.FC = observer(() => {
             {new_sprint?.loading ? (
                 <XLoader />
             ) : (
-                <div className='animate-opacity-5 text-black'>
+                <div className='animate-opacity-5'>
                     {/* New Sprint Image */}
                     <NewSprintImageIndex />
                     {/*  */}
                     <Form className='py-5'>
                         {/*  */}
+                        <div className='text-cText font-droid-bold mb-1 text-xs'>Title:</div>
                         <NewSprintTitle />
                         {/*  */}
+                        <div className='text-cText font-droid-bold mb-1 text-xs'>Description:</div>
                         <NewSprintDescription />
                         {/*  */}
+                        <div className='text-cText font-droid-bold mb-1 text-xs'>Sprint Goals:</div>
                         <NewSprintGoalIndex />
                         {/*  */}
                         <NewSprintAchievementIndex />
@@ -42,7 +45,7 @@ export const NewSprintDialog: React.FC = observer(() => {
                         {/*  */}
                         <NewSprintStartDateIndex />
                         {/*  */}
-                        <NewSprintRushButton />
+                        <NewSprintFooter />
                     </Form>
                 </div>
             )}

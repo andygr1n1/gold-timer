@@ -43,6 +43,10 @@
         @apply list-none;
     }
 
+    textarea {
+        @apply bg-global-2-bg text-cText;
+    }
+
     .noselect {
         -webkit-touch-callout: none; /* iOS Safari */
         -webkit-user-select: none; /* Safari */

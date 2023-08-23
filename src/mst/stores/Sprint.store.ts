@@ -4,7 +4,7 @@ import { generateMstId } from '../mst.helper'
 import { SprintDay } from '../models/SprintDay.model'
 import { ISprintDay } from '../types'
 import { isFuture, isPast, isToday, set } from 'date-fns'
-import { last } from 'lodash-es'
+import { cloneDeep, last } from 'lodash-es'
 import { SPRINT_STATUS_ENUM } from '@/modules/sprints/helpers/sprints.enum'
 
 export const Sprint$ = types
@@ -34,7 +34,7 @@ export const Sprint$ = types
     })
     .views((self) => ({
         get today(): Date {
-            return set(new Date(Date.now()), { hours: 23, minutes: 59, seconds: 59 })
+            return set(new Date(Date.now()), { hours: 23, minutes: 59, seconds: 59, milliseconds: 59 })
         },
         get finishedAt(): Date | undefined | null {
             return last(self.sprints_days)?.date
@@ -83,14 +83,22 @@ export const Sprint$ = types
         get status(): SPRINT_STATUS_ENUM {
             const today = this.today
             if (!this.finishedAt || !self.started_at) return SPRINT_STATUS_ENUM.ERROR
-            if (today.getTime() <= this.finishedAt.getTime() && today.getTime() >= self.started_at.getTime()) {
+            if (
+                today.getTime() <=
+                    set(this.finishedAt, { hours: 23, minutes: 59, seconds: 59, milliseconds: 59 }).getTime() &&
+                today.getTime() >= self.started_at.getTime()
+            ) {
                 if (!this.allIsCheckedBeforeToday) return SPRINT_STATUS_ENUM.FREEZED
-                // if (this.todayIsChecked) return SPRINT_STATUS.CHECKED
                 return SPRINT_STATUS_ENUM.ACTIVE
             }
 
-            if (today.getTime() > set(this.finishedAt, { hours: 23, minutes: 59, seconds: 59 }).getTime())
+            if (
+                today.getTime() >
+                set(this.finishedAt, { hours: 23, minutes: 59, seconds: 59, milliseconds: 59 }).getTime()
+            ) {
                 return SPRINT_STATUS_ENUM.FINISHED
+            }
+
             if (today.getTime() < self.started_at.getTime()) return SPRINT_STATUS_ENUM.FUTURE
             return SPRINT_STATUS_ENUM.ERROR
         },
@@ -113,3 +121,5 @@ export const Sprint$ = types
             self[key] = value
         },
     }))
+
+//    if (today.getTime() > set(this.finishedAt, { hours: 23, minutes: 59, seconds: 59 }).getTime())

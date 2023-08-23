@@ -24,4 +24,14 @@ export default {
     // navLink
     navLink: 'var(--colors-navLink)',
     'navLink-active': 'var(--colors-navLink-active)',
+    // blue
+    'xBlue-1': 'var(--colors-blue-1)',
+    'xBlue-2': 'var(--colors-blue-2)',
+    'xBlue-3': 'var(--colors-blue-3)',
+    'xBlue-4': 'var(--colors-blue-4)',
+    'xBlue-5': 'var(--colors-blue-5)',
+    'xBlue-6': 'var(--colors-blue-6)',
+    'xBlue-7': 'var(--colors-blue-7)',
+    'xBlue-8': 'var(--colors-blue-8)',
+    'xBlue-9': 'var(--colors-blue-9)',
 }

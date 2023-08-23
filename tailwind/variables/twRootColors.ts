@@ -1,10 +1,20 @@
 export default {
+    'blue-1': '#C7E2FC',
+    'blue-2': '#A1CDFB',
+    'blue-3': '#',
+    'blue-4': '#2563EB',
+    'blue-5': '#1D4ED8',
+    'blue-6': '#',
+    'blue-7': '#141B2A',
+    'blue-8': '#151C2C',
+    'blue-9': '#10141D',
     red: '#9C0B1D',
     gold: '#F9B53D',
     sky: '#2563EB',
     'sky-darker': '#1d4ed8',
     darkNight: '#10141d',
     twilight: '#151c2c',
+    // twilight0: '#141B2A',
     tiffany: '#2DD4BF',
     green: '#059669',
     white: '#ffffff',
@@ -38,3 +48,9 @@ export default {
     'blue-600': '#2563eb',
     'blue-700': '#1d4ed8',
 }
+
+// blue-morning
+// blue-day
+// blue-nightly
+// blue-dark
+
