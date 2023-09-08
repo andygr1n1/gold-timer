@@ -1,5 +1,6 @@
 import { useSprintsStore } from '@/StoreProvider'
 import { XDayTimeSelector } from '@/components-x/x-date-picker/XDayTimeSelector'
+import { FormLabel } from '@/components/form/FormLabel'
 import { Form } from 'antd'
 import { format, set } from 'date-fns'
 import { observer } from 'mobx-react-lite'
@@ -23,7 +24,7 @@ export const NewSprintStartDateIndex: React.FC = observer(() => {
 
     return (
         <Form.Item>
-            <h5 className='!my-5'>Start date:</h5>
+            <FormLabel title='Start date:' />
             {disabled && started_at ? (
                 <div className='text-cText text-base'>{format(started_at, 'd MMMM yyyy')}</div>
             ) : (

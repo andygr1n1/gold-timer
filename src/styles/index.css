@@ -19,6 +19,15 @@
 @tailwind utilities;
 
 @layer base {
+    html,
+    body {
+        @apply bg-global-bg font-droid text-cText flex h-full w-full flex-col overflow-hidden;
+    }
+
+    #root {
+        @apply flex w-full flex-auto overflow-hidden;
+    }
+
     label {
         @apply !text-cText;
     }
@@ -29,7 +38,7 @@
     h4,
     h5,
     h6 {
-        @apply m-0 p-0 font-droid-bold tracking-wider text-cText;
+        @apply font-droid-bold text-cText m-0 p-0 tracking-wider;
     }
 
     a,
@@ -39,8 +48,56 @@
         @apply text-inherit no-underline;
     }
 
+    ul {
+        @apply m-0 p-0;
+    }
+
     li {
         @apply list-none;
+    }
+
+    button {
+        @apply animate-opacity text-cText border-none bg-transparent outline-none transition-all duration-300 focus:outline-none active:outline-none;
+    }
+
+    input {
+        @apply bg-global-3-bg;
+    }
+
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus,
+    input:-webkit-autofill:active {
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: #ffffff;
+        transition: background-color 5000s ease-in-out 0s;
+        box-shadow: inset 0 0 20px 20px var(--colors-global-3-bg);
+    }
+}
+
+@layer utilities {
+    .border-solid {
+        border-style: solid;
+    }
+
+    .border-r-solid {
+        border-right-style: solid;
+    }
+
+    .border-l-solid {
+        border-left-style: solid;
+    }
+
+    .border-b-solid {
+        border-bottom-style: solid;
+    }
+
+    .border-t-solid {
+        border-top-style: solid;
+    }
+
+    .absolute-center {
+        @apply absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2;
     }
 
     .noselect {
@@ -64,63 +121,57 @@
     }
 }
 
-@layer utilities {
-    button {
-        @apply animate-opacity border-none bg-transparent outline-none transition-all duration-300 focus:outline-none active:outline-none;
-    }
-
-    .border-solid {
-        border-style: solid;
-    }
-
-    .border-r-solid {
-        border-right-style: solid;
-    }
-
-    .border-l-solid {
-        border-left-style: solid;
-    }
-
-    .border-b-solid {
-        border-bottom-style: solid;
-    }
-
-    .border-t-solid {
-        border-top-style: solid;
-    }
-
-    ul {
-        @apply m-0 p-0;
-    }
-
-    .absolute-center {
-        @apply absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2;
-    }
-}
-
-html,
-body {
-    @apply flex h-full w-full flex-col overflow-hidden bg-global-bg font-vi text-cText;
-}
-
-#root {
-    @apply flex w-full flex-auto overflow-hidden;
-}
-
-.app,
-.app-body {
-    @apply flex w-full bg-global-bg;
-}
-
-/* .app-body {
-    height: calc(100% - var(--top-bar-height));
-} */
-
-.module-wrapper {
-    @apply relative flex h-full w-full animate-opacity flex-col overflow-auto bg-transparent transition-all duration-300;
-}
-
 .login-form {
-    @apply !m-0 flex h-[400px] flex-auto flex-col items-center !p-5 !text-cText;
+    @apply !text-cText !m-0 flex h-[400px] flex-auto flex-col items-center !p-5;
 }
 
+/* ant-picker */
+.ant-picker {
+    @apply bg-global-3-bg [&_*]:bg-global-3-bg [&_*]:!text-cText border-transparent;
+}
+
+.ant-picker-dropdown {
+    @apply bg-global-3-bg [&_*]:bg-global-3-bg;
+}
+
+.ant-picker-content thead tr,
+.ant-picker-header {
+    @apply !text-cText  [&_*]:!text-gray-500;
+}
+
+.ant-picker-cell.ant-picker-cell-end {
+    @apply !text-blue-500 [&_*]:!text-blue-500;
+}
+
+td.ant-picker-cell.ant-picker-cell-disabled {
+    @apply !text-gray-400 [&_*]:!text-gray-400;
+}
+
+.ant-picker-cell-disabled {
+    @apply !text-gray-500 [&_*]:!text-gray-400;
+}
+
+.ant-picker-cell {
+    @apply !text-cText;
+}
+
+.ant-picker-time-panel-cell.ant-picker-time-panel-cell-selected {
+    @apply rounded-md !bg-blue-500 [&_*]:!bg-blue-500;
+}
+
+.ant-picker-footer {
+    @apply bg-transparent [&_*]:!bg-transparent;
+}
+
+.ant-picker-footer .ant-btn-primary {
+    @apply hover:text-blue-500 disabled:border-none;
+}
+
+.ant-picker-content,
+.ant-picker-footer {
+    @apply text-cText [&_*]:!text-cText;
+}
+
+.ant-picker-ok button {
+    @apply !bg-blue-500 disabled:!bg-gray-400;
+}

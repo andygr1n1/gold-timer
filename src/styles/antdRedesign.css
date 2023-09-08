@@ -19,7 +19,7 @@
 .form-field-email .ant-col.ant-form-item-label {
     @apply mr-8;
 }
- 
+
 /* Profile DatePicker */
 div.profile-date-picker div.ant-picker-disabled {
     @apply !cursor-default;
@@ -43,11 +43,12 @@ div.profile-date-picker div.ant-picker input {
 }
 
 .ant-collapse-content-box {
-    @apply bg-global-2-bg
+    @apply bg-global-2-bg;
 }
 
-.ant-select-disabled, .ant-picker-disabled {
-    @apply !bg-gray-50 [&_*]:!text-gray-400 !rounded-md !text-cText;
+.ant-select-disabled,
+.ant-picker-disabled {
+    @apply !text-cText !rounded-md !bg-gray-50 [&_*]:!text-gray-400;
 }
 
 .ant-notification {
@@ -56,14 +57,20 @@ div.profile-date-picker div.ant-picker input {
 
 /* Input */
 
-input.ant-input {
-    @apply text-cText bg-global-2-bg placeholder:text-gray-500 text-sm border-transparent;
+input.ant-input,
+.ant-input-affix-wrapper {
+    @apply text-cText bg-global-3-bg border-transparent text-sm placeholder:text-gray-500;
 }
 
 span.ant-input-affix-wrapper.dynamic-filter {
-    @apply  bg-global-2-bg border-transparent ;
+    @apply bg-global-3-bg border-transparent;
 }
 
-input.ant-input.dynamic-filter, .ant-input-affix-wrapper.dynamic-filter input {
-    @apply h-12;
+input.ant-input.dynamic-filter,
+.ant-input-affix-wrapper.dynamic-filter input {
+    @apply h-8;
+}
+
+textarea.ant-input {
+    @apply bg-global-3-bg text-cText border-transparent text-sm placeholder:text-gray-500;
 }

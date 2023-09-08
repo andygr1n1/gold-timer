@@ -82,7 +82,7 @@ export const NewPasswordIndex: React.FC = observer(() => {
                         size={isDesktop ? 'large' : 'middle'}
                         className='login-form'
                     >
-                        <div className='w-full cursor-default select-none py-5 text-center font-vi text-base font-bold'>
+                        <div className='font-vi w-full cursor-default select-none py-5 text-center text-base font-bold'>
                             New password
                         </div>
                         <RegisterPassword setPassword={setPassword} />

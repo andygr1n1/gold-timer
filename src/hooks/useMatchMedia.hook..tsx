@@ -4,20 +4,22 @@ enum MEDIA_QUERY_KEYS_ENUM {
     IS_MOBILE = 'isMobile',
     IS_TABLET = 'isTablet',
     IS_DESKTOP = 'isDesktop',
+    IS_LARGE_DESKTOP = 'isLargeDesktop',
 }
 
 export enum MEDIA_QUERY_VALUES_ENUM {
     IS_MOBILE = '(max-width: 766px)',
-    IS_TABLET = '(min-width: 767px) and (max-width: 1279px)',
-    // IS_DESKTOP = '(min-width: 1280px) and (max-width: 1920px)',
-    // IS_DESKTOP = '(min-width: 1280px)',
-    IS_DESKTOP = '(min-width: 1536px)',
+    IS_TABLET = '(min-width: 767px) and (max-width: 1023px)',
+    // IS_DESKTOP = '(min-width: 1024px) and (max-width: 1279px)',
+    IS_DESKTOP = '(min-width: 1024px)',
+    IS_LARGE_DESKTOP = '(min-width: 1280px)',
 }
 
 const MediaQuery = {
     isMobile: MEDIA_QUERY_VALUES_ENUM.IS_MOBILE,
     isTablet: MEDIA_QUERY_VALUES_ENUM.IS_TABLET,
     isDesktop: MEDIA_QUERY_VALUES_ENUM.IS_DESKTOP,
+    isLargeDesktop: MEDIA_QUERY_VALUES_ENUM.IS_LARGE_DESKTOP,
 }
 
 /**
@@ -46,6 +48,10 @@ export const useWindowMatchMedia = (media?: (keyof typeof MediaQuery)[]) => {
                     queries.push(MEDIA_QUERY_VALUES_ENUM.IS_DESKTOP)
                     media_devices.push(m)
                     return
+                case MEDIA_QUERY_KEYS_ENUM.IS_LARGE_DESKTOP:
+                    queries.push(MEDIA_QUERY_VALUES_ENUM.IS_LARGE_DESKTOP)
+                    media_devices.push(m)
+                    return
             }
         })
     } else {
@@ -53,6 +59,7 @@ export const useWindowMatchMedia = (media?: (keyof typeof MediaQuery)[]) => {
             MEDIA_QUERY_VALUES_ENUM.IS_MOBILE,
             MEDIA_QUERY_VALUES_ENUM.IS_TABLET,
             MEDIA_QUERY_VALUES_ENUM.IS_DESKTOP,
+            MEDIA_QUERY_VALUES_ENUM.IS_LARGE_DESKTOP,
         ]
     }
 

@@ -47,7 +47,6 @@ export const SprintInfo: React.FC<{ sprint: ISprint$ }> = observer(({ sprint }) 
             )}
             <div className='font-droid-bold absolute -left-[60px] hidden w-[100px] -rotate-90 items-center justify-center truncate whitespace-nowrap bg-transparent opacity-50 md:bottom-10 md:flex '>
                 {upperCase(status)}
-                di
             </div>
             {/*  */}
 
@@ -62,7 +61,7 @@ export const SprintInfo: React.FC<{ sprint: ISprint$ }> = observer(({ sprint }) 
                     )}
                     <div
                         title={sprint.title}
-                        className='truncate  text-sm capitalize md:max-w-[180px] lg:max-w-[400px]'
+                        className='truncate  text-sm capitalize md:max-w-[180px] lg:max-w-[200px] 2xl:max-w-[300px]'
                     >
                         {sprint.title}
                     </div>

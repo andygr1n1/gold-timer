@@ -6,7 +6,7 @@ import { IGoal$SnapshotIn, IGoalRitual, IGoalRitualSnapshotIn } from '../types'
 import { Achievements$ } from './Achievements.store'
 import { Goals$ } from './Goals.store'
 import { User$ } from './User.store'
-import { Tasks$ } from './Tasks.store'
+import { Notes$ } from './Tasks.store'
 import { ModalWindows$ } from './ModalWindows.store'
 import { fetchRitualPowerInfo } from '@/graphql/queries/fetchRitualPowerInfo.query'
 import { IUserByPkResponse, fetchUserByPk } from '@/graphql/queries/fetchUserByPk.query'
@@ -19,13 +19,15 @@ export const Root$ = types
         user$: types.optional(User$, {}),
         goals$: types.optional(Goals$, {}),
         achievements$: types.optional(Achievements$, {}),
-        tasks$: types.optional(Tasks$, {}),
+        notes$: types.optional(Notes$, {}),
         sprints$: types.optional(Sprints$, {}),
         loading: false,
         //
         modal_windows$: types.optional(ModalWindows$, {}),
         side_menu$: types.optional(SideMenu$, {}),
         notificationApi: types.maybe(types.frozen<NotificationInstance>()),
+        //
+        theme: types.maybeNull(types.enumeration(['night', 'day'])),
     })
     .views((self) => ({
         get isValidating(): boolean {
@@ -114,7 +116,9 @@ export const Root$ = types
                 yield self.fetchRitualPowerInfo()
                 //
                 yield self.fetchGoals()
-                yield self.fetchAchievements()
+                // yield self.fetchAchievements()
+                yield self.notes$.fetchNotes()
+                yield self.sprints$.fetchSprints()
                 //
                 self.autoRitualizeExpiredRitualizedGoals()
                 self.loading = false

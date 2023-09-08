@@ -1,10 +1,22 @@
 export default {
+    'blue-sky-1': '#C7E2FC',
+    'blue-sky-2': '#A1CDFB',
+    'blue-sky-3': '#7bb9f9',
+    //
+    'blue-1': '#2563EB',
+    'blue-2': '#1D4ED8',
+    //
+    'blue-slate-1': '#202c46',
+    'blue-slate-2': '#151C2C',
+    'blue-slate-3': '#10141D',
+    //
     red: '#9C0B1D',
     gold: '#F9B53D',
     sky: '#2563EB',
     'sky-darker': '#1d4ed8',
     darkNight: '#10141d',
     twilight: '#151c2c',
+    // twilight0: '#141B2A',
     tiffany: '#2DD4BF',
     green: '#059669',
     white: '#ffffff',

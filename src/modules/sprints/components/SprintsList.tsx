@@ -2,7 +2,6 @@ import { useSprintsStore } from '@/StoreProvider'
 import { observer } from 'mobx-react-lite'
 import { useEffect } from 'react'
 import { SprintInfo } from './sprint-info/SprintInfo'
-import { SprintMenuDialogConfirm } from './sprint-info/SprintMenuDialogConfirm'
 
 export const SprintsList: React.FC = observer(() => {
     const { fetchSprints } = useSprintsStore()
@@ -13,7 +12,7 @@ export const SprintsList: React.FC = observer(() => {
 
     return (
         <>
-            <div className='bg-global-bg mt-5 flex h-full flex-col items-start justify-start gap-5 rounded-md md:mt-0 '>
+            <div className='bg-global-bg mt-5 flex h-full w-full flex-col items-start justify-start gap-5 rounded-md '>
                 <ActiveSprintsList />
                 <FreezedSprintsList />
                 <CheckedSprintsList />

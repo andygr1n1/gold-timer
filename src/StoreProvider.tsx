@@ -37,7 +37,7 @@ export const useSprintsStore = () => useRootStore().sprints$
 
 export const useGoalsStore = () => useRootStore().goals$
 
-export const useTasksStore = () => useRootStore().tasks$
+export const useTasksStore = () => useRootStore().notes$
 
 // modal windows
 export const useGoalsManagerStore = () => useRootStore().modal_windows$.goals_manager_mw$

@@ -2,8 +2,8 @@ import { observer } from 'mobx-react-lite'
 import { useRootStore } from './StoreProvider'
 import { useAppInit } from './hooks/useAppInit.hook'
 import { XLoader } from './components-x/x-loader/XLoader'
-import { FocusGoalOfWeek } from './components-modal-windows/focus-goal-of-week/FocusGoalOfWeek'
-import { SideMenu } from './components-layout/side-menu/SideMenu'
+import { FocusGoalOfWeek } from './components/components-modal-windows/focus-goal-of-week/FocusGoalOfWeek'
+import { SideMenu } from './components/side-menu/SideMenu'
 import { AppProtectedRoutes } from './AppProtectedRoutes'
 
 export const AppProtected = observer(() => {
@@ -16,10 +16,10 @@ export const AppProtected = observer(() => {
     ) : (
         <>
             <FocusGoalOfWeek />
-            <div className='app'>
+            <div className='bg-global-bg flex w-full'>
                 <SideMenu />
-                <div className='app-body w-full flex-auto flex-col'>
-                    <div className='module-wrapper'>
+                <div className='bg-global-bg flex  w-full flex-auto flex-col'>
+                    <div className='animate-opacity relative flex h-full w-full flex-col overflow-auto bg-transparent transition-all duration-300'>
                         <AppProtectedRoutes />
                     </div>
                 </div>
