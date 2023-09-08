@@ -61,7 +61,7 @@ export const SprintInfo: React.FC<{ sprint: ISprint$ }> = observer(({ sprint }) 
                     )}
                     <div
                         title={sprint.title}
-                        className='truncate  text-sm capitalize md:max-w-[180px] lg:max-w-[400px]'
+                        className='truncate  text-sm capitalize md:max-w-[180px] lg:max-w-[200px] 2xl:max-w-[300px]'
                     >
                         {sprint.title}
                     </div>

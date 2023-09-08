@@ -1,6 +1,7 @@
 import { useGoalsStore } from '@/StoreProvider'
 import { Icon } from '@iconify/react'
 import { observer } from 'mobx-react-lite'
+import { FormLabel } from '../form/FormLabel'
 
 export const GoalFormIsFavoriteOption: React.FC = observer(() => {
     const { new_goal } = useGoalsStore()
@@ -15,7 +16,8 @@ export const GoalFormIsFavoriteOption: React.FC = observer(() => {
     }
 
     return (
-        <>
+        <div className='py-2'>
+            <FormLabel title='Favorite' />
             {is_favorite ? (
                 <button title='Unfavorite' onClick={handleClick} className=' flex items-center justify-center '>
                     <Icon
@@ -31,10 +33,10 @@ export const GoalFormIsFavoriteOption: React.FC = observer(() => {
                         icon='ic:baseline-favorite-border'
                         width={30}
                         height={30}
-                        className='cursor-pointer transition-colors duration-300 hover:text-red-600'
+                        className='text-cText cursor-pointer transition-colors duration-300 hover:text-red-600'
                     />
                 </button>
             )}
-        </>
+        </div>
     )
 })

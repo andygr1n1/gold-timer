@@ -1,9 +1,9 @@
-import { InputCreatedAt } from '@/components-modal-windows/create-new-goal-modal/components/InputCreatedAt'
-import { InputFinishedAt } from '@/components-modal-windows/create-new-goal-modal/components/InputFinishedAt'
+import { InputCreatedAt } from '@/modules/goals/components/new-goal-dialog/components/InputCreatedAt'
+import { InputFinishedAt } from '@/modules/goals/components/new-goal-dialog/components/InputFinishedAt'
 import { InputRitualInterval } from '@/components/input-ritual-type/InputRitualType'
-import { InputSlogan } from '@/components-modal-windows/create-new-goal-modal/components/InputSlogan'
+import { InputSlogan } from '@/modules/goals/components/new-goal-dialog/components/InputSlogan'
 import { GoalFormTitleOption } from '@/components/goal-form-options/GoalFormTitleOption'
-import { TextAreaDescription } from '@/components-modal-windows/create-new-goal-modal/components/TextAreaDescription'
+import { TextAreaDescription } from '@/modules/goals/components/new-goal-dialog/components/TextAreaDescription'
 import { XButton } from '@/components-x/x-button/XButton'
 
 import { useGoalsStore, useRootStore } from '@/StoreProvider'

@@ -1,0 +1,13 @@
+.wrapper {
+    @apply bg-global-2-bg relative m-auto flex w-[314px] flex-col flex-wrap items-center justify-center rounded-lg md:flex-row xl:w-full;
+}
+
+.goals-container {
+    @apply flex min-h-[56px] w-[calc(100%-40px)] flex-col  items-center justify-center gap-8 p-5 
+    md:ml-9 md:h-[56px] md:flex-row md:flex-wrap md:overflow-hidden;
+}
+
+.goal {
+    @apply h-[40px] w-[110px] cursor-pointer select-none items-center justify-center
+    rounded-lg p-2 text-sm text-white shadow-lg shadow-black/30;
+}

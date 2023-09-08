@@ -9,7 +9,7 @@ export default {
     //
     'global-bg': 'var(--colors-darkNight)',
     'global-2-bg': 'var(--colors-twilight)',
-    'global-3-bg': 'var(--colors-evening)',
+    'global-3-bg': 'var(--colors-blue-slate-1)',
     'global-bg-regal': 'rgba(19, 19, 44, 0.9)',
     'global-text': 'var(--colors-white)',
     // navLink

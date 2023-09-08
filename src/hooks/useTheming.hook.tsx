@@ -1,3 +1,4 @@
+import { rootStore$ } from '@/StoreProvider'
 import { observable } from 'mobx'
 
 export const onChange = () => {
@@ -7,18 +8,20 @@ export const onChange = () => {
     const theming = useTheme ? 'night' : 'day'
     localStorage.setItem('theming', theming)
     document.querySelector('html')!.setAttribute('data-theme', theming)
+    rootStore$.onChangeField('theme', theming)
 }
 
 export const applyLocalStorage = () => {
-    const savedTheme = localStorage.getItem('theming')
+    let savedTheme = localStorage.getItem('theming')
 
     if (!savedTheme) {
-        useTheming.night = false
-        return
+        savedTheme = 'night'
+        useTheming.night = true
     }
 
     useTheming.night = savedTheme === 'night' ? true : false
     document.querySelector('html')!.setAttribute('data-theme', savedTheme)
+    rootStore$.onChangeField('theme', savedTheme)
 }
 
 export const useTheming = observable({

@@ -4,7 +4,6 @@ import { getUserCookie } from './helpers/universalCookie.helper'
 import { AppProtected } from './AppProtected'
 import { AppAnonymous } from './AppAnonymous'
 
-
 export const App = observer(() => {
     const {
         user$: { isAuthenticated, onChangeField },

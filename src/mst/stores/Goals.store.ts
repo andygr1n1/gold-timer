@@ -168,14 +168,11 @@ export const Goals$ = types
             return this.favoriteGoals.slice(0, 4)
         },
 
-        get noActiveSprints(): boolean {
-            return true
+        get notCompletedGoalsCount(): number {
+            return filter(self.goals, (goal) => goal.status !== STATUS_ENUM.COMPLETED).length
         },
     }))
     .views((self) => ({
-        get completedGoalsCount(): number {
-            return self.completedGoals.length
-        },
         get isNotValidToSaveGoalData(): boolean {
             if (!self.editable_goal || !self.editable_goal.finished_at) return false
             return !!!self.editable_goal?.title.length || self.editable_goal.finished_at < new Date(Date.now())

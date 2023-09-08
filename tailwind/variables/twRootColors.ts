@@ -1,13 +1,15 @@
 export default {
-    'blue-1': '#C7E2FC',
-    'blue-2': '#A1CDFB',
-    'blue-3': '#',
-    'blue-4': '#2563EB',
-    'blue-5': '#1D4ED8',
-    'blue-6': '#',
-    'blue-7': '#141B2A',
-    'blue-8': '#151C2C',
-    'blue-9': '#10141D',
+    'blue-sky-1': '#C7E2FC',
+    'blue-sky-2': '#A1CDFB',
+    'blue-sky-3': '#7bb9f9',
+    //
+    'blue-1': '#2563EB',
+    'blue-2': '#1D4ED8',
+    //
+    'blue-slate-1': '#202c46',
+    'blue-slate-2': '#151C2C',
+    'blue-slate-3': '#10141D',
+    //
     red: '#9C0B1D',
     gold: '#F9B53D',
     sky: '#2563EB',
@@ -48,9 +50,3 @@ export default {
     'blue-600': '#2563eb',
     'blue-700': '#1d4ed8',
 }
-
-// blue-morning
-// blue-day
-// blue-nightly
-// blue-dark
-

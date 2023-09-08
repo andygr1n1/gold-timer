@@ -4,7 +4,7 @@ import { useEffect } from 'react'
 import { Note } from './components/Note'
 
 export const NotesWidget: React.FC = observer(() => {
-    const { tasks, fetchTasks } = useTasksStore()
+    const { tasks, fetchNotes: fetchTasks } = useTasksStore()
 
     useEffect(() => {
         fetchTasks()

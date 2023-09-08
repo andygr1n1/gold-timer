@@ -39,7 +39,7 @@ export const XModal: React.FC<{
                             <Dialog.Panel
                                 className={`${
                                     height || 'h-[75vh]'
-                                } bg-global-bg max-h-[75vh] w-full max-w-lg transform rounded-2xl p-6 pr-4 shadow-xl transition-all`}
+                                } bg-global-2-bg max-h-[75vh] w-full max-w-lg transform rounded-2xl p-6 pr-4 shadow-xl transition-all`}
                             >
                                 <div className=' h-full w-[calc(100%-32px)] overflow-auto px-4'>
                                     {header && (

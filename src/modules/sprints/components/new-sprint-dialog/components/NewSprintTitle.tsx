@@ -1,6 +1,7 @@
 import { useSprintsStore } from '@/StoreProvider'
 import { Form, Input } from 'antd'
 import { observer } from 'mobx-react-lite'
+import { FormLabel } from '@/components/form/FormLabel'
 
 export const NewSprintTitle: React.FC = observer(() => {
     const { new_sprint } = useSprintsStore()
@@ -11,6 +12,7 @@ export const NewSprintTitle: React.FC = observer(() => {
 
     return (
         <Form.Item>
+            <FormLabel title='Title:' />
             <Input
                 size='large'
                 required={true}

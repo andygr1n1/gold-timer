@@ -1,20 +1,23 @@
 import { useSprintsStore } from '@/StoreProvider'
 import { observer } from 'mobx-react-lite'
 import clsx from 'clsx'
-import { useEffect, useState } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import { IDisposer, cast, onSnapshot } from 'mobx-state-tree'
 import { rootStore$ } from '@/StoreProvider'
 import { getSprintsFilter$, setSprintsFilter$ } from '@/functions/indexDbManager'
 import { ISprintsFilter$ } from '@/mst/types'
-import { Icon } from '@iconify/react'
 import { Checkbox } from 'antd'
+import { XDivider } from '@/components-x/x-divider/XDivider'
+import { useWindowMatchMedia } from '@/hooks/useMatchMedia.hook.'
 export const SprintsFiltersMobile: React.FC = observer(() => {
     const {
         sprintsStatusRender,
-        sprints_filter$: { addStatusFilter, onChangeField, isStatusAll, isStatusActive },
+        sprints_filter$: { addStatusFilter, isStatusActive },
     } = useSprintsStore()
 
     const [loadingLocalForage, setLoadingLocalForage] = useState(true)
+
+    const { isMobile } = useWindowMatchMedia(['isMobile'])
 
     useEffect(() => {
         const sprintFilters$ = rootStore$.sprints$.sprints_filter$
@@ -34,32 +37,13 @@ export const SprintsFiltersMobile: React.FC = observer(() => {
         }
     }, [])
 
-    if (loadingLocalForage) return null
+    if (loadingLocalForage || !isMobile) return null
 
     return (
-        <div className='flex w-[calc(100%-16px)] flex-col items-start gap-5'>
-            <div className='flex items-center'>
-                <Icon
-                    icon='mingcute:settings-6-line'
-                    width={20}
-                    height={20}
-                    className='text-cText hover:text-x-sky cursor-pointer pr-2 duration-300'
-                />
-                <span>Filters:</span>
-            </div>
-            <div className='flex flex-col items-start gap-5'>
-                <button
-                    onClick={() => {
-                        onChangeField('sprints_selected_statuses', cast([]))
-                    }}
-                    className={clsx(
-                        `text-cText hover:text-x-sky cursor-pointer text-sm capitalize duration-300`,
-                        isStatusAll && '!text-x-sky',
-                    )}
-                >
-                    All
-                </button>
-                {sprintsStatusRender.map((status) => (
+        <div className='flex w-full flex-col items-start gap-5'>
+            {sprintsStatusRender.map((status) => (
+                <Fragment key={status}>
+                    <XDivider className='w-[125px] bg-gray-700' />
                     <button
                         key={status}
                         className={clsx(
@@ -78,8 +62,8 @@ export const SprintsFiltersMobile: React.FC = observer(() => {
                             {status}
                         </Checkbox>
                     </button>
-                ))}
-            </div>
+                </Fragment>
+            ))}
         </div>
     )
 })

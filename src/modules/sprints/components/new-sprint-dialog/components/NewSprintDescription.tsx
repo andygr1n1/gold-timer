@@ -1,4 +1,5 @@
 import { useSprintsStore } from '@/StoreProvider'
+import { FormLabel } from '@/components/form/FormLabel'
 import { Form, Input } from 'antd'
 import { observer } from 'mobx-react-lite'
 
@@ -11,6 +12,7 @@ export const NewSprintDescription: React.FC = observer(() => {
 
     return (
         <Form.Item>
+            <FormLabel title='Description:' />
             <Input.TextArea
                 size='large'
                 value={description || ''}
