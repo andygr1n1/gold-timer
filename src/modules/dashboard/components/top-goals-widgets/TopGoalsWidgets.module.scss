@@ -3,8 +3,8 @@
 }
 
 .goals-container {
-    @apply flex min-h-[56px] w-[calc(100%-40px)] flex-col  items-center justify-center gap-8 p-5 
-    md:ml-9 md:h-[56px] md:flex-row md:flex-wrap md:overflow-hidden;
+    @apply flex min-h-[56px] w-[calc(100%-40px)] flex-col  items-center justify-center gap-8 p-5 md:h-[56px] 
+    md:flex-row md:flex-wrap md:overflow-hidden xl:ml-2 xl:justify-start;
 }
 
 .goal {

@@ -5,9 +5,9 @@ export const WidgetSvgIcon: React.FC<{
     return (
         <button
             onClick={onClick}
-            className={`absolute -left-2 -top-6 z-10 flex items-center justify-center xl:-left-8 xl:-top-6`}
+            className={`absolute -left-2 -top-6 z-10 flex cursor-pointer items-center justify-center opacity-70 hover:opacity-95 xl:-left-8 xl:-top-5`}
         >
-            <img src={icon} width={60} height={60} />
+            <img src={icon} width={50} height={50} />
         </button>
     )
 }

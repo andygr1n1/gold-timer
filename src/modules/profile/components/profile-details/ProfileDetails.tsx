@@ -20,7 +20,7 @@ export const ProfileDetails: React.FC = observer(() => {
 
     return (
         <div>
-            <div className='relative flex min-h-[300px] w-fit flex-col rounded-md bg-global-bg p-5'>
+            <div className='relative flex min-h-[300px] w-fit flex-col rounded-md p-5'>
                 <h4 className='mb-4'>Details</h4>
                 <div className='flex w-fit flex-auto flex-col gap-2'>
                     <Tooltip title={editMode && 'Email is not editable'} placement='topRight'>

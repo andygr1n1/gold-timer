@@ -14,5 +14,6 @@ export default {
     'global-text': 'var(--colors-magic)',
     // navLink
     navLink: 'black',
-    'navLink-active': 'var(--colors-indigos-dark)',
+    'navLink-active': 'var(--colors-blue-2)',
+    'navLink-active-hover': 'var(--colors-blue-1)',
 }

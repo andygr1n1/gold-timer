@@ -84,17 +84,7 @@ export const Root$ = types
                 processError(e, 'fetchGoals error')
             }
         }),
-        fetchAchievements: flow(function* _fetchGoals() {
-            try {
-                if (!self.user$.id) throw new Error('User id is undefined')
 
-                const res: IGoal$SnapshotIn[] = yield fetchAchievementsByUserId(self.user$.id)
-                if (!res) throw new Error('fetchGoals error')
-                applySnapshot(self.achievements$.achievements, res)
-            } catch (e) {
-                processError(e, 'fetchAchievements error')
-            }
-        }),
         autoRitualizeExpiredRitualizedGoals(): void {
             const { expiredRitualGoals } = self.goals$
             if (!expiredRitualGoals.length) return

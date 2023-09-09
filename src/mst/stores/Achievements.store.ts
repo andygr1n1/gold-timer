@@ -1,6 +1,9 @@
-import { types } from 'mobx-state-tree'
+import { applySnapshot, flow, types } from 'mobx-state-tree'
 import { Achievement } from '../models/Achievement.model'
-import { IAchievement } from '../types'
+import { IAchievement, IGoal$SnapshotIn } from '../types'
+import { fetchAchievementsByUserId } from '@/graphql/queries/fetchAchievementsByUserId.query'
+import { getUserId } from '@/helpers/getUserId'
+import { processError } from '@/helpers/processError.helper'
 
 export const Achievements$ = types
     .model({
@@ -16,4 +19,13 @@ export const Achievements$ = types
         onChangeField<Key extends keyof typeof self>(key: Key, value: (typeof self)[Key]) {
             self[key] = value
         },
+        fetchAchievements: flow(function* _fetchGoals() {
+            try {
+                const res: IGoal$SnapshotIn[] = yield fetchAchievementsByUserId(getUserId())
+                if (!res) throw new Error('fetchGoals error')
+                applySnapshot(self.achievements, res)
+            } catch (e) {
+                processError(e, 'fetchAchievements error')
+            }
+        }),
     }))

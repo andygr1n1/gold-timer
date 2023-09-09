@@ -6,8 +6,7 @@ import { useRootStore } from '@/StoreProvider'
 
 export const GoalsDashboardCarousel: React.FC = observer(() => {
     const {
-        fetchAchievements,
-        achievements$: { visibleAchievements },
+        achievements$: { visibleAchievements, fetchAchievements },
     } = useRootStore()
 
     useEffect(() => {

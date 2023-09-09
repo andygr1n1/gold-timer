@@ -5,7 +5,7 @@ import { observer } from 'mobx-react-lite'
 export const GoalsCounter: React.FC = observer(() => {
     const {
         notes$: { notesLength },
-        sprints$: { activeSprintsRender },
+        sprints$: { allActiveCheckedSprintsLength },
         goals$: { notCompletedGoalsCount: activeGoalsCount },
     } = useRootStore()
 
@@ -16,7 +16,7 @@ export const GoalsCounter: React.FC = observer(() => {
                 <Icon icon='octicon:goal-16' width={45} height={45} className='absolute -top-7 opacity-70' />
             </div>
             <div className='bg-global-3-bg text-x-sky relative flex h-10 w-10 cursor-default items-center justify-center rounded-full   p-5 text-xl'>
-                <span>{activeSprintsRender.length}</span>
+                <span>{allActiveCheckedSprintsLength}</span>
                 <Icon icon='game-icons:sprint' width={45} height={45} className='absolute -top-7 opacity-70 ' />
             </div>
             <div className='text-x-sky bg-global-3-bg relative flex h-10 w-10 cursor-default items-center justify-center  rounded-full p-5 text-xl'>

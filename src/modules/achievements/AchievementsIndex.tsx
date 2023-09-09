@@ -2,11 +2,17 @@ import { useRootStore } from '@/StoreProvider'
 import { ModuleWrapper } from '@/components/ModuleWrapper'
 import { APP_ROUTES_ENUM } from '@/helpers/enums'
 import { observer } from 'mobx-react-lite'
+import { useEffect } from 'react'
 
 export const AchievementsIndex: React.FC = observer(() => {
     const {
-        achievements$: { visibleAchievements },
+        achievements$: { visibleAchievements, fetchAchievements },
     } = useRootStore()
+
+    useEffect(() => {
+        fetchAchievements()
+    }, [])
+
     return (
         <ModuleWrapper context={APP_ROUTES_ENUM.ACHIEVEMENTS}>
             <div className='mt-5 h-[calc(100%-150px)] w-[calc(100%-40px)] rounded-md p-5 '>
