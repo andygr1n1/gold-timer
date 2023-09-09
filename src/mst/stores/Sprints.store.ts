@@ -136,6 +136,9 @@ export const Sprints$ = types
                   )
                 : []
         },
+        get allActiveCheckedSprintsLength(): number {
+            return this.activeSprintsRender.length + this.checkedSprintsRender.length
+        },
         // FREEZED
         get freezedSprintsActiveStatus(): boolean {
             return (

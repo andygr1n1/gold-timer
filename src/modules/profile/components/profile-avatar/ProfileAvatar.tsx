@@ -38,60 +38,55 @@ export const ProfileAvatar: React.FC = observer(() => {
     const xapikey = import.meta.env.VITE_X_API_KEY
 
     return (
-        <div>
-            <div className='relative flex  w-[250px] flex-col rounded-md bg-global-bg p-5'>
-                <h4 className='mb-4'>Avatar</h4>
-                <div className='items-top flex h-full w-full justify-center  '>
-                    <Upload
-                        showUploadList={false}
-                        name={getUserId()}
-                        beforeUpload={beforeUpload}
-                        maxCount={1}
-                        accept='image/*'
-                        className='relative cursor-pointer'
-                        action={`${endpoint}file-upload-avatar`}
-                        headers={{ 'x-api-key': xapikey }}
-                        listType='picture'
-                        onChange={({ file }) => {
-                            if (file.status === 'done') {
-                                const fileName = file.response.fileName
-                                if (!fileName) return
-                                const avatarToDelete = avatar
-                                onChangeField('avatar', fileName)
-                                avatarToDelete && cleanAvatar(avatar)
-                            }
-                        }}
-                    >
-                        {activeAvatar ? (
-                            <div className='group relative'>
-                                <img
-                                    src={`${import.meta.env.VITE_FIRE_BUNNY_STORAGE}/avatars/${activeAvatar}`}
-                                    width={200}
-                                    height={200}
-                                    className='animate-opacity-3 rounded-full'
-                                />
-                                <div
-                                    className='
-                                    absolute top-0 z-10 flex h-full w-full animate-opacity-5 items-center
+        <div className='items-top relative m-auto flex h-full w-full flex-col justify-center rounded-md '>
+            <Upload
+                showUploadList={false}
+                name={getUserId()}
+                beforeUpload={beforeUpload}
+                maxCount={1}
+                accept='image/*'
+                className='relative cursor-pointer'
+                action={`${endpoint}file-upload-avatar`}
+                headers={{ 'x-api-key': xapikey }}
+                listType='picture'
+                onChange={({ file }) => {
+                    if (file.status === 'done') {
+                        const fileName = file.response.fileName
+                        if (!fileName) return
+                        const avatarToDelete = avatar
+                        onChangeField('avatar', fileName)
+                        avatarToDelete && cleanAvatar(avatar)
+                    }
+                }}
+            >
+                {activeAvatar ? (
+                    <div className='group relative'>
+                        <img
+                            src={`${import.meta.env.VITE_FIRE_BUNNY_STORAGE}/avatars/${activeAvatar}`}
+                            width={300}
+                            height={300}
+                            className='animate-opacity-3 rounded-full'
+                        />
+                        <div
+                            className='
+                                    animate-opacity-5 absolute top-0 z-10 flex h-full w-full items-center
                                     justify-center rounded-full bg-transparent text-xl text-white opacity-0  group-hover:opacity-50'
-                                >
-                                    <Icon
-                                        icon='line-md:uploading-loop'
-                                        className='hidden animate-opacity-5 group-hover:flex'
-                                        width={50}
-                                        height={50}
-                                    />
-                                </div>
-                            </div>
-                        ) : (
-                            <Avatar
-                                className='!m-0 h-[200px] w-[200px] animate-opacity-5 cursor-pointer'
-                                icon={<Icon icon='carbon:user-avatar-filled' width={200} height={200} />}
+                        >
+                            <Icon
+                                icon='line-md:uploading-loop'
+                                className='animate-opacity-5 hidden group-hover:flex'
+                                width={50}
+                                height={50}
                             />
-                        )}
-                    </Upload>
-                </div>
-            </div>
+                        </div>
+                    </div>
+                ) : (
+                    <Avatar
+                        className='animate-opacity-5 !m-0 h-[200px] w-[200px] cursor-pointer'
+                        icon={<Icon icon='carbon:user-avatar-filled' width={200} height={200} />}
+                    />
+                )}
+            </Upload>
         </div>
     )
 })

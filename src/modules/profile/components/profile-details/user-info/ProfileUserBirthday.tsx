@@ -11,7 +11,7 @@ export const ProfileUserBirthday: React.FC<{
         <div className='flex items-center gap-1'>
             <span className='mr-2 w-16 text-sm'>{label}</span>
             <div
-                className={`profile-date-picker flex w-full rounded-md text-sm  ${
+                className={`profile-date-picker flex w-full max-w-[180px] rounded-md text-sm  ${
                     disabled ? 'bg-gray-200 text-gray-700' : ''
                 }`}
             >

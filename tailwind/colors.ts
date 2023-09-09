@@ -24,6 +24,7 @@ export default {
     // navLink
     navLink: 'var(--colors-navLink)',
     'navLink-active': 'var(--colors-navLink-active)',
+    'navLink-active-hover': 'var(--colors-navLink-active-hover)',
     // blue
     'xBlue-1': 'var(--colors-blue-1)',
     'xBlue-2': 'var(--colors-blue-2)',

@@ -56,9 +56,7 @@ export const DashboardIndex: React.FC = observer(() => {
                             )}
                         </div>
                     </div>
-                    <div className='flex flex-[50%] flex-col '>
-                        <TopGoalsWidgets />
-                    </div>
+                    <TopGoalsWidgets />
                 </div>
             </div>
         </ModuleWrapper>

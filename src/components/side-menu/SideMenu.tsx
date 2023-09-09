@@ -54,6 +54,7 @@ export const SideMenu: React.FC = observer(() => {
                     <div className='flex flex-auto flex-col gap-5 overflow-auto  '>
                         <div className='relative flex flex-col items-center justify-center'>
                             <UserAvatarSideMenu />
+                            <UserCoins />
                             <CloseSideMenu onClose={useSideMenu.onChange} />
                         </div>
                         <div className='ml-5 mt-5 flex flex-auto flex-col gap-5 overflow-auto'>
@@ -83,7 +84,6 @@ export const SideMenu: React.FC = observer(() => {
                                 title='Notes'
                                 icon={<Icon icon='fluent:task-list-square-ltr-16-filled' width={25} height={25} />}
                             />
-                            <UserCoins />
                         </div>
                     </div>
 

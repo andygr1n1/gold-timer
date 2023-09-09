@@ -6,7 +6,7 @@ import { TopRitualGoalsWidget } from './top-ritual-goals-widget/TopRitualGoalsWi
 
 export const TopGoalsWidgets: React.FC = observer(() => {
     return (
-        <div className='flex flex-col gap-8'>
+        <div className='flex flex-[50%] flex-col gap-8 '>
             <TopFavoriteGoalsWidget />
             <TopActiveGoalsWidget />
             <TopRitualGoalsWidget />

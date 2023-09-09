@@ -17,7 +17,7 @@ export const ProfileIndex: React.FC = observer(() => {
                 </>
             }
         >
-            <div className='flex flex-col gap-5'>
+            <div className='bg-global-2-bg m-auto flex w-fit flex-col gap-14 rounded-md p-4 py-14 md:p-14'>
                 <ProfileAvatar />
                 <ProfileDetails />
             </div>
