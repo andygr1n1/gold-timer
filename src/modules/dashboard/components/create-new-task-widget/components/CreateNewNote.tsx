@@ -3,12 +3,12 @@ import { DescriptionTextArea } from './DescriptionTextArea'
 import { TagInput } from './TagInput'
 import { ButtonSaveTask } from './ButtonSaveTask'
 import { useState } from 'react'
-import { useTasksStore } from '@/StoreProvider'
+import { useNotesStore } from '@/StoreProvider'
 
 export const CreateNewNote: React.FC = observer(() => {
     const {
-        new_task$: { description },
-    } = useTasksStore()
+        new_note$: { description },
+    } = useNotesStore()
 
     const [hasDescription, setHasDescription] = useState(!!description)
 

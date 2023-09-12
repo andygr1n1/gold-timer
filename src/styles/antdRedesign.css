@@ -46,7 +46,6 @@ div.profile-date-picker div.ant-picker input {
     @apply bg-global-2-bg;
 }
 
-.ant-select-disabled,
 .ant-picker-disabled {
     @apply !text-cText !rounded-md !bg-gray-50 [&_*]:!text-gray-400;
 }
@@ -55,22 +54,57 @@ div.profile-date-picker div.ant-picker input {
     @apply z-[99999999];
 }
 
-/* Input */
-
-input.ant-input,
-.ant-input-affix-wrapper {
-    @apply text-cText bg-global-3-bg border-transparent text-sm placeholder:text-gray-500;
+/* ant-picker */
+.ant-picker {
+    @apply !bg-global-3-bg [&_*]:bg-global-3-bg [&_*]:!text-cText !border-global-2-bg !rounded-md;
 }
 
-span.ant-input-affix-wrapper.dynamic-filter {
-    @apply bg-global-3-bg border-transparent;
+.ant-picker-dropdown {
+    @apply bg-global-3-bg [&_*]:bg-global-3-bg;
 }
 
-input.ant-input.dynamic-filter,
-.ant-input-affix-wrapper.dynamic-filter input {
-    @apply h-8;
+.ant-picker-content thead tr,
+.ant-picker-header {
+    @apply !text-cText  [&_*]:!text-gray-500;
 }
 
-textarea.ant-input {
-    @apply bg-global-3-bg text-cText border-transparent text-sm placeholder:text-gray-500;
+.ant-picker-cell.ant-picker-cell-end {
+    @apply !text-blue-500 [&_*]:!text-blue-500;
+}
+
+td.ant-picker-cell.ant-picker-cell-disabled {
+    @apply !text-gray-400 [&_*]:!text-gray-400;
+}
+
+.ant-picker-cell-disabled {
+    @apply !text-gray-500 [&_*]:!text-gray-400;
+}
+
+.ant-picker-cell {
+    @apply !text-cText;
+}
+
+.ant-picker-time-panel-cell.ant-picker-time-panel-cell-selected {
+    @apply rounded-md !bg-blue-500 [&_*]:!bg-blue-500;
+}
+
+.ant-picker-footer {
+    @apply bg-transparent [&_*]:!bg-transparent;
+}
+
+.ant-picker-footer .ant-btn-primary {
+    @apply hover:text-blue-500 disabled:border-none;
+}
+
+.ant-picker-content,
+.ant-picker-footer {
+    @apply text-cText [&_*]:!text-cText;
+}
+
+.ant-picker-ok button {
+    @apply !bg-blue-500 disabled:!bg-gray-400;
+}
+
+.ant-popover-arrow {
+    @apply !hidden;
 }

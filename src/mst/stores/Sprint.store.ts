@@ -31,6 +31,17 @@ export const Sprint$ = types
             },
         }),
         menu_action: types.maybeNull(types.union(types.literal('restart'), types.literal('delete'))),
+        created_at: types.snapshotProcessor(types.maybe(types.Date), {
+            preProcessor: (sn: Date | undefined | string) => {
+                if (!sn) {
+                    return new Date(Date.now())
+                }
+                if (typeof sn === 'string') {
+                    return new Date(sn)
+                }
+                return sn
+            },
+        }),
     })
     .views((self) => ({
         get today(): Date {

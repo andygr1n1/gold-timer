@@ -18,4 +18,8 @@ export const SideMenu$ = types
             self.visible = true
             self.state = APP_ROUTES_ENUM.SPRINTS
         },
+        openNotesMenu(): void {
+            self.visible = true
+            self.state = APP_ROUTES_ENUM.NOTES
+        },
     }))

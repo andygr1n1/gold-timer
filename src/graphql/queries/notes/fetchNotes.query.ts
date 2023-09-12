@@ -1,6 +1,6 @@
 import { processError } from '../../../helpers/processError.helper'
 import { generateClient } from '@/graphql/client'
-import { INote$SnapshotIn } from '@/mst/types'
+import { INote$SnapshotIn } from '@/modules/notes/mst/types'
 import { gql } from 'graphql-request'
 
 export const fetchAllNotesByUserId = async (user_id: string): Promise<INote$SnapshotIn[] | undefined> => {
@@ -12,6 +12,7 @@ export const fetchAllNotesByUserId = async (user_id: string): Promise<INote$Snap
                 description
                 tag
                 created_at
+                id
             }
         }
     `

@@ -1,8 +1,8 @@
 import { RoundedButton } from '@/components/buttons/RoundedButton'
-import { useTasksStore } from '@/StoreProvider'
+import { useNotesStore } from '@/StoreProvider'
 
 export const ButtonSaveTask: React.FC<{ disabled: boolean }> = function ButtonSaveTask({ disabled }) {
-    const { saveTask } = useTasksStore()
+    const { saveNote: saveTask } = useNotesStore()
 
     return (
         <RoundedButton

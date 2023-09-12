@@ -11,6 +11,7 @@ import { NewSprintDurationIndex } from './components/NewSprintDurationIndex'
 import { NewSprintStartDateIndex } from './components/NewSprintStartDateIndex'
 import { XLoader } from '@/components-x/x-loader/XLoader'
 import { FormFooter } from '@/components/form/FormFooter'
+import { cloneDeep } from 'lodash-es'
 
 export const NewSprintDialog: React.FC = observer(() => {
     const { onChangeField, new_sprint } = useSprintsStore()
@@ -19,6 +20,7 @@ export const NewSprintDialog: React.FC = observer(() => {
 
     console.log('====================================')
     console.warn('newsprint ID - ', new_sprint?.id)
+    console.warn('sprint details', cloneDeep(new_sprint))
     console.log('====================================')
 
     return (

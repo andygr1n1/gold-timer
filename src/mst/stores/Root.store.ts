@@ -1,18 +1,17 @@
 import { type NotificationInstance } from 'antd/es/notification/interface'
-import { fetchAchievementsByUserId } from '@/graphql/queries/fetchAchievementsByUserId.query'
 import { types, flow, applySnapshot, toGenerator, cast } from 'mobx-state-tree'
 import { fetchGoalsByUserId } from '../../graphql/queries/fetchGoalsByUserId.query'
 import { IGoal$SnapshotIn, IGoalRitual, IGoalRitualSnapshotIn } from '../types'
 import { Achievements$ } from './Achievements.store'
 import { Goals$ } from './Goals.store'
 import { User$ } from './User.store'
-import { Notes$ } from './Tasks.store'
 import { ModalWindows$ } from './ModalWindows.store'
 import { fetchRitualPowerInfo } from '@/graphql/queries/fetchRitualPowerInfo.query'
 import { IUserByPkResponse, fetchUserByPk } from '@/graphql/queries/fetchUserByPk.query'
 import { processError } from '@/helpers/processError.helper'
 import { Sprints$ } from './Sprints.store'
 import { SideMenu$ } from './side-menu/SideMenu.store'
+import { Notes$ } from '@/modules/notes/mst/stores/Notes.store'
 
 export const Root$ = types
     .model('Root$', {
@@ -44,6 +43,7 @@ export const Root$ = types
             try {
                 if (!self.user$.id) throw new Error('fetchUserInfo::: no userId')
                 const userInfo = yield* toGenerator(fetchUserByPk(self.user$.id))
+                console.log('userInfo', userInfo)
                 applySnapshot(self.user$, userInfo)
             } catch (e) {
                 processError(e)

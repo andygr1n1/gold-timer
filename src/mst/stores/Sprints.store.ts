@@ -85,10 +85,11 @@ export const Sprints$ = types
 
                 const createdSprint = yield* toGenerator(insertNewSprint(newSprint))
                 if (!createdSprint) throw new Error('createNewSprintInstance: creating sprint failed')
-
+                console.log('debugging - createdSprint', createdSprint)
                 const deletedParent = yield* toGenerator(deletedAtSprint(sprint.id))
                 if (!deletedParent) throw new Error('createNewSprintInstance: deleting parent sprint failed')
 
+                console.log('debugging - deletedParent', deletedParent)
                 deletedParent && destroy(detach(sprint))
                 self.pushNewSprint(createdSprint)
             } catch (e) {

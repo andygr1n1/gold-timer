@@ -1,4 +1,4 @@
-import { useTasksStore } from '@/StoreProvider'
+import { useNotesStore } from '@/StoreProvider'
 import TextArea from 'antd/es/input/TextArea'
 import { observer } from 'mobx-react-lite'
 
@@ -7,8 +7,8 @@ export const DescriptionTextArea: React.FC<{
     setHasDescription: React.Dispatch<React.SetStateAction<boolean>>
 }> = observer(function DescriptionTextArea({ setHasDescription, hasDescription }) {
     const {
-        new_task$: { description, onChangeField },
-    } = useTasksStore()
+        new_note$: { description, onChangeField },
+    } = useNotesStore()
 
     return (
         <TextArea

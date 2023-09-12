@@ -6,7 +6,8 @@ import { useState } from 'react'
 export const FocusGoalOfWeek: React.FC = observer(() => {
     const { hasGoalsOfWeekAddon } = useUserStore()
 
-    const [open, setOpen] = useState(hasGoalsOfWeekAddon)
+    // const [open, setOpen] = useState(hasGoalsOfWeekAddon)
+    const [open, setOpen] = useState(false)
 
     return (
         <XModal title={'Goal of Week'} open={open} onCancel={() => setOpen(false)}>
