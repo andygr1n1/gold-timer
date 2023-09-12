@@ -9,6 +9,7 @@ import { useLocation } from 'react-router-dom'
 import { APP_ROUTES_ENUM } from '../../helpers/enums'
 import { CreateNewItems } from './components/CreateNewItems'
 import { SprintsSettings } from './components/SprintsSettings'
+import { NotesSettings } from './components/NotesSettings'
 
 export const SideMenuSettings: React.FC = observer(() => {
     const wrapperRef = useRef<HTMLDivElement | null>(null)
@@ -53,6 +54,7 @@ export const SideMenuSettings: React.FC = observer(() => {
                     <CloseSideMenu onClose={() => onChangeSideMenu('visible', false)} />
                     {route === APP_ROUTES_ENUM.DASHBOARD && <CreateNewItems />}
                     {route === APP_ROUTES_ENUM.SPRINTS && <SprintsSettings />}
+                    {route === APP_ROUTES_ENUM.NOTES && <NotesSettings />}
                 </div>
             </div>
         </>

@@ -1,11 +1,11 @@
-import { useTasksStore } from '@/StoreProvider'
+import { useNotesStore } from '@/StoreProvider'
 import { Input } from 'antd'
 import { observer } from 'mobx-react-lite'
 
 export const TagInput = observer(() => {
     const {
-        new_task$: { tag, onChangeField },
-    } = useTasksStore()
+        new_note$: { tag, onChangeField },
+    } = useNotesStore()
 
     return (
         <Input

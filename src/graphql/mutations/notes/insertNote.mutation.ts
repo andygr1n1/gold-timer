@@ -1,14 +1,17 @@
 import { generateClient } from '@/graphql/client'
 import { processError } from '@/helpers/processError.helper'
-import { INote, INote$ } from '@/mst/types'
+import { INote, INote$ } from '@/modules/notes/mst/types'
 import { gql } from 'graphql-request'
 
-export const insertTask = async (newTask: INote): Promise<INote$ | undefined> => {
+export const upsertNote = async (newTask: INote): Promise<INote$ | undefined> => {
     const client = generateClient()
 
     const mutation = gql`
         mutation insert_tasks_one($newTask: tasks_insert_input!) {
-            insert_tasks_one(object: $newTask) {
+            insert_tasks_one(
+                object: $newTask
+                on_conflict: { constraint: tasks_pkey, update_columns: [description, tag] }
+            ) {
                 id
                 description
                 tag
@@ -22,7 +25,7 @@ export const insertTask = async (newTask: INote): Promise<INote$ | undefined> =>
 
         return response.insert_tasks_one
     } catch (e) {
-        processError(e, 'insertTask error')
+        processError(e, 'insertNote error')
         return
     }
 }

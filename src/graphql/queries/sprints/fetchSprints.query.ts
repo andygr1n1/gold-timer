@@ -26,6 +26,7 @@ export const fetchSprints = async (): Promise<ISprint$SnIn[] | undefined> => {
                 created_at
                 parent_sprint_id
                 owner_id
+                created_at
                 sprints_days(order_by: { date: asc }) {
                     date
                     id

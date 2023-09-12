@@ -15,7 +15,6 @@ export const AppProtected = observer(() => {
         <XLoader />
     ) : (
         <>
-            <FocusGoalOfWeek />
             <div className='bg-global-bg flex w-full'>
                 <SideMenu />
                 <div className='bg-global-bg flex  w-full flex-auto flex-col'>

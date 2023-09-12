@@ -17,6 +17,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import './antdRedesign.css';
+@import './antd-redesign/select.scss';
+@import './antd-redesign/input.scss';
 
 @layer base {
     html,
@@ -29,7 +32,7 @@
     }
 
     label {
-        @apply !text-cText;
+        @apply text-cText #{!important};
     }
 
     h1,
@@ -61,7 +64,7 @@
     }
 
     input {
-        @apply bg-global-3-bg;
+        @apply bg-global-3-bg focus:outline-none;
     }
 
     input:-webkit-autofill,
@@ -119,59 +122,13 @@
         user-select: all; /* Non-prefixed version, currently
                                   supported by Chrome, Edge, Opera and Firefox */
     }
+
+    .overflow-wrap-anywhere {
+        word-break: break-word !important; /* Chrome, Safari */
+        overflow-wrap: anywhere !important; /* Firefox */
+    }
 }
 
 .login-form {
-    @apply !text-cText !m-0 flex h-[400px] flex-auto flex-col items-center !p-5;
-}
-
-/* ant-picker */
-.ant-picker {
-    @apply bg-global-3-bg [&_*]:bg-global-3-bg [&_*]:!text-cText border-transparent;
-}
-
-.ant-picker-dropdown {
-    @apply bg-global-3-bg [&_*]:bg-global-3-bg;
-}
-
-.ant-picker-content thead tr,
-.ant-picker-header {
-    @apply !text-cText  [&_*]:!text-gray-500;
-}
-
-.ant-picker-cell.ant-picker-cell-end {
-    @apply !text-blue-500 [&_*]:!text-blue-500;
-}
-
-td.ant-picker-cell.ant-picker-cell-disabled {
-    @apply !text-gray-400 [&_*]:!text-gray-400;
-}
-
-.ant-picker-cell-disabled {
-    @apply !text-gray-500 [&_*]:!text-gray-400;
-}
-
-.ant-picker-cell {
-    @apply !text-cText;
-}
-
-.ant-picker-time-panel-cell.ant-picker-time-panel-cell-selected {
-    @apply rounded-md !bg-blue-500 [&_*]:!bg-blue-500;
-}
-
-.ant-picker-footer {
-    @apply bg-transparent [&_*]:!bg-transparent;
-}
-
-.ant-picker-footer .ant-btn-primary {
-    @apply hover:text-blue-500 disabled:border-none;
-}
-
-.ant-picker-content,
-.ant-picker-footer {
-    @apply text-cText [&_*]:!text-cText;
-}
-
-.ant-picker-ok button {
-    @apply !bg-blue-500 disabled:!bg-gray-400;
+    @apply text-cText m-0 flex h-[400px] flex-auto flex-col items-center p-5 #{!important};
 }

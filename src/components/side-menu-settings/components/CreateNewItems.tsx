@@ -8,7 +8,7 @@ export const CreateNewItems: React.FC = observer(() => {
         side_menu$: { onChangeField: onChangeFieldSideMenu$ },
         goals$: { goCreateNewGoalMode },
         sprints$: { activateNewSprintCreator },
-        notes$: { onChangeField: onChangeTasks },
+        notes$: { activateCreateMode: activateCreateEditMode },
     } = useRootStore()
 
     const onClose = () => onChangeFieldSideMenu$('visible', false)
@@ -19,8 +19,8 @@ export const CreateNewItems: React.FC = observer(() => {
     }
 
     const onCreateNote = () => {
-        onChangeTasks('new_task_dialog', true)
         onClose()
+        activateCreateEditMode()
     }
 
     const onCreateSprint = () => {
