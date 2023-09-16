@@ -7,7 +7,7 @@ import { useNotesStore } from '@/StoreProvider'
 
 export const CreateNewNote: React.FC = observer(() => {
     const {
-        new_note$: { description },
+        create_edit_note$: { description },
     } = useNotesStore()
 
     const [hasDescription, setHasDescription] = useState(!!description)

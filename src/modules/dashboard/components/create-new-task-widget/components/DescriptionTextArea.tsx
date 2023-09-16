@@ -7,7 +7,7 @@ export const DescriptionTextArea: React.FC<{
     setHasDescription: React.Dispatch<React.SetStateAction<boolean>>
 }> = observer(function DescriptionTextArea({ setHasDescription, hasDescription }) {
     const {
-        new_note$: { description, onChangeField },
+        create_edit_note$: { description, onChangeField },
     } = useNotesStore()
 
     return (

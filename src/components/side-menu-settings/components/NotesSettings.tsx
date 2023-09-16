@@ -7,14 +7,14 @@ import { observer } from 'mobx-react-lite'
 export const NotesSettings: React.FC = observer(() => {
     const {
         side_menu$: { onChangeField: onChangeFieldSideMenu$ },
-        notes$: { activateCreateMode: activateCreateEditMode },
+        notes$: { activateCreateEditMode },
     } = useRootStore()
 
     const onClose = () => onChangeFieldSideMenu$('visible', false)
 
     const onCreateNote = () => {
         onClose()
-        activateCreateEditMode()
+        activateCreateEditMode({ note: null })
     }
 
     return (

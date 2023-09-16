@@ -8,7 +8,7 @@ import { ProfileIndex } from './modules/profile/ProfileIndex'
 import { NotesIndex } from './modules/notes/NotesIndex'
 import { SprintsIndex } from './modules/sprints/SprintsIndex'
 import { DashboardIndex } from './modules/dashboard/DashboardIndex'
-import { NewSprintDialog } from './modules/sprints/components/new-sprint-dialog/NewSprintDialog'
+import { CreateEditSprintDialog } from './modules/sprints/components/create-edit-sprint/CreateEditSprintDialog'
 import { CreateEditNoteDialog } from './modules/notes/components/create-edit-note/CreateEditNoteDialog'
 import { SideMenuSettings } from './components/side-menu-settings/SideMenuSettings'
 import { FocusGoalOfWeek } from './components/components-modal-windows/focus-goal-of-week/FocusGoalOfWeek'
@@ -35,7 +35,7 @@ export const AppProtectedRoutes: React.FC = () => {
             {/*  */}
             <CreateNewGoalDialog />
             <GoalsManagerDialog />
-            <NewSprintDialog />
+            <CreateEditSprintDialog />
             <CreateEditNoteDialog />
             {/*  */}
             {/* S I D E _ M E N U */}

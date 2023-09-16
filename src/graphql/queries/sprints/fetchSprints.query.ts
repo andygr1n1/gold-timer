@@ -32,11 +32,7 @@ export const fetchSprints = async (): Promise<ISprint$SnIn[] | undefined> => {
                     id
                     status
                 }
-                sprints_goals {
-                    id
-                    status
-                    title
-                }
+                sprint_goals
             }
         }
     `

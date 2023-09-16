@@ -25,11 +25,7 @@ export const insertNewSprint = async (newSprint: IInsertNewSprint): Promise<ISpr
                     status
                     date
                 }
-                sprints_goals {
-                    id
-                    status
-                    title
-                }
+                sprint_goals
             }
         }
     `

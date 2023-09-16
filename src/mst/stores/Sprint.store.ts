@@ -1,10 +1,9 @@
 import { types } from 'mobx-state-tree'
-import { SprintGoal } from '../models/SprintGoal.model'
 import { generateMstId } from '../mst.helper'
 import { SprintDay } from '../models/SprintDay.model'
 import { ISprintDay } from '../types'
 import { isFuture, isPast, isToday, set } from 'date-fns'
-import { cloneDeep, last } from 'lodash-es'
+import { compact, last } from 'lodash-es'
 import { SPRINT_STATUS_ENUM } from '@/modules/sprints/helpers/sprints.enum'
 
 export const Sprint$ = types
@@ -12,7 +11,7 @@ export const Sprint$ = types
         id: generateMstId(),
         title: '',
         description: types.maybeNull(types.string),
-        sprints_goals: types.array(SprintGoal),
+        sprint_goals: types.maybeNull(types.string),
         sprints_days: types.array(SprintDay),
         achievement: types.maybeNull(types.string),
         duration: 7,
@@ -44,6 +43,9 @@ export const Sprint$ = types
         }),
     })
     .views((self) => ({
+        get goals(): string[] {
+            return self.sprint_goals?.length ? compact(self.sprint_goals.split('#,#')) : []
+        },
         get today(): Date {
             return set(new Date(Date.now()), { hours: 23, minutes: 59, seconds: 59, milliseconds: 59 })
         },

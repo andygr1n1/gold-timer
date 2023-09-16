@@ -4,7 +4,7 @@ import { observer } from 'mobx-react-lite'
 
 export const TagInput = observer(() => {
     const {
-        new_note$: { tag, onChangeField },
+        create_edit_note$: { tag, onChangeField },
     } = useNotesStore()
 
     return (

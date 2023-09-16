@@ -26,7 +26,7 @@ export const Sprints$ = types
             self[key] = value
         },
         activateNewSprintCreator(): void {
-            self.new_sprint = cast({ title: '', sprints_goals: [{ title: '', id: '' }] })
+            self.new_sprint = cast({ title: '' })
         },
         activateEditSprintCreator(sprint: ISprint$): void {
             const convertedSprint: ISprintNew$ = cloneDeep(sprint) as ISprintNew$
@@ -37,7 +37,6 @@ export const Sprints$ = types
                     'img_cropped_src',
                     `${import.meta.env.VITE_FIRE_BUNNY_STORAGE}/sprints/${convertedSprint.img_path}`,
                 )
-            !self.new_sprint.sprints_goals.length && self.new_sprint.addNewSprintGoal()
         },
         selectSprintAndActivateMenuAction(sprint: ISprint$, menuAction: 'restart' | 'delete'): void {
             self.selected_sprint = sprint
@@ -54,13 +53,8 @@ export const Sprints$ = types
     }))
     .actions((self) => ({
         fetchSprints: flow(function* _fetchNewSprints() {
-            try {
-                const res = yield* toGenerator(fetchSprints())
-                if (!res) throw new Error('fetchSprints error')
-                applySnapshot(self.sprints, res)
-            } catch (e) {
-                processError(e)
-            }
+            const res = yield* toGenerator(fetchSprints())
+            applySnapshot(self.sprints, res)
         }),
         restartSelectedSprint: flow(function* _createNewInstance(sprint: ISprint$) {
             try {
@@ -79,6 +73,7 @@ export const Sprints$ = types
                     achievement: sprint.achievement,
                     started_at: startedAt,
                     sprints_days: { data: sprints_days },
+                    sprint_goals: sprint.sprint_goals,
                     owner_id: sprint.owner_id,
                     parent_sprint_id: sprint.parent_sprint_id || sprint.id,
                 }

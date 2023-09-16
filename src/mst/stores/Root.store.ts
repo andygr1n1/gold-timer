@@ -108,7 +108,10 @@ export const Root$ = types
                 yield self.fetchGoals()
                 // yield self.fetchAchievements()
                 yield self.notes$.fetchNotes()
+                //
+                // TODO to fetch only sprints that are not finished and already started
                 yield self.sprints$.fetchSprints()
+                //
                 //
                 self.autoRitualizeExpiredRitualizedGoals()
                 self.loading = false

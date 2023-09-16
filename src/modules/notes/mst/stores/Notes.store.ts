@@ -1,20 +1,21 @@
 import { upsertNote } from '@/graphql/mutations/notes/insertNote.mutation'
 import { fetchAllNotesByUserId } from '@/graphql/queries/notes/fetchNotes.query'
 import { getUserId } from '@/helpers/getUserId'
-import { applySnapshot, destroy, detach, flow, types } from 'mobx-state-tree'
+import { applySnapshot, cast, destroy, detach, flow, types } from 'mobx-state-tree'
 import { INote$SnapshotIn } from '../types'
 import { Note$ } from './Note.store'
 import { processError } from '@/helpers/processError.helper'
 import { NotesFilter$ } from './NotesFilter.store'
 import { deleteNote } from '@/graphql/mutations/notes/deleteNote.mutation'
 import { INote$ } from '@/modules/notes/mst/types'
-import { compact } from 'lodash-es'
+import { compact, cloneDeep } from 'lodash-es'
+import { CreateEditNote$ } from './CreateEditNote.store'
 
 export const Notes$ = types
     .model({
         notes: types.array(Note$),
         notes_filter$: types.optional(NotesFilter$, {}),
-        new_note$: types.optional(Note$, {}),
+        create_edit_note$: types.optional(CreateEditNote$, {}),
         selected_note: types.safeReference(Note$),
     })
     .views((self) => ({
@@ -26,23 +27,6 @@ export const Notes$ = types
         onChangeField<Key extends keyof typeof self>(key: Key, value: (typeof self)[Key]) {
             self[key] = value
         },
-        activateCreateMode(): void {
-            self.selected_note = self.new_note$
-            self.selected_note?.onChangeField('dialog_action', 'create-edit')
-        },
-        selectAndSetEditMode(note: INote$): void {
-            self.selected_note = note
-            self.selected_note?.onChangeField('dialog_action', 'create-edit')
-        },
-        cancelNoteCreateEditMode(): void {
-            self.selected_note = undefined
-            destroy(self.new_note$)
-        },
-        selectNoteAndSetDeleteMode(note: INote$): void {
-            self.selected_note = note
-            self.selected_note?.onChangeField('dialog_action', 'delete')
-        },
-
         fetchNotes: flow(function* _fetchTasks() {
             try {
                 const res: INote$SnapshotIn[] = yield fetchAllNotesByUserId(getUserId())
@@ -52,7 +36,10 @@ export const Notes$ = types
                 processError(e, 'fetchTasks error')
             }
         }),
-
+        selectNoteAndSetDeleteMode(note: INote$): void {
+            self.selected_note = note
+            self.selected_note?.onChangeField('dialog_action', 'delete')
+        },
         deleteNote: flow(function* _deleteNote() {
             try {
                 if (!self.selected_note) return
@@ -63,23 +50,44 @@ export const Notes$ = types
                 processError(e, 'saveTask error')
             }
         }),
+        cancelNoteCreateEditMode(): void {
+            destroy(self.create_edit_note$)
+        },
+        activateCreateEditMode(options: { note: INote$ | null }): void {
+            this.cancelNoteCreateEditMode()
+            const { note } = options
+            if (note) {
+                self.create_edit_note$ = cast({ ...cloneDeep(note), create_edit_note_id: note.id, id: '' })
+            } else {
+                self.create_edit_note$.create_edit_note_id = self.create_edit_note$.id
+            }
+            self.create_edit_note$?.onChangeField('dialog_action', 'create-edit')
+        },
     }))
     .actions((self) => ({
         saveNote: flow(function* _saveNote() {
             try {
-                if (!self.selected_note) return
                 const res: INote$SnapshotIn[] = yield upsertNote({
-                    description: self.selected_note.description,
-                    tag: compact(self.selected_note.tag.split(','))
+                    description: self.create_edit_note$.description,
+                    tag: compact(self.create_edit_note$.tag.split(','))
                         .map((t) => t.trim().toLowerCase())
                         .toString(),
                     user_id: getUserId(),
-                    id: self.selected_note.id,
+                    id: self.create_edit_note$.create_edit_note_id,
                 })
-                if (!res) throw new Error('saveNote error')
-                // new note
-                !self.selected_note?.created_at && self.notes.push(res)
+
+                if (!self.create_edit_note$?.created_at) {
+                    // new note
+                    self.notes.push(res)
+                } else {
+                    // update note
+                    const updateNote = self.notes.find((note) => note.id === self.create_edit_note$.create_edit_note_id)
+                    if (!updateNote) return
+                    updateNote.onChangeField('description', self.create_edit_note$.description)
+                    updateNote.onChangeField('tag', self.create_edit_note$.tag)
+                }
                 //
+                // clear creatorStore
                 self.cancelNoteCreateEditMode()
             } catch (e) {
                 processError(e)

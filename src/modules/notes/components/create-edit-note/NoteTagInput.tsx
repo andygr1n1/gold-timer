@@ -2,14 +2,12 @@ import { useNotesStore } from '@/StoreProvider'
 import { FormLabel } from '@/components/form/FormLabel'
 import { Button, Form, Input, Space } from 'antd'
 import { observer } from 'mobx-react-lite'
-import { NoteTagsList } from '../note/NoteTagsList'
+import { NoteTagsList } from '../NoteTagsList'
 
 export const NoteTagInput: React.FC = observer(() => {
-    const { selected_note } = useNotesStore()
+    const { create_edit_note$ } = useNotesStore()
 
-    if (!selected_note) return null
-
-    const { new_tag, onChangeField, newTagIsValid: newTagValidation } = selected_note
+    const { new_tag, onChangeField, newTagIsValid, deleteTag, tag } = create_edit_note$
 
     return (
         <Form.Item>
@@ -21,18 +19,18 @@ export const NoteTagInput: React.FC = observer(() => {
                     onChange={(e) => onChangeField('new_tag', e.target.value)}
                 />
                 <Button
-                    disabled={!newTagValidation}
+                    disabled={!newTagIsValid}
                     type='primary'
                     className='!h-9 !text-sm'
                     onClick={() => {
-                        selected_note.onChangeField('tag', selected_note.tag + ',' + new_tag)
-                        selected_note.onChangeField('new_tag', '')
+                        onChangeField('tag', tag + ',' + new_tag)
+                        onChangeField('new_tag', '')
                     }}
                 >
                     Save
                 </Button>
             </Space.Compact>
-            <NoteTagsList note={selected_note} />
+            <NoteTagsList note={create_edit_note$} deleteAction={deleteTag} />
         </Form.Item>
     )
 })

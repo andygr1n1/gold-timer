@@ -6,7 +6,7 @@ import { useNotesStore } from '@/StoreProvider'
 //             <CreateNewTaskWidgetDialog />
 
 export const CreateNewTaskAction = observer(() => {
-    const { activateCreateMode: activateCreateEditMode } = useNotesStore()
+    const { activateCreateEditMode } = useNotesStore()
 
     return (
         <div
