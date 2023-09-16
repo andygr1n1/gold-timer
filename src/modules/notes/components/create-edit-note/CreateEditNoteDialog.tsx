@@ -7,10 +7,10 @@ import { NoteDescriptionInput } from './NoteDescriptionInput'
 import { NoteTagInput } from './NoteTagInput'
 
 export const CreateEditNoteDialog: React.FC = observer(() => {
-    const { selected_note, cancelNoteCreateEditMode, saveNote } = useNotesStore()
-
+    const { create_edit_note$, cancelNoteCreateEditMode, saveNote } = useNotesStore()
+    const { isOpen, saveEnabled } = create_edit_note$
     return (
-        <XModal title={'Note Creator'} open={!!selected_note?.creatorMode} onCancel={cancelNoteCreateEditMode}>
+        <XModal title={'Note Creator'} open={isOpen} onCancel={() => cancelNoteCreateEditMode()}>
             <Form className='py-5'>
                 <NoteDescriptionInput />
                 <NoteTagInput />
@@ -18,8 +18,8 @@ export const CreateEditNoteDialog: React.FC = observer(() => {
                 <FormFooter
                     okTitle={'Save note'}
                     onOk={saveNote}
-                    onCancel={cancelNoteCreateEditMode}
-                    disabled={!selected_note?.description}
+                    onCancel={() => cancelNoteCreateEditMode()}
+                    disabled={!saveEnabled}
                 />
             </Form>
         </XModal>

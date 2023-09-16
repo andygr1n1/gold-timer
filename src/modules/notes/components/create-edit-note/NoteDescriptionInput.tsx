@@ -4,11 +4,9 @@ import { Form, Input } from 'antd'
 import { observer } from 'mobx-react-lite'
 
 export const NoteDescriptionInput: React.FC = observer(() => {
-    const { selected_note } = useNotesStore()
+    const { create_edit_note$ } = useNotesStore()
 
-    if (!selected_note) return null
-
-    const { description, onChangeField } = selected_note
+    const { description, onChangeField } = create_edit_note$
 
     return (
         <Form.Item>

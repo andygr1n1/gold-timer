@@ -1,9 +1,9 @@
 import { generateClient } from '@/graphql/client'
 import { processError } from '@/helpers/processError.helper'
-import { INote, INote$ } from '@/modules/notes/mst/types'
+import { INote$, INoteSnapshotIn } from '@/modules/notes/mst/types'
 import { gql } from 'graphql-request'
 
-export const upsertNote = async (newTask: INote): Promise<INote$ | undefined> => {
+export const upsertNote = async (newTask: INoteSnapshotIn): Promise<INote$ | undefined> => {
     const client = generateClient()
 
     const mutation = gql`

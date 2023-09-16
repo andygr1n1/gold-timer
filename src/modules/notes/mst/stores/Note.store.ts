@@ -22,7 +22,7 @@ export const Note$ = types
             new_tag: '',
         }),
     )
-    .named('Task$')
+    .named('Note$')
     .views((self) => ({
         get deleteMode(): boolean {
             return !!self.dialog_action && self.dialog_action === 'delete'
@@ -39,12 +39,17 @@ export const Note$ = types
         onChangeField<Key extends keyof typeof self>(key: Key, value: (typeof self)[Key]) {
             self[key] = value
         },
+        deleteTag(objToDelete: string): void {
+            if (!self.noteTags.length) return
+            const newTag = self.noteTags.filter((noteTag) => noteTag !== objToDelete)
+            self.tag = newTag.toString()
+        },
         selectAndSetDeleteMode(): void {
             const { selectNoteAndSetDeleteMode } = getParentOfType(self, Notes$)
             selectNoteAndSetDeleteMode(cast(self))
         },
-        selectAndSetEditMode(): void {
-            const { selectAndSetEditMode } = getParentOfType(self, Notes$)
-            selectAndSetEditMode(cast(self))
+        activateCreateEditMode(): void {
+            const { activateCreateEditMode } = getParentOfType(self, Notes$)
+            activateCreateEditMode({ note: cast(self) })
         },
     }))

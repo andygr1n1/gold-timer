@@ -7,7 +7,7 @@ import { add } from 'date-fns'
 import { Sprints$ } from './Sprints.store'
 import { getUserId } from '@/helpers/getUserId'
 import { IEditSprintReq, IInsertNewSprint } from '@/graphql/mutations/sprints/helpers/interface'
-import { last } from 'lodash-es'
+import { compact, last } from 'lodash-es'
 import { updateSprint } from '@/graphql/mutations/sprints/updateSprint.mutation'
 
 export const SprintNew$ = types
@@ -18,16 +18,39 @@ export const SprintNew$ = types
             img_src: '',
             img_cropped_src: '',
             loading: false,
+            new_sprint_goal: '',
         }),
     )
     .named('SprintNew$')
-
+    .views((self) => ({
+        get addNewGoalValidation(): boolean {
+            const optimized = compact(self.goals.map((t) => t.trim().toLowerCase())).slice()
+            const newSprintGoalsIsValid = !optimized.includes(self.new_sprint_goal.trim().toLowerCase())
+            if (!newSprintGoalsIsValid) return false
+            return !!self.new_sprint_goal.length
+        },
+    }))
     .actions((self) => ({
         onChangeField<Key extends keyof typeof self>(key: Key, value: (typeof self)[Key]) {
             self[key] = value
         },
         addNewSprintGoal(): void {
-            self.sprints_goals.push({ title: '' })
+            if (!self.sprint_goals) {
+                self.sprint_goals = self.new_sprint_goal
+            } else {
+                self.sprint_goals = `${self.new_sprint_goal}#,#${self.sprint_goals}`
+            }
+            self.new_sprint_goal = ''
+        },
+        deleteSprintGoal(objToDelete: string): void {
+            const newGoals = self.goals.filter((g) => g !== objToDelete)
+            self.onChangeField('sprint_goals', newGoals.join('#,#'))
+            if (!self.sprint_goals) {
+                self.sprint_goals = self.new_sprint_goal
+            } else {
+                self.sprint_goals = `${self.new_sprint_goal}#,#${self.sprint_goals}`
+            }
+            self.new_sprint_goal = ''
         },
     }))
     .actions((self) => ({
@@ -63,7 +86,7 @@ export const SprintNew$ = types
                     achievement: self.achievement,
                     started_at: self.started_at,
                     sprints_days: { data: self.sprints_days },
-                    sprints_goals: { data: self.sprints_goals },
+                    sprint_goals: compact(self.sprint_goals?.split('#,#')).join('#,#'),
                     owner_id: getUserId(),
                 }
 
@@ -115,19 +138,14 @@ export const SprintNew$ = types
                     img_path: self.img_path,
                     achievement: self.achievement,
                     started_at: self.started_at,
+                    sprint_goals: compact(self.sprint_goals?.split('#,#')).join('#,#'),
                 }
 
                 const updatedDays = self.sprints_days.map((day) => ({ ...day, sprint_id: self.id }))
 
-                const updatedGoals = self.sprints_goals
-                    .filter((goal) => !goal.deleted_at)
-                    .map((goal) => ({ id: goal.id, title: goal.title, status: goal.status, sprint_id: self.id }))
-
-                const deletedGoalsIds = self.sprints_goals.filter((goal) => goal.deleted_at).map((goal) => goal.id)
-
                 self.loading = true
                 const updatedSprintRes = yield* toGenerator(
-                    updateSprint({ sprintId: self.id, updatedSprint, updatedDays, updatedGoals, deletedGoalsIds }),
+                    updateSprint({ sprintId: self.id, updatedSprint, updatedDays }),
                 )
                 if (!updatedSprintRes) throw new Error('updateSprint: updating sprint failed')
 

@@ -12,7 +12,7 @@ import { SearchNotesInput } from './components/filters/SearchNotesInput'
 
 export const NotesIndex: React.FC = observer(function NotesIndex() {
     const { isMobile } = useWindowMatchMedia(['isMobile'])
-    const { activateCreateMode: activateCreateEditMode } = useNotesStore()
+    const { activateCreateEditMode } = useNotesStore()
 
     return (
         <ModuleWrapper
@@ -28,7 +28,12 @@ export const NotesIndex: React.FC = observer(function NotesIndex() {
                 {!isMobile && (
                     <div className='mt-5 flex justify-between gap-5'>
                         <NotesTagsSelect />
-                        <AddNew title={'Add new note'} onClick={activateCreateEditMode} />
+                        <AddNew
+                            title={'Add new note'}
+                            onClick={() => {
+                                activateCreateEditMode({ note: null })
+                            }}
+                        />
                     </div>
                 )}
                 <NotesList />

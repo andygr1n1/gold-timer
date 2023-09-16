@@ -5,7 +5,7 @@ import { observer } from 'mobx-react-lite'
 import { NewSprintTitle } from './components/NewSprintTitle'
 import { NewSprintDescription } from './components/NewSprintDescription'
 import { NewSprintImageIndex } from './components/NewSprintImageIndex'
-import { NewSprintGoalIndex } from './components/NewSprintGoalIndex'
+import { SprintGoals } from './components/SprintGoals'
 import { NewSprintAchievementIndex } from './components/NewSprintAchievementIndex'
 import { NewSprintDurationIndex } from './components/NewSprintDurationIndex'
 import { NewSprintStartDateIndex } from './components/NewSprintStartDateIndex'
@@ -13,7 +13,7 @@ import { XLoader } from '@/components-x/x-loader/XLoader'
 import { FormFooter } from '@/components/form/FormFooter'
 import { cloneDeep } from 'lodash-es'
 
-export const NewSprintDialog: React.FC = observer(() => {
+export const CreateEditSprintDialog: React.FC = observer(() => {
     const { onChangeField, new_sprint } = useSprintsStore()
 
     const onCancel = () => onChangeField('new_sprint', undefined)
@@ -35,7 +35,7 @@ export const NewSprintDialog: React.FC = observer(() => {
                     <Form className='py-5'>
                         <NewSprintTitle />
                         <NewSprintDescription />
-                        <NewSprintGoalIndex />
+                        <SprintGoals />
                         <NewSprintAchievementIndex />
                         <NewSprintDurationIndex />
                         <NewSprintStartDateIndex />

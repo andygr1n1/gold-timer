@@ -21,7 +21,7 @@ export const NoteMenuContent: React.FC<{ note: INote$; setPopoverState: Dispatch
                         <PopoverItem
                             action={() => {
                                 setPopoverState(false)
-                                note.selectAndSetEditMode()
+                                note.activateCreateEditMode()
                             }}
                             icon='uil:edit'
                             iconClassName='text-colorPrimary'
