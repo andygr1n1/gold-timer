@@ -1,4 +1,4 @@
-import { ISprintDay } from '@/mst/types'
+import { ISprintDay } from '../../mst/types'
 import { format, set } from 'date-fns'
 import { observer } from 'mobx-react-lite'
 import { clsx } from 'clsx'

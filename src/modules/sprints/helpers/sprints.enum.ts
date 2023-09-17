@@ -1,9 +1,9 @@
 export enum SPRINT_STATUS_ENUM {
     ACTIVE = 'active',
-    COMPLETED = 'completed',
-    FINISHED = 'finished',
-    FUTURE = 'future',
     FREEZED = 'freezed',
+    FUTURE = 'future',
+    FINISHED = 'finished',
+    COMPLETED = 'completed',
     CHECKED = 'checked',
     ERROR = 'error',
 }

@@ -1,5 +1,5 @@
-import { ISprint$ } from '@/mst/types'
 import { observer } from 'mobx-react-lite'
+import { ISprint$ } from '../../mst/types'
 
 export const SprintImg: React.FC<{ sprint: ISprint$ }> = observer(({ sprint }) => {
     const { title, img_path } = sprint

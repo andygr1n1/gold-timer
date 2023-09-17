@@ -9,9 +9,9 @@ import { ModalWindows$ } from './ModalWindows.store'
 import { fetchRitualPowerInfo } from '@/graphql/queries/fetchRitualPowerInfo.query'
 import { IUserByPkResponse, fetchUserByPk } from '@/graphql/queries/fetchUserByPk.query'
 import { processError } from '@/helpers/processError.helper'
-import { Sprints$ } from './Sprints.store'
 import { SideMenu$ } from './side-menu/SideMenu.store'
 import { Notes$ } from '@/modules/notes/mst/stores/Notes.store'
+import { Sprints$ } from '@/modules/sprints/mst/stores/Sprints.store'
 
 export const Root$ = types
     .model('Root$', {

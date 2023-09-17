@@ -1,4 +1,3 @@
-import { ISprint$ } from '@/mst/types'
 import { observer } from 'mobx-react-lite'
 import { SprintProgress } from './SprintProgress'
 import { SprintImg } from './SprintImg'
@@ -9,6 +8,7 @@ import { getSprintBgByStatus, getSprintBorderByStatus } from '../../helpers/gene
 import { SprintActions } from './sprint-actions'
 import { SprintMenu } from './sprint-menu/SprintMenu'
 import { useWindowMatchMedia } from '@/hooks/useMatchMedia.hook.'
+import { ISprint$ } from '../../mst/types'
 
 export const SprintInfo: React.FC<{ sprint: ISprint$ }> = observer(({ sprint }) => {
     const { progress, focusSprintDay, started_at, finished_at, status, todayIsChecked } = sprint

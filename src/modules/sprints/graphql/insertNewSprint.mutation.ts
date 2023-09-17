@@ -1,8 +1,8 @@
 import { gql } from 'graphql-request'
 import { generateClient } from '@/graphql/client'
 import { processError } from '@/helpers/processError.helper'
-import { ISprint$SnIn } from '@/mst/types'
 import { IInsertNewSprint } from './helpers/interface'
+import { ISprint$SnIn } from '../mst/types'
 
 export const insertNewSprint = async (newSprint: IInsertNewSprint): Promise<ISprint$SnIn | undefined> => {
     const client = generateClient()

@@ -1,8 +1,8 @@
 import { gql } from 'graphql-request'
 import { generateClient } from '@/graphql/client'
 import { processError } from '@/helpers/processError.helper'
-import { ISprint$SnIn } from '@/mst/types'
 import { IEditSprintReq } from './helpers/interface'
+import { ISprint$SnIn } from '../mst/types'
 
 export const updateSprint = async (options: {
     sprintId: string

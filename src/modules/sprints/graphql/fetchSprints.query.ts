@@ -1,8 +1,8 @@
 import { processError } from '../../../helpers/processError.helper'
 import { generateClient } from '@/graphql/client'
 import { getUserId } from '@/helpers/getUserId'
-import { ISprint$SnIn } from '@/mst/types'
 import { gql } from 'graphql-request'
+import { ISprint$SnIn } from '../mst/types'
 
 export const fetchSprints = async (): Promise<ISprint$SnIn[] | undefined> => {
     const client = generateClient()
