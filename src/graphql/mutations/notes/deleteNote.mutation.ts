@@ -7,7 +7,7 @@ export const deleteNote = async (noteId: string): Promise<string | undefined> =>
 
     const mutation = gql`
         mutation deleteNoteByPk($noteId: uuid!) {
-            delete_tasks_by_pk(id: $noteId) {
+            delete_notes_by_pk(id: $noteId) {
                 id
             }
         }

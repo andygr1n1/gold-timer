@@ -10,7 +10,7 @@ export const Note = types
                 return sn
             },
         }),
-        user_id: '',
+        owner_id: '',
         description: '',
         tag: '',
     })
