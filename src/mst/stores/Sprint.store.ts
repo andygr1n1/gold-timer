@@ -1,10 +1,11 @@
-import { types } from 'mobx-state-tree'
+import { flow, toGenerator, types } from 'mobx-state-tree'
 import { generateMstId } from '../mst.helper'
 import { SprintDay } from '../models/SprintDay.model'
 import { ISprintDay } from '../types'
 import { isFuture, isPast, isToday, set } from 'date-fns'
-import { compact, last } from 'lodash-es'
+import { cloneDeep, compact, last } from 'lodash-es'
 import { SPRINT_STATUS_ENUM } from '@/modules/sprints/helpers/sprints.enum'
+import { updateSprintDays } from '@/modules/sprints/graphql/updateSprintDays.m'
 
 export const Sprint$ = types
     .model('Sprint$', {
@@ -12,17 +13,25 @@ export const Sprint$ = types
         title: '',
         description: types.maybeNull(types.string),
         sprint_goals: types.maybeNull(types.string),
-        sprints_days: types.array(SprintDay),
+        sprint_days: types.array(SprintDay),
         achievement: types.maybeNull(types.string),
         duration: 7,
         img_path: types.maybeNull(types.string),
         parent_sprint_id: types.maybeNull(types.string),
         owner_id: '',
-        started_at: types.snapshotProcessor(types.maybe(types.Date), {
+        started_at: types.snapshotProcessor(types.Date, {
             preProcessor: (sn: Date | undefined | string) => {
                 if (!sn) {
                     return new Date(Date.now())
                 }
+                if (typeof sn === 'string') {
+                    return new Date(sn)
+                }
+                return sn
+            },
+        }),
+        finished_at: types.snapshotProcessor(types.maybeNull(types.Date), {
+            preProcessor: (sn: Date | string) => {
                 if (typeof sn === 'string') {
                     return new Date(sn)
                 }
@@ -49,34 +58,32 @@ export const Sprint$ = types
         get today(): Date {
             return set(new Date(Date.now()), { hours: 23, minutes: 59, seconds: 59, milliseconds: 59 })
         },
-        get finishedAt(): Date | undefined | null {
-            return last(self.sprints_days)?.date
-        },
         get progress(): number {
+            if (!self.sprint_days) return 0
             let totalProgress = self.duration
-            let currentProgress = self.sprints_days.filter((day) => day.status).length
+            let currentProgress = self.sprint_days.filter((day) => day.status).length
             return Math.floor((currentProgress * 100) / totalProgress)
         },
         get focusSprintDayToday(): ISprintDay | undefined {
-            return self.sprints_days.find((day) => day.date && isToday(day.date))
+            return self.sprint_days.find((day) => day.date && isToday(day.date))
         },
         get focusSprintDay(): ISprintDay | undefined {
             let today = this.focusSprintDayToday
 
             if (!today) {
-                today = self.sprints_days.find((day) => day.date && isFuture(day.date))
+                today = self.sprint_days.find((day) => day.date && isFuture(day.date))
             }
 
             if (!today) {
-                today = self.sprints_days.find((day) => day.date && isPast(day.date))
-                today && (today = last(self.sprints_days))
+                today = self.sprint_days.find((day) => day.date && isPast(day.date))
+                today && (today = last(self.sprint_days))
             }
 
             return today
         },
         get allIsCheckedBeforeToday(): boolean {
             const today = this.today
-            let result = self.sprints_days.find(
+            let result = self.sprint_days.find(
                 (sprintDay) =>
                     sprintDay.date &&
                     !isToday(sprintDay.date) &&
@@ -87,7 +94,7 @@ export const Sprint$ = types
             return !!!result
         },
         get todayIsChecked(): boolean {
-            let result = self.sprints_days.find(
+            let result = self.sprint_days.find(
                 (sprintDay) => sprintDay.date && isToday(sprintDay.date) && sprintDay.status,
             )
 
@@ -95,10 +102,10 @@ export const Sprint$ = types
         },
         get status(): SPRINT_STATUS_ENUM {
             const today = this.today
-            if (!this.finishedAt || !self.started_at) return SPRINT_STATUS_ENUM.ERROR
+            if (!self.finished_at || !self.started_at) return SPRINT_STATUS_ENUM.ERROR
             if (
                 today.getTime() <=
-                    set(this.finishedAt, { hours: 23, minutes: 59, seconds: 59, milliseconds: 59 }).getTime() &&
+                    set(self.finished_at, { hours: 23, minutes: 59, seconds: 59, milliseconds: 59 }).getTime() &&
                 today.getTime() >= self.started_at.getTime()
             ) {
                 if (!this.allIsCheckedBeforeToday) return SPRINT_STATUS_ENUM.FREEZED
@@ -107,7 +114,7 @@ export const Sprint$ = types
 
             if (
                 today.getTime() >
-                set(this.finishedAt, { hours: 23, minutes: 59, seconds: 59, milliseconds: 59 }).getTime()
+                set(self.finished_at, { hours: 23, minutes: 59, seconds: 59, milliseconds: 59 }).getTime()
             ) {
                 return SPRINT_STATUS_ENUM.FINISHED
             }
@@ -133,6 +140,7 @@ export const Sprint$ = types
         onChangeField<Key extends keyof typeof self>(key: Key, value: (typeof self)[Key]) {
             self[key] = value
         },
+        updateSprintDays: flow(function* _updateSprintDays() {
+            yield* toGenerator(updateSprintDays({ id: self.id, sprintDays: self.sprint_days }))
+        }),
     }))
-
-//    if (today.getTime() > set(this.finishedAt, { hours: 23, minutes: 59, seconds: 59 }).getTime())

@@ -29,7 +29,7 @@ export const NewSprintStartDateIndex: React.FC = observer(() => {
                 <div className='text-cText text-base'>{format(started_at, 'd MMMM yyyy')}</div>
             ) : (
                 <XDayTimeSelector
-                    onChange={(e) => onChangeField('started_at', e || undefined)}
+                    onChange={(e) => e && onChangeField('started_at', e)}
                     disabledDate={disabledStartDate}
                     value={started_at}
                 />

@@ -1,12 +1,9 @@
-import { flow, getParentOfType, toGenerator, types } from 'mobx-state-tree'
-import { generateMstId } from '../mst.helper'
-import { processError } from '@/helpers/processError.helper'
-import { updateSprintDayStatus } from '@/graphql/mutations/sprints/updateSprintDayStatus.mutation'
+import { flow, getParentOfType, types } from 'mobx-state-tree'
 import { Sprint$ } from '../stores/Sprint.store'
 
 export const SprintDay = types
     .model('SprintDay', {
-        id: generateMstId(),
+        id: types.identifier,
         status: types.maybeNull(types.boolean),
         date: types.snapshotProcessor(types.maybeNull(types.Date), {
             preProcessor: (sn: Date | undefined | string) => {
@@ -33,12 +30,8 @@ export const SprintDay = types
             self[key] = value
         },
         changeStatus: flow(function* _changeStatus() {
-            try {
-                const statusRes = yield* toGenerator(updateSprintDayStatus(self.id, !self.status))
-                if (statusRes === undefined) throw new Error('changeStatus error: SprintDay')
-                self.status = statusRes
-            } catch (e) {
-                processError(e)
-            }
+            self.status = !self.status || null
+            const { updateSprintDays } = getParentOfType(self, Sprint$)
+            updateSprintDays()
         }),
     }))
