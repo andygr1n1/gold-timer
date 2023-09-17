@@ -27,14 +27,9 @@ export const Notes$ = types
         onChangeField<Key extends keyof typeof self>(key: Key, value: (typeof self)[Key]) {
             self[key] = value
         },
-        fetchNotes: flow(function* _fetchTasks() {
-            try {
-                const res: INote$SnapshotIn[] = yield fetchAllNotesByUserId(getUserId())
-                if (!res) throw new Error('fetchTasks error')
-                applySnapshot(self.notes, res)
-            } catch (e) {
-                processError(e, 'fetchTasks error')
-            }
+        fetchNotes: flow(function* _fetchNotes() {
+            const res: INote$SnapshotIn[] = yield fetchAllNotesByUserId(getUserId())
+            applySnapshot(self.notes, res)
         }),
         selectNoteAndSetDeleteMode(note: INote$): void {
             self.selected_note = note
@@ -72,7 +67,7 @@ export const Notes$ = types
                     tag: compact(self.create_edit_note$.tag.split(','))
                         .map((t) => t.trim().toLowerCase())
                         .toString(),
-                    user_id: getUserId(),
+                    owner_id: getUserId(),
                     id: self.create_edit_note$.create_edit_note_id,
                 })
 

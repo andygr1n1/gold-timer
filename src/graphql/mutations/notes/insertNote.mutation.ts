@@ -7,8 +7,8 @@ export const upsertNote = async (newTask: INoteSnapshotIn): Promise<INote$ | und
     const client = generateClient()
 
     const mutation = gql`
-        mutation insert_tasks_one($newTask: tasks_insert_input!) {
-            insert_tasks_one(
+        mutation insert_notes_one($newTask: notes_insert_input!) {
+            insert_notes_one(
                 object: $newTask
                 on_conflict: { constraint: tasks_pkey, update_columns: [description, tag] }
             ) {
@@ -23,7 +23,7 @@ export const upsertNote = async (newTask: INoteSnapshotIn): Promise<INote$ | und
     try {
         const response = await client.request(mutation, { newTask })
 
-        return response.insert_tasks_one
+        return response.insert_notes_one
     } catch (e) {
         processError(e, 'insertNote error')
         return
