@@ -11,12 +11,13 @@ export const fetchSprints = async (): Promise<ISprint$SnIn[] | undefined> => {
     const query = gql`
         query fetchSprints($user_id: uuid) {
             sprints(
-                where: { owner_id: { _eq: $user_id }, deleted_at: { _is_null: true } }
+                where: { owner_id: { _eq: $user_id }, deleted_at: { _is_null: true }, sprint_days: { _is_null: false } }
                 order_by: { started_at: desc }
             ) {
                 achievement
                 title
                 started_at
+                finished_at
                 updated_at
                 owner_id
                 img_path
@@ -27,11 +28,7 @@ export const fetchSprints = async (): Promise<ISprint$SnIn[] | undefined> => {
                 parent_sprint_id
                 owner_id
                 created_at
-                sprints_days(order_by: { date: asc }) {
-                    date
-                    id
-                    status
-                }
+                sprint_days
                 sprint_goals
             }
         }
@@ -39,9 +36,10 @@ export const fetchSprints = async (): Promise<ISprint$SnIn[] | undefined> => {
 
     try {
         const response = await client.request(query, { user_id })
-        return response.sprints
+
+        return response.sprints.map((sprint: ISprint$SnIn) => ({ ...sprint, sprint_days: sprint.sprint_days || [] }))
     } catch (e) {
-        processError(e)
+        processError(`fetchSprints: ${e}`)
         return
     }
 }

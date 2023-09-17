@@ -1,6 +1,6 @@
 import { gql } from 'graphql-request'
-import { generateClient } from '../../client'
 import { processError } from '@/helpers/processError.helper'
+import { generateClient } from '@/graphql/client'
 
 export const deletedAtSprint = async (id: string) => {
     const client = generateClient()

@@ -11,7 +11,7 @@ import { SprintMenu } from './sprint-menu/SprintMenu'
 import { useWindowMatchMedia } from '@/hooks/useMatchMedia.hook.'
 
 export const SprintInfo: React.FC<{ sprint: ISprint$ }> = observer(({ sprint }) => {
-    const { progress, focusSprintDay, started_at, finishedAt, status, todayIsChecked } = sprint
+    const { progress, focusSprintDay, started_at, finished_at, status, todayIsChecked } = sprint
     const { isMobile } = useWindowMatchMedia(['isMobile'])
     if (!focusSprintDay) return null
 
@@ -30,9 +30,9 @@ export const SprintInfo: React.FC<{ sprint: ISprint$ }> = observer(({ sprint }) 
                     ])}
                 >
                     <div className='relative  flex w-full flex-col items-start justify-center gap-2 px-5  opacity-70'>
-                        {started_at && finishedAt && (
+                        {started_at && finished_at && (
                             <div className=' text-xs italic '>
-                                {`${format(started_at, 'dd MMMM')} - ${format(finishedAt, 'dd MMMM')}`}
+                                {`${format(started_at, 'dd MMMM')} - ${format(finished_at, 'dd MMMM')}`}
                             </div>
                         )}
                         <div
@@ -54,9 +54,9 @@ export const SprintInfo: React.FC<{ sprint: ISprint$ }> = observer(({ sprint }) 
 
             {!isMobile && (
                 <div className='relative mx-4 flex w-full flex-col items-center gap-5 p-2 opacity-70 md:items-start'>
-                    {started_at && finishedAt && (
+                    {started_at && finished_at && (
                         <div className=' text-xs italic '>
-                            {`  ${format(started_at, 'dd MMMM')} - ${format(finishedAt, 'dd MMMM')}`}
+                            {`  ${format(started_at, 'dd MMMM')} - ${format(finished_at, 'dd MMMM')}`}
                         </div>
                     )}
                     <div

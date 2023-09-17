@@ -1,17 +1,17 @@
-import { types, cast, flow, toGenerator, applySnapshot, destroy, detach } from 'mobx-state-tree'
+import { types, flow, toGenerator, applySnapshot, destroy, detach, castToSnapshot } from 'mobx-state-tree'
 import { SprintNew$ } from './SprintNew.store'
 import { Sprint$ } from './Sprint.store'
 import { ISprint$, ISprint$SnIn, ISprintNew$ } from '../types'
 import { processError } from '@/helpers/processError.helper'
-import { fetchSprints } from '@/graphql/queries/sprints/fetchSprints.query'
-import { insertNewSprint } from '@/graphql/mutations/sprints/insertNewSprint.mutation'
+import { fetchSprints } from '@/modules/sprints/graphql/fetchSprints.query'
 import { add, set } from 'date-fns'
-import { deletedAtSprint } from '@/graphql/mutations/sprints/deletedAtSprint.mutation'
-import { cloneDeep, orderBy } from 'lodash-es'
-import { IInsertNewSprint } from '@/graphql/mutations/sprints/helpers/interface'
+import { cloneDeep, last, orderBy } from 'lodash-es'
+import { IInsertNewSprint } from '@/modules/sprints/graphql/helpers/interface'
 import { SprintsFilter$ } from './SprintsFilter.store'
 import { filterSprintByInput } from './sprints.helper'
 import { SPRINT_FILTER_STATUS_ENUM } from '@/modules/sprints/helpers/sprints.enum'
+import { deletedAtSprint } from '@/modules/sprints/graphql/deletedAtSprint.mutation'
+import { insertNewSprint } from '@/modules/sprints/graphql/insertNewSprint.mutation'
 
 export const Sprints$ = types
     .model('Sprints$', {
@@ -26,7 +26,7 @@ export const Sprints$ = types
             self[key] = value
         },
         activateNewSprintCreator(): void {
-            self.new_sprint = cast({ title: '' })
+            self.new_sprint = castToSnapshot({ title: '', id: '' })
         },
         activateEditSprintCreator(sprint: ISprint$): void {
             const convertedSprint: ISprintNew$ = cloneDeep(sprint) as ISprintNew$
@@ -60,10 +60,13 @@ export const Sprints$ = types
             try {
                 const successPointsArray: number[] = Array(sprint.duration).fill(0)
                 const startedAt = add(set(new Date(Date.now()), { hours: 1, minutes: 1, seconds: 1 }), { days: 1 })
-                const sprints_days = successPointsArray.map((_, index) => ({
+                const sprint_days = successPointsArray.map((_, index) => ({
+                    id: crypto.randomUUID(),
                     date: add(startedAt, { days: index }),
                     status: null,
                 }))
+
+                const finished_at = last(sprint_days)?.date || null
 
                 const newSprint: IInsertNewSprint = {
                     title: sprint.title,
@@ -72,7 +75,8 @@ export const Sprints$ = types
                     img_path: sprint.img_path,
                     achievement: sprint.achievement,
                     started_at: startedAt,
-                    sprints_days: { data: sprints_days },
+                    finished_at,
+                    sprint_days,
                     sprint_goals: sprint.sprint_goals,
                     owner_id: sprint.owner_id,
                     parent_sprint_id: sprint.parent_sprint_id || sprint.id,
@@ -80,7 +84,7 @@ export const Sprints$ = types
 
                 const createdSprint = yield* toGenerator(insertNewSprint(newSprint))
                 if (!createdSprint) throw new Error('createNewSprintInstance: creating sprint failed')
-                console.log('debugging - createdSprint', createdSprint)
+                console.log('debugging - restartSelectedSprint', createdSprint)
                 const deletedParent = yield* toGenerator(deletedAtSprint(sprint.id))
                 if (!deletedParent) throw new Error('createNewSprintInstance: deleting parent sprint failed')
 

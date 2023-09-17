@@ -1,6 +1,5 @@
 {
     "compilerOptions": {
-        // 👇️ set jsx to react-jsx
         "jsx": "react-jsx",
         "target": "esnext",
         "module": "esnext",
@@ -22,6 +21,6 @@
     },
     "include": ["src/**/*"],
     "exclude": ["node_modules"],
-    "extends": "./tsconfig.paths.json", // 👈
+    "extends": "./tsconfig.paths.json",
     "references": [{ "path": "./tsconfig.node.json" }]
 }

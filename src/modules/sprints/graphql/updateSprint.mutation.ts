@@ -1,30 +1,19 @@
 import { gql } from 'graphql-request'
-import { generateClient } from '../../client'
+import { generateClient } from '@/graphql/client'
 import { processError } from '@/helpers/processError.helper'
 import { ISprint$SnIn } from '@/mst/types'
-import { IEditSprintReq, ISprintsDays } from './helpers/interface'
+import { IEditSprintReq } from './helpers/interface'
 
 export const updateSprint = async (options: {
     sprintId: string
     updatedSprint: IEditSprintReq
-    updatedDays: ISprintsDays[]
 }): Promise<ISprint$SnIn | undefined> => {
     const client = generateClient()
 
-    const { sprintId, updatedSprint, updatedDays } = options
+    const { sprintId, updatedSprint } = options
 
     const mutation = gql`
-        mutation insertNewSprint(
-            $sprintId: uuid!
-            $updatedSprint: sprints_set_input
-            $updatedDays: [sprints_days_insert_input!]!
-        ) {
-            insert_sprints_days(
-                objects: $updatedDays
-                on_conflict: { constraint: sprints_days_id_key, update_columns: date }
-            ) {
-                affected_rows
-            }
+        mutation insertNewSprint($sprintId: uuid!, $updatedSprint: sprints_set_input) {
             update_sprints_by_pk(pk_columns: { id: $sprintId }, _set: $updatedSprint) {
                 img_path
                 id
@@ -33,15 +22,12 @@ export const updateSprint = async (options: {
                 created_at
                 achievement
                 started_at
+                finished_at
                 title
                 updated_at
                 parent_sprint_id
                 owner_id
-                sprints_days {
-                    id
-                    status
-                    date
-                }
+                sprint_days
                 sprint_goals
             }
         }
@@ -51,7 +37,6 @@ export const updateSprint = async (options: {
         const response = await client.request(mutation, {
             sprintId,
             updatedSprint,
-            updatedDays,
         })
 
         return response.update_sprints_by_pk
