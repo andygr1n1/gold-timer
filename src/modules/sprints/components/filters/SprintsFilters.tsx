@@ -4,8 +4,8 @@ import clsx from 'clsx'
 import { useEffect, useState } from 'react'
 import { IDisposer, cast, onSnapshot } from 'mobx-state-tree'
 import { rootStore$ } from '@/StoreProvider'
-import { getSprintsFilter$, setSprintsFilter$ } from '@/functions/indexDbManager'
-import { ISprintsFilter$ } from '@/mst/types'
+import { getSprints$LocalForage, setSprints$LocalForage } from '@/modules/sprints/helpers/sprintsLocalForage'
+import { ISprintsFilter$ } from '../../mst/types'
 export const SprintsFilters: React.FC = observer(() => {
     const {
         sprintsStatusRender,
@@ -18,10 +18,10 @@ export const SprintsFilters: React.FC = observer(() => {
         const sprintFilters$ = rootStore$.sprints$.sprints_filter$
         let disposer: IDisposer | undefined
         ;(async () => {
-            await getSprintsFilter$().then((loadedFilter$) => {
+            await getSprints$LocalForage().then((loadedFilter$) => {
                 loadedFilter$ && rootStore$.sprints$.onChangeField('sprints_filter$', cast(loadedFilter$))
                 disposer = onSnapshot(sprintFilters$, (store: ISprintsFilter$) => {
-                    setSprintsFilter$(store)
+                    setSprints$LocalForage(store)
                 })
                 setLoadingLocalForage(false)
             })

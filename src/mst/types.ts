@@ -6,10 +6,6 @@ import { Goals$ } from './stores/Goals.store'
 import type { Root$ } from './stores/Root.store'
 import { GoalRitual } from './models/GoalRitual.model'
 import { User$ } from './stores/User.store'
-import { Sprint$ } from './stores/Sprint.store'
-import { SprintDay } from './models/SprintDay.model'
-import { SprintNew$ } from './stores/SprintNew.store'
-import { SprintsFilter$ } from './stores/SprintsFilter.store'
 
 export interface IGoals$ extends Instance<typeof Goals$> {}
 export interface IUser$ extends Instance<typeof User$> {}
@@ -28,13 +24,3 @@ export interface IGoalRitualSnapshotIn extends SnapshotIn<typeof GoalRitual> {}
 
 export interface IAchievement extends Instance<typeof Achievement> {}
 export interface IAchievementSnapshotIn extends SnapshotIn<typeof Achievement> {}
-
-export interface ISprint$ extends Instance<typeof Sprint$> {}
-export interface ISprint$SnIn extends SnapshotIn<typeof Sprint$> {}
-
-export interface ISprintsFilter$ extends Instance<typeof SprintsFilter$> {}
-
-export interface ISprintNew$ extends Instance<typeof SprintNew$> {}
-
-export interface ISprintDay extends Instance<typeof SprintDay> {}
-export interface ISprintDaySnIn extends SnapshotIn<typeof SprintDay> {}

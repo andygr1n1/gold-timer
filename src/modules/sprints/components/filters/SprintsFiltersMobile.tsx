@@ -4,11 +4,11 @@ import clsx from 'clsx'
 import { Fragment, useEffect, useState } from 'react'
 import { IDisposer, cast, onSnapshot } from 'mobx-state-tree'
 import { rootStore$ } from '@/StoreProvider'
-import { getSprintsFilter$, setSprintsFilter$ } from '@/functions/indexDbManager'
-import { ISprintsFilter$ } from '@/mst/types'
+import { getSprints$LocalForage, setSprints$LocalForage } from '@/modules/sprints/helpers/sprintsLocalForage'
 import { Checkbox } from 'antd'
 import { XDivider } from '@/components-x/x-divider/XDivider'
 import { useWindowMatchMedia } from '@/hooks/useMatchMedia.hook.'
+import { ISprintsFilter$ } from '../../mst/types'
 export const SprintsFiltersMobile: React.FC = observer(() => {
     const {
         sprintsStatusRender,
@@ -23,10 +23,10 @@ export const SprintsFiltersMobile: React.FC = observer(() => {
         const sprintFilters$ = rootStore$.sprints$.sprints_filter$
         let disposer: IDisposer | undefined
         ;(async () => {
-            await getSprintsFilter$().then((loadedFilter$) => {
+            await getSprints$LocalForage().then((loadedFilter$) => {
                 loadedFilter$ && rootStore$.sprints$.onChangeField('sprints_filter$', cast(loadedFilter$))
                 disposer = onSnapshot(sprintFilters$, (store: ISprintsFilter$) => {
-                    setSprintsFilter$(store)
+                    setSprints$LocalForage(store)
                 })
                 setLoadingLocalForage(false)
             })
