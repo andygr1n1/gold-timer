@@ -46,18 +46,18 @@ export const SideMenu: React.FC = observer(() => {
                 className={`${
                     useSideMenu.is_open ? 'animate-slide-in' : 'animate-slide-out lg:animate-opacity ml-[-320px] '
                 }
-                text-global-text bg-global-2-bg font-sofia  absolute left-0 z-50 flex h-full
-                rounded-r-lg  lg:static  lg:m-5 lg:mr-0 lg:flex lg:h-[calc(100%-40px)] lg:rounded-lg
+                text-global-text bg-global-2-bg font-droid  absolute left-0 z-50 flex h-full
+                rounded-r-lg lg:static  lg:m-5 lg:mr-0 lg:flex lg:h-[calc(100%-40px)] lg:rounded-lg
             `}
             >
-                <div className='flex w-[190px] min-w-[190px] flex-col overflow-auto py-5'>
+                <div className='flex w-[230px] min-w-[230px] flex-col overflow-auto py-5'>
                     <div className='flex flex-auto flex-col gap-5 overflow-auto  '>
                         <div className='relative flex flex-col items-center justify-center'>
                             <UserAvatarSideMenu />
                             <UserCoins />
                             <CloseSideMenu onClose={useSideMenu.onChange} />
                         </div>
-                        <div className='ml-5 mt-5 flex flex-auto flex-col gap-5 overflow-auto'>
+                        <div className='mx-5 flex flex-auto flex-col gap-5 overflow-auto'>
                             <SideMenuLink
                                 to={APP_ROUTES_ENUM.PROFILE}
                                 title='Profile'
@@ -84,6 +84,7 @@ export const SideMenu: React.FC = observer(() => {
                                 title='Notes'
                                 icon={<Icon icon='fluent:task-list-square-ltr-16-filled' width={25} height={25} />}
                             />
+                            <XDivider className='w-[125px] bg-gray-700' />
                         </div>
                     </div>
 

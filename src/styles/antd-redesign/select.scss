@@ -1,10 +1,10 @@
 .ant-select-disabled {
-    @apply text-cText rounded-md bg-gray-50 [&_*]:text-gray-400 #{!important};
+    @apply text-cText rounded-lg bg-gray-50 [&_*]:text-gray-400 #{!important};
 }
 
 .ant-select,
 .ant-select > .ant-select-selector {
-    @apply bg-global-3-bg border-global-2-bg rounded-md  #{!important};
+    @apply bg-global-3-bg border-global-2-bg rounded-lg  #{!important};
 
     .ant-select-arrow,
     .ant-select-clear {
@@ -29,7 +29,7 @@
     .ant-select-selection-item,
     .ant-select-selection-item-content,
     .ant-select-selection-item-remove {
-        @apply bg-xBlue-2 flex items-center justify-center text-sm ;
+        @apply bg-global-3-bg flex items-center justify-center rounded-md text-sm;
     }
 }
 
@@ -37,5 +37,5 @@
     & * {
         @apply text-cText #{!important};
     }
-    @apply bg-global-3-bg border-global-2-bg rounded-md  #{!important};
+    @apply bg-global-3-bg border-global-2-bg rounded-lg  #{!important};
 }

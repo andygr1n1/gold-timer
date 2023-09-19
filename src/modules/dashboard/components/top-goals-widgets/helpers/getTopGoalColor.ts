@@ -15,7 +15,7 @@ export const getTopGoalColor = (goal: IGoal$): { containerClass: string; badgeSt
     if (isExpired) {
         containerClass = 'bg-rose-700 hover:bg-rose-600'
         badgeStyle = {
-            background: 'var(--colors-rose-800)',
+            background: 'transparent',
             color: 'white',
             borderColor: 'transparent',
         }

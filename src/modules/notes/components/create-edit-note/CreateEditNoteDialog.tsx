@@ -16,7 +16,7 @@ export const CreateEditNoteDialog: React.FC = observer(() => {
                 <NoteTagInput />
                 {/* Footer */}
                 <FormFooter
-                    okTitle={'Save note'}
+                    okTitle={'Save'}
                     onOk={saveNote}
                     onCancel={() => cancelNoteCreateEditMode()}
                     disabled={!saveEnabled}

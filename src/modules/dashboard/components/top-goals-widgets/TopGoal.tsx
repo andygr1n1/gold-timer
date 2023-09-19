@@ -39,9 +39,16 @@ export const TopGoal: React.FC<{ goal: IGoal$; type: ACTIVE_GOAL_TYPE_ENUM }> = 
     return (
         <PopoverGoalActions popoverState={popoverState} setPopoverState={setPopoverState} goal={goal} forceMode={true}>
             <XBadge
+                overflowCount={999}
                 style={badgeClass}
                 offset={[-6, 1]}
-                count={goal.daysEstimationCount || <Icon icon='emojione-v1:ringing-bell' width={20} height={20} />}
+                count={
+                    goal.totalRemainingDays > 1 ? (
+                        goal.totalRemainingDays
+                    ) : (
+                        <Icon icon='emojione-v1:ringing-bell' width={20} height={20} />
+                    )
+                }
             >
                 <div
                     // title={goal.title}

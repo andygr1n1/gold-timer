@@ -25,7 +25,7 @@ export const DashboardIndex: React.FC = observer(() => {
             topBarNodes={<CreateNewItemIcon />}
         >
             <div className='flex flex-col gap-7 xl:px-20'>
-                <div className='m-auto flex w-[314px] flex-col justify-center gap-10 md:justify-end xl:w-full xl:flex-row'>
+                <div className='m-auto flex min-h-[314px] w-[314px] flex-col justify-center gap-10 md:justify-end xl:w-full xl:flex-row'>
                     <div className='flex flex-[50%]'>
                         <GoalsCounter />
                     </div>

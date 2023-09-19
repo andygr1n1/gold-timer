@@ -9,7 +9,7 @@ export const ActiveGoals: React.FC = observer(() => {
 
     return activeGoalsFilter ? (
         <div className='flex flex-col'>
-            <h3 className='flex pb-4 font-mono font-bold'>
+            <h3 className='font-droid flex pb-4 font-bold'>
                 <span>Active</span>({activeGoals.length})
             </h3>
             <div className='flex flex-wrap gap-8 pb-4'>
