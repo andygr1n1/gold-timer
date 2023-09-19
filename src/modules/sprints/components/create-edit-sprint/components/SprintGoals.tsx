@@ -18,12 +18,7 @@ export const SprintGoals: React.FC = observer(() => {
                     value={new_sprint_goal}
                     onChange={(e) => onChangeField('new_sprint_goal', e.target.value)}
                 />
-                <Button
-                    className='!h-9 !text-sm'
-                    type='primary'
-                    onClick={addNewSprintGoal}
-                    disabled={!addNewGoalValidation}
-                >
+                <Button className='' type='primary' onClick={addNewSprintGoal} disabled={!addNewGoalValidation}>
                     Save
                 </Button>
             </Space.Compact>

@@ -7,16 +7,19 @@ import { INotesFilter$ } from '../../mst/types'
 import { Icon } from '@iconify/react'
 import clsx from 'clsx'
 import { useClickOutside } from '@/hooks/useClickOutside.hook'
+import { useSelectedTagValidation } from '../../hooks/useSelectedTagValidation'
 
 export const NotesTagsSelect: React.FC = observer(() => {
     const {
-        notes_filter$: { filteredTags, toggleSelectTag, tagIsSelected, notes_tag_filter, onChangeField },
+        notes,
+        notes_filter$: { filteredTags, selected_tags, toggleSelectTag, tagIsSelected, notes_tag_filter, onChangeField },
     } = useNotesStore()
 
     const [loadingLocalForage, setLoadingLocalForage] = useState(true)
     const [openDropdownMenu, setOpenDropdownMenu] = useState(false)
     const dropdownButtonRef = useRef<null | HTMLDivElement>(null)
     useClickOutside(dropdownButtonRef, () => setOpenDropdownMenu(false))
+    useSelectedTagValidation()
 
     useEffect(() => {
         const sprintFilters$ = rootStore$.notes$.notes_filter$
@@ -42,7 +45,7 @@ export const NotesTagsSelect: React.FC = observer(() => {
         <div className='flex w-full flex-col md:flex-row'>
             <div
                 ref={dropdownButtonRef}
-                className='bg-global-3-bg border-global-2-bg relative z-50 flex h-10 w-full max-w-[300px] gap-3 rounded-md border-[1px] border-solid  px-2 hover:border-[#4f8af7]'
+                className='bg-global-3-bg border-global-2-bg relative z-20 flex h-10 w-full max-w-[300px] gap-3 rounded-md border-[1px] border-solid  px-2 hover:border-[#4f8af7]'
             >
                 <span className='flex h-full w-fit items-center justify-center'>
                     <Icon icon='mi:filter' width={25} height={25} className='text-xBlue-2 animate-opacity-5' />

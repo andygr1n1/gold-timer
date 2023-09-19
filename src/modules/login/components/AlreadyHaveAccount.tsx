@@ -4,11 +4,11 @@ import { NavLink } from 'react-router-dom'
 
 export const AlreadyHaveAccount: React.FC = observer(() => {
     return (
-        <div className='flex h-10 w-full flex-initial flex-col items-center justify-center  font-sans text-sm'>
+        <div className='font-droid flex h-10 w-full flex-initial flex-col items-center  justify-center text-sm'>
             Already have an account ?
             <NavLink
                 to={`/${APP_ROUTES_ENUM.LOGIN}`}
-                className='cursor-pointer underline  hover:text-cTextHover hover:underline'
+                className='hover:text-cTextHover cursor-pointer  underline hover:underline'
             >
                 Login here
             </NavLink>

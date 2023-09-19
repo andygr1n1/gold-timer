@@ -1,7 +1,7 @@
 import { PRIVACY_ENUM } from '@/helpers/enums'
 import { DIFFICULTY_ENUM, STATUS_ENUM } from './../../helpers/enums'
 import { types } from 'mobx-state-tree'
-import { add, toDate } from 'date-fns'
+import { add, differenceInCalendarDays, toDate } from 'date-fns'
 import { GoalRitual } from './GoalRitual.model'
 
 export const Goal = types
@@ -67,9 +67,17 @@ export const Goal = types
             const diff = new Date(finishedAt - createdAt)
             return diff
         },
+        // getting remaining days only in current year
         get remainingDays(): number {
             if (!this.remainingTime) return 0
             return this.remainingTime?.getUTCDate() - 1
+        },
+        // getting all remaining days
+        get totalRemainingDays(): number {
+            if (!self.finished_at) return 0
+            const result = differenceInCalendarDays(toDate(self.finished_at).getTime(), new Date(Date.now()))
+
+            return result
         },
         get remainingTimeString(): string {
             if (!this.remainingTime) return ''

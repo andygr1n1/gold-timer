@@ -15,7 +15,6 @@ export const deleteNote = async (noteId: string): Promise<string | undefined> =>
 
     try {
         const response = await client.request(mutation, { noteId })
-        console.log('response->', response)
         return response
     } catch (e) {
         processError(e, 'deleteNoteByPk error')

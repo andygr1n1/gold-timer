@@ -29,7 +29,6 @@ export const insertNewSprint = async (newSprint: IInsertNewSprint): Promise<ISpr
 
     try {
         const response = await client.request(mutation, { newSprint })
-        console.log('response.insert_sprints_one', response.insert_sprints_one)
         return response.insert_sprints_one
     } catch (e) {
         processError(e, 'insertNewSprint error')

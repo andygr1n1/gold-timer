@@ -17,6 +17,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import './quill.css';
 @import './antdRedesign.css';
 @import './antd-redesign/select.scss';
 @import './antd-redesign/input.scss';
@@ -24,7 +25,7 @@
 @layer base {
     html,
     body {
-        @apply bg-global-bg font-droid text-cText flex h-full w-full flex-col overflow-hidden;
+        @apply bg-global-bg font-droid text-cText flex h-full w-full flex-col overflow-hidden text-[14px];
     }
 
     #root {
@@ -64,7 +65,7 @@
     }
 
     input {
-        @apply bg-global-3-bg focus:outline-none;
+        @apply bg-global-3-bg text-cText focus:outline-none;
     }
 
     input:-webkit-autofill,
@@ -132,3 +133,5 @@
 .login-form {
     @apply text-cText m-0 flex h-[400px] flex-auto flex-col items-center p-5 #{!important};
 }
+
+//    @apply bg-gray-900/50 shadow-xl;

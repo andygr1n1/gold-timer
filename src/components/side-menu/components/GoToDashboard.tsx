@@ -11,18 +11,14 @@ export const GoToDashboard = () => {
 
     return !isDashboard ? (
         <SideMenuLink to={APP_ROUTES_ENUM.DASHBOARD}>
-            <RoundedButton
-                className='font-droid my-5 w-[130px] px-2 text-base'
-                minh={'min-h-[50px]'}
-                rounded={'rounded-[15px]'}
-            >
+            <RoundedButton className='font-droid m-5 w-full px-2' minh={'min-h-[50px]'} rounded={'rounded-[15px]'}>
                 Dashboard
             </RoundedButton>
         </SideMenuLink>
-    ) : import.meta.env.DEV ? (
+    ) : (
         <div className='my-5 flex h-[45px] w-full items-center justify-center gap-2'>
             <GithubLink />
             <FigmaLink />
         </div>
-    ) : null
+    )
 }

@@ -1,7 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;300;400;600;700;900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Sofia+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,700;0,900;1,400&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Tilt+Neon&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&display=swap');
 
 @font-face {
@@ -12,36 +9,4 @@
 @font-face {
     font-family: 'Droid Sans Bold';
     src: url('/fonts/droid-sans/DroidSans-Bold.ttf');
-}
-
-@font-face {
-    font-family: 'Cascadia Code';
-    src: url('/fonts/cascadia-ttf/CascadiaCode.ttf');
-    src: url('/fonts/cascadia-woff2/CascadiaCode.woff2') format('woff'),
-        url('/fonts/cascadia-otf/CascadiaCode-Regular.otf') format('opentype');
-}
-
-@font-face {
-    font-family: 'Cascadia Mono';
-    src: url('/fonts/cascadia-ttf/CascadiaMono.ttf');
-    src: url('/fonts/cascadia-woff2/CascadiaCodePL.woff2') format('woff'),
-        url('/fonts/cascadia-otf/CascadiaMono-Regular.otf') format('opentype');
-}
-
-@font-face {
-    font-family: 'Vi Mono';
-    src: url('/fonts/vi-ttf/VictorMono-Regular.ttf');
-    src: url('/fonts/vi-woff/VictorMono-Regular.woff') format('woff'),
-        url('/fonts/vi-otf/VictorMono-Regular.otf') format('opentype');
-}
-
-@font-face {
-    font-family: 'Vi Mono Italic';
-    src: url('/fonts/vi-ttf/VictorMono-Italic.ttf');
-    src: url('/fonts/vi-woff/VictorMono-Italic.woff') format('woff'),
-        url('/fonts/vi-otf/VictorMono-Italic.otf') format('opentype');
-}
-
-.x {
-    border: rgba(63, 63, 63, 0.304);
 }

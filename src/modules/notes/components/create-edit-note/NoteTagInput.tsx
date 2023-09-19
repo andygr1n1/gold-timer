@@ -21,13 +21,13 @@ export const NoteTagInput: React.FC = observer(() => {
                 <Button
                     disabled={!newTagIsValid}
                     type='primary'
-                    className='!h-9 !text-sm'
+                    className='!text-sm'
                     onClick={() => {
                         onChangeField('tag', tag + ',' + new_tag)
                         onChangeField('new_tag', '')
                     }}
                 >
-                    Save
+                    Add
                 </Button>
             </Space.Compact>
             <NoteTagsList note={create_edit_note$} deleteAction={deleteTag} />

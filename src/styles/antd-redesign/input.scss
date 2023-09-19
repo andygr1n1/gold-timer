@@ -4,12 +4,12 @@ input.ant-input,
 }
 
 span.ant-input-affix-wrapper.dynamic-filter {
-    @apply bg-global-3-bg border-global-2-bg;
+    @apply bg-global-3-bg text-cText border-global-3-bg;
 }
 
 input.ant-input.dynamic-filter,
 .ant-input-affix-wrapper.dynamic-filter input {
-    @apply h-8;
+    @apply text-cText h-8;
 }
 
 textarea.ant-input {

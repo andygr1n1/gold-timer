@@ -19,7 +19,7 @@ export const PageGoals: React.FC = observer(() => {
             <CompletedGoals />
         </div>
     ) : (
-        <div className='font-xl flex h-full w-full animate-opacity items-center justify-center font-mono font-bold'>
+        <div className='font-xl animate-opacity font-droid flex h-full w-full items-center justify-center font-bold'>
             Nothing to show...
         </div>
     )
