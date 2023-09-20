@@ -92,3 +92,10 @@ export enum ADDONS_ENUM {
     GOALS_OF_WEEK = 'goals_of_week',
     GOALS_SLIDER = 'goals_slider',
 }
+
+export enum SERVER_ROUTES {
+    SPRINT_IMAGE_UPLOAD = 'sprint-image-upload',
+    SPRINT_IMAGE_DELETE = 'sprint-image-delete',
+    PROFILE_IMAGE_UPLOAD = 'profile-image-upload',
+    PROFILE_IMAGE_DELETE = 'profile-image-delete',
+}

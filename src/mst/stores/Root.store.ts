@@ -34,7 +34,7 @@ export const Root$ = types
         },
     }))
     .actions((self) => ({
-        onChangeField<Key extends keyof typeof self>(key: Key, value: (typeof self)[Key]) {
+        onChangeField<Key extends keyof typeof self>(key: Key, value: typeof self[Key]) {
             self[key] = value
         },
     }))

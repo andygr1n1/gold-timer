@@ -2,11 +2,11 @@ import { getUserId } from '@/helpers/getUserId'
 import { processError } from '@/helpers/processError.helper'
 import axios from 'axios'
 
-export interface IUploadSprintImgRes {
+export interface IUploadImgRes {
     fileName: string
 }
 
-export const uploadNewSprintLogo = async (imgBase64: string): Promise<string | undefined> => {
+export const uploadNewImageToServer = async (imgBase64: string, route: string): Promise<string | undefined> => {
     try {
         const endpoint = import.meta.env.VITE_NODE_HEROKU_ORIGIN
         const xapikey = import.meta.env.VITE_X_API_KEY
@@ -15,17 +15,17 @@ export const uploadNewSprintLogo = async (imgBase64: string): Promise<string | u
         formData.append('base64', imgBase64)
         formData.append('userId', getUserId())
 
-        const { data, status } = await axios<IUploadSprintImgRes>({
+        const { data, status } = await axios<IUploadImgRes>({
             method: 'POST',
             headers: {
                 'x-api-key': xapikey,
                 'Content-Type': 'multipart/form-data',
             },
-            url: `${endpoint}upload-sprint-image`,
+            url: `${endpoint}${route}`,
             data: formData,
         })
 
-        if (status !== 200) throw new Error(`uploadNewSprintLogo: ${status}`)
+        if (status !== 200) throw new Error(`uploadNewImage: ${status}`)
         return data?.fileName
     } catch (e) {
         processError(e)
@@ -33,7 +33,7 @@ export const uploadNewSprintLogo = async (imgBase64: string): Promise<string | u
     }
 }
 
-export const deleteSprintLogo = async (imgTitle: string): Promise<string | undefined> => {
+export const deleteImageFromServer = async (imgTitle: string, route: string): Promise<string | undefined> => {
     try {
         const endpoint = import.meta.env.VITE_NODE_HEROKU_ORIGIN
         const xapikey = import.meta.env.VITE_X_API_KEY
@@ -41,17 +41,18 @@ export const deleteSprintLogo = async (imgTitle: string): Promise<string | undef
         const formData = new FormData()
         formData.append('imgTitle', imgTitle)
 
-        const { data, status } = await axios<IUploadSprintImgRes>({
+        const { data, status } = await axios<IUploadImgRes>({
             method: 'POST',
             headers: {
                 'x-api-key': xapikey,
                 'Content-Type': 'multipart/form-data',
             },
-            url: `${endpoint}sprint-image-delete`,
+            // url: `${endpoint}sprint-image-delete`,
+            url: `${endpoint}${route}`,
             data: formData,
         })
 
-        if (status !== 200) throw new Error(`deleteSprintLogo: ${status}`)
+        if (status !== 200) throw new Error(`deleteImage: ${status}`)
         return data?.fileName
     } catch (e) {
         processError(e)
