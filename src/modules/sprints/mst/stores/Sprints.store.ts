@@ -3,15 +3,15 @@ import { SprintNew$ } from './SprintNew.store'
 import { Sprint$ } from './Sprint.store'
 import { ISprint$, ISprint$SnIn, ISprintNew$ } from '../types'
 import { processError } from '@/helpers/processError.helper'
-import { fetchSprints } from '@/modules/sprints/graphql/fetchSprints.query'
+import { fetchSprints } from '@/modules/sprints/graphql/fetchSprints.q'
 import { add, set } from 'date-fns'
 import { cloneDeep, last, orderBy } from 'lodash-es'
 import { IInsertNewSprint } from '@/modules/sprints/graphql/helpers/interface'
 import { SprintsFilter$ } from './SprintsFilter.store'
 import { filterSprintByInput } from './sprints.helper'
 import { SPRINT_FILTER_STATUS_ENUM } from '@/modules/sprints/helpers/sprints.enum'
-import { deletedAtSprint } from '@/modules/sprints/graphql/deletedAtSprint.mutation'
-import { insertNewSprint } from '@/modules/sprints/graphql/insertNewSprint.mutation'
+import { deletedAtSprint } from '@/modules/sprints/graphql/deletedAtSprint.m'
+import { insertNewSprint } from '@/modules/sprints/graphql/insertNewSprint.m'
 
 export const Sprints$ = types
     .model('Sprints$', {
@@ -22,7 +22,7 @@ export const Sprints$ = types
     })
 
     .actions((self) => ({
-        onChangeField<Key extends keyof typeof self>(key: Key, value: (typeof self)[Key]) {
+        onChangeField<Key extends keyof typeof self>(key: Key, value: typeof self[Key]) {
             self[key] = value
         },
         activateNewSprintCreator(): void {

@@ -1,14 +1,15 @@
 import { flow, getParentOfType, toGenerator, types } from 'mobx-state-tree'
 import { Sprint$ } from './Sprint.store'
-import { deleteSprintLogo, uploadNewSprintLogo } from './sprint.service'
 import { processError } from '@/helpers/processError.helper'
 import { add } from 'date-fns'
 import { Sprints$ } from './Sprints.store'
 import { getUserId } from '@/helpers/getUserId'
 import { IEditSprintReq, IInsertNewSprint } from '@/modules/sprints/graphql/helpers/interface'
 import { compact, last } from 'lodash-es'
-import { insertNewSprint } from '@/modules/sprints/graphql/insertNewSprint.mutation'
-import { updateSprint } from '@/modules/sprints/graphql/updateSprint.mutation'
+import { insertNewSprint } from '@/modules/sprints/graphql/insertNewSprint.m'
+import { updateSprint } from '@/modules/sprints/graphql/updateSprint.m'
+import { deleteImageFromServer, uploadNewImageToServer } from '@/services/image.service'
+import { SERVER_ROUTES } from '@/helpers/enums'
 
 export const SprintNew$ = types
     .compose(
@@ -31,7 +32,7 @@ export const SprintNew$ = types
         },
     }))
     .actions((self) => ({
-        onChangeField<Key extends keyof typeof self>(key: Key, value: (typeof self)[Key]) {
+        onChangeField<Key extends keyof typeof self>(key: Key, value: typeof self[Key]) {
             self[key] = value
         },
         addNewSprintGoal(): void {
@@ -57,7 +58,9 @@ export const SprintNew$ = types
         activateNewSprint: flow(function* _activateNewSprint() {
             try {
                 if (self.img_cropped_src) {
-                    const uploadedImgPath = yield* toGenerator(uploadNewSprintLogo(self.img_cropped_src))
+                    const uploadedImgPath = yield* toGenerator(
+                        uploadNewImageToServer(self.img_cropped_src, SERVER_ROUTES.SPRINT_IMAGE_UPLOAD),
+                    )
 
                     if (!uploadedImgPath) throw new Error('activateNewSprint error')
 
@@ -105,13 +108,15 @@ export const SprintNew$ = types
                 /* upsert image */
                 const uploadImageTrigger = last(self.img_cropped_src.split('/')) !== self.img_path
                 if (self.img_cropped_src && uploadImageTrigger) {
-                    const uploadedImgPath = yield* toGenerator(uploadNewSprintLogo(self.img_cropped_src))
+                    const uploadedImgPath = yield* toGenerator(
+                        uploadNewImageToServer(self.img_cropped_src, SERVER_ROUTES.SPRINT_IMAGE_UPLOAD),
+                    )
 
                     if (!uploadedImgPath) throw new Error('activateNewSprint error')
 
                     if (self.img_path && uploadImageTrigger) {
                         /* removing previous image */
-                        deleteSprintLogo(self.img_path)
+                        deleteImageFromServer(self.img_path, SERVER_ROUTES.SPRINT_IMAGE_DELETE)
                     }
 
                     self.img_path = uploadedImgPath

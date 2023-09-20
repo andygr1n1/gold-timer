@@ -12,6 +12,7 @@ import { CreateEditSprintDialog } from './modules/sprints/components/create-edit
 import { CreateEditNoteDialog } from './modules/notes/components/create-edit-note/CreateEditNoteDialog'
 import { SideMenuSettings } from './components/side-menu-settings/SideMenuSettings'
 import { FocusGoalOfWeek } from './components/components-modal-windows/focus-goal-of-week/FocusGoalOfWeek'
+import { ProfileImageCropDialog } from './modules/profile/components/profile-avatar/ProfileImageCropDialog'
 
 export const AppProtectedRoutes: React.FC = () => {
     return (
@@ -37,6 +38,7 @@ export const AppProtectedRoutes: React.FC = () => {
             <GoalsManagerDialog />
             <CreateEditSprintDialog />
             <CreateEditNoteDialog />
+            <ProfileImageCropDialog />
             {/*  */}
             {/* S I D E _ M E N U */}
             {/*  */}

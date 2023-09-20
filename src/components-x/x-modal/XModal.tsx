@@ -57,7 +57,7 @@ export const XModal: React.FC<{
                                             />
                                         </div>
                                     )}
-                                    <div className='my-2 h-[calc(100%-60px)]'>{children}</div>
+                                    <div>{children}</div>
                                 </div>
                             </Dialog.Panel>
                         </Transition.Child>

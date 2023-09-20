@@ -1,5 +1,5 @@
 import { gql } from 'graphql-request'
-import { generateClient } from '../client'
+import { generateClient } from '../../../graphql/client'
 import { processError } from '@/helpers/processError.helper'
 
 export interface IBaseUserData {
