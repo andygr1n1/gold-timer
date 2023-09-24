@@ -10,10 +10,10 @@ export const ProfileUserDetail: React.FC<{
 }> = observer(({ label, value, disabled, defaultValue = '', onChange }) => {
     return (
         <div className='flex items-center'>
-            <span className='mr-2 w-16 text-sm'>{label}</span>
+            <span className='mr-2 w-16'>{label}</span>
             <Input
                 size='large'
-                className='w-fit text-sm disabled:cursor-default disabled:bg-gray-200 disabled:text-gray-700'
+                className='w-fit disabled:cursor-default disabled:bg-gray-200 disabled:text-gray-700'
                 value={value}
                 defaultValue={defaultValue}
                 disabled={disabled}

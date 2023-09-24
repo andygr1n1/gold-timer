@@ -10,8 +10,8 @@ export const FigmaLink: React.FC = observer(() => {
         >
             <Icon
                 icon='devicon:figma'
-                width={20}
-                height={17}
+                width={25}
+                height={20}
                 className='text-navLink cursor-pointer  duration-300 hover:text-blue-500'
             />
         </a>

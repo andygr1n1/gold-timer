@@ -39,6 +39,7 @@ export default ({ mode }) => {
                 output: {
                     manualChunks: {
                         antd: ['antd'],
+                        'react-day-picker': ['react-day-picker'],
                     },
                 },
             },

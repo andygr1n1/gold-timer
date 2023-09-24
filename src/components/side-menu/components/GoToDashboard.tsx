@@ -4,6 +4,8 @@ import { SideMenuLink } from './SideMenuLink'
 import { RoundedButton } from '@/components/buttons/RoundedButton'
 import { GithubLink } from './GithubLink'
 import { FigmaLink } from './FigmaLink'
+import { Logout } from '@/modules/profile/components/top-bar/Logout'
+import { ThemeSwitcher } from '@/modules/profile/components/top-bar/ThemeSwitcher'
 
 export const GoToDashboard = () => {
     const location = useLocation()
@@ -19,6 +21,8 @@ export const GoToDashboard = () => {
         <div className='my-5 flex h-[45px] w-full items-center justify-center gap-2'>
             <GithubLink />
             <FigmaLink />
+            <ThemeSwitcher />
+            <Logout />
         </div>
     )
 }

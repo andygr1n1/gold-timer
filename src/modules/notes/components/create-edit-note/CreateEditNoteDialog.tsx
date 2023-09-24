@@ -11,7 +11,7 @@ export const CreateEditNoteDialog: React.FC = observer(() => {
     const { isOpen, saveEnabled } = create_edit_note$
     return (
         <XModal title={'Note Creator'} open={isOpen} onCancel={() => cancelNoteCreateEditMode()}>
-            <Form className='py-5'>
+            <Form className='w-[300px] py-5 md:w-[416px]'>
                 <NoteDescriptionInput />
                 <NoteTagInput />
                 {/* Footer */}

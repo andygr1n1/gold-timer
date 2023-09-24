@@ -17,7 +17,7 @@ export const Logout: React.FC = observer(() => {
             title='logout'
             className='text-navLink m-0 flex cursor-pointer items-center bg-transparent p-0 hover:text-blue-500 disabled:cursor-default disabled:text-gray-700'
         >
-            <Icon icon='ic:baseline-logout' width={30} height={30} />
+            <Icon icon='ic:baseline-logout' width={25} height={25} />
         </button>
     )
 })

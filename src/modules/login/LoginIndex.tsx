@@ -15,7 +15,6 @@ import { LoginPassword } from './components/login/LoginPassword'
 import { LoginFooter } from './components/login/LoginFooter'
 import styles from './LoginIndex.module.scss'
 import clsx from 'clsx'
-import { is4G } from '@/functions/navigatorConnection'
 
 export const LoginIndex: React.FC = observer(() => {
     const { onChangeField } = useUserStore()
@@ -50,10 +49,10 @@ export const LoginIndex: React.FC = observer(() => {
         })
     }
 
-    const is4GConnection = is4G()
-
+    // const is4GConnection = is4G()
     return (
-        <div className={clsx([styles['login-bg'], is4GConnection && styles['login-4g']])}>
+        //  <div className={clsx([styles['login-bg'], is4GConnection && styles['login-4g']])}>
+        <div className={clsx([styles['login-bg'], styles['login-4g']])}>
             <LoginContainer>
                 {contextHolder}
                 <LoginLogo />

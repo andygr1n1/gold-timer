@@ -65,8 +65,6 @@ export const validateDynamicSearchRoute = (pathname: string): APP_ROUTES_ENUM | 
     switch (pathname) {
         case `/${APP_ROUTES_ENUM.SPRINTS}`:
             return APP_ROUTES_ENUM.SPRINTS
-        case `/${APP_ROUTES_ENUM.ACHIEVEMENTS}`:
-            return APP_ROUTES_ENUM.ACHIEVEMENTS
         case `/${APP_ROUTES_ENUM.GOALS}`:
             return APP_ROUTES_ENUM.GOALS
         case `/${APP_ROUTES_ENUM.NOTES}`:

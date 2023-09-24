@@ -39,7 +39,7 @@ export const ProfileImageCropDialog = observer(() => {
     return (
         <XModal title={'New Image'} open={!!img_src} onCancel={() => handleCancel()}>
             <Form>
-                <div className='relative h-[300px] w-[300px] m-auto bg-global-3-bg'>
+                <div className='relative h-[280px] w-[280px] m-auto bg-global-3-bg'>
                     <Cropper
                         image={img_src}
                         crop={crop}
@@ -50,7 +50,7 @@ export const ProfileImageCropDialog = observer(() => {
                         onZoomChange={setZoom}
                     />
                 </div>
-                <div className='flex flex-col gap-5 w-[300px] m-auto bg-global-2-bg p-10 text-cText'>
+                <div className='flex flex-col gap-5 w-[280px] m-auto bg-global-2-bg p-10 text-cText'>
                     <div className='controls'>
                         <Slider
                             value={zoom}

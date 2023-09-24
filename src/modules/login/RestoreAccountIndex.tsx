@@ -9,6 +9,8 @@ import { AlreadyHaveAccount } from './components/AlreadyHaveAccount'
 import { LoginButton } from './components/login/LoginButton'
 import { LoginEmail } from './components/login/LoginEmail'
 import { restoreAccount } from './helpers/restoreAccount.helper'
+import styles from './LoginIndex.module.scss'
+import clsx from 'clsx'
 
 export const RestoreAccountIndex: React.FC = observer(() => {
     const [form] = Form.useForm()
@@ -41,7 +43,7 @@ export const RestoreAccountIndex: React.FC = observer(() => {
     }
 
     return (
-        <div className='flex h-full w-full flex-col'>
+        <div className={clsx([styles['login-bg'], styles['login-4g']])}>
             <LoginContainer>
                 {contextHolder}
                 <LoginLogo />

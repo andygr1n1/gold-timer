@@ -35,10 +35,7 @@ export const SprintInfo: React.FC<{ sprint: ISprint$ }> = observer(({ sprint }) 
                                 {`${format(started_at, 'dd MMMM')} - ${format(finished_at, 'dd MMMM')}`}
                             </div>
                         )}
-                        <div
-                            title={sprint.title}
-                            className='font-droid-bold max-w-[220px] truncate text-sm capitalize '
-                        >
+                        <div title={sprint.title} className='font-droid-bold max-w-[220px] truncate capitalize '>
                             {sprint.title}
                         </div>
                     </div>
@@ -61,7 +58,7 @@ export const SprintInfo: React.FC<{ sprint: ISprint$ }> = observer(({ sprint }) 
                     )}
                     <div
                         title={sprint.title}
-                        className='truncate  text-sm capitalize md:max-w-[180px] lg:max-w-[200px] 2xl:max-w-[300px]'
+                        className='truncate  capitalize md:max-w-[180px] lg:max-w-[200px] 2xl:max-w-[300px]'
                     >
                         {sprint.title}
                     </div>
