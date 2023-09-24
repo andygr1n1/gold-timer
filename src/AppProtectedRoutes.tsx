@@ -2,7 +2,6 @@ import { Navigate, Route, Routes } from 'react-router-dom'
 import { APP_ROUTES_ENUM } from './helpers/enums'
 import { CreateNewGoalDialog } from './modules/goals/components/new-goal-dialog/CreateNewGoalModal'
 import { GoalsManagerDialog } from './components/components-modal-windows/goals-manager-mw/GoalsManagerMw'
-import { AchievementsIndex } from './modules/achievements/AchievementsIndex'
 import { GoalsIndex } from './modules/goals/GoalsIndex'
 import { ProfileIndex } from './modules/profile/ProfileIndex'
 import { NotesIndex } from './modules/notes/NotesIndex'
@@ -21,7 +20,6 @@ export const AppProtectedRoutes: React.FC = () => {
                 <Route path={'/'} element={<Navigate to={`/${APP_ROUTES_ENUM.DASHBOARD}`} />} />
                 <Route path={'*'} element={<Navigate to={`/${APP_ROUTES_ENUM.DASHBOARD}`} />} />
                 <Route path={`/${APP_ROUTES_ENUM.PROFILE}`} element={<ProfileIndex />} />
-                <Route path={`/${APP_ROUTES_ENUM.ACHIEVEMENTS}`} element={<AchievementsIndex />} />
                 {/*  */}
                 <Route path={`/${APP_ROUTES_ENUM.SPRINTS}`} element={<SprintsIndex />} />
                 <Route path={`/${APP_ROUTES_ENUM.GOALS}`} element={<GoalsIndex />} />

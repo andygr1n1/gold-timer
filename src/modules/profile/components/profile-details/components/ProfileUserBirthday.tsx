@@ -1,4 +1,4 @@
-import { XDatePicker } from '@/components-x/x-date-picker/XDatePicker'
+import { XDatePickerAntd } from '@/components-x/x-date-picker/XDatePicker'
 import { observer } from 'mobx-react-lite'
 
 export const ProfileUserBirthday: React.FC<{
@@ -9,13 +9,13 @@ export const ProfileUserBirthday: React.FC<{
 }> = observer(({ label, value, disabled, onChange }) => {
     return (
         <div className='flex items-center gap-1'>
-            <span className='mr-2 w-16 text-sm'>{label}</span>
+            <span className='mr-2 w-16'>{label}</span>
             <div
-                className={`profile-date-picker flex w-full max-w-[180px] rounded-md text-sm  ${
+                className={`profile-date-picker flex w-full max-w-[180px] rounded-md  ${
                     disabled ? 'bg-gray-200 text-gray-700' : ''
                 }`}
             >
-                <XDatePicker
+                <XDatePickerAntd
                     size='large'
                     className='w-full'
                     value={value}

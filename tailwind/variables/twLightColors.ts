@@ -7,8 +7,8 @@ export default {
     'alpha-600': 'var(--colors-blue-600)',
     'alpha-700': 'var(--colors-blue-700)',
     //
-    'global-bg': 'white',
-    'global-2-bg': '#f2f3f4',
+    'global-bg': '#eff6ff',
+    'global-2-bg': '#dbeafe',
     'global-3-bg': 'white',
     'global-bg-regal': 'rgba(255, 255, 255, 0.9)',
     'global-text': 'var(--colors-magic)',

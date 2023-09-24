@@ -1,5 +1,5 @@
 import { observer } from 'mobx-react-lite'
-import { XDatePicker } from './XDatePicker'
+import { XDatePickerAntd } from './XDatePicker'
 
 export const XDayTimeSelector: React.FC<{
     disabledDate: (current: Date) => boolean
@@ -9,7 +9,7 @@ export const XDayTimeSelector: React.FC<{
 }> = observer(({ disabledDate, onChange, value, disabled = false }) => {
     return (
         <div className='flex flex-col gap-5 2xl:flex-row'>
-            <XDatePicker
+            <XDatePickerAntd
                 disabled={disabled}
                 size='large'
                 onChange={onChange}
@@ -18,7 +18,7 @@ export const XDayTimeSelector: React.FC<{
                 format='Do MMMM YYYY'
                 className='!w-full'
             />
-            <XDatePicker
+            <XDatePickerAntd
                 disabled={disabled}
                 picker='time'
                 size='large'

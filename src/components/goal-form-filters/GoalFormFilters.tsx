@@ -1,4 +1,4 @@
-import { XDatePicker } from '@/components-x/x-date-picker/XDatePicker'
+import { XDatePickerAntd } from '@/components-x/x-date-picker/XDatePicker'
 import { useGoalsStore } from '@/StoreProvider'
 import { Input } from 'antd'
 import { observer } from 'mobx-react-lite'
@@ -36,7 +36,7 @@ export const GoalFormFilters: React.FC = observer(() => {
                 autoFocus={false}
                 tabIndex={-1}
             />
-            <XDatePicker
+            <XDatePickerAntd
                 size='large'
                 onChange={onDatePickerChange}
                 value={goals_estimation_filter}

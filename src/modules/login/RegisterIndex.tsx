@@ -15,6 +15,8 @@ import { LoginButton } from './components/login/LoginButton'
 import { PasswordRepeat } from './components/register/PasswordRepeat'
 import { RegisterName } from './components/register/RegisterName'
 import { RegisterPassword } from './components/register/RegisterPassword'
+import clsx from 'clsx'
+import styles from './LoginIndex.module.scss'
 
 export const RegisterIndex: React.FC = observer(() => {
     const { onChangeField } = useUserStore()
@@ -60,7 +62,7 @@ export const RegisterIndex: React.FC = observer(() => {
     }
 
     return (
-        <div className='flex h-full w-full flex-col'>
+        <div className={clsx([styles['login-bg'], styles['login-4g']])}>
             <LoginContainer>
                 {contextHolder}
                 <LoginLogo />

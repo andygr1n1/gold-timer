@@ -1,0 +1,29 @@
+:root {
+    --xinput-border-left: 30px;
+}
+
+.xinput {
+    @apply text-cText disabled:border-global-3-bg mb-6 w-[calc(100%-24px)] rounded-md border border-solid border-transparent p-3
+    outline-none first-letter:shadow-none disabled:bg-transparent disabled:bg-opacity-10  disabled:opacity-70;
+}
+
+.xinput-error {
+    @apply border-red-500;
+}
+
+.xinput-start-icon {
+    border-left: var(--xinput-border-left) solid transparent;
+    width: calc(100% - 24px - var(--xinput-border-left));
+}
+.xinput-end-icon {
+    border-right: var(--xinput-border-left) solid transparent;
+    width: calc(100% - 24px - var(--xinput-border-left));
+}
+
+.xinput-start-end-icon {
+    width: calc(100% - 24px - var(--xinput-border-left) - var(--xinput-border-left));
+}
+
+// .xinput-end-icon {
+//     @apply pr-8;
+// }

@@ -9,7 +9,7 @@ export const AddNew: React.FC<{ title: string; onClick?: () => void }> = observe
             type='button'
         >
             <Icon icon='line-md:plus' width={25} height={25} className='group-hover:text-x-sky' />
-            <div className='font-droid-bold group-hover:text-x-sky text-sm'>{title}</div>
+            <div className='font-droid-bold group-hover:text-x-sky'>{title}</div>
         </button>
     )
 })

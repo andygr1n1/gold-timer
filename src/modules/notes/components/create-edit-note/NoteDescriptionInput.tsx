@@ -1,6 +1,6 @@
 import { useNotesStore } from '@/StoreProvider'
 import { FormLabel } from '@/components/form/FormLabel'
-import { Form, Input } from 'antd'
+import { Form } from 'antd'
 import { observer } from 'mobx-react-lite'
 import { useEffect } from 'react'
 import ReactQuill from 'react-quill'
@@ -14,7 +14,6 @@ export const NoteDescriptionInput: React.FC = observer(() => {
         onChangeField('description', description)
     }, [])
 
-    console.log('description', description)
     return (
         <Form.Item>
             <FormLabel title='Note:' />
@@ -22,12 +21,7 @@ export const NoteDescriptionInput: React.FC = observer(() => {
                 preserveWhitespace
                 theme='snow'
                 value={description}
-                onChange={(content, delta, source, editor) => {
-                    console.log(content)
-                    console.log('delta', delta)
-                    console.log('source', source)
-                    console.log('editor', editor)
-
+                onChange={(content) => {
                     onChangeField('description', content)
                 }}
             />

@@ -5,7 +5,7 @@ import { processError } from '@/helpers/processError.helper'
 export interface IBaseUserData {
     name: string
     email: string
-    birthday: string
+    birthday: string | null
     password: string
     phone: string
 }

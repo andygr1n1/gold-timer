@@ -28,5 +28,5 @@ module.exports = {
             },
         },
     },
-    plugins: [require('@mertasan/tailwindcss-variables')],
+    plugins: [require('@mertasan/tailwindcss-variables'), require('tailwindcss-animate')],
 }

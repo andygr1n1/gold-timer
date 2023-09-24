@@ -4,7 +4,6 @@ import { processError } from '@/helpers/processError.helper'
 
 export const fetchUserSecret = async (user_id: string): Promise<string | undefined> => {
     const client = generateClient()
-
     const query = gql`
         query UserByPk($user_id: uuid!) {
             heroes_by_pk(id: $user_id) {

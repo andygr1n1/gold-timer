@@ -15,7 +15,7 @@
     }
 
     .ant-select-selection-placeholder {
-        @apply text-sm text-gray-500;
+        @apply text-gray-500;
     }
 }
 
@@ -23,13 +23,13 @@
     @apply text-white  #{!important};
 
     svg {
-        @apply h-2 w-5 text-sm text-white;
+        @apply h-2 w-5 text-white;
     }
 
     .ant-select-selection-item,
     .ant-select-selection-item-content,
     .ant-select-selection-item-remove {
-        @apply bg-global-3-bg flex items-center justify-center rounded-md text-sm;
+        @apply bg-global-3-bg flex items-center justify-center rounded-md;
     }
 }
 
