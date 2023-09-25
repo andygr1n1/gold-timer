@@ -11,13 +11,9 @@ module.exports = {
     theme: {
         variables,
         fontFamily: {
-            droid: ['Droid Sans', defaultConfig.theme.fontFamily.sans],
-            'droid-bold': ['Droid Sans Bold', defaultConfig.theme.fontFamily.sans],
-            neon: ['Tilt Neon', defaultConfig.theme.fontFamily.sans],
-            vi: ['Vi Mono', defaultConfig.theme.fontFamily.sans],
-            vii: ['Vi Mono Italic', defaultConfig.theme.fontFamily.sans],
-            satisfy: ['Satisfy', defaultConfig.theme.fontFamily.sans],
+            kzen: ['Roboto', defaultConfig.theme.fontFamily.sans],
             cinzel: ['Cinzel Decorative', defaultConfig.theme.fontFamily.sans],
+            reggae: ['Reggae One', defaultConfig.theme.fontFamily.serif],
         },
         extend: {
             colors,

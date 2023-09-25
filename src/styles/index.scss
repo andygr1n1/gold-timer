@@ -32,11 +32,12 @@ input[type='number'] {
 @import './antdRedesign.css';
 @import './antd-redesign/select.scss';
 @import './antd-redesign/input.scss';
+@import '../components/buttons/StyledButtonLightVariables.scss';
 
 @layer base {
     html,
     body {
-        @apply bg-global-bg font-droid text-cText flex h-full w-full flex-col overflow-hidden text-[14px];
+        @apply bg-global-bg font-kzen text-cText flex h-full w-full flex-col overflow-hidden text-base;
     }
 
     #root {
@@ -53,7 +54,7 @@ input[type='number'] {
     h4,
     h5,
     h6 {
-        @apply font-droid-bold text-cText m-0 p-0 tracking-wider opacity-70 duration-300;
+        @apply font-kzen text-cText m-0 p-0 tracking-wider opacity-70 duration-300;
     }
 
     a,
@@ -138,6 +139,10 @@ input[type='number'] {
     .overflow-wrap-anywhere {
         word-break: break-word !important; /* Chrome, Safari */
         overflow-wrap: anywhere !important; /* Firefox */
+    }
+
+    .overflow-scroll::-webkit-scrollbar {
+        display: none;
     }
 }
 

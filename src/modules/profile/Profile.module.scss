@@ -1,3 +1,3 @@
 .profile-container {
-    @apply bg-global-2-bg flex w-[calc(100%-30px)] flex-col shadow-xl shadow-black/30 transition-all p-4 py-14 md:w-[calc(100%-70px)] md:p-14;
+    @apply bg-global-2-bg mx-auto flex w-full max-w-[400px] flex-col p-4 py-14 shadow-xl shadow-black/30 transition-all md:p-14;
 }

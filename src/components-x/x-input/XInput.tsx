@@ -29,7 +29,7 @@ export const XInput: React.FC<XInputProps> = ({
 
     return (
         <div className={clsx('relative', otherProps.className)}>
-            {lbl && <div className='font-droid-bold mb-1 text-xs opacity-70'>{label}</div>}
+            {lbl && <div className='font-kzen mb-1 text-xs opacity-70'>{label}</div>}
             <div className={clsx('relative', otherProps.className)}>
                 {startIcon && <div className='absolute left-[8px] top-[8px] text-2xl'>{startIcon}</div>}
                 <input
@@ -45,7 +45,7 @@ export const XInput: React.FC<XInputProps> = ({
                 />
                 {endIcon && <div className='absolute right-[8px]  top-[8px] text-2xl'>{endIcon}</div>}
                 {error && errorMessage && (
-                    <div className='font-droid-bold absolute bottom-1 left-0 text-xs text-red-500'>{errorMessage}</div>
+                    <div className='font-kzen absolute bottom-1 left-0 text-xs text-red-500'>{errorMessage}</div>
                 )}
             </div>
         </div>

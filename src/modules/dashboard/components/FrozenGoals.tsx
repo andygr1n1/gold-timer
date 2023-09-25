@@ -8,7 +8,7 @@ export const FrozenGoals: React.FC = observer(() => {
 
     return frozenGoalsFilter ? (
         <div className='flex flex-col'>
-            <h3 className='font-droid flex pb-4 font-bold'>
+            <h3 className='font-kzen flex pb-4 font-bold'>
                 <span>Frozen</span>({frozenGoals.length})
             </h3>
             <div className='flex flex-wrap gap-5 pb-4'>

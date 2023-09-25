@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom'
 
 export const LoginFooter: React.FC = observer(() => {
     return (
-        <div className='font-droid flex h-10 w-full flex-initial flex-col items-center justify-center '>
+        <div className='font-kzen flex h-10 w-full flex-initial flex-col items-center justify-center '>
             <NavLink
                 className=' hover:text-cTextHover cursor-pointer  text-sm hover:underline'
                 to={`/${APP_ROUTES_ENUM.REGISTER}`}
