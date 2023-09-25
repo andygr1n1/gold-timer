@@ -11,7 +11,7 @@ export const Finished: React.FC<{ sprint: ISprint$ }> = observer(({ sprint }) =>
 
     return (
         <div className={`${styles['button']} ${styles['buttonDisabled']}`}>
-            <span className='font-droid-bold mx-2 text-cyan-700'>Finished on</span> {sprintDate}
+            <span className='font-kzen mx-2 text-cyan-700'>Finished on</span> {sprintDate}
         </div>
     )
 })

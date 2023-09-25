@@ -35,14 +35,14 @@ export const SprintInfo: React.FC<{ sprint: ISprint$ }> = observer(({ sprint }) 
                                 {`${format(started_at, 'dd MMMM')} - ${format(finished_at, 'dd MMMM')}`}
                             </div>
                         )}
-                        <div title={sprint.title} className='font-droid-bold max-w-[220px] truncate capitalize '>
+                        <div title={sprint.title} className='font-kzen max-w-[220px] truncate capitalize '>
                             {sprint.title}
                         </div>
                     </div>
                     <SprintMenu sprint={sprint} />
                 </div>
             )}
-            <div className='font-droid-bold absolute -left-[60px] hidden w-[100px] -rotate-90 items-center justify-center truncate whitespace-nowrap bg-transparent opacity-50 md:bottom-10 md:flex '>
+            <div className='font-kzen absolute -left-[60px] hidden w-[100px] -rotate-90 items-center justify-center truncate whitespace-nowrap bg-transparent opacity-50 md:bottom-10 md:flex '>
                 {upperCase(status)}
             </div>
             {/*  */}

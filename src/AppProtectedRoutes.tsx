@@ -12,6 +12,7 @@ import { CreateEditNoteDialog } from './modules/notes/components/create-edit-not
 import { SideMenuSettings } from './components/side-menu-settings/SideMenuSettings'
 import { FocusGoalOfWeek } from './components/components-modal-windows/focus-goal-of-week/FocusGoalOfWeek'
 import { ProfileImageCropDialog } from './modules/profile/components/profile-avatar/ProfileImageCropDialog'
+import { AchievementsIndex } from './modules/achievements/AchievementsIndex'
 
 export const AppProtectedRoutes: React.FC = () => {
     return (
@@ -20,6 +21,7 @@ export const AppProtectedRoutes: React.FC = () => {
                 <Route path={'/'} element={<Navigate to={`/${APP_ROUTES_ENUM.DASHBOARD}`} />} />
                 <Route path={'*'} element={<Navigate to={`/${APP_ROUTES_ENUM.DASHBOARD}`} />} />
                 <Route path={`/${APP_ROUTES_ENUM.PROFILE}`} element={<ProfileIndex />} />
+                <Route path={`/${APP_ROUTES_ENUM.ACHIEVEMENTS}`} element={<AchievementsIndex />} />
                 {/*  */}
                 <Route path={`/${APP_ROUTES_ENUM.SPRINTS}`} element={<SprintsIndex />} />
                 <Route path={`/${APP_ROUTES_ENUM.GOALS}`} element={<GoalsIndex />} />

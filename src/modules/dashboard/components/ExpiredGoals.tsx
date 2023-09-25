@@ -9,7 +9,7 @@ export const ExpiredGoals: React.FC = observer(() => {
 
     return expiredGoalsFilter && activeExpiredGoals.length ? (
         <div className='flex flex-col'>
-            <h3 className='font-droid flex pb-4 font-bold'>
+            <h3 className='font-kzen flex pb-4 font-bold'>
                 <span>Expired</span>({activeExpiredGoals.length})
             </h3>
             <div className='flex flex-wrap gap-8 pb-4'>

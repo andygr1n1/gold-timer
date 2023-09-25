@@ -13,5 +13,5 @@ export const EditName: React.FC = observer(() => {
         onChangeField('name', newValue)
     }
 
-    return <XInput className='w-[250px]' label='Name' value={name} onChange={onChange} placeholder='Set name' />
+    return <XInput label='Name' value={name} onChange={onChange} placeholder='Set name' />
 })
