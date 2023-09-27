@@ -1,11 +1,11 @@
 import { APP_ROUTES_ENUM } from '@/helpers/enums'
 import { useLocation } from 'react-router-dom'
 import { SideMenuLink } from './SideMenuLink'
-import { RoundedButton } from '@/components/buttons/RoundedButton'
 import { GithubLink } from './GithubLink'
 import { FigmaLink } from './FigmaLink'
 import { Logout } from '@/modules/profile/components/top-bar/Logout'
 import { ThemeSwitcher } from '@/modules/profile/components/top-bar/ThemeSwitcher'
+import { StyledButton } from '@/components/buttons/StyledButton'
 
 export const GoToDashboard = () => {
     const location = useLocation()
@@ -13,9 +13,7 @@ export const GoToDashboard = () => {
 
     return !isDashboard ? (
         <SideMenuLink to={APP_ROUTES_ENUM.DASHBOARD}>
-            <RoundedButton className='font-droid m-5 w-full px-2' minh={'min-h-[50px]'} rounded={'rounded-[15px]'}>
-                Dashboard
-            </RoundedButton>
+            <StyledButton className='mx-6 w-full'>Dashboard</StyledButton>
         </SideMenuLink>
     ) : (
         <div className='my-5 flex h-[45px] w-full items-center justify-center gap-2'>

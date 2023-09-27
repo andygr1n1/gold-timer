@@ -41,9 +41,8 @@ export const EditPassword: React.FC = observer(() => {
 
     return (
         <div>
-            <XInput className='w-[250px]' disabled label='Old Password' value={password} />
+            <XInput disabled label='Old Password' value={password} />
             <XInput
-                className='w-[250px]'
                 label='New Password'
                 value={new_password}
                 onChange={onChangeNewPassword}

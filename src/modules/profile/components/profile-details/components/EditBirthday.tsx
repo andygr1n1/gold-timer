@@ -23,7 +23,6 @@ export const EditBirthday: React.FC = observer(() => {
             selected={birthday || undefined}
             onSelect={onSelectBirthday}
             dateFormat={'dd.MM.yyyy'}
-            inputClassName='w-[250px]'
             label='Birthday'
             captionLayout='dropdown-buttons'
             fromYear={getYear(new Date(Date.now())) - 100}

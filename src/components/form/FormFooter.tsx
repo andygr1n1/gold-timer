@@ -1,6 +1,7 @@
 import { XXButton } from '@/components-x/x-button/XButton'
 import { Form } from 'antd'
 import { observer } from 'mobx-react-lite'
+import { StyledButton } from '../buttons/StyledButton'
 
 export const FormFooter: React.FC<{
     disabled?: boolean
@@ -11,12 +12,12 @@ export const FormFooter: React.FC<{
     return (
         <Form.Item>
             <div className='mt-10 flex w-full items-center justify-center gap-6'>
-                <XXButton onClick={onCancel} type='primary' className='bg-x-red text-sm hover:!bg-rose-500/90'>
+                <StyledButton onClick={onCancel} variant='outlined' error>
                     Cancel
-                </XXButton>
-                <XXButton disabled={disabled} type='primary' className='bg-x-ky text-sm' onClick={onOk}>
+                </StyledButton>
+                <StyledButton disabled={disabled} onClick={onOk}>
                     {okTitle}
-                </XXButton>
+                </StyledButton>
             </div>
         </Form.Item>
     )

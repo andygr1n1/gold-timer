@@ -13,7 +13,7 @@ export const XModal: React.FC<{
 }> = ({ height = '', onCancel, open, children, title = '', header = true, zIndex = 60 }) => {
     return (
         <Transition appear show={open} as={Fragment}>
-            <Dialog as='div' style={{ zIndex }} className='font-droid relative z-[60]' onClose={onCancel}>
+            <Dialog as='div' style={{ zIndex }} className='font-kzen relative z-[60]' onClose={onCancel}>
                 <Transition.Child
                     as={Fragment}
                     enter='ease-out duration-300 '

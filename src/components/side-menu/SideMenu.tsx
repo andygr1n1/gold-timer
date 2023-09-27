@@ -47,16 +47,17 @@ export const SideMenu: React.FC = observer(() => {
                 className={`${
                     useSideMenu.is_open ? 'animate-slide-in' : 'animate-slide-out lg:animate-opacity ml-[-320px] '
                 }
-                text-global-text bg-global-2-bg font-droid  absolute left-0 z-50 flex h-full shadow-md shadow-black/20
+                text-global-text bg-global-2-bg font-kzen  absolute left-0 z-50 flex h-full shadow-md shadow-black/20
                lg:static  lg:m-5 lg:mr-0 lg:flex lg:h-[calc(100%-40px)]
             `}
             >
                 <div className='flex w-[230px] min-w-[230px] flex-col overflow-auto py-5'>
                     <div className='flex flex-auto flex-col gap-5 overflow-auto  '>
                         <div className='relative mb-5 flex flex-col items-center justify-center '>
-                            {/* <UserName /> */}
+                            <UserName />
                             <UserAvatarSideMenu />
                             <CloseSideMenu onClose={useSideMenu.onChange} />
+                            <UserCoins />
                         </div>
                         <div className='w-full'>
                             <div className='mx-auto flex w-[180px] flex-auto flex-col gap-5 overflow-auto '>
@@ -65,7 +66,11 @@ export const SideMenu: React.FC = observer(() => {
                                     title='Profile'
                                     icon={<Icon icon='fluent:share-screen-person-16-regular' width={25} height={25} />}
                                 />
-                                <UserCoins />
+                                <SideMenuLink
+                                    to={APP_ROUTES_ENUM.ACHIEVEMENTS}
+                                    title='Achievements'
+                                    icon={<Icon icon='game-icons:achievement' width={23} height={23} />}
+                                />
                                 <XDivider className='w-[125px] bg-gray-700' />
                                 <SideMenuLink
                                     to={APP_ROUTES_ENUM.SPRINTS}

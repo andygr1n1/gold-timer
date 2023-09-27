@@ -10,7 +10,7 @@ export const Future: React.FC<{ sprint: ISprint$ }> = observer(({ sprint }) => {
     const sprintDate = format(new Date(sprintDay.date), 'd MMMM')
     return (
         <div className={`${styles['button']} ${styles['buttonDisabled']}`}>
-            <span className='font-droid-bold mx-2 text-rose-700'>Starts on</span> {sprintDate}
+            <span className='font-kzen mx-2 text-rose-700'>Starts on</span> {sprintDate}
         </div>
     )
 })

@@ -9,7 +9,7 @@ export const NoteTagsList: React.FC<{ note: INote$; deleteAction?: (goal: string
         return (
             <div className='flex flex-wrap gap-2'>
                 {noteTags.map((tag) => (
-                    <div key={tag} className='bg-xBlue-2 text-cText relative flex w-fit cursor-default rounded-md'>
+                    <div key={tag} className='bg-xBlue-2 relative flex w-fit cursor-default rounded-md text-white'>
                         <span className='p-1'> {capitalize(tag.trim())}</span>
                         {deleteAction && (
                             <Icon

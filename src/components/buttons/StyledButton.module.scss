@@ -1,0 +1,55 @@
+@mixin button($type, $color) {
+    border-style: solid;
+    &.#{$type}.#{$color} {
+        @apply flex cursor-pointer items-center justify-center rounded border text-sm font-semibold transition duration-300 ease-in-out #{!important};
+        color: var(--colors-button-#{$type}-#{$color}-text-color) #{!important};
+        background-color: var(--colors-button-#{$type}-#{$color}-bg-color) #{!important};
+        border-color: var(--colors-button-#{$type}-#{$color}-border-color) #{!important};
+
+        &:active {
+            color: var(--colors-button-#{$type}-#{$color}-active-text-color) #{!important};
+            background-color: var(--colors-button-#{$type}-#{$color}-active-bg-color) #{!important};
+            border-color: var(--colors-button-#{$type}-#{$color}-active-border-color) #{!important};
+            outline: none #{!important};
+        }
+
+        &:hover {
+            color: var(--colors-button-#{$type}-#{$color}-hover-text-color) #{!important};
+            background-color: var(--colors-button-#{$type}-#{$color}-hover-bg-color) #{!important};
+            border-color: var(--colors-button-#{$type}-#{$color}-hover-border-color) #{!important};
+        }
+
+        &:focus {
+            outline: 2px solid var(--colors-button-#{$type}-#{$color}-focused-border-color) #{!important};
+            outline-offset: -1px #{!important};
+            color: var(--colors-button-#{$type}-#{$color}-focused-text-color) #{!important};
+            background-color: var(--colors-button-#{$type}-#{$color}-focused-bg-color) #{!important};
+            border-color: transparent #{!important};
+        }
+
+        &:disabled {
+            cursor: default;
+            color: var(--colors-button-#{$type}-#{$color}-disabled-text-color) #{!important};
+            background-color: var(--colors-button-#{$type}-#{$color}-disabled-bg-color) #{!important};
+            border-color: var(--colors-button-#{$type}-#{$color}-disabled-border-color) #{!important};
+        }
+    }
+
+    &.large {
+        @apply h-10 #{!important};
+    }
+    &.small {
+        @apply h-8 #{!important};
+    }
+}
+
+.button {
+    @include button('contained', 'common');
+    @include button('contained', 'error');
+
+    @include button('outlined', 'common');
+    @include button('outlined', 'error');
+
+    @include button('text', 'common');
+    @include button('text', 'error');
+}

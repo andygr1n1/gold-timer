@@ -6,11 +6,14 @@ export default {
     'blue-1': '#2563EB',
     'blue-2': '#1D4ED8',
     //
+    //
+    'red-1': '#F41515',
+    'red-2': '#9C0B1D',
+    //
     'blue-slate-1': '#202c46',
     'blue-slate-2': '#151C2C',
     'blue-slate-3': '#10141D',
     //
-    red: '#9C0B1D',
     gold: '#F9B53D',
     sky: '#2563EB',
     'sky-darker': '#1d4ed8',

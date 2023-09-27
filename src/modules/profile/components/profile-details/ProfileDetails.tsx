@@ -12,7 +12,6 @@ export const ProfileDetails: React.FC = observer(() => {
 
     return (
         <div className={styles['profile-container']}>
-            <h2 className='mx-auto mb-20'>Profile</h2>
             <ProfileDetailsEditDialog />
             <ProfileAvatarIndex />
 

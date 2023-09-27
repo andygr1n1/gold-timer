@@ -13,8 +13,8 @@ export const ProfileDetailsEditDialog: React.FC = observer(() => {
     return (
         <XModal title={'Edit profile'} open={profileEditIsOpen} onCancel={closeProfileEdit}>
             {profileEditIsOpen ? (
-                <div className='animate-opacity-3 flex h-full flex-col  py-5'>
-                    <div className='flex h-full flex-auto flex-col'>
+                <>
+                    <div className='flex h-full w-full  flex-auto flex-col'>
                         <EditName />
                         <EditPhone />
                         <EditBirthday />
@@ -27,7 +27,7 @@ export const ProfileDetailsEditDialog: React.FC = observer(() => {
                         onCancel={closeProfileEdit}
                         disabled={!enabledProfileDataUpdate}
                     />
-                </div>
+                </>
             ) : null}
         </XModal>
     )

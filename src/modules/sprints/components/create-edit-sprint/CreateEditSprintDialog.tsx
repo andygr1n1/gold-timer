@@ -28,7 +28,7 @@ export const CreateEditSprintDialog: React.FC = observer(() => {
             {new_sprint?.loading ? (
                 <XLoader />
             ) : (
-                <div className='animate-opacity-5'>
+                <>
                     {/* New Sprint Image */}
                     <NewSprintImageIndex />
                     {/* New Sprint Form */}
@@ -51,7 +51,7 @@ export const CreateEditSprintDialog: React.FC = observer(() => {
                             disabled={!new_sprint?.title}
                         />
                     </Form>
-                </div>
+                </>
             )}
         </XModal>
     )

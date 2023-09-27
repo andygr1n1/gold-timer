@@ -13,14 +13,5 @@ export const EditPhone: React.FC = observer(() => {
         onChangeField('phone', newValue)
     }
 
-    return (
-        <XInput
-            className='w-[250px]'
-            label='Phone'
-            value={phone}
-            onChange={onChangeNewPassword}
-            type='number'
-            placeholder='Set phone'
-        />
-    )
+    return <XInput label='Phone' value={phone} onChange={onChangeNewPassword} type='number' placeholder='Set phone' />
 })
