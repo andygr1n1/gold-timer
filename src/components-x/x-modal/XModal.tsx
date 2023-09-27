@@ -39,27 +39,24 @@ export const XModal: React.FC<{
                         >
                             <Dialog.Panel
                                 className={`${
-                                    height || 'h-[80vh]'
-                                } bg-global-2-bg max-h-[80vh] w-full max-w-lg transform bg-opacity-[98%] p-6 pr-4  shadow-xl shadow-black/30 transition-all`}
+                                    height || 'h-fit'
+                                } bg-global-2-bg relative mx-auto max-h-[calc(100vh-180px)] w-full max-w-[360px] transform overflow-auto rounded-md p-10 py-20 shadow-xl shadow-black/30 transition-all md:max-h-[80vh] md:py-10`}
                             >
-                                <div className='h-full w-[calc(100%-32px)] overflow-auto px-4'>
-                                    {header && (
-                                        <div className='relative flex items-center justify-center'>
-                                            <Dialog.Title
-                                                as='div'
-                                                className='text-cText absolute top-3 flex bg-transparent opacity-70'
-                                            >
-                                                {title}
-                                            </Dialog.Title>
-                                            <Icon
-                                                icon='mdi:close'
-                                                onClick={onCancel}
-                                                className='text-cText absolute right-0 top-3 cursor-pointer text-xl  opacity-70 duration-300 hover:font-bold hover:text-red-500  hover:opacity-100'
-                                            />
-                                        </div>
-                                    )}
-                                    <div className='mx-auto mt-14 h-[calc(100%-100px)] w-fit'>{children}</div>
-                                </div>
+                                {/* <Icon
+                                    icon='mdi:close'
+                                    onClick={onCancel}
+                                    width={30}
+                                    height={30}
+                                    className='text-cText absolute right-6 top-[34px] z-10 cursor-pointer opacity-70 duration-300 hover:font-bold hover:text-red-500  hover:opacity-100'
+                                /> */}
+                                {header && (
+                                    <div className='relative mb-5 flex items-center justify-center'>
+                                        <Dialog.Title as='div' className='text-cText flex bg-transparent text-2xl '>
+                                            {title}
+                                        </Dialog.Title>
+                                    </div>
+                                )}
+                                <div className='flex h-full w-full flex-col rounded-md'>{children}</div>
                             </Dialog.Panel>
                         </Transition.Child>
                     </div>
