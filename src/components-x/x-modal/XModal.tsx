@@ -40,7 +40,7 @@ export const XModal: React.FC<{
                             <Dialog.Panel
                                 className={`${
                                     height || 'h-fit'
-                                } bg-global-2-bg relative mx-auto max-h-[calc(100vh-180px)] w-full max-w-[360px] transform overflow-auto rounded-md p-10 py-20 shadow-xl shadow-black/30 transition-all md:max-h-[80vh] md:py-10`}
+                                } bg-global-2-bg relative mx-auto max-h-[80vh] w-full max-w-[360px] transform overflow-auto rounded-md p-10  shadow-xl shadow-black/30 transition-all `}
                             >
                                 {/* <Icon
                                     icon='mdi:close'
