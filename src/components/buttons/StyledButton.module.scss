@@ -1,45 +1,53 @@
 @mixin button($type, $color) {
-    border-style: solid;
+    @apply rounded border-solid;
+
     &.#{$type}.#{$color} {
-        @apply flex cursor-pointer items-center justify-center rounded border text-sm font-semibold transition duration-300 ease-in-out #{!important};
-        color: var(--colors-button-#{$type}-#{$color}-text-color) #{!important};
-        background-color: var(--colors-button-#{$type}-#{$color}-bg-color) #{!important};
-        border-color: var(--colors-button-#{$type}-#{$color}-border-color) #{!important};
+        @apply flex cursor-pointer items-center justify-center  border text-sm font-semibold transition duration-300 ease-in-out;
+        color: var(--colors-button-#{$type}-#{$color}-text-color);
+        background-color: var(--colors-button-#{$type}-#{$color}-bg-color);
+        border-color: var(--colors-button-#{$type}-#{$color}-border-color);
 
         &:active {
-            color: var(--colors-button-#{$type}-#{$color}-active-text-color) #{!important};
-            background-color: var(--colors-button-#{$type}-#{$color}-active-bg-color) #{!important};
-            border-color: var(--colors-button-#{$type}-#{$color}-active-border-color) #{!important};
-            outline: none #{!important};
+            color: var(--colors-button-#{$type}-#{$color}-active-text-color);
+            background-color: var(--colors-button-#{$type}-#{$color}-active-bg-color);
+            border-color: var(--colors-button-#{$type}-#{$color}-active-border-color);
+            outline: none;
         }
 
         &:hover {
-            color: var(--colors-button-#{$type}-#{$color}-hover-text-color) #{!important};
-            background-color: var(--colors-button-#{$type}-#{$color}-hover-bg-color) #{!important};
-            border-color: var(--colors-button-#{$type}-#{$color}-hover-border-color) #{!important};
+            color: var(--colors-button-#{$type}-#{$color}-hover-text-color);
+            background-color: var(--colors-button-#{$type}-#{$color}-hover-bg-color);
+            border-color: var(--colors-button-#{$type}-#{$color}-hover-border-color);
         }
 
         &:focus {
-            outline: 2px solid var(--colors-button-#{$type}-#{$color}-focused-border-color) #{!important};
-            outline-offset: -1px #{!important};
-            color: var(--colors-button-#{$type}-#{$color}-focused-text-color) #{!important};
-            background-color: var(--colors-button-#{$type}-#{$color}-focused-bg-color) #{!important};
-            border-color: transparent #{!important};
+            outline: 2px solid var(--colors-button-#{$type}-#{$color}-focused-border-color);
+            outline-offset: -1px;
+            color: var(--colors-button-#{$type}-#{$color}-focused-text-color);
+            background-color: var(--colors-button-#{$type}-#{$color}-focused-bg-color);
+            border-color: transparent;
         }
 
         &:disabled {
             cursor: default;
-            color: var(--colors-button-#{$type}-#{$color}-disabled-text-color) #{!important};
-            background-color: var(--colors-button-#{$type}-#{$color}-disabled-bg-color) #{!important};
-            border-color: var(--colors-button-#{$type}-#{$color}-disabled-border-color) #{!important};
+            color: var(--colors-button-#{$type}-#{$color}-disabled-text-color);
+            background-color: var(--colors-button-#{$type}-#{$color}-disabled-bg-color);
+            border-color: var(--colors-button-#{$type}-#{$color}-disabled-border-color);
         }
     }
 
     &.large {
-        @apply h-10 #{!important};
+        @apply h-10;
+    }
+    &.extraLarge {
+        @apply h-12;
     }
     &.small {
-        @apply h-8 #{!important};
+        @apply h-8;
+    }
+
+    &.radius15 {
+        @apply rounded-2xl;
     }
 }
 

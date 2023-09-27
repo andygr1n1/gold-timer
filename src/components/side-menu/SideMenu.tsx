@@ -54,9 +54,8 @@ export const SideMenu: React.FC = observer(() => {
                 <div className='flex w-[230px] min-w-[230px] flex-col overflow-auto py-5'>
                     <div className='flex flex-auto flex-col gap-5 overflow-auto  '>
                         <div className='relative mb-5 flex flex-col items-center justify-center '>
-                            <UserName />
+                            {isDesktop && <UserName />}
                             <UserAvatarSideMenu />
-                            <CloseSideMenu onClose={useSideMenu.onChange} />
                             <UserCoins />
                         </div>
                         <div className='w-full'>
@@ -66,6 +65,7 @@ export const SideMenu: React.FC = observer(() => {
                                     title='Profile'
                                     icon={<Icon icon='fluent:share-screen-person-16-regular' width={25} height={25} />}
                                 />
+
                                 <SideMenuLink
                                     to={APP_ROUTES_ENUM.ACHIEVEMENTS}
                                     title='Achievements'
@@ -87,7 +87,6 @@ export const SideMenu: React.FC = observer(() => {
                                     title='Notes'
                                     icon={<Icon icon='fluent:task-list-square-ltr-16-filled' width={25} height={25} />}
                                 />
-                                <XDivider className='w-[125px] bg-gray-700' />
                             </div>
                         </div>
                     </div>

@@ -1,10 +1,10 @@
-import { CreateGoalForm } from '@/modules/goals/components/new-goal-dialog/CreateGoalForm'
 import { EditGoalForm } from '@/components/goal-edit-form/EditGoalForm'
 import { GoalRitualForm } from '@/components/goal-ritual-form/GoalRitualForm'
 import { useGoalsStore } from '@/StoreProvider'
 import { observer } from 'mobx-react-lite'
 import { Breadcrumbs } from './components/Breadcrumbs'
 import { GoalOnDelete } from './components/GoalOnDelete'
+import { CreateGoalForm } from '@/modules/goals/components/create-edit-goal/CreateGoalForm'
 
 export const EditableGoalMode: React.FC = observer(() => {
     return (

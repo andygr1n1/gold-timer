@@ -40,7 +40,7 @@ export const XModal: React.FC<{
                             <Dialog.Panel
                                 className={`${
                                     height || 'h-fit'
-                                } bg-global-2-bg relative mx-auto max-h-[80vh] w-full max-w-[360px] transform overflow-auto rounded-md p-10  shadow-xl shadow-black/30 transition-all `}
+                                } bg-global-2-bg relative mx-auto max-h-[80vh] w-full max-w-[360px] transform overflow-scroll rounded-md p-10  shadow-xl shadow-black/30 transition-all `}
                             >
                                 {/* <Icon
                                     icon='mdi:close'
@@ -51,7 +51,10 @@ export const XModal: React.FC<{
                                 /> */}
                                 {header && (
                                     <div className='relative mb-5 flex items-center justify-center'>
-                                        <Dialog.Title as='div' className='text-cText flex bg-transparent text-2xl '>
+                                        <Dialog.Title
+                                            as='div'
+                                            className='text-cText flex bg-transparent text-xl font-bold '
+                                        >
                                             {title}
                                         </Dialog.Title>
                                     </div>

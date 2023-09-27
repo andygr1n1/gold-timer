@@ -6,9 +6,9 @@ export const CloseSideMenu: React.FC<{ className?: string; onClose: () => void }
         return (
             <Icon
                 icon='line-md:menu-to-close-transition'
-                className={`text-nav-link hover:text-nav-link-active absolute right-4 top-2 cursor-pointer font-bold lg:hidden ${className}`}
-                width={15}
-                height={15}
+                className={`text-nav-link hover:text-nav-link-active absolute right-4 top-2 cursor-pointer font-bold ${className}`}
+                width={20}
+                height={20}
                 onClick={onClose}
             />
         )

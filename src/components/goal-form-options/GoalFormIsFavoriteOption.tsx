@@ -1,7 +1,7 @@
 import { useGoalsStore } from '@/StoreProvider'
 import { Icon } from '@iconify/react'
 import { observer } from 'mobx-react-lite'
-import { FormLabel } from '../form/FormLabel'
+import favoriteIcon from '@/assets/heart-favorite.svg'
 
 export const GoalFormIsFavoriteOption: React.FC = observer(() => {
     const { new_goal } = useGoalsStore()
@@ -16,27 +16,18 @@ export const GoalFormIsFavoriteOption: React.FC = observer(() => {
     }
 
     return (
-        <div className='py-2'>
-            <FormLabel title='Favorite' />
+        <button onClick={handleClick} className='flex h-10 w-10 cursor-pointer items-center justify-center'>
             {is_favorite ? (
-                <button title='Unfavorite' onClick={handleClick} className=' flex items-center justify-center '>
-                    <Icon
-                        icon='ic:outline-favorite'
-                        width={30}
-                        height={30}
-                        className='cursor-pointer text-red-700 transition-colors duration-300 hover:text-red-600'
-                    />
-                </button>
+                <img
+                    src={favoriteIcon}
+                    className=' animate-opacity-3 flex h-6 w-6 items-center justify-center duration-300'
+                />
             ) : (
-                <button title='Favorite' className='flex items-center justify-center' onClick={handleClick}>
-                    <Icon
-                        icon='ic:baseline-favorite-border'
-                        width={30}
-                        height={30}
-                        className='text-cText cursor-pointer transition-colors duration-300 hover:text-red-600'
-                    />
-                </button>
+                <Icon
+                    icon='ic:baseline-favorite-border'
+                    className='text-cText animate-opacity-3 h-10 w-10 transition-colors hover:text-red-600'
+                />
             )}
-        </div>
+        </button>
     )
 })

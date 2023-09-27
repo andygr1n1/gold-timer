@@ -8,7 +8,7 @@ export type StyledButtonType = 'contained' | 'outlined' | 'text'
 export type StyledButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
     variant?: StyledButtonType
     refLink?: React.Ref<HTMLButtonElement>
-    size?: 'large' | 'small'
+    size?: 'large' | 'small' | 'extraLarge'
     startIcon?: ReactNode
     endIcon?: ReactNode
     dataTest?: string
@@ -54,6 +54,7 @@ export const StyledButton = ({
                 styles[variant],
                 styles[color],
                 styles[size],
+                styles['radius15'],
                 className,
             )}
             ref={refLink}
