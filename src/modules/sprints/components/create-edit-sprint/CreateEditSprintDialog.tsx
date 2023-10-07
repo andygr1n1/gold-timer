@@ -11,17 +11,11 @@ import { NewSprintDurationIndex } from './components/NewSprintDurationIndex'
 import { NewSprintStartDateIndex } from './components/NewSprintStartDateIndex'
 import { XLoader } from '@/components-x/x-loader/XLoader'
 import { FormFooter } from '@/components/form/FormFooter'
-import { cloneDeep } from 'lodash-es'
 
 export const CreateEditSprintDialog: React.FC = observer(() => {
     const { onChangeField, new_sprint } = useSprintsStore()
 
     const onCancel = () => onChangeField('new_sprint', undefined)
-
-    console.log('====================================')
-    console.warn('newsprint ID - ', new_sprint?.id)
-    console.warn('sprint details', cloneDeep(new_sprint))
-    console.log('====================================')
 
     return (
         <XModal title={new_sprint?.edit_mode ? 'Edit Sprint' : 'Create Sprint'} open={!!new_sprint} onCancel={onCancel}>

@@ -4,11 +4,11 @@ import { Input } from 'antd'
 import { observer } from 'mobx-react-lite'
 
 export const InputFinishedAt: React.FC = observer(() => {
-    const { new_goal, is_creator_mode } = useGoalsStore()
+    const { new_goal } = useGoalsStore()
 
     if (!new_goal) return null
 
-    const { finished_at, onChangeField } = new_goal
+    const { finished_at, onChangeField, view_mode } = new_goal
 
     function disabledDate(current: Date) {
         // Can not select days before today and today
@@ -17,9 +17,9 @@ export const InputFinishedAt: React.FC = observer(() => {
 
     return (
         <>
-            <div className='py-2'>
+            <div>
                 <h5>Estimation: </h5>
-                {!is_creator_mode ? (
+                {view_mode ? (
                     <Input size='large' disabled value={finished_at?.toDateString()} />
                 ) : (
                     <div className='flex flex-col gap-5 2xl:flex-row'>

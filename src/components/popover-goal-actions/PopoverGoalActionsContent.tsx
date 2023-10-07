@@ -6,7 +6,7 @@ import { observer } from 'mobx-react-lite'
 export const PopoverGoalActionsContent: React.FC<{ goal: IGoal$; action: () => void; forceMode?: boolean }> = observer(
     ({ goal, action: onClose, forceMode = false }) => {
         const {
-            goals$: { goCreateEditMode },
+            goals$: { openGoalCreator },
             modal_windows$: { goals_manager_mw$ },
         } = useRootStore()
 
@@ -43,9 +43,7 @@ export const PopoverGoalActionsContent: React.FC<{ goal: IGoal$; action: () => v
                         )}
                         <MenuItem
                             action={() => {
-                                goCreateEditMode(goal)
-                                goals_manager_mw$.onChangeField('visible', true)
-                                forceMode && goals_manager_mw$.onChangeField('force_mode', true)
+                                openGoalCreator({ selectedGoal: goal, edit_mode: true })
                                 onClose()
                             }}
                             icon='material-symbols:edit-square'
@@ -57,8 +55,6 @@ export const PopoverGoalActionsContent: React.FC<{ goal: IGoal$; action: () => v
                         <MenuItem
                             action={() => {
                                 goal.createNewChild()
-                                goals_manager_mw$.onChangeField('visible', true)
-                                forceMode && goals_manager_mw$.onChangeField('force_mode', true)
                                 onClose()
                             }}
                             icon='material-symbols:check-circle-rounded'

@@ -2,15 +2,13 @@ import { IGoal$ } from '@/mst/types'
 import { observer } from 'mobx-react-lite'
 
 export const GoalTitle: React.FC<{ goal: IGoal$ }> = observer(({ goal }) => {
-    const { title, isRitualGoal, isExpired, isFrozen, isCompleted } = goal
+    const { title, isRitualGoal, isExpired, isCompleted } = goal
 
     let styleByGoalType = 'bg-green-500'
 
     if (isRitualGoal) styleByGoalType = 'bg-indigo-500 text-indigo-900'
 
     if (isExpired) styleByGoalType = 'bg-red-500 text-red-900'
-
-    if (isFrozen) styleByGoalType = 'bg-blue-500'
 
     if (isCompleted) styleByGoalType = 'bg-amber-500'
 

@@ -1,5 +1,5 @@
 @mixin button($type, $color) {
-    @apply rounded border-solid;
+    @apply relative rounded border-solid;
 
     &.#{$type}.#{$color} {
         @apply flex cursor-pointer items-center justify-center  border text-sm font-semibold transition duration-300 ease-in-out;
@@ -29,10 +29,30 @@
         }
 
         &:disabled {
-            cursor: default;
+            pointer-events: none;
+            @apply select-none opacity-60 backdrop-blur-xl;
             color: var(--colors-button-#{$type}-#{$color}-disabled-text-color);
             background-color: var(--colors-button-#{$type}-#{$color}-disabled-bg-color);
             border-color: var(--colors-button-#{$type}-#{$color}-disabled-border-color);
+        }
+
+        &:active {
+            @apply shadow-[0px_9px_30px] shadow-[var(--colors-button-#{$type}-#{$color}-hover-bg-color)];
+        }
+
+        &:active:after {
+            padding: 0;
+            margin: 0;
+            bottom: 0;
+            left: 0;
+            opacity: 1;
+            transition: 0s;
+            @apply w-0;
+        }
+
+        &:after {
+            content: '';
+            @apply absolute h-full w-full rounded-xl bg-white/40 opacity-0 duration-700;
         }
     }
 

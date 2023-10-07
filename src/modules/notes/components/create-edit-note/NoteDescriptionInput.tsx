@@ -19,7 +19,6 @@ export const NoteDescriptionInput: React.FC = observer(() => {
             <FormLabel title='Note:' />
             <ReactQuill
                 preserveWhitespace
-                theme='snow'
                 value={description}
                 onChange={(content) => {
                     onChangeField('description', content)

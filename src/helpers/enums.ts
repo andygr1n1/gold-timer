@@ -21,11 +21,10 @@ export enum PRIVACY_ENUM {
     FRIEND_ZONE = 'friendzone',
 }
 
-export enum STATUS_ENUM {
+export enum GOAL_STATUS_ENUM {
     ACTIVE = 'active',
     FINISHED = 'finished',
     COMPLETED = 'completed',
-    FROZEN = 'frozen',
     DEPRECATED = 'deprecated',
     FAILED = 'failed',
 }
@@ -59,29 +58,11 @@ export enum APP_ROUTES_ENUM {
     NEW_PASSWORD = 'new_password',
     HOME = '',
     PROFILE = 'profile',
-    FRIENDS = 'friends',
-    SEARCH = 'search',
     ACHIEVEMENTS = 'achievements',
     NOTES = 'notes',
     GOALS = 'goals',
     SPRINTS = 'sprints',
     DASHBOARD = 'dashboard',
-    SANCTUARY = 'sanctuary',
-    BIT_WARDEN = 'bitwarden',
-    SUGGESTIONS = 'suggestions',
-    SETTINGS = 'settings',
-    MISSIONS = 'missions',
-}
-
-export enum LOG_TYPE_ENUM {
-    CREATED = 'created',
-    DEPRECATED = 'deprecated',
-    ACTIVE = 'active',
-    FINISHED = 'finished',
-    COMPLETED = 'completed',
-    FROZEN = 'frozen',
-    FAILED = 'failed',
-    RITUALIZED = 'ritualized',
 }
 
 export enum RITUAL_TYPE_ENUM {

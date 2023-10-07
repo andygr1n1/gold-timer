@@ -12,7 +12,7 @@ export const InputCreatedAt: React.FC = observer(() => {
 
     return (
         <>
-            <div className='py-2'>
+            <div>
                 <h5>Created: </h5>
                 <Input
                     size='large'

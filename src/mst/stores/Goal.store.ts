@@ -1,11 +1,10 @@
 import { GOAL_TYPE_ENUM } from './../../helpers/enums'
-import { LOG_TYPE_ENUM, RITUAL_TYPE_ENUM, STATUS_ENUM } from '@/helpers/enums'
+import { RITUAL_TYPE_ENUM, GOAL_STATUS_ENUM } from '@/helpers/enums'
 import { completeGoalMutation } from '@/graphql/mutations/completeGoal.mutation'
 import { failGoalMutation } from '@/graphql/mutations/failGoal.mutation'
 import { cast, flow, getParentOfType, toGenerator, types } from 'mobx-state-tree'
 import { Goal } from '../models/Goal.model'
 import { Goals$ } from './Goals.store'
-import { generateLog } from '@/graphql/mutations/generateLog.mutation'
 import { favoriteGoalMutation } from '@/graphql/mutations/favoriteGoal.mutation'
 import { message } from 'antd'
 import { ritualizeGoalMutation } from '@/graphql/mutations/ritualizeGoal.mutation'
@@ -21,13 +20,10 @@ export const Goal$ = types
     .compose(
         Goal,
         types.model({
-            /* just for goal create mode */
-            /*  */
-            estimation_days: 0,
             //
             // to understand how to update goal, when a child is creating
             // parent goal can be failed, completed or deprecated if was frozen
-            goal_new_status: types.maybe(types.enumeration(Object.values(STATUS_ENUM))),
+            goal_new_status: types.maybe(types.enumeration(Object.values(GOAL_STATUS_ENUM))),
             //
             goal_ritualized_mode: false,
         }),
@@ -37,11 +33,8 @@ export const Goal$ = types
         get isChildGoal(): boolean {
             return !!self.parent_goal_id
         },
-        get isFrozen(): boolean {
-            return self.status === STATUS_ENUM.FROZEN
-        },
         get isCompleted(): boolean {
-            return self.status === STATUS_ENUM.COMPLETED
+            return self.status === GOAL_STATUS_ENUM.COMPLETED
         },
         get isRitualGoal(): boolean {
             return !!self.goal_ritual?.ritual_power
@@ -68,7 +61,6 @@ export const Goal$ = types
         },
 
         get goalType(): GOAL_TYPE_ENUM {
-            if (this.isFrozen) return GOAL_TYPE_ENUM.FROZEN
             if (this.isExpired) return GOAL_TYPE_ENUM.EXPIRED
             if (this.isRitualGoal) return GOAL_TYPE_ENUM.RITUALIZED
 
@@ -85,20 +77,12 @@ export const Goal$ = types
             self[key] = value
         },
         goGoalViewMode(): void {
-            const { goGoalViewMode } = getParentOfType(self, Goals$)
+            const { openGoalCreator } = getParentOfType(self, Goals$)
 
-            goGoalViewMode(cast(self))
-        },
-        goActivateFreezedGoal(): void {
-            const { goFreezedGoalViewMode } = getParentOfType(self, Goals$)
-            goFreezedGoalViewMode(cast(self))
-        },
-        goEditFrozenGoal(): void {
-            const { goGoalViewMode } = getParentOfType(self, Goals$)
-            goGoalViewMode(cast(self))
+            openGoalCreator({ selectedGoal: cast(self), view_mode: true })
         },
         goGoalRitualizedMode(): void {
-            const { goCreateEditMode } = getParentOfType(self, Goals$)
+            const { openGoalCreator } = getParentOfType(self, Goals$)
 
             self.goal_ritualized_mode = true
 
@@ -111,7 +95,7 @@ export const Goal$ = types
                     ritual_interval: 7,
                 })
             }
-            goCreateEditMode(cast(self))
+            openGoalCreator({ selectedGoal: cast(self), edit_mode: true })
         },
 
         completeGoal: flow(function* _completeGoal() {
@@ -120,9 +104,6 @@ export const Goal$ = types
                 if (!result) throw new Error('completeGoal error')
 
                 self.status = result
-
-                const completeLog = generateLog(self.id, LOG_TYPE_ENUM.COMPLETED)
-                if (!completeLog) throw new Error('completeLog error')
 
                 // >> coins
                 const user$: IUser$ = getParentOfType(self, Root$).user$
@@ -201,8 +182,8 @@ export const Goal$ = types
             }
         }),
         createNewChild(): void {
-            const { goCreateNewChildGoal } = getParentOfType(self, Goals$)
-            goCreateNewChildGoal(self.id)
+            const { openGoalCreator } = getParentOfType(self, Goals$)
+            openGoalCreator({ parentGoalId: self.id })
         },
         failGoal: flow(function* _failGoal() {
             try {

@@ -8,28 +8,24 @@ export const ProfileAvatarIndex = observer(() => {
     const { img_cropped_src, onChangeField, avatar } = useUserStore()
 
     return (
-        <div className='outline-xBlue-1 group relative mx-auto flex justify-center rounded-full bg-transparent outline-2 duration-300 hover:shadow-md hover:shadow-blue-500 hover:outline-dotted'>
+        <div className='group relative mx-auto w-fit rounded-full'>
             <div
                 title='upload image'
                 className='duration-280 flex flex-col items-center justify-center rounded-full bg-transparent'
             >
                 {img_cropped_src ? (
-                    <img src={img_cropped_src} className='h-[280px] w-[280px] rounded-full ' />
+                    <img src={img_cropped_src} className='h-full max-h-[280px] w-full max-w-[280px] rounded-full ' />
                 ) : (
                     <>
                         <div className='group relative cursor-pointer'>
                             {avatar ? (
-                                <div className='animate-opacity-5 !m-0 h-[280px] w-[280px] cursor-pointer'>
-                                    <img
-                                        src={`${import.meta.env.VITE_FIRE_BUNNY_STORAGE}/avatars/${avatar}`}
-                                        width={280}
-                                        height={280}
-                                        className='animate-opacity-3 rounded-full'
-                                    />
-                                </div>
+                                <img
+                                    src={`${import.meta.env.VITE_FIRE_BUNNY_STORAGE}/avatars/${avatar}`}
+                                    className='animate-opacity-5 h-full max-h-[280px] w-full max-w-[280px] cursor-pointer rounded-full duration-300 group-hover:shadow-md group-hover:shadow-blue-500'
+                                />
                             ) : (
                                 <Avatar
-                                    className='animate-opacity-5 !m-0 h-[280px] w-[280px] cursor-pointer'
+                                    className='animate-opacity-5 !m-0 h-full max-h-[280px] w-full max-w-[280px]  cursor-pointer'
                                     icon={
                                         <Icon
                                             icon='carbon:user-avatar-filled'
@@ -58,7 +54,7 @@ export const ProfileAvatarIndex = observer(() => {
             </div>
             <input
                 title='upload'
-                className='absolute z-20 flex h-[280px] w-[280px] cursor-pointer opacity-0'
+                className='absolute left-0 top-0 z-20 flex h-full w-full cursor-pointer rounded-full opacity-0'
                 accept='image/*'
                 id='file_input'
                 type='file'

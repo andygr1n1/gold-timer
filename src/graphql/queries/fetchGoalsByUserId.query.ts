@@ -1,4 +1,4 @@
-import { STATUS_ENUM } from '@/helpers/enums'
+import { GOAL_STATUS_ENUM } from '@/helpers/enums'
 import { IGoal$SnapshotIn } from '@/mst/types'
 import { gql } from 'graphql-request'
 import { generateClient } from '../client'
@@ -16,12 +16,12 @@ export const fetchGoalsByUserId = async (owner_id: string): Promise<IGoal$Snapsh
                 where: {_or: [
                     {
                         owner_id: {_eq:  $owner_id},
-                        status: {_in: [${STATUS_ENUM.ACTIVE}]},
+                        status: {_in: [${GOAL_STATUS_ENUM.ACTIVE}]},
                         # finished_at: {_lte: $finishedAtFilter}
                     },
                     {
                         owner_id: {_eq:  $owner_id},
-                        status: {_in: [${STATUS_ENUM.ACTIVE}]},
+                        status: {_in: [${GOAL_STATUS_ENUM.ACTIVE}]},
                         is_favorite: {_eq: true}}]},
                 order_by: { finished_at: asc }
             ) {

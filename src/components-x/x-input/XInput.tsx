@@ -1,11 +1,13 @@
 import clsx from 'clsx'
 import styles from './XInput.module.scss'
-import { ReactNode } from 'react'
+import { ReactNode, useState } from 'react'
 import { IMaskMixin } from 'react-imask'
+import { FormLabel } from '@/components/form/FormLabel'
 // TODO to find a solution with "react-imask": "^7.1.3",
 //   "tailwind-merge": "^1.14.0",
 // "tailwindcss-animate": "^1.0.7",
 export type XInputProps = React.InputHTMLAttributes<HTMLInputElement> & {
+    variant?: 'select' | 'input'
     refLink?: React.Ref<HTMLInputElement>
     label?: string
     error?: boolean
@@ -13,6 +15,8 @@ export type XInputProps = React.InputHTMLAttributes<HTMLInputElement> & {
     startIcon?: ReactNode
     endIcon?: ReactNode
     mask?: string
+    readOnly?: boolean
+    width?: number
 }
 
 export const XInput: React.FC<XInputProps> = ({
@@ -23,29 +27,72 @@ export const XInput: React.FC<XInputProps> = ({
     endIcon,
     refLink,
     mask,
+    readOnly,
+    width,
+    variant = 'input',
     ...otherProps
 }) => {
     const lbl = typeof label === 'string'
+    const isSelect = variant === 'select'
+
+    const [focused, setFocused] = useState(false)
 
     return (
-        <div className={clsx('relative', otherProps.className)}>
-            {lbl && <div className='font-kzen mb-1 text-xs opacity-70'>{label}</div>}
-            <div className={clsx('relative', otherProps.className)}>
-                {startIcon && <div className='absolute left-[8px] top-[8px] text-2xl'>{startIcon}</div>}
-                <input
-                    {...otherProps}
-                    className={clsx(
-                        styles['xinput'],
-                        error && styles['xinput-error'],
-                        startIcon && styles['xinput-start-icon'],
-                        endIcon && styles['xinput-end-icon'],
-                        endIcon && startIcon && styles['xinput-start-end-icon'],
-                    )}
-                    ref={refLink}
-                />
-                {endIcon && <div className='absolute right-[8px]  top-[8px] text-2xl'>{endIcon}</div>}
+        <div className={clsx('relative')} style={width ? { width: `${width}px` } : undefined}>
+            {lbl && <FormLabel title={label} />}
+            <div
+                className={clsx(
+                    'group relative',
+                    styles['xinput-wrapper'],
+                    error && styles['xinput-wrapper-error'],
+                    focused && styles['xinput-wrapper-focused'],
+                )}
+                style={width ? { width: `${width}px` } : undefined}
+            >
+                {readOnly ? (
+                    <div className='flex h-full items-center justify-start gap-2 px-1'>{otherProps.value}</div>
+                ) : (
+                    <>
+                        {startIcon && <div className='absolute left-[8px] top-[8px] z-20 text-2xl'>{startIcon}</div>}
+                        <input
+                            {...otherProps}
+                            value={otherProps.value ?? ''}
+                            className={clsx(
+                                'xinput',
+                                'focus:group-first:border-xBlue-1',
+                                styles['xinput'],
+                                startIcon && styles['xinput-start-icon'],
+                                endIcon && styles['xinput-end-icon'],
+                                endIcon && startIcon && styles['xinput-start-end-icon'],
+                                otherProps.className,
+                            )}
+                            ref={refLink}
+                            onFocus={(e) => {
+                                otherProps?.onFocus?.(e)
+                                setFocused(true)
+                            }}
+                            onBlur={(e) => {
+                                otherProps?.onBlur?.(e)
+                                setFocused(false)
+                            }}
+                            onClick={otherProps.onClick}
+                        />
+                        {endIcon && (
+                            <div className='input-icon absolute right-[8px] top-[8px] z-20 text-2xl '>{endIcon}</div>
+                        )}
+                    </>
+                )}
+
                 {error && errorMessage && (
-                    <div className='font-kzen absolute bottom-1 left-0 text-xs text-red-500'>{errorMessage}</div>
+                    <div className='font-kzen bg-global-3-bg absolute bottom-[-5px] left-2 z-20 m-0 rounded-full p-0 px-1 text-xs leading-3 text-red-700 '>
+                        {errorMessage}
+                    </div>
+                )}
+                {isSelect && (
+                    <div
+                        onClick={otherProps.onClick}
+                        className='input-select absolute left-0 top-0 z-10 h-full w-full cursor-pointer rounded-md opacity-0'
+                    />
                 )}
             </div>
         </div>

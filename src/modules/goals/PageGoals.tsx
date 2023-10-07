@@ -4,7 +4,6 @@ import { ActiveGoals } from '../dashboard/components/ActiveGoals'
 import { CompletedGoals } from '../dashboard/components/CompletedGoals'
 import { ExpiredGoals } from '../dashboard/components/ExpiredGoals'
 import { FavoriteGoals } from '../dashboard/components/FavoriteGoals'
-import { FrozenGoals } from '../dashboard/components/FrozenGoals'
 import { RitualGoals } from '../dashboard/components/RitualGoals'
 
 export const PageGoals: React.FC = observer(() => {
@@ -15,7 +14,6 @@ export const PageGoals: React.FC = observer(() => {
             <ExpiredGoals />
             <ActiveGoals />
             <RitualGoals />
-            <FrozenGoals />
             <CompletedGoals />
         </div>
     ) : (

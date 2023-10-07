@@ -5,7 +5,7 @@ import { observer } from 'mobx-react-lite'
  * @deprecated old code
  */
 export const GoalDeadline: React.FC<{ goal: IGoal$ }> = observer(({ goal }) => {
-    const { remainingTimeString, isExpired, isFrozen, expiredDaysCount, isRitualGoal, isCompleted } = goal
+    const { remainingTimeString, isExpired, expiredDaysCount, isRitualGoal, isCompleted } = goal
 
     let styleByGoalType = 'text-green-600'
 
@@ -28,7 +28,7 @@ export const GoalDeadline: React.FC<{ goal: IGoal$ }> = observer(({ goal }) => {
 
     return (
         <div className='flex items-center gap-2 py-4  '>
-            {isFrozen ? null : isExpired ? (
+            {isExpired ? (
                 <div className='flex items-center gap-2 font-bold  text-red-700'>
                     <span className='capitalize'>{remainingTimeString}</span>
                     <span className='text-xl font-bold'>{expiredDaysCount}</span>

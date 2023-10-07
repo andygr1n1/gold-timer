@@ -1,9 +1,8 @@
 import { InputCreatedAt } from '@/modules/goals/components/create-edit-goal/components/InputCreatedAt'
 import { InputFinishedAt } from '@/modules/goals/components/create-edit-goal/components/InputFinishedAt'
-import { InputRitualInterval } from '@/components/input-ritual-type/InputRitualType'
-import { InputSlogan } from '@/modules/goals/components/create-edit-goal/components/InputSlogan'
-import { GoalFormTitleOption } from '@/components/goal-form-options/GoalFormTitleOption'
-import { TextAreaDescription } from '@/modules/goals/components/create-edit-goal/components/TextAreaDescription'
+import { GoalRitualIntervalInput } from '@/modules/goals/components/create-edit-goal/components/input-ritual-type/GoalRitualIntervalInput'
+import { GoalSloganInput } from '@/modules/goals/components/create-edit-goal/components/GoalSloganInput'
+import { GoalDescriptionRichInput } from '@/modules/goals/components/create-edit-goal/components/GoalDescriptionRichInput'
 import { XButton } from '@/components-x/x-button/XButton'
 
 import { useGoalsStore, useRootStore } from '@/StoreProvider'
@@ -11,23 +10,22 @@ import { observer } from 'mobx-react-lite'
 import { useEffect } from 'react'
 
 export const GoalRitualForm: React.FC = observer(() => {
-    const { editable_goal } = useGoalsStore()
-
+    const { new_goal } = useGoalsStore()
+    if (!new_goal) return null
     useEffect(() => {
         return () => {
-            editable_goal?.onChangeField('goal_ritualized_mode', false)
+            new_goal?.onChangeField('goal_ritualized_mode', false)
         }
     }, [])
 
     return (
         <>
             <div className='relative my-5 flex flex-col '>
-                <GoalFormTitleOption />
-                <InputSlogan />
-                <TextAreaDescription />
+                <GoalSloganInput />
+                <GoalDescriptionRichInput />
                 <InputCreatedAt />
                 <InputFinishedAt />
-                <InputRitualInterval />
+                <GoalRitualIntervalInput />
             </div>
             <Footer />
         </>
@@ -47,6 +45,7 @@ const Footer = observer(() => {
             forceClose()
         })
     }
+    if (!new_goal) return null
 
     return (
         <div className='my-2 flex justify-end'>

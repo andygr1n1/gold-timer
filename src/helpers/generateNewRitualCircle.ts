@@ -1,5 +1,6 @@
 import { add, getDay } from 'date-fns'
 import { RITUAL_TYPE_ENUM } from './enums'
+import { setMidnightTime } from './date.helpers'
 
 export const generateNewRitualCircle = (options: {
     ritual_type: RITUAL_TYPE_ENUM
@@ -35,19 +36,23 @@ export const generateNewRitualCircle = (options: {
         }
     }
 
-    return { ritual_goal_created_at, ritual_goal_finished_at }
+    return {
+        ritual_goal_created_at,
+        ritual_goal_finished_at: setMidnightTime(ritual_goal_finished_at),
+    }
 }
 
 export const generateEstimationForRitualDaysOfWeek = (created: Date, finishPoint: number): number => {
     let pushDays = 0
     const createPoint = getDay(created)
-
     if (createPoint > finishPoint) {
         /* create = 3(wednesday) finish = 0(sunday) */
         /* 7 - 3 + 0 */
         /* create = 5(friday) finish = 2(tuesday) */
         /* 7 - 5 + 2 */
         pushDays = 7 - createPoint + finishPoint
+    } else if (createPoint === finishPoint) {
+        pushDays = 7
     } else {
         /* create = 3(wednesday) finish = 6(saturday)  */
         /* create = 6 - 3  */

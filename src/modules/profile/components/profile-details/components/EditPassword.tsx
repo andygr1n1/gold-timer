@@ -57,7 +57,7 @@ export const EditPassword: React.FC = observer(() => {
             />
             {!!new_password.length && (
                 <XInput
-                    className='animate-opacity-3 w-[250px]'
+                    className='animate-opacity-3'
                     label='Repeat new password'
                     value={repeat_password}
                     onChange={onChangeRepeatPassword}

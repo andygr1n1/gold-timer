@@ -1,9 +1,9 @@
-import { STATUS_ENUM } from '@/helpers/enums'
+import { GOAL_STATUS_ENUM } from '@/helpers/enums'
 import { gql } from 'graphql-request'
 import { generateClient } from '../client'
 import { processError } from '@/helpers/processError.helper'
 
-export const failGoalMutation = async (goal_id: string): Promise<STATUS_ENUM | undefined> => {
+export const failGoalMutation = async (goal_id: string): Promise<GOAL_STATUS_ENUM | undefined> => {
     const client = generateClient()
 
     const mutation = gql`

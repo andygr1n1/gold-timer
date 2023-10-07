@@ -1,6 +1,6 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
 import { APP_ROUTES_ENUM } from './helpers/enums'
-import { CreateNewGoalDialog } from './modules/goals/components/create-edit-goal/CreateEditGoalDialog'
+import { CreateEditGoalDialog } from './modules/goals/components/create-edit-goal/CreateEditGoalDialog'
 import { GoalsManagerDialog } from './components/components-modal-windows/goals-manager-mw/GoalsManagerMw'
 import { GoalsIndex } from './modules/goals/GoalsIndex'
 import { ProfileIndex } from './modules/profile/ProfileIndex'
@@ -34,7 +34,7 @@ export const AppProtectedRoutes: React.FC = () => {
             {/*  */}
             <FocusGoalOfWeek />
             {/*  */}
-            <CreateNewGoalDialog />
+            <CreateEditGoalDialog />
             <GoalsManagerDialog />
             <CreateEditSprintDialog />
             <CreateEditNoteDialog />
