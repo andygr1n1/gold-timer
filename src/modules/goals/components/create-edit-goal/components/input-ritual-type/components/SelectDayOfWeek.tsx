@@ -6,7 +6,7 @@ import { useEffect } from 'react'
 export const SelectDayOfWeek: React.FC = observer(() => {
     const { new_goal } = useGoalsStore()
     if (!new_goal) return null
-    const { goal_ritual } = new_goal
+    const { goal_ritual, view_mode } = new_goal
     if (!goal_ritual) return null
 
     useEffect(() => {
@@ -31,5 +31,5 @@ export const SelectDayOfWeek: React.FC = observer(() => {
         { value: '0', label: 'Sunday' },
     ]
 
-    return <XSelect value={ritual_interval} onChange={handleChange} options={options} />
+    return <XSelect readOnly={view_mode} value={ritual_interval} onChange={handleChange} options={options} />
 })

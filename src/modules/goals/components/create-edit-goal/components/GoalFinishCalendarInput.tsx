@@ -8,7 +8,7 @@ export const GoalFinishCalendarInput: React.FC = observer(() => {
     const { new_goal } = useGoalsStore()
     if (!new_goal) return null
 
-    const { onChangeField, finished_at, view_mode, created_at } = new_goal
+    const { onChangeField, finished_at, view_mode, edit_mode, created_at } = new_goal
 
     function onDatePickerChange(day: Date | undefined) {
         onChangeField('finished_at', day || undefined)
@@ -18,11 +18,12 @@ export const GoalFinishCalendarInput: React.FC = observer(() => {
         onChangeField('finished_at', undefined)
     }
 
+    if (edit_mode) return null
     const disabledDays = [{ from: new Date(2022, 1, 1), to: sub(new Date(Date.now()), { days: 1 }) }]
     // dd.MM.yyyy
     return (
         <div>
-            <FormLabel title='Estimation' />
+            <FormLabel title='Finish Estimation' />
             {created_at && <div className='mb-2 font-extralight'>Created at {format(created_at, 'do MMMM yyyy')}</div>}
             <XDatePicker
                 numberOfMonths={1}

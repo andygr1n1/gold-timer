@@ -19,7 +19,7 @@ type TXSelect = Omit<React.SelectHTMLAttributes<HTMLSelectElement>, 'onChange'> 
     onChange: (value: string) => void
 }
 
-export const XSelect: React.FC<TXSelect> = ({ value, options, onChange }) => {
+export const XSelect: React.FC<TXSelect> = ({ value, options, readOnly, onChange }) => {
     const [open, setOpen] = useState(false)
     //
     const inputLabel = options.find((opt) => opt.value.toString() === value?.toString())?.label
@@ -27,6 +27,7 @@ export const XSelect: React.FC<TXSelect> = ({ value, options, onChange }) => {
     const [inputClicked, setInputClicked] = useState(false)
 
     const onClick = () => {
+        if (readOnly) return
         if (inputClicked) {
             setOpen(!inputClicked)
         } else {
@@ -44,6 +45,7 @@ export const XSelect: React.FC<TXSelect> = ({ value, options, onChange }) => {
                 endIcon={<Icon icon='mi:select' className='x-select-icon cursor-pointer' onClick={onClick} />}
                 onChange={() => undefined}
                 onClick={onClick}
+                readOnly={readOnly}
             />
             {open && (
                 <SelectOptions

@@ -1,4 +1,4 @@
-import { generateNewRitualCircle } from '../../helpers/generateNewRitualCircle'
+import { generateNewRitualCircle } from '../../helpers/ritual-circle/generateNewRitualCircle'
 import { insertGoalMutation } from '@/graphql/mutations/insertGoal.mutation'
 import { insertGoalsRituals } from '@/graphql/mutations/upsertGoalsRituals.mutation'
 import { updateGoalStatusToCompleted } from '@/graphql/mutations/updateGoalStatus.mutation'
@@ -179,8 +179,23 @@ export const Goals$ = types
             if (!self.new_goal || !user_id) return
 
             try {
-                if (self.new_goal?.created_at) {
+                // goal exists
+                if (self.new_goal?.created_at && self.new_goal?.finished_at) {
                     // goal exists
+                    let finished_at = self.new_goal.finished_at
+
+                    if (self.new_goal.isRitualGoal) {
+                        const { ritual_goal_finished_at } = generateNewRitualCircle({
+                            ritual_type: self.new_goal.ritualGoalType,
+                            new_ritual_interval: self.new_goal.ritualGoalInterval,
+                            goal_created_at: self.new_goal.created_at,
+                            goal_finished_at: self.new_goal.finished_at,
+                            edit: true,
+                        })
+
+                        finished_at = ritual_goal_finished_at
+                    }
+                    console.log('->', cloneDeep(self.new_goal), finished_at)
                     const goalData = {
                         id: self.new_goal.id,
                         title: self.new_goal.title,
@@ -190,11 +205,10 @@ export const Goals$ = types
                         privacy: self.new_goal.privacy,
                         status: self.new_goal.status,
                         difficulty: self.new_goal.difficulty,
-                        finished_at:
-                            self.new_goal.finished_at &&
-                            set(self.new_goal.finished_at, { hours: 23, minutes: 59, seconds: 59, milliseconds: 59 }),
+                        finished_at: set(finished_at, { hours: 23, minutes: 59, seconds: 59, milliseconds: 59 }),
                         is_favorite: self.new_goal.is_favorite,
                     }
+
                     const updatedGoalResponse = yield* toGenerator(upsertGoalMutation(goalData))
 
                     if (!updatedGoalResponse) throw new Error('failed to update goal data')

@@ -4,7 +4,7 @@
 
 .xinput-wrapper {
     @apply text-cText bg-global-3-bg hover:border-xBlue-1 h-[36px]  w-[calc(100%-4px)] rounded-md border border-solid
-    border-transparent p-[1px] text-lg;
+    border-transparent  text-lg;
 }
 
 .xinput-wrapper-error {
@@ -17,6 +17,14 @@
 
 .xinput-wrapper-focused.xinput-wrapper-error {
     @apply border-red-500 hover:border-red-500 focus:border-red-500;
+}
+
+.xinput-wrapper.xinput-wrapper-readonly {
+    @apply cursor-default bg-transparent hover:border-transparent;
+
+    & > div {
+        @apply p-0;
+    }
 }
 
 .xinput {

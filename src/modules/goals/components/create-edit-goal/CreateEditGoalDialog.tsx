@@ -10,6 +10,8 @@ import { GoalDescriptionRichInput } from './components/GoalDescriptionRichInput'
 import { GoalFinishCalendarInput } from './components/GoalFinishCalendarInput'
 import { GoalCreatedAt } from './components/GoalCreatedAt'
 import { GoalRitualIntervalInput } from './components/input-ritual-type/GoalRitualIntervalInput'
+import { StyledButton } from '@/components/buttons/StyledButton'
+import { Icon } from '@iconify/react'
 
 export const CreateEditGoalDialog: React.FC = observer(function CreateEditGoalDialog() {
     const { onChangeField, new_goal } = useGoalsStore()
@@ -32,7 +34,7 @@ export const CreateEditGoalDialog: React.FC = observer(function CreateEditGoalDi
             {/* New Goal Image */}
             {/*  */}
             {/* New Sprint Form */}
-            <div className='flex flex-col gap-4'>
+            <div className='flex flex-col gap-4 py-2'>
                 <GoalTitleInput />
                 <GoalSloganInput />
                 <GoalDescriptionRichInput />
@@ -47,5 +49,13 @@ export const CreateEditGoalDialog: React.FC = observer(function CreateEditGoalDi
 
 const Footer = observer(() => {
     const { generateGoal, new_goal, cancelGoalCreator } = useGoalsStore()
+    if (new_goal?.view_mode)
+        return (
+            <div className='mt-10 flex w-full items-center justify-center gap-6'>
+                <StyledButton size='extraLarge' variant='outlined' className='w-28' onClick={cancelGoalCreator}>
+                    <Icon icon='ep:back' width={24} height={24} />{' '}
+                </StyledButton>
+            </div>
+        )
     return <FormFooter onOk={generateGoal} disabled={!new_goal?.goalDataValidator} onCancel={cancelGoalCreator} />
 })

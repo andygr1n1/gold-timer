@@ -46,11 +46,14 @@ export const XInput: React.FC<XInputProps> = ({
                     styles['xinput-wrapper'],
                     error && styles['xinput-wrapper-error'],
                     focused && styles['xinput-wrapper-focused'],
+                    readOnly && styles['xinput-wrapper-readonly'],
                 )}
                 style={width ? { width: `${width}px` } : undefined}
             >
                 {readOnly ? (
-                    <div className='flex h-full items-center justify-start gap-2 px-1'>{otherProps.value}</div>
+                    <div className='flex h-full items-center justify-start gap-2 rounded-md px-1'>
+                        {otherProps.value}
+                    </div>
                 ) : (
                     <>
                         {startIcon && <div className='absolute left-[8px] top-[8px] z-20 text-2xl'>{startIcon}</div>}

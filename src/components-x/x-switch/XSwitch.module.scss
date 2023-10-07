@@ -1,0 +1,20 @@
+.x-switch {
+    &:active {
+        @apply shadow-[0px_9px_30px] shadow-blue-500/50;
+    }
+
+    &:active:after {
+        padding: 0;
+        margin-left: 30px;
+        bottom: 0;
+        left: 0;
+        opacity: 1;
+        transition: 0s;
+        @apply w-0;
+    }
+
+    &:after {
+        content: '';
+        @apply absolute h-full w-full rounded-xl bg-white/40 opacity-0 duration-700;
+    }
+}

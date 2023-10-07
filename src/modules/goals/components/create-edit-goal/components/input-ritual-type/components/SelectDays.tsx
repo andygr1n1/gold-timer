@@ -6,7 +6,7 @@ import { XInput } from '@/components-x/x-input/XInput'
 export const SelectDays: React.FC = observer(() => {
     const { new_goal } = useGoalsStore()
     if (!new_goal) return null
-    const { goal_ritual } = new_goal
+    const { goal_ritual, view_mode } = new_goal
     if (!goal_ritual) return null
 
     useEffect(() => {
@@ -27,5 +27,14 @@ export const SelectDays: React.FC = observer(() => {
         return e
     }
 
-    return <XInput min={1} type='number' max={31} value={ritual_interval || ''} onChange={onRitualIntervalChange} />
+    return (
+        <XInput
+            readOnly={view_mode}
+            min={1}
+            type='number'
+            max={31}
+            value={ritual_interval || ''}
+            onChange={onRitualIntervalChange}
+        />
+    )
 })

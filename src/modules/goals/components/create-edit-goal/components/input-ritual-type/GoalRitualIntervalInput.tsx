@@ -9,7 +9,7 @@ import { XSwitch } from '@/components-x/x-switch/XSwitch'
 export const GoalRitualIntervalInput: React.FC = observer(() => {
     const { new_goal } = useGoalsStore()
     if (!new_goal) return null
-    const { goal_ritual } = new_goal
+    const { goal_ritual, view_mode } = new_goal
     if (!goal_ritual) return null
     const { ritual_type, onChangeField, isIntervalDayOfWeek } = goal_ritual
 
@@ -18,17 +18,23 @@ export const GoalRitualIntervalInput: React.FC = observer(() => {
             <FormLabel title='Ritual interval' />
             <div className='flex flex-col gap-2'>
                 <div className='relative flex items-center justify-start gap-2'>
-                    <div className='font-extralight'>Interval between days</div>
-                    <XSwitch
-                        checked={ritual_type === RITUAL_TYPE_ENUM.DAYS_OF_WEEK}
-                        onChange={(e) =>
-                            onChangeField(
-                                'ritual_type',
-                                e ? RITUAL_TYPE_ENUM.DAYS_OF_WEEK : RITUAL_TYPE_ENUM.INTERVAL_IN_DAYS,
-                            )
-                        }
-                    />
-                    <div className='font-extralight'>Day of week</div>
+                    {(!view_mode || (view_mode && !isIntervalDayOfWeek)) && (
+                        <div className='font-extralight'>Interval between days</div>
+                    )}
+                    {!view_mode && (
+                        <XSwitch
+                            checked={ritual_type === RITUAL_TYPE_ENUM.DAYS_OF_WEEK}
+                            onChange={(e) =>
+                                onChangeField(
+                                    'ritual_type',
+                                    e ? RITUAL_TYPE_ENUM.DAYS_OF_WEEK : RITUAL_TYPE_ENUM.INTERVAL_IN_DAYS,
+                                )
+                            }
+                        />
+                    )}
+                    {(!view_mode || (view_mode && isIntervalDayOfWeek)) && (
+                        <div className='font-extralight'>Day of week</div>
+                    )}
                 </div>
                 {isIntervalDayOfWeek ? <SelectDayOfWeek /> : <SelectDays />}
             </div>
