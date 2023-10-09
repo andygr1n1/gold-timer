@@ -21,6 +21,7 @@ export interface IUpsertGoal {
         ritual_interval: number
         ritual_type: RITUAL_TYPE_ENUM
     }[]
+    deleted_at: Date | null
 }
 
 export const upsertGoalMutation = async (newGoal: IUpsertNewGoal): Promise<IUpsertGoal | undefined> => {
@@ -32,7 +33,17 @@ export const upsertGoalMutation = async (newGoal: IUpsertNewGoal): Promise<IUpse
                 object: $newGoal
                 on_conflict: {
                     constraint: goals_pkey
-                    update_columns: [title, description, slogan, privacy, status, created_at, finished_at, is_favorite]
+                    update_columns: [
+                        title
+                        description
+                        slogan
+                        privacy
+                        status
+                        created_at
+                        finished_at
+                        is_favorite
+                        deleted_at
+                    ]
                 }
             ) {
                 id

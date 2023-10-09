@@ -1,5 +1,6 @@
 import { useGoalsStore } from '@/StoreProvider'
 import { XSelect } from '@/components-x/x-select/XSelect'
+import { generateNewRitualCircle } from '@/helpers/ritual-circle/generateNewRitualCircle'
 import { observer } from 'mobx-react-lite'
 import { useEffect } from 'react'
 
@@ -19,6 +20,14 @@ export const SelectDayOfWeek: React.FC = observer(() => {
     const { onChangeField, ritual_interval } = goal_ritual
     const handleChange = (value: string) => {
         onChangeField('ritual_interval', +value)
+        const { ritual_goal_finished_at } = generateNewRitualCircle({
+            ritual_type: new_goal.ritualGoalType,
+            new_ritual_interval: new_goal.ritualGoalInterval,
+            goal_created_at: new_goal.created_at,
+            goal_finished_at: new_goal.finished_at,
+            edit: true,
+        })
+        new_goal?.onChangeField('finished_at', ritual_goal_finished_at)
     }
 
     const options = [

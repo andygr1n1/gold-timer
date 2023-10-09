@@ -11,6 +11,7 @@ import { useRef } from 'react'
 import { useWindowMatchMedia } from '@/hooks/useMatchMedia.hook.'
 import { PopoverGoalActions } from '@/components/popover-goal-actions/PopoverGoalActions'
 import { useTogglePopoverState } from '@/hooks/useTogglePopoverState'
+import clsx from 'clsx'
 
 export const TopGoal: React.FC<{ goal: IGoal$; type: ACTIVE_GOAL_TYPE_ENUM }> = observer(({ goal }) => {
     const {
@@ -37,7 +38,12 @@ export const TopGoal: React.FC<{ goal: IGoal$; type: ACTIVE_GOAL_TYPE_ENUM }> = 
                     goal.totalRemainingDays > 1 ? (
                         goal.totalRemainingDays
                     ) : (
-                        <Icon icon='emojione-v1:ringing-bell' width={20} height={20} />
+                        <Icon
+                            icon='emojione-v1:ringing-bell'
+                            className={clsx(goal.isRitualGoal && 'hidden')}
+                            width={20}
+                            height={20}
+                        />
                     )
                 }
             >

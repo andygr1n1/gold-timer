@@ -79,7 +79,6 @@ export const Root$ = types
                 const res: IGoal$SnapshotIn[] = yield fetchGoalsByUserId(self.user$.id)
 
                 if (!res) throw new Error('fetchGoals error')
-
                 applySnapshot(self.goals$.goals, res)
             } catch (e) {
                 processError(e, 'fetchGoals error')
@@ -88,6 +87,8 @@ export const Root$ = types
 
         autoRitualizeExpiredRitualizedGoals(): void {
             const { expiredRitualGoals } = self.goals$
+            console.log('expiredRitualGoals', cloneDeep(expiredRitualGoals))
+            return
             if (!expiredRitualGoals.length) return
             expiredRitualGoals.forEach((goal) => {
                 goal.enforceGoalRitual({ messageSuccess: false })

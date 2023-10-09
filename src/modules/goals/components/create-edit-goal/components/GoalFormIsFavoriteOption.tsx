@@ -8,7 +8,7 @@ import styles from './GoalFormIsFavoriteOption.module.scss'
 export const GoalFormIsFavoriteOption: React.FC = observer(() => {
     const { new_goal } = useGoalsStore()
 
-    if (!new_goal) return null
+    if (!new_goal || new_goal?.view_mode || new_goal?.edit_mode) return null
 
     const { is_favorite, onChangeField, view_mode } = new_goal
 

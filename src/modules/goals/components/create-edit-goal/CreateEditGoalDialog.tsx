@@ -1,8 +1,6 @@
 import { observer } from 'mobx-react-lite'
 import { XModal } from '@/components-x/x-modal/XModal'
-import { GoalFormIsFavoriteOption } from '@/modules/goals/components/create-edit-goal/components/GoalFormIsFavoriteOption'
 import { useGoalsStore } from '@/StoreProvider'
-import { cloneDeep } from 'lodash-es'
 import { FormFooter } from '@/components/form/FormFooter'
 import { GoalTitleInput } from './components/GoalTitleInput'
 import { GoalSloganInput } from './components/GoalSloganInput'
@@ -10,15 +8,16 @@ import { GoalDescriptionRichInput } from './components/GoalDescriptionRichInput'
 import { GoalFinishCalendarInput } from './components/GoalFinishCalendarInput'
 import { GoalCreatedAt } from './components/GoalCreatedAt'
 import { GoalRitualIntervalInput } from './components/input-ritual-type/GoalRitualIntervalInput'
-import { StyledButton } from '@/components/buttons/StyledButton'
 import { Icon } from '@iconify/react'
+import { GoalDetails } from './GoalDetails'
+import { GoalActionsMenu } from './components/actions-menu/GoalActionsMenu'
+import { IGoalNew$ } from '@/mst/types'
+import { GoalFormIsFavoriteOption } from './components/GoalFormIsFavoriteOption'
 
 export const CreateEditGoalDialog: React.FC = observer(function CreateEditGoalDialog() {
     const { onChangeField, new_goal } = useGoalsStore()
 
     const onCancel = () => onChangeField('new_goal', undefined)
-
-    console.log('new_goal', cloneDeep(new_goal))
 
     return (
         <XModal
@@ -26,14 +25,15 @@ export const CreateEditGoalDialog: React.FC = observer(function CreateEditGoalDi
             onCancel={onCancel}
             title={
                 <div className='flex items-center justify-center gap-5'>
-                    {!new_goal?.view_mode && <div>{new_goal?.edit_mode ? 'Edit Goal' : 'Create Goal'}</div>}
+                    <div>{createDialogTitle(new_goal)}</div>
                     <GoalFormIsFavoriteOption />
                 </div>
             }
         >
-            {/* New Goal Image */}
-            {/*  */}
-            {/* New Sprint Form */}
+            <div className='flex flex-col gap-10 pb-10'>
+                <GoalActionsMenu />
+                <GoalDetails />
+            </div>
             <div className='flex flex-col gap-4 py-2'>
                 <GoalTitleInput />
                 <GoalSloganInput />
@@ -49,13 +49,48 @@ export const CreateEditGoalDialog: React.FC = observer(function CreateEditGoalDi
 
 const Footer = observer(() => {
     const { generateGoal, new_goal, cancelGoalCreator } = useGoalsStore()
-    if (new_goal?.view_mode)
+
+    if (new_goal?.view_mode && !new_goal.edit_mode)
         return (
-            <div className='mt-10 flex w-full items-center justify-center gap-6'>
-                <StyledButton size='extraLarge' variant='outlined' className='w-28' onClick={cancelGoalCreator}>
-                    <Icon icon='ep:back' width={24} height={24} />{' '}
-                </StyledButton>
-            </div>
+            <FormFooter
+                okTitle={
+                    <div className='flex items-center justify-center gap-2'>
+                        <Icon
+                            icon={new_goal?.isRitualGoal ? 'icon-park-outline:auto-focus' : 'fa:check-circle'}
+                            width={16}
+                            height={16}
+                        />
+                        <div>{new_goal?.isRitualGoal ? 'Ritualize' : 'Complete'}</div>
+                    </div>
+                }
+                onOk={() => {
+                    new_goal.completeGoal()
+                }}
+                disabled={!!new_goal?.deleted_at || (new_goal?.isRitualGoal && new_goal?.isFromFuture)}
+                onCancel={() =>
+                    new_goal?.view_mode && new_goal?.edit_mode
+                        ? new_goal?.onChangeField('edit_mode', false)
+                        : cancelGoalCreator()
+                }
+            />
         )
-    return <FormFooter onOk={generateGoal} disabled={!new_goal?.goalDataValidator} onCancel={cancelGoalCreator} />
+    return (
+        <FormFooter
+            onOk={generateGoal}
+            disabled={!new_goal?.goalDataValidator}
+            onCancel={() =>
+                new_goal?.view_mode && new_goal?.edit_mode
+                    ? new_goal?.onChangeField('edit_mode', false)
+                    : cancelGoalCreator()
+            }
+        />
+    )
 })
+
+const createDialogTitle = (newGoal: IGoalNew$ | undefined): string => {
+    if (!newGoal) return ''
+    if (newGoal.view_mode) return newGoal.title
+    if (newGoal.create_ritual_mode) return 'Create new ritual'
+    if (newGoal.edit_mode) return 'Edit goal'
+    return 'Create goal'
+}

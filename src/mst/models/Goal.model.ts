@@ -52,6 +52,19 @@ export const Goal = types
                 return sn
             },
         }),
+        deleted_at: types.maybeNull(
+            types.snapshotProcessor(types.maybeNull(types.Date), {
+                preProcessor: (sn: Date | undefined | string) => {
+                    if (!sn) {
+                        return null
+                    }
+                    if (typeof sn === 'string') {
+                        return new Date(sn)
+                    }
+                    return sn
+                },
+            }),
+        ),
         goal_ritual: types.maybeNull(GoalRitual),
     })
     .views((self) => ({

@@ -4,10 +4,9 @@ import { Icon } from '@iconify/react'
 import { observer } from 'mobx-react-lite'
 
 export const PopoverGoalActionsContent: React.FC<{ goal: IGoal$; action: () => void; forceMode?: boolean }> = observer(
-    ({ goal, action: onClose, forceMode = false }) => {
+    ({ goal, action: onClose }) => {
         const {
             goals$: { openGoalCreator },
-            modal_windows$: { goals_manager_mw$ },
         } = useRootStore()
 
         return (
@@ -24,21 +23,6 @@ export const PopoverGoalActionsContent: React.FC<{ goal: IGoal$; action: () => v
                                 iconClassName='text-indigo-700'
                                 className='hover:text-indigo-700'
                                 title='ritualize'
-                            />
-                        )}
-                        {!goal.isRitualGoal && (
-                            <MenuItem
-                                action={() => {
-                                    goal.goGoalRitualizedMode()
-                                    //    goCreateEditMode(goal)
-                                    goals_manager_mw$.onChangeField('visible', true)
-                                    forceMode && goals_manager_mw$.onChangeField('force_mode', true)
-                                    onClose()
-                                }}
-                                icon='game-icons:magic-gate'
-                                iconClassName='text-indigo-700'
-                                className='hover:text-indigo-700'
-                                title='create ritual'
                             />
                         )}
                         <MenuItem

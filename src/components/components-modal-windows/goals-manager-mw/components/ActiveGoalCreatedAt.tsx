@@ -9,7 +9,7 @@ export const ActiveGoalCreatedAt: React.FC<{ goal: IGoal$ }> = observer(({ goal 
     return (
         <>
             {created_at && (
-                <div className='flex items-center gap-2 font-neon text-xs'>
+                <div className='flex items-center gap-2 font-extralight '>
                     <span>created </span>
                     {createString}
                 </div>

@@ -70,12 +70,12 @@ export const Goals$ = types
     .views((self) => ({
         get activeExpiredGoals(): IGoal$[] {
             const goals = filter(self.globalFilteredGoals, (goal) => goal.status === GOAL_STATUS_ENUM.ACTIVE).filter(
-                (goal) => goal.finished_at && isPast(goal.finished_at),
+                (goal) => goal.finished_at && isPast(goal.finished_at) && !goal.deleted_at,
             )
             return orderBy(goals, ['finished_at'], ['asc'])
         },
         get expiredRitualGoals(): IGoal$[] {
-            return this.activeExpiredGoals.filter((goal) => goal.isRitualGoal)
+            return this.activeExpiredGoals.filter((goal) => goal.isRitualGoal && !goal.deleted_at)
         },
         get activeGoals(): IGoal$[] {
             const goals: IGoal$[] = compact(
@@ -84,7 +84,8 @@ export const Goals$ = types
                         return (
                             !!goal.created_at &&
                             isPast(sub(goal.created_at, { seconds: 3 })) &&
-                            goal.status === GOAL_STATUS_ENUM.ACTIVE
+                            goal.status === GOAL_STATUS_ENUM.ACTIVE &&
+                            !goal.deleted_at
                         )
                     }),
                     this.activeExpiredGoals,
@@ -113,7 +114,10 @@ export const Goals$ = types
         },
 
         get completedGoals(): IGoal$[] {
-            const goals = filter(self.globalFilteredGoals, (goal) => goal.status === GOAL_STATUS_ENUM.COMPLETED)
+            const goals = filter(
+                self.globalFilteredGoals,
+                (goal) => goal.status === GOAL_STATUS_ENUM.COMPLETED && !goal.deleted_at,
+            )
             return orderBy(goals, ['finished_at'], ['asc'])
         },
         get ritualGoals(): IGoal$[] {
@@ -124,11 +128,7 @@ export const Goals$ = types
             return orderBy(goals, ['finished_at'], ['asc'])
         },
         get topRitualGoals(): IGoal$[] {
-            const today = new Date(Date.now())
-            const goals = filter(
-                this.activeGoals,
-                (goal) => goal.ritualGoalPower > 0 && !!goal.finished_at && goal.finished_at < add(today, { days: 3 }),
-            )
+            const goals = filter(this.activeGoals, (goal) => goal.ritualGoalPower > 0 && !goal.isFromFuture)
             return orderBy(goals, ['finished_at'], ['asc']).slice(0, 4)
         },
         get favoriteGoals(): IGoal$[] {
@@ -142,7 +142,7 @@ export const Goals$ = types
         get topExpiredGoals(): IGoal$[] {
             const goals = filter(
                 self.goals,
-                (goal) => goal.status === GOAL_STATUS_ENUM.ACTIVE && !goal.isRitualGoal,
+                (goal) => goal.status === GOAL_STATUS_ENUM.ACTIVE && !goal.isRitualGoal && !goal.deleted_at,
             ).filter((goal) => goal.finished_at && isPast(goal.finished_at))
             return orderBy(goals, ['finished_at'], ['asc']).slice(0, 4)
         },
@@ -159,14 +159,35 @@ export const Goals$ = types
         onChangeField<Key extends keyof typeof self>(key: Key, value: (typeof self)[Key]) {
             self[key] = value
         },
-        cancelGoalCreator(): void {
+        cancelGoalCreator(options?: {
+            redirectId: string
+            redirectMode: 'view_mode' | 'edit_mode' | 'create_ritual_mode'
+        }): void {
             this.onChangeField('new_goal', undefined)
+            if (options?.redirectId) {
+                const isViewMode = options.redirectMode === 'view_mode'
+                const isEditMode = options.redirectMode === 'edit_mode'
+                const isCreateRitualMode = options.redirectMode === 'create_ritual_mode'
+                const goal = self.goals.find((goal) => goal.id === options.redirectId)
+                isViewMode && this.openGoalCreator({ selectedGoal: goal, view_mode: true })
+                isEditMode && this.openGoalCreator({ selectedGoal: goal, edit_mode: true })
+                isCreateRitualMode && this.openGoalCreator({ selectedGoal: goal, create_ritual_mode: true })
+            }
         },
         openGoalCreator(options: IGoalCreator = {}): void {
+            const parentGoalId = options?.parentGoalId
+            if (self.new_goal?.view_mode || self.new_goal?.edit_mode || self.new_goal?.create_ritual_mode) {
+                this.cancelGoalCreator()
+            }
             self.new_goal = cast(options?.selectedGoal ? cloneDeep(options.selectedGoal) : {})
-            self.new_goal && options.parentGoalId && (self.new_goal.parent_goal_id = options.parentGoalId)
+            self.new_goal && parentGoalId && (self.new_goal.parent_goal_id = parentGoalId)
             options.view_mode && self.new_goal?.onChangeField('view_mode', true)
             options.edit_mode && self.new_goal?.onChangeField('edit_mode', true)
+            if (options.create_ritual_mode) {
+                self.new_goal?.onChangeField('create_ritual_mode', true)
+                self.new_goal?.onChangeField('deleted_at', null)
+                self.new_goal?.onChangeField('goal_ritual', cast({}))
+            }
         },
         destroyGoal(goal_id: string): void {
             const destroyGoal = self.goals.find((goal) => goal_id === goal.id)
@@ -174,9 +195,96 @@ export const Goals$ = types
         },
     }))
     .actions((self) => ({
+        ritualizeGoal: flow(function* _ritualizeGoal() {
+            const user_id = getUserId()
+            if (!self.new_goal || !user_id) return
+
+            try {
+                if (!self.new_goal?.goal_ritual) return
+
+                const ritualData: IInsertRitual = {
+                    goal_id: self.new_goal.id,
+                    ritual_id: self.new_goal.goal_ritual.ritual_id || crypto.randomUUID(),
+                    ritual_power: self.new_goal.goal_ritual.ritual_power + 1,
+                    ritual_interval: self.new_goal.goal_ritual.ritual_interval,
+                    ritual_type: self.new_goal.goal_ritual.ritual_type,
+                }
+
+                const insertRitualGoalId = yield* toGenerator(insertGoalsRituals(ritualData))
+
+                if (!insertRitualGoalId) throw new Error('insertGoalsRitualsRes error')
+
+                // to add ritual type
+                const { ritual_goal_created_at, ritual_goal_finished_at } = generateNewRitualCircle({
+                    ritual_type: self.new_goal.goal_ritual.ritual_type,
+                    new_ritual_interval: self.new_goal.goal_ritual.ritual_interval,
+                    goal_created_at: self.new_goal.created_at,
+                    goal_finished_at: self.new_goal.finished_at,
+                    edit: true,
+                })
+
+                const goalData = {
+                    id: self.new_goal.id,
+                    title: self.new_goal.title,
+                    slogan: self.new_goal.slogan,
+                    description: self.new_goal.description,
+                    owner_id: self.new_goal.owner_id,
+                    privacy: self.new_goal.privacy,
+                    status: self.new_goal.status,
+                    difficulty: self.new_goal.difficulty,
+                    created_at: ritual_goal_created_at,
+                    finished_at: ritual_goal_finished_at,
+                    deleted_at: null,
+                    is_favorite: self.new_goal.is_favorite,
+                }
+                const updatedGoalResponse = yield* toGenerator(upsertGoalMutation(goalData))
+
+                if (!updatedGoalResponse) throw new Error('failed to update goal data')
+
+                const updatedGoal = self.goals.find((goal) => goal.id === updatedGoalResponse.id)
+
+                if (!updatedGoal) return
+
+                updatedGoal.onChangeField('title', updatedGoalResponse.title)
+                updatedGoal.onChangeField('slogan', updatedGoalResponse.slogan)
+                updatedGoal.onChangeField('description', updatedGoalResponse.description)
+                updatedGoal.onChangeField('privacy', updatedGoalResponse.privacy)
+                updatedGoal.onChangeField('status', updatedGoalResponse.status)
+                updatedGoal.onChangeField('created_at', updatedGoalResponse.created_at)
+                updatedGoal.onChangeField('finished_at', updatedGoalResponse.finished_at)
+                updatedGoal.onChangeField('goal_ritual', castToSnapshot(updatedGoalResponse.goal_ritual))
+                updatedGoal.onChangeField('deleted_at', updatedGoalResponse.deleted_at)
+                updatedGoal.onChangeField('is_favorite', updatedGoalResponse.is_favorite)
+
+                // ritual coins
+                const {
+                    user$: { onChangeField: userOnChangeField, coins, total_ritual_power },
+                } = getParentOfType(self, Root$)
+
+                const mPoints = getCoinsFromRitual(self.new_goal.ritualGoalPower, coins)
+
+                const resGoalCoins = yield* toGenerator(addCoinsMutation(mPoints))
+
+                if (resGoalCoins === undefined) throw new Error('addMPointsMutation error')
+
+                userOnChangeField('coins', resGoalCoins)
+                userOnChangeField('total_ritual_power', total_ritual_power + 1)
+
+                self.cancelGoalCreator()
+            } catch (e) {
+                processError(e, 'ritualizeGoal error')
+            }
+        }),
+    }))
+    .actions((self) => ({
         generateGoal: flow(function* _generateGoal() {
             const user_id = getUserId()
             if (!self.new_goal || !user_id) return
+
+            if (self.new_goal?.create_ritual_mode) {
+                self.ritualizeGoal()
+                return
+            }
 
             try {
                 // goal exists
@@ -276,88 +384,12 @@ export const Goals$ = types
                 processError(e, 'generateGoal error')
             }
         }),
-        ritualizeGoal: flow(function* _ritualizeGoal() {
-            const user_id = getUserId()
-            if (!self.new_goal || !user_id) return
-
-            try {
-                if (!self.new_goal?.goal_ritual) return
-
-                const ritualData: IInsertRitual = {
-                    goal_id: self.new_goal.id,
-                    ritual_id: self.new_goal.goal_ritual.ritual_id || crypto.randomUUID(),
-                    ritual_power: self.new_goal.goal_ritual.ritual_power + 1,
-                    ritual_interval: self.new_goal.goal_ritual.ritual_interval,
-                    ritual_type: self.new_goal.goal_ritual.ritual_type,
-                }
-
-                const insertRitualGoalId = yield* toGenerator(insertGoalsRituals(ritualData))
-
-                if (!insertRitualGoalId) throw new Error('insertGoalsRitualsRes error')
-
-                // to add ritual type
-                const { ritual_goal_created_at, ritual_goal_finished_at } = generateNewRitualCircle({
-                    ritual_type: self.new_goal.goal_ritual.ritual_type,
-                    new_ritual_interval: self.new_goal.goal_ritual.ritual_interval,
-                    goal_created_at: self.new_goal.created_at,
-                    goal_finished_at: self.new_goal.finished_at,
-                })
-
-                const goalData = {
-                    id: self.new_goal.id,
-                    title: self.new_goal.title,
-                    slogan: self.new_goal.slogan,
-                    description: self.new_goal.description,
-                    owner_id: self.new_goal.owner_id,
-                    privacy: self.new_goal.privacy,
-                    status: self.new_goal.status,
-                    difficulty: self.new_goal.difficulty,
-                    created_at: ritual_goal_created_at,
-                    finished_at: ritual_goal_finished_at,
-                }
-                const updatedGoalResponse = yield* toGenerator(upsertGoalMutation(goalData))
-
-                if (!updatedGoalResponse) throw new Error('failed to update goal data')
-
-                const updatedGoal = self.goals.find((goal) => goal.id === updatedGoalResponse.id)
-
-                if (!updatedGoal) return
-
-                updatedGoal.onChangeField('title', updatedGoalResponse.title)
-                updatedGoal.onChangeField('slogan', updatedGoalResponse.slogan)
-                updatedGoal.onChangeField('description', updatedGoalResponse.description)
-                updatedGoal.onChangeField('privacy', updatedGoalResponse.privacy)
-                updatedGoal.onChangeField('status', updatedGoalResponse.status)
-                updatedGoal.onChangeField('created_at', updatedGoalResponse.created_at)
-                updatedGoal.onChangeField('finished_at', updatedGoalResponse.finished_at)
-                updatedGoal.onChangeField('goal_ritual', castToSnapshot(updatedGoalResponse.goal_ritual))
-
-                updatedGoal.onChangeField('goal_ritualized_mode', false)
-
-                // ritual coins
-                const {
-                    user$: { onChangeField: userOnChangeField, coins, total_ritual_power },
-                } = getParentOfType(self, Root$)
-
-                const mPoints = getCoinsFromRitual(self.new_goal.ritualGoalPower, coins)
-
-                const resGoalCoins = yield* toGenerator(addCoinsMutation(mPoints))
-
-                if (resGoalCoins === undefined) throw new Error('addMPointsMutation error')
-
-                userOnChangeField('coins', resGoalCoins)
-                userOnChangeField('total_ritual_power', total_ritual_power + 1)
-
-                self.cancelGoalCreator()
-            } catch (e) {
-                processError(e, 'ritualizeGoal error')
-            }
-        }),
     }))
 
-type IGoalCreatorViewMode = { view_mode?: boolean; edit_mode?: never }
-type IGoalCreatorEditMode = { view_mode?: never; edit_mode?: boolean }
+type IGoalCreatorViewMode = { view_mode?: boolean; edit_mode?: never; create_ritual_mode?: never }
+type IGoalCreatorEditMode = { view_mode?: never; edit_mode?: boolean; create_ritual_mode?: never }
+type IGoalCreatorCreateRitualMode = { view_mode?: never; edit_mode?: never; create_ritual_mode?: boolean }
 
-type IGoalCreatorMode = IGoalCreatorViewMode | IGoalCreatorEditMode
+type IGoalCreatorMode = IGoalCreatorViewMode | IGoalCreatorEditMode | IGoalCreatorCreateRitualMode
 
 type IGoalCreator = { selectedGoal?: IGoal$; parentGoalId?: string } & IGoalCreatorMode

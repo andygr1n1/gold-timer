@@ -7,6 +7,8 @@ export const GoalNew$ = types
         types.model({
             edit_mode: false,
             view_mode: false,
+            create_ritual_mode: false,
+
             // img_src: '',
             // img_cropped_src: '',
             // loading: false,
@@ -16,7 +18,7 @@ export const GoalNew$ = types
     .named('GoalNew$')
     .views((self) => ({
         get goalDataValidator(): boolean {
-            return !!self.title.length && !!self.finished_at && !self.view_mode
+            return !!self.title.length && !!self.finished_at
         },
     }))
     .actions((self) => ({

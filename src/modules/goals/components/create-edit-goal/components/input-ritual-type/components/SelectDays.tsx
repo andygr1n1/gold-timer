@@ -2,6 +2,7 @@ import { useGoalsStore } from '@/StoreProvider'
 import { observer } from 'mobx-react-lite'
 import { useEffect } from 'react'
 import { XInput } from '@/components-x/x-input/XInput'
+import { generateNewRitualCircle } from '@/helpers/ritual-circle/generateNewRitualCircle'
 
 export const SelectDays: React.FC = observer(() => {
     const { new_goal } = useGoalsStore()
@@ -24,6 +25,14 @@ export const SelectDays: React.FC = observer(() => {
             value = 31
         }
         onChangeField('ritual_interval', value)
+        const { ritual_goal_finished_at } = generateNewRitualCircle({
+            ritual_type: new_goal.ritualGoalType,
+            new_ritual_interval: value || 1,
+            goal_created_at: new_goal.created_at,
+            goal_finished_at: new_goal.finished_at,
+            edit: true,
+        })
+        new_goal?.onChangeField('finished_at', ritual_goal_finished_at)
         return e
     }
 
