@@ -8,7 +8,7 @@ export const PanelHeader: React.FC<{ goal: IGoal$ }> = observer(({ goal }) => {
             <div className='text-cText font-bold'>{goal.title}</div>
             <GoalDeadline goal={goal} />
             {goal.goal_ritual?.ritual_power && (
-                <div className='font-neon flex items-center gap-1'>
+                <div className=' flex items-center gap-1'>
                     <span className='text-sm text-slate-500'>power:</span>
                     <span className='text-sm font-bold text-indigo-700'>{goal.goal_ritual?.ritual_power}</span>
                 </div>

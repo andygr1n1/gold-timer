@@ -6,7 +6,7 @@ import { ActiveGoalCreatedAt } from './ActiveGoalCreatedAt'
 
 export const PanelBody: React.FC<{ goal: IGoal$ }> = observer(({ goal }) => {
     return (
-        <div className='font-neon text-cText flex flex-col gap-1'>
+        <div className=' text-cText flex flex-col gap-1'>
             <ActiveGoalCreatedAt goal={goal} />
             {!!goal.slogan.length && (
                 <div className='my-1'>

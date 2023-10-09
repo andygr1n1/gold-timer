@@ -31,7 +31,7 @@ export const TopExpiredGoalsWidget: React.FC = observer(() => {
                         ))}
                     </>
                 ) : (
-                    <div className='absolute-center font-neon flex w-full items-center justify-center self-center text-gray-500'>
+                    <div className='absolute-center  flex w-full items-center justify-center self-center text-gray-500'>
                         💓 you are awesome! 💓
                     </div>
                 )}

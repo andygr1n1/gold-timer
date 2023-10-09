@@ -94,7 +94,10 @@ export const XInput: React.FC<XInputProps> = ({
                 {isSelect && (
                     <div
                         onClick={otherProps.onClick}
-                        className='input-select absolute left-0 top-0 z-10 h-full w-full cursor-pointer rounded-md opacity-0'
+                        className={clsx(
+                            'input-select absolute left-0 top-0 z-10 h-full w-full rounded-md opacity-0',
+                            readOnly ? 'cursor-default' : 'cursor-pointer',
+                        )}
                     />
                 )}
             </div>
