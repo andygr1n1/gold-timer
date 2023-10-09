@@ -18,7 +18,7 @@ export const GoToDashboard = () => {
             </StyledButton>
         </SideMenuLink>
     ) : (
-        <div className='my-5 flex h-[45px] w-full items-center justify-center gap-2'>
+        <div className='flex h-[45px] w-full items-center justify-center gap-2'>
             <GithubLink />
             <FigmaLink />
             <ThemeSwitcher />

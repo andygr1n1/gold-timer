@@ -20,7 +20,6 @@ export const ProfileDetailsEditDialog: React.FC = observer(() => {
                         <EditBirthday />
                         <EditPassword />
                     </div>
-                    {/* Footer */}
                     <FormFooter
                         okTitle={'Save'}
                         onOk={updateProfileData}

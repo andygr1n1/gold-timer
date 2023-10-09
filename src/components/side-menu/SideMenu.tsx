@@ -3,7 +3,6 @@ import { useSideMenu } from '@/hooks/useSideMenu.hook'
 import { Icon } from '@iconify/react'
 import { observer } from 'mobx-react-lite'
 import { XDivider } from '../../components-x/x-divider/XDivider'
-import { CloseSideMenu } from '../icons/CloseSideMenuIcon'
 import { UserAvatarSideMenu } from './components/UserAvatar'
 import { SideMenuLink } from './components/SideMenuLink'
 import { useOutsideAlerter } from '@/hooks/useClickOutside.hook'
@@ -53,10 +52,10 @@ export const SideMenu: React.FC = observer(() => {
             >
                 <div className='flex w-[230px] min-w-[230px] flex-col overflow-auto py-5'>
                     <div className='flex flex-auto flex-col gap-5 overflow-auto  '>
-                        <div className='relative mb-5 flex flex-col items-center justify-center '>
+                        <div className='relative flex flex-col items-center justify-center gap-5'>
                             {isDesktop && <UserName />}
                             <UserAvatarSideMenu />
-                            <UserCoins />
+                            {isDesktop && <UserCoins />}
                         </div>
                         <div className='w-full'>
                             <div className='mx-auto flex w-[180px] flex-auto flex-col gap-5 overflow-auto '>
@@ -65,7 +64,6 @@ export const SideMenu: React.FC = observer(() => {
                                     title='Profile'
                                     icon={<Icon icon='fluent:share-screen-person-16-regular' width={25} height={25} />}
                                 />
-
                                 <SideMenuLink
                                     to={APP_ROUTES_ENUM.ACHIEVEMENTS}
                                     title='Achievements'

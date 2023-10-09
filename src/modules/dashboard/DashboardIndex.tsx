@@ -13,7 +13,7 @@ import { GoalsCounter } from './components/goals-counter/GoalsCounter'
 export const DashboardIndex: React.FC = observer(() => {
     const {
         user$: { hasGoalsSliderAddon },
-        goals$: { goCreateNewGoalMode },
+        goals$: { openGoalCreator },
         sprints$: { activateNewSprintCreator },
     } = useRootStore()
     const { isLargeDesktop } = useWindowMatchMedia(['isLargeDesktop'])
@@ -40,7 +40,7 @@ export const DashboardIndex: React.FC = observer(() => {
                         <div className=' flex max-w-[380px] items-center gap-5  '>
                             {isLargeDesktop && (
                                 <div
-                                    onClick={goCreateNewGoalMode}
+                                    onClick={() => openGoalCreator()}
                                     className='bg-global-2-bg group flex flex-[50%]  cursor-pointer justify-center rounded-lg px-5 py-5'
                                 >
                                     <AddNew title='Add goal' />

@@ -9,6 +9,8 @@ export default {
     //
     'global-bg': '#eff6ff',
     'global-2-bg': '#dbeafe',
+    'global-bg-plasma': '#dbeafeed',
+    'global-2-bg-plasma': '#dbeafec7',
     'global-3-bg': 'white',
     'global-bg-regal': 'rgba(255, 255, 255, 0.9)',
     'global-text': 'var(--colors-magic)',

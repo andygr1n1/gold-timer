@@ -1,7 +1,6 @@
 import { useNotesStore } from '@/StoreProvider'
 import { XModal } from '@/components-x/x-modal/XModal'
 import { observer } from 'mobx-react-lite'
-import { Form } from 'antd'
 import { FormFooter } from '@/components/form/FormFooter'
 import { NoteDescriptionInput } from './NoteDescriptionInput'
 import { NoteTagInput } from './NoteTagInput'

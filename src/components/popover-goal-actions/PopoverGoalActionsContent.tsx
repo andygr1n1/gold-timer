@@ -4,10 +4,9 @@ import { Icon } from '@iconify/react'
 import { observer } from 'mobx-react-lite'
 
 export const PopoverGoalActionsContent: React.FC<{ goal: IGoal$; action: () => void; forceMode?: boolean }> = observer(
-    ({ goal, action: onClose, forceMode = false }) => {
+    ({ goal, action: onClose }) => {
         const {
-            goals$: { goCreateEditMode },
-            modal_windows$: { goals_manager_mw$ },
+            goals$: { openGoalCreator },
         } = useRootStore()
 
         return (
@@ -26,26 +25,9 @@ export const PopoverGoalActionsContent: React.FC<{ goal: IGoal$; action: () => v
                                 title='ritualize'
                             />
                         )}
-                        {!goal.isRitualGoal && (
-                            <MenuItem
-                                action={() => {
-                                    goal.goGoalRitualizedMode()
-                                    //    goCreateEditMode(goal)
-                                    goals_manager_mw$.onChangeField('visible', true)
-                                    forceMode && goals_manager_mw$.onChangeField('force_mode', true)
-                                    onClose()
-                                }}
-                                icon='game-icons:magic-gate'
-                                iconClassName='text-indigo-700'
-                                className='hover:text-indigo-700'
-                                title='create ritual'
-                            />
-                        )}
                         <MenuItem
                             action={() => {
-                                goCreateEditMode(goal)
-                                goals_manager_mw$.onChangeField('visible', true)
-                                forceMode && goals_manager_mw$.onChangeField('force_mode', true)
+                                openGoalCreator({ selectedGoal: goal, edit_mode: true })
                                 onClose()
                             }}
                             icon='material-symbols:edit-square'
@@ -57,8 +39,6 @@ export const PopoverGoalActionsContent: React.FC<{ goal: IGoal$; action: () => v
                         <MenuItem
                             action={() => {
                                 goal.createNewChild()
-                                goals_manager_mw$.onChangeField('visible', true)
-                                forceMode && goals_manager_mw$.onChangeField('force_mode', true)
                                 onClose()
                             }}
                             icon='material-symbols:check-circle-rounded'

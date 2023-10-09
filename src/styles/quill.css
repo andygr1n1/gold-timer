@@ -7,9 +7,9 @@
  */
 
 .ql-container {
+    @apply text-lg;
     box-sizing: border-box;
     font-family: Droid Sans Exotic, sans-serif;
-    font-size: 13px;
     height: 100%;
     margin: 0px;
     position: relative;
@@ -31,13 +31,16 @@
     margin: 0;
     padding: 0;
 }
+
 .ql-editor {
-    box-sizing: border-box;
+    @apply min-h-[100px] rounded-md border border-solid border-transparent outline-transparent focus-within:border focus-within:border-blue-500
+    hover:border-blue-500;
+    :box-sizing: border-box;
     line-height: 1.42;
     height: 100%;
     outline: none;
     overflow-y: auto;
-    padding: 12px 15px;
+    padding: 12px 4px;
     tab-size: 4;
     -moz-tab-size: 4;
     text-align: left;
@@ -422,6 +425,7 @@
 .ql-snow .ql-toolbar button svg {
     float: left;
     height: 100%;
+    @apply opacity-70;
 }
 .ql-snow.ql-toolbar button:active:hover,
 .ql-snow .ql-toolbar button:active:hover {
@@ -670,7 +674,7 @@
     line-height: 22px;
 }
 .ql-snow .ql-picker-options {
-    @apply z-50 bg-gray-900/90 shadow-xl;
+    @apply bg-global-2-bg-plasma  z-50  shadow-xl backdrop-blur-xl;
     display: none;
     min-width: 100%;
     padding: 4px 8px;
@@ -749,7 +753,7 @@
 }
 .ql-snow .ql-picker.ql-header {
     width: 80px;
-    font-font-style: 'Droid Sans';
+    @apply font-kzen font-extralight;
 }
 .ql-snow .ql-picker.ql-header .ql-picker-label::before,
 .ql-snow .ql-picker.ql-header .ql-picker-item::before {
@@ -854,8 +858,7 @@
 }
 .ql-toolbar.ql-snow {
     box-sizing: border-box;
-    font-family: Droid Sans, sans-serif;
-    @apply px-0 py-2;
+    @apply font-kzen pb-2;
 }
 .ql-toolbar.ql-snow .ql-formats {
     margin-right: 15px;
@@ -883,7 +886,7 @@
     border-top: 0px;
 }
 .ql-snow .ql-tooltip {
-    @apply text-cText bg-global-2-bg relative !left-0 !top-0 z-10 !m-0  w-full !border-none p-4 shadow-xl;
+    @apply text-cText bg-global-bg relative !left-0 !top-0 z-10 !m-0 w-full  rounded-b-md !border-none p-4 shadow-xl;
     white-space: nowrap;
 }
 .ql-snow .ql-tooltip::before {
@@ -926,14 +929,17 @@
 }
 .ql-snow .ql-tooltip.ql-editing input[type='text'] {
     display: inline-block;
+    @apply w-[calc(100%-90px)];
 }
 .ql-snow .ql-tooltip.ql-editing a.ql-action::after {
     border-right: 0px;
+    @apply font-kzen text-base font-extralight  duration-100 hover:font-normal;
     content: 'Save';
     padding-right: 0px;
 }
 .ql-snow .ql-tooltip[data-mode='link']::before {
-    content: 'Enter link:';
+    @apply font-kzen text-base font-extralight;
+    content: 'Link:';
 }
 .ql-snow .ql-tooltip[data-mode='formula']::before {
     content: 'Enter formula:';

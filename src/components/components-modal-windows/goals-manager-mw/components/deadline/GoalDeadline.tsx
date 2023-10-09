@@ -10,3 +10,4 @@ export const GoalDeadline: React.FC<{ goal: IGoal$ }> = observer(({ goal }) => {
 
     return <ActiveGoalDeadline goal={goal} />
 })
+

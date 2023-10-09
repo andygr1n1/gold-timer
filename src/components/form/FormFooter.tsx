@@ -1,24 +1,24 @@
-import { XXButton } from '@/components-x/x-button/XButton'
-import { Form } from 'antd'
-import { observer } from 'mobx-react-lite'
+import { ReactNode } from 'react'
 import { StyledButton } from '../buttons/StyledButton'
+import { Icon } from '@iconify/react'
 
 export const FormFooter: React.FC<{
     disabled?: boolean
-    okTitle?: string
+    okTitle?: ReactNode
     onOk: (e: React.MouseEvent<HTMLElement, MouseEvent>) => void
     onCancel: () => void
-}> = observer(({ onCancel, onOk, okTitle = 'Ok', disabled = false }) => {
+}> = ({ onCancel, onOk, okTitle = 'Ok', disabled = false }) => {
     return (
-        <Form.Item>
-            <div className='mt-10 flex w-full items-center justify-center gap-6'>
-                <StyledButton onClick={onCancel} variant='outlined' error>
-                    Cancel
-                </StyledButton>
-                <StyledButton disabled={disabled} onClick={onOk}>
-                    {okTitle}
-                </StyledButton>
-            </div>
-        </Form.Item>
+        <div className='mt-10 flex w-full items-center justify-center gap-6'>
+            <StyledButton onClick={onCancel} variant='outlined' size='extraLarge' className='w-28'>
+                <div className='flex items-center justify-center gap-2'>
+                    <Icon icon='uiw:left-circle' width={17} height={17} />
+                    <div>{'Return'}</div>
+                </div>
+            </StyledButton>
+            <StyledButton disabled={disabled} size='extraLarge' className='w-28' onClick={onOk}>
+                {okTitle}
+            </StyledButton>
+        </div>
     )
-})
+}

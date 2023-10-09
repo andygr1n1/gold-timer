@@ -1,7 +1,7 @@
 import { PRIVACY_ENUM } from '@/helpers/enums'
-import { DIFFICULTY_ENUM, STATUS_ENUM } from './../../helpers/enums'
+import { DIFFICULTY_ENUM, GOAL_STATUS_ENUM } from './../../helpers/enums'
 import { types } from 'mobx-state-tree'
-import { add, differenceInCalendarDays, toDate } from 'date-fns'
+import { differenceInCalendarDays, set, toDate } from 'date-fns'
 import { GoalRitual } from './GoalRitual.model'
 
 export const Goal = types
@@ -15,7 +15,7 @@ export const Goal = types
         }),
         owner_id: '',
 
-        status: types.optional(types.enumeration(Object.values(STATUS_ENUM)), STATUS_ENUM.ACTIVE),
+        status: types.optional(types.enumeration(Object.values(GOAL_STATUS_ENUM)), GOAL_STATUS_ENUM.ACTIVE),
         difficulty: types.optional(
             types.enumeration<DIFFICULTY_ENUM>(Object.values(DIFFICULTY_ENUM)),
             DIFFICULTY_ENUM.LIGHT,
@@ -26,8 +26,6 @@ export const Goal = types
         slogan: '',
         description: '',
         is_favorite: false,
-
-        freeze: false,
 
         parent_goal_id: types.maybeNull(types.string),
 
@@ -46,7 +44,7 @@ export const Goal = types
         finished_at: types.snapshotProcessor(types.maybe(types.Date), {
             preProcessor: (sn: Date | undefined | string) => {
                 if (!sn) {
-                    return add(new Date(Date.now()), { days: 30 })
+                    return set(new Date(Date.now()), { hours: 23, minutes: 59, seconds: 59, milliseconds: 59 })
                 }
                 if (typeof sn === 'string') {
                     return new Date(sn)
@@ -54,6 +52,19 @@ export const Goal = types
                 return sn
             },
         }),
+        deleted_at: types.maybeNull(
+            types.snapshotProcessor(types.maybeNull(types.Date), {
+                preProcessor: (sn: Date | undefined | string) => {
+                    if (!sn) {
+                        return null
+                    }
+                    if (typeof sn === 'string') {
+                        return new Date(sn)
+                    }
+                    return sn
+                },
+            }),
+        ),
         goal_ritual: types.maybeNull(GoalRitual),
     })
     .views((self) => ({
@@ -127,6 +138,6 @@ export const Goal = types
         },
 
         get isNewGoal(): boolean {
-            return (!!self.created_at && !!self.freeze) || !!!self.created_at
+            return !!!self.created_at
         },
     }))

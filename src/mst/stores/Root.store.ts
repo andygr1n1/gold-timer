@@ -12,6 +12,7 @@ import { processError } from '@/helpers/processError.helper'
 import { SideMenu$ } from './side-menu/SideMenu.store'
 import { Notes$ } from '@/modules/notes/mst/stores/Notes.store'
 import { Sprints$ } from '@/modules/sprints/mst/stores/Sprints.store'
+import { cloneDeep } from 'lodash-es'
 
 export const Root$ = types
     .model('Root$', {
@@ -34,7 +35,7 @@ export const Root$ = types
         },
     }))
     .actions((self) => ({
-        onChangeField<Key extends keyof typeof self>(key: Key, value: typeof self[Key]) {
+        onChangeField<Key extends keyof typeof self>(key: Key, value: (typeof self)[Key]) {
             self[key] = value
         },
     }))
@@ -43,7 +44,7 @@ export const Root$ = types
             try {
                 if (!self.user$.id) throw new Error('fetchUserInfo::: no userId')
                 const userInfo = yield* toGenerator(fetchUserByPk(self.user$.id))
-                console.log('userInfo', userInfo)
+                console.log('debugging - userInfo', userInfo)
                 applySnapshot(self.user$, userInfo)
             } catch (e) {
                 processError(e)
@@ -78,7 +79,6 @@ export const Root$ = types
                 const res: IGoal$SnapshotIn[] = yield fetchGoalsByUserId(self.user$.id)
 
                 if (!res) throw new Error('fetchGoals error')
-
                 applySnapshot(self.goals$.goals, res)
             } catch (e) {
                 processError(e, 'fetchGoals error')
@@ -87,6 +87,8 @@ export const Root$ = types
 
         autoRitualizeExpiredRitualizedGoals(): void {
             const { expiredRitualGoals } = self.goals$
+            console.log('expiredRitualGoals', cloneDeep(expiredRitualGoals))
+            return
             if (!expiredRitualGoals.length) return
             expiredRitualGoals.forEach((goal) => {
                 goal.enforceGoalRitual({ messageSuccess: false })

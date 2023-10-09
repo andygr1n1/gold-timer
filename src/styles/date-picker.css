@@ -174,7 +174,7 @@
 }
 
 .rdp-dropdown_month > div {
-    @apply ml-[10px] flex w-[75px] items-center justify-between;
+    @apply ml-[10px] flex w-[90px] items-center justify-between;
 }
 
 .rdp-dropdown {

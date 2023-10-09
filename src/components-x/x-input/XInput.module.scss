@@ -2,22 +2,42 @@
     --xinput-border-left: 30px;
 }
 
-.xinput {
-    @apply text-cText disabled:border-global-3-bg mb-6 w-[calc(100%-24px)] rounded-md border border-solid border-transparent p-3
-    outline-none first-letter:shadow-none disabled:bg-transparent disabled:bg-opacity-10  disabled:opacity-70;
+.xinput-wrapper {
+    @apply text-cText bg-global-3-bg hover:border-xBlue-1 h-[36px]  w-[calc(100%-4px)] rounded-md border border-solid
+    border-transparent  text-lg;
 }
 
-.xinput-error {
-    @apply border-red-500;
+.xinput-wrapper-error {
+    @apply border-red-500 hover:border-red-500 focus:border-red-500;
+}
+
+.xinput-wrapper-focused {
+    @apply border-xBlue-1;
+}
+
+.xinput-wrapper-focused.xinput-wrapper-error {
+    @apply border-red-500 hover:border-red-500 focus:border-red-500;
+}
+
+.xinput-wrapper.xinput-wrapper-readonly {
+    @apply cursor-default bg-transparent hover:border-transparent;
+
+    & > div {
+        @apply p-0;
+    }
+}
+
+.xinput {
+    @apply text-cText m-0 h-full w-[calc(100%-8px)] rounded-md border-none px-1 py-0 disabled:bg-transparent disabled:bg-opacity-10  disabled:opacity-70;
 }
 
 .xinput-start-icon {
-    border-left: var(--xinput-border-left) solid transparent;
-    width: calc(100% - 24px - var(--xinput-border-left));
+    // border-left: var(--xinput-border-left) solid transparent;
+    // width: calc(100% - 24px - var(--xinput-border-left));
 }
 .xinput-end-icon {
-    border-right: var(--xinput-border-left) solid transparent;
-    width: calc(100% - 24px - var(--xinput-border-left));
+    // border-right: var(--xinput-border-left) solid transparent;
+    // width: calc(100% - 24px - var(--xinput-border-left));
 }
 
 .xinput-start-end-icon {

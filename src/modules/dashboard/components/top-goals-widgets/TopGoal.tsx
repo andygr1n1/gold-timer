@@ -11,24 +11,16 @@ import { useRef } from 'react'
 import { useWindowMatchMedia } from '@/hooks/useMatchMedia.hook.'
 import { PopoverGoalActions } from '@/components/popover-goal-actions/PopoverGoalActions'
 import { useTogglePopoverState } from '@/hooks/useTogglePopoverState'
+import clsx from 'clsx'
 
-export const TopGoal: React.FC<{ goal: IGoal$; type: ACTIVE_GOAL_TYPE_ENUM }> = observer(({ goal, type }) => {
+export const TopGoal: React.FC<{ goal: IGoal$; type: ACTIVE_GOAL_TYPE_ENUM }> = observer(({ goal }) => {
     const {
-        goals$: {
-            onChangeField,
-            filter$: { onChangeField: onFilterStoreChangeField },
-        },
-        modal_windows$: { goals_manager_mw$ },
+        goals$: { openGoalCreator },
     } = useRootStore()
     const { isLargeDesktop } = useWindowMatchMedia(['isLargeDesktop'])
     const { popoverState, setPopoverState } = useTogglePopoverState()
     const goalClass = getTopGoalColor(goal).containerClass
     const badgeClass = getTopGoalColor(goal).badgeStyle
-
-    const handleModalState = () => {
-        onFilterStoreChangeField('goals_collapse_type', type)
-        goals_manager_mw$.onChangeField('visible', true)
-    }
 
     let touchTrigger = useRef(false)
 
@@ -46,7 +38,12 @@ export const TopGoal: React.FC<{ goal: IGoal$; type: ACTIVE_GOAL_TYPE_ENUM }> = 
                     goal.totalRemainingDays > 1 ? (
                         goal.totalRemainingDays
                     ) : (
-                        <Icon icon='emojione-v1:ringing-bell' width={20} height={20} />
+                        <Icon
+                            icon='emojione-v1:ringing-bell'
+                            className={clsx(goal.isRitualGoal && 'hidden')}
+                            width={20}
+                            height={20}
+                        />
                     )
                 }
             >
@@ -55,8 +52,7 @@ export const TopGoal: React.FC<{ goal: IGoal$; type: ACTIVE_GOAL_TYPE_ENUM }> = 
                     key={goal.id}
                     className={`${styles['goal']} ${goalClass}`}
                     onClick={() => {
-                        onChangeField('active_collapse_key', goal.id)
-                        handleModalState()
+                        openGoalCreator({ selectedGoal: goal, view_mode: true })
                     }}
                     onContextMenu={(e) => {
                         e.preventDefault()

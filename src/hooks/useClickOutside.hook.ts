@@ -19,11 +19,14 @@ export const useOutsideAlerter = (
     }, [ref, isLargeDesktop])
 }
 
-export const useClickOutside = (ref: MutableRefObject<HTMLDivElement | null>, action: () => void) => {
+export const useClickOutside = (
+    ref: MutableRefObject<HTMLDivElement | null>,
+    action: (outsideClick?: boolean) => void,
+) => {
     useEffect(() => {
         function handleClickOutside(event: { target: EventTarget | null }) {
             if (ref.current && !ref.current.contains(event.target as Node)) {
-                action()
+                action(true)
             }
         }
         document.addEventListener('mousedown', handleClickOutside)

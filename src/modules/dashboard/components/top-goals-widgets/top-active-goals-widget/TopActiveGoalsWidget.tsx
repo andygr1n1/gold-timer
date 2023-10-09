@@ -33,7 +33,7 @@ export const TopActiveGoalsWidget: React.FC = observer(() => {
                         ))}
                     </>
                 ) : (
-                    <div className='absolute-center font-neon flex w-full items-center justify-center self-center text-gray-500'>
+                    <div className='absolute-center  flex w-full items-center justify-center self-center text-gray-500'>
                         🍀 take it easy today, no goals 🍀
                     </div>
                 )}
