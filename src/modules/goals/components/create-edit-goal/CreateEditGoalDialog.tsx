@@ -12,7 +12,7 @@ import { Icon } from '@iconify/react'
 import { GoalDetails } from './GoalDetails'
 import { GoalActionsMenu } from './components/actions-menu/GoalActionsMenu'
 import { IGoalNew$ } from '@/mst/types'
-import { GoalFormIsFavoriteOption } from './components/GoalFormIsFavoriteOption'
+import { ToggleFavorite } from './components/actions-menu/components/ToggleFavoriteGoal'
 
 export const CreateEditGoalDialog: React.FC = observer(function CreateEditGoalDialog() {
     const { onChangeField, new_goal } = useGoalsStore()
@@ -25,8 +25,8 @@ export const CreateEditGoalDialog: React.FC = observer(function CreateEditGoalDi
             onCancel={onCancel}
             title={
                 <div className='flex items-center justify-center gap-5'>
-                    <div>{createDialogTitle(new_goal)}</div>
-                    <GoalFormIsFavoriteOption />
+                    <div tabIndex={0}>{createDialogTitle(new_goal)}</div>
+                    <ToggleFavorite hide={new_goal?.view_mode || new_goal?.edit_mode} />
                 </div>
             }
         >
@@ -78,11 +78,19 @@ const Footer = observer(() => {
         <FormFooter
             onOk={generateGoal}
             disabled={!new_goal?.goalDataValidator}
-            onCancel={() =>
-                new_goal?.view_mode && new_goal?.edit_mode
-                    ? new_goal?.onChangeField('edit_mode', false)
-                    : cancelGoalCreator()
-            }
+            onCancel={() => {
+                let redirectId = new_goal?.parent_goal_id
+                const redirectMode = new_goal?.redirect_mode
+                if (new_goal?.create_ritual_mode) redirectId = new_goal?.id
+                cancelGoalCreator(
+                    redirectId && redirectMode
+                        ? {
+                              redirectId,
+                              redirectMode,
+                          }
+                        : undefined,
+                )
+            }}
         />
     )
 })

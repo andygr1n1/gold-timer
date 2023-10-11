@@ -1,0 +1,19 @@
+.x-calendar-day {
+    @apply relative;
+
+    &:active:after {
+        padding: 0;
+        margin: 0;
+        bottom: 0;
+        left: 4;
+        right: 2;
+        opacity: 1;
+        transition: 0;
+        @apply absolute left-4 h-full w-0;
+    }
+
+    &:after {
+        content: '';
+        @apply absolute left-0 right-0 top-0 h-[100%] w-full rounded-xl bg-white/40 opacity-0 duration-700;
+    }
+}

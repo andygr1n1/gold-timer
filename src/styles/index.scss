@@ -33,6 +33,7 @@ input[type='number'] {
 @import './antd-redesign/select.scss';
 @import './antd-redesign/input.scss';
 @import '../components/buttons/StyledButtonLightVariables.scss';
+@import 'react-tooltip/dist/react-tooltip.css';
 
 @layer base {
     html,
@@ -88,6 +89,10 @@ input[type='number'] {
         -webkit-text-fill-color: #ffffff;
         transition: background-color 5000s ease-in-out 0s;
         box-shadow: inset 0 0 20px 20px var(--colors-global-3-bg);
+    }
+
+    div {
+        @apply focus-visible:outline-none;
     }
 }
 
