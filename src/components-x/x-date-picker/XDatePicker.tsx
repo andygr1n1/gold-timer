@@ -2,7 +2,7 @@ import dateFnsGenerateConfig from 'rc-picker/lib/generate/dateFns'
 import generatePicker from 'antd/es/date-picker/generatePicker'
 import 'antd/es/date-picker/style/index'
 import { format } from 'date-fns'
-import { ChangeEventHandler, useState } from 'react'
+import { ChangeEventHandler, useRef, useState } from 'react'
 import { XCalendar } from './XCalendar'
 import { XInput } from '../x-input/XInput'
 import { Icon } from '@iconify/react'
@@ -34,7 +34,11 @@ export const XDatePicker: React.FC<XDatePickerProps> = ({
     ...props
 }) => {
     const [dateSelectorIsOpen, setDateSelectorIsOpen] = useState(false)
-    const closeDateSelector = () => setDateSelectorIsOpen(false)
+    const inputRef = useRef<HTMLInputElement | null>(null)
+    const closeDateSelector = () => {
+        setDateSelectorIsOpen(false)
+        document.body.click()
+    }
     const openDateSelector = () => {
         setDateSelectorIsOpen(true)
     }
@@ -59,6 +63,7 @@ export const XDatePicker: React.FC<XDatePickerProps> = ({
                     placeholder={placeholder}
                     readOnly={readOnly}
                     variant='select'
+                    refLink={inputRef}
                 />
             </div>
 

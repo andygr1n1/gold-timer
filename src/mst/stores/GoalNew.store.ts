@@ -8,6 +8,14 @@ export const GoalNew$ = types
             edit_mode: false,
             view_mode: false,
             create_ritual_mode: false,
+            create_child_mode: false,
+            redirect_mode: types.maybe(
+                types.union(
+                    types.literal('view_mode'),
+                    types.literal('edit_mode'),
+                    types.literal('create_ritual_mode'),
+                ),
+            ),
 
             // img_src: '',
             // img_cropped_src: '',
@@ -20,6 +28,9 @@ export const GoalNew$ = types
         get goalDataValidator(): boolean {
             return !!self.title.length && !!self.finished_at
         },
+        // get createMode(): boolean {
+        //     return !self.edit_mode && !self?.view_mode
+        // },
     }))
     .actions((self) => ({
         onChangeField<Key extends keyof typeof self>(key: Key, value: (typeof self)[Key]) {

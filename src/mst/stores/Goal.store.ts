@@ -145,9 +145,15 @@ export const Goal$ = types
             }
         }),
         createNewChild(): void {
-            const { openGoalCreator } = getParentOfType(self, Goals$)
+            const { openGoalCreator, new_goal } = getParentOfType(self, Goals$)
 
-            openGoalCreator({ parentGoalId: self.id })
+            const redirectMode = new_goal?.view_mode ? 'view_mode' : 'edit_mode'
+
+            openGoalCreator({
+                parentGoalId: self.id,
+                create_child_mode: true,
+                redirectMode,
+            })
         },
         deleteGoal: flow(function* _deleteGoal() {
             try {
@@ -162,7 +168,11 @@ export const Goal$ = types
                 alert(e)
             }
         }),
-        favoriteGoal: flow(function* _favoriteGoal() {
+        favoriteGoal: flow(function* _favoriteGoal(options?: { noRequest?: boolean }) {
+            if (options?.noRequest) {
+                self.is_favorite = !self.is_favorite
+                return
+            }
             const { goals } = getParentOfType(self, Goals$)
             const selected = goals?.find((goal) => goal.id === self.id)
 

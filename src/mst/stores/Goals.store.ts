@@ -164,29 +164,51 @@ export const Goals$ = types
             redirectMode: 'view_mode' | 'edit_mode' | 'create_ritual_mode'
         }): void {
             this.onChangeField('new_goal', undefined)
+
             if (options?.redirectId) {
                 const isViewMode = options.redirectMode === 'view_mode'
                 const isEditMode = options.redirectMode === 'edit_mode'
                 const isCreateRitualMode = options.redirectMode === 'create_ritual_mode'
                 const goal = self.goals.find((goal) => goal.id === options.redirectId)
-                isViewMode && this.openGoalCreator({ selectedGoal: goal, view_mode: true })
-                isEditMode && this.openGoalCreator({ selectedGoal: goal, edit_mode: true })
-                isCreateRitualMode && this.openGoalCreator({ selectedGoal: goal, create_ritual_mode: true })
+                if (!self.new_goal && goal) {
+                    isViewMode && this.openGoalCreator({ selectedGoal: goal, view_mode: true })
+                    isEditMode && this.openGoalCreator({ selectedGoal: goal, edit_mode: true })
+                    isCreateRitualMode &&
+                        this.openGoalCreator({
+                            selectedGoal: goal,
+                            create_ritual_mode: true,
+                            redirectMode: isViewMode ? 'view_mode' : 'edit_mode',
+                        })
+                }
             }
         },
         openGoalCreator(options: IGoalCreator = {}): void {
             const parentGoalId = options?.parentGoalId
             if (self.new_goal?.view_mode || self.new_goal?.edit_mode || self.new_goal?.create_ritual_mode) {
-                this.cancelGoalCreator()
+                const goalToDestroy = detach(self.new_goal)
+
+                setTimeout(() => {
+                    destroy(goalToDestroy)
+                }, 1000)
             }
             self.new_goal = cast(options?.selectedGoal ? cloneDeep(options.selectedGoal) : {})
             self.new_goal && parentGoalId && (self.new_goal.parent_goal_id = parentGoalId)
-            options.view_mode && self.new_goal?.onChangeField('view_mode', true)
             options.edit_mode && self.new_goal?.onChangeField('edit_mode', true)
+
+            if (options.view_mode) {
+                self.new_goal?.onChangeField('view_mode', true)
+                self.new_goal?.onChangeField('edit_mode', false)
+            }
+
             if (options.create_ritual_mode) {
                 self.new_goal?.onChangeField('create_ritual_mode', true)
                 self.new_goal?.onChangeField('deleted_at', null)
                 self.new_goal?.onChangeField('goal_ritual', cast({}))
+                self.new_goal?.onChangeField('redirect_mode', options.redirectMode)
+            }
+            if (options.create_child_mode) {
+                self.new_goal?.onChangeField('create_child_mode', true)
+                self.new_goal?.onChangeField('redirect_mode', options.redirectMode)
             }
         },
         destroyGoal(goal_id: string): void {
@@ -303,7 +325,6 @@ export const Goals$ = types
 
                         finished_at = ritual_goal_finished_at
                     }
-                    console.log('->', cloneDeep(self.new_goal), finished_at)
                     const goalData = {
                         id: self.new_goal.id,
                         title: self.new_goal.title,
@@ -386,10 +407,40 @@ export const Goals$ = types
         }),
     }))
 
-type IGoalCreatorViewMode = { view_mode?: boolean; edit_mode?: never; create_ritual_mode?: never }
-type IGoalCreatorEditMode = { view_mode?: never; edit_mode?: boolean; create_ritual_mode?: never }
-type IGoalCreatorCreateRitualMode = { view_mode?: never; edit_mode?: never; create_ritual_mode?: boolean }
+type IGoalCreatorViewMode = {
+    view_mode?: boolean
+    edit_mode?: never
+    create_child_mode?: never
+    create_ritual_mode?: never
+    redirectMode?: never
+}
+type IGoalCreatorEditMode = {
+    view_mode?: never
+    edit_mode?: boolean
+    create_child_mode?: never
+    create_ritual_mode?: never
+    redirectMode?: never
+}
+type IGoalCreatorCreateRitualMode = {
+    view_mode?: never
+    edit_mode?: never
+    create_child_mode?: never
+    create_ritual_mode?: boolean
+    redirectMode?: 'view_mode' | 'edit_mode' | 'create_ritual_mode'
+}
 
-type IGoalCreatorMode = IGoalCreatorViewMode | IGoalCreatorEditMode | IGoalCreatorCreateRitualMode
+type IGoalCreatorCreateNewChildMode = {
+    view_mode?: never
+    edit_mode?: never
+    create_ritual_mode?: never
+    create_child_mode?: boolean
+    redirectMode?: 'view_mode' | 'edit_mode' | 'create_ritual_mode'
+}
+
+type IGoalCreatorMode =
+    | IGoalCreatorViewMode
+    | IGoalCreatorEditMode
+    | IGoalCreatorCreateRitualMode
+    | IGoalCreatorCreateNewChildMode
 
 type IGoalCreator = { selectedGoal?: IGoal$; parentGoalId?: string } & IGoalCreatorMode

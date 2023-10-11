@@ -42,6 +42,7 @@ export const GoalFinishCalendarInput: React.FC = observer(() => {
                 placeholder='Set birthday'
                 disabled={disabledDays}
                 readOnly={view_mode}
+                showToday
             />
         </div>
     )

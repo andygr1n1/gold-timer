@@ -26,7 +26,6 @@ export interface IUpsertGoal {
 
 export const upsertGoalMutation = async (newGoal: IUpsertNewGoal): Promise<IUpsertGoal | undefined> => {
     const client = generateClient()
-    console.log('newGoal', newGoal)
     const mutation = gql`
         mutation upsertGoalMutation($newGoal: goals_insert_input!) {
             insert_goals_one(
