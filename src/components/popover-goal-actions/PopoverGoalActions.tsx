@@ -1,7 +1,7 @@
 import { Popover, PopoverProps } from 'antd'
 import { observer } from 'mobx-react-lite'
 import { PopoverGoalActionsContent } from './PopoverGoalActionsContent'
-import { IGoal$ } from '@/mst/types'
+import { IGoal$ } from '@/modules/goals/mst/types'
 
 export const PopoverGoalActions: React.FC<
     PopoverProps & {

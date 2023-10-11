@@ -1,5 +1,5 @@
 import { useRootStore } from '@/StoreProvider'
-import { IGoal$ } from '@/mst/types'
+import { IGoal$ } from '@/modules/goals/mst/types'
 import { Icon } from '@iconify/react'
 import { observer } from 'mobx-react-lite'
 

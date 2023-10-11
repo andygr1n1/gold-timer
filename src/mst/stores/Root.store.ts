@@ -1,9 +1,8 @@
 import { type NotificationInstance } from 'antd/es/notification/interface'
 import { types, flow, applySnapshot, toGenerator, cast } from 'mobx-state-tree'
 import { fetchGoalsByUserId } from '../../graphql/queries/fetchGoalsByUserId.query'
-import { IGoal$SnapshotIn, IGoalRitual, IGoalRitualSnapshotIn } from '../types'
 import { Achievements$ } from './Achievements.store'
-import { Goals$ } from './Goals.store'
+import { Goals$ } from '../../modules/goals/mst/stores/Goals.store'
 import { User$ } from './User.store'
 import { ModalWindows$ } from './ModalWindows.store'
 import { fetchRitualPowerInfo } from '@/graphql/queries/fetchRitualPowerInfo.query'
@@ -12,7 +11,7 @@ import { processError } from '@/helpers/processError.helper'
 import { SideMenu$ } from './side-menu/SideMenu.store'
 import { Notes$ } from '@/modules/notes/mst/stores/Notes.store'
 import { Sprints$ } from '@/modules/sprints/mst/stores/Sprints.store'
-import { cloneDeep } from 'lodash-es'
+import { IGoal$SnapshotIn, IGoalRitual, IGoalRitualSnapshotIn } from '@/modules/goals/mst/types'
 
 export const Root$ = types
     .model('Root$', {

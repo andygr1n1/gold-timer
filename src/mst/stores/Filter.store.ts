@@ -1,9 +1,9 @@
 import { filter } from 'lodash-es'
 import { isBefore } from 'date-fns'
 import { types, getParentOfType } from 'mobx-state-tree'
-import { IGoal$ } from '../types'
-import { Goals$ } from './Goals.store'
+import { Goals$ } from '../../modules/goals/mst/stores/Goals.store'
 import { ACTIVE_GOAL_TYPE_ENUM } from '@/helpers/enums'
+import { IGoal$ } from '@/modules/goals/mst/types'
 
 export const Filter$ = types
     .model('Filter$', {
@@ -95,7 +95,7 @@ export const Filter$ = types
         },
     }))
     .actions((self) => ({
-        onChangeField<Key extends keyof typeof self>(key: Key, value: typeof self[Key]) {
+        onChangeField<Key extends keyof typeof self>(key: Key, value: (typeof self)[Key]) {
             self[key] = value
         },
     }))

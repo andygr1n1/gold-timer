@@ -11,8 +11,8 @@ import { GoalRitualIntervalInput } from './components/input-ritual-type/GoalRitu
 import { Icon } from '@iconify/react'
 import { GoalDetails } from './GoalDetails'
 import { GoalActionsMenu } from './components/actions-menu/GoalActionsMenu'
-import { IGoalNew$ } from '@/mst/types'
 import { ToggleFavorite } from './components/actions-menu/components/ToggleFavoriteGoal'
+import { IGoalNew$ } from '../../mst/types'
 
 export const CreateEditGoalDialog: React.FC = observer(function CreateEditGoalDialog() {
     const { onChangeField, new_goal } = useGoalsStore()

@@ -1,4 +1,4 @@
-import { IGoal$ } from '@/mst/types'
+import { IGoal$ } from '@/modules/goals/mst/types'
 import { observer } from 'mobx-react-lite'
 import { Icon } from '@iconify/react'
 import { GoalWrapper } from './goal-components/GoalWrapper'

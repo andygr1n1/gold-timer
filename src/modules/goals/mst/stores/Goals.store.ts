@@ -1,4 +1,4 @@
-import { generateNewRitualCircle } from '../../helpers/ritual-circle/generateNewRitualCircle'
+import { generateNewRitualCircle } from '../../../../helpers/ritual-circle/generateNewRitualCircle'
 import { insertGoalMutation } from '@/graphql/mutations/insertGoal.mutation'
 import { insertGoalsRituals } from '@/graphql/mutations/upsertGoalsRituals.mutation'
 import { updateGoalStatusToCompleted } from '@/graphql/mutations/updateGoalStatus.mutation'
@@ -9,25 +9,24 @@ import { setGoalDifficulty } from '@/helpers/setGoalDifficulty'
 import { add, isPast, set, sub } from 'date-fns'
 import { filter, orderBy, differenceWith, cloneDeep, compact } from 'lodash-es'
 import { destroy, detach, getParentOfType, toGenerator, types, flow, castToSnapshot, cast } from 'mobx-state-tree'
-import { IGoal$ } from '../types'
 import { Goal$ } from './Goal.store'
-import { Root$ } from './Root.store'
+import { Root$ } from '../../../../mst/stores/Root.store'
 import { getCoinsFromRitual } from '@/helpers/getCoinsFromRitual'
 import { addCoinsMutation } from '@/graphql/mutations/addCoins.mutation'
-import { Filter$ } from './Filter.store'
+import { Filter$ } from '../../../../mst/stores/Filter.store'
 import { updateRitualInterval } from '@/graphql/mutations/updateRitualInterval.mutation'
 import { processError } from '@/helpers/processError.helper'
 import { GoalNew$ } from './GoalNew.store'
 import { getUserId } from '@/helpers/getUserId'
+import { IGoal$ } from '../types'
 
 export const Goals$ = types
     .model('Goals$', {
-        filter$: types.optional(Filter$, { goals_estimation_filter: add(new Date(Date.now()), { days: 60 }) }),
         goals: types.array(Goal$),
         new_goal: types.maybe(GoalNew$),
-
-        goals_checked_list_filter: types.array(types.enumeration(Object.values(STATUS_ENUM_FILTERS))),
         //
+        filter$: types.optional(Filter$, { goals_estimation_filter: add(new Date(Date.now()), { days: 60 }) }),
+        goals_checked_list_filter: types.array(types.enumeration(Object.values(STATUS_ENUM_FILTERS))),
         active_collapse_key: types.maybe(types.string),
     })
     .views((self) => ({

@@ -1,5 +1,5 @@
 import { flow, toGenerator, types, cast } from 'mobx-state-tree'
-import { GoalRitual } from '../models/GoalRitual.model'
+import { GoalRitual } from '../../modules/goals/mst/models/GoalRitual.model'
 import { IUser$ } from '../types'
 import { IBaseUserData, updateUserData } from '@/modules/profile/graphql/updateUserData.m'
 import { processError } from '@/helpers/processError.helper'

@@ -1,4 +1,4 @@
-import { IGoal$ } from '@/mst/types'
+import { IGoal$ } from '@/modules/goals/mst/types'
 import { DIFFICULTY_ENUM } from './enums'
 
 export const getCoinsFromCompletedGoal = (goal: IGoal$, currentCoins: number): number => {

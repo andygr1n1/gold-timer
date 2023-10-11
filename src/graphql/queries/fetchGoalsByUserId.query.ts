@@ -1,8 +1,8 @@
 import { GOAL_STATUS_ENUM } from '@/helpers/enums'
-import { IGoal$SnapshotIn } from '@/mst/types'
 import { gql } from 'graphql-request'
 import { generateClient } from '../client'
 import { processError } from '@/helpers/processError.helper'
+import { IGoal$SnapshotIn } from '@/modules/goals/mst/types'
 // import { add } from 'date-fns'
 
 export const fetchGoalsByUserId = async (owner_id: string): Promise<IGoal$SnapshotIn[] | undefined> => {

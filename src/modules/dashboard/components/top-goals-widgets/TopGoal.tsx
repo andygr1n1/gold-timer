@@ -1,6 +1,6 @@
 import { XBadge } from '@/components-x/x-badge/XBadge'
 import { ACTIVE_GOAL_TYPE_ENUM } from '@/helpers/enums'
-import { IGoal$ } from '@/mst/types'
+import { IGoal$ } from '@/modules/goals/mst/types'
 import { useRootStore } from '@/StoreProvider'
 import { Icon } from '@iconify/react'
 import { truncate } from 'lodash-es'

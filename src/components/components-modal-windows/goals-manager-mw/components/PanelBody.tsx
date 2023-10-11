@@ -1,4 +1,4 @@
-import { IGoal$ } from '@/mst/types'
+import { IGoal$ } from '@/modules/goals/mst/types'
 import { Divider } from 'antd'
 import { format } from 'date-fns'
 import { observer } from 'mobx-react-lite'

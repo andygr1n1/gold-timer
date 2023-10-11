@@ -1,4 +1,4 @@
-import { IGoal$ } from '@/mst/types'
+import { IGoal$ } from '@/modules/goals/mst/types'
 import { motion, MotionConfig } from 'framer-motion'
 import { ReactNode } from 'react'
 

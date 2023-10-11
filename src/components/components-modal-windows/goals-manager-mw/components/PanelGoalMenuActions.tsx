@@ -1,6 +1,6 @@
 import { Icon } from '@iconify/react'
 import { observer } from 'mobx-react-lite'
-import { IGoal$ } from '@/mst/types'
+import { IGoal$ } from '@/modules/goals/mst/types'
 import { PopoverGoalActions } from '@/components/popover-goal-actions/PopoverGoalActions'
 import { useTogglePopoverState } from '@/hooks/useTogglePopoverState'
 

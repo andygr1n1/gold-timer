@@ -1,4 +1,4 @@
-import { GOAL_TYPE_ENUM } from './../../helpers/enums'
+import { GOAL_TYPE_ENUM } from '../../../../helpers/enums'
 import { RITUAL_TYPE_ENUM, GOAL_STATUS_ENUM } from '@/helpers/enums'
 import { completeGoalMutation } from '@/graphql/mutations/completeGoal.mutation'
 import { cast, flow, getParentOfType, toGenerator, types } from 'mobx-state-tree'
@@ -9,13 +9,12 @@ import { message } from 'antd'
 import { ritualizeGoalMutation } from '@/graphql/mutations/ritualizeGoal.mutation'
 import { generateNewRitualCircle } from '@/helpers/ritual-circle/generateNewRitualCircle'
 import { deleteGoalMutation } from '@/graphql/mutations/deleteGoal.mutation'
-import { Root$ } from './Root.store'
-import { IUser$ } from '../types'
+import { Root$ } from '../../../../mst/stores/Root.store'
 import { addCoinsMutation } from '@/graphql/mutations/addCoins.mutation'
 import { getCoinsFromRitual } from '@/helpers/getCoinsFromRitual'
 import { getCoinsFromCompletedGoal } from '@/helpers/getCoinsFromCompletedGoal'
-import { setMidnightTime, setZeroTime } from '@/helpers/date.helpers'
-import { add } from 'date-fns'
+import { setMidnightTime } from '@/helpers/date.helpers'
+import { IUser$ } from '@/mst/types'
 
 export const Goal$ = types
     .compose(
