@@ -1,7 +1,7 @@
 import { GOAL_TYPE_ENUM } from '../../../../helpers/enums'
 import { RITUAL_TYPE_ENUM, GOAL_STATUS_ENUM } from '@/helpers/enums'
 import { completeGoalMutation } from '@/graphql/mutations/completeGoal.mutation'
-import { cast, flow, getParentOfType, toGenerator, types } from 'mobx-state-tree'
+import { cast, flow, getParentOfType, toGenerator } from 'mobx-state-tree'
 import { Goal } from '../models/Goal.model'
 import { Goals$ } from './Goals.store'
 import { favoriteGoalMutation } from '@/graphql/mutations/favoriteGoal.mutation'
@@ -16,18 +16,7 @@ import { getCoinsFromCompletedGoal } from '@/helpers/getCoinsFromCompletedGoal'
 import { setMidnightTime } from '@/helpers/date.helpers'
 import { IUser$ } from '@/mst/types'
 
-export const Goal$ = types
-    .compose(
-        Goal,
-        types.model({
-            //
-            // to understand how to update goal, when a child is creating
-            // parent goal can be failed, completed or deprecated if was frozen
-            goal_new_status: types.maybe(types.enumeration(Object.values(GOAL_STATUS_ENUM))),
-            //
-        }),
-    )
-    .named('Goal$')
+export const Goal$ = Goal.named('Goal$')
     .views((self) => ({
         get isChildGoal(): boolean {
             return !!self.parent_goal_id
@@ -35,7 +24,7 @@ export const Goal$ = types
         get isCompleted(): boolean {
             return self.status === GOAL_STATUS_ENUM.COMPLETED
         },
-        get isRitualGoal(): boolean {
+        get hasRitualPower(): boolean {
             return !!self.goal_ritual?.ritual_power
         },
         get isExpired(): boolean {
@@ -65,26 +54,20 @@ export const Goal$ = types
 
         get goalType(): GOAL_TYPE_ENUM {
             if (this.isExpired) return GOAL_TYPE_ENUM.EXPIRED
-            if (this.isRitualGoal) return GOAL_TYPE_ENUM.RITUALIZED
+            if (this.hasRitualPower) return GOAL_TYPE_ENUM.RITUALIZED
 
             return GOAL_TYPE_ENUM.ACTIVE
         },
 
         get daysEstimationCount(): number {
             if (this.isExpired) return self.expiredDaysCount
-            return self.remainingDays
+            return self.totalRemainingDays
         },
     }))
     .actions((self) => ({
         onChangeField<Key extends keyof typeof self>(key: Key, value: (typeof self)[Key]) {
             self[key] = value
         },
-        goGoalViewMode(): void {
-            const { openGoalCreator } = getParentOfType(self, Goals$)
-
-            openGoalCreator({ selectedGoal: cast(self), view_mode: true })
-        },
-
         // autoRitualize
         enforceGoalRitual: flow(function* _ritualizeGoal(
             options: { messageSuccess: boolean } = { messageSuccess: true },
@@ -143,17 +126,6 @@ export const Goal$ = types
                 })
             }
         }),
-        createNewChild(): void {
-            const { openGoalCreator, new_goal } = getParentOfType(self, Goals$)
-
-            const redirectMode = new_goal?.view_mode ? 'view_mode' : 'edit_mode'
-
-            openGoalCreator({
-                parentGoalId: self.id,
-                create_child_mode: true,
-                redirectMode,
-            })
-        },
         deleteGoal: flow(function* _deleteGoal() {
             try {
                 const toggleDelete = !!self.deleted_at
@@ -187,11 +159,11 @@ export const Goal$ = types
     }))
     .actions((self) => ({
         completeGoal: flow(function* _completeGoal() {
-            const { goals, cancelGoalCreator } = getParentOfType(self, Goals$)
+            const { goals, onChangeField } = getParentOfType(self, Goals$)
             try {
-                if (self.isRitualGoal) {
+                if (self.hasRitualPower) {
                     yield self.enforceGoalRitual()
-                    cancelGoalCreator()
+                    onChangeField('selected_goal', undefined)
                     return
                 }
 
@@ -217,7 +189,7 @@ export const Goal$ = types
                     content: 'Goal successfully completed',
                 })
 
-                cancelGoalCreator()
+                onChangeField('selected_goal', undefined)
             } catch (e) {
                 alert(e)
 

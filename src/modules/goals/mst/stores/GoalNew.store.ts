@@ -1,39 +1,48 @@
-import { types } from 'mobx-state-tree'
+import { flow, toGenerator } from 'mobx-state-tree'
 import { Goal$ } from './Goal.store'
+import { getUserId } from '@/helpers/getUserId'
+import { IInsertNewGoal } from '@/helpers/interfaces/newGoal.interface'
+import { setGoalDifficulty } from '@/helpers/setGoalDifficulty'
+import { set } from 'date-fns'
+import { insertGoalMutation } from '@/graphql/mutations/insertGoal.mutation'
+import { processError } from '@/helpers/processError.helper'
 
-export const GoalNew$ = types
-    .compose(
-        Goal$,
-        types.model({
-            edit_mode: false,
-            view_mode: false,
-            create_ritual_mode: false,
-            create_child_mode: false,
-            redirect_mode: types.maybe(
-                types.union(
-                    types.literal('view_mode'),
-                    types.literal('edit_mode'),
-                    types.literal('create_ritual_mode'),
-                ),
-            ),
-
-            // img_src: '',
-            // img_cropped_src: '',
-            // loading: false,
-            // new_sprint_goal: '',
-        }),
-    )
-    .named('GoalNew$')
+export const GoalNew$ = Goal$.named('GoalNew$')
     .views((self) => ({
         get goalDataValidator(): boolean {
             return !!self.title.length && !!self.finished_at
         },
-        // get createMode(): boolean {
-        //     return !self.edit_mode && !self?.view_mode
-        // },
     }))
     .actions((self) => ({
         onChangeField<Key extends keyof typeof self>(key: Key, value: (typeof self)[Key]) {
             self[key] = value
         },
+        createNewGoal: flow(function* _createNewGoal() {
+            const user_id = getUserId()
+            if (!user_id) return
+
+            try {
+                const newGoal: IInsertNewGoal = {
+                    title: self.title,
+                    slogan: self.slogan,
+                    description: self.description,
+                    owner_id: user_id,
+                    privacy: self.privacy,
+                    status: self.status,
+                    difficulty: setGoalDifficulty(self.finished_at),
+                    finished_at:
+                        self.finished_at &&
+                        set(self.finished_at, { hours: 23, minutes: 59, seconds: 59, milliseconds: 59 }),
+                    parent_goal_id: self.parent_goal_id ?? null,
+                    is_favorite: self.is_favorite,
+                }
+
+                const newGoalResult = yield* toGenerator(insertGoalMutation(newGoal))
+                if (!newGoalResult) throw new Error('newGoalResult error')
+
+                return newGoalResult
+            } catch (e) {
+                processError(e, 'generateGoal error')
+            }
+        }),
     }))

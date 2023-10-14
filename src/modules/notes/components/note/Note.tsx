@@ -14,6 +14,7 @@ export const Note: React.FC<{ note: INote$ }> = observer(({ note }) => {
                 </div>
             )}
             {/* <div className='overflow-wrap-anywhere relative flex flex-auto  leading-6'>{note.description}</div> */}
+            <NoteTagsList note={note} />
             <Interweave
                 className='overflow-wrap-anywhere'
                 allowAttributes
@@ -22,7 +23,6 @@ export const Note: React.FC<{ note: INote$ }> = observer(({ note }) => {
                 allowElements
                 content={note.description}
             />
-            <NoteTagsList note={note} />
         </div>
     )
 })
