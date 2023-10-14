@@ -1,19 +1,20 @@
 import { observer } from 'mobx-react-lite'
-import { TopGoalsWidgets } from '@/modules/dashboard/components/top-goals-widgets/TopGoalsWidgets'
+import { TopGoalsWidgets } from '@/modules/goals/components/top-goals-widget/TopGoalsWidgets'
 import { GoalsDashboardCarousel } from '@/modules/dashboard/components/goals-dashboard-slider/GoalsDashboardCarousel'
 import { useRootStore } from '@/StoreProvider'
 import { useWindowMatchMedia } from '@/hooks/useMatchMedia.hook.'
 import { ModuleWrapper } from '@/components/ModuleWrapper'
 import { AddNew } from '@/components/buttons/AddNew.button'
-import { CreateNewNote } from './components/create-new-task-widget/components/CreateNewNote'
+import { CreateNewNote } from '../notes/components/create-new-task-dashboard-widget/components/CreateNewNote'
 import { APP_ROUTES_ENUM } from '@/helpers/enums'
 import { CreateNewItemIcon } from '@/modules/dashboard/components/CreateNewItemIcon'
 import { GoalsCounter } from './components/goals-counter/GoalsCounter'
+import { CRUD_GoalDialog } from '../goals/components/crud-goal/CRUD_GoalDialog'
 
 export const DashboardIndex: React.FC = observer(() => {
     const {
         user$: { hasGoalsSliderAddon },
-        goals$: { openGoalCreator },
+        goals$: { openCreateMode },
         sprints$: { activateNewSprintCreator },
     } = useRootStore()
     const { isLargeDesktop } = useWindowMatchMedia(['isLargeDesktop'])
@@ -40,7 +41,7 @@ export const DashboardIndex: React.FC = observer(() => {
                         <div className=' flex max-w-[380px] items-center gap-5  '>
                             {isLargeDesktop && (
                                 <div
-                                    onClick={() => openGoalCreator()}
+                                    onClick={() => openCreateMode()}
                                     className='bg-global-2-bg group flex flex-[50%]  cursor-pointer justify-center rounded-lg px-5 py-5'
                                 >
                                     <AddNew title='Add goal' />
@@ -59,6 +60,8 @@ export const DashboardIndex: React.FC = observer(() => {
                     <TopGoalsWidgets />
                 </div>
             </div>
+            {/* DIALOG */}
+            <CRUD_GoalDialog />
         </ModuleWrapper>
     )
 })

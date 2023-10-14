@@ -6,7 +6,7 @@ import { observer } from 'mobx-react-lite'
 export const CreateNewItems: React.FC = observer(() => {
     const {
         side_menu$: { onChangeField: onChangeFieldSideMenu$ },
-        goals$: { openGoalCreator },
+        goals$: { openCreateMode },
         sprints$: { activateNewSprintCreator },
         notes$: { activateCreateEditMode },
     } = useRootStore()
@@ -15,7 +15,7 @@ export const CreateNewItems: React.FC = observer(() => {
 
     const onCreateGoal = () => {
         onClose()
-        openGoalCreator()
+        openCreateMode()
     }
 
     const onCreateNote = () => {

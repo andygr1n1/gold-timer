@@ -3,11 +3,11 @@ import { gql } from 'graphql-request'
 import { generateClient } from '../client'
 import { processError } from '@/helpers/processError.helper'
 
-export const insertGoalsRituals = async (newRitual: IInsertRitual): Promise<string | undefined> => {
+export const upsertGoalsRituals = async (newRitual: IInsertRitual): Promise<string | undefined> => {
     const client = generateClient()
 
     const mutation = gql`
-        mutation insertGoalsRituals($newRitual: [goals_rituals_insert_input!]!) {
+        mutation upsertGoalsRituals($newRitual: [goals_rituals_insert_input!]!) {
             insert_goals_rituals(
                 objects: $newRitual
                 on_conflict: {
@@ -27,7 +27,7 @@ export const insertGoalsRituals = async (newRitual: IInsertRitual): Promise<stri
 
         return response.insert_goals_rituals.returning[0].goal_id
     } catch (e) {
-        processError(e, 'insertGoalsRituals error')
+        processError(e, 'upsertGoalsRituals error')
         return
     }
 }

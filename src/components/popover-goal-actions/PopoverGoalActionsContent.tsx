@@ -6,7 +6,7 @@ import { observer } from 'mobx-react-lite'
 export const PopoverGoalActionsContent: React.FC<{ goal: IGoal$; action: () => void; forceMode?: boolean }> = observer(
     ({ goal, action: onClose }) => {
         const {
-            goals$: { openGoalCreator },
+            goals$: { openCreateMode, openEditMode },
         } = useRootStore()
 
         return (
@@ -14,7 +14,7 @@ export const PopoverGoalActionsContent: React.FC<{ goal: IGoal$; action: () => v
                 <div className='flex flex-col gap-1'>
                     <div className='text-gray-400'>Actions</div>
                     <div className='ml-2 flex flex-col gap-2'>
-                        {goal.isRitualGoal && !goal.isFromFuture && (
+                        {goal.hasRitualPower && !goal.isFromFuture && (
                             <MenuItem
                                 action={() => {
                                     goal.enforceGoalRitual().finally(() => onClose())
@@ -27,7 +27,7 @@ export const PopoverGoalActionsContent: React.FC<{ goal: IGoal$; action: () => v
                         )}
                         <MenuItem
                             action={() => {
-                                openGoalCreator({ selectedGoal: goal, edit_mode: true })
+                                openEditMode(goal.id)
                                 onClose()
                             }}
                             icon='material-symbols:edit-square'
@@ -38,7 +38,7 @@ export const PopoverGoalActionsContent: React.FC<{ goal: IGoal$; action: () => v
 
                         <MenuItem
                             action={() => {
-                                goal.createNewChild()
+                                openCreateMode({ parentGoalId: goal.id })
                                 onClose()
                             }}
                             icon='material-symbols:check-circle-rounded'

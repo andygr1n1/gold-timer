@@ -1,6 +1,6 @@
 import { ModuleWrapper } from '@/components/ModuleWrapper'
 import { APP_ROUTES_ENUM } from '@/helpers/enums'
-import { PageGoals } from '@/modules/goals/PageGoals'
+import { PageGoals } from '@/modules/goals/components/goals-list/PageGoals'
 import { observer } from 'mobx-react-lite'
 
 export const GoalsIndex: React.FC = observer(() => {
