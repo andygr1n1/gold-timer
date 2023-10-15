@@ -4,7 +4,7 @@ import { getUserId } from '@/helpers/getUserId'
 import { gql } from 'graphql-request'
 import { ISprint$SnIn } from '../mst/types'
 
-export const fetchSprints = async (): Promise<ISprint$SnIn[] | undefined> => {
+export const query_fetchSprints = async (): Promise<ISprint$SnIn[] | undefined> => {
     const client = generateClient()
     const user_id = getUserId()
 
@@ -30,6 +30,7 @@ export const fetchSprints = async (): Promise<ISprint$SnIn[] | undefined> => {
                 created_at
                 sprint_days
                 sprint_goals
+                deleted_at
             }
         }
     `

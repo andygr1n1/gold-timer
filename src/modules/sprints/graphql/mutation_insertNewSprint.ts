@@ -1,20 +1,14 @@
 import { gql } from 'graphql-request'
 import { generateClient } from '@/graphql/client'
 import { processError } from '@/helpers/processError.helper'
-import { IEditSprintReq } from './helpers/interface'
+import { IInsertNewSprint } from './helpers/interface'
 import { ISprint$SnIn } from '../mst/types'
 
-export const updateSprint = async (options: {
-    sprintId: string
-    updatedSprint: IEditSprintReq
-}): Promise<ISprint$SnIn | undefined> => {
+export const mutation_insertNewSprint = async (newSprint: IInsertNewSprint): Promise<ISprint$SnIn | undefined> => {
     const client = generateClient()
-
-    const { sprintId, updatedSprint } = options
-
     const mutation = gql`
-        mutation insertNewSprint($sprintId: uuid!, $updatedSprint: sprints_set_input) {
-            update_sprints_by_pk(pk_columns: { id: $sprintId }, _set: $updatedSprint) {
+        mutation mutation_insertNewSprint($newSprint: sprints_insert_input!) {
+            insert_sprints_one(object: $newSprint) {
                 img_path
                 id
                 duration
@@ -34,14 +28,10 @@ export const updateSprint = async (options: {
     `
 
     try {
-        const response = await client.request(mutation, {
-            sprintId,
-            updatedSprint,
-        })
-
-        return response.update_sprints_by_pk
+        const response = await client.request(mutation, { newSprint })
+        return response.insert_sprints_one
     } catch (e) {
-        processError(e, 'insertNewSprint error')
+        processError(e, 'mutation_insertNewSprint error')
         return
     }
 }
