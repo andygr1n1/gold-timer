@@ -2,12 +2,12 @@ import { gql } from 'graphql-request'
 import { processError } from '@/helpers/processError.helper'
 import { generateClient } from '@/graphql/client'
 
-export const deletedAtSprint = async (id: string) => {
+export const mutation_cachedSprint = async (id: string) => {
     const client = generateClient()
 
     const mutation = gql`
-        mutation deletedAtSprint($id: uuid!) {
-            update_sprints_by_pk(pk_columns: { id: $id }, _set: { deleted_at: "now()" }) {
+        mutation mutation_cachedSprint($id: uuid!) {
+            update_sprints_by_pk(pk_columns: { id: $id }, _set: { cached: true }) {
                 id
             }
         }
@@ -17,7 +17,7 @@ export const deletedAtSprint = async (id: string) => {
         const response = await client.request(mutation, { id })
         return response.update_sprints_by_pk
     } catch (e) {
-        processError(e, 'deletedAtSprint error')
+        processError(e, 'mutation_cachedSprint error')
         return
     }
 }

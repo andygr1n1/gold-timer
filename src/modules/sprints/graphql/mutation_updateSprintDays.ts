@@ -3,13 +3,13 @@ import { generateClient } from '@/graphql/client'
 import { processError } from '@/helpers/processError.helper'
 import { ISprintsDays } from './helpers/interface'
 
-export const updateSprintDays = async (options: { id: string; sprintDays: ISprintsDays[] }) => {
+export const mutation_updateSprintDays = async (options: { id: string; sprintDays: ISprintsDays[] }) => {
     const client = generateClient()
 
     const { id, sprintDays } = options
 
     const mutation = gql`
-        mutation insertNewSprint($id: uuid!, $sprintDays: jsonb) {
+        mutation mutation_updateSprintDays($id: uuid!, $sprintDays: jsonb) {
             update_sprints_by_pk(pk_columns: { id: $id }, _set: { sprint_days: $sprintDays }) {
                 id
             }
@@ -24,7 +24,7 @@ export const updateSprintDays = async (options: { id: string; sprintDays: ISprin
 
         return response.update_sprints_by_pk
     } catch (e) {
-        processError(e, 'updateSprintDays error')
+        processError(e, 'mutation_updateSprintDays error')
         return
     }
 }

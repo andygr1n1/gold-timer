@@ -6,8 +6,8 @@ import { Sprints$ } from './Sprints.store'
 import { getUserId } from '@/helpers/getUserId'
 import { IEditSprintReq, IInsertNewSprint } from '@/modules/sprints/graphql/helpers/interface'
 import { compact, last } from 'lodash-es'
-import { insertNewSprint } from '@/modules/sprints/graphql/insertNewSprint.m'
-import { updateSprint } from '@/modules/sprints/graphql/updateSprint.m'
+import { mutation_insertNewSprint } from '@/modules/sprints/graphql/mutation_insertNewSprint'
+import { mutation_updateSprint } from '@/modules/sprints/graphql/mutation_updateSprint'
 import { deleteImageFromServer, uploadNewImageToServer } from '@/services/image.service'
 import { SERVER_ROUTES } from '@/helpers/enums'
 
@@ -32,7 +32,7 @@ export const SprintNew$ = types
         },
     }))
     .actions((self) => ({
-        onChangeField<Key extends keyof typeof self>(key: Key, value: typeof self[Key]) {
+        onChangeField<Key extends keyof typeof self>(key: Key, value: (typeof self)[Key]) {
             self[key] = value
         },
         addNewSprintGoal(): void {
@@ -92,7 +92,7 @@ export const SprintNew$ = types
                 }
 
                 self.loading = true
-                const createdSprint = yield* toGenerator(insertNewSprint(newSprint))
+                const createdSprint = yield* toGenerator(mutation_insertNewSprint(newSprint))
                 if (!createdSprint) throw new Error('activateNewSprint: creating sprint failed')
 
                 const { pushNewSprint } = getParentOfType(self, Sprints$)
@@ -147,7 +147,7 @@ export const SprintNew$ = types
                 }
 
                 self.loading = true
-                const updatedSprintRes = yield* toGenerator(updateSprint({ sprintId: self.id, updatedSprint }))
+                const updatedSprintRes = yield* toGenerator(mutation_updateSprint({ sprintId: self.id, updatedSprint }))
                 if (!updatedSprintRes) throw new Error('updateSprint: updating sprint failed')
 
                 const { pushNewSprint } = getParentOfType(self, Sprints$)

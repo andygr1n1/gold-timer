@@ -3,15 +3,16 @@ import { SprintNew$ } from './SprintNew.store'
 import { Sprint$ } from './Sprint.store'
 import { ISprint$, ISprint$SnIn, ISprintNew$ } from '../types'
 import { processError } from '@/helpers/processError.helper'
-import { fetchSprints } from '@/modules/sprints/graphql/fetchSprints.q'
+import { query_fetchSprints } from '@/modules/sprints/graphql/query_fetchSprints'
 import { add, set } from 'date-fns'
 import { cloneDeep, last, orderBy } from 'lodash-es'
 import { IInsertNewSprint } from '@/modules/sprints/graphql/helpers/interface'
 import { SprintsFilter$ } from './SprintsFilter.store'
 import { filterSprintByInput } from './sprints.helper'
 import { SPRINT_FILTER_STATUS_ENUM } from '@/modules/sprints/helpers/sprints.enum'
-import { deletedAtSprint } from '@/modules/sprints/graphql/deletedAtSprint.m'
-import { insertNewSprint } from '@/modules/sprints/graphql/insertNewSprint.m'
+import { mutation_toggleDeleteSprint } from '@/modules/sprints/graphql/mutation_toggleDeleteSprint'
+import { mutation_insertNewSprint } from '@/modules/sprints/graphql/mutation_insertNewSprint'
+import { mutation_cachedSprint } from '../../graphql/mutation_cachedSprint'
 
 export const Sprints$ = types
     .model('Sprints$', {
@@ -53,7 +54,7 @@ export const Sprints$ = types
     }))
     .actions((self) => ({
         fetchSprints: flow(function* _fetchNewSprints() {
-            const res = yield* toGenerator(fetchSprints())
+            const res = yield* toGenerator(query_fetchSprints())
             applySnapshot(self.sprints, res)
         }),
         restartSelectedSprint: flow(function* _createNewInstance(sprint: ISprint$) {
@@ -82,22 +83,22 @@ export const Sprints$ = types
                     parent_sprint_id: sprint.parent_sprint_id || sprint.id,
                 }
 
-                const createdSprint = yield* toGenerator(insertNewSprint(newSprint))
+                const createdSprint = yield* toGenerator(mutation_insertNewSprint(newSprint))
                 if (!createdSprint) throw new Error('createNewSprintInstance: creating sprint failed')
-                console.log('debugging - restartSelectedSprint', createdSprint)
-                const deletedParent = yield* toGenerator(deletedAtSprint(sprint.id))
-                if (!deletedParent) throw new Error('createNewSprintInstance: deleting parent sprint failed')
-
-                console.log('debugging - deletedParent', deletedParent)
-                deletedParent && destroy(detach(sprint))
+                const cachedSprint = yield* toGenerator(mutation_cachedSprint(sprint.id))
+                if (!cachedSprint) throw new Error('createNewSprintInstance: deleting parent sprint failed')
+                cachedSprint && destroy(detach(sprint))
                 self.pushNewSprint(createdSprint)
             } catch (e) {
                 processError(e)
             }
         }),
         deleteSelectedSprint: flow(function* _deleteSelectedSprint(sprint: ISprint$) {
-            const deletedSprint = yield* toGenerator(deletedAtSprint(sprint.id))
-            deletedSprint && destroy(detach(sprint))
+            const deletedSprintDate = yield* toGenerator(
+                mutation_toggleDeleteSprint(sprint.parent_sprint_id ? sprint.parent_sprint_id : sprint.id, true),
+            )
+            if (deletedSprintDate !== undefined) sprint.onChangeField('deleted_at', deletedSprintDate)
+            self.selected_sprint = undefined
         }),
     }))
     .views((self) => ({
@@ -113,6 +114,9 @@ export const Sprints$ = types
             }
             return filtered
         },
+        get filteredNotDeletedSprints(): ISprint$[] {
+            return this.filteredSprints.filter((sprint) => !sprint.deleted_at)
+        },
         // ACTIVE
         get activeSprintsActiveStatus(): boolean {
             return (
@@ -123,7 +127,9 @@ export const Sprints$ = types
         get activeSprintsRender(): ISprint$[] {
             return this.activeSprintsActiveStatus
                 ? orderBy(
-                      this.filteredSprints.filter((sprint) => sprint.isStatusActive && !sprint.todayIsChecked),
+                      this.filteredNotDeletedSprints.filter(
+                          (sprint) => sprint.isStatusActive && !sprint.todayIsChecked,
+                      ),
                       'started_at',
                   )
                 : []
@@ -131,7 +137,7 @@ export const Sprints$ = types
         get checkedSprintsRender(): ISprint$[] {
             return this.activeSprintsActiveStatus
                 ? orderBy(
-                      this.filteredSprints.filter((sprint) => sprint.todayIsChecked),
+                      this.filteredNotDeletedSprints.filter((sprint) => sprint.todayIsChecked),
                       'started_at',
                   )
                 : []
@@ -149,7 +155,7 @@ export const Sprints$ = types
         get freezedSprintsRender(): ISprint$[] {
             return this.freezedSprintsActiveStatus
                 ? orderBy(
-                      this.filteredSprints.filter((sprint) => sprint.isStatusFreezed),
+                      this.filteredNotDeletedSprints.filter((sprint) => sprint.isStatusFreezed),
                       'started_at',
                   )
                 : []
@@ -164,7 +170,7 @@ export const Sprints$ = types
         get futureSprintsRender(): ISprint$[] {
             return this.futureSprintsActiveStatus
                 ? orderBy(
-                      this.filteredSprints.filter((sprint) => sprint.isStatusFuture),
+                      this.filteredNotDeletedSprints.filter((sprint) => sprint.isStatusFuture),
                       'started_at',
                   )
                 : []
@@ -179,7 +185,7 @@ export const Sprints$ = types
         get finishedSprintsRender(): ISprint$[] {
             return this.finishedSprintsActiveStatus
                 ? orderBy(
-                      this.filteredSprints.filter((sprint) => sprint.isStatusFinished),
+                      this.filteredNotDeletedSprints.filter((sprint) => sprint.isStatusFinished),
                       'started_at',
                   )
                 : []

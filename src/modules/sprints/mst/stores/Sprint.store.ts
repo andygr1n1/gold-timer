@@ -4,7 +4,7 @@ import { ISprintDay } from '../types'
 import { isFuture, isPast, isToday, set } from 'date-fns'
 import { compact, last } from 'lodash-es'
 import { SPRINT_STATUS_ENUM } from '@/modules/sprints/helpers/sprints.enum'
-import { updateSprintDays } from '@/modules/sprints/graphql/updateSprintDays.m'
+import { mutation_updateSprintDays } from '@/modules/sprints/graphql/mutation_updateSprintDays'
 import { generateMstId } from '@/mst/mst.helper'
 
 export const Sprint$ = types
@@ -44,6 +44,14 @@ export const Sprint$ = types
                 if (!sn) {
                     return new Date(Date.now())
                 }
+                if (typeof sn === 'string') {
+                    return new Date(sn)
+                }
+                return sn
+            },
+        }),
+        deleted_at: types.snapshotProcessor(types.maybeNull(types.Date), {
+            preProcessor: (sn: Date | string) => {
                 if (typeof sn === 'string') {
                     return new Date(sn)
                 }
@@ -141,6 +149,6 @@ export const Sprint$ = types
             self[key] = value
         },
         updateSprintDays: flow(function* _updateSprintDays() {
-            yield* toGenerator(updateSprintDays({ id: self.id, sprintDays: self.sprint_days }))
+            yield* toGenerator(mutation_updateSprintDays({ id: self.id, sprintDays: self.sprint_days }))
         }),
     }))
