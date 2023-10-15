@@ -212,11 +212,11 @@ export const Goals$ = types
         }),
         updateGoal: flow(function* _updateGoal() {
             if (!self.edit_goal) return
-            const { updateGoal, redirected: redirected_from, id } = self.edit_goal
+            const { updateGoal, redirected, id } = self.edit_goal
 
             try {
                 yield updateGoal()
-                redirected_from && self.openViewMode(id)
+                redirected && self.openViewMode(id)
                 self.edit_goal = undefined
             } catch (e) {
                 processError(e, 'updateGoal error')

@@ -1,14 +1,12 @@
-import { castToSnapshot, flow, getParentOfType, toGenerator, types } from 'mobx-state-tree'
+import { flow, getParentOfType, toGenerator, types } from 'mobx-state-tree'
 import { Goal$ } from './Goal.store'
-import { getUserId } from '@/helpers/getUserId'
 import { processError } from '@/helpers/processError.helper'
 import { generateNewRitualCircle } from '@/helpers/ritual-circle/generateNewRitualCircle'
 import { set } from 'date-fns'
-import { upsertGoalMutation } from '@/graphql/mutations/upsertGoal.mutation'
+import { mutation_upsertGoal } from '@/modules/goals/graphql/mutation_upsertGoal'
 import { Goals$ } from './Goals.store'
 import { IGoal$ } from '../types'
-import { IInsertRitual } from '@/helpers/interfaces/newGoal.interface'
-import { upsertGoalsRituals } from '@/graphql/mutations/upsertGoalsRituals.mutation'
+import { IInsertNewGoal, IInsertRitual } from '@/helpers/interfaces/newGoal.interface'
 import { Root$ } from '@/mst/stores/Root.store'
 import { getCoinsFromRitual } from '@/helpers/getCoinsFromRitual'
 import { addCoinsMutation } from '@/graphql/mutations/addCoins.mutation'
@@ -34,12 +32,9 @@ export const GoalEdit$ = types
             self[key] = value
         },
         updateGoal: flow(function* updateGoal() {
-            const user_id = getUserId()
-            if (!user_id) return
-
             try {
                 if (!self.created_at || !self.finished_at) return
-
+                let ritualData: IInsertRitual[] = []
                 let finished_at = self.finished_at
 
                 if (self.goal_ritual) {
@@ -68,19 +63,17 @@ export const GoalEdit$ = types
 
                     finished_at = ritual_goal_finished_at
 
-                    const ritualData: IInsertRitual = {
+                    ritualData.push({
                         goal_id: self.id,
                         ritual_id: self.goal_ritual.ritual_id || crypto.randomUUID(),
-                        ritual_power: self.goal_ritual.ritual_power + 1,
+                        ritual_power: self.hasRitualPower
+                            ? self.goal_ritual.ritual_power
+                            : self.goal_ritual.ritual_power + 1,
                         ritual_interval: self.goal_ritual.ritual_interval,
                         ritual_type: self.goal_ritual.ritual_type,
-                    }
-
-                    const insertRitualGoalId = yield* toGenerator(upsertGoalsRituals(ritualData))
-
-                    if (!insertRitualGoalId) throw new Error('insertGoalsRitualsRes error')
+                    })
                 }
-                const goalData = {
+                const goalData: IInsertNewGoal = {
                     id: self.id,
                     title: self.title,
                     slogan: self.slogan,
@@ -92,23 +85,12 @@ export const GoalEdit$ = types
                     finished_at: set(finished_at, { hours: 23, minutes: 59, seconds: 59, milliseconds: 59 }),
                     deleted_at: self.deleted_at,
                     is_favorite: self.is_favorite,
+                    parent_goal_id: self.parent_goal_id,
                 }
 
-                const updatedGoalResponse = yield* toGenerator(upsertGoalMutation(goalData))
-
-                if (!updatedGoalResponse) throw new Error('failed to update goal data')
-
+                const updatedGoalResponse = yield* toGenerator(mutation_upsertGoal(goalData, ritualData))
                 if (!self.selectedGoal) return
-                self.selectedGoal.onChangeField('title', updatedGoalResponse.title)
-                self.selectedGoal.onChangeField('slogan', updatedGoalResponse.slogan)
-                self.selectedGoal.onChangeField('description', updatedGoalResponse.description)
-                self.selectedGoal.onChangeField('privacy', updatedGoalResponse.privacy)
-                self.selectedGoal.onChangeField('status', updatedGoalResponse.status)
-                self.selectedGoal.onChangeField('finished_at', updatedGoalResponse.finished_at)
-                updatedGoalResponse.goal_ritual &&
-                    self.selectedGoal.onChangeField('goal_ritual', castToSnapshot(updatedGoalResponse.goal_ritual))
-                self.selectedGoal.onChangeField('deleted_at', updatedGoalResponse.deleted_at)
-                self.selectedGoal.onChangeField('is_favorite', updatedGoalResponse.is_favorite)
+                self.selectedGoal.updateSelf(updatedGoalResponse)
             } catch (e) {
                 processError(e, 'updateGoal error')
             }

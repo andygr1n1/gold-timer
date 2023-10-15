@@ -1,6 +1,6 @@
 import { type NotificationInstance } from 'antd/es/notification/interface'
 import { types, flow, applySnapshot, toGenerator, cast } from 'mobx-state-tree'
-import { fetchGoalsByUserId } from '../../graphql/queries/fetchGoalsByUserId.query'
+import { query_fetchGoalsByUserId } from '../../modules/goals/graphql/query_fetchGoalsByUserId'
 import { Achievements$ } from './Achievements.store'
 import { Goals$ } from '../../modules/goals/mst/stores/Goals.store'
 import { User$ } from './User.store'
@@ -43,7 +43,6 @@ export const Root$ = types
             try {
                 if (!self.user$.id) throw new Error('fetchUserInfo::: no userId')
                 const userInfo = yield* toGenerator(fetchUserByPk(self.user$.id))
-                console.log('debugging - userInfo', userInfo)
                 applySnapshot(self.user$, userInfo)
             } catch (e) {
                 processError(e)
@@ -75,7 +74,7 @@ export const Root$ = types
             try {
                 if (!self.user$.id) throw new Error('User id is undefined')
 
-                const res: IGoal$SnapshotIn[] = yield fetchGoalsByUserId(self.user$.id)
+                const res: IGoal$SnapshotIn[] = yield query_fetchGoalsByUserId(self.user$.id)
 
                 if (!res) throw new Error('fetchGoals error')
                 applySnapshot(self.goals$.goals, res)

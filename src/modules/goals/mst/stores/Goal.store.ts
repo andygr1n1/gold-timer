@@ -1,20 +1,21 @@
 import { GOAL_TYPE_ENUM } from '../../../../helpers/enums'
 import { RITUAL_TYPE_ENUM, GOAL_STATUS_ENUM } from '@/helpers/enums'
-import { completeGoalMutation } from '@/graphql/mutations/completeGoal.mutation'
-import { cast, flow, getParentOfType, toGenerator } from 'mobx-state-tree'
+import { mutation_completeGoal } from '@/modules/goals/graphql/mutation_completeGoal'
+import { cast, flow, getParentOfType, toGenerator, castToSnapshot } from 'mobx-state-tree'
 import { Goal } from '../models/Goal.model'
 import { Goals$ } from './Goals.store'
-import { favoriteGoalMutation } from '@/graphql/mutations/favoriteGoal.mutation'
+import { mutation_favoriteGoal } from '@/modules/goals/graphql/mutation_favoriteGoal'
 import { message } from 'antd'
-import { ritualizeGoalMutation } from '@/graphql/mutations/ritualizeGoal.mutation'
+import { mutation_ritualizeGoal } from '@/modules/goals/graphql/mutation_ritualizeGoal'
 import { generateNewRitualCircle } from '@/helpers/ritual-circle/generateNewRitualCircle'
-import { deleteGoalMutation } from '@/graphql/mutations/deleteGoal.mutation'
+import { mutation_deleteGoal } from '@/modules/goals/graphql/mutation_deleteGoal'
 import { Root$ } from '../../../../mst/stores/Root.store'
 import { addCoinsMutation } from '@/graphql/mutations/addCoins.mutation'
 import { getCoinsFromRitual } from '@/helpers/getCoinsFromRitual'
 import { getCoinsFromCompletedGoal } from '@/helpers/getCoinsFromCompletedGoal'
 import { setMidnightTime } from '@/helpers/date.helpers'
 import { IUser$ } from '@/mst/types'
+import { IGoal$SnapshotIn } from '@/modules/goals/mst/types'
 
 export const Goal$ = Goal.named('Goal$')
     .views((self) => ({
@@ -83,7 +84,7 @@ export const Goal$ = Goal.named('Goal$')
                     goal_finished_at: self.finished_at,
                 })
                 const result = yield* toGenerator(
-                    ritualizeGoalMutation(self.id, ritual_goal_created_at, ritual_goal_finished_at, newRitualPower),
+                    mutation_ritualizeGoal(self.id, ritual_goal_created_at, ritual_goal_finished_at, newRitualPower),
                 )
                 if (!result) throw new Error('ritualize goal error')
 
@@ -129,7 +130,7 @@ export const Goal$ = Goal.named('Goal$')
         deleteGoal: flow(function* _deleteGoal() {
             try {
                 const toggleDelete = !!self.deleted_at
-                const result = yield deleteGoalMutation(self.id, !toggleDelete)
+                const result = yield mutation_deleteGoal(self.id, !toggleDelete)
                 if (result === undefined) throw new Error('deleteGoal error')
                 const { goals } = getParentOfType(self, Goals$)
                 const selected = goals?.find((goal) => goal.id === self.id)
@@ -148,7 +149,7 @@ export const Goal$ = Goal.named('Goal$')
             const selected = goals?.find((goal) => goal.id === self.id)
 
             try {
-                const result = yield* toGenerator(favoriteGoalMutation(self.id, !self.is_favorite))
+                const result = yield* toGenerator(mutation_favoriteGoal(self.id, !self.is_favorite))
                 if (result === undefined || !selected) throw new Error('favoriteGoal error')
                 self.is_favorite = result ?? false
                 selected.onChangeField('is_favorite', result ?? false)
@@ -167,7 +168,7 @@ export const Goal$ = Goal.named('Goal$')
                     return
                 }
 
-                const result = yield completeGoalMutation(self.id)
+                const result = yield mutation_completeGoal(self.id)
                 if (!result) throw new Error('completeGoal error')
 
                 goals?.find((goal) => goal.id === self.id)?.onChangeField('status', result)
@@ -198,4 +199,16 @@ export const Goal$ = Goal.named('Goal$')
                 })
             }
         }),
+        updateSelf(newData: IGoal$SnapshotIn | undefined): void {
+            if (!newData) return
+            self.title = castToSnapshot(newData.title)
+            self.slogan = castToSnapshot(newData.slogan)
+            self.description = castToSnapshot(newData.description)
+            self.privacy = castToSnapshot(newData.privacy)
+            self.status = castToSnapshot(newData.status)
+            self.finished_at = castToSnapshot(newData.finished_at)
+            self.deleted_at = castToSnapshot(newData.deleted_at)
+            self.is_favorite = castToSnapshot(newData.is_favorite)
+            self.goal_ritual && self.onChangeField('goal_ritual', castToSnapshot(newData.goal_ritual))
+        },
     }))

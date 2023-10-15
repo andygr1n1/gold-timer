@@ -1,9 +1,7 @@
 import { formatDistanceStrict } from 'date-fns'
 import { DIFFICULTY_ENUM } from './enums'
 
-export const setGoalDifficulty = (finished_at?: Date): DIFFICULTY_ENUM | undefined => {
-    if (!finished_at) return undefined
-
+export const setGoalDifficulty = (finished_at: Date): DIFFICULTY_ENUM => {
     const timeInMonths = +formatDistanceStrict(finished_at, Date.now(), {
         unit: 'month',
         roundingMethod: 'ceil',

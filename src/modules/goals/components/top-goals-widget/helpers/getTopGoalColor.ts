@@ -3,7 +3,6 @@ import React from 'react'
 
 export const getTopGoalColor = (goal: IGoal$): { containerClass: string; badgeStyle: React.CSSProperties } => {
     let containerClass = 'bg-teal-500 hover:bg-teal-400'
-    console.log('goal.daysEstimationCount', goal.daysEstimationCount, goal.title)
     let badgeStyle = {
         background: goal.daysEstimationCount >= 2 ? 'var(--colors-teal-800)' : 'transparent',
         color: 'white',

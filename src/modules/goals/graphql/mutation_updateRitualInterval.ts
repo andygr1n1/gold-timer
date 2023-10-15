@@ -1,9 +1,9 @@
 import { gql } from 'graphql-request'
-import { generateClient } from '../client'
+import { generateClient } from '../../../graphql/client'
 import { RITUAL_TYPE_ENUM } from '@/helpers/enums'
 import { processError } from '@/helpers/processError.helper'
 
-export const updateRitualInterval = async (
+export const mutation_updateRitualInterval = async (
     goal_id: string,
     ritual_interval: number,
     ritual_type: RITUAL_TYPE_ENUM,
@@ -11,7 +11,11 @@ export const updateRitualInterval = async (
     const client = generateClient()
 
     const mutation = gql`
-        mutation updateRitualInterval($goal_id: uuid!, $ritual_interval: Int, $ritual_type: ritual_type_enum_enum) {
+        mutation mutation_updateRitualInterval(
+            $goal_id: uuid!
+            $ritual_interval: Int
+            $ritual_type: ritual_type_enum_enum
+        ) {
             update_goals_rituals(
                 where: { goal_id: { _eq: $goal_id } }
                 _set: { ritual_interval: $ritual_interval, ritual_type: $ritual_type }
@@ -28,7 +32,7 @@ export const updateRitualInterval = async (
 
         return response.update_goals_rituals.returning?.[0]?.ritual_interval
     } catch (e) {
-        processError(e, 'updateRitualInterval error')
+        processError(e, 'mutation_updateRitualInterval error')
         return
     }
 }

@@ -4,8 +4,8 @@ import { getUserId } from '@/helpers/getUserId'
 import { IInsertNewGoal } from '@/helpers/interfaces/newGoal.interface'
 import { setGoalDifficulty } from '@/helpers/setGoalDifficulty'
 import { set } from 'date-fns'
-import { insertGoalMutation } from '@/graphql/mutations/insertGoal.mutation'
 import { processError } from '@/helpers/processError.helper'
+import { mutation_upsertGoal } from '../../graphql/mutation_upsertGoal'
 
 export const GoalNew$ = Goal$.named('GoalNew$')
     .views((self) => ({
@@ -19,7 +19,7 @@ export const GoalNew$ = Goal$.named('GoalNew$')
         },
         createNewGoal: flow(function* _createNewGoal() {
             const user_id = getUserId()
-            if (!user_id) return
+            if (!user_id || !self.finished_at) return
 
             try {
                 const newGoal: IInsertNewGoal = {
@@ -37,7 +37,7 @@ export const GoalNew$ = Goal$.named('GoalNew$')
                     is_favorite: self.is_favorite,
                 }
 
-                const newGoalResult = yield* toGenerator(insertGoalMutation(newGoal))
+                const newGoalResult = yield* toGenerator(mutation_upsertGoal(newGoal, []))
                 if (!newGoalResult) throw new Error('newGoalResult error')
 
                 return newGoalResult

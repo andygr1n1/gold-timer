@@ -23,6 +23,7 @@ export type IGenerateGoalValues = IGenerateGoalWithDays | IGenerateGoalWithDate
 
 // IInsertNewGoal
 export interface IInsertNewGoal {
+    id?: string
     title: string
     slogan: string
     description: string
@@ -33,14 +34,7 @@ export interface IInsertNewGoal {
     difficulty?: DIFFICULTY_ENUM
     parent_goal_id: string | null
     is_favorite: boolean
-}
-
-// IUpsertNewGoal
-export interface IUpsertNewGoal {
-    id: string
-    title: string
-    slogan: string
-    description: string
+    deleted_at?: Date | null
 }
 
 export interface IInsertRitual {

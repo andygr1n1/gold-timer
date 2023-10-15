@@ -1,9 +1,9 @@
 import { gql } from 'graphql-request'
-import { generateClient } from '../client'
+import { generateClient } from '../../../graphql/client'
 import { GOAL_TYPE_ENUM } from '@/helpers/enums'
 import { processError } from '@/helpers/processError.helper'
 
-export const ritualizeGoalMutation = async (
+export const mutation_ritualizeGoal = async (
     goal_id: string,
     created_at: Date,
     finished_at: Date,
@@ -14,7 +14,7 @@ export const ritualizeGoalMutation = async (
     const log_description = GOAL_TYPE_ENUM.RITUALIZED
 
     const mutation = gql`
-        mutation ritualizeGoalMutation(
+        mutation mutation_ritualizeGoal(
             $goal_id: uuid!
             $created_at: timestamptz
             $finished_at: timestamptz
@@ -47,7 +47,7 @@ export const ritualizeGoalMutation = async (
 
         return response.update_goals_by_pk
     } catch (e) {
-        processError(e, 'ritualizeGoalMutation error')
+        processError(e, 'mutation_ritualizeGoal error')
         return
     }
 }
