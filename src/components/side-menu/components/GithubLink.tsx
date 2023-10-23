@@ -12,7 +12,7 @@ export const GithubLink: React.FC = observer(() => {
                 icon='ps:github-alt'
                 width={25}
                 height={25}
-                className='text-navLink cursor-pointer pt-[5px]  duration-300 hover:text-blue-500'
+                className='text-cText cursor-pointer pt-[5px]  duration-300 hover:text-blue-500'
             />
         </a>
     )

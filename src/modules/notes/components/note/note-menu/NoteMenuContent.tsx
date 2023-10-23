@@ -14,8 +14,8 @@ export const NoteMenuContent: React.FC<{ note: INote$; setPopoverState: Dispatch
                                 setPopoverState(false)
                             }}
                             icon='fluent:open-24-filled'
-                            iconClassName='text-colorPrimary'
-                            className='hover:text-colorPrimary'
+                            iconClassName='text-blue-600'
+                            className='hover:text-blue-600'
                             title='Open'
                         />
                         <PopoverItem
@@ -24,8 +24,8 @@ export const NoteMenuContent: React.FC<{ note: INote$; setPopoverState: Dispatch
                                 note.activateCreateEditMode()
                             }}
                             icon='uil:edit'
-                            iconClassName='text-colorPrimary'
-                            className='hover:text-colorPrimary'
+                            iconClassName='text-blue-600'
+                            className='hover:text-blue-600'
                             title='Edit'
                         />
                         <PopoverItem

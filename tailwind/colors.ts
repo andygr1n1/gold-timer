@@ -1,40 +1,13 @@
 export default {
-    'x-red': 'var(--colors-red)',
-    'x-gold': 'var(--colors-gold)',
-    'x-sky': 'var(--colors-sky)',
-    'x-sky-darker': 'var(--colors-sky-darker)',
-    'x-darkNight': 'var(--colors-darkNight)',
-    'x-twilight': 'var(--colors-twilight)',
-    'x-tiffany': 'var(--colors-tiffany)',
-    'x-green': 'var(--colors-green)',
-    'x-white': 'var(--colors-white)',
-    'x-snow': 'var(--colors-snow)',
-    colorPrimary: '#2563EB',
-    regalBlue: 'rgba(19, 19, 44, 0.9)',
     cText: 'var(--colors-cText)',
     cTextHover: 'var(--colors-cTextHover)',
-    skyblue: 'var(--skyblue)',
-    'space-blue': 'var(--space-blue)',
-    // blue800: '#252e43',
-    darkblue: 'var(--darkblue)',
+    //
     'global-bg': 'var(--colors-global-bg)',
     'global-bg-plasma': 'var(--colors-global-bg-plasma)',
+    //
     'global-2-bg': 'var(--colors-global-2-bg)',
     'global-2-bg-plasma': 'var(--colors-global-2-bg-plasma)',
+    //
     'global-3-bg': 'var(--colors-global-3-bg)',
     'global-bg-regal': 'var(--colors-global-bg-regal)',
-    // navLink
-    navLink: 'var(--colors-navLink)',
-    'navLink-active': 'var(--colors-navLink-active)',
-    'navLink-active-hover': 'var(--colors-navLink-active-hover)',
-    // blue
-    'xBlue-1': 'var(--colors-blue-1)',
-    'xBlue-2': 'var(--colors-blue-2)',
-    'xBlue-3': 'var(--colors-blue-3)',
-    'xBlue-4': 'var(--colors-blue-4)',
-    'xBlue-5': 'var(--colors-blue-5)',
-    'xBlue-6': 'var(--colors-blue-6)',
-    'xBlue-7': 'var(--colors-blue-7)',
-    'xBlue-8': 'var(--colors-blue-8)',
-    'xBlue-9': 'var(--colors-blue-9)',
 }

@@ -11,7 +11,7 @@ export const PanelGoalMenuActions: React.FC<{ goal: IGoal$ }> = observer(({ goal
         <PopoverGoalActions popoverState={popoverState} setPopoverState={setPopoverState} goal={goal}>
             <div>
                 <Icon
-                    className='cursor-pointer text-gray-600 duration-300 hover:text-sky-600'
+                    className='cursor-pointer text-gray-600 duration-300 hover:text-blue-700'
                     icon='material-symbols:settings-rounded'
                     onClick={(e) => {
                         e.preventDefault()

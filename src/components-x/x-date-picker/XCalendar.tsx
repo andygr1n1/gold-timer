@@ -63,7 +63,7 @@ const DayPickerFooter: React.FC<IXCalendarProps> = (props) => {
                         icon='bx:reset'
                         width={24}
                         height={24}
-                        className='hover:text-xBlue-1 cursor-pointer p-2 duration-300'
+                        className='cursor-pointer p-2 duration-300 hover:text-blue-600'
                     />
                 }
             ></StyledButton>

@@ -24,7 +24,7 @@ export const PanelBody: React.FC<{ goal: IGoal$ }> = observer(({ goal }) => {
 
             <div className='my-1'>
                 <div className='text-xs'>Created:</div>
-                <div className='text-sky-600'>{format(goal.created_at!, 'do MMMM yyyy')}</div>
+                <div className='text-blue-700'>{format(goal.created_at!, 'do MMMM yyyy')}</div>
             </div>
             <div className='my-1'>
                 <div className='text-xs'>Deadline:</div>
