@@ -38,8 +38,8 @@ export const ProfileAvatarIndex = observer(() => {
                             )}
                             <div
                                 className='
-                                    animate-opacity-5  text-xBlue-1 absolute top-0 z-10 flex h-full
-                                    w-full items-center justify-center rounded-full bg-transparent text-xl opacity-0  group-hover:opacity-100'
+                                    animate-opacity-5  absolute top-0 z-10 flex h-full w-full
+                                    items-center justify-center rounded-full bg-transparent text-xl text-blue-600 opacity-0  group-hover:opacity-100'
                             >
                                 <Icon
                                     icon='line-md:uploading-loop'

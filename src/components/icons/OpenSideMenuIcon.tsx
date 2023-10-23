@@ -8,7 +8,7 @@ export const MenuIcon: React.FC = observer(() => {
     return !isDesktop ? (
         <Icon
             icon='line-md:close-to-menu-transition'
-            className={`text-navLink hover:text-navLink-active cursor-pointer 2xl:hidden`}
+            className={`text-cText cursor-pointer hover:text-blue-700 2xl:hidden`}
             width={33}
             height={33}
             onClick={useSideMenu.onChange}

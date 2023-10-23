@@ -48,7 +48,7 @@ export const NotesTagsSelect: React.FC = observer(() => {
                 className='bg-global-3-bg border-global-2-bg relative z-20 flex h-10 w-full max-w-[300px] gap-3 rounded-md border-[1px] border-solid  px-2 hover:border-[#4f8af7]'
             >
                 <span className='flex h-full w-fit items-center justify-center'>
-                    <Icon icon='mi:filter' width={25} height={25} className='text-xBlue-2 animate-opacity-5' />
+                    <Icon icon='mi:filter' width={25} height={25} className='animate-opacity-5 text-blue-700' />
                 </span>
                 <input
                     placeholder='Filter by Tags'
@@ -67,8 +67,8 @@ export const NotesTagsSelect: React.FC = observer(() => {
                                 <div
                                     key={tag}
                                     className={clsx(
-                                        'hover:text-xBlue-1 cursor-pointer p-2 duration-300',
-                                        tagIsSelected(tag) && 'text-xBlue-2',
+                                        'cursor-pointer p-2 duration-300 hover:text-blue-600',
+                                        tagIsSelected(tag) && 'text-blue-700',
                                     )}
                                     onClick={() => toggleSelectTag(tag)}
                                 >
@@ -80,7 +80,7 @@ export const NotesTagsSelect: React.FC = observer(() => {
                             <Icon
                                 icon='zondicons:close-solid'
                                 onClick={() => onChangeField('selected_tags', cast([]))}
-                                className='text-xBlue-2 hover:text-xBlue-1 h-4 w-4 cursor-pointer'
+                                className='h-4 w-4 cursor-pointer text-blue-700 hover:text-blue-600'
                             />
                         </div>
                     </>

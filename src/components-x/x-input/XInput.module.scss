@@ -3,8 +3,8 @@
 }
 
 .xinput-wrapper {
-    @apply text-cText bg-global-3-bg hover:border-xBlue-1 h-[36px]  w-[calc(100%-4px)] rounded-md border border-solid
-    border-transparent  text-lg;
+    @apply text-cText bg-global-3-bg h-[36px] w-[calc(100%-4px)]  rounded-md border border-solid border-transparent
+    text-lg  hover:border-blue-600;
 }
 
 .xinput-wrapper-error {
@@ -12,7 +12,7 @@
 }
 
 .xinput-wrapper-focused {
-    @apply border-xBlue-1;
+    @apply border-blue-600;
 }
 
 .xinput-wrapper-focused.xinput-wrapper-error {

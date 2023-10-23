@@ -14,7 +14,7 @@ export const SearchNotesInput: React.FC = observer(() => {
                 className='dynamic-filter'
                 value={notes_input_filter}
                 onChange={(e) => onChangeField('notes_input_filter', e.target.value)}
-                prefix={<Icon icon='line-md:search' width={23} height={23} className='text-xBlue-2 pr-2' />}
+                prefix={<Icon icon='line-md:search' width={23} height={23} className='pr-2 text-blue-700' />}
                 placeholder='Filter by description'
             />
         </>

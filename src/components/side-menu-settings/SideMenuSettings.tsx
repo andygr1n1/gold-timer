@@ -47,7 +47,7 @@ export const SideMenuSettings: React.FC = observer(() => {
                     visible && 'animate-slide-in ml-0',
                     !visible && 'animate-slide-out ml-[-320px] ',
                     !wrapperRef.current && '!ml-[-320px] ',
-                    'text-global-text bg-global-2-bg font-kzen fixed bottom-0 left-0 top-0 z-50 flex w-[250px] min-w-[250px] rounded-r-lg ',
+                    'text-cText bg-global-2-bg font-kzen fixed bottom-0 left-0 top-0 z-50 flex w-[250px] min-w-[250px] rounded-r-lg ',
                 )}
             >
                 <div className='relative mt-5 flex w-full flex-col gap-5 px-5 pt-10'>

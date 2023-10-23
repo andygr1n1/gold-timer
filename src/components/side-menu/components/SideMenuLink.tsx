@@ -25,7 +25,7 @@ export const SideMenuLink: React.FC<{
             to={`/${to}`}
             className={(navData) => {
                 return `flex w-full items-center justify-center duration-300 ${
-                    navData.isActive ? 'text-navLink-active' : 'text-navLink'
+                    navData.isActive ? 'text-blue-700' : 'text-cText'
                 }`
             }}
         >
@@ -33,8 +33,8 @@ export const SideMenuLink: React.FC<{
                 <>
                     <button
                         className='
-                    hover:text-navLink-active-hover relative flex h-[25px] w-full cursor-pointer items-center justify-start gap-2 border-none bg-transparent 
-                    text-left text-inherit outline-none duration-300  disabled:cursor-default disabled:text-gray-500 '
+                    relative flex h-[25px] w-full cursor-pointer items-center justify-start gap-2 border-none bg-transparent text-left 
+                    text-inherit outline-none duration-300 hover:text-blue-600  disabled:cursor-default disabled:text-gray-500 '
                         disabled={disabled}
                     >
                         <div className='flex h-5 w-10 items-center justify-center'> {icon ? icon : null}</div>

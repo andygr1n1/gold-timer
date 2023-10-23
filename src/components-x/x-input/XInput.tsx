@@ -62,7 +62,7 @@ export const XInput: React.FC<XInputProps> = ({
                             value={otherProps.value ?? ''}
                             className={clsx(
                                 'xinput',
-                                'focus:group-first:border-xBlue-1',
+                                'focus:group-first:border-blue-600',
                                 styles['xinput'],
                                 startIcon && styles['xinput-start-icon'],
                                 endIcon && styles['xinput-end-icon'],

@@ -44,8 +44,8 @@ export const SprintMenuContent: React.FC<{ sprint: ISprint$; setPopoverState: Di
                                 setPopoverState(false)
                             }}
                             icon='fluent:open-24-filled'
-                            iconClassName='text-colorPrimary'
-                            className='hover:text-colorPrimary'
+                            iconClassName='text-blue-600'
+                            className='hover:text-blue-600'
                             title='Open'
                         />
                         <PopoverItem
@@ -54,8 +54,8 @@ export const SprintMenuContent: React.FC<{ sprint: ISprint$; setPopoverState: Di
                                 activateEditSprintCreator(sprint)
                             }}
                             icon='uil:edit'
-                            iconClassName='text-colorPrimary'
-                            className='hover:text-colorPrimary'
+                            iconClassName='text-blue-600'
+                            className='hover:text-blue-600'
                             title='Edit'
                         />
                         <PopoverItem
@@ -64,8 +64,8 @@ export const SprintMenuContent: React.FC<{ sprint: ISprint$; setPopoverState: Di
                                 selectSprintAndActivateMenuAction(sprint, 'restart')
                             }}
                             icon='solar:restart-circle-broken'
-                            iconClassName='text-colorPrimary'
-                            className='hover:text-colorPrimary'
+                            iconClassName='text-blue-600'
+                            className='hover:text-blue-600'
                             title='Restart'
                         />
                         <PopoverItem

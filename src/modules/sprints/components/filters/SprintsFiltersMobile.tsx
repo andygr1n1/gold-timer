@@ -47,14 +47,14 @@ export const SprintsFiltersMobile: React.FC = observer(() => {
                     <button
                         key={status}
                         className={clsx(
-                            `text-cText hover:text-x-sky cursor-pointer capitalize duration-300`,
-                            isStatusActive(status) && '!text-x-sky',
+                            `text-cText cursor-pointer capitalize duration-300 hover:text-blue-600`,
+                            isStatusActive(status) && '!text-blue-600',
                         )}
                     >
                         <Checkbox
                             className={clsx(
-                                `text-cText hover:text-x-sky flex cursor-pointer capitalize duration-300`,
-                                isStatusActive(status) && '!text-x-sky',
+                                `text-cText flex cursor-pointer capitalize duration-300 hover:text-blue-600`,
+                                isStatusActive(status) && '!text-blue-600',
                             )}
                             checked={isStatusActive(status)}
                             onChange={() => addStatusFilter(status)}

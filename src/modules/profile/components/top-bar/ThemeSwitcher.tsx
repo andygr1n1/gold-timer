@@ -14,7 +14,7 @@ export const ThemeSwitcher: React.FC = observer(() => {
                         icon='line-md:sunny-filled-loop-to-moon-filled-loop-transition'
                         width={25}
                         height={25}
-                        className='text-navLink hover:text-navLink-active duration-300'
+                        className='text-cText duration-300 hover:text-blue-700'
                     />
                 )}
                 {useTheming.night && (
@@ -22,7 +22,7 @@ export const ThemeSwitcher: React.FC = observer(() => {
                         icon='line-md:moon-alt-to-sunny-outline-loop-transition'
                         width={25}
                         height={25}
-                        className='text-navLink hover:text-navLink-active duration-300'
+                        className='text-cText duration-300 hover:text-blue-700'
                     />
                 )}
             </div>

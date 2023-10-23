@@ -46,7 +46,7 @@ export const SideMenu: React.FC = observer(() => {
                 className={`${
                     useSideMenu.is_open ? 'animate-slide-in' : 'animate-slide-out lg:animate-opacity ml-[-320px] '
                 }
-                text-global-text bg-global-2-bg font-kzen  absolute left-0 z-50 flex h-full shadow-md shadow-black/20
+                text-cText bg-global-2-bg font-kzen  absolute left-0 z-50 flex h-full shadow-md shadow-black/20
                lg:static  lg:m-5 lg:mr-0 lg:flex lg:h-[calc(100%-40px)]
             `}
             >

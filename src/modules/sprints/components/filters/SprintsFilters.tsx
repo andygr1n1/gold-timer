@@ -43,8 +43,8 @@ export const SprintsFilters: React.FC = observer(() => {
                     }}
                     key={status}
                     className={clsx(
-                        `text-cText hover:text-x-sky cursor-pointer capitalize duration-300`,
-                        isStatusActive(status) && '!text-x-sky',
+                        `text-cText cursor-pointer capitalize duration-300 hover:text-blue-600`,
+                        isStatusActive(status) && '!text-blue-600',
                     )}
                 >
                     {status}

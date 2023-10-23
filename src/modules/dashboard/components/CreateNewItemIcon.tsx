@@ -12,7 +12,7 @@ export const CreateNewItemIcon: React.FC = observer(() => {
             icon='ph:plus-fill'
             width={34}
             height={34}
-            className='text-navLink hover:text-navLink-active cursor-pointer duration-300'
+            className='text-cText cursor-pointer duration-300 hover:text-blue-700'
             onClick={openDashboardMenu}
         />
     ) : null
