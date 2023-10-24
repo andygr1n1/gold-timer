@@ -4,8 +4,7 @@ import { GoalsDashboardCarousel } from '@/modules/dashboard/components/goals-das
 import { useRootStore } from '@/StoreProvider'
 import { useWindowMatchMedia } from '@/hooks/useMatchMedia.hook.'
 import { ModuleWrapper } from '@/components/ModuleWrapper'
-import { AddNew } from '@/components/buttons/AddNew.button'
-import { CreateNewNote } from '../notes/components/create-new-task-dashboard-widget/components/CreateNewNote'
+import { CreateNewNoteDashboard } from '../notes/components/create-note-dashboard/CreateNewNoteDashboard'
 import { APP_ROUTES_ENUM } from '@/helpers/enums'
 import { CreateNewItemIcon } from '@/modules/dashboard/components/CreateNewItemIcon'
 import { GoalsCounter } from './components/goals-counter/GoalsCounter'
@@ -14,8 +13,6 @@ import { CRUD_GoalDialog } from '../goals/components/crud-goal/CRUD_GoalDialog'
 export const DashboardIndex: React.FC = observer(() => {
     const {
         user$: { hasGoalsSliderAddon },
-        goals$: { openCreateMode },
-        sprints$: { activateNewSprintCreator },
     } = useRootStore()
     const { isLargeDesktop } = useWindowMatchMedia(['isLargeDesktop'])
 
@@ -25,8 +22,8 @@ export const DashboardIndex: React.FC = observer(() => {
             hideTopBar={!!isLargeDesktop}
             topBarNodes={<CreateNewItemIcon />}
         >
-            <div className='flex flex-col gap-7 xl:px-20'>
-                <div className='m-auto flex min-h-[314px] w-[314px] flex-col justify-center gap-10 md:justify-end xl:w-full xl:flex-row'>
+            <div className='flex flex-col gap-7'>
+                <div className='m-auto flex min-h-[314px] w-[314px] flex-col justify-center gap-20 md:justify-end xl:w-full xl:flex-row'>
                     <div className='flex flex-[50%]'>
                         <GoalsCounter />
                     </div>
@@ -35,28 +32,8 @@ export const DashboardIndex: React.FC = observer(() => {
                     </div>
                 </div>
                 {/*  */}
-                <div className='flex w-full flex-col justify-center gap-10  md:justify-end xl:flex-row'>
-                    <div className='flex flex-[50%] flex-col gap-7'>
-                        {isLargeDesktop && <CreateNewNote />}
-                        <div className=' flex max-w-[380px] items-center gap-5  '>
-                            {isLargeDesktop && (
-                                <div
-                                    onClick={() => openCreateMode()}
-                                    className='bg-global-2-bg group flex flex-[50%]  cursor-pointer justify-center rounded-lg px-5 py-5'
-                                >
-                                    <AddNew title='Add goal' />
-                                </div>
-                            )}
-                            {isLargeDesktop && (
-                                <div
-                                    onClick={activateNewSprintCreator}
-                                    className='bg-global-2-bg group flex  flex-[50%] cursor-pointer justify-center rounded-lg px-5 py-5'
-                                >
-                                    <AddNew title='Add sprint' />
-                                </div>
-                            )}
-                        </div>
-                    </div>
+                <div className='flex w-full flex-col gap-20 xl:flex-row'>
+                    <CreateNewNoteDashboard />
                     <TopGoalsWidgets />
                 </div>
             </div>

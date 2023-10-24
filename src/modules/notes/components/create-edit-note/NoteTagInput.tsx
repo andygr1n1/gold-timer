@@ -1,8 +1,9 @@
 import { useNotesStore } from '@/StoreProvider'
 import { FormLabel } from '@/components/form/FormLabel'
-import { Button, Form, Input, Space } from 'antd'
 import { observer } from 'mobx-react-lite'
 import { NoteTagsList } from '../NoteTagsList'
+import { StyledButton } from '@/components/buttons/StyledButton'
+import { XInput } from '@/components-x/x-input/XInput'
 
 export const NoteTagInput: React.FC = observer(() => {
     const { create_edit_note$ } = useNotesStore()
@@ -10,27 +11,28 @@ export const NoteTagInput: React.FC = observer(() => {
     const { new_tag, onChangeField, newTagIsValid, deleteTag, tag } = create_edit_note$
 
     return (
-        <Form.Item>
+        <div>
             <FormLabel title='Tag:' />
-            <Space.Compact size='large' className='mb-5 w-full'>
-                <Input
+            <div className='mb-5 flex w-full items-center'>
+                <XInput
+                    wrapperClassName='!rounded-r-none'
+                    width={'100%'}
                     placeholder='Tag me...'
                     value={new_tag || ''}
                     onChange={(e) => onChangeField('new_tag', e.target.value)}
                 />
-                <Button
+                <StyledButton
                     disabled={!newTagIsValid}
-                    type='primary'
-                    className='!text-sm'
+                    className='!rounded-l-none !text-sm'
                     onClick={() => {
                         onChangeField('tag', tag + ',' + new_tag)
                         onChangeField('new_tag', '')
                     }}
                 >
                     Add
-                </Button>
-            </Space.Compact>
+                </StyledButton>
+            </div>
             <NoteTagsList note={create_edit_note$} deleteAction={deleteTag} />
-        </Form.Item>
+        </div>
     )
 })

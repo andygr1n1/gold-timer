@@ -23,6 +23,7 @@ export const NoteDescriptionInput: React.FC = observer(() => {
                 onChange={(content) => {
                     onChangeField('description', content)
                 }}
+                placeholder='Note...'
             />
             {/* <Input.TextArea
                 size='large'

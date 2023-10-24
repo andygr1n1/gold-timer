@@ -1,11 +1,9 @@
-import { rootStore$ } from '@/StoreProvider'
+import { enqueueSnackbar } from 'notistack'
 
 export const processError = (description: string | unknown, title?: string) => {
+    console.info('==>')
+    title && console.error(`${title}:`)
     console.error(description)
-    rootStore$.notificationApi?.error({
-        message: title ? title.toString() : `Error`,
-        description: (description as string).toString(),
-        placement: 'top',
-        duration: 20,
-    })
+    console.info('<==')
+    enqueueSnackbar(description as string, { variant: 'error' })
 }

@@ -2,12 +2,10 @@ import { observer } from 'mobx-react-lite'
 import { App } from './App'
 import { useEffect } from 'react'
 import { useTheming } from './hooks/useTheming.hook'
-import { notification } from 'antd'
-import { useRootStore } from './StoreProvider'
+import { SnackbarProvider } from 'notistack'
+import { StyledAlertSnackbar } from './components-x/x-snackbar/StyledAlertSnackbar'
 
 export const AppConfigWrapper: React.FC = observer(() => {
-    const { onChangeField } = useRootStore()
-    const [api, contextHolder] = notification.useNotification()
     useEffect(() => {
         ;(async () => {
             useTheming.applyLocalStorage()
@@ -31,12 +29,20 @@ export const AppConfigWrapper: React.FC = observer(() => {
         document.addEventListener('touchstart', handler, { passive: true })
         document.addEventListener('touchend', handler, { passive: true })
         document.addEventListener('wheel', handler, { passive: true })
-        onChangeField('notificationApi', api)
     }, [])
 
     return (
         <>
-            {contextHolder}
+            <SnackbarProvider
+                Components={{ error: StyledAlertSnackbar }}
+                autoHideDuration={4000}
+                anchorOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right',
+                }}
+                domRoot={document.body}
+                maxSnack={3}
+            />
             <App />
         </>
     )

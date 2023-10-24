@@ -46,7 +46,10 @@ export const Notes$ = types
             }
         }),
         cancelNoteCreateEditMode(): void {
-            destroy(self.create_edit_note$)
+            const recycled = detach(self.create_edit_note$)
+            setTimeout(() => {
+                destroy(recycled)
+            }, 1000)
         },
         activateCreateEditMode(options: { note: INote$ | null }): void {
             this.cancelNoteCreateEditMode()
@@ -62,6 +65,10 @@ export const Notes$ = types
     .actions((self) => ({
         saveNote: flow(function* _saveNote() {
             try {
+                if (!self.create_edit_note$.tag.length) {
+                    self.create_edit_note$.onChangeField('tag', self.create_edit_note$.new_tag)
+                }
+
                 const res: INote$SnapshotIn[] = yield upsertNote({
                     description: self.create_edit_note$.description,
                     tag: compact(self.create_edit_note$.tag.split(','))

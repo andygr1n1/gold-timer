@@ -1,4 +1,3 @@
-import { type NotificationInstance } from 'antd/es/notification/interface'
 import { types, flow, applySnapshot, toGenerator, cast } from 'mobx-state-tree'
 import { query_fetchGoalsByUserId } from '../../modules/goals/graphql/query_fetchGoalsByUserId'
 import { Achievements$ } from './Achievements.store'
@@ -24,7 +23,6 @@ export const Root$ = types
         //
         modal_windows$: types.optional(ModalWindows$, {}),
         side_menu$: types.optional(SideMenu$, {}),
-        notificationApi: types.maybe(types.frozen<NotificationInstance>()),
         //
         theme: types.maybeNull(types.enumeration(['night', 'day'])),
     })
