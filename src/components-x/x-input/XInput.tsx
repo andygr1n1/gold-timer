@@ -16,7 +16,8 @@ export type XInputProps = React.InputHTMLAttributes<HTMLInputElement> & {
     endIcon?: ReactNode
     mask?: string
     readOnly?: boolean
-    width?: number
+    width?: string
+    wrapperClassName?: string
 }
 
 export const XInput: React.FC<XInputProps> = ({
@@ -29,6 +30,7 @@ export const XInput: React.FC<XInputProps> = ({
     mask,
     readOnly,
     width,
+    wrapperClassName,
     variant = 'input',
     ...otherProps
 }) => {
@@ -38,7 +40,7 @@ export const XInput: React.FC<XInputProps> = ({
     const [focused, setFocused] = useState(false)
 
     return (
-        <div className={clsx('relative')} style={width ? { width: `${width}px` } : undefined}>
+        <div className={clsx('relative')} style={width ? { width: `${width}` } : undefined}>
             {lbl && <FormLabel title={label} />}
             <div
                 className={clsx(
@@ -47,8 +49,9 @@ export const XInput: React.FC<XInputProps> = ({
                     error && styles['xinput-wrapper-error'],
                     focused && styles['xinput-wrapper-focused'],
                     readOnly && styles['xinput-wrapper-readonly'],
+                    wrapperClassName,
                 )}
-                style={width ? { width: `${width}px` } : undefined}
+                style={width ? { width: `${width}` } : undefined}
             >
                 {readOnly ? (
                     <div className='flex h-full items-center justify-start gap-2 rounded-md px-1'>

@@ -393,13 +393,12 @@
     text-align: right;
 }
 .ql-editor.ql-blank::before {
-    color: rgba(0, 0, 0, 0.6);
+    @apply text-cText opacity-50;
+
     content: attr(data-placeholder);
-    font-style: italic;
-    left: 15px;
+    left: 5px;
     pointer-events: none;
     position: absolute;
-    right: 15px;
 }
 .ql-snow.ql-toolbar {
     color: white;

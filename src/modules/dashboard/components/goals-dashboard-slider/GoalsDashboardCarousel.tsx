@@ -3,27 +3,35 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css' // requires a loa
 import { Carousel } from 'react-responsive-carousel'
 import { ReactChild, useEffect } from 'react'
 import { useRootStore } from '@/StoreProvider'
+import { useWindowMatchMedia } from '@/hooks/useMatchMedia.hook.'
 
 export const GoalsDashboardCarousel: React.FC = observer(() => {
     const {
         achievements$: { visibleAchievements, fetchAchievements },
     } = useRootStore()
 
+    const { isMobile } = useWindowMatchMedia(['isMobile'])
+
     useEffect(() => {
         fetchAchievements()
     }, [])
 
     return (
-        <div className='bg-global-2-bg relative flex w-full items-center justify-center rounded-lg p-8'>
-            <div className="absolute flex h-full w-full bg-[url('https://firebunny-storage.b-cdn.net/kzen/kzen-login-bakground.jpg')] bg-cover opacity-20" />
+        <div className='relative flex w-full items-center justify-center rounded-lg p-8'>
+            {!isMobile && (
+                <img
+                    className='absolute hidden w-[300px] md:flex md:w-[450px]'
+                    src='https://firebunny-storage.b-cdn.net/kzen/utility/lotus-bg.png'
+                    // className="absolute flex h-full w-full bg-[url('https://firebunny-storage.b-cdn.net/kzen/utility/lotus-bg.png')] bg-cover "
+                />
+            )}
             <Carousel
                 autoPlay
                 infiniteLoop
                 interval={5000}
-                width={250}
                 showIndicators={false}
                 showStatus={false}
-                className='z-20 cursor-pointer rounded-full border-none bg-transparent'
+                className='z-20 w-[300px] cursor-pointer rounded-full border-none bg-transparent opacity-95 md:w-[300px]'
                 showArrows={true}
                 showThumbs={false}
                 centerMode
@@ -35,44 +43,42 @@ export const GoalsDashboardCarousel: React.FC = observer(() => {
                     <img
                         src={`${import.meta.env.VITE_FIRE_BUNNY_STORAGE}/goals-slider/faro_color_life.png`}
                         title={'Faro'}
-                        height={250}
-                        className='rounded-lg'
+                        className='w-[300px] rounded-lg md:w-[300px]'
                     />
                 </div>
                 <div>
                     <img
                         src={`${import.meta.env.VITE_FIRE_BUNNY_STORAGE}/goals-slider/optimized_porsche_way.png`}
                         title={'me porsche'}
-                        height={250}
-                        className='rounded-lg'
+                        className='w-[300px] rounded-lg md:w-[300px]'
                     />
                 </div>
                 <div>
                     <img
                         src={`${import.meta.env.VITE_FIRE_BUNNY_STORAGE}/goals-slider/ipro.png`}
                         title={'Faro'}
-                        className='rounded-lg'
+                        className='w-[300px] rounded-lg md:w-[300px]'
                     />
                 </div>
                 <div>
                     <img
                         src={`${import.meta.env.VITE_FIRE_BUNNY_STORAGE}/goals-slider/paris_dream_33.png`}
                         title={'Paris Dream'}
-                        className='rounded-lg'
+                        className='w-[300px]  rounded-lg md:w-[300px]'
                     />
                 </div>
                 <div>
                     <img
                         src={`${import.meta.env.VITE_FIRE_BUNNY_STORAGE}/goals-slider/azor.png`}
                         title={'Simple Plan'}
-                        className='rounded-lg'
+                        className='w-[300px] rounded-lg md:w-[300px]'
                     />
                 </div>
                 <div>
                     <img
                         src={`${import.meta.env.VITE_FIRE_BUNNY_STORAGE}achievements/optimized_ocean_touch.png`}
                         title={'Simple Plan'}
-                        className='rounded-lg'
+                        className='w-[300px] rounded-lg md:w-[300px]'
                     />
                 </div>
                 {
@@ -81,7 +87,7 @@ export const GoalsDashboardCarousel: React.FC = observer(() => {
                             <img
                                 src={`${import.meta.env.VITE_FIRE_BUNNY_STORAGE}achievements/${ach.img_path}`}
                                 title={ach.title}
-                                className='rounded-lg'
+                                className='w-[300px] rounded-lg md:w-[300px]'
                             />
                         </div>
                     )) as unknown as ReactChild
