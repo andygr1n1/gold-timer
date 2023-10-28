@@ -13,6 +13,7 @@ export type StyledButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & 
     endIcon?: ReactNode
     dataTest?: string
     error?: boolean
+    rounded?: boolean
 }
 /**
  * Developer: daria.bogatiriov@carasent.com
@@ -38,6 +39,7 @@ export const StyledButton = ({
     endIcon,
     dataTest,
     error,
+    rounded,
     ...otherProps
 }: StyledButtonProps) => {
     const isLarge = size === 'large'
@@ -54,7 +56,7 @@ export const StyledButton = ({
                 styles[variant],
                 styles[color],
                 styles[size],
-                styles['radius15'],
+                rounded && styles['radius15'],
                 className,
             )}
             ref={refLink}

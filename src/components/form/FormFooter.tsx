@@ -12,14 +12,14 @@ export const FormFooter: React.FC<{
 }> = ({ onCancel, onOk, okTitle = 'Ok', disabled = false, disabledTooltip }) => {
     return (
         <div className='mt-10 flex w-full items-center justify-center gap-6'>
-            <StyledButton onClick={onCancel} variant='outlined' size='extraLarge' className='w-28'>
+            <StyledButton rounded onClick={onCancel} variant='outlined' size='extraLarge' className='w-28'>
                 <div className='flex items-center justify-center gap-2'>
                     <Icon icon='uiw:left-circle' width={17} height={17} />
                     <div>{'Return'}</div>
                 </div>
             </StyledButton>
             <div className='relative'>
-                <StyledButton disabled={disabled} size='extraLarge' className='z-10 w-28' onClick={onOk}>
+                <StyledButton rounded disabled={disabled} size='extraLarge' className='z-10 w-28' onClick={onOk}>
                     {okTitle}
                 </StyledButton>
                 {disabled && disabledTooltip && (

@@ -13,7 +13,7 @@ export const GoToDashboard = () => {
 
     return !isDashboard ? (
         <SideMenuLink to={APP_ROUTES_ENUM.DASHBOARD}>
-            <StyledButton className='mx-6 w-full' size='extraLarge'>
+            <StyledButton rounded className='mx-6 w-full' size='extraLarge'>
                 Dashboard
             </StyledButton>
         </SideMenuLink>

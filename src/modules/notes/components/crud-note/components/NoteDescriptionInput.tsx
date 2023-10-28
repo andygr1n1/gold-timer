@@ -24,6 +24,7 @@ export const NoteDescriptionInput: React.FC = observer(() => {
                     onChangeField('description', content)
                 }}
                 placeholder='Note...'
+                className='[&_.ql-editor]:!max-h-[130px] [&_.ql-editor]:!min-h-[130px]'
             />
             {/* <Input.TextArea
                 size='large'
