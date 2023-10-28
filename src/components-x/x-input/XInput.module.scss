@@ -3,7 +3,7 @@
 }
 
 .xinput-wrapper {
-    @apply text-cText bg-global-3-bg h-[36px] w-[calc(100%-4px)]  rounded-md border border-solid border-transparent
+    @apply text-cText bg-global-3-bg relative h-[40px] w-[calc(100%-4px)]  rounded-md border border-solid border-transparent
     text-lg  hover:border-blue-600;
 }
 
@@ -28,7 +28,7 @@
 }
 
 .xinput {
-    @apply text-cText placeholder:text-cText m-0 h-full w-[calc(100%-8px)] rounded-md border-none px-1 py-0 placeholder:opacity-50 disabled:bg-transparent disabled:bg-opacity-10  disabled:opacity-70;
+    @apply text-cText placeholder:text-cText m-0 h-full w-[calc(100%-24px)] rounded-md border-none px-3 py-0 placeholder:opacity-50 disabled:bg-transparent disabled:bg-opacity-10  disabled:opacity-70;
 }
 
 .xinput-start-icon {

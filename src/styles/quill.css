@@ -33,14 +33,11 @@
 }
 
 .ql-editor {
-    @apply min-h-[100px] rounded-md border border-solid border-transparent outline-transparent focus-within:border focus-within:border-blue-500
-    hover:border-blue-500;
+    @apply scrollbar-thumb-blue-500 scrollbar-track-global-3-bg  scrollbar-thin max-h-[150px] min-h-[100px] overflow-auto rounded-md border border-solid border-transparent px-3 py-2 outline-transparent focus-within:border focus-within:border-blue-500
+    hover:border-blue-600;
     :box-sizing: border-box;
     line-height: 1.42;
-    height: 100%;
     outline: none;
-    overflow-y: auto;
-    padding: 12px 4px;
     tab-size: 4;
     -moz-tab-size: 4;
     text-align: left;
@@ -396,7 +393,7 @@
     @apply text-cText opacity-50;
 
     content: attr(data-placeholder);
-    left: 5px;
+    left: 14px;
     pointer-events: none;
     position: absolute;
 }

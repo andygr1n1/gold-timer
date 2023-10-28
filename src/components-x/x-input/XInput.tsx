@@ -2,7 +2,6 @@ import clsx from 'clsx'
 import styles from './XInput.module.scss'
 import { ReactNode, useState } from 'react'
 import { IMaskMixin } from 'react-imask'
-import { FormLabel } from '@/components/form/FormLabel'
 // TODO to find a solution with "react-imask": "^7.1.3",
 //   "tailwind-merge": "^1.14.0",
 // "tailwindcss-animate": "^1.0.7",
@@ -21,7 +20,6 @@ export type XInputProps = React.InputHTMLAttributes<HTMLInputElement> & {
 }
 
 export const XInput: React.FC<XInputProps> = ({
-    label,
     error,
     errorMessage,
     startIcon,
@@ -29,29 +27,23 @@ export const XInput: React.FC<XInputProps> = ({
     refLink,
     mask,
     readOnly,
-    width,
-    wrapperClassName,
     variant = 'input',
     ...otherProps
 }) => {
-    const lbl = typeof label === 'string'
     const isSelect = variant === 'select'
 
     const [focused, setFocused] = useState(false)
 
     return (
-        <div className={clsx('relative')} style={width ? { width: `${width}` } : undefined}>
-            {lbl && <FormLabel title={label} />}
+        <div className={clsx('relative w-full')}>
             <div
                 className={clsx(
-                    'group relative',
+                    'group',
                     styles['xinput-wrapper'],
                     error && styles['xinput-wrapper-error'],
                     focused && styles['xinput-wrapper-focused'],
                     readOnly && styles['xinput-wrapper-readonly'],
-                    wrapperClassName,
                 )}
-                style={width ? { width: `${width}` } : undefined}
             >
                 {readOnly ? (
                     <div className='flex h-full items-center justify-start gap-2 rounded-md px-1'>
@@ -64,13 +56,11 @@ export const XInput: React.FC<XInputProps> = ({
                             {...otherProps}
                             value={otherProps.value ?? ''}
                             className={clsx(
-                                'xinput',
-                                'focus:group-first:border-blue-600',
+                                'xinput focus:group-first:border-blue-600',
                                 styles['xinput'],
                                 startIcon && styles['xinput-start-icon'],
                                 endIcon && styles['xinput-end-icon'],
                                 endIcon && startIcon && styles['xinput-start-end-icon'],
-                                otherProps.className,
                             )}
                             ref={refLink}
                             onFocus={(e) => {

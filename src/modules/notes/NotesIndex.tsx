@@ -9,6 +9,7 @@ import { NotesSettingsIcon } from './components/NotesSettingsIcon'
 import { NotesTagsSelect } from './components/filters/NotesTagsSelect'
 import { NoteMenuDialogConfirm } from './components/note/note-menu/NoteMenuDialogConfirm'
 import { SearchNotesInput } from './components/filters/SearchNotesInput'
+import { CRUD_NoteDialog } from './components/crud-note/CRUD_NoteDialog'
 
 export const NotesIndex: React.FC = observer(function NotesIndex() {
     const { isMobile } = useWindowMatchMedia(['isMobile'])
@@ -39,8 +40,8 @@ export const NotesIndex: React.FC = observer(function NotesIndex() {
                 <NotesList />
             </div>
             {/*  */}
-            {/* D I A L O G */}
-            {/*  */}
+            {/* DIALOG */}
+            <CRUD_NoteDialog />
             <NoteMenuDialogConfirm />
         </ModuleWrapper>
     )

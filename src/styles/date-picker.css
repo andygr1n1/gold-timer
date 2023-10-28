@@ -1,7 +1,7 @@
 .rdp {
     --rdp-cell-size: 35px;
     --rdp-caption-font-size: 13px;
-    --rdp-accent-color: var(--colors-blue-2);
+    --rdp-accent-color: #2563eb;
     --rdp-background-color: var(--colors-global-3-bg);
     --rdp-accent-color-dark: #3003e1;
     --rdp-background-color-dark: #180270;

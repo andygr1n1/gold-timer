@@ -9,6 +9,7 @@ import { APP_ROUTES_ENUM } from '@/helpers/enums'
 import { CreateNewItemIcon } from '@/modules/dashboard/components/CreateNewItemIcon'
 import { GoalsCounter } from './components/goals-counter/GoalsCounter'
 import { CRUD_GoalDialog } from '../goals/components/crud-goal/CRUD_GoalDialog'
+import { CRUD_NoteDialog } from '../notes/components/crud-note/CRUD_NoteDialog'
 
 export const DashboardIndex: React.FC = observer(() => {
     const {
@@ -38,6 +39,7 @@ export const DashboardIndex: React.FC = observer(() => {
                 </div>
             </div>
             {/* DIALOG */}
+            <CRUD_NoteDialog />
             <CRUD_GoalDialog />
         </ModuleWrapper>
     )

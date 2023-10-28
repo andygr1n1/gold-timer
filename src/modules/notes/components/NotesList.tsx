@@ -2,6 +2,8 @@ import { useNotesStore } from '@/StoreProvider'
 import { observer } from 'mobx-react-lite'
 import { useEffect } from 'react'
 import { Note } from './note/Note'
+import styles from './note/Note.module.scss'
+import clsx from 'clsx'
 
 export const NotesList: React.FC = observer(() => {
     const {
@@ -18,6 +20,8 @@ export const NotesList: React.FC = observer(() => {
             {filteredNotes.map((t) => (
                 <Note key={t.id} note={t} />
             ))}
+            <div className={clsx(styles['note-container'], '!bg-transparent')} />
+            <div className={clsx(styles['note-container'], '!bg-transparent')} />
         </div>
     )
 })
