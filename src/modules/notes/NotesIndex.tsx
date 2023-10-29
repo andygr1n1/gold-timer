@@ -34,17 +34,15 @@ export const NotesIndex: React.FC = observer(function NotesIndex() {
                     <div className='mt-5 flex justify-between gap-5'>
                         <div className='flex items-center justify-center'>
                             <NotesTagsSelect />
-                            {!!deletedNotes.length && (
-                                <StyledButton
-                                    onClick={() => {
-                                        onChangeField('show_deleted', !show_deleted)
-                                    }}
-                                    variant='text'
-                                    className={clsx(show_deleted && '!text-blue-600')}
-                                >
-                                    Deleted
-                                </StyledButton>
-                            )}
+                            <StyledButton
+                                onClick={() => {
+                                    onChangeField('show_deleted', !show_deleted)
+                                }}
+                                variant='text'
+                                className={clsx(show_deleted && '!text-blue-600')}
+                            >
+                                Deleted
+                            </StyledButton>
                         </div>
                         <AddNew
                             title={'Add new note'}
