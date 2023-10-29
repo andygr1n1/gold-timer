@@ -51,7 +51,7 @@ export const NotesTagsSelect: React.FC = observer(() => {
                     <Icon icon='mi:filter' width={25} height={25} className='animate-opacity-5 text-blue-700' />
                 </span>
                 <input
-                    placeholder='Filter by Tags'
+                    placeholder='Filter by tags'
                     className='text-cText w-full rounded-md border-none text-[14px] placeholder:text-gray-500'
                     onFocus={() => setOpenDropdownMenu(true)}
                     onClick={() => setOpenDropdownMenu(true)}
@@ -62,7 +62,7 @@ export const NotesTagsSelect: React.FC = observer(() => {
                 />
                 {openDropdownMenu && (
                     <>
-                        <div className='text-cText bg-global-2-bg absolute left-0 top-[41px] flex max-h-[300px] w-full flex-col overflow-auto  '>
+                        <div className='text-cText bg-global-bg-plasma shadow-2xl scrollbar-thumb-blue-500 scrollbar-track-global-bg scrollbar-thin absolute left-0 top-[41px] flex max-h-[300px] w-full flex-col overflow-auto '>
                             {filteredTags.map((tag) => (
                                 <div
                                     key={tag}

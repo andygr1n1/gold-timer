@@ -9,15 +9,11 @@ import { NotesSettingsIcon } from './components/NotesSettingsIcon'
 import { NotesTagsSelect } from './components/filters/NotesTagsSelect'
 import { SearchNotesInput } from './components/filters/SearchNotesInput'
 import { CRUD_NoteDialog } from './components/crud-note/CRUD_NoteDialog'
-import { StyledButton } from '@/components/buttons/StyledButton'
-import clsx from 'clsx'
+import { NotesDeleted } from './components/filters/NotesDeleted'
 
 export const NotesIndex: React.FC = observer(function NotesIndex() {
     const { isMobile } = useWindowMatchMedia(['isMobile'])
-    const {
-        openNoteCreateMode,
-        notes_filter$: { show_deleted, onChangeField, deletedNotes },
-    } = useNotesStore()
+    const { openNoteCreateMode } = useNotesStore()
 
     return (
         <ModuleWrapper
@@ -34,15 +30,7 @@ export const NotesIndex: React.FC = observer(function NotesIndex() {
                     <div className='mt-5 flex justify-between gap-5'>
                         <div className='flex items-center justify-center'>
                             <NotesTagsSelect />
-                            <StyledButton
-                                onClick={() => {
-                                    onChangeField('show_deleted', !show_deleted)
-                                }}
-                                variant='text'
-                                className={clsx(show_deleted && '!text-blue-600')}
-                            >
-                                Deleted
-                            </StyledButton>
+                            <NotesDeleted />
                         </div>
                         <AddNew
                             title={'Add new note'}
