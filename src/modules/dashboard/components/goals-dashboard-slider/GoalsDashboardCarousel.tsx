@@ -3,7 +3,7 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css' // requires a loa
 import { Carousel } from 'react-responsive-carousel'
 import { ReactChild, useEffect } from 'react'
 import { useRootStore } from '@/StoreProvider'
-import { useWindowMatchMedia } from '@/hooks/useMatchMedia.hook.'
+import { useWindowMatchMedia } from '@/hooks/useMatchMedia.hook'
 
 export const GoalsDashboardCarousel: React.FC = observer(() => {
     const {

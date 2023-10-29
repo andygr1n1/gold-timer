@@ -1,7 +1,9 @@
-import { cast, getParentOfType, types } from 'mobx-state-tree'
+import { flow, getParentOfType, types } from 'mobx-state-tree'
 import { Note } from '../models/Note.model'
-import { Notes$ } from './Notes.store'
 import { compact } from 'lodash-es'
+import { Notes$ } from './Notes.store'
+import { processError } from '@/helpers/processError.helper'
+import { mutation_deleteNote } from '@/modules/notes/graphql/mutation_deleteNote'
 
 export const Note$ = types
     .compose(
@@ -18,17 +20,13 @@ export const Note$ = types
                     return sn
                 },
             }),
-            dialog_action: types.maybe(types.union(types.literal('delete'), types.literal('create-edit'))),
             new_tag: '',
         }),
     )
     .named('Note$')
     .views((self) => ({
-        get deleteMode(): boolean {
-            return !!self.dialog_action && self.dialog_action === 'delete'
-        },
-        get creatorMode(): boolean {
-            return !!self.dialog_action && self.dialog_action === 'create-edit'
+        get saveEnabled(): boolean {
+            return !!self.description.length
         },
         get newTagIsValid(): boolean {
             const tagsOptimized = compact(self.tag.split(',').map((t) => t.trim().toLowerCase())).slice()
@@ -44,12 +42,17 @@ export const Note$ = types
             const newTag = self.noteTags.filter((noteTag) => noteTag !== objToDelete)
             self.tag = newTag.toString()
         },
-        selectAndSetDeleteMode(): void {
-            const { selectNoteAndSetDeleteMode } = getParentOfType(self, Notes$)
-            selectNoteAndSetDeleteMode(cast(self))
-        },
-        activateCreateEditMode(): void {
-            const { activateCreateEditMode } = getParentOfType(self, Notes$)
-            activateCreateEditMode({ note: cast(self) })
-        },
+        deleteNote: flow(function* _deleteNote() {
+            try {
+                const toggleDelete = !!self.deleted_at
+                const result = yield mutation_deleteNote(self.id, !toggleDelete)
+                if (result === undefined) throw new Error('deleteNote error')
+                const { notes } = getParentOfType(self, Notes$)
+                const selected = notes?.find((note) => note.id === self.id)
+                selected?.onChangeField('deleted_at', result)
+                self.deleted_at = result
+            } catch (e) {
+                processError(e)
+            }
+        }),
     }))

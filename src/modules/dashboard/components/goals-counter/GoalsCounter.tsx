@@ -5,7 +5,7 @@ import { observer } from 'mobx-react-lite'
 
 export const GoalsCounter: React.FC = observer(() => {
     const {
-        notes$: { notesLength, activateCreateEditMode },
+        notes$: { notesLength, openNoteCreateMode },
         sprints$: { allActiveCheckedSprintsLength, activateNewSprintCreator },
         goals$: { notCompletedGoalsCount: activeGoalsCount, openCreateMode },
     } = useRootStore()
@@ -37,7 +37,7 @@ export const GoalsCounter: React.FC = observer(() => {
             <div className={clsx('relative flex text-xl', !notesLength && 'opacity-70')}>
                 <span className='text-cText absolute -bottom-6 right-0 font-bold'>{notesLength || ''}</span>
                 <Icon
-                    onClick={() => activateCreateEditMode({ note: null })}
+                    onClick={() => openNoteCreateMode()}
                     icon='ci:note-edit'
                     width={70}
                     height={70}

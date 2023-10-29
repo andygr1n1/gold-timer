@@ -2,7 +2,7 @@ import { ModuleWrapper } from '@/components/ModuleWrapper'
 import { SprintsList } from './components/SprintsList'
 import { SprintsFilters } from './components/filters/SprintsFilters'
 
-import { useWindowMatchMedia } from '@/hooks/useMatchMedia.hook.'
+import { useWindowMatchMedia } from '@/hooks/useMatchMedia.hook'
 import { SprintMenuDialogConfirm } from './components/sprint-info/SprintMenuDialogConfirm'
 import { AddNew } from '@/components/buttons/AddNew.button'
 import { useSprintsStore } from '@/StoreProvider'

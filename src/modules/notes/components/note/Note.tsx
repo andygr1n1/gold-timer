@@ -5,7 +5,10 @@ import { Interweave } from 'interweave'
 import { NoteMenu } from './note-menu/NoteMenu'
 import { NoteTagsList } from '../NoteTagsList'
 import styles from './Note.module.scss'
+import { useNotesStore } from '@/StoreProvider'
+import clsx from 'clsx'
 export const Note: React.FC<{ note: INote$ }> = observer(({ note }) => {
+    const { openNoteViewMode } = useNotesStore()
     return (
         <div className={styles['note-container']}>
             {note.created_at && (
@@ -15,16 +18,22 @@ export const Note: React.FC<{ note: INote$ }> = observer(({ note }) => {
                 </div>
             )}
             {/* <div className='overflow-wrap-anywhere relative flex flex-auto  leading-6'>{note.description}</div> */}
-
-            <Interweave
-                className='overflow-wrap-anywhere flex h-full flex-auto cursor-pointer '
-                allowAttributes
-                disableMatchers
-                disableFilters
-                allowElements
-                content={note.description.length > 80 ? note.description.slice(0, 80) + ' ... ' : note.description}
-            />
             <NoteTagsList note={note} />
+            <div
+                className='overflow-wrap-anywhere flex  h-full flex-auto cursor-pointer  '
+                onClick={() => {
+                    openNoteViewMode(note.id)
+                }}
+            >
+                <Interweave
+                    className={clsx('overflow-wrap-anywhere', styles['interweave'])}
+                    allowAttributes
+                    disableMatchers
+                    disableFilters
+                    allowElements
+                    content={note.description}
+                />
+            </div>
         </div>
     )
 })

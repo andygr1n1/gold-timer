@@ -9,7 +9,8 @@ export const FormFooter: React.FC<{
     okTitle?: ReactNode
     onOk: (e: React.MouseEvent<HTMLElement, MouseEvent>) => void
     onCancel: () => void
-}> = ({ onCancel, onOk, okTitle = 'Ok', disabled = false, disabledTooltip }) => {
+    hideOkButton?: boolean
+}> = ({ onCancel, onOk, okTitle = 'Ok', disabled = false, disabledTooltip, hideOkButton = false }) => {
     return (
         <div className='mt-10 flex w-full items-center justify-center gap-6'>
             <StyledButton rounded onClick={onCancel} variant='outlined' size='extraLarge' className='w-28'>
@@ -18,19 +19,23 @@ export const FormFooter: React.FC<{
                     <div>{'Return'}</div>
                 </div>
             </StyledButton>
-            <div className='relative'>
-                <StyledButton rounded disabled={disabled} size='extraLarge' className='z-10 w-28' onClick={onOk}>
-                    {okTitle}
-                </StyledButton>
-                {disabled && disabledTooltip && (
-                    <div
-                        id='disabledTooltip'
-                        className='pointer-events-auto absolute left-0 top-0 z-20 h-full w-full rounded-lg bg-transparent
+            {hideOkButton ? null : (
+                <div className='relative'>
+                    <StyledButton rounded disabled={disabled} size='extraLarge' className='z-10 w-28' onClick={onOk}>
+                        {okTitle}
+                    </StyledButton>
+                    {disabled && disabledTooltip && (
+                        <div
+                            id='disabledTooltip'
+                            className='pointer-events-auto absolute left-0 top-0 z-20 h-full w-full rounded-lg bg-transparent
                         '
-                    />
-                )}
-                {disabled && disabledTooltip && <XTooltip anchorSelect='#disabledTooltip'>{disabledTooltip}</XTooltip>}
-            </div>
+                        />
+                    )}
+                    {disabled && disabledTooltip && (
+                        <XTooltip anchorSelect='#disabledTooltip'>{disabledTooltip}</XTooltip>
+                    )}
+                </div>
+            )}
         </div>
     )
 }

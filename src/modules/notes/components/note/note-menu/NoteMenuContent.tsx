@@ -2,9 +2,11 @@ import { PopoverItem } from '@/components/popover-settings/PopoverItem'
 import { observer } from 'mobx-react-lite'
 import { Dispatch, SetStateAction } from 'react'
 import { INote$ } from '../../../mst/types'
+import { useNotesStore } from '@/StoreProvider'
 
 export const NoteMenuContent: React.FC<{ note: INote$; setPopoverState: Dispatch<SetStateAction<boolean>> }> = observer(
     ({ note, setPopoverState }) => {
+        const { openNoteEditMode } = useNotesStore()
         return (
             <div className='flex min-w-[120px] flex-col gap-4'>
                 <div className='flex flex-col gap-1'>
@@ -21,14 +23,14 @@ export const NoteMenuContent: React.FC<{ note: INote$; setPopoverState: Dispatch
                         <PopoverItem
                             action={() => {
                                 setPopoverState(false)
-                                note.activateCreateEditMode()
+                                openNoteEditMode(note.id)
                             }}
                             icon='uil:edit'
                             iconClassName='text-blue-600'
                             className='hover:text-blue-600'
                             title='Edit'
                         />
-                        <PopoverItem
+                        {/* <PopoverItem
                             action={() => {
                                 setPopoverState(false)
                                 note.selectAndSetDeleteMode()
@@ -39,7 +41,7 @@ export const NoteMenuContent: React.FC<{ note: INote$; setPopoverState: Dispatch
                             title='Delete'
                             width={18}
                             height={18}
-                        />
+                        /> */}
                     </div>
                 </div>
             </div>
