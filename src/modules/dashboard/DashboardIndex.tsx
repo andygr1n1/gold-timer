@@ -1,6 +1,5 @@
 import { observer } from 'mobx-react-lite'
 import { TopGoalsWidgets } from '@/modules/goals/components/top-goals-widget/TopGoalsWidgets'
-import { GoalsDashboardCarousel } from '@/modules/dashboard/components/goals-dashboard-slider/GoalsDashboardCarousel'
 import { useRootStore } from '@/StoreProvider'
 import { useWindowMatchMedia } from '@/hooks/useMatchMedia.hook'
 import { ModuleWrapper } from '@/components/ModuleWrapper'
@@ -10,6 +9,7 @@ import { CreateNewItemIcon } from '@/modules/dashboard/components/CreateNewItemI
 import { GoalsCounter } from './components/goals-counter/GoalsCounter'
 import { CRUD_GoalDialog } from '../goals/components/crud-goal/CRUD_GoalDialog'
 import { CRUD_NoteDialog } from '../notes/components/crud-note/CRUD_NoteDialog'
+import { GoalsSlides } from '../goals-slides/GoalsSlides'
 
 export const DashboardIndex: React.FC = observer(() => {
     const {
@@ -28,9 +28,7 @@ export const DashboardIndex: React.FC = observer(() => {
                     <div className='flex flex-[50%]'>
                         <GoalsCounter />
                     </div>
-                    <div className='flex flex-[50%] justify-center '>
-                        {hasGoalsSliderAddon && <GoalsDashboardCarousel />}
-                    </div>
+                    <div className='flex flex-[50%] justify-center '>{hasGoalsSliderAddon && <GoalsSlides />}</div>
                 </div>
                 {/*  */}
                 <div className='flex w-full flex-col gap-20 xl:flex-row'>

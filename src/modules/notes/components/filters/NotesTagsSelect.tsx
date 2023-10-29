@@ -62,7 +62,7 @@ export const NotesTagsSelect: React.FC = observer(() => {
                 />
                 {openDropdownMenu && (
                     <>
-                        <div className='text-cText bg-global-bg-plasma shadow-2xl scrollbar-thumb-blue-500 scrollbar-track-global-bg scrollbar-thin absolute left-0 top-[41px] flex max-h-[300px] w-full flex-col overflow-auto '>
+                        <div className='text-cText bg-global-bg-plasma scrollbar-thumb-blue-500 scrollbar-track-global-bg scrollbar-thin absolute left-0 top-[41px] flex max-h-[300px] w-full flex-col overflow-auto shadow-2xl '>
                             {filteredTags.map((tag) => (
                                 <div
                                     key={tag}

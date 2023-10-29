@@ -11,11 +11,13 @@ import { SideMenu$ } from './side-menu/SideMenu.store'
 import { Notes$ } from '@/modules/notes/mst/stores/Notes.store'
 import { Sprints$ } from '@/modules/sprints/mst/stores/Sprints.store'
 import { IGoal$SnapshotIn, IGoalRitual, IGoalRitualSnapshotIn } from '@/modules/goals/mst/types'
+import { GoalsSlides$ } from '@/modules/goals-slides/mst/stores/GoalsSlides.store'
 
 export const Root$ = types
     .model('Root$', {
         user$: types.optional(User$, {}),
         goals$: types.optional(Goals$, {}),
+        goals_slides$: types.optional(GoalsSlides$, {}),
         achievements$: types.optional(Achievements$, {}),
         notes$: types.optional(Notes$, {}),
         sprints$: types.optional(Sprints$, {}),
