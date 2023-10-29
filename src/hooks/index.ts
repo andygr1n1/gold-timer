@@ -1,1 +1,1 @@
-export { useWindowMatchMedia as useMatchMedia } from './useMatchMedia.hook.'
+export { useWindowMatchMedia as useMatchMedia } from './useMatchMedia.hook'

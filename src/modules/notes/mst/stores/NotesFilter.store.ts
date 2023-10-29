@@ -9,11 +9,16 @@ export const NotesFilter$ = types
         selected_tags: types.array(types.string),
         notes_input_filter: '',
         notes_tag_filter: '',
+        show_deleted: false,
     })
     .views((self) => ({
         get notes(): INote$[] {
             const { notes } = getParentOfType(self, Notes$)
-            return notes
+            return notes.filter((note) => !note.deleted_at)
+        },
+        get deletedNotes(): INote$[] {
+            const { notes } = getParentOfType(self, Notes$)
+            return notes.filter((note) => note.deleted_at)
         },
         get tags(): string[] {
             let tags: string[] = []
@@ -33,8 +38,9 @@ export const NotesFilter$ = types
             return self.selected_tags.includes(tag)
         },
         get filteredNotes(): INote$[] {
+            const notes = self.show_deleted ? this.deletedNotes : this.notes
             return orderBy(
-                this.notes.filter((note) => {
+                notes.filter((note) => {
                     return (
                         (!self.selected_tags.length ||
                             !!intersection(

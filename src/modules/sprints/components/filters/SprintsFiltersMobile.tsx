@@ -7,7 +7,7 @@ import { rootStore$ } from '@/StoreProvider'
 import { getSprints$LocalForage, setSprints$LocalForage } from '@/modules/sprints/helpers/sprintsLocalForage'
 import { Checkbox } from 'antd'
 import { XDivider } from '@/components-x/x-divider/XDivider'
-import { useWindowMatchMedia } from '@/hooks/useMatchMedia.hook.'
+import { useWindowMatchMedia } from '@/hooks/useMatchMedia.hook'
 import { ISprintsFilter$ } from '../../mst/types'
 export const SprintsFiltersMobile: React.FC = observer(() => {
     const {

@@ -1,15 +1,13 @@
-import { useNotesStore } from '@/StoreProvider'
 import { FormLabel } from '@/components/form/FormLabel'
 import { observer } from 'mobx-react-lite'
-import { NoteTagsList } from '../../NoteTagsList'
+import { NoteTagsList } from '../../../NoteTagsList'
 import { StyledButton } from '@/components/buttons/StyledButton'
 import { XInput } from '@/components-x/x-input/XInput'
 import { uniq } from 'lodash-es'
+import { INote$ } from '@/modules/notes/mst/types'
 
-export const NoteTagInput: React.FC = observer(() => {
-    const { create_edit_note$ } = useNotesStore()
-
-    const { new_tag, onChangeField, newTagIsValid, deleteTag, tag } = create_edit_note$
+export const NoteTagInput: React.FC<{ note: INote$ }> = observer(({ note }) => {
+    const { new_tag, onChangeField, newTagIsValid, deleteTag, tag } = note
 
     return (
         <div>
@@ -30,7 +28,7 @@ export const NoteTagInput: React.FC = observer(() => {
                     Add
                 </StyledButton>
             </div>
-            <NoteTagsList note={create_edit_note$} deleteAction={deleteTag} />
+            <NoteTagsList note={note} deleteAction={deleteTag} />
         </div>
     )
 })

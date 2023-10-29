@@ -1,4 +1,4 @@
-import { useWindowMatchMedia } from '@/hooks/useMatchMedia.hook.'
+import { useWindowMatchMedia } from '@/hooks/useMatchMedia.hook'
 import { Form, notification } from 'antd'
 import { observer } from 'mobx-react-lite'
 import { useState } from 'react'

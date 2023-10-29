@@ -13,6 +13,19 @@ export const Note = types
         owner_id: '',
         description: '',
         tag: '',
+        deleted_at: types.maybeNull(
+            types.snapshotProcessor(types.maybeNull(types.Date), {
+                preProcessor: (sn: Date | undefined | string) => {
+                    if (!sn) {
+                        return null
+                    }
+                    if (typeof sn === 'string') {
+                        return new Date(sn)
+                    }
+                    return sn
+                },
+            }),
+        ),
     })
     .views((self) => ({
         get noteTags(): string[] {

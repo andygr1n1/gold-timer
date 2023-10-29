@@ -7,7 +7,7 @@ import clsx from 'clsx'
 import { getSprintBgByStatus, getSprintBorderByStatus } from '../../helpers/generateSprintStyleByStatus'
 import { SprintActions } from './sprint-actions'
 import { SprintMenu } from './sprint-menu/SprintMenu'
-import { useWindowMatchMedia } from '@/hooks/useMatchMedia.hook.'
+import { useWindowMatchMedia } from '@/hooks/useMatchMedia.hook'
 import { ISprint$ } from '../../mst/types'
 
 export const SprintInfo: React.FC<{ sprint: ISprint$ }> = observer(({ sprint }) => {

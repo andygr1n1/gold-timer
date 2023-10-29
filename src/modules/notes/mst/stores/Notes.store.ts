@@ -1,21 +1,21 @@
-import { upsertNote } from '@/graphql/mutations/notes/insertNote.mutation'
-import { fetchAllNotesByUserId } from '@/graphql/queries/notes/fetchNotes.query'
+import { query_fetchNotes } from '@/modules/notes/graphql/query_fetchNotes'
 import { getUserId } from '@/helpers/getUserId'
-import { applySnapshot, cast, destroy, detach, flow, types } from 'mobx-state-tree'
+import { applySnapshot, cast, destroy, detach, flow, toGenerator, types } from 'mobx-state-tree'
 import { INote$SnapshotIn } from '../types'
 import { Note$ } from './Note.store'
 import { processError } from '@/helpers/processError.helper'
 import { NotesFilter$ } from './NotesFilter.store'
-import { deleteNote } from '@/graphql/mutations/notes/deleteNote.mutation'
-import { INote$ } from '@/modules/notes/mst/types'
-import { compact, cloneDeep } from 'lodash-es'
-import { CreateEditNote$ } from './CreateEditNote.store'
+import { cloneDeep } from 'lodash-es'
+import { NoteEdit$ } from './NoteEdit.store'
+import { NoteNew$ } from './NoteNew.store'
 
 export const Notes$ = types
     .model({
         notes: types.array(Note$),
         notes_filter$: types.optional(NotesFilter$, {}),
-        create_edit_note$: types.optional(CreateEditNote$, {}),
+        new_note: types.maybe(NoteNew$),
+        widget_new_note: types.optional(NoteNew$, {}),
+        edit_note: types.maybe(NoteEdit$),
         selected_note: types.safeReference(Note$),
     })
     .views((self) => ({
@@ -28,71 +28,68 @@ export const Notes$ = types
             self[key] = value
         },
         fetchNotes: flow(function* _fetchNotes() {
-            const res: INote$SnapshotIn[] = yield fetchAllNotesByUserId(getUserId())
+            const res: INote$SnapshotIn[] = yield query_fetchNotes(getUserId())
             applySnapshot(self.notes, res)
         }),
-        selectNoteAndSetDeleteMode(note: INote$): void {
-            self.selected_note = note
-            self.selected_note?.onChangeField('dialog_action', 'delete')
+        openNoteCreateMode(): void {
+            self.new_note = cast({})
+            self.selected_note = undefined
+            self.edit_note = undefined
         },
-        deleteNote: flow(function* _deleteNote() {
-            try {
-                if (!self.selected_note) return
-                const res: string = yield deleteNote(self.selected_note.id)
-                if (!res) throw new Error('deleteNote error')
-                destroy(detach(self.selected_note))
-            } catch (e) {
-                processError(e, 'saveTask error')
-            }
-        }),
-        cancelNoteCreateEditMode(): void {
-            const recycled = detach(self.create_edit_note$)
-            setTimeout(() => {
-                destroy(recycled)
-            }, 1000)
+        openNoteViewMode(id: string | undefined): void {
+            if (!id) return
+            const selected = self.notes.find((item) => item.id === id)
+            self.selected_note = selected
+            self.new_note = undefined
+            self.edit_note = undefined
         },
-        activateCreateEditMode(options: { note: INote$ | null }): void {
-            this.cancelNoteCreateEditMode()
-            const { note } = options
-            if (note) {
-                self.create_edit_note$ = cast({ ...cloneDeep(note), create_edit_note_id: note.id, id: '' })
-            } else {
-                self.create_edit_note$.create_edit_note_id = self.create_edit_note$.id
-            }
-            self.create_edit_note$?.onChangeField('dialog_action', 'create-edit')
+        openNoteEditMode(id: string | undefined, redirected?: boolean): void {
+            if (!id) return
+            const selected = self.notes.find((item) => item.id === id)
+            self.edit_note = cast({ ...cloneDeep(selected), redirected })
+            self.selected_note = undefined
         },
     }))
     .actions((self) => ({
-        saveNote: flow(function* _saveNote() {
+        createNewNote: flow(function* _createNewNote() {
+            if (!self.new_note) return
+            const { createNewNote } = self.new_note
+
             try {
-                if (!self.create_edit_note$.tag.length) {
-                    self.create_edit_note$.onChangeField('tag', self.create_edit_note$.new_tag)
-                }
+                const res = yield* toGenerator(createNewNote())
+                res && self.notes.push(res)
 
-                const res: INote$SnapshotIn[] = yield upsertNote({
-                    description: self.create_edit_note$.description,
-                    tag: compact(self.create_edit_note$.tag.split(','))
-                        .map((t) => t.trim().toLowerCase())
-                        .toString(),
-                    owner_id: getUserId(),
-                    id: self.create_edit_note$.create_edit_note_id,
-                })
-
-                if (!self.create_edit_note$?.created_at) {
-                    // new note
-                    self.notes.push(res)
-                } else {
-                    // update note
-                    const updateNote = self.notes.find((note) => note.id === self.create_edit_note$.create_edit_note_id)
-                    if (!updateNote) return
-                    updateNote.onChangeField('description', self.create_edit_note$.description)
-                    updateNote.onChangeField('tag', self.create_edit_note$.tag)
-                }
-                //
-                // clear creatorStore
-                self.cancelNoteCreateEditMode()
+                self.new_note = undefined
             } catch (e) {
-                processError(e)
+                processError(e, 'createNewNote error')
+            }
+        }),
+        createWidgetNewNote: flow(function* _createWidgetNewNote() {
+            const { createNewNote } = self.widget_new_note
+
+            try {
+                const res = yield* toGenerator(createNewNote())
+                res && self.notes.push(res)
+
+                const destroyNote = detach(self.widget_new_note)
+                const timeoutId = setTimeout(() => {
+                    destroy(destroyNote)
+                    clearTimeout(timeoutId)
+                }, 500)
+            } catch (e) {
+                processError(e, 'createWidgetNewNote error')
+            }
+        }),
+        updateNote: flow(function* _updateNote() {
+            if (!self.edit_note) return
+            const { updateNote, redirected, id } = self.edit_note
+
+            try {
+                yield updateNote()
+                redirected && self.openNoteViewMode(id)
+                self.edit_note = undefined
+            } catch (e) {
+                processError(e, 'updateNote error')
             }
         }),
     }))
