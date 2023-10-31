@@ -25,9 +25,6 @@ export const Note$ = types
     )
     .named('Note$')
     .views((self) => ({
-        get saveEnabled(): boolean {
-            return !!self.description.length
-        },
         get newTagIsValid(): boolean {
             const tagsOptimized = compact(self.tag.split(',').map((t) => t.trim().toLowerCase())).slice()
             return !!self.new_tag.length && !tagsOptimized.includes(self.new_tag.trim().toLowerCase())

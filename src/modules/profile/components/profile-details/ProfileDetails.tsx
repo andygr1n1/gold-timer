@@ -19,7 +19,7 @@ export const ProfileDetails: React.FC = observer(() => {
             <ProfileDetailsEditDialog />
             <ProfileAvatarIndex />
 
-            <div className='relative mx-auto mt-20 flex min-w-[260px] flex-col rounded-md  duration-300'>
+            <div className='relative mx-auto mt-10 flex min-w-[260px] flex-col rounded-md  duration-300'>
                 <div className='flex flex-col gap-5'>
                     <div>
                         <FormLabel title='Email:' />

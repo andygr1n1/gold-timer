@@ -1,3 +1,4 @@
+import { extractTextFromHtml } from '@/functions/extractTextFromHtml'
 import { compact } from 'lodash-es'
 import { types } from 'mobx-state-tree'
 
@@ -30,5 +31,8 @@ export const Note = types
     .views((self) => ({
         get noteTags(): string[] {
             return compact(self.tag.split(','))
+        },
+        get descriptionLength(): boolean {
+            return !!extractTextFromHtml(self.description).length
         },
     }))

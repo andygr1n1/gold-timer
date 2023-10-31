@@ -16,6 +16,7 @@ import { getCoinsFromCompletedGoal } from '@/helpers/getCoinsFromCompletedGoal'
 import { setMidnightTime } from '@/helpers/date.helpers'
 import { IUser$ } from '@/mst/types'
 import { IGoal$SnapshotIn } from '@/modules/goals/mst/types'
+import { processError } from '@/helpers/processError.helper'
 
 export const Goal$ = Goal.named('Goal$')
     .views((self) => ({
@@ -120,11 +121,7 @@ export const Goal$ = Goal.named('Goal$')
                         content: 'Goal successfully ritualized',
                     })
             } catch (e) {
-                alert(e)
-
-                message.error({
-                    content: 'Server error, failed to ritualize goal',
-                })
+                processError('Server error, failed to ritualize goal')
             }
         }),
         deleteGoal: flow(function* _deleteGoal() {
@@ -137,7 +134,7 @@ export const Goal$ = Goal.named('Goal$')
                 selected?.onChangeField('deleted_at', result)
                 self.deleted_at = result
             } catch (e) {
-                alert(e)
+                processError(e)
             }
         }),
         favoriteGoal: flow(function* _favoriteGoal(options?: { noRequest?: boolean }) {
@@ -154,7 +151,7 @@ export const Goal$ = Goal.named('Goal$')
                 self.is_favorite = result ?? false
                 selected.onChangeField('is_favorite', result ?? false)
             } catch (e) {
-                alert(e)
+                processError(e)
             }
         }),
     }))
@@ -192,7 +189,7 @@ export const Goal$ = Goal.named('Goal$')
 
                 onChangeField('selected_goal', undefined)
             } catch (e) {
-                alert(e)
+                processError(e)
 
                 message.error({
                     content: 'Server error, failed to complete goal',

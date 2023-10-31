@@ -1,0 +1,22 @@
+.szh-menu-container--theme-dark .szh-menu {
+    background-color: var(--colors-global-bg-plasma);
+    box-shadow: 0 2px 9px 3px rgba(0, 0, 0, 0.25);
+    @apply border border-solid border-white/10 text-white/50 backdrop-blur-sm;
+}
+.szh-menu-container--theme-dark .szh-menu__arrow {
+    background-color: #22262c;
+    border-left-color: #333;
+    border-top-color: #333;
+}
+.szh-menu-container--theme-dark .szh-menu__item--hover {
+    @apply bg-slate-900/50;
+}
+.szh-menu-container--theme-dark .szh-menu__item--focusable {
+    background-color: inherit;
+}
+.szh-menu-container--theme-dark .szh-menu__item--disabled {
+    color: #666;
+}
+.szh-menu-container--theme-dark .szh-menu__divider {
+    background-color: #3a3a3a;
+}

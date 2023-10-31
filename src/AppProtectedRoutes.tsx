@@ -11,6 +11,7 @@ import { SideMenuSettings } from './components/side-menu-settings/SideMenuSettin
 import { FocusGoalOfWeek } from './components/components-modal-windows/focus-goal-of-week/FocusGoalOfWeek'
 import { ProfileImageCropDialog } from './modules/profile/components/profile-avatar/ProfileImageCropDialog'
 import { AchievementsIndex } from './modules/achievements/AchievementsIndex'
+import { GlobalLoadingDialog } from './components/GlobalLoadingDialog'
 
 export const AppProtectedRoutes: React.FC = () => {
     return (
@@ -35,6 +36,7 @@ export const AppProtectedRoutes: React.FC = () => {
             <GoalsManagerDialog />
             <CreateEditSprintDialog />
             <ProfileImageCropDialog />
+            <GlobalLoadingDialog />
             {/*  */}
             {/* S I D E _ M E N U */}
             {/*  */}

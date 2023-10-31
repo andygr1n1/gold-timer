@@ -27,12 +27,12 @@ const Footer = observer(() => {
     const onCancel = () => onChangeField('edit_note', undefined)
     if (!edit_note) return null
 
-    const { saveEnabled, redirected } = edit_note
+    const { descriptionLength, redirected } = edit_note
 
     return (
         <FormFooter
             onOk={updateNote}
-            disabled={!saveEnabled}
+            disabled={!descriptionLength}
             onCancel={() => {
                 if (redirected) {
                     openNoteViewMode(edit_note.id)

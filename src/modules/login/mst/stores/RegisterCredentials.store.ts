@@ -1,4 +1,5 @@
 import { IFetchUserByEmailResponse, fetchUserByEmail } from '@/graphql/queries/fetchUserByEmail.query'
+import { processError } from '@/helpers/processError.helper'
 import { flow, types, toGenerator } from 'mobx-state-tree'
 
 export const RegisterCredentials$ = types
@@ -13,7 +14,7 @@ export const RegisterCredentials$ = types
         },
     }))
     .actions((self) => ({
-        onChangeField<Key extends keyof typeof self>(key: Key, value: typeof self[Key]) {
+        onChangeField<Key extends keyof typeof self>(key: Key, value: (typeof self)[Key]) {
             self[key] = value
         },
         validateEmail: flow(function* _failGoal(): Generator<
@@ -30,7 +31,7 @@ export const RegisterCredentials$ = types
                 }
                 return 200
             } catch (e) {
-                alert(e)
+                processError(e)
                 return 401
             }
         }),

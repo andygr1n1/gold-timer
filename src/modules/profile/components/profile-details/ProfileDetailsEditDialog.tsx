@@ -14,7 +14,7 @@ export const ProfileDetailsEditDialog: React.FC = observer(() => {
         <XModal title={'Edit profile'} open={profileEditIsOpen} onCancel={closeProfileEdit}>
             {profileEditIsOpen ? (
                 <>
-                    <div className='flex h-full w-full  flex-auto flex-col'>
+                    <div className='flex h-full w-full flex-auto flex-col gap-5'>
                         <EditName />
                         <EditPhone />
                         <EditBirthday />

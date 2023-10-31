@@ -9,6 +9,7 @@ import { Icon } from '@iconify/react'
 import { XModal } from '../x-modal/XModal'
 import { FormFooter } from '@/components/form/FormFooter'
 import { type DayPicker, type DayPickerSingleProps } from 'react-day-picker'
+import { FormLabel } from '@/components/form/FormLabel'
 
 export const XDatePickerAntd = generatePicker<Date>(dateFnsGenerateConfig)
 export type CalendarProps = React.ComponentProps<typeof DayPicker>
@@ -53,13 +54,13 @@ export const XDatePicker: React.FC<XDatePickerProps> = ({
     return (
         <>
             <div onClick={() => !readOnly && openDateSelector()}>
+                {props.label && <FormLabel title={props.label} />}
                 <XInput
                     value={getValue({ date: props.selected, dateFormat }) || ''}
                     disabled={inputDisabled}
                     endIcon={<Icon icon='mdi:calendar' className='cursor-pointer' />}
                     className={inputClassName}
                     onChange={() => undefined}
-                    label={props.label}
                     placeholder={placeholder}
                     readOnly={readOnly}
                     variant='select'
