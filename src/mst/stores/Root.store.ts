@@ -32,6 +32,9 @@ export const Root$ = types
         get isValidating(): boolean {
             return self.loading && !!!self.user$.id
         },
+        get isDarkTheme(): boolean {
+            return self.theme === 'night'
+        },
     }))
     .actions((self) => ({
         onChangeField<Key extends keyof typeof self>(key: Key, value: (typeof self)[Key]) {

@@ -14,14 +14,17 @@ export const ProfileAvatarIndex = observer(() => {
                 className='duration-280 flex flex-col items-center justify-center rounded-full bg-transparent'
             >
                 {img_cropped_src ? (
-                    <img src={img_cropped_src} className='h-full max-h-[280px] w-full max-w-[280px] rounded-full ' />
+                    <img
+                        src={img_cropped_src}
+                        className='h-full max-h-[280px] min-h-[280px] w-full min-w-[280px] max-w-[280px] rounded-full '
+                    />
                 ) : (
                     <>
                         <div className='group relative cursor-pointer'>
                             {avatar ? (
                                 <img
                                     src={`${import.meta.env.VITE_FIRE_BUNNY_STORAGE}/avatars/${avatar}`}
-                                    className='animate-opacity-5 h-full max-h-[280px] w-full max-w-[280px] cursor-pointer rounded-full duration-300 group-hover:shadow-md group-hover:shadow-blue-500'
+                                    className='animate-opacity-5 h-full max-h-[280px] min-h-[280px] w-full min-w-[280px] max-w-[280px] cursor-pointer rounded-full duration-300 group-hover:shadow-md '
                                 />
                             ) : (
                                 <Avatar

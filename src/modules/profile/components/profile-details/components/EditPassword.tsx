@@ -1,5 +1,6 @@
 import { useUserStore } from '@/StoreProvider'
 import { XInput } from '@/components-x/x-input/XInput'
+import { FormLabel } from '@/components/form/FormLabel'
 import { observer } from 'mobx-react-lite'
 import { useEffect, useState } from 'react'
 
@@ -40,36 +41,44 @@ export const EditPassword: React.FC = observer(() => {
     }
 
     return (
-        <div>
-            <XInput disabled label='Old Password' value={password} />
-            <XInput
-                label='New Password'
-                value={new_password}
-                onChange={onChangeNewPassword}
-                error={error}
-                errorMessage='Password must be the same'
-                onBlur={() => {
-                    if (repeat_password.length) {
-                        new_password !== repeat_password && setError(true)
-                    }
-                }}
-                placeholder='Set new password'
-            />
-            {!!new_password.length && (
+        <div className='flex flex-col gap-5'>
+            <div>
+                <FormLabel title={'Old Password'} />
+                <XInput disabled value={password} />
+            </div>
+            <div>
+                <FormLabel title={'New Password'} />
                 <XInput
-                    className='animate-opacity-3'
-                    label='Repeat new password'
-                    value={repeat_password}
-                    onChange={onChangeRepeatPassword}
+                    value={new_password}
+                    onChange={onChangeNewPassword}
                     error={error}
                     errorMessage='Password must be the same'
                     onBlur={() => {
-                        if (new_password.length || repeat_password.length) {
+                        if (repeat_password.length) {
                             new_password !== repeat_password && setError(true)
                         }
                     }}
-                    placeholder='Repeat new password'
+                    placeholder='Set new password'
                 />
+            </div>
+
+            {!!new_password.length && (
+                <div>
+                    <FormLabel title={'Repeat new password'} />
+                    <XInput
+                        className='animate-opacity-3'
+                        value={repeat_password}
+                        onChange={onChangeRepeatPassword}
+                        error={error}
+                        errorMessage='Password must be the same'
+                        onBlur={() => {
+                            if (new_password.length || repeat_password.length) {
+                                new_password !== repeat_password && setError(true)
+                            }
+                        }}
+                        placeholder='Repeat new password'
+                    />
+                </div>
             )}
         </div>
     )

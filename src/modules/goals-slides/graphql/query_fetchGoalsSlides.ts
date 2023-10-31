@@ -15,6 +15,7 @@ export const query_fetchGoalsSlides = async (): Promise<IGoalSlide$SnIn[] | unde
                 img_path
                 active
                 title
+                created_at
             }
         }
     `

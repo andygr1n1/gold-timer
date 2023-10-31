@@ -11,8 +11,7 @@ import { useSelectedTagValidation } from '../../hooks/useSelectedTagValidation'
 
 export const NotesTagsSelect: React.FC = observer(() => {
     const {
-        notes,
-        notes_filter$: { filteredTags, selected_tags, toggleSelectTag, tagIsSelected, notes_tag_filter, onChangeField },
+        notes_filter$: { filteredTags, toggleSelectTag, tagIsSelected, notes_tag_filter, onChangeField },
     } = useNotesStore()
 
     const [loadingLocalForage, setLoadingLocalForage] = useState(true)

@@ -27,7 +27,7 @@ const Footer = observer(() => {
     return (
         <FormFooter
             onOk={createNewNote}
-            disabled={!new_note?.saveEnabled}
+            disabled={!new_note?.descriptionLength}
             disabledTooltip={'Description required'}
             onCancel={onCancel}
         />

@@ -10,6 +10,7 @@ import { updateUserProfileImage } from '@/modules/profile/graphql/updateUserProf
 import { User } from '../models/User.model'
 import { UserEdit$ } from './UserEdit.store'
 import { cloneDeep } from 'lodash-es'
+import { rootStore$ } from '@/StoreProvider'
 
 export const User$ = types
     .compose(
@@ -46,9 +47,6 @@ export const User$ = types
         get hasGoalsOfWeekAddon(): boolean {
             return !!self.addons.find((addon) => addon.isGoalsOfWeek)?.isGoalsOfWeek
         },
-        get hasGoalsSliderAddon(): boolean {
-            return !!self.addons.find((addon) => addon.isGoalsSlider)?.isGoalsSlider
-        },
     }))
     .actions((self) => ({
         onChangeField<Key extends keyof typeof self>(key: Key, value: (typeof self)[Key]) {
@@ -65,6 +63,7 @@ export const User$ = types
         saveNewProfileImage: flow(function* _saveNewProfileImage(croppedImage: string) {
             self.img_cropped_src = croppedImage
             try {
+                rootStore$.onChangeField('loading', true)
                 const newAvatar = yield* toGenerator(
                     uploadNewImageToServer(self.img_cropped_src, SERVER_ROUTES.PROFILE_IMAGE_UPLOAD),
                 )
@@ -73,8 +72,10 @@ export const User$ = types
                 self.avatar = newAvatar
                 yield updateUserProfileImage(newAvatar)
                 avatarToDelete && (yield deleteImageFromServer(avatarToDelete, SERVER_ROUTES.PROFILE_IMAGE_DELETE))
+                rootStore$.onChangeField('loading', false)
             } catch (e) {
                 processError(e, 'saveNewProfileImage error')
+                rootStore$.onChangeField('loading', false)
             }
         }),
         updateProfileData: flow(function* _updateProfileData() {

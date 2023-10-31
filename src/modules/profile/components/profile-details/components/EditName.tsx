@@ -1,5 +1,6 @@
 import { useUserStore } from '@/StoreProvider'
 import { XInput } from '@/components-x/x-input/XInput'
+import { FormLabel } from '@/components/form/FormLabel'
 import { observer } from 'mobx-react-lite'
 
 export const EditName: React.FC = observer(() => {
@@ -13,5 +14,10 @@ export const EditName: React.FC = observer(() => {
         onChangeField('name', newValue)
     }
 
-    return <XInput label='Name' value={name} onChange={onChange} placeholder='Set name' />
+    return (
+        <div>
+            <FormLabel title={'Name'} />
+            <XInput value={name} onChange={onChange} placeholder='Set name' />
+        </div>
+    )
 })

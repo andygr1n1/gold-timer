@@ -21,12 +21,12 @@ export const useOutsideAlerter = (
 
 export const useClickOutside = (
     ref: MutableRefObject<HTMLDivElement | null>,
-    action: (outsideClick?: boolean) => void,
+    action: (outsideClick: boolean) => void,
 ) => {
     useEffect(() => {
         function handleClickOutside(event: { target: EventTarget | null }) {
             if (ref.current && !ref.current.contains(event.target as Node)) {
-                action(true)
+                action(false)
             }
         }
         document.addEventListener('mousedown', handleClickOutside)

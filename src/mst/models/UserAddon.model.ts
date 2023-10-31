@@ -9,7 +9,4 @@ export const UserAddon = types
         get isGoalsOfWeek(): boolean {
             return self.addon === ADDONS_ENUM.GOALS_OF_WEEK
         },
-        get isGoalsSlider(): boolean {
-            return self.addon === ADDONS_ENUM.GOALS_SLIDER
-        },
     }))

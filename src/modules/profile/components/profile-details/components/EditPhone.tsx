@@ -1,5 +1,6 @@
 import { useUserStore } from '@/StoreProvider'
 import { XInput } from '@/components-x/x-input/XInput'
+import { FormLabel } from '@/components/form/FormLabel'
 import { observer } from 'mobx-react-lite'
 
 export const EditPhone: React.FC = observer(() => {
@@ -13,5 +14,10 @@ export const EditPhone: React.FC = observer(() => {
         onChangeField('phone', newValue)
     }
 
-    return <XInput label='Phone' value={phone} onChange={onChangeNewPassword} type='number' placeholder='Set phone' />
+    return (
+        <div>
+            <FormLabel title='Phone' />
+            <XInput value={phone} onChange={onChangeNewPassword} type='number' placeholder='Set phone' />
+        </div>
+    )
 })

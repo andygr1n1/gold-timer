@@ -8,7 +8,6 @@ import { IMaskMixin } from 'react-imask'
 export type XInputProps = React.InputHTMLAttributes<HTMLInputElement> & {
     variant?: 'select' | 'input'
     refLink?: React.Ref<HTMLInputElement>
-    label?: string
     error?: boolean
     errorMessage?: string
     startIcon?: ReactNode

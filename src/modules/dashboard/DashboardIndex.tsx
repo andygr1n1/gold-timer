@@ -1,6 +1,5 @@
 import { observer } from 'mobx-react-lite'
 import { TopGoalsWidgets } from '@/modules/goals/components/top-goals-widget/TopGoalsWidgets'
-import { useRootStore } from '@/StoreProvider'
 import { useWindowMatchMedia } from '@/hooks/useMatchMedia.hook'
 import { ModuleWrapper } from '@/components/ModuleWrapper'
 import { CreateNewNoteDashboard } from '../notes/components/create-note-dashboard/CreateNewNoteDashboard'
@@ -9,12 +8,9 @@ import { CreateNewItemIcon } from '@/modules/dashboard/components/CreateNewItemI
 import { GoalsCounter } from './components/goals-counter/GoalsCounter'
 import { CRUD_GoalDialog } from '../goals/components/crud-goal/CRUD_GoalDialog'
 import { CRUD_NoteDialog } from '../notes/components/crud-note/CRUD_NoteDialog'
-import { GoalsSlides } from '../goals-slides/GoalsSlides'
+import { GoalsSlidesCarousel } from '../goals-slides/GoalsSlidesCarousel'
 
 export const DashboardIndex: React.FC = observer(() => {
-    const {
-        user$: { hasGoalsSliderAddon },
-    } = useRootStore()
     const { isLargeDesktop } = useWindowMatchMedia(['isLargeDesktop'])
 
     return (
@@ -28,7 +24,9 @@ export const DashboardIndex: React.FC = observer(() => {
                     <div className='flex flex-[50%]'>
                         <GoalsCounter />
                     </div>
-                    <div className='flex flex-[50%] justify-center '>{hasGoalsSliderAddon && <GoalsSlides />}</div>
+                    <div className='flex flex-[50%] justify-center '>
+                        <GoalsSlidesCarousel />
+                    </div>
                 </div>
                 {/*  */}
                 <div className='flex w-full flex-col gap-20 xl:flex-row'>

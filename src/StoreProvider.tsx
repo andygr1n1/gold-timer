@@ -37,6 +37,8 @@ export const useSprintsStore = () => useRootStore().sprints$
 
 export const useGoalsStore = () => useRootStore().goals$
 
+export const useGoalsSlidesStore = () => useRootStore().goals_slides$
+
 export const useNotesStore = () => useRootStore().notes$
 
 // modal windows

@@ -7,11 +7,13 @@ import { useWindowMatchMedia } from '@/hooks/useMatchMedia.hook'
 import { Icon } from '@iconify/react'
 
 import 'react-responsive-carousel/lib/styles/carousel.min.css' // requires a loader
+import { CRUD_GoalsSlidesDialog } from './crud-goals-slides/CRUD_GoalsSlidesDialog'
+import { XTooltip } from '@/components-x/x-tooltip/XTooltip'
 
-export const GoalsSlides: React.FC = observer(() => {
+export const GoalsSlidesCarousel: React.FC = observer(() => {
     const {
         achievements$: { fetchAchievements },
-        goals_slides$: { fetchGoalsSlides, goals_slides },
+        goals_slides$: { fetchGoalsSlides, visibleSlides, onChangeField },
     } = useRootStore()
 
     const { isMobile } = useWindowMatchMedia(['isMobile'])
@@ -20,6 +22,10 @@ export const GoalsSlides: React.FC = observer(() => {
         fetchAchievements()
         fetchGoalsSlides()
     }, [])
+
+    const onOpenCrud = () => {
+        onChangeField('is_crud_open', true)
+    }
 
     return (
         <div className='group relative flex w-full items-center justify-center rounded-lg p-8'>
@@ -31,11 +37,16 @@ export const GoalsSlides: React.FC = observer(() => {
                 />
             )}
             <div
-                className='animate-opacity-3 absolute top-10 z-50 hidden cursor-pointer items-center justify-center rounded-full
-                        bg-gray-500/20 p-2 text-blue-600 bg-blend-saturation backdrop-blur-3xl duration-300 group-hover:flex'
+                id='goalsSlidesEditor'
+                onClick={onOpenCrud}
+                className='animate-opacity-3 absolute top-10 z-50 flex cursor-pointer items-center justify-center rounded-full bg-transparent p-2
+                       text-gray-300 opacity-0 bg-blend-saturation backdrop-blur-3xl transition-all duration-300 hover:bg-gray-500/20 hover:text-white group-hover:opacity-100'
             >
                 <Icon icon='material-symbols:edit' width={24} height={24} />
             </div>
+            <XTooltip className='z-[900]' anchorSelect='#goalsSlidesEditor'>
+                {'Open editor'}
+            </XTooltip>
             <Carousel
                 autoPlay
                 infiniteLoop
@@ -50,16 +61,17 @@ export const GoalsSlides: React.FC = observer(() => {
                 stopOnHover
                 swipeable={false}
             >
-                {goals_slides.map((gSlide) => (
+                {visibleSlides.map((gSlide) => (
                     <div key={gSlide.id} title={gSlide.title}>
                         <img
-                            src={`${import.meta.env.VITE_FIRE_BUNNY_STORAGE}/goals-slider/${gSlide.img_path}`}
+                            src={`${import.meta.env.VITE_FIRE_BUNNY_STORAGE}/goals-slides/${gSlide.img_path}`}
                             title={gSlide.title}
                             className='w-[300px] rounded-lg md:w-[300px]'
                         />
                     </div>
                 ))}
             </Carousel>
+            <CRUD_GoalsSlidesDialog />
         </div>
     )
 })

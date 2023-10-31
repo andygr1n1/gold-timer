@@ -1,17 +1,19 @@
-import { useUserStore } from '@/StoreProvider'
+import { useGoalsSlidesStore } from '@/StoreProvider'
+import { XInput } from '@/components-x/x-input/XInput'
 import { XModal } from '@/components-x/x-modal/XModal'
 import { FormFooter } from '@/components/form/FormFooter'
+import { FormLabel } from '@/components/form/FormLabel'
 import getCroppedImg from '@/functions/cropImage'
 import { Form, Slider } from 'antd'
 import { observer } from 'mobx-react-lite'
 import { useCallback, useState } from 'react'
 import Cropper, { Area } from 'react-easy-crop'
 
-export const ProfileImageCropDialog = observer(() => {
-    const { onChangeField, saveNewProfileImage, img_src } = useUserStore()
-
+export const UploadGoalSlideCropDialog = observer(() => {
+    const { onChangeField, saveNewGoalSlide, img_src, img_src_title } = useGoalsSlidesStore()
     const handleCancel = () => {
         onChangeField('img_src', '')
+        onChangeField('img_src_title', '')
     }
 
     const [crop, setCrop] = useState({ x: 0, y: 0 })
@@ -27,8 +29,7 @@ export const ProfileImageCropDialog = observer(() => {
             if (!croppedAreaPixels || !img_src) return
 
             const croppedImage = await getCroppedImg(img_src, croppedAreaPixels)
-            croppedImage && saveNewProfileImage(croppedImage)
-            handleCancel()
+            croppedImage && saveNewGoalSlide(croppedImage).finally(() => handleCancel())
         } catch (e) {
             console.error(e)
         }
@@ -37,9 +38,9 @@ export const ProfileImageCropDialog = observer(() => {
     // if (!img_src) return null
 
     return (
-        <XModal title={'New Image'} open={!!img_src} onCancel={() => handleCancel()}>
+        <XModal title={'New Goal Slide'} open={!!img_src} onCancel={() => handleCancel()}>
             <Form>
-                <div className='bg-global-3-bg relative m-auto h-[280px] w-[280px]'>
+                <div className='bg-global-3-bg relative m-auto h-[300px] w-[300px]'>
                     <Cropper
                         image={img_src}
                         crop={crop}
@@ -50,6 +51,7 @@ export const ProfileImageCropDialog = observer(() => {
                         onZoomChange={setZoom}
                     />
                 </div>
+
                 <div className='bg-global-2-bg text-cText m-auto flex w-[280px] flex-col gap-5 p-10'>
                     <div className='controls'>
                         <Slider
@@ -64,9 +66,26 @@ export const ProfileImageCropDialog = observer(() => {
                             className='rounded-full'
                         />
                     </div>
+                    <div>
+                        <FormLabel title='Title:' />
+                        <XInput
+                            placeholder='Goal slide...'
+                            value={img_src_title}
+                            onChange={(e) => {
+                                const value = e.target.value
+                                onChangeField('img_src_title', value)
+                            }}
+                        />
+                    </div>
                 </div>
                 {/* Footer */}
-                <FormFooter okTitle={'Save'} onOk={saveCroppedImage} onCancel={handleCancel} />
+                <FormFooter
+                    okTitle={'Save'}
+                    disabled={!img_src_title.trim().length}
+                    onOk={saveCroppedImage}
+                    onCancel={handleCancel}
+                    disabledTooltip='Title is empty'
+                />
             </Form>
         </XModal>
     )
