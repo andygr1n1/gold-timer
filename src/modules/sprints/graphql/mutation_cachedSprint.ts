@@ -1,5 +1,5 @@
 import { gql } from 'graphql-request'
-import { processError } from '@/helpers/processError.helper'
+import { processError } from '@/functions/processError.helper'
 import { generateClient } from '@/graphql/client'
 
 export const mutation_cachedSprint = async (id: string) => {

@@ -1,6 +1,6 @@
 import { gql } from 'graphql-request'
 import { generateClient } from '../../../graphql/client'
-import { processError } from '@/helpers/processError.helper'
+import { processError } from '@/functions/processError.helper'
 
 export const mutation_toggleActiveGoalSlide = async (id: string, active: boolean): Promise<boolean | undefined> => {
     const client = generateClient()

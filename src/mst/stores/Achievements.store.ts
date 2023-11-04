@@ -2,8 +2,8 @@ import { applySnapshot, flow, types } from 'mobx-state-tree'
 import { Achievement } from '../models/Achievement.model'
 import { IAchievement } from '../types'
 import { fetchAchievementsByUserId } from '@/graphql/queries/fetchAchievementsByUserId.query'
-import { getUserId } from '@/helpers/getUserId'
-import { processError } from '@/helpers/processError.helper'
+import { getUserId } from '@/functions/getUserId'
+import { processError } from '@/functions/processError.helper'
 import { IGoal$SnapshotIn } from '@/modules/goals/mst/types'
 
 export const Achievements$ = types

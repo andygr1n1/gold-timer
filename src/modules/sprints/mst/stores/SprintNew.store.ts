@@ -1,15 +1,16 @@
 import { flow, getParentOfType, toGenerator, types } from 'mobx-state-tree'
 import { Sprint$ } from './Sprint.store'
-import { processError } from '@/helpers/processError.helper'
+import { processError } from '@/functions/processError.helper'
 import { add } from 'date-fns'
 import { Sprints$ } from './Sprints.store'
-import { getUserId } from '@/helpers/getUserId'
+import { getUserId } from '@/functions/getUserId'
 import { IEditSprintReq, IInsertNewSprint } from '@/modules/sprints/graphql/helpers/interface'
 import { compact, last } from 'lodash-es'
 import { mutation_insertNewSprint } from '@/modules/sprints/graphql/mutation_insertNewSprint'
 import { mutation_updateSprint } from '@/modules/sprints/graphql/mutation_updateSprint'
 import { deleteImageFromServer, uploadNewImageToServer } from '@/services/image.service'
 import { SERVER_ROUTES } from '@/helpers/enums'
+import { setZeroTime } from '../../../../functions/date.helpers'
 
 export const SprintNew$ = types
     .compose(
@@ -57,6 +58,8 @@ export const SprintNew$ = types
     .actions((self) => ({
         activateNewSprint: flow(function* _activateNewSprint() {
             try {
+                if (!self.started_at) return
+
                 if (self.img_cropped_src) {
                     const uploadedImgPath = yield* toGenerator(
                         uploadNewImageToServer(self.img_cropped_src, SERVER_ROUTES.SPRINT_IMAGE_UPLOAD),
@@ -71,7 +74,7 @@ export const SprintNew$ = types
 
                 const sprint_days = successPointsArray.map((_, index) => ({
                     id: crypto.randomUUID(),
-                    date: add(self.started_at!, { days: index }),
+                    date: setZeroTime(add(self.started_at!, { days: index })),
                     status: null,
                 }))
 
@@ -84,7 +87,7 @@ export const SprintNew$ = types
                     duration: self.duration,
                     img_path: self.img_path,
                     achievement: self.achievement,
-                    started_at: self.started_at,
+                    started_at: setZeroTime(self.started_at),
                     finished_at: lastSprintDate,
                     sprint_days,
                     sprint_goals: compact(self.sprint_goals?.split('#,#')).join('#,#'),
@@ -105,6 +108,7 @@ export const SprintNew$ = types
         }),
         updateSprint: flow(function* _updateSprint() {
             try {
+                if (!self.started_at) return
                 /* upsert image */
                 const uploadImageTrigger = last(self.img_cropped_src.split('/')) !== self.img_path
                 if (self.img_cropped_src && uploadImageTrigger) {
@@ -128,7 +132,8 @@ export const SprintNew$ = types
                 if (self.isStatusFuture) {
                     /* possible to change started_at only for isStatusFuture */
                     self.sprint_days.forEach((sprintDay, index) => {
-                        sprintDay.onChangeField('date', add(self.started_at, { days: index }))
+                        self.started_at &&
+                            sprintDay.onChangeField('date', setZeroTime(add(self.started_at, { days: index })))
                         sprintDay.onChangeField('status', null)
                     })
 
@@ -140,7 +145,7 @@ export const SprintNew$ = types
                     description: self.description,
                     img_path: self.img_path,
                     achievement: self.achievement,
-                    started_at: self.started_at,
+                    started_at: setZeroTime(self.started_at),
                     finished_at,
                     sprint_goals: compact(self.sprint_goals?.split('#,#')).join('#,#'),
                     sprint_days: self.sprint_days,

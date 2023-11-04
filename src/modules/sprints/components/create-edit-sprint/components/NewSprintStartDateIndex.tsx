@@ -1,8 +1,7 @@
 import { useSprintsStore } from '@/StoreProvider'
-import { XDayTimeSelector } from '@/components-x/x-date-picker/XDayTimeSelector'
+import { XDatePicker } from '@/components-x/x-date-picker/XDatePicker'
 import { FormLabel } from '@/components/form/FormLabel'
-import { Form } from 'antd'
-import { format, set } from 'date-fns'
+import { getYear, sub } from 'date-fns'
 import { observer } from 'mobx-react-lite'
 import { useState } from 'react'
 
@@ -12,28 +11,41 @@ export const NewSprintStartDateIndex: React.FC = observer(() => {
     if (!new_sprint) return null
     const { started_at, onChangeField, edit_mode } = new_sprint
 
-    // making isFuture immutable
-
-    function disabledStartDate(current: Date) {
-        return (
-            current && current.valueOf() <= set(new Date(Date.now()), { hours: 0, minutes: 0, seconds: 0 })?.getTime()
-        )
-    }
-
     const disabled = edit_mode && !isFuture
 
+    const disabledDays = [{ from: new Date(2022, 1, 1), to: sub(new Date(Date.now()), { days: 1 }) }]
+
+    function onDatePickerChange(day: Date | undefined) {
+        onChangeField('started_at', day || undefined)
+    }
+
+    function onClear() {
+        onChangeField('started_at', undefined)
+    }
+
     return (
-        <Form.Item>
+        <div>
             <FormLabel title='Start date:' />
-            {disabled && started_at ? (
-                <div className='text-cText text-base'>{format(started_at, 'd MMMM yyyy')}</div>
-            ) : (
-                <XDayTimeSelector
-                    onChange={(e) => e && onChangeField('started_at', e)}
-                    disabledDate={disabledStartDate}
-                    value={started_at}
-                />
-            )}
-        </Form.Item>
+
+            <XDatePicker
+                numberOfMonths={1}
+                mode='single'
+                selected={started_at || undefined}
+                onSelect={onDatePickerChange}
+                dateFormat={'do MMMM yyyy'}
+                captionLayout='dropdown-buttons'
+                fromYear={getYear(new Date(Date.now()))}
+                toYear={getYear(new Date(Date.now())) + 1}
+                fixedWeeks
+                showOutsideDays
+                showWeekNumber
+                ISOWeek
+                onClear={onClear}
+                placeholder='Set birthday'
+                disabled={disabledDays}
+                readOnly={disabled}
+                showToday
+            />
+        </div>
     )
 })

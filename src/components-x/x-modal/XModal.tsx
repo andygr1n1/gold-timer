@@ -1,4 +1,5 @@
 import { Dialog, Transition } from '@headlessui/react'
+import { Icon } from '@iconify/react'
 import { Fragment, ReactNode } from 'react'
 
 export const XModal: React.FC<{
@@ -42,6 +43,13 @@ export const XModal: React.FC<{
                                         height || 'h-fit'
                                     } bg-global-2-bg-plasma relative mx-auto max-h-[80vh] w-full max-w-[550px] transform rounded-lg shadow-xl  shadow-black/30 backdrop-blur-md transition-all `}
                                 >
+                                    <div className='absolute -top-10 right-0'>
+                                        <Icon
+                                            icon='line-md:close-small'
+                                            className={`h-7 w-7 cursor-pointer text-blue-600 duration-300 hover:h-8 hover:w-8 hover:text-blue-500`}
+                                            onClick={onCancel}
+                                        />
+                                    </div>
                                     <div className='scrollbar-thumb-blue-500 scrollbar-track-global-3-bg scrollbar-thin m-auto max-h-[80vh] w-full max-w-[540px] overflow-auto'>
                                         <div className='m-auto flex w-[calc(100%-80px)] max-w-[360px] flex-col p-10  '>
                                             {header && (

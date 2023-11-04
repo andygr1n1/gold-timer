@@ -28,7 +28,7 @@ export const GoalsSlidesCarousel: React.FC = observer(() => {
     }
 
     return (
-        <div className='group relative flex w-full items-center justify-center rounded-lg p-8'>
+        <div className='group relative flex h-[300px] w-full items-center justify-center rounded-lg p-8'>
             {!isMobile && (
                 <img
                     className='absolute hidden w-[300px] md:flex md:w-[450px]'
@@ -53,7 +53,7 @@ export const GoalsSlidesCarousel: React.FC = observer(() => {
                 interval={5000}
                 showIndicators={false}
                 showStatus={false}
-                className='z-20 w-[300px] rounded-full border-none bg-transparent opacity-95 md:w-[300px]'
+                className='z-20 w-[300px] rounded-full border-none bg-transparent opacity-95 '
                 showArrows={true}
                 showThumbs={false}
                 centerMode

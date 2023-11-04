@@ -1,5 +1,5 @@
 import { RITUAL_TYPE_ENUM } from '@/helpers/enums'
-import { DIFFICULTY_ENUM, PRIVACY_ENUM, GOAL_STATUS_ENUM } from '../enums'
+import { DIFFICULTY_ENUM, PRIVACY_ENUM, GOAL_STATUS_ENUM } from '../../../helpers/enums'
 
 export interface IGenerateGoalCommonValues {
     Title: string

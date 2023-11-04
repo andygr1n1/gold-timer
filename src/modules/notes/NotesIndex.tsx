@@ -10,10 +10,13 @@ import { NotesTagsSelect } from './components/filters/NotesTagsSelect'
 import { SearchNotesInput } from './components/filters/SearchNotesInput'
 import { CRUD_NoteDialog } from './components/crud-note/CRUD_NoteDialog'
 import { NotesDeleted } from './components/filters/NotesDeleted'
-
+import notesImage from '@/assets/notes-1.png'
 export const NotesIndex: React.FC = observer(function NotesIndex() {
     const { isMobile } = useWindowMatchMedia(['isMobile'])
-    const { openNoteCreateMode } = useNotesStore()
+    const {
+        openNoteCreateMode,
+        notes_filter$: { notes, show_deleted },
+    } = useNotesStore()
 
     return (
         <ModuleWrapper
@@ -41,6 +44,12 @@ export const NotesIndex: React.FC = observer(function NotesIndex() {
                     </div>
                 )}
                 <NotesList />
+                {!!!notes.length && !show_deleted && (
+                    <img
+                        className='absolute-center pointer-events-none h-[200px] w-[200px] opacity-10'
+                        src={notesImage}
+                    />
+                )}
             </div>
             {/*  */}
             {/* DIALOG */}

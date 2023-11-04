@@ -9,10 +9,17 @@ import { useSprintsStore } from '@/StoreProvider'
 import { APP_ROUTES_ENUM } from '@/helpers/enums'
 import { SearchSprintsInput } from '@/modules/sprints/components/SearchSprintsInput'
 import { SprintsSettingsIcon } from './components/SprintsSettingsIcon'
+import sprintsImage from '@/assets/sprints-plan-1.png'
+import { useEffect } from 'react'
+import { observer } from 'mobx-react-lite'
 
-export const SprintsIndex: React.FC = () => {
+export const SprintsIndex: React.FC = observer(() => {
     const { isMobile } = useWindowMatchMedia(['isMobile'])
-    const { activateNewSprintCreator } = useSprintsStore()
+    const { activateNewSprintCreator, sprints, fetchSprints } = useSprintsStore()
+
+    useEffect(() => {
+        fetchSprints()
+    }, [])
 
     return (
         <ModuleWrapper
@@ -31,7 +38,14 @@ export const SprintsIndex: React.FC = () => {
                         <AddNew title={'Add new sprint'} onClick={activateNewSprintCreator} />
                     </div>
                 )}
-                <SprintsList />
+                {sprints.length ? (
+                    <SprintsList />
+                ) : (
+                    <img
+                        className='absolute-center pointer-events-none h-[250px] w-[250px] opacity-10'
+                        src={sprintsImage}
+                    />
+                )}
             </div>
             {/*  */}
             {/* D I A L O G */}
@@ -39,4 +53,4 @@ export const SprintsIndex: React.FC = () => {
             <SprintMenuDialogConfirm />
         </ModuleWrapper>
     )
-}
+})

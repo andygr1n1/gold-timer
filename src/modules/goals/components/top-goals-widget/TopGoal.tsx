@@ -35,7 +35,7 @@ export const TopGoal: React.FC<{ goal: IGoal$; type: ACTIVE_GOAL_TYPE_ENUM }> = 
                 style={badgeClass}
                 offset={[-6, 1]}
                 count={
-                    goal.totalRemainingDays > 1 ? (
+                    goal.isExpired ? null : goal.totalRemainingDays > 1 ? (
                         goal.totalRemainingDays
                     ) : (
                         <Icon
@@ -50,7 +50,7 @@ export const TopGoal: React.FC<{ goal: IGoal$; type: ACTIVE_GOAL_TYPE_ENUM }> = 
                 <div
                     // title={goal.title}
                     key={goal.id}
-                    className={`${styles['goal']} ${goalClass}`}
+                    className={`overflow-wrap-anywhere duration-300 ${styles['goal']} ${goalClass}`}
                     onClick={() => {
                         openViewMode(goal.id)
                     }}

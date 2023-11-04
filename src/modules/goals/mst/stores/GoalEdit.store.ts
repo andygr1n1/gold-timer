@@ -1,14 +1,14 @@
-import { flow, getParentOfType, toGenerator, types } from 'mobx-state-tree'
+import { cast, flow, getParentOfType, toGenerator, types } from 'mobx-state-tree'
 import { Goal$ } from './Goal.store'
-import { processError } from '@/helpers/processError.helper'
-import { generateNewRitualCircle } from '@/helpers/ritual-circle/generateNewRitualCircle'
+import { processError } from '@/functions/processError.helper'
+import { generateNewRitualCircle } from '@/functions/generateNewRitualCircle'
 import { set } from 'date-fns'
 import { mutation_upsertGoal } from '@/modules/goals/graphql/mutation_upsertGoal'
 import { Goals$ } from './Goals.store'
 import { IGoal$ } from '../types'
-import { IInsertNewGoal, IInsertRitual } from '@/helpers/interfaces/newGoal.interface'
+import { IInsertNewGoal, IInsertRitual } from '@/modules/goals/interfaces/newGoal.interface'
 import { Root$ } from '@/mst/stores/Root.store'
-import { getCoinsFromRitual } from '@/helpers/getCoinsFromRitual'
+import { getCoinsFromRitual } from '@/functions/getCoinsFromRitual'
 import { addCoinsMutation } from '@/graphql/mutations/addCoins.mutation'
 
 export const GoalEdit$ = types
@@ -89,8 +89,14 @@ export const GoalEdit$ = types
                 }
 
                 const updatedGoalResponse = yield* toGenerator(mutation_upsertGoal(goalData, ritualData))
+                const updatedGoalRitualResponse = updatedGoalResponse?.insert_goals_rituals?.returning?.[0]
                 if (!self.selectedGoal) return
-                self.selectedGoal.updateSelf(updatedGoalResponse)
+                console.log('updatedGoalResponse', updatedGoalResponse)
+                self.selectedGoal.updateSelf(updatedGoalResponse?.insert_goals_one)
+                if (updatedGoalRitualResponse) {
+                    self.onChangeField('goal_ritual', cast(updatedGoalRitualResponse))
+                    self.selectedGoal.onChangeField('goal_ritual', cast(updatedGoalRitualResponse))
+                }
             } catch (e) {
                 processError(e, 'updateGoal error')
             }

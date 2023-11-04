@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react-lite'
 import { useEffect } from 'react'
 import { XInput } from '@/components-x/x-input/XInput'
-import { generateNewRitualCircle } from '@/helpers/ritual-circle/generateNewRitualCircle'
+import { generateNewRitualCircle } from '@/functions/generateNewRitualCircle'
 import { IGoal$ } from '@/modules/goals/mst/types'
 
 export const SelectDays: React.FC<{ goal: IGoal$; view_mode?: boolean }> = observer(({ goal, view_mode }) => {

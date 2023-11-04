@@ -1,5 +1,5 @@
-import { getUserId } from '@/helpers/getUserId'
-import { processError } from '@/helpers/processError.helper'
+import { getUserId } from '@/functions/getUserId'
+import { processError } from '@/functions/processError.helper'
 import axios from 'axios'
 
 export interface IUploadImgRes {

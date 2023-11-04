@@ -1,15 +1,8 @@
 import { useSprintsStore } from '@/StoreProvider'
 import { observer } from 'mobx-react-lite'
-import { useEffect } from 'react'
 import { SprintInfo } from './sprint-info/SprintInfo'
 
 export const SprintsList: React.FC = observer(() => {
-    const { fetchSprints } = useSprintsStore()
-
-    useEffect(() => {
-        fetchSprints()
-    }, [])
-
     return (
         <>
             <div className='bg-global-bg mt-5 flex h-full w-full flex-col items-start justify-start gap-5 rounded-md '>

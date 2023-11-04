@@ -1,7 +1,7 @@
 import { getParentOfType, types } from 'mobx-state-tree'
 import { Notes$ } from './Notes.store'
 import { capitalize, sortBy, uniq, compact, intersection, orderBy } from 'lodash-es'
-import { filterWordsOptimizer } from '@/helpers/filterWordsOptimizer'
+import { filterWordsOptimizer } from '@/functions/filterWordsOptimizer'
 import { INote$ } from '../types'
 
 export const NotesFilter$ = types
