@@ -3,8 +3,8 @@ import { Note$ } from './Note.store'
 import { INote$ } from '../types'
 import { upsertNote } from '@/modules/notes/graphql/mutation_insertNote'
 import { compact } from 'lodash-es'
-import { getUserId } from '@/helpers/getUserId'
-import { processError } from '@/helpers/processError.helper'
+import { getUserId } from '@/functions/getUserId'
+import { processError } from '@/functions/processError.helper'
 import { Notes$ } from './Notes.store'
 
 export const NoteEdit$ = types

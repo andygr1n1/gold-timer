@@ -1,5 +1,5 @@
 import { useUserStore } from '@/StoreProvider'
-import { removeUserCookie } from '@/helpers/universalCookie.helper'
+import { removeUserCookie } from '@/functions/universalCookie.helper'
 import { Icon } from '@iconify/react'
 import { observer } from 'mobx-react-lite'
 

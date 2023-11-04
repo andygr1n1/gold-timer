@@ -1,6 +1,6 @@
 import { useRootStore } from './StoreProvider'
 import { observer } from 'mobx-react-lite'
-import { getUserCookie } from './helpers/universalCookie.helper'
+import { getUserCookie } from './functions/universalCookie.helper'
 import { AppProtected } from './AppProtected'
 import { AppAnonymous } from './AppAnonymous'
 

@@ -1,4 +1,4 @@
-import { processError } from '@/helpers/processError.helper'
+import { processError } from '@/functions/processError.helper'
 import { Buffer } from 'buffer'
 
 export const onSelectUploadFile = async (e: React.ChangeEvent<HTMLInputElement>, action: (src: string) => void) => {

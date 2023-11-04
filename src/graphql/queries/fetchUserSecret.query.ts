@@ -1,6 +1,6 @@
 import { gql } from 'graphql-request'
 import { generateClient } from '../client'
-import { processError } from '@/helpers/processError.helper'
+import { processError } from '@/functions/processError.helper'
 
 export const fetchUserSecret = async (user_id: string): Promise<string | undefined> => {
     const client = generateClient()

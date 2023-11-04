@@ -1,10 +1,10 @@
 import { flow, toGenerator } from 'mobx-state-tree'
 import { Goal$ } from './Goal.store'
-import { getUserId } from '@/helpers/getUserId'
-import { IInsertNewGoal } from '@/helpers/interfaces/newGoal.interface'
-import { setGoalDifficulty } from '@/helpers/setGoalDifficulty'
+import { getUserId } from '@/functions/getUserId'
+import { IInsertNewGoal } from '@/modules/goals/interfaces/newGoal.interface'
+import { setGoalDifficulty } from '@/functions/setGoalDifficulty'
 import { set } from 'date-fns'
-import { processError } from '@/helpers/processError.helper'
+import { processError } from '@/functions/processError.helper'
 import { mutation_upsertGoal } from '../../graphql/mutation_upsertGoal'
 
 export const GoalNew$ = Goal$.named('GoalNew$')
@@ -40,7 +40,7 @@ export const GoalNew$ = Goal$.named('GoalNew$')
                 const newGoalResult = yield* toGenerator(mutation_upsertGoal(newGoal, []))
                 if (!newGoalResult) throw new Error('newGoalResult error')
 
-                return newGoalResult
+                return newGoalResult.insert_goals_one
             } catch (e) {
                 processError(e, 'generateGoal error')
             }

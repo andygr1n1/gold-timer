@@ -1,5 +1,5 @@
 import { IFetchUserByEmailResponse, fetchUserByEmail } from '@/graphql/queries/fetchUserByEmail.query'
-import { processError } from '@/helpers/processError.helper'
+import { processError } from '@/functions/processError.helper'
 import { flow, types, toGenerator } from 'mobx-state-tree'
 
 export const RegisterCredentials$ = types

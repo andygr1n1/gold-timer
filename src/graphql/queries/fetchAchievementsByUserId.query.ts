@@ -1,7 +1,7 @@
 import { IAchievementSnapshotIn } from '@/mst/types'
 import { gql } from 'graphql-request'
 import { generateClient } from '../client'
-import { processError } from '@/helpers/processError.helper'
+import { processError } from '@/functions/processError.helper'
 
 export const fetchAchievementsByUserId = async (owner_id: string): Promise<IAchievementSnapshotIn[] | undefined> => {
     const client = generateClient()

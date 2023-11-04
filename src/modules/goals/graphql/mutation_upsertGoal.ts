@@ -1,13 +1,15 @@
-import { IInsertRitual, IInsertNewGoal } from '@/helpers/interfaces/newGoal.interface'
+import { IInsertRitual, IInsertNewGoal } from '@/modules/goals/interfaces/newGoal.interface'
 import { gql } from 'graphql-request'
 import { generateClient } from '../../../graphql/client'
-import { processError } from '@/helpers/processError.helper'
-import { IGoal$SnapshotIn } from '../mst/types'
+import { processError } from '@/functions/processError.helper'
+import { IGoal$SnapshotIn, IGoalRitualSnapshotIn } from '../mst/types'
 
 export const mutation_upsertGoal = async (
     newGoal: IInsertNewGoal,
     newRitual: IInsertRitual[],
-): Promise<IGoal$SnapshotIn | undefined> => {
+): Promise<
+    { insert_goals_one: IGoal$SnapshotIn; insert_goals_rituals: { returning: IGoalRitualSnapshotIn[] } } | undefined
+> => {
     const client = generateClient()
     const mutation = gql`
         mutation mutation_upsertGoal($newGoal: goals_insert_input!, $newRitual: [goals_rituals_insert_input!]!) {
@@ -58,6 +60,10 @@ export const mutation_upsertGoal = async (
             ) {
                 returning {
                     goal_id
+                    ritual_id
+                    ritual_power
+                    ritual_interval
+                    ritual_type
                 }
             }
         }
@@ -66,7 +72,7 @@ export const mutation_upsertGoal = async (
     try {
         const response = await client.request(mutation, { newGoal, newRitual })
 
-        return response.insert_goals_one
+        return response
     } catch (e) {
         processError(e, 'mutation_upsertGoal error')
         return

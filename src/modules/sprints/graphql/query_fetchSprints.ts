@@ -1,6 +1,6 @@
-import { processError } from '../../../helpers/processError.helper'
+import { processError } from '../../../functions/processError.helper'
 import { generateClient } from '@/graphql/client'
-import { getUserId } from '@/helpers/getUserId'
+import { getUserId } from '@/functions/getUserId'
 import { gql } from 'graphql-request'
 import { ISprint$SnIn } from '../mst/types'
 

@@ -1,6 +1,6 @@
 import { gql } from 'graphql-request'
 import { generateClient } from '../client'
-import { processError } from '@/helpers/processError.helper'
+import { processError } from '@/functions/processError.helper'
 
 export interface IFetchEmailByRestoreCode {
     restore_codes_by_pk: { email: string }

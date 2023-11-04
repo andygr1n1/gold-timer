@@ -1,4 +1,4 @@
-import { processError } from '@/helpers/processError.helper'
+import { processError } from '@/functions/processError.helper'
 import { cast, flow, getParentOfType, toGenerator, types } from 'mobx-state-tree'
 import { mutation_toggleActiveGoalSlide } from '../../graphql/mutation_toggleActiveGoalSlide'
 import { deleteImageFromServer } from '@/services/image.service'

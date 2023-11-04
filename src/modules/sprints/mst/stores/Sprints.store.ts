@@ -2,7 +2,7 @@ import { types, flow, toGenerator, applySnapshot, destroy, detach, castToSnapsho
 import { SprintNew$ } from './SprintNew.store'
 import { Sprint$ } from './Sprint.store'
 import { ISprint$, ISprint$SnIn, ISprintNew$ } from '../types'
-import { processError } from '@/helpers/processError.helper'
+import { processError } from '@/functions/processError.helper'
 import { query_fetchSprints } from '@/modules/sprints/graphql/query_fetchSprints'
 import { add, set } from 'date-fns'
 import { cloneDeep, last, orderBy } from 'lodash-es'

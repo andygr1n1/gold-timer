@@ -1,6 +1,6 @@
 import { gql } from 'graphql-request'
 import { generateClient } from '@/graphql/client'
-import { processError } from '@/helpers/processError.helper'
+import { processError } from '@/functions/processError.helper'
 import { IEditSprintReq } from './helpers/interface'
 import { ISprint$SnIn } from '../mst/types'
 

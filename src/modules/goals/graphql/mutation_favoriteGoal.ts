@@ -1,6 +1,6 @@
 import { gql } from 'graphql-request'
 import { generateClient } from '../../../graphql/client'
-import { processError } from '@/helpers/processError.helper'
+import { processError } from '@/functions/processError.helper'
 
 export const mutation_favoriteGoal = async (goal_id: string, is_favorite: boolean): Promise<boolean | undefined> => {
     const client = generateClient()

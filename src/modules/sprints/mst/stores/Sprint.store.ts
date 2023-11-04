@@ -19,7 +19,7 @@ export const Sprint$ = types
         img_path: types.maybeNull(types.string),
         parent_sprint_id: types.maybeNull(types.string),
         owner_id: '',
-        started_at: types.snapshotProcessor(types.Date, {
+        started_at: types.snapshotProcessor(types.maybe(types.Date), {
             preProcessor: (sn: Date | undefined | string) => {
                 if (!sn) {
                     return new Date(Date.now())

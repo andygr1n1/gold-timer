@@ -1,8 +1,9 @@
 import { Icon } from '@iconify/react'
 import { observer } from 'mobx-react-lite'
 import { Buffer } from 'buffer'
-import { processError } from '@/helpers/processError.helper'
+import { processError } from '@/functions/processError.helper'
 import { useSprintsStore } from '@/StoreProvider'
+import clsx from 'clsx'
 
 export const NewSprintImage = observer(() => {
     const { new_sprint } = useSprintsStore()
@@ -26,20 +27,28 @@ export const NewSprintImage = observer(() => {
     }
 
     return (
-        <div className='h-46 w-46 group relative m-auto flex justify-center'>
-            <div
-                title='create new sprint'
-                className='flex h-40 w-40 flex-col items-center justify-center rounded-md bg-cyan-600 text-white shadow-xl shadow-slate-900/50 duration-300 group-hover:bg-cyan-700'
-            >
-                {img_cropped_src ? (
-                    <img src={img_cropped_src} className='h-40 w-40 rounded-md shadow-slate-900/50' />
-                ) : (
-                    <Icon icon='game-icons:sprint' width={25} height={25} className='' />
+        <div
+            className='bg-global-bg-plasma  group relative mx-auto
+            flex h-[300px] w-[300px] items-center justify-center rounded-md border border-solid border-white/10
+            shadow-md transition-shadow duration-300'
+        >
+            <div className='group relative'>
+                {img_cropped_src && (
+                    <img src={img_cropped_src} className=' h-[300px]  w-[300px] rounded-md shadow-slate-900/50' />
                 )}
+                <Icon
+                    icon='line-md:uploading-loop'
+                    className={clsx(
+                        img_cropped_src ? 'hidden' : 'flex',
+                        'absolute-center animate-opacity-5 pointer-events-none absolute left-0 top-0 z-50 text-white/10 opacity-70 duration-300 group-hover:flex group-hover:text-blue-600 group-hover:opacity-100',
+                    )}
+                    width={50}
+                    height={50}
+                />
             </div>
             <input
-                title='click and upload'
-                className='absolute flex h-48 w-48 cursor-pointer opacity-0'
+                title='upload'
+                className='absolute left-0 top-0 z-20 flex h-full w-full cursor-pointer rounded-full opacity-0'
                 accept='image/*'
                 id='file_input'
                 type='file'
