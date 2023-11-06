@@ -10,7 +10,7 @@ import todayLogoIcon from '@/assets/today-goal-logo.svg'
 export const TopActiveGoalsWidget: React.FC = observer(() => {
     const {
         goals$: {
-            filter$: { onChangeField: onFilterStoreChangeField },
+            goals_filter$: { onChangeField: onFilterStoreChangeField },
             topActiveGoals: { topFour },
         },
         modal_windows$: { goals_manager_mw$ },

@@ -13,7 +13,7 @@ export const ToggleFavorite: React.FC<{ goal: IGoal$; noRequest?: boolean; hide?
                 <StyledButton
                     id='toggleFavoriteGoal'
                     error={is_favorite}
-                    variant={is_favorite ? 'contained' : 'outlined'}
+                    variant={'text'}
                     size={'custom'}
                     className='h-7 w-10  opacity-70 hover:opacity-100 md:h-10 md:w-14'
                     onClick={() =>
@@ -22,7 +22,7 @@ export const ToggleFavorite: React.FC<{ goal: IGoal$; noRequest?: boolean; hide?
                         })
                     }
                 >
-                    <Icon icon='material-symbols:ecg-heart' width={24} height={24} />
+                    <Icon icon='material-symbols:ecg-heart' width={34} height={34} />
                 </StyledButton>
                 <XTooltip anchorSelect='#toggleFavoriteGoal'>{is_favorite ? 'Unfavorite' : 'Favorite'}</XTooltip>
             </>

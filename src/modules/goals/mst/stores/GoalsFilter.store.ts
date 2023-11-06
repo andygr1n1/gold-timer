@@ -1,13 +1,14 @@
 import { filter } from 'lodash-es'
 import { isBefore } from 'date-fns'
 import { types, getParentOfType } from 'mobx-state-tree'
-import { Goals$ } from '../../modules/goals/mst/stores/Goals.store'
-import { ACTIVE_GOAL_TYPE_ENUM } from '@/helpers/enums'
+import { Goals$ } from './Goals.store'
+import { ACTIVE_GOAL_TYPE_ENUM, STATUS_ENUM_FILTERS } from '@/helpers/enums'
 import { IGoal$ } from '@/modules/goals/mst/types'
 
-export const Filter$ = types
-    .model('Filter$', {
+export const GoalsFilter$ = types
+    .model('GoalsFilter$', {
         goals_input_filter: '',
+        goals_selected_statuses: types.array(types.enumeration(Object.values(STATUS_ENUM_FILTERS))),
         goals_estimation_filter: types.snapshotProcessor(types.maybe(types.Date), {
             preProcessor: (sn: Date | undefined | string) => {
                 if (!sn) {
@@ -19,14 +20,36 @@ export const Filter$ = types
                 return sn
             },
         }),
-        global_filtered_title_value: '',
-
         goals_collapse_type: types.optional(
             types.enumeration(Object.values(ACTIVE_GOAL_TYPE_ENUM)),
             ACTIVE_GOAL_TYPE_ENUM.ACTIVE,
         ),
+        show_deleted: false,
+        show_favorites: false,
+        show_archived: false,
     })
     .views((self) => ({
+        get goals(): IGoal$[] {
+            return getParentOfType(self, Goals$).goals
+        },
+        get allGoalsFilteredByTitle(): IGoal$[] {
+            return this.goals.filter(
+                (goal) =>
+                    !goal.deleted_at &&
+                    (goal.title
+                        .trim()
+                        .toLocaleLowerCase()
+                        .includes(self.goals_input_filter.trim().toLocaleLowerCase()) ||
+                        goal.slogan
+                            .trim()
+                            .toLocaleLowerCase()
+                            .includes(self.goals_input_filter.trim().toLocaleLowerCase()) ||
+                        goal.description
+                            .trim()
+                            .toLocaleLowerCase()
+                            .includes(self.goals_input_filter.trim().toLocaleLowerCase())),
+            )
+        },
         get goalsByCollapseType(): IGoal$[] {
             const { activeGoalsWithoutRitualPower, ritualGoals, activeExpiredGoals, favoriteGoals } = getParentOfType(
                 self,
@@ -92,6 +115,26 @@ export const Filter$ = types
 
             const isFavorite = self.goals_collapse_type === ACTIVE_GOAL_TYPE_ENUM.FAVORITE
             return { title, data: this.filteredGoals, isFavorite }
+        },
+    }))
+    .views((self) => ({
+        get activeGoalsFilter(): boolean {
+            return self.goals_selected_statuses.includes(STATUS_ENUM_FILTERS.ACTIVE)
+        },
+        get expiredGoalsFilter(): boolean {
+            return self.goals_selected_statuses.includes(STATUS_ENUM_FILTERS.EXPIRED)
+        },
+        get frozenGoalsFilter(): boolean {
+            return self.goals_selected_statuses.includes(STATUS_ENUM_FILTERS.FROZEN)
+        },
+        get completedGoalsFilter(): boolean {
+            return self.goals_selected_statuses.includes(STATUS_ENUM_FILTERS.COMPLETED)
+        },
+        get ritualGoalsFilter(): boolean {
+            return self.goals_selected_statuses.includes(STATUS_ENUM_FILTERS.RITUALIZED)
+        },
+        get favoriteGoalsFilter(): boolean {
+            return self.goals_selected_statuses.includes(STATUS_ENUM_FILTERS.FAVORITE)
         },
     }))
     .actions((self) => ({

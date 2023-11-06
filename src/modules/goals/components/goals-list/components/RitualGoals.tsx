@@ -4,10 +4,10 @@ import { Goal } from './goal/Goal'
 
 export const RitualGoals: React.FC = observer(() => {
     const {
-        goals$: { ritualGoals, ritualGoalsFilter },
+        goals$: { ritualGoals },
     } = useRootStore()
 
-    return ritualGoalsFilter && ritualGoals.length ? (
+    return ritualGoals.length ? (
         <div className='flex flex-col'>
             <h3 className='font-kzen flex pb-4 font-bold'>
                 <span>Ritual</span>({ritualGoals.length})

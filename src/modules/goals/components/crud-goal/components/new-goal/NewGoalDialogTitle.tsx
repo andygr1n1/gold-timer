@@ -13,7 +13,7 @@ export const NewGoalDialogTitle: React.FC = observer(() => {
                     disabled
                     variant={'text'}
                     className='opacity-70'
-                    startIcon={<Icon icon='bxs:layer-plus' width={24} height={24} />}
+                    startIcon={<Icon icon='bxs:layer-plus' width={34} height={34} />}
                 />
             )}
             <div className='max-w-[200px] truncate'>New Goal</div>

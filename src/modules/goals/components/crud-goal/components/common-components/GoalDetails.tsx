@@ -1,43 +1,45 @@
 import { observer } from 'mobx-react-lite'
 import todayLogoIcon from '@/assets/today-goal-logo.svg'
-import favoriteIcon from '@/assets/heart-favorite.svg'
+// import favoriteIcon from '@/assets/heart-favorite.svg'
 import ritualLogoIcon from '@/assets/ritual-logo.svg'
 import expiredLogoIcon from '@/assets/expired-goals-logo.svg'
-import { Icon } from '@iconify/react'
 import { IGoal$ } from '../../../../mst/types'
 
 export const GoalDetails: React.FC<{ goal: IGoal$ }> = observer(({ goal }) => {
     return (
         <div className='flex w-full items-center justify-center  gap-5 rounded-md'>
-            <GoalDeleted goal={goal} />
-            <ImageByGoalType goal={goal} />
-            <GoalRitualCount goal={goal} />
             <GoalDaysUntilDeadline goal={goal} />
+            <GoalRitualCount goal={goal} />
+            <ImageByGoalType goal={goal} />
+            {/* <GoalDeleted goal={goal} /> */}
         </div>
     )
 })
 
-const GoalDeleted: React.FC<{ goal: IGoal$ }> = observer(({ goal }) => {
-    return goal.deleted_at ? (
-        <Icon icon='tdesign:delete-time' className='mb-1 min-w-[55px] text-[#9c0b1c]' width={55} height={55} />
-    ) : null
-})
+// const GoalDeleted: React.FC<{ goal: IGoal$ }> = observer(({ goal }) => {
+//     return goal.deleted_at ? (
+//         <Icon
+//             icon='material-symbols-light:auto-delete-outline'
+//             className='mb-1 min-w-[55px] text-[#9c0b1c]'
+//             width={70}
+//             height={70}
+//         />
+//     ) : null
+// })
 
 const ImageByGoalType: React.FC<{ goal: IGoal$ }> = observer(({ goal }) => {
-    const { is_favorite, isExpired, hasRitualPower: isRitualGoal } = goal
+    const { isExpired, hasRitualPower: isRitualGoal } = goal
     let goalIcon = todayLogoIcon
-    let className = 'pb-1 w-[70px] h-[70px]'
+    let className = 'w-[60px] h-[60px]'
     if (isExpired) {
         goalIcon = expiredLogoIcon
-        className = 'w-[60px] h-[60px]'
     }
     if (isRitualGoal) {
         goalIcon = ritualLogoIcon
-        className = 'w-[60px] h-[60px]'
     }
     return (
         <div className='flex items-center justify-center gap-5'>
-            {is_favorite && <img src={favoriteIcon} width={60} height={60} />}
+            {/* {is_favorite && <img src={favoriteIcon} width={55} height={55} />} */}
             <img src={goalIcon} className={className} />
         </div>
     )

@@ -1,4 +1,4 @@
-import React, { type ReactNode } from 'react'
+import React, { useRef, type ReactNode } from 'react'
 
 import styles from './StyledButton.module.scss'
 import clsx from 'clsx'
@@ -47,9 +47,16 @@ export const StyledButton = ({
     // setup className
     const color = error ? 'error' : 'common'
 
+    const refButton = useRef<HTMLButtonElement | null>(null)
+
     return (
         <button
             {...otherProps}
+            onClick={(e) => {
+                otherProps.onClick?.(e)
+                refButton?.current?.blur()
+                ;(refLink as React.MutableRefObject<HTMLButtonElement | null>)?.current?.blur()
+            }}
             className={clsx(
                 isLarge ? 'px-2' : 'px-1.5',
                 styles['button'],
@@ -59,7 +66,7 @@ export const StyledButton = ({
                 rounded && styles['radius15'],
                 className,
             )}
-            ref={refLink}
+            ref={refButton || refLink}
             data-test={dataTest}
         >
             {startIcon && startIcon}

@@ -9,7 +9,7 @@ import { IGoal$ } from '@/modules/goals/mst/types'
 export const GoalActionsMenu: React.FC<{ goal: IGoal$ }> = observer(({ goal }) => {
     return (
         <>
-            <div className='relative flex w-full flex-wrap items-center justify-center gap-4'>
+            <div className='relative flex w-full flex-wrap items-center justify-center gap-5'>
                 <ConvertToRitualGoal goal={goal} hide={!!goal.goal_ritual} />
                 <CreateChildGoal goal={goal} hide={!!goal.goal_ritual && !!!goal.hasRitualPower} />
                 <ToggleEditGoal goal={goal} hide={!!goal.goal_ritual && !!!goal.hasRitualPower} />

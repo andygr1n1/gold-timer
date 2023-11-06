@@ -7,12 +7,14 @@ const storeContext = createContext<IRoot$ | null>(null)
 const generateRoot$ = () =>
     Root$.create({
         goals$: {
-            goals_checked_list_filter: [
-                STATUS_ENUM_FILTERS.FROZEN,
-                STATUS_ENUM_FILTERS.ACTIVE,
-                STATUS_ENUM_FILTERS.COMPLETED,
-                STATUS_ENUM_FILTERS.FAVORITE,
-            ],
+            goals_filter$: {
+                goals_selected_statuses: [
+                    STATUS_ENUM_FILTERS.FROZEN,
+                    STATUS_ENUM_FILTERS.ACTIVE,
+                    STATUS_ENUM_FILTERS.COMPLETED,
+                    STATUS_ENUM_FILTERS.FAVORITE,
+                ],
+            },
         },
     })
 

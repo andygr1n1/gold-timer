@@ -1,5 +1,5 @@
 :root {
-    --xinput-border-left: 30px;
+    --xinput-border-width: 25px;
 }
 
 .xinput-wrapper {
@@ -32,16 +32,16 @@
 }
 
 .xinput-start-icon {
-    // border-left: var(--xinput-border-left) solid transparent;
-    // width: calc(100% - 24px - var(--xinput-border-left));
+    border-left: var(--xinput-border-width) solid transparent #{!important};
+    width: calc(100% - 24px - var(--xinput-border-width));
 }
 .xinput-end-icon {
-    // border-right: var(--xinput-border-left) solid transparent;
-    // width: calc(100% - 24px - var(--xinput-border-left));
+    // border-right: var(--xinput-border-width) solid transparent;
+    // width: calc(100% - 24px - var(--xinput-border-width));
 }
 
 .xinput-start-end-icon {
-    width: calc(100% - 24px - var(--xinput-border-left) - var(--xinput-border-left));
+    width: calc(100% - 24px - var(--xinput-border-width) - var(--xinput-border-width));
 }
 
 // .xinput-end-icon {

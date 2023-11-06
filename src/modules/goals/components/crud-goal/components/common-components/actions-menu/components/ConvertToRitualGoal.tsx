@@ -15,8 +15,9 @@ export const ConvertToRitualGoal: React.FC<{ goal: IGoal$; hide?: boolean }> = o
                 size={'custom'}
                 className='h-7 w-10 opacity-70 hover:opacity-100 md:h-10 md:w-14 '
                 onClick={() => openCreateRitualMode(goal.id)}
+                variant='text'
             >
-                <Icon icon='icon-park-outline:auto-focus' width={24} height={24} />
+                <Icon icon='icon-park-outline:auto-focus' width={32} height={32} />
             </StyledButton>
             <XTooltip anchorSelect='#createNewRitual'>Convert this goal to a ritual</XTooltip>
         </>

@@ -10,7 +10,7 @@ export const TopRitualGoalsWidget: React.FC = observer(() => {
     const {
         goals$: {
             topRitualGoals,
-            filter$: { onChangeField: onFilterStoreChangeField },
+            goals_filter$: { onChangeField: onFilterStoreChangeField },
         },
         modal_windows$: { goals_manager_mw$ },
     } = useRootStore()

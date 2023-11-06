@@ -10,13 +10,13 @@ export const AppConfigWrapper: React.FC = observer(() => {
         ;(async () => {
             useTheming.applyLocalStorage()
 
-            // const filtersRes: typeof rootStore$.goals$.goals_checked_list_filter | null = await getGoalFiltersStore()
+            // const filtersRes: typeof rootStore$.goals$.goals_selected_statuses | null = await getGoalFiltersStore()
             // if (filtersRes) {
-            //     rootStore$.goals$.onChangeField('goals_checked_list_filter', filtersRes)
+            //     rootStore$.goals$.onChangeField('goals_selected_statuses', filtersRes)
             // } else {
-            //     setGoalFiltersStore(rootStore$.goals$.goals_checked_list_filter)
+            //     setGoalFiltersStore(rootStore$.goals$.goals_selected_statuses)
             // }
-            // onSnapshot(rootStore$.goals$.goals_checked_list_filter, (sn) => setGoalFiltersStore(sn))
+            // onSnapshot(rootStore$.goals$.goals_selected_statuses, (sn) => setGoalFiltersStore(sn))
         })()
 
         const handler = () => {

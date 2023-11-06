@@ -9,7 +9,7 @@ export const TopExpiredGoalsWidget: React.FC = observer(() => {
     const {
         goals$: {
             topExpiredGoals,
-            filter$: { onChangeField: onFilterStoreChangeField },
+            goals_filter$: { onChangeField: onFilterStoreChangeField },
         },
         modal_windows$: { goals_manager_mw$ },
     } = useRootStore()
