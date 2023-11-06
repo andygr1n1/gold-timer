@@ -11,7 +11,7 @@ export const Goal: React.FC<{ goal: IGoal$ }> = observer(({ goal }) => {
 
     return (
         <GoalWrapper goal={goal}>
-            <div className='flex flex-auto flex-col px-5 pb-0 pt-5'>
+            <div className='flex h-full w-full flex-auto flex-col pb-0 pt-5'>
                 <div className='flex h-full flex-col'>
                     <GoalCreatedAt goal={goal} />
                     <GoalDeadline goal={goal} />

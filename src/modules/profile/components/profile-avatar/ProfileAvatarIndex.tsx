@@ -11,12 +11,12 @@ export const ProfileAvatarIndex = observer(() => {
         <div className='group relative mx-auto w-fit rounded-full'>
             <div
                 title='upload image'
-                className='duration-280 flex flex-col items-center justify-center rounded-full bg-transparent'
+                className='duration-240 flex flex-col items-center justify-center rounded-full bg-transparent'
             >
                 {img_cropped_src ? (
                     <img
                         src={img_cropped_src}
-                        className='h-full max-h-[280px] min-h-[280px] w-full min-w-[280px] max-w-[280px] rounded-full '
+                        className='h-full max-h-[240px] min-h-[240px] w-full min-w-[240px] max-w-[240px] rounded-full '
                     />
                 ) : (
                     <>
@@ -24,17 +24,17 @@ export const ProfileAvatarIndex = observer(() => {
                             {avatar ? (
                                 <img
                                     src={`${import.meta.env.VITE_FIRE_BUNNY_STORAGE}/avatars/${avatar}`}
-                                    className='animate-opacity-5 h-full max-h-[280px] min-h-[280px] w-full min-w-[280px] max-w-[280px] cursor-pointer rounded-full duration-300 group-hover:shadow-md '
+                                    className='animate-opacity-5 h-full max-h-[240px] min-h-[240px] w-full min-w-[240px] max-w-[240px] cursor-pointer rounded-full duration-300 group-hover:shadow-md '
                                 />
                             ) : (
                                 <Avatar
-                                    className='animate-opacity-5 !m-0 h-full max-h-[280px] w-full max-w-[280px]  cursor-pointer'
+                                    className='animate-opacity-5 !m-0 h-full max-h-[240px] w-full max-w-[240px]  cursor-pointer'
                                     icon={
                                         <Icon
                                             icon='carbon:user-avatar-filled'
                                             className='bg-global-bg text-global-2-bg'
-                                            width={280}
-                                            height={280}
+                                            width={240}
+                                            height={240}
                                         />
                                     }
                                 />

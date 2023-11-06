@@ -17,8 +17,8 @@ export const EditGoalDialogTitle: React.FC = observer(() => {
                 startIcon={
                     <Icon
                         icon={ritualMode ? 'icon-park-outline:auto-focus' : 'material-symbols:edit'}
-                        width={24}
-                        height={24}
+                        width={32}
+                        height={32}
                     />
                 }
             />

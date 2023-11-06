@@ -41,16 +41,18 @@ export const XModal: React.FC<{
                                 <Dialog.Panel
                                     className={`${
                                         height || 'h-fit'
-                                    } bg-global-2-bg-plasma relative mx-auto max-h-[80vh] w-full max-w-[550px] transform rounded-lg shadow-xl  shadow-black/30 backdrop-blur-md transition-all `}
+                                    } bg-global-2-bg-plasma relative mx-auto max-h-[75vh] w-full max-w-[550px] transform rounded-lg shadow-xl 
+                                    shadow-black/30 backdrop-blur-md transition-all
+                                    md:max-h-[85vh] `}
                                 >
-                                    <div className='absolute -top-10 right-0'>
+                                    <div className='absolute right-1 top-[-32px] md:top-[-40px] '>
                                         <Icon
                                             icon='line-md:close-small'
-                                            className={`h-7 w-7 cursor-pointer text-blue-600 duration-300 hover:h-8 hover:w-8 hover:text-blue-500`}
+                                            className={`h-7 w-7 cursor-pointer text-white/70 duration-300 hover:h-8 hover:w-8 hover:text-blue-500`}
                                             onClick={onCancel}
                                         />
                                     </div>
-                                    <div className='scrollbar-thumb-blue-500 scrollbar-track-global-3-bg scrollbar-thin m-auto max-h-[80vh] w-full max-w-[540px] overflow-auto'>
+                                    <div className='scrollbar-thumb-blue-500 scrollbar-track-global-3-bg scrollbar-thin m-auto max-h-[75vh] w-full max-w-[540px] overflow-auto md:max-h-[85vh]'>
                                         <div className='m-auto flex w-[calc(100%-80px)] max-w-[360px] flex-col p-10  '>
                                             {header && (
                                                 <div className='relative  mb-5 flex items-center justify-center'>

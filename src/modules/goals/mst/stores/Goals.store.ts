@@ -1,9 +1,9 @@
-import { GOAL_STATUS_ENUM, STATUS_ENUM_FILTERS } from '@/helpers/enums'
+import { GOAL_STATUS_ENUM } from '@/helpers/enums'
 import { add, isPast, sub } from 'date-fns'
 import { filter, orderBy, differenceWith, cloneDeep, compact } from 'lodash-es'
 import { destroy, detach, toGenerator, types, flow, cast } from 'mobx-state-tree'
 import { Goal$ } from './Goal.store'
-import { Filter$ } from '../../../../mst/stores/Filter.store'
+import { GoalsFilter$ } from './GoalsFilter.store'
 import { processError } from '@/functions/processError.helper'
 import { GoalNew$ } from './GoalNew.store'
 import { IGoal$ } from '../types'
@@ -15,53 +15,17 @@ export const Goals$ = types
         new_goal: types.maybe(GoalNew$),
         edit_goal: types.maybe(GoalEdit$),
         selected_goal: types.safeReference(Goal$),
-        //
-        filter$: types.optional(Filter$, { goals_estimation_filter: add(new Date(Date.now()), { days: 60 }) }),
-        goals_checked_list_filter: types.array(types.enumeration(Object.values(STATUS_ENUM_FILTERS))),
+        goals_filter$: types.optional(GoalsFilter$, {
+            goals_estimation_filter: add(new Date(Date.now()), { days: 60 }),
+        }),
         active_collapse_key: types.maybe(types.string),
     })
     .views((self) => ({
-        get globalFilteredGoals(): IGoal$[] {
-            return self.goals.filter(
-                (goal) =>
-                    goal.title
-                        .trim()
-                        .toLocaleLowerCase()
-                        .includes(self.filter$.global_filtered_title_value.trim().toLocaleLowerCase()) ||
-                    goal.slogan
-                        .trim()
-                        .toLocaleLowerCase()
-                        .includes(self.filter$.global_filtered_title_value.trim().toLocaleLowerCase()) ||
-                    goal.description
-                        .trim()
-                        .toLocaleLowerCase()
-                        .includes(self.filter$.global_filtered_title_value.trim().toLocaleLowerCase()),
-            )
-        },
-        get activeGoalsFilter(): boolean {
-            return self.goals_checked_list_filter.includes(STATUS_ENUM_FILTERS.ACTIVE)
-        },
-        get expiredGoalsFilter(): boolean {
-            return self.goals_checked_list_filter.includes(STATUS_ENUM_FILTERS.EXPIRED)
-        },
-        get frozenGoalsFilter(): boolean {
-            return self.goals_checked_list_filter.includes(STATUS_ENUM_FILTERS.FROZEN)
-        },
-        get completedGoalsFilter(): boolean {
-            return self.goals_checked_list_filter.includes(STATUS_ENUM_FILTERS.COMPLETED)
-        },
-        get ritualGoalsFilter(): boolean {
-            return self.goals_checked_list_filter.includes(STATUS_ENUM_FILTERS.RITUALIZED)
-        },
-        get favoriteGoalsFilter(): boolean {
-            return self.goals_checked_list_filter.includes(STATUS_ENUM_FILTERS.FAVORITE)
-        },
-    }))
-    .views((self) => ({
         get activeExpiredGoals(): IGoal$[] {
-            const goals = filter(self.globalFilteredGoals, (goal) => goal.status === GOAL_STATUS_ENUM.ACTIVE).filter(
-                (goal) => goal.finished_at && isPast(goal.finished_at) && !goal.deleted_at,
-            )
+            const goals = filter(
+                self.goals_filter$.allGoalsFilteredByTitle,
+                (goal) => goal.status === GOAL_STATUS_ENUM.ACTIVE,
+            ).filter((goal) => goal.finished_at && isPast(goal.finished_at) && !goal.deleted_at)
             return orderBy(goals, ['finished_at'], ['asc'])
         },
         get expiredRitualGoals(): IGoal$[] {
@@ -70,7 +34,7 @@ export const Goals$ = types
         get activeGoals(): IGoal$[] {
             const goals: IGoal$[] = compact(
                 differenceWith(
-                    filter(self.globalFilteredGoals, (goal) => {
+                    filter(self.goals_filter$.allGoalsFilteredByTitle, (goal) => {
                         return (
                             !!goal.created_at &&
                             isPast(sub(goal.created_at, { seconds: 3 })) &&
@@ -105,7 +69,7 @@ export const Goals$ = types
 
         get completedGoals(): IGoal$[] {
             const goals = filter(
-                self.globalFilteredGoals,
+                self.goals_filter$.allGoalsFilteredByTitle,
                 (goal) => goal.status === GOAL_STATUS_ENUM.COMPLETED && !goal.deleted_at,
             )
             return orderBy(goals, ['finished_at'], ['asc'])
@@ -123,7 +87,7 @@ export const Goals$ = types
         },
         get favoriteGoals(): IGoal$[] {
             const goals = filter(
-                self.globalFilteredGoals,
+                self.goals_filter$.allGoalsFilteredByTitle,
                 (goal) => goal.is_favorite && goal.status === GOAL_STATUS_ENUM.ACTIVE,
             )
             return orderBy(goals, ['finished_at'], ['asc'])

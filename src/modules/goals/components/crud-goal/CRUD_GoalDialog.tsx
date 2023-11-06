@@ -31,11 +31,11 @@ export const CRUD_GoalDialog: React.FC = observer(function CRUD_GoalDialog() {
                 </div>
             }
         >
-            <>
+            <div className='mt-4'>
                 {new_goal && <NewGoalDialogBody />}
                 {edit_goal && <EditGoalDialogBody />}
                 {selected_goal && <ViewGoalDialogBody />}
-            </>
+            </div>
         </XModal>
     )
 })

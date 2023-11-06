@@ -12,11 +12,12 @@ export const DeleteGoal: React.FC<{ goal: IGoal$; hide?: boolean }> = observer((
                 id='toggleMoveGoalToBin'
                 size={'custom'}
                 className='h-7 w-10 opacity-70 hover:opacity-100 md:h-10 md:w-14'
-                error
-                variant={deleted_at ? 'contained' : 'outlined'}
+                error={!!deleted_at}
+                // variant={deleted_at ? 'contained' : 'outlined'}
+                variant={'text'}
                 onClick={deleteGoal}
             >
-                <Icon icon='fluent:delete-dismiss-24-filled' width={24} height={24} />
+                <Icon icon='fluent:delete-dismiss-24-filled' width={34} height={34} />
             </StyledButton>
             <XTooltip anchorSelect='#toggleMoveGoalToBin'>{deleted_at ? 'Restore from bin' : 'Move to bin'}</XTooltip>
         </>

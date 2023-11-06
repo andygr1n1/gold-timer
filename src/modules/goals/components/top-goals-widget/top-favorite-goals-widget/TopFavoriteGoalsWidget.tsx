@@ -10,7 +10,7 @@ import favoriteIcon from '@/assets/heart-favorite.svg'
 export const TopFavoriteGoalsWidget: React.FC = observer(() => {
     const {
         goals$: {
-            filter$: { onChangeField: onFilterStoreChangeField },
+            goals_filter$: { onChangeField: onFilterStoreChangeField },
             topFavoriteGoals,
         },
         modal_windows$: { goals_manager_mw$ },

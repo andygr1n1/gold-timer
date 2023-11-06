@@ -7,7 +7,7 @@ import { add } from 'date-fns'
 
 export const GoalFormFilters: React.FC = observer(() => {
     const {
-        filter$: {
+        goals_filter$: {
             onChangeField,
             goals_input_filter,
             goals_estimation_filter,

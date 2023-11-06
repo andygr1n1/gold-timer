@@ -4,7 +4,10 @@ import { Goal } from './goal/Goal'
 
 export const CompletedGoals: React.FC = observer(() => {
     const {
-        goals$: { completedGoals, completedGoalsFilter },
+        goals$: {
+            completedGoals,
+            goals_filter$: { completedGoalsFilter },
+        },
     } = useRootStore()
 
     return completedGoalsFilter ? (

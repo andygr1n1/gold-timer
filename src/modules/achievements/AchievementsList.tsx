@@ -1,15 +1,11 @@
 import { useRootStore } from '@/StoreProvider'
 import { observer } from 'mobx-react-lite'
-import { useEffect } from 'react'
 
 export const AchievementsList: React.FC = observer(() => {
     const {
-        achievements$: { visibleAchievements, fetchAchievements },
+        achievements$: { visibleAchievements },
     } = useRootStore()
 
-    useEffect(() => {
-        fetchAchievements()
-    }, [])
     return (
         <>
             <div className='flex w-[calc(100%-86px)] bg-transparent p-12 duration-300 '>

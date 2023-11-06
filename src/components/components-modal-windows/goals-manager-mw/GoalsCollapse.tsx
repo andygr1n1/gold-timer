@@ -13,7 +13,7 @@ export const GoalsCollapse: React.FC = observer(() => {
     const {
         active_collapse_key,
         onChangeField,
-        filter$: { goalsCollapseData },
+        goals_filter$: { goalsCollapseData },
     } = useGoalsStore()
 
     const setActiveKey = (key: string | string[]) => onChangeField('active_collapse_key', key.toString())

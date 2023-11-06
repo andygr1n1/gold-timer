@@ -15,8 +15,9 @@ export const CreateChildGoal: React.FC<{ goal: IGoal$; hide?: boolean }> = obser
                 onClick={() => openCreateMode({ parentGoalId: goal.id })}
                 size={'custom'}
                 className='h-7 w-10 opacity-70 hover:opacity-100  md:h-10 md:w-14'
+                variant='text'
             >
-                <Icon icon='bxs:layer-plus' width={24} height={24} />
+                <Icon icon='bxs:layer-plus' width={34} height={34} />
             </StyledButton>
             <XTooltip anchorSelect='#createNewChild'>Create a new goal based on current one</XTooltip>
         </>

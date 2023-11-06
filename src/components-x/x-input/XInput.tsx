@@ -50,7 +50,11 @@ export const XInput: React.FC<XInputProps> = ({
                     </div>
                 ) : (
                     <>
-                        {startIcon && <div className='absolute left-[8px] top-[8px] z-20 text-2xl'>{startIcon}</div>}
+                        {startIcon && (
+                            <div className='absolute left-[8px] top-[6px] z-20 flex h-[25px] w-[25px] items-center justify-center text-blue-600 opacity-70'>
+                                {startIcon}
+                            </div>
+                        )}
                         <input
                             {...otherProps}
                             value={otherProps.value ?? ''}
