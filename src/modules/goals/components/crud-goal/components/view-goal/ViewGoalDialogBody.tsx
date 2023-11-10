@@ -36,7 +36,7 @@ export const ViewGoalDialogBody: React.FC = observer(() => {
 const Footer: React.FC<{ goal: IGoal$ }> = observer(({ goal }) => {
     const { onChangeField } = useGoalsStore()
 
-    const { hasRitualPower: isRitualGoal, completeGoal, deleted_at, isFromFuture } = goal
+    const { hasRitualPower: isRitualGoal, completeGoal, deleted_at, isFromFuture, isCompleted } = goal
 
     const onCancel = () => {
         onChangeField('selected_goal', undefined)
@@ -60,6 +60,7 @@ const Footer: React.FC<{ goal: IGoal$ }> = observer(({ goal }) => {
             disabled={!!deleted_at || (isRitualGoal && isFromFuture)}
             disabledTooltip={deleted_at ? 'Goal is deleted' : isRitualGoal ? 'Wait for estimation day' : ''}
             onCancel={onCancel}
+            hideOkButton={isCompleted}
         />
     )
 })

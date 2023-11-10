@@ -36,7 +36,11 @@ export const GlobalLoadingDialog = observer(() => {
                             <Dialog.Panel
                                 className={`relative mx-auto flex w-fit transform items-center justify-center bg-transparent transition-all `}
                             >
-                                <Icon icon='line-md:loading-twotone-loop' width={100} className='text-blue-700' />
+                                <Icon
+                                    icon='line-md:loading-twotone-loop'
+                                    width={100}
+                                    className='animate-opacity-5 text-blue-700'
+                                />
                             </Dialog.Panel>
                         </Transition.Child>
                     </div>

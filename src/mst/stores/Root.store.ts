@@ -12,6 +12,8 @@ import { Notes$ } from '@/modules/notes/mst/stores/Notes.store'
 import { Sprints$ } from '@/modules/sprints/mst/stores/Sprints.store'
 import { IGoal$SnapshotIn, IGoalRitual, IGoalRitualSnapshotIn } from '@/modules/goals/mst/types'
 import { GoalsSlides$ } from '@/modules/goals-slides/mst/stores/GoalsSlides.store'
+import { GOAL_STATUS_ENUM } from '@/helpers/enums'
+import { uniqBy } from 'lodash-es'
 
 export const Root$ = types
     .model('Root$', {
@@ -73,14 +75,14 @@ export const Root$ = types
                 processError(e, 'fetchRitualPowerInfo error')
             }
         }),
-        fetchGoals: flow(function* _fetchGoals() {
+        fetchGoals: flow(function* _fetchGoals(status: GOAL_STATUS_ENUM[]) {
             try {
                 if (!self.user$.id) throw new Error('User id is undefined')
 
-                const res: IGoal$SnapshotIn[] = yield query_fetchGoalsByUserId(self.user$.id)
+                const res: IGoal$SnapshotIn[] = yield query_fetchGoalsByUserId(self.user$.id, status)
 
                 if (!res) throw new Error('fetchGoals error')
-                applySnapshot(self.goals$.goals, res)
+                applySnapshot(self.goals$.goals, uniqBy(self.goals$.goals.concat(res), 'id'))
             } catch (e) {
                 processError(e, 'fetchGoals error')
             }
@@ -106,7 +108,7 @@ export const Root$ = types
                 // fetch ritual power info
                 yield self.fetchRitualPowerInfo()
                 //
-                yield self.fetchGoals()
+                yield self.fetchGoals([GOAL_STATUS_ENUM.ACTIVE])
                 // yield self.fetchAchievements()
                 yield self.notes$.fetchNotes()
                 //

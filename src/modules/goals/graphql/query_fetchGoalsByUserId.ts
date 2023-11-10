@@ -4,25 +4,29 @@ import { generateClient } from '../../../graphql/client'
 import { processError } from '@/functions/processError.helper'
 import { IGoal$SnapshotIn } from '@/modules/goals/mst/types'
 
-export const query_fetchGoalsByUserId = async (owner_id: string): Promise<IGoal$SnapshotIn[] | undefined> => {
+export const query_fetchGoalsByUserId = async (
+    owner_id: string,
+    status: GOAL_STATUS_ENUM[],
+): Promise<IGoal$SnapshotIn[] | undefined> => {
     const client = generateClient()
 
     // const finishedAtFilter = add(new Date(Date.now()), { days: 2 })
 
     const query = gql`
-        query query_fetchGoalsByUserId($owner_id: uuid) {
+        query query_fetchGoalsByUserId($owner_id: uuid, $status: [goal_status_enum_enum]) {
             goals(
                 where: {_or: [
                                 {
                                     owner_id: {_eq:  $owner_id},
-                                    status: {_in: [${GOAL_STATUS_ENUM.ACTIVE}]},
+                                    # status: {_in: [${GOAL_STATUS_ENUM.ACTIVE}]},
+                                    status: {_in: $status},
                                     # finished_at: {_lte: $finishedAtFilter}
                                 },
-                                {
-                                    owner_id: {_eq:  $owner_id},
-                                    status: {_in: [${GOAL_STATUS_ENUM.ACTIVE}]},
-                                    is_favorite: {_eq: true}
-                                }
+                                # {
+                                #     owner_id: {_eq:  $owner_id},
+                                #     status: {_in: [${GOAL_STATUS_ENUM.ACTIVE}]},
+                                #     is_favorite: {_eq: true}
+                                # }
                             ],
                         },
                 order_by: { finished_at: asc }
@@ -52,7 +56,7 @@ export const query_fetchGoalsByUserId = async (owner_id: string): Promise<IGoal$
     `
 
     try {
-        const response = await client.request(query, { owner_id })
+        const response = await client.request(query, { owner_id, status })
 
         return response.goals
     } catch (e) {

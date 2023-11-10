@@ -26,6 +26,7 @@ export const GoalsSlidesCarousel: React.FC = observer(() => {
     const onOpenCrud = () => {
         onChangeField('is_crud_open', true)
     }
+    if (!visibleSlides.length) return null
 
     return (
         <div className='group relative flex h-[300px] w-full items-center justify-center rounded-lg p-8'>

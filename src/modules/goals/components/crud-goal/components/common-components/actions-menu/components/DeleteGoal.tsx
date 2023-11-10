@@ -17,7 +17,7 @@ export const DeleteGoal: React.FC<{ goal: IGoal$; hide?: boolean }> = observer((
                 variant={'text'}
                 onClick={deleteGoal}
             >
-                <Icon icon='fluent:delete-dismiss-24-filled' width={34} height={34} />
+                <Icon icon='fluent:delete-dismiss-24-filled' width={30} height={30} />
             </StyledButton>
             <XTooltip anchorSelect='#toggleMoveGoalToBin'>{deleted_at ? 'Restore from bin' : 'Move to bin'}</XTooltip>
         </>

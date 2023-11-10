@@ -3,7 +3,9 @@ import todayLogoIcon from '@/assets/today-goal-logo.svg'
 // import favoriteIcon from '@/assets/heart-favorite.svg'
 import ritualLogoIcon from '@/assets/ritual-logo.svg'
 import expiredLogoIcon from '@/assets/expired-goals-logo.svg'
+import completedLogoIcon from '@/assets/checked.png'
 import { IGoal$ } from '../../../../mst/types'
+import { Icon } from '@iconify/react'
 
 export const GoalDetails: React.FC<{ goal: IGoal$ }> = observer(({ goal }) => {
     return (
@@ -11,13 +13,13 @@ export const GoalDetails: React.FC<{ goal: IGoal$ }> = observer(({ goal }) => {
             <GoalDaysUntilDeadline goal={goal} />
             <GoalRitualCount goal={goal} />
             <ImageByGoalType goal={goal} />
-            {/* <GoalDeleted goal={goal} /> */}
+            {/* <ImageGoalCompleted goal={goal} /> */}
         </div>
     )
 })
 
-// const GoalDeleted: React.FC<{ goal: IGoal$ }> = observer(({ goal }) => {
-//     return goal.deleted_at ? (
+// const ImageGoalCompleted: React.FC<{ goal: IGoal$ }> = observer(({ goal }) => {
+//     return goal.isCompleted ? (
 //         <Icon
 //             icon='material-symbols-light:auto-delete-outline'
 //             className='mb-1 min-w-[55px] text-[#9c0b1c]'
@@ -28,7 +30,7 @@ export const GoalDetails: React.FC<{ goal: IGoal$ }> = observer(({ goal }) => {
 // })
 
 const ImageByGoalType: React.FC<{ goal: IGoal$ }> = observer(({ goal }) => {
-    const { isExpired, hasRitualPower: isRitualGoal } = goal
+    const { isExpired, hasRitualPower: isRitualGoal, isCompleted } = goal
     let goalIcon = todayLogoIcon
     let className = 'w-[60px] h-[60px]'
     if (isExpired) {
@@ -37,6 +39,11 @@ const ImageByGoalType: React.FC<{ goal: IGoal$ }> = observer(({ goal }) => {
     if (isRitualGoal) {
         goalIcon = ritualLogoIcon
     }
+
+    if (isCompleted) {
+        goalIcon = completedLogoIcon
+    }
+
     return (
         <div className='flex items-center justify-center gap-5'>
             {/* {is_favorite && <img src={favoriteIcon} width={55} height={55} />} */}
@@ -58,7 +65,9 @@ const GoalRitualCount: React.FC<{ goal: IGoal$ }> = observer(({ goal }) => {
 })
 
 const GoalDaysUntilDeadline: React.FC<{ goal: IGoal$ }> = observer(({ goal }) => {
-    const { totalRemainingDays } = goal
+    const { totalRemainingDays, isCompleted } = goal
+
+    if (isCompleted) return null
 
     return (
         <div className='flex flex-col items-center justify-center gap-2 '>

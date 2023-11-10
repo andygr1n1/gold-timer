@@ -29,16 +29,12 @@ export enum GOAL_STATUS_ENUM {
     FAILED = 'failed',
 }
 
-export enum STATUS_ENUM_FILTERS {
-    FAVORITE = 'favorite',
-    EXPIRED = 'expired',
+export enum GOAL_STATUS_ENUM_FILTERS {
     ACTIVE = 'active',
     RITUALIZED = 'ritualized',
-    FROZEN = 'frozen',
+    EXPIRED = 'expired',
     COMPLETED = 'completed',
-
-    // FINISHED = 'finished',
-    // FAILED = 'failed',
+    FAVORITE = 'favorite',
 }
 
 export enum DIFFICULTY_ENUM {
