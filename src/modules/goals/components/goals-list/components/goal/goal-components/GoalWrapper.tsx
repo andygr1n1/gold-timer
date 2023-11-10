@@ -4,20 +4,21 @@ import { motion, MotionConfig } from 'framer-motion'
 import { ReactNode } from 'react'
 import styles from '../Goal.module.scss'
 import clsx from 'clsx'
+import { observer } from 'mobx-react-lite'
 
-export const GoalWrapper: React.FC<{ children: ReactNode; goal: IGoal$ }> = ({ children, goal }) => {
+export const GoalWrapper: React.FC<{ children: ReactNode; goal: IGoal$ }> = observer(({ children, goal }) => {
     const { hasRitualPower: isRitualGoal, isExpired, isCompleted } = goal
     const {
         goals$: { openViewMode },
     } = useRootStore()
 
-    let styleByGoalType = 'border-l-green-400 bg-white'
+    let styleByGoalType = 'border-l-blue-700 bg-white'
 
-    if (isRitualGoal) styleByGoalType = 'border-l-indigo-400 bg-indigo-300 '
+    if (isRitualGoal) styleByGoalType = 'border-l-emerald-700'
 
-    if (isExpired) styleByGoalType = 'border-l-amber-600 bg-amber-600/20'
+    if (isExpired) styleByGoalType = 'border-l-amber-600'
 
-    if (isCompleted) styleByGoalType = 'border-l-orange-600 bg-orange-300/20'
+    if (isCompleted) styleByGoalType = 'border-l-gray-600 '
 
     return (
         <MotionConfig transition={{ duration: 0.3 }}>
@@ -38,4 +39,4 @@ export const GoalWrapper: React.FC<{ children: ReactNode; goal: IGoal$ }> = ({ c
             </motion.div>
         </MotionConfig>
     )
-}
+})

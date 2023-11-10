@@ -186,4 +186,16 @@ export const Goals$ = types
                 processError(e, 'updateGoal error')
             }
         }),
+        fetchAndApplyCompletedGoals: flow(function* _fetchAndApplyCompletedGoals() {
+            console.log('fetch And apply completed goals')
+            // if (!self.edit_goal) return
+            // const { updateGoal, redirected, id } = self.edit_goal
+            // try {
+            //     yield updateGoal()
+            //     redirected && self.openViewMode(id)
+            //     self.edit_goal = undefined
+            // } catch (e) {
+            //     processError(e, 'updateGoal error')
+            // }
+        }),
     }))

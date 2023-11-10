@@ -6,6 +6,7 @@ import { IDisposer, cast, onSnapshot } from 'mobx-state-tree'
 import { rootStore$ } from '@/StoreProvider'
 import { getSprints$LocalForage, setSprints$LocalForage } from '@/modules/sprints/helpers/sprintsLocalForage'
 import { ISprintsFilter$ } from '../../mst/types'
+import { StyledButton } from '@/components/buttons/StyledButton'
 export const SprintsFilters: React.FC = observer(() => {
     const {
         sprintsStatusRender,
@@ -35,9 +36,10 @@ export const SprintsFilters: React.FC = observer(() => {
     if (loadingLocalForage) return null
 
     return (
-        <div className='flex flex-col gap-5 md:flex-row'>
+        <div className='-ml-4 flex flex-col gap-5 md:flex-row'>
             {sprintsStatusRender.map((status) => (
-                <button
+                <StyledButton
+                    variant='text'
                     onClick={() => {
                         addStatusFilter(status)
                     }}
@@ -48,7 +50,7 @@ export const SprintsFilters: React.FC = observer(() => {
                     )}
                 >
                     {status}
-                </button>
+                </StyledButton>
             ))}
         </div>
     )

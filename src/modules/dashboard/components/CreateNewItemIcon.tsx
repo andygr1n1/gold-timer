@@ -10,9 +10,9 @@ export const CreateNewItemIcon: React.FC = observer(() => {
     return !isLargeDesktop ? (
         <Icon
             icon='ph:plus-fill'
-            width={34}
-            height={34}
-            className='text-cText cursor-pointer duration-300 hover:text-blue-700'
+            width={28}
+            height={28}
+            className='text-cText  min-w-[28px] cursor-pointer duration-300 hover:text-blue-700'
             onClick={openDashboardMenu}
         />
     ) : null

@@ -17,7 +17,7 @@ export const NewGoalDialogTitle: React.FC = observer(() => {
                 />
             )}
             <div className='max-w-[200px] truncate'>New Goal</div>
-            {!new_goal.parent_goal_id && <ToggleFavorite goal={new_goal} noRequest />}
+            {<ToggleFavorite goal={new_goal} noRequest={!!new_goal.parent_goal_id} />}
         </div>
     ) : null
 })

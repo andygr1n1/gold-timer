@@ -10,9 +10,9 @@ export const SprintsSettingsIcon: React.FC = observer(() => {
     return !isLargeDesktop ? (
         <Icon
             icon='ph:plus-fill'
-            width={24}
-            height={24}
-            className='text-cText min-w-[24px] cursor-pointer duration-300 hover:text-blue-700 md:hidden'
+            width={28}
+            height={28}
+            className='text-cText min-w-[28px] cursor-pointer duration-300 hover:text-blue-700 md:hidden'
             onClick={openSprintsMenu}
         />
     ) : null
