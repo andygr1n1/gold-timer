@@ -23,7 +23,7 @@ export const Goals$ = types
     .views((self) => ({
         get activeExpiredGoals(): IGoal$[] {
             const goals = filter(
-                self.goals_filter$.allGoalsFilteredByTitle,
+                self.goals_filter$.allGoalsFilteredBy,
                 (goal) => goal.status === GOAL_STATUS_ENUM.ACTIVE,
             ).filter((goal) => goal.finished_at && isPast(goal.finished_at) && !goal.deleted_at)
             return orderBy(goals, ['finished_at'], ['asc'])
@@ -34,7 +34,7 @@ export const Goals$ = types
         get activeGoals(): IGoal$[] {
             const goals: IGoal$[] = compact(
                 differenceWith(
-                    filter(self.goals_filter$.allGoalsFilteredByTitle, (goal) => {
+                    filter(self.goals_filter$.allGoalsFilteredBy, (goal) => {
                         return (
                             !!goal.created_at &&
                             isPast(sub(goal.created_at, { seconds: 3 })) &&
@@ -69,7 +69,7 @@ export const Goals$ = types
 
         get completedGoals(): IGoal$[] {
             const goals = filter(
-                self.goals_filter$.allGoalsFilteredByTitle,
+                self.goals_filter$.allGoalsFilteredBy,
                 (goal) => goal.status === GOAL_STATUS_ENUM.COMPLETED && !goal.deleted_at,
             )
             return orderBy(goals, ['finished_at'], ['asc'])
@@ -87,7 +87,7 @@ export const Goals$ = types
         },
         get favoriteGoals(): IGoal$[] {
             const goals = filter(
-                self.goals_filter$.allGoalsFilteredByTitle,
+                self.goals_filter$.allGoalsFilteredBy,
                 (goal) => goal.is_favorite && goal.status === GOAL_STATUS_ENUM.ACTIVE,
             )
             return orderBy(goals, ['finished_at'], ['asc'])
