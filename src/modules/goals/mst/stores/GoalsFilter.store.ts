@@ -1,5 +1,5 @@
-import { cloneDeep, compact, filter, orderBy, uniq } from 'lodash-es'
-import { isBefore, isPast, sub } from 'date-fns'
+import { compact, filter, orderBy, uniq } from 'lodash-es'
+import { format, isBefore, isPast, sub } from 'date-fns'
 import { types, getParentOfType } from 'mobx-state-tree'
 import { Goals$ } from './Goals.store'
 import { ACTIVE_GOAL_TYPE_ENUM, GOAL_STATUS_ENUM, GOAL_STATUS_ENUM_FILTERS } from '@/helpers/enums'
@@ -31,6 +31,9 @@ export const GoalsFilter$ = types
     .views((self) => ({
         get goals(): IGoal$[] {
             return getParentOfType(self, Goals$).goals
+        },
+        get goalsTimeFrame(): Date[] {
+            return compact(uniq(this.goals.map((goal) => goal.finished_at)))
         },
         get hasDeletedGoals(): boolean {
             return !!this.goals.filter((goal) => goal.deleted_at).length
@@ -66,7 +69,7 @@ export const GoalsFilter$ = types
             )
         },
 
-        get allGoalsFilteredByTitle(): IGoal$[] {
+        get allGoalsFilteredBy(): IGoal$[] {
             let goalsList = this.goals.filter((g) => g.status !== GOAL_STATUS_ENUM.COMPLETED)
 
             if (self.goals_selected_statuses.length) {
@@ -136,14 +139,28 @@ export const GoalsFilter$ = types
                         .includes(self.goals_input_filter.trim().toLocaleLowerCase()),
             )
         },
-        get allActiveFilteredGoals(): IGoal$[] {
-            const goals: IGoal$[] = compact(
-                filter(this.allGoalsFilteredByTitle, (goal) => {
+        get goalsListConstructor(): {
+            generateGoals: (gtf: string, goals: IGoal$[]) => IGoal$[]
+            timeFrame: string[]
+            goals: IGoal$[]
+        } {
+            let goals: IGoal$[] = compact(
+                filter(this.allGoalsFilteredBy, (goal) => {
                     return !!goal.created_at && isPast(sub(goal.created_at, { seconds: 3 }))
                 }),
             )
 
-            return orderBy(goals, ['finished_at'], ['asc'])
+            goals = orderBy(goals, ['finished_at'], ['asc'])
+
+            const timeFrame = compact(
+                uniq(goals.map((goal) => goal.finished_at && format(goal.finished_at, 'do MMMM yyyy'))),
+            )
+
+            const generateGoals = (gtf: string, goals: IGoal$[]) => {
+                return goals.filter((goal) => goal.finished_at && format(goal.finished_at, 'do MMMM yyyy') === gtf)
+            }
+
+            return { generateGoals, timeFrame, goals }
         },
         get goalsByCollapseType(): IGoal$[] {
             const { activeGoalsWithoutRitualPower, ritualGoals, activeExpiredGoals, favoriteGoals } = getParentOfType(

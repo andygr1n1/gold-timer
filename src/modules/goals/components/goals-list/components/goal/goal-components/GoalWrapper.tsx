@@ -27,8 +27,7 @@ export const GoalWrapper: React.FC<{ children: ReactNode; goal: IGoal$ }> = obse
                 animate={{ opacity: 0.9 }}
                 className={clsx(
                     styles['goal-container'],
-                    `border-l-solid relative flex cursor-pointer
-                            flex-col gap-5 rounded-md border-l-[20px] p-5 duration-300 hover:!opacity-100
+                    ` relative flex cursor-pointer flex-col gap-5 rounded-md  p-5 duration-300 hover:!opacity-100
                             ${styleByGoalType}
                             `,
                 )}
