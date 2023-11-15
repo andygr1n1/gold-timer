@@ -1,11 +1,12 @@
 import { GoalFormFilters } from '@/components/goal-form-filters/GoalFormFilters'
 import { useGoalsStore } from '@/StoreProvider'
-import { Collapse, Divider } from 'antd'
+import { Collapse } from 'antd'
 import { observer } from 'mobx-react-lite'
 import { useEffect } from 'react'
 import { PanelBody } from './components/PanelBody'
 import { PanelHeader } from './components/PanelHeader'
 import { PanelSettings } from './components/PanelSettings'
+import { XMenuDivider } from '@/components-x/x-dropdown/XMenuDivider'
 
 const { Panel } = Collapse
 
@@ -31,9 +32,9 @@ export const GoalsCollapse: React.FC = observer(() => {
 
     return (
         <div className='mb-5'>
-            <Divider />
+            <XMenuDivider />
             <GoalFormFilters />
-            <Divider />
+            <XMenuDivider />
             <Collapse accordion activeKey={active_collapse_key} onChange={setActiveKey}>
                 {goalsCollapseData.data.map((goal) => (
                     <Panel

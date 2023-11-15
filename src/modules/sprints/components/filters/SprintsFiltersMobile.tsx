@@ -6,9 +6,9 @@ import { IDisposer, cast, onSnapshot } from 'mobx-state-tree'
 import { rootStore$ } from '@/StoreProvider'
 import { getSprints$LocalForage, setSprints$LocalForage } from '@/modules/sprints/helpers/sprintsLocalForage'
 import { Checkbox } from 'antd'
-import { XDivider } from '@/components-x/x-divider/XDivider'
 import { useWindowMatchMedia } from '@/hooks/useMatchMedia.hook'
 import { ISprintsFilter$ } from '../../mst/types'
+import { XMenuDivider } from '@/components-x/x-dropdown/XMenuDivider'
 export const SprintsFiltersMobile: React.FC = observer(() => {
     const {
         sprintsStatusRender,
@@ -43,7 +43,7 @@ export const SprintsFiltersMobile: React.FC = observer(() => {
         <div className='flex w-full flex-col items-start gap-5'>
             {sprintsStatusRender.map((status) => (
                 <Fragment key={status}>
-                    <XDivider className='w-[125px] bg-gray-700' />
+                    <XMenuDivider />
                     <button
                         key={status}
                         className={clsx(

@@ -1,6 +1,6 @@
 import { compact, filter, orderBy, uniq } from 'lodash-es'
 import { format, isBefore, isPast, sub } from 'date-fns'
-import { types, getParentOfType } from 'mobx-state-tree'
+import { types, getParentOfType, cast } from 'mobx-state-tree'
 import { Goals$ } from './Goals.store'
 import { ACTIVE_GOAL_TYPE_ENUM, GOAL_STATUS_ENUM, GOAL_STATUS_ENUM_FILTERS } from '@/helpers/enums'
 import { IGoal$ } from '@/modules/goals/mst/types'
@@ -41,6 +41,11 @@ export const GoalsFilter$ = types
         get goalsStatusRender() {
             return Object.values(GOAL_STATUS_ENUM_FILTERS).filter(
                 (goalStatus) => goalStatus !== GOAL_STATUS_ENUM_FILTERS.FAVORITE,
+            )
+        },
+        get hasAnyFIlters(): boolean {
+            return (
+                self.show_archived || self.show_deleted || self.show_favorites || !!self.goals_selected_statuses.length
             )
         },
         // ACTIVE
@@ -261,5 +266,12 @@ export const GoalsFilter$ = types
                 // add status
                 self.goals_selected_statuses.push(newStatus)
             }
+        },
+        clearAllFilters(): void {
+            if (!self.hasAnyFIlters) return
+            self.show_archived = false
+            self.show_deleted = false
+            self.show_favorites = false
+            self.goals_selected_statuses = cast([])
         },
     }))

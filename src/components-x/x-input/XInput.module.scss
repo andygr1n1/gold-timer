@@ -3,8 +3,8 @@
 }
 
 .xinput-wrapper {
-    @apply text-cText bg-global-3-bg relative h-[40px] w-[calc(100%-4px)]  rounded-md border border-solid border-transparent
-    text-lg  hover:border-blue-600;
+    @apply text-cText bg-global-3-bg relative h-[38px] w-[calc(100%-4px)]  rounded-md border border-solid border-blue-700
+    text-base  hover:border-blue-600;
 }
 
 .xinput-wrapper-error {

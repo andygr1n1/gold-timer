@@ -1,5 +1,5 @@
 import { useRootStore } from '@/StoreProvider'
-import { XDivider } from '@/components-x/x-divider/XDivider'
+import { XMenuDivider } from '@/components-x/x-dropdown/XMenuDivider'
 import { NotesTagsSelect } from '@/modules/notes/components/filters/NotesTagsSelect'
 import { Icon } from '@iconify/react'
 import { observer } from 'mobx-react-lite'
@@ -20,14 +20,14 @@ export const NotesSettings: React.FC = observer(() => {
     return (
         <>
             <div className='flex w-full justify-center text-gray-400 '>Create</div>
-            <XDivider className='w-[125px] bg-gray-700' />
+            <XMenuDivider />
             <button onClick={onCreateNote} className='flex items-center gap-2'>
                 <Icon icon='fluent:task-list-square-ltr-16-filled' width={20} height={20} />
                 <span>Note</span>
             </button>
-            <XDivider className='w-[125px] bg-transparent' />
+            <XMenuDivider />
             <div className='flex w-full justify-center text-gray-400'>Tags</div>
-            <XDivider className='w-[125px] bg-gray-700' />
+            <XMenuDivider />
             <div className='w-[calc(100%-20px)]'>
                 <NotesTagsSelect />
             </div>

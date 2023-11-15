@@ -14,6 +14,7 @@ export type StyledButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & 
     dataTest?: string
     error?: boolean
     rounded?: boolean
+    noBlur?: boolean
 }
 /**
  * Developer: daria.bogatiriov@carasent.com
@@ -40,6 +41,7 @@ export const StyledButton = ({
     dataTest,
     error,
     rounded,
+    noBlur = false,
     ...otherProps
 }: StyledButtonProps) => {
     const isLarge = size === 'large'
@@ -54,8 +56,10 @@ export const StyledButton = ({
             {...otherProps}
             onClick={(e) => {
                 otherProps.onClick?.(e)
-                refButton?.current?.blur()
-                ;(refLink as React.MutableRefObject<HTMLButtonElement | null>)?.current?.blur()
+                if (!noBlur) {
+                    refButton?.current?.blur()
+                    ;(refLink as React.MutableRefObject<HTMLButtonElement | null>)?.current?.blur()
+                }
             }}
             className={clsx(
                 isLarge ? 'px-2' : 'px-1.5',

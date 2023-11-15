@@ -7,7 +7,6 @@ import { useRootStore } from '../../StoreProvider'
 import { CloseSideMenu } from '@/components/icons/CloseSideMenuIcon'
 import { useLocation } from 'react-router-dom'
 import { APP_ROUTES_ENUM } from '../../helpers/enums'
-import { CreateNewItems } from './components/CreateNewItems'
 import { SprintsSettings } from './components/SprintsSettings'
 import { NotesSettings } from './components/NotesSettings'
 
@@ -52,7 +51,6 @@ export const SideMenuSettings: React.FC = observer(() => {
             >
                 <div className='relative mt-5 flex w-full flex-col gap-5 px-5 pt-10'>
                     <CloseSideMenu onClose={() => onChangeSideMenu('visible', false)} />
-                    {route === APP_ROUTES_ENUM.DASHBOARD && <CreateNewItems />}
                     {route === APP_ROUTES_ENUM.SPRINTS && <SprintsSettings />}
                     {route === APP_ROUTES_ENUM.NOTES && <NotesSettings />}
                 </div>

@@ -2,7 +2,6 @@ import { APP_ROUTES_ENUM } from '@/helpers/enums'
 import { useSideMenu } from '@/hooks/useSideMenu.hook'
 import { Icon } from '@iconify/react'
 import { observer } from 'mobx-react-lite'
-import { XDivider } from '../../components-x/x-divider/XDivider'
 import { UserAvatarSideMenu } from './components/UserAvatar'
 import { SideMenuLink } from './components/SideMenuLink'
 import { useOutsideAlerter } from '@/hooks/useClickOutside.hook'
@@ -12,6 +11,7 @@ import { Transition } from '@headlessui/react'
 import { UserCoins } from './components/UserCoins'
 import { GoToDashboard } from './components/GoToDashboard'
 import { UserName } from './components/UserName'
+import { XMenuDivider } from '@/components-x/x-dropdown/XMenuDivider'
 
 export const SideMenu: React.FC = observer(() => {
     const wrapperRef = useRef<HTMLDivElement | null>(null)
@@ -36,9 +36,9 @@ export const SideMenu: React.FC = observer(() => {
                 leave='transition-opacity duration-300'
                 leaveFrom='opacity-40'
                 leaveTo='opacity-0'
-                className={'fixed z-40 h-full w-full lg:hidden'}
+                className={'fixed z-[110] h-full w-full lg:hidden'}
             >
-                <div className='fixed z-40 h-full w-full bg-gray-500 lg:hidden' />
+                <div className='fixed z-[110] h-full w-full bg-gray-500 lg:hidden' />
             </Transition>
             {/*  */}
             <div
@@ -46,13 +46,13 @@ export const SideMenu: React.FC = observer(() => {
                 className={`${
                     useSideMenu.is_open ? 'animate-slide-in' : 'animate-slide-out lg:animate-opacity ml-[-320px] '
                 }
-                text-cText bg-global-2-bg font-kzen  absolute left-0 z-50 flex h-full shadow-md shadow-black/20
+                text-cText bg-global-2-bg font-kzen  absolute left-0 z-[120] flex h-full shadow-md shadow-black/20
                lg:static  lg:m-5 lg:mr-0 lg:flex lg:h-[calc(100%-40px)]
             `}
             >
                 <div className='flex w-[230px] min-w-[230px] flex-col overflow-auto py-5'>
                     <div className='flex flex-auto flex-col gap-5 overflow-auto  '>
-                        <div className='relative flex flex-col items-center justify-center gap-5'>
+                        <div className='pointer-events-none relative flex flex-col items-center justify-center gap-5'>
                             {isDesktop && <UserName />}
                             <UserAvatarSideMenu />
                             {isDesktop && <UserCoins />}
@@ -69,7 +69,7 @@ export const SideMenu: React.FC = observer(() => {
                                     title='Achievements'
                                     icon={<Icon icon='game-icons:achievement' width={23} height={23} />}
                                 />
-                                <XDivider className='w-[125px] bg-gray-700' />
+                                <XMenuDivider />
                                 <SideMenuLink
                                     to={APP_ROUTES_ENUM.SPRINTS}
                                     title='Sprints'

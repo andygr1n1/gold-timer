@@ -27,9 +27,7 @@ input[type='number'] {
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import '@szhsin/react-menu/dist/index.css';
-@import '@szhsin/react-menu/dist/transitions/slide.css';
-@import './react-menu-theme-dark.css';
+@import './react-menu-theme-overwrite.scss';
 @import './quill.css';
 @import './date-picker.css';
 @import './antdRedesign.css';

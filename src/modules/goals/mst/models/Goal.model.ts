@@ -99,7 +99,7 @@ export const Goal = types
             let months = `${months_count} months`
             //
             const days_count = this.remainingDays
-            let days = `${days_count} days`
+            let days = `${days_count} day${days_count === 1 ? '' : 's'}`
             //
             const hours_count = this.remainingTime?.getUTCHours()
             let hours = `${hours_count} ${hours_count === 1 ? 'hour' : 'hours'}`
