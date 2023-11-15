@@ -12,7 +12,7 @@ export const FigmaLink: React.FC = observer(() => {
                 icon='devicon:figma'
                 width={25}
                 height={20}
-                className='text-cText cursor-pointer  duration-300 hover:text-blue-500'
+                className='text-cText cursor-pointer  opacity-70 duration-300  hover:text-blue-500 hover:opacity-100'
             />
         </a>
     )

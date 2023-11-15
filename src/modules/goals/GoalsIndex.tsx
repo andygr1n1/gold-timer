@@ -5,54 +5,38 @@ import { GoalsList } from '@/modules/goals/components/goals-list/GoalsList'
 import { observer } from 'mobx-react-lite'
 import goalsImage from '@/assets/goals-1.png'
 import { SearchGoalsInput } from './components/SearchGoalsInput'
-import { GoalsSettingsIcon } from './components/GoalsSettingsIcon'
 import { useListenGoalsFilterStore } from './helpers/useListenGoalsFilterStore.hook'
-import { useWindowMatchMedia } from '@/hooks/useMatchMedia.hook'
-import { StyledButton } from '@/components/buttons/StyledButton'
 import { CRUD_GoalDialog } from './components/crud-goal/CRUD_GoalDialog'
-import { GoalsFilters } from './components/filters/GoalsFilters'
+import { GoalsModuleDropdown } from './components/goals-module-dropdown/GoalsModuleDropdown'
 
 export const GoalsIndex: React.FC = observer(() => {
     const {
         goals,
-        openCreateMode,
         goals_filter$: { show_deleted },
     } = useGoalsStore()
 
     useListenGoalsFilterStore()
-    const { isMobile } = useWindowMatchMedia(['isMobile'])
 
     return (
         <ModuleWrapper
             context={APP_ROUTES_ENUM.GOALS}
             topBarNodes={
                 <div className='flex w-full items-center justify-center gap-4 xl:px-20'>
+                    <GoalsModuleDropdown />
                     <SearchGoalsInput />
-                    <GoalsSettingsIcon />
                 </div>
             }
         >
-            <div className='animate-opacity-5 flex h-full w-full flex-col gap-10 xl:w-[calc(100%-160px)] xl:px-20'>
-                {!isMobile && (
-                    <div className='m-1 mt-5 flex justify-between gap-5'>
-                        <GoalsFilters />
-                        <StyledButton
-                            variant='outlined'
-                            onClick={() => {
-                                openCreateMode()
-                            }}
-                        >
-                            + Add new goal
-                        </StyledButton>
-                    </div>
-                )}
-                <GoalsList />
-                {!!!goals.length && !show_deleted && (
+            <div className='animate-opacity-5 flex h-full w-full flex-col xl:w-[calc(100%-160px)] xl:px-20'>
+                {!!!goals.length && !show_deleted ? (
                     <img
                         className='absolute-center pointer-events-none h-[200px] w-[200px] opacity-10'
                         src={goalsImage}
                     />
+                ) : (
+                    <img className='pointer-events-none m-auto my-10 h-[50px] w-[50px] opacity-100' src={goalsImage} />
                 )}
+                <GoalsList />
             </div>
             <CRUD_GoalDialog />
         </ModuleWrapper>

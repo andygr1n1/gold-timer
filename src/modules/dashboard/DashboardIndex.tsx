@@ -4,7 +4,6 @@ import { useWindowMatchMedia } from '@/hooks/useMatchMedia.hook'
 import { ModuleWrapper } from '@/components/ModuleWrapper'
 import { CreateNewNoteDashboard } from '../notes/components/create-note-dashboard/CreateNewNoteDashboard'
 import { APP_ROUTES_ENUM } from '@/helpers/enums'
-import { CreateNewItemIcon } from '@/modules/dashboard/components/CreateNewItemIcon'
 import { GoalsCounter } from './components/goals-counter/GoalsCounter'
 import { CRUD_GoalDialog } from '../goals/components/crud-goal/CRUD_GoalDialog'
 import { CRUD_NoteDialog } from '../notes/components/crud-note/CRUD_NoteDialog'
@@ -14,11 +13,7 @@ export const DashboardIndex: React.FC = observer(() => {
     const { isLargeDesktop } = useWindowMatchMedia(['isLargeDesktop'])
 
     return (
-        <ModuleWrapper
-            context={APP_ROUTES_ENUM.DASHBOARD}
-            hideTopBar={!!isLargeDesktop}
-            topBarNodes={<CreateNewItemIcon />}
-        >
+        <ModuleWrapper context={APP_ROUTES_ENUM.DASHBOARD} hideTopBar={!!isLargeDesktop}>
             <div className='flex flex-col gap-7'>
                 <div className='m-auto flex min-h-[314px] w-[314px] flex-col justify-center gap-20 md:justify-end xl:w-full xl:flex-row'>
                     <div className='flex flex-[50%]'>

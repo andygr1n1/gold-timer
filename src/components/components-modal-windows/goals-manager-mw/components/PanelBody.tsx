@@ -1,8 +1,8 @@
 import { IGoal$ } from '@/modules/goals/mst/types'
-import { Divider } from 'antd'
 import { format } from 'date-fns'
 import { observer } from 'mobx-react-lite'
 import { ActiveGoalCreatedAt } from './ActiveGoalCreatedAt'
+import { XMenuDivider } from '@/components-x/x-dropdown/XMenuDivider'
 
 export const PanelBody: React.FC<{ goal: IGoal$ }> = observer(({ goal }) => {
     return (
@@ -20,7 +20,7 @@ export const PanelBody: React.FC<{ goal: IGoal$ }> = observer(({ goal }) => {
                     <div className='text-base'>{goal.description}</div>
                 </div>
             )}
-            <Divider />
+            <XMenuDivider />
 
             <div className='my-1'>
                 <div className='text-xs'>Created:</div>

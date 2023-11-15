@@ -57,7 +57,7 @@
     }
 
     &.large {
-        @apply h-10;
+        @apply h-[40px] min-h-[40px] #{!important};
     }
     &.extraLarge {
         @apply h-12 min-h-[45px];

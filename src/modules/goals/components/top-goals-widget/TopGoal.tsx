@@ -9,9 +9,10 @@ import { getTopGoalColor } from './helpers/getTopGoalColor'
 import styles from './TopGoalsWidgets.module.scss'
 import { useRef } from 'react'
 import { useWindowMatchMedia } from '@/hooks/useMatchMedia.hook'
-import { PopoverGoalActions } from '@/components/popover-goal-actions/PopoverGoalActions'
 import { useTogglePopoverState } from '@/hooks/useTogglePopoverState'
 import clsx from 'clsx'
+import { PopoverGoalActionsContent } from '@/components/popover-goal-actions/PopoverGoalActionsContent'
+import { XDropdown } from '@/components-x/x-dropdown/XDropdown'
 
 export const TopGoal: React.FC<{ goal: IGoal$; type: ACTIVE_GOAL_TYPE_ENUM }> = observer(({ goal }) => {
     const {
@@ -29,7 +30,16 @@ export const TopGoal: React.FC<{ goal: IGoal$; type: ACTIVE_GOAL_TYPE_ENUM }> = 
     }
 
     return (
-        <PopoverGoalActions popoverState={popoverState} setPopoverState={setPopoverState} goal={goal} forceMode={true}>
+        <XDropdown
+            open={popoverState}
+            onOpenChange={() => {
+                setPopoverState(!popoverState)
+            }}
+            trigger={['contextMenu']}
+            dropdownRender={() => (
+                <PopoverGoalActionsContent action={() => setPopoverState(false)} goal={goal} forceMode={false} />
+            )}
+        >
             <XBadge
                 overflowCount={999}
                 style={badgeClass}
@@ -72,6 +82,6 @@ export const TopGoal: React.FC<{ goal: IGoal$; type: ACTIVE_GOAL_TYPE_ENUM }> = 
                     <span>{truncate(goal.title, { length: 22 })}</span>
                 </div>
             </XBadge>
-        </PopoverGoalActions>
+        </XDropdown>
     )
 })

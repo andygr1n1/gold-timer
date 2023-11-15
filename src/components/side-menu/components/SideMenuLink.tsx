@@ -1,6 +1,7 @@
 import { XBadge } from '@/components-x/x-badge/XBadge'
 import { APP_ROUTES_ENUM } from '@/helpers/enums'
 import { useSideMenu } from '@/hooks/useSideMenu.hook'
+import clsx from 'clsx'
 import { observer } from 'mobx-react-lite'
 import { ReactNode } from 'react'
 import { NavLink } from 'react-router-dom'
@@ -12,7 +13,8 @@ export const SideMenuLink: React.FC<{
     badge?: number
     to: APP_ROUTES_ENUM
     children?: ReactNode
-}> = observer(({ title, icon, disabled = false, badge, to, children }) => {
+    className?: string
+}> = observer(({ title, icon, disabled = false, badge, to, children, className }) => {
     return (
         <NavLink
             onClick={(e) => {
@@ -24,9 +26,12 @@ export const SideMenuLink: React.FC<{
             }}
             to={`/${to}`}
             className={(navData) => {
-                return `flex w-full items-center justify-center duration-300 ${
-                    navData.isActive ? 'text-blue-700' : 'text-cText'
-                }`
+                return clsx(
+                    `flex w-full items-center justify-center ${
+                        navData.isActive ? 'text-blue-700 opacity-100' : 'text-cText opacity-70'
+                    }`,
+                    className,
+                )
             }}
         >
             {title ? (

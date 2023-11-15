@@ -1,28 +1,28 @@
-import { Popover, PopoverProps } from 'antd'
+import { PopoverProps } from 'antd'
 import { observer } from 'mobx-react-lite'
 import { PopoverGoalActionsContent } from './PopoverGoalActionsContent'
 import { IGoal$ } from '@/modules/goals/mst/types'
+import { XDropdown } from '@/components-x/x-dropdown/XDropdown'
+import { useTogglePopoverState } from '@/hooks/useTogglePopoverState'
 
 export const PopoverGoalActions: React.FC<
     PopoverProps & {
         goal: IGoal$
         forceMode?: boolean
-        popoverState: boolean
-        setPopoverState: React.Dispatch<React.SetStateAction<boolean>>
     }
-> = observer(({ goal, children, forceMode = false, popoverState, setPopoverState }) => {
+> = observer(({ goal, children, forceMode = false }) => {
+    const { popoverState, setPopoverState } = useTogglePopoverState()
     return (
-        <Popover
+        <XDropdown
+            trigger={['hover']}
             open={popoverState}
-            onOpenChange={() => popoverState && setPopoverState(!popoverState)}
-            overlayClassName=''
-            className=''
-            content={
+            onOpenChange={() => setPopoverState(!popoverState)}
+            dropdownRender={() => (
                 <PopoverGoalActionsContent action={() => setPopoverState(false)} goal={goal} forceMode={forceMode} />
-            }
-            placement='bottom'
+            )}
+            placement='bottomLeft'
         >
             {children}
-        </Popover>
+        </XDropdown>
     )
 })
