@@ -23,15 +23,12 @@ export const getTopGoalColor = (goal: IGoal$): { containerClass: string; badgeSt
             display: 'block',
         }
     } else if (isRitual) {
-        containerClass = clsx(
-            'bg-emerald-700 hover:bg-emerald-600',
-            goal.isFromFuture && 'opacity-50 hover:opacity-100',
-        )
+        containerClass = clsx('bg-emerald-700 hover:bg-emerald-600')
         badgeStyle = {
-            background: goal.daysEstimationCount >= 2 ? '#064e3b' : 'transparent',
+            background: goal.daysEstimationCount >= 1 ? '#064e3b' : 'transparent',
             color: 'white',
-            borderColor: goal.daysEstimationCount >= 2 ? '#064e3b' : 'transparent',
-            display: goal.isFromFuture ? 'none' : 'block',
+            borderColor: goal.daysEstimationCount >= 1 ? '#064e3b' : 'transparent',
+            display: goal.isFromFuture ? 'block' : 'block',
         }
     }
 

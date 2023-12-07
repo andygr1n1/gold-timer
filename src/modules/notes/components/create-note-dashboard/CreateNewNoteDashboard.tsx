@@ -1,6 +1,5 @@
 import { observer } from 'mobx-react-lite'
 import { useNotesStore } from '@/StoreProvider'
-import { NoteTagInput } from '../crud-note/components/common-components/NoteTagInput'
 import { StyledButton } from '@/components/buttons/StyledButton'
 import { useWindowMatchMedia } from '@/hooks/useMatchMedia.hook'
 import { XTooltip } from '@/components-x/x-tooltip/XTooltip'

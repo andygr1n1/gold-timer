@@ -1,5 +1,4 @@
 import { XBadge } from '@/components-x/x-badge/XBadge'
-import { ACTIVE_GOAL_TYPE_ENUM } from '@/helpers/enums'
 import { IGoal$ } from '@/modules/goals/mst/types'
 import { useRootStore } from '@/StoreProvider'
 import { Icon } from '@iconify/react'
@@ -7,11 +6,10 @@ import { observer } from 'mobx-react-lite'
 import { getTopGoalColor } from './helpers/getTopGoalColor'
 import styles from './TopGoalsWidgets.module.scss'
 import { useTogglePopoverState } from '@/hooks/useTogglePopoverState'
-import clsx from 'clsx'
 import { PopoverGoalActionsContent } from '@/components/popover-goal-actions/PopoverGoalActionsContent'
 import { XDropdown } from '@/components-x/x-dropdown/XDropdown'
 
-export const TopGoal: React.FC<{ goal: IGoal$; type: ACTIVE_GOAL_TYPE_ENUM }> = observer(({ goal }) => {
+export const TopGoal: React.FC<{ goal: IGoal$; className?: string }> = observer(({ goal, className = '' }) => {
     const {
         goals$: { openViewMode },
     } = useRootStore()
@@ -33,7 +31,7 @@ export const TopGoal: React.FC<{ goal: IGoal$; type: ACTIVE_GOAL_TYPE_ENUM }> = 
             <div
                 // title={goal.title}
                 key={goal.id}
-                className={`duration-300 ${styles['goal']} ${goalClass}`}
+                className={`duration-300 ${styles['goal']} ${goalClass} ${className} `}
                 onClick={() => {
                     openViewMode(goal.id)
                 }}
@@ -48,15 +46,15 @@ export const TopGoal: React.FC<{ goal: IGoal$; type: ACTIVE_GOAL_TYPE_ENUM }> = 
                     style={badgeClass}
                     offset={[-6, 1]}
                     count={
-                        goal.isExpired ? null : goal.totalRemainingDays > 1 ? (
-                            goal.totalRemainingDays
-                        ) : (
+                        goal.isExpired ? null : isDeadline(goal) ? (
                             <Icon
                                 icon='emojione-v1:ringing-bell'
-                                className={clsx(goal.isRitualGoal && 'hidden')}
+                                // className={clsx(goal.isRitualGoal && 'hidden')}
                                 width={20}
                                 height={20}
                             />
+                        ) : (
+                            goal.totalRemainingDays
                         )
                     }
                 />
@@ -64,3 +62,12 @@ export const TopGoal: React.FC<{ goal: IGoal$; type: ACTIVE_GOAL_TYPE_ENUM }> = 
         </XDropdown>
     )
 })
+
+const isDeadline = (goal: IGoal$) => {
+    if (goal.isExpired) return true
+    if (goal.isRitualGoal) {
+        return goal.totalRemainingDays < 1
+    }
+
+    return goal.totalRemainingDays <= 1
+}

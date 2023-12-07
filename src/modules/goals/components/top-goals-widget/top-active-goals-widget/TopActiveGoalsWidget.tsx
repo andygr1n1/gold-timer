@@ -2,13 +2,14 @@ import { useRootStore } from '@/StoreProvider'
 import { observer } from 'mobx-react-lite'
 
 import styles from '../TopGoalsWidgets.module.scss'
-import { ACTIVE_GOAL_TYPE_ENUM } from '@/helpers/enums'
 import { TopGoal } from '../TopGoal'
 import { Icon } from '@iconify/react'
+import { StyledButton } from '@/components/buttons/StyledButton'
+import clsx from 'clsx'
 
 export const TopActiveGoalsWidget: React.FC = observer(() => {
     const {
-        goals$: { topActiveGoalsWithLimit },
+        goals$: { activeDashboardGoals, applySelectedWidgetGoals },
     } = useRootStore()
 
     return (
@@ -17,14 +18,32 @@ export const TopActiveGoalsWidget: React.FC = observer(() => {
                 className='bg-global-2-bg relative flex h-[calc(100%)] w-[calc(100%-40px)] flex-col items-start justify-start rounded-lg
             px-5 '
             >
-                <div className='absolute left-[-25px] top-[-26px]  cursor-pointer'>
-                    <Icon icon='line-md:my-location' width={66} height={66} className='text-blue-600' />
+                <div className='absolute left-[-40px] top-[-43px]  cursor-pointer'>
+                    <StyledButton
+                        onClick={() => {
+                            applySelectedWidgetGoals(activeDashboardGoals)
+                        }}
+                        variant='text'
+                        className='!h-24 !w-24 !rounded-full'
+                        startIcon={
+                            <Icon
+                                icon='line-md:my-location'
+                                width={76}
+                                height={76}
+                                className='min-h-[66px] min-w-[66px] text-blue-600'
+                            />
+                        }
+                    />
                 </div>
                 <div className={styles['dashboard-widget-goals-container']}>
-                    {topActiveGoalsWithLimit.length ? (
+                    {activeDashboardGoals.length ? (
                         <>
-                            {topActiveGoalsWithLimit.map((goal) => (
-                                <TopGoal key={goal.id} goal={goal} type={ACTIVE_GOAL_TYPE_ENUM.ACTIVE} />
+                            {activeDashboardGoals.slice(0, 8).map((goal) => (
+                                <TopGoal
+                                    key={goal.id}
+                                    goal={goal}
+                                    className={clsx(goal.isFromFuture && 'opacity-70 hover:opacity-100')}
+                                />
                             ))}
                         </>
                     ) : (

@@ -1,7 +1,7 @@
 import { GOAL_STATUS_ENUM } from '@/helpers/enums'
 import { add, isPast, sub } from 'date-fns'
 import { filter, orderBy, differenceWith, cloneDeep, compact } from 'lodash-es'
-import { destroy, detach, toGenerator, types, flow, cast } from 'mobx-state-tree'
+import { destroy, detach, toGenerator, types, flow, cast, castToSnapshot } from 'mobx-state-tree'
 import { Goal$ } from './Goal.store'
 import { GoalsFilter$ } from './GoalsFilter.store'
 import { processError } from '@/functions/processError.helper'
@@ -18,6 +18,7 @@ export const Goals$ = types
         goals_filter$: types.optional(GoalsFilter$, {
             goals_estimation_filter: add(new Date(Date.now()), { days: 60 }),
         }),
+        selected_widget_goals: types.array(types.safeReference(Goal$, { acceptsUndefined: false })),
     })
     .views((self) => ({
         get activeExpiredGoals(): IGoal$[] {
@@ -88,6 +89,9 @@ export const Goals$ = types
         },
     }))
     .actions((self) => ({
+        applySelectedWidgetGoals(goals: IGoal$[]): void {
+            self.selected_widget_goals = castToSnapshot(goals)
+        },
         openGoalCreateMode(options?: { parentGoalId?: string }): void {
             self.new_goal = cast({
                 parent_goal_id: options?.parentGoalId ? options?.parentGoalId : null,
@@ -134,7 +138,7 @@ export const Goals$ = types
     // dashboard widget goals
     // dashboard widget goals
     .views((self) => ({
-        get topActiveGoalsWithLimit(): IGoal$[] {
+        get activeDashboardGoals(): IGoal$[] {
             const allActive = self.goals.filter(
                 (goal) =>
                     !!goal.created_at &&
@@ -144,26 +148,25 @@ export const Goals$ = types
                     !goal.isExpired &&
                     !goal.isCompleted,
             )
-            return orderBy(allActive, ['finished_at'], ['asc']).slice(0, 8)
+            return orderBy(allActive, ['finished_at'], ['asc'])
         },
-        get topRitualGoalsWithLimit(): IGoal$[] {
-            const allRituals = self.goals.filter(
-                (goal) => !!goal.created_at && !!goal.finished_at && !goal.deleted_at && goal.isRitualGoal,
-                //    && !goal.isFromFuture,
-            )
-            return orderBy(allRituals, ['finished_at'], ['asc']).slice(0, 8)
-        },
-        get topFavoriteGoalsWithLimit(): IGoal$[] {
-            const allActive = self.goals.filter((goal) => !!goal.created_at && !goal.deleted_at && goal.isFavorite)
-            return allActive.slice(0, 8)
-        },
-
-        get topExpiredGoalsWithLimit(): IGoal$[] {
+        get expiredDashboardGoals(): IGoal$[] {
             const goals = filter(
                 self.goals,
                 (goal) => goal.status === GOAL_STATUS_ENUM.ACTIVE && !goal.isRitualGoal && !goal.deleted_at,
             ).filter((goal) => goal.finished_at && isPast(goal.finished_at))
-            return orderBy(goals, ['finished_at'], ['asc']).slice(0, 8)
+            return orderBy(goals, ['finished_at'], ['asc'])
+        },
+        get ritualDashboardGoals(): IGoal$[] {
+            const allRituals = self.goals.filter(
+                (goal) => !!goal.created_at && !!goal.finished_at && !goal.deleted_at && goal.isRitualGoal,
+                //    && !goal.isFromFuture,
+            )
+            return orderBy(allRituals, ['finished_at'], ['asc'])
+        },
+        get favoriteDashboardGoals(): IGoal$[] {
+            const allFavorite = self.goals.filter((goal) => !!goal.created_at && !goal.deleted_at && goal.isFavorite)
+            return allFavorite
         },
     }))
     .actions((self) => ({
