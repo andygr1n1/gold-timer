@@ -2,11 +2,11 @@ import { gql } from 'graphql-request'
 import { generateClient } from '../../../graphql/client'
 import { processError } from '@/functions/processError.helper'
 import { IGoalSlide$SnIn } from '../mst/types'
-import { getUserId } from '@/functions/getUserId'
+import { getOwnerId } from '@/functions/getUserId'
 
 export const query_fetchGoalsSlides = async (): Promise<IGoalSlide$SnIn[] | undefined> => {
     const client = generateClient()
-    const owner_id = getUserId()
+    const owner_id = getOwnerId()
 
     const query = gql`
         query query_fetchGoalsSlides($owner_id: uuid) {

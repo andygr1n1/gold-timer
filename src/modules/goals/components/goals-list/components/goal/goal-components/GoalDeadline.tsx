@@ -7,7 +7,7 @@ export const GoalDeadline: React.FC<{ goal: IGoal$ }> = observer(({ goal }) => {
         remainingTimeString,
         isExpired,
         expiredDaysCount,
-        hasRitualPower: isRitualGoal,
+        isRitualGoal: isRitualGoal,
         isCompleted,
         finished_at,
     } = goal

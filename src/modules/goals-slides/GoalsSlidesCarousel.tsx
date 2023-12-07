@@ -26,13 +26,12 @@ export const GoalsSlidesCarousel: React.FC = observer(() => {
     const onOpenCrud = () => {
         onChangeField('is_crud_open', true)
     }
-    if (!visibleSlides.length) return null
 
     return (
-        <div className='group relative flex h-[300px] w-full items-center justify-center rounded-lg p-8'>
+        <div className='bg-global-bg-plasma group relative flex w-full items-center justify-center rounded-lg p-4'>
             {!isMobile && (
                 <img
-                    className='absolute hidden w-[300px] md:flex md:w-[450px]'
+                    className='absolute hidden w-[450px] md:flex md:w-[450px]'
                     src='https://firebunny-storage.b-cdn.net/kzen/utility/lotus-bg.png'
                     // className="absolute flex h-full w-full bg-[url('https://firebunny-storage.b-cdn.net/kzen/utility/lotus-bg.png')] bg-cover "
                 />
@@ -48,30 +47,32 @@ export const GoalsSlidesCarousel: React.FC = observer(() => {
             <XTooltip className='z-[900]' anchorSelect='#goalsSlidesEditor'>
                 {'Open editor'}
             </XTooltip>
-            <Carousel
-                autoPlay
-                infiniteLoop
-                interval={5000}
-                showIndicators={false}
-                showStatus={false}
-                className='z-20 w-[300px] rounded-full border-none bg-transparent opacity-95 '
-                showArrows={true}
-                showThumbs={false}
-                centerMode
-                centerSlidePercentage={100}
-                stopOnHover
-                swipeable={false}
-            >
-                {visibleSlides.map((gSlide) => (
-                    <div key={gSlide.id} title={gSlide.title}>
-                        <img
-                            src={`${import.meta.env.VITE_FIRE_BUNNY_STORAGE}/goals-slides/${gSlide.img_path}`}
-                            title={gSlide.title}
-                            className='w-[300px] rounded-lg md:w-[300px]'
-                        />
-                    </div>
-                ))}
-            </Carousel>
+            {visibleSlides.length && (
+                <Carousel
+                    autoPlay
+                    infiniteLoop
+                    interval={5000}
+                    showIndicators={false}
+                    showStatus={false}
+                    className='z-20 w-[300px] rounded-full border-none bg-transparent opacity-95 md:w-[330px] '
+                    showArrows={true}
+                    showThumbs={false}
+                    centerMode
+                    centerSlidePercentage={100}
+                    stopOnHover
+                    swipeable={false}
+                >
+                    {visibleSlides.map((gSlide) => (
+                        <div key={gSlide.id} title={gSlide.title}>
+                            <img
+                                src={`${import.meta.env.VITE_FIRE_BUNNY_STORAGE}/goals-slides/${gSlide.img_path}`}
+                                title={gSlide.title}
+                                className='rounded-lg'
+                            />
+                        </div>
+                    ))}
+                </Carousel>
+            )}
             <CRUD_GoalsSlidesDialog />
         </div>
     )

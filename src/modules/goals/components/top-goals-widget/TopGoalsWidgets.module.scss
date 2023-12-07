@@ -1,13 +1,16 @@
 .wrapper {
-    @apply bg-global-2-bg relative m-auto flex w-[314px] flex-col flex-wrap items-center justify-center rounded-lg md:flex-row xl:w-full;
+    @apply bg-global-2-bg relative mx-auto flex flex-col flex-wrap items-start justify-start rounded-lg md:flex-row xl:w-full;
 }
 
 .goals-container {
-    @apply flex min-h-[56px] w-[calc(100%-40px)] flex-col  items-center justify-center gap-10 p-5 md:h-[56px] 
+    @apply flex min-h-[56px] w-[calc(100%-40px)] flex-col  items-center justify-center gap-5 p-5 md:h-[56px] 
     md:flex-row md:flex-wrap md:overflow-hidden xl:ml-2 xl:justify-start;
 }
 
+.dashboard-widget-goals-container {
+    @apply flex  min-h-[140px] w-full flex-wrap  gap-5 overflow-hidden pt-10;
+}
+
 .goal {
-    @apply h-[40px] w-[110px] cursor-pointer select-none items-center justify-center
-    rounded-lg p-2 text-white shadow-lg shadow-black/30;
+    @apply relative flex h-[60px] w-[100px] flex-[100%] cursor-pointer items-center justify-between rounded-lg  2xl:flex-[0_0_48%];
 }

@@ -23,7 +23,6 @@ export const LoginIndex: React.FC = observer(() => {
 
     const onFinish = async (values: IValues) => {
         const loginUserRes = await sendLoginData(values)
-
         if (loginUserRes) {
             onChangeField('id', loginUserRes.user_id)
         }
@@ -34,8 +33,7 @@ export const LoginIndex: React.FC = observer(() => {
 
         if (!loginUserRes) {
             api.info({
-                message: `Login error`,
-                description: 'Your credentials are wrong, Please try again',
+                message: `Your credentials are wrong, please try again`,
                 placement: 'top',
             })
         }

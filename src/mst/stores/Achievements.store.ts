@@ -2,7 +2,7 @@ import { applySnapshot, flow, types } from 'mobx-state-tree'
 import { Achievement } from '../models/Achievement.model'
 import { IAchievement } from '../types'
 import { fetchAchievementsByUserId } from '@/graphql/queries/fetchAchievementsByUserId.query'
-import { getUserId } from '@/functions/getUserId'
+import { getOwnerId } from '@/functions/getUserId'
 import { processError } from '@/functions/processError.helper'
 import { IGoal$SnapshotIn } from '@/modules/goals/mst/types'
 
@@ -22,7 +22,7 @@ export const Achievements$ = types
         },
         fetchAchievements: flow(function* _fetchGoals() {
             try {
-                const res: IGoal$SnapshotIn[] = yield fetchAchievementsByUserId(getUserId())
+                const res: IGoal$SnapshotIn[] = yield fetchAchievementsByUserId(getOwnerId())
                 if (!res) throw new Error('fetchGoals error')
                 applySnapshot(self.achievements, res)
             } catch (e) {

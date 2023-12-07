@@ -1,6 +1,6 @@
 import { flow, toGenerator } from 'mobx-state-tree'
 import { Goal$ } from './Goal.store'
-import { getUserId } from '@/functions/getUserId'
+import { getOwnerId } from '@/functions/getUserId'
 import { IInsertNewGoal } from '@/modules/goals/interfaces/newGoal.interface'
 import { setGoalDifficulty } from '@/functions/setGoalDifficulty'
 import { set } from 'date-fns'
@@ -18,7 +18,7 @@ export const GoalNew$ = Goal$.named('GoalNew$')
             self[key] = value
         },
         createNewGoal: flow(function* _createNewGoal() {
-            const user_id = getUserId()
+            const user_id = getOwnerId()
             if (!user_id || !self.finished_at) return
 
             try {

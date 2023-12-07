@@ -38,7 +38,7 @@ export const GoalEdit$ = types
                 let finished_at = self.finished_at
 
                 if (self.goal_ritual) {
-                    if (!self.hasRitualPower) {
+                    if (!self.isRitualGoal) {
                         const {
                             user$: { onChangeField: userOnChangeField, coins, total_ritual_power },
                         } = getParentOfType(self, Root$)
@@ -66,7 +66,7 @@ export const GoalEdit$ = types
                     ritualData.push({
                         goal_id: self.id,
                         ritual_id: self.goal_ritual.ritual_id || crypto.randomUUID(),
-                        ritual_power: self.hasRitualPower
+                        ritual_power: self.isRitualGoal
                             ? self.goal_ritual.ritual_power
                             : self.goal_ritual.ritual_power + 1,
                         ritual_interval: self.goal_ritual.ritual_interval,

@@ -1,12 +1,12 @@
 import { processError } from '../../../functions/processError.helper'
 import { generateClient } from '@/graphql/client'
-import { getUserId } from '@/functions/getUserId'
+import { getOwnerId } from '@/functions/getUserId'
 import { gql } from 'graphql-request'
 import { ISprint$SnIn } from '../mst/types'
 
 export const query_fetchSprints = async (): Promise<ISprint$SnIn[] | undefined> => {
     const client = generateClient()
-    const user_id = getUserId()
+    const user_id = getOwnerId()
 
     const query = gql`
         query fetchSprints($user_id: uuid) {

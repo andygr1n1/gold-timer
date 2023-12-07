@@ -42,7 +42,7 @@ const Footer = observer(() => {
             onCancel={() => {
                 if (edit_goal.redirected) {
                     openViewMode(edit_goal.id)
-                } else if (edit_goal.goal_ritual && !edit_goal.hasRitualPower) {
+                } else if (edit_goal.goal_ritual && !edit_goal.isRitualGoal) {
                     edit_goal.onChangeField('goal_ritual', null)
                     edit_goal.onChangeField(
                         'deleted_at',

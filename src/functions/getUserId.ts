@@ -1,5 +1,5 @@
 import { rootStore$ } from '@/StoreProvider'
 
-export const getUserId = (): string => {
+export const getOwnerId = (): string => {
     return rootStore$.user$.id
 }

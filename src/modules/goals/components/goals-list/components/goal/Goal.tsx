@@ -24,7 +24,6 @@ export const Goal: React.FC<{ goal: IGoal$ }> = observer(({ goal }) => {
             dropdownRender={() => <PopoverGoalActionsContent action={() => setOpen(false)} goal={goal} />}
         >
             <div>
-                {' '}
                 <GoalWrapper goal={goal}>
                     <div className='text-cText flex h-full w-full flex-auto flex-col'>
                         <div className='flex h-full flex-col'>

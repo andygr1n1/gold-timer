@@ -18,7 +18,6 @@ export const Goals$ = types
         goals_filter$: types.optional(GoalsFilter$, {
             goals_estimation_filter: add(new Date(Date.now()), { days: 60 }),
         }),
-        active_collapse_key: types.maybe(types.string),
     })
     .views((self) => ({
         get activeExpiredGoals(): IGoal$[] {
@@ -29,7 +28,7 @@ export const Goals$ = types
             return orderBy(goals, ['finished_at'], ['asc'])
         },
         get expiredRitualGoals(): IGoal$[] {
-            return this.activeExpiredGoals.filter((goal) => goal.hasRitualPower && !goal.deleted_at)
+            return this.activeExpiredGoals.filter((goal) => goal.isRitualGoal && !goal.deleted_at)
         },
         get activeGoals(): IGoal$[] {
             const goals: IGoal$[] = compact(
@@ -51,21 +50,6 @@ export const Goals$ = types
         get activeGoalsWithoutRitualPower(): IGoal$[] {
             return filter(this.activeGoals, (goal) => goal.ritualGoalPower === 0)
         },
-        get topActiveGoals(): { topFour: IGoal$[]; all: IGoal$[] } {
-            const today = new Date(Date.now())
-            const goals = filter(
-                this.activeGoals,
-                (goal) =>
-                    goal.ritualGoalPower === 0 && !!goal.finished_at && goal.finished_at < add(today, { days: 3 }),
-            )
-
-            const all = filter(this.activeGoals, (goal) => goal.ritualGoalPower === 0)
-
-            return {
-                topFour: goals.slice(0, 4),
-                all,
-            }
-        },
 
         get completedGoals(): IGoal$[] {
             const goals = filter(
@@ -81,28 +65,13 @@ export const Goals$ = types
             )
             return orderBy(goals, ['finished_at'], ['asc'])
         },
-        get topRitualGoals(): IGoal$[] {
-            const goals = filter(this.activeGoals, (goal) => goal.ritualGoalPower > 0 && !goal.isFromFuture)
-            return orderBy(goals, ['finished_at'], ['asc']).slice(0, 4)
-        },
+
         get favoriteGoals(): IGoal$[] {
             const goals = filter(
                 self.goals_filter$.allGoalsFilteredBy,
                 (goal) => goal.is_favorite && goal.status === GOAL_STATUS_ENUM.ACTIVE,
             )
             return orderBy(goals, ['finished_at'], ['asc'])
-        },
-
-        get topExpiredGoals(): IGoal$[] {
-            const goals = filter(
-                self.goals,
-                (goal) => goal.status === GOAL_STATUS_ENUM.ACTIVE && !goal.hasRitualPower && !goal.deleted_at,
-            ).filter((goal) => goal.finished_at && isPast(goal.finished_at))
-            return orderBy(goals, ['finished_at'], ['asc']).slice(0, 4)
-        },
-
-        get topFavoriteGoals(): IGoal$[] {
-            return this.favoriteGoals.slice(0, 4)
         },
 
         get notCompletedGoalsCount(): number {
@@ -119,7 +88,7 @@ export const Goals$ = types
         },
     }))
     .actions((self) => ({
-        openCreateMode(options?: { parentGoalId?: string }): void {
+        openGoalCreateMode(options?: { parentGoalId?: string }): void {
             self.new_goal = cast({
                 parent_goal_id: options?.parentGoalId ? options?.parentGoalId : null,
             })
@@ -156,6 +125,45 @@ export const Goals$ = types
                 self.edit_goal?.onChangeField('goal_ritual', cast({}))
                 self.edit_goal?.onChangeField('deleted_at', null)
             }
+        },
+    }))
+    //
+    //
+    //
+    // dashboard widget goals
+    // dashboard widget goals
+    // dashboard widget goals
+    .views((self) => ({
+        get topActiveGoalsWithLimit(): IGoal$[] {
+            const allActive = self.goals.filter(
+                (goal) =>
+                    !!goal.created_at &&
+                    !!goal.finished_at &&
+                    !goal.deleted_at &&
+                    !goal.isRitualGoal &&
+                    !goal.isExpired &&
+                    !goal.isCompleted,
+            )
+            return orderBy(allActive, ['finished_at'], ['asc']).slice(0, 8)
+        },
+        get topRitualGoalsWithLimit(): IGoal$[] {
+            const allRituals = self.goals.filter(
+                (goal) => !!goal.created_at && !!goal.finished_at && !goal.deleted_at && goal.isRitualGoal,
+                //    && !goal.isFromFuture,
+            )
+            return orderBy(allRituals, ['finished_at'], ['asc']).slice(0, 8)
+        },
+        get topFavoriteGoalsWithLimit(): IGoal$[] {
+            const allActive = self.goals.filter((goal) => !!goal.created_at && !goal.deleted_at && goal.isFavorite)
+            return allActive.slice(0, 8)
+        },
+
+        get topExpiredGoalsWithLimit(): IGoal$[] {
+            const goals = filter(
+                self.goals,
+                (goal) => goal.status === GOAL_STATUS_ENUM.ACTIVE && !goal.isRitualGoal && !goal.deleted_at,
+            ).filter((goal) => goal.finished_at && isPast(goal.finished_at))
+            return orderBy(goals, ['finished_at'], ['asc']).slice(0, 8)
         },
     }))
     .actions((self) => ({

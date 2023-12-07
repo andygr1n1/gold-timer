@@ -7,7 +7,7 @@ import { observer } from 'mobx-react-lite'
 export const SprintsSettings: React.FC = observer(() => {
     const {
         side_menu$: { onChangeField: onChangeFieldSideMenu$ },
-        sprints$: { activateNewSprintCreator },
+        sprints$: { openSprintCreateMode: activateNewSprintCreator },
     } = useRootStore()
 
     const onClose = () => onChangeFieldSideMenu$('visible', false)

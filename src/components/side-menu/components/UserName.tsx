@@ -3,5 +3,9 @@ import { observer } from 'mobx-react-lite'
 
 export const UserName: React.FC = observer(() => {
     const { name } = useUserStore()
-    return <div className='text-cText font-reggae max-w-[200px] truncate text-center text-2xl'>{name}</div>
+    return (
+        <div className='font-reggae text-cText mt-2 max-w-[200px] truncate bg-gradient-to-r text-center text-xl  '>
+            {name}
+        </div>
+    )
 })

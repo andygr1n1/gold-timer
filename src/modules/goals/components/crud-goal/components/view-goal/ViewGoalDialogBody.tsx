@@ -24,9 +24,9 @@ export const ViewGoalDialogBody: React.FC = observer(() => {
                 <GoalTitleInput goal={selected_goal} view_mode />
                 <GoalSloganInput goal={selected_goal} view_mode hide={!selected_goal.slogan} />
                 <GoalDescriptionRichInput goal={selected_goal} view_mode hide={!selected_goal.description} />
-                <GoalCreatedAt goal={selected_goal} view_mode hide={selected_goal.hasRitualPower} />
+                <GoalCreatedAt goal={selected_goal} view_mode hide={selected_goal.isRitualGoal} />
                 <GoalFinishCalendarInput goal={selected_goal} view_mode />
-                <GoalRitualIntervalInput goal={selected_goal} view_mode hide={!selected_goal.hasRitualPower} />
+                <GoalRitualIntervalInput goal={selected_goal} view_mode hide={!selected_goal.isRitualGoal} />
             </div>
             <Footer goal={selected_goal} />
         </>
@@ -36,7 +36,7 @@ export const ViewGoalDialogBody: React.FC = observer(() => {
 const Footer: React.FC<{ goal: IGoal$ }> = observer(({ goal }) => {
     const { onChangeField } = useGoalsStore()
 
-    const { hasRitualPower: isRitualGoal, completeGoal, deleted_at, isFromFuture, isCompleted } = goal
+    const { isRitualGoal: isRitualGoal, completeGoal, deleted_at, isFromFuture, isCompleted } = goal
 
     const onCancel = () => {
         onChangeField('selected_goal', undefined)

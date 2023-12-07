@@ -1,4 +1,4 @@
-import { getUserId } from '@/functions/getUserId'
+import { getOwnerId } from '@/functions/getUserId'
 import { processError } from '@/functions/processError.helper'
 import axios from 'axios'
 
@@ -13,7 +13,7 @@ export const uploadNewImageToServer = async (imgBase64: string, route: string): 
 
         const formData = new FormData()
         formData.append('base64', imgBase64)
-        formData.append('userId', getUserId())
+        formData.append('userId', getOwnerId())
 
         const { data, status } = await axios<IUploadImgRes>({
             method: 'POST',

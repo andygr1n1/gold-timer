@@ -1,14 +1,14 @@
-import { useUserStore } from '@/StoreProvider'
+import { useRootStore } from '@/StoreProvider'
 import { removeUserCookie } from '@/functions/universalCookie.helper'
 import { Icon } from '@iconify/react'
 import { observer } from 'mobx-react-lite'
 
 export const Logout: React.FC = observer(() => {
-    const { onChangeField } = useUserStore()
+    const { clearStore } = useRootStore()
 
     const handleLogout = () => {
         removeUserCookie()
-        onChangeField('id', '')
+        clearStore()
     }
 
     return (

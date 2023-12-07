@@ -7,7 +7,7 @@ import { ToggleFavorite } from '../common-components/actions-menu/components/Tog
 export const EditGoalDialogTitle: React.FC = observer(() => {
     const { edit_goal } = useGoalsStore()
     if (!edit_goal) return null
-    const ritualMode = edit_goal.goal_ritual && !edit_goal.hasRitualPower
+    const ritualMode = edit_goal.goal_ritual && !edit_goal.isRitualGoal
     return edit_goal ? (
         <div className='flex w-full items-center gap-3'>
             <StyledButton
