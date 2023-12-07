@@ -1,6 +1,5 @@
 import axios from 'axios'
 import { ILoginRes } from './login.interface'
-import { processError } from '@/functions/processError.helper'
 
 export const sendLoginData = async (loginData: {
     email: string
@@ -25,6 +24,6 @@ export const sendLoginData = async (loginData: {
         console.warn('login status:', status)
         return data
     } catch (e) {
-        processError(e, 'sendLoginData error')
+        console.error('sendLoginData error:', e)
     }
 }

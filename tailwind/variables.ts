@@ -1,4 +1,4 @@
-import twThemeDefaultColors from './variables/twLightColors'
+import twThemeDefaultColors from './variables/twDefaultVariables'
 import twThemeNightColors from './variables/twDarkColors'
 
 export default {

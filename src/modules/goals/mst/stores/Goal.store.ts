@@ -17,6 +17,7 @@ import { setMidnightTime } from '@/functions/date.helpers'
 import { IUser$ } from '@/mst/types'
 import { IGoal$SnapshotIn } from '@/modules/goals/mst/types'
 import { processError } from '@/functions/processError.helper'
+import { cloneDeep } from 'lodash-es'
 
 export const Goal$ = Goal.named('Goal$')
     .views((self) => ({
@@ -26,7 +27,7 @@ export const Goal$ = Goal.named('Goal$')
         get isCompleted(): boolean {
             return self.status === GOAL_STATUS_ENUM.COMPLETED
         },
-        get hasRitualPower(): boolean {
+        get isRitualGoal(): boolean {
             return !!self.goal_ritual?.ritual_power
         },
         get isExpired(): boolean {
@@ -47,7 +48,6 @@ export const Goal$ = Goal.named('Goal$')
         },
         get isFromFuture(): boolean {
             if (!self.created_at || !self.finished_at) return false
-
             return (
                 !!(self.created_at > new Date(Date.now())) ||
                 !!(setMidnightTime(self.finished_at).getTime() !== setMidnightTime(new Date(Date.now())).getTime())
@@ -56,7 +56,7 @@ export const Goal$ = Goal.named('Goal$')
 
         get goalType(): GOAL_TYPE_ENUM {
             if (this.isExpired) return GOAL_TYPE_ENUM.EXPIRED
-            if (this.hasRitualPower) return GOAL_TYPE_ENUM.RITUALIZED
+            if (this.isRitualGoal) return GOAL_TYPE_ENUM.RITUALIZED
 
             return GOAL_TYPE_ENUM.ACTIVE
         },
@@ -159,7 +159,7 @@ export const Goal$ = Goal.named('Goal$')
         completeGoal: flow(function* _completeGoal() {
             const { goals, onChangeField } = getParentOfType(self, Goals$)
             try {
-                if (self.hasRitualPower) {
+                if (self.isRitualGoal) {
                     yield self.enforceGoalRitual()
                     onChangeField('selected_goal', undefined)
                     return

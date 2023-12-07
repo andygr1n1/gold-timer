@@ -34,7 +34,7 @@
 
 .ql-editor {
     @apply scrollbar-thumb-blue-500 scrollbar-track-global-3-bg  scrollbar-thin max-h-[150px] min-h-[100px] overflow-auto
-    rounded-md border border-solid border-blue-700  px-3 py-2 text-base outline-transparent focus-within:border
+    rounded-md border border-solid border-[var(--colors-ghost-blue)] px-3 py-2 text-base outline-transparent focus-within:border
      hover:border-blue-600;
     :box-sizing: border-box;
     line-height: 1.42;

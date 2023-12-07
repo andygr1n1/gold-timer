@@ -8,9 +8,10 @@ export const MenuIcon: React.FC = observer(() => {
     const { isDesktop } = useWindowMatchMedia(['isDesktop'])
     return !isDesktop ? (
         <StyledButton
-            variant='outlined'
+            className='text-cText opacity-70 hover:opacity-100'
+            variant='text'
             onClick={useSideMenu.onChange}
-            startIcon={<Icon icon='line-md:close-to-menu-transition' width={23} height={23} />}
+            startIcon={<Icon icon='line-md:close-to-menu-transition' width={24} height={24} />}
         />
     ) : null
 })

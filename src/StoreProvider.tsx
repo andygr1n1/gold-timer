@@ -30,8 +30,5 @@ export const useGoalsSlidesStore = () => useRootStore().goals_slides$
 
 export const useNotesStore = () => useRootStore().notes$
 
-// modal windows
-export const useGoalsManagerStore = () => useRootStore().modal_windows$.goals_manager_mw$
-
 // side menu
 export const useSideMenuStore = () => useRootStore().side_menu$

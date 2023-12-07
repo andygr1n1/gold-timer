@@ -3,7 +3,6 @@ import { query_fetchGoalsByUserId } from '../../modules/goals/graphql/query_fetc
 import { Achievements$ } from './Achievements.store'
 import { Goals$ } from '../../modules/goals/mst/stores/Goals.store'
 import { User$ } from './User.store'
-import { ModalWindows$ } from './ModalWindows.store'
 import { fetchRitualPowerInfo } from '@/graphql/queries/fetchRitualPowerInfo.query'
 import { IUserByPkResponse, fetchUserByPk } from '@/graphql/queries/fetchUserByPk.query'
 import { processError } from '@/functions/processError.helper'
@@ -25,7 +24,6 @@ export const Root$ = types
         sprints$: types.optional(Sprints$, {}),
         loading: false,
         //
-        modal_windows$: types.optional(ModalWindows$, {}),
         side_menu$: types.optional(SideMenu$, {}),
         //
         theme: types.maybeNull(types.enumeration(['night', 'day'])),
@@ -44,6 +42,14 @@ export const Root$ = types
         },
     }))
     .actions((self) => ({
+        clearStore(): void {
+            self.goals$ = cast({})
+            self.goals_slides$ = cast({})
+            self.achievements$ = cast({})
+            self.notes$ = cast({})
+            self.sprints$ = cast({})
+            self.user$ = cast({})
+        },
         fetchUserInfo: flow(function* _fetchUserInfo() {
             try {
                 if (!self.user$.id) throw new Error('fetchUserInfo::: no userId')
@@ -75,6 +81,7 @@ export const Root$ = types
                 processError(e, 'fetchRitualPowerInfo error')
             }
         }),
+        // concat will add goals!
         fetchGoals: flow(function* _fetchGoals(status: GOAL_STATUS_ENUM[]) {
             try {
                 if (!self.user$.id) throw new Error('User id is undefined')

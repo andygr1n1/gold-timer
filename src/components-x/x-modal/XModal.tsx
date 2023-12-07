@@ -1,5 +1,6 @@
 import { Dialog, Transition } from '@headlessui/react'
 import { Icon } from '@iconify/react'
+import clsx from 'clsx'
 import { Fragment, ReactNode } from 'react'
 
 export const XModal: React.FC<{
@@ -10,10 +11,11 @@ export const XModal: React.FC<{
     height?: string
     header?: boolean
     zIndex?: number
-}> = ({ height = '', onCancel, open, children, title = '', header = true, zIndex = 60 }) => {
+    fullHeight?: boolean
+}> = ({ height = '', onCancel, open, children, title = '', header = true, zIndex = 121, fullHeight = false }) => {
     return (
         <Transition appear show={open} as={Fragment}>
-            <Dialog as='div' style={{ zIndex }} className='font-kzen relative z-[60]' onClose={onCancel}>
+            <Dialog as='div' style={{ zIndex }} className='font-kzen relative' onClose={onCancel}>
                 <Transition.Child
                     as={Fragment}
                     enter='ease-out duration-300 '
@@ -39,11 +41,13 @@ export const XModal: React.FC<{
                                 leaveTo='opacity-0 scale-95'
                             >
                                 <Dialog.Panel
-                                    className={`${
-                                        height || 'h-fit'
-                                    } bg-global-2-bg-plasma relative mx-auto max-h-[77vh] w-full max-w-[550px] transform rounded-lg shadow-xl 
+                                    className={clsx(
+                                        height || 'h-fit',
+                                        fullHeight && 'md:h-[85vh h-[77vh]',
+                                        `bg-global-2-bg-plasma relative mx-auto max-h-[77vh] w-full max-w-[550px] transform rounded-lg shadow-xl 
                                     shadow-black/30 backdrop-blur-md transition-all
-                                    md:max-h-[85vh] `}
+                                    md:max-h-[85vh]`,
+                                    )}
                                 >
                                     <div className='absolute right-1 top-[-32px] md:top-[-40px] '>
                                         <Icon
@@ -52,7 +56,12 @@ export const XModal: React.FC<{
                                             onClick={onCancel}
                                         />
                                     </div>
-                                    <div className='scrollbar-thumb-blue-500 scrollbar-track-global-3-bg scrollbar-thin m-auto max-h-[77vh] w-full max-w-[540px] overflow-auto md:max-h-[85vh]'>
+                                    <div
+                                        className={clsx(
+                                            'scrollbar-thumb-blue-500 scrollbar-track-global-3-bg scrollbar-thin m-auto max-h-[77vh] w-full max-w-[540px] overflow-auto md:max-h-[85vh]',
+                                            fullHeight && 'md:h-[85vh h-[77vh]',
+                                        )}
+                                    >
                                         <div className='m-auto flex w-[calc(100%-80px)] max-w-[360px] flex-col p-10  '>
                                             {header && (
                                                 <div className='relative  mb-5 flex items-center justify-center'>

@@ -15,7 +15,7 @@ import { StyledButton } from '@/components/buttons/StyledButton'
 
 export const SprintsIndex: React.FC = observer(() => {
     const { isMobile } = useWindowMatchMedia(['isMobile'])
-    const { activateNewSprintCreator, sprints, fetchSprints } = useSprintsStore()
+    const { openSprintCreateMode: activateNewSprintCreator, sprints, fetchSprints } = useSprintsStore()
 
     useEffect(() => {
         fetchSprints()

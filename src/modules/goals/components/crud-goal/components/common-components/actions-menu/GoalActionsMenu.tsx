@@ -11,10 +11,10 @@ export const GoalActionsMenu: React.FC<{ goal: IGoal$ }> = observer(({ goal }) =
         <>
             <div className='relative flex w-full flex-wrap items-center justify-center gap-5'>
                 <ConvertToRitualGoal goal={goal} hide={!!goal.goal_ritual || goal.isCompleted} />
-                <CreateChildGoal goal={goal} hide={!!goal.goal_ritual && !!!goal.hasRitualPower} />
-                <ToggleEditGoal goal={goal} hide={!!goal.goal_ritual && !!!goal.hasRitualPower} />
-                <ToggleFavorite goal={goal} hide={!!goal.goal_ritual && !!!goal.hasRitualPower} />
-                <DeleteGoal goal={goal} hide={!!goal.goal_ritual && !!!goal.hasRitualPower} />
+                <CreateChildGoal goal={goal} hide={!!goal.goal_ritual && !!!goal.isRitualGoal} />
+                <ToggleEditGoal goal={goal} hide={!!goal.goal_ritual && !!!goal.isRitualGoal} />
+                <ToggleFavorite goal={goal} hide={!!goal.goal_ritual && !!!goal.isRitualGoal} />
+                <DeleteGoal goal={goal} hide={!!goal.goal_ritual && !!!goal.isRitualGoal} />
             </div>
         </>
     )

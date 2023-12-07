@@ -2,7 +2,7 @@ import { IGoal$ } from '@/modules/goals/mst/types'
 import { DIFFICULTY_ENUM } from '../helpers/enums'
 
 export const getCoinsFromCompletedGoal = (goal: IGoal$, currentCoins: number): number => {
-    const { difficulty, hasRitualPower: isRitualGoal, goal_ritual } = goal
+    const { difficulty, isRitualGoal: isRitualGoal, goal_ritual } = goal
     if (isRitualGoal && goal_ritual) {
         //
         //

@@ -3,7 +3,7 @@ import { Sprint$ } from './Sprint.store'
 import { processError } from '@/functions/processError.helper'
 import { add } from 'date-fns'
 import { Sprints$ } from './Sprints.store'
-import { getUserId } from '@/functions/getUserId'
+import { getOwnerId } from '@/functions/getUserId'
 import { IEditSprintReq, IInsertNewSprint } from '@/modules/sprints/graphql/helpers/interface'
 import { compact, last } from 'lodash-es'
 import { mutation_insertNewSprint } from '@/modules/sprints/graphql/mutation_insertNewSprint'
@@ -91,7 +91,7 @@ export const SprintNew$ = types
                     finished_at: lastSprintDate,
                     sprint_days,
                     sprint_goals: compact(self.sprint_goals?.split('#,#')).join('#,#'),
-                    owner_id: getUserId(),
+                    owner_id: getOwnerId(),
                 }
 
                 self.loading = true

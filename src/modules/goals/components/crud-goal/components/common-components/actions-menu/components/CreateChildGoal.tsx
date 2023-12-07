@@ -6,7 +6,7 @@ import { Icon } from '@iconify/react'
 import { observer } from 'mobx-react-lite'
 
 export const CreateChildGoal: React.FC<{ goal: IGoal$; hide?: boolean }> = observer(({ goal, hide = false }) => {
-    const { openCreateMode } = useGoalsStore()
+    const { openGoalCreateMode: openCreateMode } = useGoalsStore()
 
     return !hide ? (
         <>

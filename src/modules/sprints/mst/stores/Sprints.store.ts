@@ -26,7 +26,7 @@ export const Sprints$ = types
         onChangeField<Key extends keyof typeof self>(key: Key, value: (typeof self)[Key]) {
             self[key] = value
         },
-        activateNewSprintCreator(): void {
+        openSprintCreateMode(): void {
             self.new_sprint = castToSnapshot({ title: '', id: '' })
         },
         activateEditSprintCreator(sprint: ISprint$): void {

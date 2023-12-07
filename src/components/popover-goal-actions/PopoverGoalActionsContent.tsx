@@ -10,29 +10,41 @@ import { observer } from 'mobx-react-lite'
 export const PopoverGoalActionsContent: React.FC<{ goal: IGoal$; action: () => void; forceMode?: boolean }> = observer(
     ({ goal, action: onClose }) => {
         const {
-            goals$: { openCreateMode, openEditMode },
+            goals$: { openGoalCreateMode: openCreateMode, openEditMode },
         } = useRootStore()
 
         return (
             <XMenuDropdown>
-                {goal.hasRitualPower && !goal.isFromFuture && (
+                <MenuItem
+                    action={() => {
+                        goal.favoriteGoal()
+                    }}
+                    icon={!goal.is_favorite ? 'ic:baseline-favorite-border' : 'ic:outline-favorite'}
+                    title={goal.is_favorite ? 'Unfavorite' : 'Favorite'}
+                    iconClassName={'text-rose-700'}
+                    className='hover:text-rose-700'
+                />
+                {goal.isRitualGoal && !goal.isFromFuture && (
                     <MenuItem
                         action={() => {
                             goal.enforceGoalRitual().finally(() => onClose())
                         }}
                         icon='game-icons:magic-gate'
-                        title='ritualize'
+                        title='Ritualize'
+                        iconClassName='text-teal-700'
+                        className='hover:text-teal-700'
                     />
                 )}
+
                 <MenuItem
                     action={() => {
                         openEditMode(goal.id)
                         onClose()
                     }}
                     icon='material-symbols:edit-square'
-                    title={'edit'}
-                    iconClassName='text-teal-700'
-                    className='hover:text-teal-700'
+                    title={'Edit'}
+                    iconClassName='text-blue-600'
+                    className='hover:text-blue-600'
                 />
 
                 <MenuItem
@@ -40,27 +52,31 @@ export const PopoverGoalActionsContent: React.FC<{ goal: IGoal$; action: () => v
                         openCreateMode({ parentGoalId: goal.id })
                         onClose()
                     }}
-                    icon='material-symbols:check-circle-rounded'
-                    title='new child goal'
-                    iconClassName='text-green-700'
-                    className='hover:text-green-700'
-                />
-                <MenuItem
-                    action={() => {
-                        goal.favoriteGoal()
-                    }}
-                    icon={!goal.is_favorite ? 'ic:baseline-favorite-border' : 'ic:outline-favorite'}
-                    title={goal.is_favorite ? 'unfavorite' : 'favorite'}
-                    iconClassName={'text-rose-700'}
-                    className='hover:text-rose-700'
+                    icon='ic:round-fiber-new'
+                    title='Child goal'
+                    iconClassName='text-amber-500'
+                    className='hover:text-amber-500'
                 />
                 <XMenuDivider />
+                {!goal.isCompleted && (
+                    <MenuItem
+                        action={() => {
+                            goal.completeGoal().finally(() => onClose())
+                        }}
+                        icon='material-symbols:check-circle-rounded'
+                        title='Complete'
+                        iconClassName='text-teal-700'
+                        className='hover:text-indigo-700'
+                    />
+                )}
                 <MenuItem
                     action={() => {
-                        goal.completeGoal().finally(() => onClose())
+                        goal.deleteGoal().finally(() => onClose())
                     }}
-                    icon='material-symbols:check-circle-rounded'
-                    title='complete'
+                    icon='fluent:delete-dismiss-24-filled'
+                    title={goal.deleted_at ? 'Restore from bin' : 'Move to bin'}
+                    iconClassName='text-red-700'
+                    className='hover:text-red-700'
                 />
             </XMenuDropdown>
         )

@@ -47,7 +47,7 @@ export const SideMenu: React.FC = observer(() => {
                     useSideMenu.is_open ? 'animate-slide-in' : 'animate-slide-out lg:animate-opacity ml-[-320px] '
                 }
                 text-cText bg-global-2-bg font-kzen  absolute left-0 z-[120] flex h-full shadow-md shadow-black/20
-               lg:static  lg:m-5 lg:mr-0 lg:flex lg:h-[calc(100%-40px)]
+               lg:static  lg:m-0 lg:mr-0 lg:flex
             `}
             >
                 <div className='flex w-[230px] min-w-[230px] flex-col overflow-auto py-5'>
@@ -55,35 +55,35 @@ export const SideMenu: React.FC = observer(() => {
                         <div className='pointer-events-none relative flex flex-col items-center justify-center gap-5'>
                             {isDesktop && <UserName />}
                             <UserAvatarSideMenu />
-                            {isDesktop && <UserCoins />}
+                            {/* {isDesktop && <UserCoins />} */}
                         </div>
                         <div className='w-full'>
                             <div className='mx-auto flex w-[180px] flex-auto flex-col gap-5 overflow-auto '>
                                 <SideMenuLink
                                     to={APP_ROUTES_ENUM.PROFILE}
                                     title='Profile'
-                                    icon={<Icon icon='fluent:share-screen-person-16-regular' width={25} height={25} />}
+                                    icon={<Icon icon='fluent:share-screen-person-16-regular' width={24} height={24} />}
                                 />
                                 <SideMenuLink
                                     to={APP_ROUTES_ENUM.ACHIEVEMENTS}
                                     title='Achievements'
-                                    icon={<Icon icon='game-icons:achievement' width={23} height={23} />}
+                                    icon={<Icon icon='game-icons:achievement' width={24} height={24} />}
                                 />
                                 <XMenuDivider />
                                 <SideMenuLink
                                     to={APP_ROUTES_ENUM.SPRINTS}
                                     title='Sprints'
-                                    icon={<Icon icon='game-icons:sprint' width={25} height={25} />}
+                                    icon={<Icon icon='game-icons:sprint' width={24} height={24} />}
                                 />
                                 <SideMenuLink
                                     to={APP_ROUTES_ENUM.GOALS}
                                     title='Goals'
-                                    icon={<Icon icon='octicon:goal-16' width={20} height={20} />}
+                                    icon={<Icon icon='octicon:goal-16' width={24} height={24} />}
                                 />
                                 <SideMenuLink
                                     to={APP_ROUTES_ENUM.NOTES}
                                     title='Notes'
-                                    icon={<Icon icon='fluent:task-list-square-ltr-16-filled' width={25} height={25} />}
+                                    icon={<Icon icon='ion:book' width={24} height={24} />}
                                 />
                             </div>
                         </div>

@@ -52,12 +52,12 @@
 
         &:after {
             content: '';
-            @apply absolute h-full w-full rounded-xl bg-white/40 opacity-0 duration-700;
+            @apply absolute h-full w-full rounded-full bg-white/40 opacity-0 duration-700;
         }
     }
 
     &.large {
-        @apply h-[40px] min-h-[40px] #{!important};
+        @apply h-[40px] min-h-[40px];
     }
     &.extraLarge {
         @apply h-12 min-h-[45px];

@@ -1,5 +1,5 @@
 import { query_fetchNotes } from '@/modules/notes/graphql/query_fetchNotes'
-import { getUserId } from '@/functions/getUserId'
+import { getOwnerId } from '@/functions/getUserId'
 import { applySnapshot, cast, destroy, detach, flow, toGenerator, types } from 'mobx-state-tree'
 import { INote$SnapshotIn } from '../types'
 import { Note$ } from './Note.store'
@@ -28,7 +28,7 @@ export const Notes$ = types
             self[key] = value
         },
         fetchNotes: flow(function* _fetchNotes() {
-            const res: INote$SnapshotIn[] = yield query_fetchNotes(getUserId())
+            const res: INote$SnapshotIn[] = yield query_fetchNotes(getOwnerId())
             applySnapshot(self.notes, res)
         }),
         openNoteCreateMode(): void {

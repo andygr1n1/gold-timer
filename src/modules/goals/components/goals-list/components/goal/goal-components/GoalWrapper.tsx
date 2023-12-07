@@ -7,7 +7,7 @@ import clsx from 'clsx'
 import { observer } from 'mobx-react-lite'
 
 export const GoalWrapper: React.FC<{ children: ReactNode; goal: IGoal$ }> = observer(({ children, goal }) => {
-    const { hasRitualPower: isRitualGoal, isExpired, isCompleted } = goal
+    const { isRitualGoal: isRitualGoal, isExpired, isCompleted } = goal
     const {
         goals$: { openViewMode },
     } = useRootStore()

@@ -30,7 +30,7 @@ export const GoalDetails: React.FC<{ goal: IGoal$ }> = observer(({ goal }) => {
 // })
 
 const ImageByGoalType: React.FC<{ goal: IGoal$ }> = observer(({ goal }) => {
-    const { isExpired, hasRitualPower: isRitualGoal, isCompleted } = goal
+    const { isExpired, isRitualGoal: isRitualGoal, isCompleted } = goal
     let goalIcon = todayLogoIcon
     let className = 'w-[60px] h-[60px]'
     if (isExpired) {
@@ -53,7 +53,7 @@ const ImageByGoalType: React.FC<{ goal: IGoal$ }> = observer(({ goal }) => {
 })
 
 const GoalRitualCount: React.FC<{ goal: IGoal$ }> = observer(({ goal }) => {
-    if (!goal?.hasRitualPower) return null
+    if (!goal?.isRitualGoal) return null
     const { goal_ritual } = goal
 
     return (

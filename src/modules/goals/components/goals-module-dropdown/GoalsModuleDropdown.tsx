@@ -32,7 +32,7 @@ export const GoalsModuleDropdown: React.FC = observer(() => {
 const DropdownRender = observer(() => {
     const {
         goals$: {
-            openCreateMode,
+            openGoalCreateMode: openCreateMode,
             goals_filter$: {
                 addStatusFilter,
                 isStatusActive,
