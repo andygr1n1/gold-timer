@@ -17,6 +17,8 @@ export const Notes$ = types
         widget_new_note: types.optional(NoteNew$, {}),
         edit_note: types.maybe(NoteEdit$),
         selected_note: types.safeReference(Note$),
+        //
+        tags_list_view: false,
     })
     .views((self) => ({
         get notesLength(): number {

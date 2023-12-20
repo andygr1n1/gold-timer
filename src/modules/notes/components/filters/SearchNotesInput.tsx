@@ -1,4 +1,3 @@
-import { Input } from 'antd'
 import { observer } from 'mobx-react-lite'
 import { Icon } from '@iconify/react'
 import { useNotesStore } from '@/StoreProvider'
@@ -15,6 +14,7 @@ export const SearchNotesInput: React.FC = observer(() => {
             onChange={(e) => onChangeField('notes_input_filter', e.target.value)}
             startIcon={<Icon icon='line-md:search' width={24} height={24} />}
             placeholder='Find note...'
+            width='!max-w-[300px] !w-full'
         />
     )
 })

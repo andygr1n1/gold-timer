@@ -48,9 +48,10 @@ export const Goal$ = Goal.named('Goal$')
         },
         get isFromFuture(): boolean {
             if (!self.created_at || !self.finished_at) return false
+
             return (
                 !!(self.created_at > new Date(Date.now())) ||
-                !!(setMidnightTime(self.finished_at).getTime() !== setMidnightTime(new Date(Date.now())).getTime())
+                !!(setMidnightTime(self.finished_at).getTime() > setMidnightTime(new Date(Date.now())).getTime())
             )
         },
 

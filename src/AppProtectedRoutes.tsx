@@ -11,6 +11,7 @@ import { FocusGoalOfWeek } from './components/components-modal-windows/focus-goa
 import { ProfileImageCropDialog } from './modules/profile/components/profile-avatar/ProfileImageCropDialog'
 import { AchievementsIndex } from './modules/achievements/AchievementsIndex'
 import { GlobalLoadingDialog } from './components/GlobalLoadingDialog'
+import { WebChecklistIndex } from './modules/web-checklist/WebChecklistIndex'
 
 export const AppProtectedRoutes: React.FC = () => {
     return (
@@ -20,6 +21,7 @@ export const AppProtectedRoutes: React.FC = () => {
                 <Route path={'*'} element={<Navigate to={`/${APP_ROUTES_ENUM.DASHBOARD}`} />} />
                 <Route path={`/${APP_ROUTES_ENUM.PROFILE}`} element={<ProfileIndex />} />
                 <Route path={`/${APP_ROUTES_ENUM.ACHIEVEMENTS}`} element={<AchievementsIndex />} />
+                <Route path={`/${APP_ROUTES_ENUM.WEB_CHECKLIST}`} element={<WebChecklistIndex />} />
                 {/*  */}
                 <Route path={`/${APP_ROUTES_ENUM.SPRINTS}`} element={<SprintsIndex />} />
                 <Route path={`/${APP_ROUTES_ENUM.GOALS}`} element={<GoalsIndex />} />

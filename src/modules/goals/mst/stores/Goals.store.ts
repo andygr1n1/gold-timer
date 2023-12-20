@@ -151,22 +151,23 @@ export const Goals$ = types
             return orderBy(allActive, ['finished_at'], ['asc'])
         },
         get expiredDashboardGoals(): IGoal$[] {
-            const goals = filter(
+            const expiredGoals = filter(
                 self.goals,
                 (goal) => goal.status === GOAL_STATUS_ENUM.ACTIVE && !goal.isRitualGoal && !goal.deleted_at,
             ).filter((goal) => goal.finished_at && isPast(goal.finished_at))
-            return orderBy(goals, ['finished_at'], ['asc'])
+            return orderBy(expiredGoals, ['finished_at'], ['asc'])
         },
         get ritualDashboardGoals(): IGoal$[] {
             const allRituals = self.goals.filter(
-                (goal) => !!goal.created_at && !!goal.finished_at && !goal.deleted_at && goal.isRitualGoal,
+                (goal) =>
+                    !!goal.created_at && !!goal.finished_at && !goal.isExpired && !goal.deleted_at && goal.isRitualGoal,
                 //    && !goal.isFromFuture,
             )
             return orderBy(allRituals, ['finished_at'], ['asc'])
         },
         get favoriteDashboardGoals(): IGoal$[] {
             const allFavorite = self.goals.filter((goal) => !!goal.created_at && !goal.deleted_at && goal.isFavorite)
-            return allFavorite
+            return orderBy(allFavorite, ['finished_at'], ['asc'])
         },
     }))
     .actions((self) => ({

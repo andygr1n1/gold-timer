@@ -7,9 +7,10 @@ export const useFilterWidgetGoals = () => {
     const goalsFilter = (goals: IGoal$[]) => {
         return goals.filter(
             (goal) =>
-                goal.title.trim().toLocaleLowerCase().includes(filterValue.trim().toLocaleLowerCase()) ||
-                goal.slogan.trim().toLocaleLowerCase().includes(filterValue.trim().toLocaleLowerCase()) ||
-                goal.description.trim().toLocaleLowerCase().includes(filterValue.trim().toLocaleLowerCase()),
+                !goal.deleted_at &&
+                (goal.title.trim().toLocaleLowerCase().includes(filterValue.trim().toLocaleLowerCase()) ||
+                    goal.slogan.trim().toLocaleLowerCase().includes(filterValue.trim().toLocaleLowerCase()) ||
+                    goal.description.trim().toLocaleLowerCase().includes(filterValue.trim().toLocaleLowerCase())),
         )
     }
 

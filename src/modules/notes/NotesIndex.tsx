@@ -4,49 +4,70 @@ import { APP_ROUTES_ENUM } from '@/helpers/enums'
 import { useWindowMatchMedia } from '@/hooks/useMatchMedia.hook'
 import { NotesList } from '@/modules/notes/components/NotesList'
 import { observer } from 'mobx-react-lite'
-import { NotesSettingsIcon } from './components/NotesSettingsIcon'
-import { NotesTagsSelect } from './components/filters/NotesTagsSelect'
 import { SearchNotesInput } from './components/filters/SearchNotesInput'
 import { CRUD_NoteDialog } from './components/crud-note/CRUD_NoteDialog'
-import { NotesDeleted } from './components/filters/NotesDeleted'
 import notesImage from '@/assets/notes-1.png'
-import { StyledButton } from '@/components/buttons/StyledButton'
+import { GoalsSlidesCarouselWidget } from '../goals-slides/GoalsSlidesCarouselWidget'
+import clsx from 'clsx'
+import { UserCoins } from '@/components/side-menu/components/UserCoins'
+import { ArtifactsCounter } from '../dashboard/components/artifacts-counter/ArtifactsCounter'
+import { CRUD_GoalDialog } from '../goals/components/crud-goal/CRUD_GoalDialog'
+import { Icon } from '@iconify/react'
+import { CreateNewNote } from './components/create-note-dashboard/CreateNewNote'
+import { NotesStatusSelect } from './components/filters/NotesStatusSelect'
+import { NotesFiltersTextHelper } from './components/NotesFiltersTextHelper'
+import { NotesTagsSelectButton } from './components/filters/NotesTagsSelectButton'
+import { ActiveTagsList } from './components/ActiveTagsList'
 export const NotesIndex: React.FC = observer(function NotesIndex() {
-    const { isMobile } = useWindowMatchMedia(['isMobile'])
+    const { isDesktop, isLargeDesktop } = useWindowMatchMedia(['isDesktop', 'isLargeDesktop'])
     const {
-        openNoteCreateMode,
-        notes_filter$: { notes, show_deleted },
+        notes_filter$: { notes },
     } = useNotesStore()
 
     return (
         <ModuleWrapper
             context={APP_ROUTES_ENUM.NOTES}
             topBarNodes={
-                <div className='flex w-full items-center justify-center gap-4 xl:px-20'>
-                    <SearchNotesInput />
-                    <NotesSettingsIcon />
+                <div className='relative flex w-full font-bold'>
+                    <div className='absolute left-0  top-1/2  -translate-y-1/2'> {isDesktop && <UserCoins />}</div>
+                    <div className={clsx('flex w-full justify-center', !isDesktop && 'pl-12')}>
+                        <ArtifactsCounter />
+                        {/* DIALOG */}
+                        <CRUD_NoteDialog />
+                        <CRUD_GoalDialog />
+                    </div>
                 </div>
             }
         >
-            <div className='flex flex-col gap-10 xl:px-20'>
-                {!isMobile && (
-                    <div className='mt-5 flex justify-between gap-5'>
-                        <div className='flex items-center justify-center'>
-                            <NotesTagsSelect />
-                            <NotesDeleted />
-                        </div>
-                        <StyledButton variant='outlined' onClick={openNoteCreateMode}>
-                            + Add new note
-                        </StyledButton>
+            <div className='mb-5 flex flex-wrap justify-start gap-8'>
+                <CreateNewNote />
+                {isLargeDesktop && <GoalsSlidesCarouselWidget />}
+                <div className='flex w-full flex-col gap-8'>
+                    <div className='relative flex items-center justify-center '>
+                        <Icon
+                            icon='ion:book'
+                            className='flex h-[50px] w-[50px] select-none text-slate-800 opacity-20 duration-300'
+                        />
                     </div>
-                )}
-                <NotesList />
-                {!!!notes.length && !show_deleted && (
-                    <img
-                        className='absolute-center pointer-events-none h-[200px] w-[200px] opacity-10'
-                        src={notesImage}
-                    />
-                )}
+                    <div className='flex flex-col-reverse items-center justify-between gap-8 xl:flex-row xl:gap-0'>
+                        <NotesFiltersTextHelper />
+                        <div className=' flex w-full items-center justify-end gap-2'>
+                            <SearchNotesInput />
+                            <NotesTagsSelectButton />
+                            <NotesStatusSelect />
+                        </div>
+                    </div>
+
+                    <ActiveTagsList />
+                    <NotesList />
+
+                    {!!!notes.length && (
+                        <img
+                            className='absolute-center pointer-events-none h-[200px] w-[200px] opacity-10'
+                            src={notesImage}
+                        />
+                    )}
+                </div>
             </div>
             {/*  */}
             {/* DIALOG */}

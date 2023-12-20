@@ -12,6 +12,7 @@ export const TopFavoriteGoalsWidget: React.FC = observer(() => {
     } = useRootStore()
 
     if (!favoriteDashboardGoals.length) return null
+
     return (
         <div className='flex max-h-[350px] min-h-[350px] flex-[100%] md:flex-[45%]'>
             <div className='bg-global-2-bg relative flex h-[calc(100%)] w-[calc(100%-40px)] flex-col items-start justify-start rounded-lg px-5'>

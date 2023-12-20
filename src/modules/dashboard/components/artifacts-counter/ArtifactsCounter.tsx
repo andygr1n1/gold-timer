@@ -15,26 +15,10 @@ export const ArtifactsCounter: React.FC = observer(() => {
 
     return (
         <div className='flex w-fit  items-center justify-center gap-5 '>
-            <NotesCounterDropdown
-                button={
-                    <ArtifactsCounterItem
-                        action={openNoteCreateMode}
-                        count={notesLength}
-                        icon={
-                            <Icon
-                                icon='ion:book'
-                                width={24}
-                                height={24}
-                                className='cursor-pointer duration-300 group-hover:text-blue-500'
-                            />
-                        }
-                    />
-                }
-            />
             <GoalsCounterDropdown
                 button={
                     <ArtifactsCounterItem
-                        action={openCreateMode}
+                        // action={openCreateMode}
                         count={activeGoalsCount}
                         icon={
                             <Icon
@@ -47,11 +31,27 @@ export const ArtifactsCounter: React.FC = observer(() => {
                     />
                 }
             />
+            <NotesCounterDropdown
+                button={
+                    <ArtifactsCounterItem
+                        // action={openNoteCreateMode}
+                        count={notesLength}
+                        icon={
+                            <Icon
+                                icon='ion:book'
+                                width={24}
+                                height={24}
+                                className='cursor-pointer duration-300 group-hover:text-blue-500'
+                            />
+                        }
+                    />
+                }
+            />
 
             <SprintsCounterDropdown
                 button={
                     <ArtifactsCounterItem
-                        action={activateNewSprintCreator}
+                        // action={activateNewSprintCreator}
                         count={allActiveCheckedSprintsLength}
                         icon={
                             <Icon

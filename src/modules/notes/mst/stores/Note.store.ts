@@ -4,6 +4,7 @@ import { compact } from 'lodash-es'
 import { Notes$ } from './Notes.store'
 import { processError } from '@/functions/processError.helper'
 import { mutation_deleteNote } from '@/modules/notes/graphql/mutation_deleteNote'
+import { mutation_archiveNote } from '../../graphql/mutation_archiveNote'
 
 export const Note$ = types
     .compose(
@@ -48,6 +49,19 @@ export const Note$ = types
                 const selected = notes?.find((note) => note.id === self.id)
                 selected?.onChangeField('deleted_at', result)
                 self.deleted_at = result
+            } catch (e) {
+                processError(e)
+            }
+        }),
+        archiveNote: flow(function* _archiveNote() {
+            try {
+                const toggleArchive = !!self.archived
+                const result = yield mutation_archiveNote(self.id, !toggleArchive)
+                if (result === undefined) throw new Error('deleteNote error')
+                const { notes } = getParentOfType(self, Notes$)
+                const selected = notes?.find((note) => note.id === self.id)
+                selected?.onChangeField('archived', result)
+                self.archived = result
             } catch (e) {
                 processError(e)
             }

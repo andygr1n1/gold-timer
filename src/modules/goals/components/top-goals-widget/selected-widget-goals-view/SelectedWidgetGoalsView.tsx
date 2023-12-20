@@ -21,8 +21,13 @@ export const SelectedWidgetGoalsView: React.FC = observer(function CRUD_GoalDial
     return (
         <XModal open={!!isOpen} onCancel={onCancel} fullHeight>
             <FormLabel title='Search:' />
-            <XInput value={filterValue} onChange={(e) => setFilterValue(e.target.value)} className='w-full' />
-            <div className=' my-10 flex flex-col gap-4'>
+            <XInput
+                autoFocus={false}
+                value={filterValue}
+                onChange={(e) => setFilterValue(e.target.value)}
+                className='w-full'
+            />
+            <div tabIndex={0} className=' my-10 flex flex-col gap-4'>
                 {goalsFilter(selected_widget_goals).map((goal) => (
                     <TopGoal key={goal.id} goal={goal} className='min-h-[60px] !w-full !flex-[100%]' />
                 ))}

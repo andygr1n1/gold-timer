@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react-lite'
 import { ModuleWrapper } from '@/components/ModuleWrapper'
-import { CreateNewNoteDashboard } from '../notes/components/create-note-dashboard/CreateNewNoteDashboard'
+import { CreateNewNoteDashboard } from '../notes/components/create-note-dashboard/CreateNewNoteDashboardIndex'
 import { APP_ROUTES_ENUM } from '@/helpers/enums'
 import { ArtifactsCounter } from './components/artifacts-counter/ArtifactsCounter'
 import { CRUD_GoalDialog } from '../goals/components/crud-goal/CRUD_GoalDialog'
@@ -29,6 +29,9 @@ export const DashboardIndex: React.FC = observer(() => {
                     <div className='absolute left-0  top-1/2  -translate-y-1/2'> {isDesktop && <UserCoins />}</div>
                     <div className={clsx('flex w-full justify-center', !isDesktop && 'pl-12')}>
                         <ArtifactsCounter />
+                        {/* DIALOG */}
+                        <CRUD_NoteDialog />
+                        <CRUD_GoalDialog />
                     </div>
                 </div>
             }
@@ -44,10 +47,6 @@ export const DashboardIndex: React.FC = observer(() => {
                 <div className='flex max-h-[1px] flex-[100%] md:flex-[45%]' />
                 {!!selected_widget_goals.length && <SelectedWidgetGoalsView />}
             </div>
-
-            {/* DIALOG */}
-            <CRUD_NoteDialog />
-            <CRUD_GoalDialog />
         </ModuleWrapper>
     )
 })

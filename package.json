@@ -11,10 +11,10 @@
     },
     "dependencies": {
         "@headlessui/react": "^1.7.13",
-        "framer-motion": "^7.3.6",
-        "antd": "^5.11.1",
+        "antd": "^5.12.3",
         "axios": "^1.4.0",
         "date-fns": "^2.29.3",
+        "framer-motion": "^7.3.6",
         "graphql": "^16.6.0",
         "graphql-request": "^5.0.0",
         "history": "^5.3.0",
