@@ -14,6 +14,7 @@ export const query_fetchNotes = async (owner_id: string): Promise<INote$Snapshot
                 created_at
                 id
                 deleted_at
+                archived
             }
         }
     `

@@ -3,22 +3,36 @@ import { Notes$ } from './Notes.store'
 import { capitalize, sortBy, uniq, compact, intersection, orderBy } from 'lodash-es'
 import { filterWordsOptimizer } from '@/functions/filterWordsOptimizer'
 import { INote$ } from '../types'
+import { NotesViewStatus } from '../../helpers/enums'
 
 export const NotesFilter$ = types
     .model({
         selected_tags: types.array(types.string),
         notes_input_filter: '',
         notes_tag_filter: '',
-        show_deleted: false,
+        notes_view_mode: types.optional(types.enumeration(Object.values(NotesViewStatus)), NotesViewStatus.ALL),
     })
     .views((self) => ({
+        get isShowActiveMode(): boolean {
+            return self.notes_view_mode === NotesViewStatus.ALL
+        },
+        get isShowArchivedMode(): boolean {
+            return self.notes_view_mode === NotesViewStatus.ARCHIVED
+        },
+        get isShowDeletedMode(): boolean {
+            return self.notes_view_mode === NotesViewStatus.DELETED
+        },
         get notes(): INote$[] {
             const { notes } = getParentOfType(self, Notes$)
-            return notes.filter((note) => !note.deleted_at)
+            return notes.filter((note) => !note.deleted_at && !note.archived)
         },
         get deletedNotes(): INote$[] {
             const { notes } = getParentOfType(self, Notes$)
             return notes.filter((note) => note.deleted_at)
+        },
+        get archivedNotes(): INote$[] {
+            const { notes } = getParentOfType(self, Notes$)
+            return notes.filter((note) => !note.deleted_at && note.archived)
         },
         get tags(): string[] {
             let tags: string[] = []
@@ -38,7 +52,12 @@ export const NotesFilter$ = types
             return self.selected_tags.includes(tag)
         },
         get filteredNotes(): INote$[] {
-            const notes = self.show_deleted ? this.deletedNotes : this.notes
+            const notes = this.isShowDeletedMode
+                ? this.deletedNotes
+                : this.isShowArchivedMode
+                ? this.archivedNotes
+                : this.notes
+
             return orderBy(
                 notes.filter((note) => {
                     return (

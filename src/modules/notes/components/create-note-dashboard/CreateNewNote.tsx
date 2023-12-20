@@ -1,25 +1,20 @@
 import { observer } from 'mobx-react-lite'
-import { useNotesStore } from '@/StoreProvider'
 import { StyledButton } from '@/components/buttons/StyledButton'
-import { useWindowMatchMedia } from '@/hooks/useMatchMedia.hook'
 import { XTooltip } from '@/components-x/x-tooltip/XTooltip'
 import { NewNoteInput } from './components/NewNoteInput'
 import { TagInput } from './components/TagInput'
+import { useNotesStore } from '@/StoreProvider'
 
-export const CreateNewNoteDashboard: React.FC = observer(() => {
+export const CreateNewNote: React.FC = observer(() => {
     const { createWidgetNewNote, widget_new_note } = useNotesStore()
 
-    const { isLargeDesktop } = useWindowMatchMedia(['isLargeDesktop'])
-
-    return isLargeDesktop ? (
+    return (
         <div className='flex max-h-[370px] flex-[45%]'>
-            <div className='bg-global-bg-plasma m-auto flex h-full  w-[calc(100%)] flex-col gap-5 rounded-md  '>
-                <div className='m-auto flex max-h-[330px] max-w-[380px] flex-col gap-5 '>
-                    <div className='flex flex-auto flex-col'>
+            <div className='bg-global-bg-plasma m-auto flex h-[calc(100%-12px)] w-[calc(100%)] flex-col gap-5 rounded-md py-2  '>
+                <div className='m-auto flex max-h-[330px]  max-w-[380px] flex-col gap-5 '>
+                    <div className='flex flex-auto flex-col '>
                         <NewNoteInput />
-                        <div>
-                            <TagInput />
-                        </div>
+                        <TagInput />
                     </div>
                     <div className='relative w-full'>
                         <StyledButton
@@ -46,5 +41,5 @@ export const CreateNewNoteDashboard: React.FC = observer(() => {
                 </div>
             </div>
         </div>
-    ) : null
+    )
 })

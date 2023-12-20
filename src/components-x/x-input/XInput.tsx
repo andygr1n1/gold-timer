@@ -27,6 +27,7 @@ export const XInput: React.FC<XInputProps> = ({
     mask,
     readOnly,
     variant = 'input',
+    width = '',
     ...otherProps
 }) => {
     const isSelect = variant === 'select'
@@ -34,7 +35,7 @@ export const XInput: React.FC<XInputProps> = ({
     const [focused, setFocused] = useState(false)
 
     return (
-        <div className={clsx('relative w-full')}>
+        <div className={clsx('relative', width ? width : 'w-full')}>
             <div
                 className={clsx(
                     'group',
@@ -51,7 +52,7 @@ export const XInput: React.FC<XInputProps> = ({
                 ) : (
                     <>
                         {startIcon && (
-                            <div className='absolute left-[8px] top-[6px] z-20 flex h-[25px] w-[25px] items-center justify-center text-blue-600 opacity-70'>
+                            <div className='absolute left-[8px] top-[6px] z-20 flex h-[25px] w-[25px] items-center justify-center text-blue-600 opacity-100'>
                                 {startIcon}
                             </div>
                         )}

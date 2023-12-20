@@ -11,7 +11,7 @@ export const MenuIcon: React.FC = observer(() => {
             className='text-cText opacity-70 hover:opacity-100'
             variant='text'
             onClick={useSideMenu.onChange}
-            startIcon={<Icon icon='line-md:close-to-menu-transition' width={24} height={24} />}
+            startIcon={<Icon icon='line-md:close-to-menu-transition' width={28} height={28} />}
         />
     ) : null
 })

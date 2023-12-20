@@ -79,7 +79,7 @@ input[type='number'] {
     }
 
     input {
-        @apply bg-global-3-bg text-cText focus:outline-none focus-visible:outline-none;
+        @apply text-cText border-none bg-transparent focus:outline-none focus-visible:outline-none;
     }
 
     input:-webkit-autofill,

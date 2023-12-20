@@ -27,6 +27,7 @@ export const Note = types
                 },
             }),
         ),
+        archived: false,
     })
     .views((self) => ({
         get noteTags(): string[] {

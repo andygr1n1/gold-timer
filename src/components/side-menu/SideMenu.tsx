@@ -8,7 +8,6 @@ import { useOutsideAlerter } from '@/hooks/useClickOutside.hook'
 import { useEffect, useRef } from 'react'
 import { useWindowMatchMedia } from '@/hooks/useMatchMedia.hook'
 import { Transition } from '@headlessui/react'
-import { UserCoins } from './components/UserCoins'
 import { GoToDashboard } from './components/GoToDashboard'
 import { UserName } from './components/UserName'
 import { XMenuDivider } from '@/components-x/x-dropdown/XMenuDivider'
@@ -68,6 +67,11 @@ export const SideMenu: React.FC = observer(() => {
                                     to={APP_ROUTES_ENUM.ACHIEVEMENTS}
                                     title='Achievements'
                                     icon={<Icon icon='game-icons:achievement' width={24} height={24} />}
+                                />
+                                <SideMenuLink
+                                    to={APP_ROUTES_ENUM.WEB_CHECKLIST}
+                                    title='Web checklist'
+                                    icon={<Icon icon='mdi:spider-web' width={24} height={24} />}
                                 />
                                 <XMenuDivider />
                                 <SideMenuLink

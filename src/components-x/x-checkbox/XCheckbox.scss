@@ -1,0 +1,41 @@
+label.ant-checkbox-wrapper,
+.x-checkbox {
+    @apply [&_.ant-checkbox-inner]:bg-global-3-bg font-kzen [&_*]:font-kzen scale-125 [&_.ant-checkbox-inner]:border-blue-700 [&_input]:scale-125;
+    .ant-checkbox-checked {
+        @apply bg-transparent;
+        .ant-checkbox-inner {
+            @apply bg-transparent #{!important};
+        }
+    }
+
+    &:hover {
+        .ant-checkbox-checked {
+            &:hover {
+                .ant-checkbox-inner {
+                    @apply border-blue-700  bg-transparent #{!important};
+                }
+            }
+            .ant-checkbox-inner {
+                @apply border-blue-700  bg-transparent #{!important};
+            }
+        }
+    }
+
+    .ant-checkbox-checked {
+        .ant-checkbox-inner {
+            &::after {
+                @apply border-blue-600  #{!important};
+            }
+        }
+    }
+
+    span:last-child {
+        @apply opacity-70 hover:text-blue-600 hover:opacity-100;
+    }
+
+    &.ant-checkbox-wrapper-checked {
+        span:last-child {
+            @apply text-blue-600 opacity-100 #{!important};
+        }
+    }
+}

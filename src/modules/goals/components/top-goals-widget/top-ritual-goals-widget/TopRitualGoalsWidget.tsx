@@ -8,10 +8,10 @@ import { StyledButton } from '@/components/buttons/StyledButton'
 
 export const TopRitualGoalsWidget: React.FC = observer(() => {
     const {
-        goals$: { ritualDashboardGoals: topRitualGoals, applySelectedWidgetGoals },
+        goals$: { ritualDashboardGoals, applySelectedWidgetGoals },
     } = useRootStore()
 
-    if (!topRitualGoals.length) return null
+    if (!ritualDashboardGoals.length) return null
 
     return (
         <div className='min-h-[350px]flex-[100%] flex  max-h-[350px] md:flex-[45%]'>
@@ -20,7 +20,7 @@ export const TopRitualGoalsWidget: React.FC = observer(() => {
                     {/* <Icon icon='line-md:circle-twotone' width={70} height={70} className=' text-teal-600' /> */}
                     <StyledButton
                         onClick={() => {
-                            applySelectedWidgetGoals(topRitualGoals)
+                            applySelectedWidgetGoals(ritualDashboardGoals)
                         }}
                         variant='text'
                         className='!h-24 !w-24 !rounded-full'
@@ -35,7 +35,7 @@ export const TopRitualGoalsWidget: React.FC = observer(() => {
                     />
                 </div>
                 <div className={clsx(styles['dashboard-widget-goals-container'])}>
-                    {topRitualGoals.slice(0.8).map((goal) => (
+                    {ritualDashboardGoals.slice(0.8).map((goal) => (
                         <TopGoal
                             key={goal.id}
                             goal={goal}

@@ -28,8 +28,8 @@ export const SideMenuLink: React.FC<{
             to={`/${to}`}
             className={(navData) => {
                 return clsx(
-                    `flex w-full items-center justify-center  ${
-                        navData.isActive ? '!text-blue-700 !opacity-100' : '!text-cText !opacity-70'
+                    `flex w-full items-center justify-center opacity-70 ${
+                        navData.isActive ? '!text-blue-700 !opacity-100' : '!text-cText'
                     }`,
                     className,
                 )

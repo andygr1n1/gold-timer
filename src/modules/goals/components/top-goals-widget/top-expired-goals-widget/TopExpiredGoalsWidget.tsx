@@ -10,7 +10,7 @@ export const TopExpiredGoalsWidget: React.FC = observer(() => {
     } = useRootStore()
 
     return expiredDashboardGoals.length ? (
-        <div className='flex max-h-[400px] min-h-[350px] flex-[100%] md:flex-[45%]'>
+        <div className='flex max-h-[350px] min-h-[350px] flex-[100%] md:flex-[45%]'>
             <div className='bg-global-2-bg relative flex h-[calc(100%)] w-[calc(100%-40px)] flex-col items-start justify-start rounded-lg px-5'>
                 <div className='absolute left-[-40px] top-[-42px]  cursor-pointer '>
                     <StyledButton

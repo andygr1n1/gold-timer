@@ -50,6 +50,7 @@ export enum APP_ROUTES_ENUM {
     PROFILE = 'profile',
     ACHIEVEMENTS = 'achievements',
     NOTES = 'notes',
+    WEB_CHECKLIST = 'web_checklist',
     GOALS = 'goals',
     SPRINTS = 'sprints',
     DASHBOARD = 'dashboard',
