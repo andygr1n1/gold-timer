@@ -23,21 +23,23 @@ export const TopGoal: React.FC<{ goal: IGoal$; className?: string }> = observer(
             onOpenChange={() => {
                 setPopoverState(!popoverState)
             }}
-            trigger={['contextMenu']}
+            trigger={['click']}
             dropdownRender={() => (
                 <PopoverGoalActionsContent action={() => setPopoverState(false)} goal={goal} forceMode={false} />
             )}
         >
             <div
-                // title={goal.title}
+                onClick={(e) => {
+                    if (e.ctrlKey) {
+                        openViewMode(goal.id)
+                        setPopoverState(false)
+                    } else {
+                        setPopoverState(!popoverState)
+                    }
+                }}
                 key={goal.id}
                 className={`duration-300 ${styles['goal']} ${goalClass} ${className} `}
-                onClick={() => {
-                    openViewMode(goal.id)
-                }}
-                onContextMenu={() => setPopoverState(!popoverState)}
             >
-                {/* <span className='py-5 pl-5'>{truncate(goal.title, { length: 22 })}</span> */}
                 <span className='h-fit w-[calc(100%-16px)] items-center overflow-hidden text-ellipsis whitespace-nowrap rounded-md p-2 align-middle text-white'>
                     {goal.title}
                 </span>

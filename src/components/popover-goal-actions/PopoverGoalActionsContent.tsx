@@ -10,11 +10,28 @@ import { observer } from 'mobx-react-lite'
 export const PopoverGoalActionsContent: React.FC<{ goal: IGoal$; action: () => void; forceMode?: boolean }> = observer(
     ({ goal, action: onClose }) => {
         const {
-            goals$: { openGoalCreateMode: openCreateMode, openEditMode },
+            goals$: { openGoalCreateMode: openCreateMode, openEditMode, openViewMode },
         } = useRootStore()
 
         return (
             <XMenuDropdown>
+                <XMenuItem
+                    onClick={() => {
+                        openViewMode(goal.id)
+                        onClose()
+                    }}
+                >
+                    <Icon
+                        icon='akar-icons:eye-open'
+                        width={24}
+                        height={24}
+                        className={clsx('text-blue-600 duration-300')}
+                    />
+                    <div className='flex w-full items-center justify-between'>
+                        <span className='text-inherit'>Open</span>
+                        <span className='text-xs font-bold text-inherit opacity-50'>CTRL+LKM</span>
+                    </div>
+                </XMenuItem>
                 <MenuItem
                     action={() => {
                         goal.favoriteGoal()
