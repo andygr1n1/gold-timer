@@ -9,9 +9,10 @@ import { observer } from 'mobx-react-lite'
 export const WebChecklistIndex: React.FC = observer(() => {
     const { isDesktop } = useWindowMatchMedia(['isDesktop', 'isLargeDesktop'])
     const healthCheck = ['Sprint', 'Work out', 'Meditation', 'Take tep']
-    const mindCheck = ['Reading book', 'Sleep and dream', 'Iphone Photography']
-    const learnCheck = ['Js pro', 'Nuxt', 'Practice Portuguese', 'Trading']
+    const mindCheck = ['Reading book', 'Sleep and dream', 'Iphone Photography', 'Web 3.0 discovery']
+    const learnCheck = ['Js pro', 'Nuxt', 'Practice Portuguese', 'Trading', 'Trading School Artem Zvezdin']
     const itCheck = ['Kzen', 'KzenTrading']
+    const foodCheck = ['Free from Tea', 'Sugar Free', 'No meet']
     const onChange = (checkedValues: CheckboxValueType[]) => {
         console.log('checked = ', checkedValues)
     }
@@ -53,6 +54,14 @@ export const WebChecklistIndex: React.FC = observer(() => {
                     <Checkbox.Group
                         options={itCheck}
                         defaultValue={['Kzen']}
+                        onChange={onChange}
+                        className='flex w-fit flex-col gap-5 p-5 '
+                    />
+                </div>
+                <div className='bg-global-2-bg-plasma flex h-fit w-fit flex-col gap-2 rounded-md p-5'>
+                    <Checkbox.Group
+                        options={foodCheck}
+                        defaultValue={['Sugar Free']}
                         onChange={onChange}
                         className='flex w-fit flex-col gap-5 p-5 '
                     />

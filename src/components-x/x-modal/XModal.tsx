@@ -12,7 +12,7 @@ export const XModal: React.FC<{
     header?: boolean
     zIndex?: number
     fullHeight?: boolean
-}> = ({ height = '', onCancel, open, children, title = '', header = true, zIndex = 121, fullHeight = false }) => {
+}> = ({ height = '', onCancel, open, children, title = '', header = true, zIndex = 1060, fullHeight = false }) => {
     return (
         <Transition appear show={open} as={Fragment}>
             <Dialog as='div' style={{ zIndex }} className='font-kzen relative' onClose={onCancel}>

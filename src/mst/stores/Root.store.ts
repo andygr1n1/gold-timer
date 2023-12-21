@@ -13,6 +13,7 @@ import { IGoal$SnapshotIn, IGoalRitual, IGoalRitualSnapshotIn } from '@/modules/
 import { GoalsSlides$ } from '@/modules/goals-slides/mst/stores/GoalsSlides.store'
 import { GOAL_STATUS_ENUM } from '@/helpers/enums'
 import { uniqBy } from 'lodash-es'
+import { Error$ } from './Error.store'
 
 export const Root$ = types
     .model('Root$', {
@@ -27,6 +28,8 @@ export const Root$ = types
         side_menu$: types.optional(SideMenu$, {}),
         //
         theme: types.maybeNull(types.enumeration(['night', 'day'])),
+        //
+        error$: types.optional(Error$, {}),
     })
     .views((self) => ({
         get isValidating(): boolean {
@@ -88,7 +91,6 @@ export const Root$ = types
 
                 const res: IGoal$SnapshotIn[] = yield query_fetchGoalsByUserId(self.user$.id, status)
 
-                if (!res) throw new Error('fetchGoals error')
                 applySnapshot(self.goals$.goals, uniqBy(self.goals$.goals.concat(res), 'id'))
             } catch (e) {
                 processError(e, 'fetchGoals error')

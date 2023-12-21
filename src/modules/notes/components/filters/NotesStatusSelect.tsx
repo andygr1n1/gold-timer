@@ -26,7 +26,6 @@ export const NotesStatusSelect: React.FC = observer(() => {
     return (
         <XDropdown
             onOpenChange={(x) => {
-                console.log(x)
                 setOpen(x)
             }}
             trigger={['hover']}

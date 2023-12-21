@@ -46,7 +46,7 @@ export const XInput: React.FC<XInputProps> = ({
                 )}
             >
                 {readOnly ? (
-                    <div className='flex h-full items-center justify-start gap-2 rounded-md px-1'>
+                    <div className='flex h-full flex-wrap items-center justify-start gap-2 rounded-md px-1'>
                         {otherProps.value}
                     </div>
                 ) : (

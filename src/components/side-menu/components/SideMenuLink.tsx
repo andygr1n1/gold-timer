@@ -28,7 +28,7 @@ export const SideMenuLink: React.FC<{
             to={`/${to}`}
             className={(navData) => {
                 return clsx(
-                    `flex w-full items-center justify-center opacity-70 ${
+                    `flex w-full items-center  opacity-70 ${
                         navData.isActive ? '!text-blue-700 !opacity-100' : '!text-cText'
                     }`,
                     className,
@@ -39,13 +39,11 @@ export const SideMenuLink: React.FC<{
                 <>
                     <StyledButton
                         variant='text'
-                        className=' relative flex h-[25px] w-full
-                        cursor-pointer items-start !justify-start gap-2 border-none bg-transparent  !p-0  text-left font-bold !text-inherit 
-                        outline-none duration-300 hover:!text-blue-600  disabled:cursor-default disabled:text-gray-500 '
+                        className='!p-0 font-bold !text-inherit duration-300 hover:!text-blue-600'
                         disabled={disabled}
+                        startIcon={icon}
                     >
-                        <div className='flex h-5 w-10 items-center justify-center'> {icon ? icon : null}</div>
-                        <div>{title}</div>
+                        {title}
                     </StyledButton>
                 </>
             ) : (

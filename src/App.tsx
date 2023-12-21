@@ -15,6 +15,5 @@ export const App = observer(() => {
     if (!isAuthenticated && !getUserIdCookie) {
         return <AppAnonymous />
     }
-
     return <AppProtected />
 })

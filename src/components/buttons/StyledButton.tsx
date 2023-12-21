@@ -74,7 +74,11 @@ export const StyledButton = ({
             data-test={dataTest}
         >
             {startIcon && startIcon}
-            {children && <div className={`flex gap-2 truncate ${isLarge ? 'px-2' : 'px-1'}`}>{children}</div>}
+            {children && (
+                <div className={`flex justify-center gap-2 truncate text-center ${isLarge ? 'px-2' : 'px-1'}`}>
+                    {children}
+                </div>
+            )}
             {endIcon && endIcon}
         </button>
     )

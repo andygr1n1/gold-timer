@@ -4,19 +4,19 @@ import { NavLink } from 'react-router-dom'
 
 export const LoginFooter: React.FC = observer(() => {
     return (
-        <div className='font-kzen flex h-10 w-full flex-initial flex-col items-center justify-center '>
+        <div className='font-kzen flex h-10 w-full flex-initial flex-col items-center justify-center  '>
             <NavLink
-                className=' hover:text-cTextHover cursor-pointer  text-sm hover:underline'
+                className=' cursor-pointer text-sm opacity-70 hover:text-blue-600 hover:underline hover:opacity-100'
                 to={`/${APP_ROUTES_ENUM.REGISTER}`}
             >
                 Register
             </NavLink>
             <NavLink
-                className='width-[200px]  hover:text-cTextHover cursor-pointer  text-xs'
+                className='width-[200px] cursor-pointer text-xs opacity-70 hover:text-blue-600 hover:opacity-100'
                 to={`/${APP_ROUTES_ENUM.RESTORE_ACCOUNT}`}
             >
                 Forgot password?
-                <span className='text-cText hover:text-cTextHover px-1 hover:underline'>Restore it</span>
+                <span className='px-1 hover:underline'>Restore it</span>
             </NavLink>
         </div>
     )

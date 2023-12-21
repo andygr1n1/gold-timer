@@ -15,10 +15,11 @@ import { LoginPassword } from './components/login/LoginPassword'
 import { LoginFooter } from './components/login/LoginFooter'
 import styles from './LoginIndex.module.scss'
 import clsx from 'clsx'
+import { processNotificationApi } from '@/functions/processError.helper'
 
 export const LoginIndex: React.FC = observer(() => {
     const { onChangeField } = useUserStore()
-    const [api, contextHolder] = notification.useNotification()
+    const { processApiError, contextHolder } = processNotificationApi()
     const { isDesktop } = useWindowMatchMedia(['isDesktop'])
 
     const onFinish = async (values: IValues) => {
@@ -32,19 +33,12 @@ export const LoginIndex: React.FC = observer(() => {
         }
 
         if (!loginUserRes) {
-            api.info({
-                message: `Your credentials are wrong, please try again`,
-                placement: 'top',
-            })
+            processApiError({ title: 'Please try again', description: 'Your credentials are wrong' })
         }
     }
 
     const onFinishFailed = () => {
-        api.info({
-            message: `Login error`,
-            description: 'Please provide your credentials',
-            placement: 'top',
-        })
+        processApiError({ title: 'Login error', description: 'Please provide your credentials' })
     }
 
     // const is4GConnection = is4G()

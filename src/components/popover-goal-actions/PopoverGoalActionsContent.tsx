@@ -15,6 +15,9 @@ export const PopoverGoalActionsContent: React.FC<{ goal: IGoal$; action: () => v
 
         return (
             <XMenuDropdown>
+                <XMenuItem>
+                    <div className='max-w-[250px]'>{goal.title}</div>
+                </XMenuItem>
                 <XMenuItem
                     onClick={() => {
                         openViewMode(goal.id)
@@ -25,7 +28,7 @@ export const PopoverGoalActionsContent: React.FC<{ goal: IGoal$; action: () => v
                         icon='akar-icons:eye-open'
                         width={24}
                         height={24}
-                        className={clsx('text-blue-600 duration-300')}
+                        className={clsx('text-indigo-500 duration-300')}
                     />
                     <div className='flex w-full items-center justify-between'>
                         <span className='text-inherit'>Open</span>

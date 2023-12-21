@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react-lite'
 import { LoginContainer } from './components/LoginContainer'
 import { LoginLogo } from './components/LoginLogo'
-import { Button, Form, notification } from 'antd'
+import { Button, Form } from 'antd'
 import { LoginButton } from './components/login/LoginButton'
 import { AnonymousFooter } from './components/AnonymousFooter'
 import { useWindowMatchMedia } from '@/hooks/useMatchMedia.hook'
@@ -14,11 +14,12 @@ import { updatePasswordByEmail } from '@/graphql/mutations/updatePasswordByEmail
 import { NavLink } from 'react-router-dom'
 import { APP_ROUTES_ENUM } from '@/helpers/enums'
 import { deleteRestoreCode } from '@/graphql/mutations/deleteRestoreCode.mutation'
+import { processNotificationApi } from '@/functions/processError.helper'
 
 export const NewPasswordIndex: React.FC = observer(() => {
     const { isDesktop } = useWindowMatchMedia(['isDesktop'])
     const [password, setPassword] = useState('')
-    const [api, contextHolder] = notification.useNotification()
+    const { contextHolder, processApiSuccess, processApiError } = processNotificationApi()
     const [userStatus, setUserStatus] = useState<'login' | 'restore' | null>(null)
 
     const onFinish = async (values: { password: string; passwordRepeat: string }) => {
@@ -47,10 +48,9 @@ export const NewPasswordIndex: React.FC = observer(() => {
         if (success) {
             setUserStatus('login')
             deleteRestoreCode(code)
-            api.success({
-                message: `Success!`,
+            processApiSuccess({
+                title: 'Success!',
                 description: 'Password has been successfully changed, please login',
-                placement: 'top',
             })
         } else {
             onFinishFailed('Token has been expired, please create a new one')
@@ -60,10 +60,9 @@ export const NewPasswordIndex: React.FC = observer(() => {
     }
 
     const onFinishFailed = (info = '') => {
-        api.info({
-            message: `Restore password error`,
+        processApiError({
+            title: `Restore password error`,
             description: info,
-            placement: 'top',
         })
     }
 

@@ -1,5 +1,5 @@
 import { useWindowMatchMedia } from '@/hooks/useMatchMedia.hook'
-import { Form, notification } from 'antd'
+import { Form } from 'antd'
 import { observer } from 'mobx-react-lite'
 import { useState } from 'react'
 import { IRegisterValues } from './helpers/login.interface'
@@ -17,21 +17,21 @@ import { RegisterName } from './components/register/RegisterName'
 import { RegisterPassword } from './components/register/RegisterPassword'
 import clsx from 'clsx'
 import styles from './LoginIndex.module.scss'
+import { processNotificationApi } from '@/functions/processError.helper'
 
 export const RegisterIndex: React.FC = observer(() => {
     const { onChangeField } = useUserStore()
     const {
         register_credentials: { validateEmail },
     } = useLoginStore()
-    const [api, contextHolder] = notification.useNotification()
+    const { contextHolder, processApiSuccess, processApiError } = processNotificationApi()
     const { isDesktop } = useWindowMatchMedia(['isDesktop'])
     const [password, setPassword] = useState('')
 
     const onFinishFailed = () => {
-        api.info({
-            message: `Registration error`,
+        processApiError({
+            title: 'Registration error',
             description: 'Please provide right credentials',
-            placement: 'top',
         })
     }
 
@@ -53,10 +53,9 @@ export const RegisterIndex: React.FC = observer(() => {
         }
 
         if (!registerUserRes) {
-            api.info({
-                message: `Login error`,
+            processApiSuccess({
+                title: `Login error`,
                 description: 'Your credentials are wrong, Please try again',
-                placement: 'top',
             })
         }
     }

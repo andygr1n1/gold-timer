@@ -11,20 +11,18 @@ import { LoginEmail } from './components/login/LoginEmail'
 import { restoreAccount } from './helpers/restoreAccount.helper'
 import styles from './LoginIndex.module.scss'
 import clsx from 'clsx'
+import { Icon } from '@iconify/react'
+import { processNotificationApi } from '@/functions/processError.helper'
 
 export const RestoreAccountIndex: React.FC = observer(() => {
     const [form] = Form.useForm()
 
     const { isDesktop } = useWindowMatchMedia(['isDesktop'])
 
-    const [api, contextHolder] = notification.useNotification()
+    const { contextHolder, processApiError, processApiSuccess } = processNotificationApi()
 
     const onFinishFailed = () => {
-        api.info({
-            message: `Restore password error`,
-            description: "Email doesn't exist",
-            placement: 'top',
-        })
+        processApiError({ title: 'Restore password error', description: "Email doesn't exist" })
     }
 
     const onFinish = async (values: IRestoreAccRes) => {
@@ -33,12 +31,11 @@ export const RestoreAccountIndex: React.FC = observer(() => {
             onFinishFailed()
             return
         }
-
-        api.success({
-            message: `Success!`,
+        processApiSuccess({
+            title: 'Success!',
             description: 'Restore link was sent to your email. Please continue',
-            placement: 'top',
         })
+
         form.resetFields()
     }
 

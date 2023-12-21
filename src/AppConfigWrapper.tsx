@@ -2,8 +2,8 @@ import { observer } from 'mobx-react-lite'
 import { App } from './App'
 import { useEffect } from 'react'
 import { useTheming } from './hooks/useTheming.hook'
-import { SnackbarProvider } from 'notistack'
-import { StyledAlertSnackbar } from './components-x/x-snackbar/StyledAlertSnackbar'
+import { processNotificationApi } from './functions/processError.helper'
+import { useErrorStore } from './StoreProvider'
 
 export const AppConfigWrapper: React.FC = observer(() => {
     useEffect(() => {
@@ -33,17 +33,18 @@ export const AppConfigWrapper: React.FC = observer(() => {
 
     return (
         <>
-            <SnackbarProvider
-                Components={{ error: StyledAlertSnackbar }}
-                autoHideDuration={4000}
-                anchorOrigin={{
-                    vertical: 'top',
-                    horizontal: 'right',
-                }}
-                domRoot={document.body}
-                maxSnack={3}
-            />
             <App />
+            <ErrorManager />
         </>
     )
+})
+
+const ErrorManager = observer(() => {
+    const { contextHolder, processApiError } = processNotificationApi()
+    const { title, description } = useErrorStore()
+
+    useEffect(() => {
+        ;(title || description) && processApiError({ title, description })
+    }, [title, description])
+    return <>{contextHolder}</>
 })

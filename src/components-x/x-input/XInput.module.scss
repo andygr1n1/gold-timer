@@ -3,7 +3,7 @@
 }
 
 .xinput-wrapper {
-    @apply text-cText bg-global-bg relative h-[38px] w-[calc(100%-2px)]  rounded-md border border-solid border-blue-900
+    @apply text-cText bg-global-bg relative min-h-[38px] w-[calc(100%-2px)]  rounded-md border border-solid border-blue-900
     text-base  hover:border-blue-600;
 }
 
@@ -28,7 +28,7 @@
 }
 
 .xinput {
-    @apply text-cText placeholder:text-cText m-0 h-full w-[calc(100%-24px)] rounded-md border-none px-3 py-0 placeholder:opacity-50 disabled:bg-transparent
+    @apply text-cText placeholder:text-cText m-0 min-h-[40px] w-[calc(100%-24px)] rounded-md border-none px-3 py-0 placeholder:opacity-50 disabled:bg-transparent
     disabled:bg-opacity-10  disabled:opacity-70;
 }
 

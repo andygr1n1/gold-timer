@@ -8,8 +8,10 @@ import clsx from 'clsx'
 import { XDropdown } from '@/components-x/x-dropdown/XDropdown'
 import { useTogglePopoverState } from '@/hooks/useTogglePopoverState'
 import { NoteContextMenu } from './NoteContextMenu'
+import { useNotesStore } from '@/StoreProvider'
 
 export const Note: React.FC<{ note: INote$ }> = observer(({ note }) => {
+    const { openNoteViewMode } = useNotesStore()
     const { popoverState, setPopoverState } = useTogglePopoverState()
 
     return (
@@ -18,10 +20,22 @@ export const Note: React.FC<{ note: INote$ }> = observer(({ note }) => {
             onOpenChange={() => {
                 setPopoverState(!popoverState)
             }}
-            trigger={['contextMenu']}
+            trigger={['click', 'contextMenu']}
             dropdownRender={() => <NoteContextMenu onClose={() => setPopoverState(false)} note={note} />}
         >
-            <div className={styles['note-container']}>
+            <div
+                className={styles['note-container']}
+                onClick={() => {
+                    setPopoverState(!popoverState)
+                }}
+                onContextMenu={(e) => {
+                    e.stopPropagation()
+                    e.preventDefault()
+                    openNoteViewMode(note.id)
+                    setPopoverState(false)
+                }}
+                key={note.id}
+            >
                 {note.created_at && (
                     <div className='flex justify-between'>
                         <div className='text-xs'>{format(note.created_at, 'dd MMM, yyyy')}</div>

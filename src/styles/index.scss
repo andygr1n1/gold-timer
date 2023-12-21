@@ -155,3 +155,15 @@ input[type='number'] {
 .login-form {
     @apply text-cText m-0 flex h-[400px] flex-auto flex-col items-center p-5 #{!important};
 }
+
+//
+.ant-notification-notice-wrapper {
+    @apply bg-transparent  #{!important};
+}
+.ant-notification-notice {
+    @apply bg-global-bg-regal text-cText [&_div>*]:text-cText rounded-md;
+}
+
+.ant-notification-notice-close-x {
+    @apply text-cText opacity-70;
+}

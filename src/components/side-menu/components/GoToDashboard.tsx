@@ -15,7 +15,7 @@ export const GoToDashboard = () => {
     return (
         <div className='mx-6 flex flex-col gap-5'>
             <SideMenuLink to={APP_ROUTES_ENUM.DASHBOARD} className={isDashboard ? '!opacity-100' : ''}>
-                <StyledButton rounded className='w-full' size='extraLarge'>
+                <StyledButton rounded className='!w-full' size='extraLarge'>
                     Dashboard
                 </StyledButton>
             </SideMenuLink>

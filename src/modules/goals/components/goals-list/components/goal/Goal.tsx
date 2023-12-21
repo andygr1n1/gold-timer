@@ -8,24 +8,40 @@ import { Icon } from '@iconify/react'
 import { XDropdown } from '@/components-x/x-dropdown/XDropdown'
 import { PopoverGoalActionsContent } from '@/components/popover-goal-actions/PopoverGoalActionsContent'
 import { useState } from 'react'
+import { useRootStore } from '@/StoreProvider'
 
 export const Goal: React.FC<{ goal: IGoal$ }> = observer(({ goal }) => {
+    const {
+        goals$: { openViewMode },
+    } = useRootStore()
+
     const { slogan, ritualGoalPower, title, is_favorite } = goal
 
-    const [open, setOpen] = useState(false)
+    const [popoverState, setPopoverState] = useState(false)
 
     return (
         <XDropdown
-            open={open}
+            open={popoverState}
             onOpenChange={() => {
-                setOpen(!open)
+                setPopoverState(!popoverState)
             }}
-            trigger={['contextMenu']}
-            dropdownRender={() => <PopoverGoalActionsContent action={() => setOpen(false)} goal={goal} />}
+            trigger={['click', 'contextMenu']}
+            dropdownRender={() => <PopoverGoalActionsContent action={() => setPopoverState(false)} goal={goal} />}
         >
             <div>
                 <GoalWrapper goal={goal}>
-                    <div className='text-cText flex h-full w-full flex-auto flex-col'>
+                    <div
+                        className='text-cText flex h-full w-full flex-auto flex-col'
+                        onClick={() => {
+                            setPopoverState(!popoverState)
+                        }}
+                        onContextMenu={(e) => {
+                            e.preventDefault()
+                            e.stopPropagation()
+                            openViewMode(goal.id)
+                            setPopoverState(false)
+                        }}
+                    >
                         <div className='flex h-full flex-col'>
                             <div className='flex justify-between'>
                                 <div>

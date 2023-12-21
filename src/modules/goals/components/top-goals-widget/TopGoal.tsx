@@ -23,19 +23,20 @@ export const TopGoal: React.FC<{ goal: IGoal$; className?: string }> = observer(
             onOpenChange={() => {
                 setPopoverState(!popoverState)
             }}
-            trigger={['click']}
+            trigger={['click', 'contextMenu']}
             dropdownRender={() => (
                 <PopoverGoalActionsContent action={() => setPopoverState(false)} goal={goal} forceMode={false} />
             )}
         >
             <div
-                onClick={(e) => {
-                    if (e.ctrlKey) {
-                        openViewMode(goal.id)
-                        setPopoverState(false)
-                    } else {
-                        setPopoverState(!popoverState)
-                    }
+                onClick={() => {
+                    setPopoverState(!popoverState)
+                }}
+                onContextMenu={(e) => {
+                    e.preventDefault()
+                    e.stopPropagation()
+                    openViewMode(goal.id)
+                    setPopoverState(false)
                 }}
                 key={goal.id}
                 className={`duration-300 ${styles['goal']} ${goalClass} ${className} `}

@@ -22,7 +22,7 @@ export const CreateNewNote: React.FC = observer(() => {
                                 createWidgetNewNote()
                             }}
                             size='extraLarge'
-                            className='w-full'
+                            className='!w-full'
                             disabled={!widget_new_note?.descriptionLength}
                         >
                             Save Note

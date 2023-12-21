@@ -31,7 +31,7 @@ export const GoalWrapper: React.FC<{ children: ReactNode; goal: IGoal$ }> = obse
                             ${styleByGoalType}
                             `,
                 )}
-                onClick={() => openViewMode(goal.id)}
+                // onClick={() => openViewMode(goal.id)}
             >
                 {/* goal container */}
                 {children}

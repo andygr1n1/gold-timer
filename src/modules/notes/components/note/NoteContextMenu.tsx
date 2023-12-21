@@ -12,7 +12,7 @@ export const NoteContextMenu: React.FC<{ onClose: () => void; note: INote$ }> = 
     return (
         <XMenuDropdown>
             <XMenuItem
-                className={clsx('group hover:text-blue-500')}
+                className={clsx('group ')}
                 onClick={() => {
                     openNoteViewMode(note.id)
                     onClose()
@@ -22,23 +22,21 @@ export const NoteContextMenu: React.FC<{ onClose: () => void; note: INote$ }> = 
                     icon='akar-icons:eye-open'
                     width={24}
                     height={24}
-                    className={clsx('duration-300 group-hover:text-blue-500')}
+                    className={clsx('text-indigo-500 duration-300')}
                 />
-                <span className='text-inherit'>Open</span>
+                <div className='flex w-full items-center justify-between'>
+                    <span className='text-inherit'>Open</span>
+                    <span className='text-xs font-bold text-inherit opacity-50'>CTRL+LKM</span>
+                </div>
             </XMenuItem>
             <XMenuItem
-                className={clsx('group hover:text-blue-500')}
+                className={clsx('group')}
                 onClick={() => {
                     openNoteEditMode(note.id)
                     onClose()
                 }}
             >
-                <Icon
-                    icon='material-symbols:edit-square'
-                    width={24}
-                    height={24}
-                    className={clsx('duration-300 group-hover:text-blue-500')}
-                />
+                <Icon icon='material-symbols:edit-square' width={24} height={24} className='text-blue-500' />
                 <span className='text-inherit'>Edit</span>
             </XMenuItem>
             <XMenuItem
@@ -48,16 +46,11 @@ export const NoteContextMenu: React.FC<{ onClose: () => void; note: INote$ }> = 
                     onClose()
                 }}
             >
-                <Icon
-                    icon='entypo:archive'
-                    width={24}
-                    height={24}
-                    className={clsx('duration-300 group-hover:text-blue-500')}
-                />
+                <Icon icon='entypo:archive' width={24} height={24} className={clsx('text-teal-500 duration-300 ')} />
                 <span className='text-inherit'>{note.archived ? 'Unarchive' : 'Archive'}</span>
             </XMenuItem>
             <XMenuItem
-                className={clsx('group hover:text-red-500')}
+                className={clsx('group')}
                 onClick={() => {
                     note.deleteNote()
                     onClose()
@@ -67,7 +60,7 @@ export const NoteContextMenu: React.FC<{ onClose: () => void; note: INote$ }> = 
                     icon='fluent:delete-dismiss-24-filled'
                     width={24}
                     height={24}
-                    className={clsx('duration-300 group-hover:text-red-500')}
+                    className={clsx('text-red-500 duration-300')}
                 />
                 <span className='text-inherit'>{note.deleted_at ? 'Restore from bin' : 'Move to bin'}</span>
             </XMenuItem>
