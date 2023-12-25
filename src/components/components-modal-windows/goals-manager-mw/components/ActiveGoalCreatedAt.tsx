@@ -4,7 +4,7 @@ import { observer } from 'mobx-react-lite'
 export const ActiveGoalCreatedAt: React.FC<{ goal: IGoal$ }> = observer(({ goal }) => {
     const { created_at, createdDaysAgo } = goal
 
-    let createString = !!createdDaysAgo ? `${createdDaysAgo} ${createdDaysAgo === 1 ? 'day' : 'days'} ago` : 'today'
+    const createString = !!createdDaysAgo ? `${createdDaysAgo} ${createdDaysAgo === 1 ? 'day' : 'days'} ago` : 'today'
 
     return (
         <>

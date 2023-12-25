@@ -1,6 +1,6 @@
 import { flow, getParentOfType, toGenerator, types } from 'mobx-state-tree'
 import { Sprint$ } from './Sprint.store'
-import { processError } from '@/functions/processError.helper'
+import { processError } from '@/functions/processMessage'
 import { add } from 'date-fns'
 import { Sprints$ } from './Sprints.store'
 import { getOwnerId } from '@/functions/getUserId'

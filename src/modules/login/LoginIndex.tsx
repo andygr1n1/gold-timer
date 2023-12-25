@@ -1,5 +1,5 @@
 import { useUserStore } from '@/StoreProvider'
-import { Form, notification } from 'antd'
+import { Form } from 'antd'
 import { observer } from 'mobx-react-lite'
 import { IValues } from './helpers/login.interface'
 import { sendLoginData } from './helpers/sendLoginData.helper'
@@ -15,7 +15,7 @@ import { LoginPassword } from './components/login/LoginPassword'
 import { LoginFooter } from './components/login/LoginFooter'
 import styles from './LoginIndex.module.scss'
 import clsx from 'clsx'
-import { processNotificationApi } from '@/functions/processError.helper'
+import { processNotificationApi } from '@/functions/processMessage'
 
 export const LoginIndex: React.FC = observer(() => {
     const { onChangeField } = useUserStore()

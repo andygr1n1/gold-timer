@@ -3,7 +3,7 @@ import { Achievement } from '../models/Achievement.model'
 import { IAchievement } from '../types'
 import { fetchAchievementsByUserId } from '@/graphql/queries/fetchAchievementsByUserId.query'
 import { getOwnerId } from '@/functions/getUserId'
-import { processError } from '@/functions/processError.helper'
+import { processError } from '@/functions/processMessage'
 import { IGoal$SnapshotIn } from '@/modules/goals/mst/types'
 
 export const Achievements$ = types

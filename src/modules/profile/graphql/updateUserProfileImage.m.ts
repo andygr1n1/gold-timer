@@ -1,5 +1,5 @@
 import { gql } from 'graphql-request'
-import { processError } from '@/functions/processError.helper'
+import { processError } from '@/functions/processMessage'
 import { generateClient } from '@/graphql/client'
 import { getOwnerId } from '@/functions/getUserId'
 

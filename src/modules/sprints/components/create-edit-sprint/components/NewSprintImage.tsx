@@ -1,7 +1,7 @@
 import { Icon } from '@iconify/react'
 import { observer } from 'mobx-react-lite'
 import { Buffer } from 'buffer'
-import { processError } from '@/functions/processError.helper'
+import { processError } from '@/functions/processMessage'
 import { useSprintsStore } from '@/StoreProvider'
 import clsx from 'clsx'
 

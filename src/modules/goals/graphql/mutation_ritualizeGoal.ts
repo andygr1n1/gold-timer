@@ -1,7 +1,7 @@
 import { gql } from 'graphql-request'
 import { generateClient } from '../../../graphql/client'
 import { GOAL_TYPE_ENUM } from '@/helpers/enums'
-import { processError } from '@/functions/processError.helper'
+import { processError } from '@/functions/processMessage'
 
 export const mutation_ritualizeGoal = async (
     goal_id: string,

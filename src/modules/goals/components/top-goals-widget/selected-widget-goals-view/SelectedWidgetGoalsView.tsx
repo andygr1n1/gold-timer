@@ -29,7 +29,7 @@ export const SelectedWidgetGoalsView: React.FC = observer(function CRUD_GoalDial
             />
             <div tabIndex={0} className=' my-10 flex flex-col gap-4'>
                 {goalsFilter(selected_widget_goals).map((goal) => (
-                    <TopGoal key={goal.id} goal={goal} className='min-h-[60px] !w-full !flex-[100%]' />
+                    <TopGoal zIndex={2000} key={goal.id} goal={goal} className='min-h-[60px] !w-full !flex-[100%]' />
                 ))}
             </div>
         </XModal>

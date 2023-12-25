@@ -68,8 +68,8 @@ export const Sprint$ = types
         },
         get progress(): number {
             if (!self.sprint_days) return 0
-            let totalProgress = self.duration
-            let currentProgress = self.sprint_days.filter((day) => day.status).length
+            const totalProgress = self.duration
+            const currentProgress = self.sprint_days.filter((day) => day.status).length
             return Math.floor((currentProgress * 100) / totalProgress)
         },
         get focusSprintDayToday(): ISprintDay | undefined {
@@ -91,7 +91,7 @@ export const Sprint$ = types
         },
         get allIsCheckedBeforeToday(): boolean {
             const today = this.today
-            let result = self.sprint_days.find(
+            const result = self.sprint_days.find(
                 (sprintDay) =>
                     sprintDay.date &&
                     !isToday(sprintDay.date) &&
@@ -102,7 +102,7 @@ export const Sprint$ = types
             return !!!result
         },
         get todayIsChecked(): boolean {
-            let result = self.sprint_days.find(
+            const result = self.sprint_days.find(
                 (sprintDay) => sprintDay.date && isToday(sprintDay.date) && sprintDay.status,
             )
 

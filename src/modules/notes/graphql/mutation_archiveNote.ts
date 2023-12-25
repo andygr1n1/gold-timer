@@ -1,5 +1,5 @@
 import { generateClient } from '@/graphql/client'
-import { processError } from '@/functions/processError.helper'
+import { processError } from '@/functions/processMessage'
 import { gql } from 'graphql-request'
 
 export const mutation_archiveNote = async (note_id: string, toggleArchive: boolean) => {

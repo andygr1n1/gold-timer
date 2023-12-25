@@ -1,7 +1,7 @@
 import { GOAL_STATUS_ENUM } from '@/helpers/enums'
 import { gql } from 'graphql-request'
 import { generateClient } from '../../../graphql/client'
-import { processError } from '@/functions/processError.helper'
+import { processError } from '@/functions/processMessage'
 import { IGoal$SnapshotIn } from '@/modules/goals/mst/types'
 
 export const query_fetchGoalsByUserId = async (

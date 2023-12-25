@@ -17,7 +17,7 @@ import { RegisterName } from './components/register/RegisterName'
 import { RegisterPassword } from './components/register/RegisterPassword'
 import clsx from 'clsx'
 import styles from './LoginIndex.module.scss'
-import { processNotificationApi } from '@/functions/processError.helper'
+import { processNotificationApi } from '@/functions/processMessage'
 
 export const RegisterIndex: React.FC = observer(() => {
     const { onChangeField } = useUserStore()

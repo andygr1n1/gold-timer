@@ -32,5 +32,3 @@ export const useNotesStore = () => useRootStore().notes$
 
 // side menu
 export const useSideMenuStore = () => useRootStore().side_menu$
-
-export const useErrorStore = () => useRootStore().error$

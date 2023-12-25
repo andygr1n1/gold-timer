@@ -31,7 +31,7 @@ const MediaQuery = {
  */
 export const useWindowMatchMedia = (media?: (keyof typeof MediaQuery)[]) => {
     let queries: MEDIA_QUERY_VALUES_ENUM[] = []
-    let media_devices: (keyof typeof MediaQuery)[] = []
+    const media_devices: (keyof typeof MediaQuery)[] = []
 
     if (media) {
         media.forEach((m) => {

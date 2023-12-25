@@ -18,23 +18,15 @@ export const PopoverGoalActionsContent: React.FC<{ goal: IGoal$; action: () => v
                 <XMenuItem>
                     <div className='max-w-[250px]'>{goal.title}</div>
                 </XMenuItem>
-                <XMenuItem
-                    onClick={() => {
+                <MenuItem
+                    action={() => {
                         openViewMode(goal.id)
                         onClose()
                     }}
-                >
-                    <Icon
-                        icon='akar-icons:eye-open'
-                        width={24}
-                        height={24}
-                        className={clsx('text-indigo-500 duration-300')}
-                    />
-                    <div className='flex w-full items-center justify-between'>
-                        <span className='text-inherit'>Open</span>
-                        <span className='text-xs font-bold text-inherit opacity-50'>CTRL+LKM</span>
-                    </div>
-                </XMenuItem>
+                    icon={'akar-icons:eye-open'}
+                    title={'Open'}
+                    iconClassName={'text-indigo-700'}
+                />
                 <MenuItem
                     action={() => {
                         goal.favoriteGoal()

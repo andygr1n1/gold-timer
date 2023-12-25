@@ -8,9 +8,9 @@ import { SprintsCounterDropdown } from './components/SprintsCounterDropdown'
 
 export const ArtifactsCounter: React.FC = observer(() => {
     const {
-        notes$: { notesLength, openNoteCreateMode },
-        sprints$: { allActiveCheckedSprintsLength, openSprintCreateMode: activateNewSprintCreator },
-        goals$: { notCompletedGoalsCount: activeGoalsCount, openGoalCreateMode: openCreateMode },
+        notes$: { notesLength },
+        sprints$: { allActiveCheckedSprintsLength },
+        goals$: { notCompletedGoalsCount },
     } = useRootStore()
 
     return (
@@ -19,7 +19,7 @@ export const ArtifactsCounter: React.FC = observer(() => {
                 button={
                     <ArtifactsCounterItem
                         // action={openCreateMode}
-                        count={activeGoalsCount}
+                        count={notCompletedGoalsCount}
                         icon={
                             <Icon
                                 icon='octicon:goal-16'

@@ -2,7 +2,7 @@ import { observer } from 'mobx-react-lite'
 import { AnonymousFooter } from './components/AnonymousFooter'
 import { LoginContainer } from './components/LoginContainer'
 import { LoginLogo } from './components/LoginLogo'
-import { Form, notification } from 'antd'
+import { Form } from 'antd'
 import { useWindowMatchMedia } from '@/hooks/useMatchMedia.hook'
 import { IRestoreAccRes } from './helpers/login.interface'
 import { AlreadyHaveAccount } from './components/AlreadyHaveAccount'
@@ -11,8 +11,7 @@ import { LoginEmail } from './components/login/LoginEmail'
 import { restoreAccount } from './helpers/restoreAccount.helper'
 import styles from './LoginIndex.module.scss'
 import clsx from 'clsx'
-import { Icon } from '@iconify/react'
-import { processNotificationApi } from '@/functions/processError.helper'
+import { processNotificationApi } from '@/functions/processMessage'
 
 export const RestoreAccountIndex: React.FC = observer(() => {
     const [form] = Form.useForm()

@@ -1,6 +1,6 @@
 import { applySnapshot, destroy, detach, flow, toGenerator, types } from 'mobx-state-tree'
 import { GoalSlide$ } from './GoalSlide.store'
-import { processError } from '@/functions/processError.helper'
+import { processError } from '@/functions/processMessage'
 import { IGoalSlide$ } from '../types'
 import { query_fetchGoalsSlides } from '../../graphql/query_fetchGoalsSlides'
 import { SERVER_ROUTES } from '@/helpers/enums'

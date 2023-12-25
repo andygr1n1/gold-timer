@@ -5,7 +5,6 @@ import { cast, flow, getParentOfType, toGenerator, castToSnapshot } from 'mobx-s
 import { Goal } from '../models/Goal.model'
 import { Goals$ } from './Goals.store'
 import { mutation_favoriteGoal } from '@/modules/goals/graphql/mutation_favoriteGoal'
-import { message } from 'antd'
 import { mutation_ritualizeGoal } from '@/modules/goals/graphql/mutation_ritualizeGoal'
 import { generateNewRitualCircle } from '@/functions/generateNewRitualCircle'
 import { mutation_deleteGoal } from '@/modules/goals/graphql/mutation_deleteGoal'
@@ -16,8 +15,7 @@ import { getCoinsFromCompletedGoal } from '@/functions/getCoinsFromCompletedGoal
 import { setMidnightTime } from '@/functions/date.helpers'
 import { IUser$ } from '@/mst/types'
 import { IGoal$SnapshotIn } from '@/modules/goals/mst/types'
-import { processError } from '@/functions/processError.helper'
-import { cloneDeep } from 'lodash-es'
+import { processError, processSuccess } from '@/functions/processMessage'
 
 export const Goal$ = Goal.named('Goal$')
     .views((self) => ({
@@ -117,10 +115,7 @@ export const Goal$ = Goal.named('Goal$')
 
                 // << coins
 
-                options.messageSuccess &&
-                    message.success({
-                        content: 'Goal successfully ritualized',
-                    })
+                options.messageSuccess && processSuccess('Goal successfully ritualized')
             } catch (e) {
                 processError('Server error, failed to ritualize goal')
             }
@@ -183,18 +178,11 @@ export const Goal$ = Goal.named('Goal$')
                 user$.onChangeField('coins', resGoalCoins)
 
                 // << coins
-
-                message.success({
-                    content: 'Goal successfully completed',
-                })
+                processSuccess('Goal successfully completed')
 
                 onChangeField('selected_goal', undefined)
             } catch (e) {
-                processError(e)
-
-                message.error({
-                    content: 'Server error, failed to complete goal',
-                })
+                processError('Server error, failed to complete goal')
             }
         }),
         updateSelf(newData: IGoal$SnapshotIn | undefined): void {

@@ -4,7 +4,7 @@ import { INote$SnapshotIn } from '../types'
 import { upsertNote } from '@/modules/notes/graphql/mutation_insertNote'
 import { compact } from 'lodash-es'
 import { getOwnerId } from '@/functions/getUserId'
-import { processError } from '@/functions/processError.helper'
+import { processError } from '@/functions/processMessage'
 
 export const NoteNew$ = Note$.named('NoteNew$').actions((self) => ({
     onChangeField<Key extends keyof typeof self>(key: Key, value: (typeof self)[Key]) {

@@ -6,7 +6,7 @@ import { Checkbox } from 'antd'
 import { CheckboxValueType } from 'antd/es/checkbox/Group'
 import { observer } from 'mobx-react-lite'
 
-export const WebChecklistIndex: React.FC = observer(() => {
+export const SmartContractsIndex: React.FC = observer(() => {
     const { isDesktop } = useWindowMatchMedia(['isDesktop', 'isLargeDesktop'])
     const healthCheck = ['Sprint', 'Work out', 'Meditation', 'Take tep']
     const mindCheck = ['Reading book', 'Sleep and dream', 'Iphone Photography', 'Web 3.0 discovery']
@@ -18,7 +18,7 @@ export const WebChecklistIndex: React.FC = observer(() => {
     }
     return (
         <ModuleWrapper
-            context={APP_ROUTES_ENUM.WEB_CHECKLIST}
+            context={APP_ROUTES_ENUM.SMART_CONTRACTS}
             topBarNodes={
                 <div className='relative flex w-full font-bold'>
                     <div className='absolute left-0  top-1/2  -translate-y-1/2'> {isDesktop && <UserCoins />}</div>

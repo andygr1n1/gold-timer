@@ -1,4 +1,3 @@
-import { useGoalsStore } from '@/StoreProvider'
 import { XSelect } from '@/components-x/x-select/XSelect'
 import { generateNewRitualCircle } from '@/functions/generateNewRitualCircle'
 import { IGoal$ } from '@/modules/goals/mst/types'

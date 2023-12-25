@@ -1,10 +1,9 @@
-import { useUserStore } from '@/StoreProvider'
 import { XModal } from '@/components-x/x-modal/XModal'
 import { observer } from 'mobx-react-lite'
 import { useState } from 'react'
 
 export const FocusGoalOfWeek: React.FC = observer(() => {
-    const { hasGoalsOfWeekAddon } = useUserStore()
+    // const { hasGoalsOfWeekAddon } = useUserStore()
 
     // const [open, setOpen] = useState(hasGoalsOfWeekAddon)
     const [open, setOpen] = useState(false)

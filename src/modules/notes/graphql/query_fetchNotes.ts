@@ -1,4 +1,4 @@
-import { processError } from '../../../functions/processError.helper'
+import { processError } from '../../../functions/processMessage'
 import { generateClient } from '@/graphql/client'
 import { INote$SnapshotIn } from '@/modules/notes/mst/types'
 import { gql } from 'graphql-request'

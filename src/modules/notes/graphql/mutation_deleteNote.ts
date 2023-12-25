@@ -1,5 +1,5 @@
 import { generateClient } from '@/graphql/client'
-import { processError } from '@/functions/processError.helper'
+import { processError } from '@/functions/processMessage'
 import { gql } from 'graphql-request'
 
 export const mutation_deleteNote = async (note_id: string, toggleDelete: boolean) => {

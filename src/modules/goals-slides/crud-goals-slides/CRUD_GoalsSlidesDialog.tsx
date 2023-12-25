@@ -38,5 +38,5 @@ const Footer: React.FC = observer(() => {
         onChangeField('is_crud_open', false)
     }
 
-    return <FormFooter onOk={() => {}} hideOkButton onCancel={onCancel} />
+    return <FormFooter onOk={() => undefined} hideOkButton onCancel={onCancel} />
 })

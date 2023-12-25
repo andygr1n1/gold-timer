@@ -167,3 +167,10 @@ input[type='number'] {
 .ant-notification-notice-close-x {
     @apply text-cText opacity-70;
 }
+
+.ant-message-notice-content {
+    @apply bg-global-bg-regal  #{!important};
+}
+.ant-message-custom-content {
+    @apply flex h-full items-center justify-center gap-2;
+}

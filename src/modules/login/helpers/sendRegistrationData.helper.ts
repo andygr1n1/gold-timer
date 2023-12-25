@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { ILoginRes } from './login.interface'
-import { processError } from '@/functions/processError.helper'
+import { processError } from '@/functions/processMessage'
 
 export const sendRegistrationData = async (registrationData: {
     name: string

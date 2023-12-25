@@ -10,7 +10,7 @@ import { StyledButton } from '@/components/buttons/StyledButton'
 export const SprintsFilters: React.FC = observer(() => {
     const {
         sprintsStatusRender,
-        sprints_filter$: { addStatusFilter, onChangeField, isStatusAll, isStatusActive },
+        sprints_filter$: { addStatusFilter, isStatusActive },
     } = useSprintsStore()
 
     const [loadingLocalForage, setLoadingLocalForage] = useState(true)

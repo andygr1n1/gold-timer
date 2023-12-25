@@ -5,7 +5,7 @@ import { Goals$ } from '../../modules/goals/mst/stores/Goals.store'
 import { User$ } from './User.store'
 import { fetchRitualPowerInfo } from '@/graphql/queries/fetchRitualPowerInfo.query'
 import { IUserByPkResponse, fetchUserByPk } from '@/graphql/queries/fetchUserByPk.query'
-import { processError } from '@/functions/processError.helper'
+import { processError } from '@/functions/processMessage'
 import { SideMenu$ } from './side-menu/SideMenu.store'
 import { Notes$ } from '@/modules/notes/mst/stores/Notes.store'
 import { Sprints$ } from '@/modules/sprints/mst/stores/Sprints.store'
@@ -13,7 +13,6 @@ import { IGoal$SnapshotIn, IGoalRitual, IGoalRitualSnapshotIn } from '@/modules/
 import { GoalsSlides$ } from '@/modules/goals-slides/mst/stores/GoalsSlides.store'
 import { GOAL_STATUS_ENUM } from '@/helpers/enums'
 import { uniqBy } from 'lodash-es'
-import { Error$ } from './Error.store'
 
 export const Root$ = types
     .model('Root$', {
@@ -28,8 +27,6 @@ export const Root$ = types
         side_menu$: types.optional(SideMenu$, {}),
         //
         theme: types.maybeNull(types.enumeration(['night', 'day'])),
-        //
-        error$: types.optional(Error$, {}),
     })
     .views((self) => ({
         get isValidating(): boolean {

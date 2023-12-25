@@ -1,6 +1,6 @@
 import { cast, flow, getParentOfType, toGenerator, types } from 'mobx-state-tree'
 import { Goal$ } from './Goal.store'
-import { processError } from '@/functions/processError.helper'
+import { processError } from '@/functions/processMessage'
 import { generateNewRitualCircle } from '@/functions/generateNewRitualCircle'
 import { set } from 'date-fns'
 import { mutation_upsertGoal } from '@/modules/goals/graphql/mutation_upsertGoal'
@@ -34,7 +34,7 @@ export const GoalEdit$ = types
         updateGoal: flow(function* updateGoal() {
             try {
                 if (!self.created_at || !self.finished_at) return
-                let ritualData: IInsertRitual[] = []
+                const ritualData: IInsertRitual[] = []
                 let finished_at = self.finished_at
 
                 if (self.goal_ritual) {

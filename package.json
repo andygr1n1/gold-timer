@@ -55,6 +55,7 @@
         "clsx": "^2.0.0",
         "eslint": "^8.20.0",
         "eslint-config-prettier": "^8.5.0",
+        "eslint-plugin-eslint-plugin": "^5.2.1",
         "eslint-plugin-prettier": "^4.2.1",
         "eslint-plugin-react": "^7.30.1",
         "less": "^4.1.3",
