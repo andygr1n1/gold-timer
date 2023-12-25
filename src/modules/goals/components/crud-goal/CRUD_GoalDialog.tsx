@@ -14,15 +14,25 @@ export const CRUD_GoalDialog: React.FC = observer(function CRUD_GoalDialog() {
     const isOpen = new_goal || edit_goal || selected_goal
 
     const onCancel = () => {
-        onChangeField('new_goal', undefined)
-        onChangeField('edit_goal', undefined)
-        onChangeField('selected_goal', undefined)
+        // timeout if a hack to preserve closing parent modal windows
+        const timeout = setTimeout(() => {
+            onChangeField('new_goal', undefined)
+            onChangeField('edit_goal', undefined)
+            onChangeField('selected_goal', undefined)
+            clearTimeout(timeout)
+        }, 20)
     }
 
     return (
         <XModal
             open={!!isOpen}
             onCancel={onCancel}
+            onKeyDown={(e) => {
+                console.log('x', e?.key)
+                if (e?.key === 'Escape') {
+                    onCancel()
+                }
+            }}
             title={
                 <div tabIndex={0} className='flex items-center justify-center gap-5'>
                     {new_goal && <NewGoalDialogTitle />}

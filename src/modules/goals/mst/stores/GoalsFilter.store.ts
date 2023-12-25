@@ -141,6 +141,7 @@ export const GoalsFilter$ = types
                         .includes(self.goals_input_filter.trim().toLocaleLowerCase()),
             )
         },
+        // TODO get the idea
         get goalsListConstructor(): {
             generateGoals: (gtf: string, goals: IGoal$[]) => IGoal$[]
             timeFrame: string[]
