@@ -14,7 +14,7 @@ import { updatePasswordByEmail } from '@/graphql/mutations/updatePasswordByEmail
 import { NavLink } from 'react-router-dom'
 import { APP_ROUTES_ENUM } from '@/helpers/enums'
 import { deleteRestoreCode } from '@/graphql/mutations/deleteRestoreCode.mutation'
-import { processNotificationApi } from '@/functions/processError.helper'
+import { processNotificationApi } from '@/functions/processMessage'
 
 export const NewPasswordIndex: React.FC = observer(() => {
     const { isDesktop } = useWindowMatchMedia(['isDesktop'])

@@ -1,5 +1,5 @@
 import { getOwnerId } from '@/functions/getUserId'
-import { processError } from '@/functions/processError.helper'
+import { processError } from '@/functions/processMessage'
 import axios from 'axios'
 
 export interface IUploadImgRes {

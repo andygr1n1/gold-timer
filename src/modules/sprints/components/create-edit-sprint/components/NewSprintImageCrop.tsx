@@ -35,9 +35,9 @@ export const NewSprintImageCrop = observer(() => {
     if (!new_sprint?.img_src) return null
 
     return (
-        <div className='absolute left-0 top-0 z-50 h-[100vh] w-full animate-opacity-5 bg-black/50'>
+        <div className='animate-opacity-5 absolute left-0 top-0 z-50 h-[100vh] w-full bg-black/50'>
             <div className='bg-black'>
-                <div className='relative h-[300px] w-full bg-global-bg'>
+                <div className='bg-global-bg relative h-[300px] w-full'>
                     <Cropper
                         image={new_sprint?.img_src}
                         crop={crop}
@@ -48,7 +48,7 @@ export const NewSprintImageCrop = observer(() => {
                         onZoomChange={setZoom}
                     />
                 </div>
-                <div className='flex flex-col gap-5 bg-global-bg p-10 text-cText'>
+                <div className='bg-global-bg text-cText flex flex-col gap-5 p-10'>
                     <div className='controls'>
                         <Slider
                             value={zoom}
@@ -62,7 +62,7 @@ export const NewSprintImageCrop = observer(() => {
                             className='rounded-full'
                         />
                     </div>
-                    <div className='flex justify-end gap-5 bg-global-bg  text-cText'>
+                    <div className='bg-global-bg text-cText flex justify-end  gap-5'>
                         <Button onClick={handleCancel}>Cancel</Button>
                         <Button type='primary' onClick={saveCroppedImage}>
                             Save

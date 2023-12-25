@@ -21,7 +21,7 @@ export const FormFooter: React.FC<{
             </StyledButton>
             {hideOkButton ? null : (
                 <div className='relative'>
-                    <StyledButton rounded disabled={disabled} size='extraLarge' className='z-10 w-28' onClick={onOk}>
+                    <StyledButton rounded disabled={disabled} size='extraLarge' className='z-10 !w-28' onClick={onOk}>
                         {okTitle}
                     </StyledButton>
                     {disabled && disabledTooltip && (

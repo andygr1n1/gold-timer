@@ -1,4 +1,3 @@
-import { XBadge } from '@/components-x/x-badge/XBadge'
 import { StyledButton } from '@/components/buttons/StyledButton'
 import { APP_ROUTES_ENUM } from '@/helpers/enums'
 import { useSideMenu } from '@/hooks/useSideMenu.hook'
@@ -11,11 +10,10 @@ export const SideMenuLink: React.FC<{
     title?: string
     icon?: ReactNode
     disabled?: boolean
-    badge?: number
     to: APP_ROUTES_ENUM
     children?: ReactNode
     className?: string
-}> = observer(({ title, icon, disabled = false, badge, to, children, className }) => {
+}> = observer(({ title, icon, disabled = false, to, children, className }) => {
     return (
         <NavLink
             onClick={(e) => {

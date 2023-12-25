@@ -1,7 +1,7 @@
 import { IInsertRitual, IInsertNewGoal } from '@/modules/goals/interfaces/newGoal.interface'
 import { gql } from 'graphql-request'
 import { generateClient } from '../../../graphql/client'
-import { processError } from '@/functions/processError.helper'
+import { processError } from '@/functions/processMessage'
 import { IGoal$SnapshotIn, IGoalRitualSnapshotIn } from '../mst/types'
 
 export const mutation_upsertGoal = async (

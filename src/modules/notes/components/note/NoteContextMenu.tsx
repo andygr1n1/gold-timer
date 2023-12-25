@@ -20,8 +20,8 @@ export const NoteContextMenu: React.FC<{ onClose: () => void; note: INote$ }> = 
             >
                 <Icon
                     icon='akar-icons:eye-open'
-                    width={24}
-                    height={24}
+                    width={29}
+                    height={29}
                     className={clsx('text-indigo-500 duration-300')}
                 />
                 <div className='flex w-full items-center justify-between'>

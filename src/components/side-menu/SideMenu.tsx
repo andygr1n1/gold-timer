@@ -11,6 +11,7 @@ import { Transition } from '@headlessui/react'
 import { GoToDashboard } from './components/GoToDashboard'
 import { UserName } from './components/UserName'
 import { XMenuDivider } from '@/components-x/x-dropdown/XMenuDivider'
+import { isUnderDevelopment } from '@/helpers/isDev.helper'
 
 export const SideMenu: React.FC = observer(() => {
     const wrapperRef = useRef<HTMLDivElement | null>(null)
@@ -61,24 +62,31 @@ export const SideMenu: React.FC = observer(() => {
                                 <SideMenuLink
                                     to={APP_ROUTES_ENUM.PROFILE}
                                     title='Profile'
-                                    icon={<Icon icon='fluent:share-screen-person-16-regular' width={24} height={24} />}
+                                    icon={
+                                        <Icon icon='solar:user-id-bold' width={26} height={26} className='ml-[-3px]' />
+                                    }
                                 />
                                 <SideMenuLink
                                     to={APP_ROUTES_ENUM.ACHIEVEMENTS}
                                     title='Achievements'
-                                    icon={<Icon icon='game-icons:achievement' width={24} height={24} />}
+                                    icon={<Icon icon='eva:star-fill' width={24} height={24} className='ml-[-3px]' />}
                                 />
-                                <SideMenuLink
-                                    to={APP_ROUTES_ENUM.WEB_CHECKLIST}
-                                    title='Web checklist'
-                                    icon={<Icon icon='mdi:spider-web' width={24} height={24} />}
-                                />
+                                {isUnderDevelopment() && (
+                                    <SideMenuLink
+                                        to={APP_ROUTES_ENUM.STORIES}
+                                        title='Stories'
+                                        icon={
+                                            <Icon
+                                                icon='ri:landscape-fill'
+                                                width={24}
+                                                height={24}
+                                                className='ml-[-2px]'
+                                            />
+                                        }
+                                    />
+                                )}
                                 <XMenuDivider />
-                                <SideMenuLink
-                                    to={APP_ROUTES_ENUM.SPRINTS}
-                                    title='Sprints'
-                                    icon={<Icon icon='game-icons:sprint' width={24} height={24} />}
-                                />
+
                                 <SideMenuLink
                                     to={APP_ROUTES_ENUM.GOALS}
                                     title='Goals'
@@ -89,6 +97,18 @@ export const SideMenu: React.FC = observer(() => {
                                     title='Notes'
                                     icon={<Icon icon='ion:book' width={24} height={24} />}
                                 />
+                                <SideMenuLink
+                                    to={APP_ROUTES_ENUM.SPRINTS}
+                                    title='Sprints'
+                                    icon={<Icon icon='game-icons:sprint' width={24} height={24} />}
+                                />
+                                {isUnderDevelopment() && (
+                                    <SideMenuLink
+                                        to={APP_ROUTES_ENUM.SMART_CONTRACTS}
+                                        title='Smart contracts'
+                                        icon={<Icon icon='file-icons:smartos-alt' width={22} height={22} />}
+                                    />
+                                )}
                             </div>
                         </div>
                     </div>

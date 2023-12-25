@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { IRestoreAccRes } from './login.interface'
-import { processError } from '@/functions/processError.helper'
+import { processError } from '@/functions/processMessage'
 
 export const restoreAccount = async (restoreData: { email: string }): Promise<IRestoreAccRes | undefined> => {
     try {

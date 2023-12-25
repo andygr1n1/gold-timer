@@ -1,6 +1,6 @@
 import { gql } from 'graphql-request'
 import { generateClient } from '../../../graphql/client'
-import { processError } from '@/functions/processError.helper'
+import { processError } from '@/functions/processMessage'
 import { IGoalSlide$SnIn } from '../mst/types'
 import { getOwnerId } from '@/functions/getUserId'
 

@@ -4,7 +4,7 @@ import { getOwnerId } from '@/functions/getUserId'
 import { IInsertNewGoal } from '@/modules/goals/interfaces/newGoal.interface'
 import { setGoalDifficulty } from '@/functions/setGoalDifficulty'
 import { set } from 'date-fns'
-import { processError } from '@/functions/processError.helper'
+import { processError } from '@/functions/processMessage'
 import { mutation_upsertGoal } from '../../graphql/mutation_upsertGoal'
 
 export const GoalNew$ = Goal$.named('GoalNew$')

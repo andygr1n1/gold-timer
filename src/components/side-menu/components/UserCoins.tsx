@@ -1,7 +1,6 @@
 import { observer } from 'mobx-react-lite'
 import { useUserStore } from '@/StoreProvider'
 import { RitualPower } from './ritual-power/RitualPower'
-import coinSvg from '@/assets/coin.svg'
 import { Icon } from '@iconify/react'
 
 export const UserCoins: React.FC = observer(() => {

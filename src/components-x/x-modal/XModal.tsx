@@ -12,10 +12,21 @@ export const XModal: React.FC<{
     header?: boolean
     zIndex?: number
     fullHeight?: boolean
-}> = ({ height = '', onCancel, open, children, title = '', header = true, zIndex = 1060, fullHeight = false }) => {
+    onKeyDown?: (e: React.KeyboardEvent<HTMLDivElement> | undefined) => void
+}> = ({
+    height = '',
+    onCancel,
+    open,
+    children,
+    title = '',
+    header = true,
+    zIndex = 1060,
+    fullHeight = false,
+    onKeyDown,
+}) => {
     return (
         <Transition appear show={open} as={Fragment}>
-            <Dialog as='div' style={{ zIndex }} className='font-kzen relative' onClose={onCancel}>
+            <Dialog as='div' style={{ zIndex }} className='font-kzen relative' onClose={onCancel} onKeyDown={onKeyDown}>
                 <Transition.Child
                     as={Fragment}
                     enter='ease-out duration-300 '

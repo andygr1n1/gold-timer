@@ -25,14 +25,14 @@ export const Note: React.FC<{ note: INote$ }> = observer(({ note }) => {
         >
             <div
                 className={styles['note-container']}
-                onClick={() => {
-                    setPopoverState(!popoverState)
-                }}
-                onContextMenu={(e) => {
+                onClick={(e) => {
                     e.stopPropagation()
                     e.preventDefault()
                     openNoteViewMode(note.id)
                     setPopoverState(false)
+                }}
+                onContextMenu={() => {
+                    setPopoverState(!popoverState)
                 }}
                 key={note.id}
             >

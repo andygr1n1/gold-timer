@@ -7,7 +7,8 @@
         "dev": "vite",
         "build": "tsc && vite build",
         "preview": "vite preview",
-        "lint:fix": "eslint ./src --ext .jsx,.js,.ts,.tsx --quiet --fix --ignore-path ./.gitignore"
+        "lint:fix": "eslint ./src --ext .jsx,.js,.ts,.tsx --quiet --fix --ignore-path ./.gitignore",
+        "tsc": "npx tsc && pnpm lint:fix"
     },
     "dependencies": {
         "@headlessui/react": "^1.7.13",
@@ -55,6 +56,7 @@
         "clsx": "^2.0.0",
         "eslint": "^8.20.0",
         "eslint-config-prettier": "^8.5.0",
+        "eslint-plugin-eslint-plugin": "^5.2.1",
         "eslint-plugin-prettier": "^4.2.1",
         "eslint-plugin-react": "^7.30.1",
         "less": "^4.1.3",

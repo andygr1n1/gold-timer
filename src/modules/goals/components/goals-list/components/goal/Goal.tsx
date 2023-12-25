@@ -32,14 +32,14 @@ export const Goal: React.FC<{ goal: IGoal$ }> = observer(({ goal }) => {
                 <GoalWrapper goal={goal}>
                     <div
                         className='text-cText flex h-full w-full flex-auto flex-col'
-                        onClick={() => {
-                            setPopoverState(!popoverState)
-                        }}
-                        onContextMenu={(e) => {
+                        onClick={(e) => {
                             e.preventDefault()
                             e.stopPropagation()
                             openViewMode(goal.id)
                             setPopoverState(false)
+                        }}
+                        onContextMenu={() => {
+                            setPopoverState(!popoverState)
                         }}
                     >
                         <div className='flex h-full flex-col'>

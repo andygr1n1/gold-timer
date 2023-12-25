@@ -5,7 +5,6 @@ import ritualLogoIcon from '@/assets/ritual-logo.svg'
 import expiredLogoIcon from '@/assets/expired-goals-logo.svg'
 import completedLogoIcon from '@/assets/checked.png'
 import { IGoal$ } from '../../../../mst/types'
-import { Icon } from '@iconify/react'
 
 export const GoalDetails: React.FC<{ goal: IGoal$ }> = observer(({ goal }) => {
     return (
@@ -32,7 +31,7 @@ export const GoalDetails: React.FC<{ goal: IGoal$ }> = observer(({ goal }) => {
 const ImageByGoalType: React.FC<{ goal: IGoal$ }> = observer(({ goal }) => {
     const { isExpired, isRitualGoal: isRitualGoal, isCompleted } = goal
     let goalIcon = todayLogoIcon
-    let className = 'w-[60px] h-[60px]'
+    const className = 'w-[60px] h-[60px]'
     if (isExpired) {
         goalIcon = expiredLogoIcon
     }

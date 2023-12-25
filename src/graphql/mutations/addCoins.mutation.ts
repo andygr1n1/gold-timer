@@ -1,7 +1,7 @@
 import { rootStore$ } from '@/StoreProvider'
 import { gql } from 'graphql-request'
 import { generateClient } from '../client'
-import { processError } from '@/functions/processError.helper'
+import { processError } from '@/functions/processMessage'
 
 export const addCoinsMutation = async (coins: number): Promise<number | undefined> => {
     const client = generateClient()

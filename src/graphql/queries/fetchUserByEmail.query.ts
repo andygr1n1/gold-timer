@@ -1,6 +1,6 @@
 import { gql } from 'graphql-request'
 import { generateClient } from '../client'
-import { processError } from '@/functions/processError.helper'
+import { processError } from '@/functions/processMessage'
 
 export interface IFetchUserByEmailResponse {
     id: string

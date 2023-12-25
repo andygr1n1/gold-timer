@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 import styles from './XInput.module.scss'
 import { ReactNode, useState } from 'react'
-import { IMaskMixin } from 'react-imask'
+// import { IMaskMixin } from 'react-imask'
 // TODO to find a solution with "react-imask": "^7.1.3",
 //   "tailwind-merge": "^1.14.0",
 // "tailwindcss-animate": "^1.0.7",
@@ -24,7 +24,7 @@ export const XInput: React.FC<XInputProps> = ({
     startIcon,
     endIcon,
     refLink,
-    mask,
+    // mask,
     readOnly,
     variant = 'input',
     width = '',

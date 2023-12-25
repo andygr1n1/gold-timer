@@ -1,6 +1,6 @@
 import { gql } from 'graphql-request'
 import { generateClient } from '../client'
-import { processError } from '@/functions/processError.helper'
+import { processError } from '@/functions/processMessage'
 
 export const updatePasswordByEmail = async (email: string, password: string): Promise<string | undefined> => {
     const client = generateClient()

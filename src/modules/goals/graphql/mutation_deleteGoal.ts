@@ -1,6 +1,6 @@
 import { gql } from 'graphql-request'
 import { generateClient } from '../../../graphql/client'
-import { processError } from '@/functions/processError.helper'
+import { processError } from '@/functions/processMessage'
 
 export const mutation_deleteGoal = async (goal_id: string, toggleDelete: boolean) => {
     const client = generateClient()

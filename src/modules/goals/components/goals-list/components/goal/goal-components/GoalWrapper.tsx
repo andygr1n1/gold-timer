@@ -1,4 +1,3 @@
-import { useRootStore } from '@/StoreProvider'
 import { IGoal$ } from '@/modules/goals/mst/types'
 import { motion, MotionConfig } from 'framer-motion'
 import { ReactNode } from 'react'
@@ -8,9 +7,6 @@ import { observer } from 'mobx-react-lite'
 
 export const GoalWrapper: React.FC<{ children: ReactNode; goal: IGoal$ }> = observer(({ children, goal }) => {
     const { isRitualGoal: isRitualGoal, isExpired, isCompleted } = goal
-    const {
-        goals$: { openViewMode },
-    } = useRootStore()
 
     let styleByGoalType = 'border-l-blue-700 bg-white'
 
