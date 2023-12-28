@@ -14,7 +14,7 @@ export const SmartContractsIndex: React.FC = observer(() => {
     const itCheck = ['Kzen', 'KzenTrading']
     const foodCheck = ['Free from Tea', 'Sugar Free', 'No meet']
     const onChange = (checkedValues: CheckboxValueType[]) => {
-        console.log('checked = ', checkedValues)
+        console.info('checked = ', checkedValues)
     }
     return (
         <ModuleWrapper

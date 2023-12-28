@@ -1,7 +1,7 @@
 import { GOAL_STATUS_ENUM } from '@/helpers/enums'
 import { add, isPast, sub } from 'date-fns'
 import { filter, orderBy, differenceWith, cloneDeep, compact } from 'lodash-es'
-import { destroy, detach, toGenerator, types, flow, cast, castToSnapshot } from 'mobx-state-tree'
+import { destroy, detach, toGenerator, types, flow, cast } from 'mobx-state-tree'
 import { Goal$ } from './Goal.store'
 import { GoalsFilter$ } from './GoalsFilter.store'
 import { processError } from '@/functions/processMessage'
@@ -18,7 +18,6 @@ export const Goals$ = types
         goals_filter$: types.optional(GoalsFilter$, {
             goals_estimation_filter: add(new Date(Date.now()), { days: 60 }),
         }),
-        selected_widget_goals: types.array(types.safeReference(Goal$, { acceptsUndefined: false })),
     })
     .views((self) => ({
         get activeExpiredGoals(): IGoal$[] {
@@ -89,9 +88,6 @@ export const Goals$ = types
         },
     }))
     .actions((self) => ({
-        applySelectedWidgetGoals(goals: IGoal$[]): void {
-            self.selected_widget_goals = castToSnapshot(goals)
-        },
         openGoalCreateMode(options?: { parentGoalId?: string }): void {
             self.new_goal = cast({
                 parent_goal_id: options?.parentGoalId ? options?.parentGoalId : null,
@@ -131,45 +127,6 @@ export const Goals$ = types
             }
         },
     }))
-    //
-    //
-    //
-    // dashboard widget goals
-    // dashboard widget goals
-    // dashboard widget goals
-    .views((self) => ({
-        get activeDashboardGoals(): IGoal$[] {
-            const allActive = self.goals.filter(
-                (goal) =>
-                    !!goal.created_at &&
-                    !!goal.finished_at &&
-                    !goal.deleted_at &&
-                    !goal.isRitualGoal &&
-                    !goal.isExpired &&
-                    !goal.isCompleted,
-            )
-            return orderBy(allActive, ['finished_at'], ['asc'])
-        },
-        get expiredDashboardGoals(): IGoal$[] {
-            const expiredGoals = filter(
-                self.goals,
-                (goal) => goal.status === GOAL_STATUS_ENUM.ACTIVE && !goal.isRitualGoal && !goal.deleted_at,
-            ).filter((goal) => goal.finished_at && isPast(goal.finished_at))
-            return orderBy(expiredGoals, ['finished_at'], ['asc'])
-        },
-        get ritualDashboardGoals(): IGoal$[] {
-            const allRituals = self.goals.filter(
-                (goal) =>
-                    !!goal.created_at && !!goal.finished_at && !goal.isExpired && !goal.deleted_at && goal.isRitualGoal,
-                //    && !goal.isFromFuture,
-            )
-            return orderBy(allRituals, ['finished_at'], ['asc'])
-        },
-        get favoriteDashboardGoals(): IGoal$[] {
-            const allFavorite = self.goals.filter((goal) => !!goal.created_at && !goal.deleted_at && goal.isFavorite)
-            return orderBy(allFavorite, ['finished_at'], ['asc'])
-        },
-    }))
     .actions((self) => ({
         createNewGoal: flow(function* _createNewGoal() {
             if (!self.new_goal) return
@@ -197,17 +154,5 @@ export const Goals$ = types
             } catch (e) {
                 processError(e, 'updateGoal error')
             }
-        }),
-        fetchAndApplyCompletedGoals: flow(function* _fetchAndApplyCompletedGoals() {
-            console.log('fetch And apply completed goals')
-            // if (!self.edit_goal) return
-            // const { updateGoal, redirected, id } = self.edit_goal
-            // try {
-            //     yield updateGoal()
-            //     redirected && self.openViewMode(id)
-            //     self.edit_goal = undefined
-            // } catch (e) {
-            //     processError(e, 'updateGoal error')
-            // }
         }),
     }))

@@ -3,12 +3,15 @@ import { observer } from 'mobx-react-lite'
 
 import styles from '../TopGoalsWidgets.module.scss'
 import { TopGoal } from '../TopGoal'
-import { Icon } from '@iconify/react'
 import { StyledButton } from '@/components/buttons/StyledButton'
+import { GOAL_STATUS_ENUM_FILTERS } from '@/helpers/enums'
+import { FavoriteIcon } from '../components/Icons'
 
 export const TopFavoriteGoalsWidget: React.FC = observer(() => {
     const {
-        goals$: { favoriteDashboardGoals, applySelectedWidgetGoals },
+        goals$: {
+            goals_filter$: { onChangeField, favoriteDashboardGoals },
+        },
     } = useRootStore()
 
     if (!favoriteDashboardGoals.length) return null
@@ -19,18 +22,11 @@ export const TopFavoriteGoalsWidget: React.FC = observer(() => {
                 <div className='absolute left-[-39px] top-[-44px]  cursor-pointer'>
                     <StyledButton
                         onClick={() => {
-                            applySelectedWidgetGoals(favoriteDashboardGoals)
+                            onChangeField('selected_widget_goals_context', GOAL_STATUS_ENUM_FILTERS.FAVORITE)
                         }}
                         variant='text'
                         className='!h-24 !w-24 !rounded-full'
-                        startIcon={
-                            <Icon
-                                icon='line-md:heart-twotone'
-                                width={70}
-                                height={70}
-                                className='min-h-[70px] min-w-[70px] text-rose-600'
-                            />
-                        }
+                        startIcon={<FavoriteIcon />}
                     />
                 </div>
                 <div className={styles['dashboard-widget-goals-container']}>

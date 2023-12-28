@@ -14,12 +14,9 @@ import clsx from 'clsx'
 import { useWindowMatchMedia } from '@/hooks/useMatchMedia.hook'
 import { UserCoins } from '@/components/side-menu/components/UserCoins'
 import { SelectedWidgetGoalsView } from '../goals/components/top-goals-widget/selected-widget-goals-view/SelectedWidgetGoalsView'
-import { useGoalsStore } from '@/StoreProvider'
 
 export const DashboardIndex: React.FC = observer(() => {
     const { isDesktop } = useWindowMatchMedia(['isDesktop'])
-
-    const { selected_widget_goals } = useGoalsStore()
 
     return (
         <ModuleWrapper
@@ -45,7 +42,8 @@ export const DashboardIndex: React.FC = observer(() => {
                 <TopFavoriteGoalsWidget />
                 {/* stabilized */}
                 <div className='flex max-h-[1px] flex-[100%] md:flex-[45%]' />
-                {!!selected_widget_goals.length && <SelectedWidgetGoalsView />}
+                {/* DIALOG */}
+                <SelectedWidgetGoalsView />
             </div>
         </ModuleWrapper>
     )

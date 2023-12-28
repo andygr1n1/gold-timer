@@ -2,11 +2,14 @@ import { useRootStore } from '@/StoreProvider'
 import { observer } from 'mobx-react-lite'
 import { TopGoal } from '../TopGoal'
 import styles from '../TopGoalsWidgets.module.scss'
-import { Icon } from '@iconify/react'
 import { StyledButton } from '@/components/buttons/StyledButton'
+import { GOAL_STATUS_ENUM_FILTERS } from '@/helpers/enums'
+import { ExpiredIcon } from '../components/Icons'
 export const TopExpiredGoalsWidget: React.FC = observer(() => {
     const {
-        goals$: { expiredDashboardGoals, applySelectedWidgetGoals },
+        goals$: {
+            goals_filter$: { onChangeField, expiredDashboardGoals },
+        },
     } = useRootStore()
 
     return expiredDashboardGoals.length ? (
@@ -15,18 +18,11 @@ export const TopExpiredGoalsWidget: React.FC = observer(() => {
                 <div className='absolute left-[-40px] top-[-42px]  cursor-pointer '>
                     <StyledButton
                         onClick={() => {
-                            applySelectedWidgetGoals(expiredDashboardGoals)
+                            onChangeField('selected_widget_goals_context', GOAL_STATUS_ENUM_FILTERS.EXPIRED)
                         }}
                         variant='text'
                         className='!h-24 !w-24 !rounded-full'
-                        startIcon={
-                            <Icon
-                                icon='pajamas:expire'
-                                width={55}
-                                height={55}
-                                className='min-h-[55px] min-w-[55px] text-amber-600'
-                            />
-                        }
+                        startIcon={<ExpiredIcon />}
                     />
                 </div>
 

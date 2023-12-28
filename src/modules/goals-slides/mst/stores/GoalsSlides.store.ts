@@ -44,7 +44,6 @@ export const GoalsSlides$ = types
                 )
                 if (!newGoalSlide) return
                 const newGoalSlideRes = yield* toGenerator(mutation_insertGoalSlide(newGoalSlide, self.img_src_title))
-                console.log('newGoalSlideRes', newGoalSlideRes)
                 newGoalSlideRes && self.goals_slides.push(newGoalSlideRes)
                 rootStore$.onChangeField('loading', false)
             } catch (e) {

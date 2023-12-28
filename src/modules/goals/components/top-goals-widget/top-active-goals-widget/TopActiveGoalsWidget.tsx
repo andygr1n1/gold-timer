@@ -3,13 +3,16 @@ import { observer } from 'mobx-react-lite'
 
 import styles from '../TopGoalsWidgets.module.scss'
 import { TopGoal } from '../TopGoal'
-import { Icon } from '@iconify/react'
 import { StyledButton } from '@/components/buttons/StyledButton'
 import clsx from 'clsx'
+import { GOAL_STATUS_ENUM_FILTERS } from '@/helpers/enums'
+import { ActiveIcon } from '../components/Icons'
 
 export const TopActiveGoalsWidget: React.FC = observer(() => {
     const {
-        goals$: { activeDashboardGoals, applySelectedWidgetGoals },
+        goals$: {
+            goals_filter$: { onChangeField, activeDashboardGoals },
+        },
     } = useRootStore()
 
     return (
@@ -18,18 +21,11 @@ export const TopActiveGoalsWidget: React.FC = observer(() => {
                 <div className='absolute left-[-40px] top-[-43px]  cursor-pointer'>
                     <StyledButton
                         onClick={() => {
-                            applySelectedWidgetGoals(activeDashboardGoals)
+                            onChangeField('selected_widget_goals_context', GOAL_STATUS_ENUM_FILTERS.ACTIVE)
                         }}
                         variant='text'
                         className='!h-24 !w-24 !rounded-full'
-                        startIcon={
-                            <Icon
-                                icon='line-md:my-location'
-                                width={76}
-                                height={76}
-                                className='min-h-[66px] min-w-[66px] text-blue-600'
-                            />
-                        }
+                        startIcon={<ActiveIcon />}
                     />
                 </div>
                 <div className={styles['dashboard-widget-goals-container']}>

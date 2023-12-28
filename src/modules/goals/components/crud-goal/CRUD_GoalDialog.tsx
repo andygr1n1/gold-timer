@@ -7,6 +7,7 @@ import { EditGoalDialogTitle } from './components/edit-goal/EditGoalDialogTitle'
 import { EditGoalDialogBody } from './components/edit-goal/EditGoalDialogBody'
 import { ViewGoalDialogTitle } from './components/view-goal/ViewGoalDialogTitle'
 import { ViewGoalDialogBody } from './components/view-goal/ViewGoalDialogBody'
+import { useEffect } from 'react'
 
 export const CRUD_GoalDialog: React.FC = observer(function CRUD_GoalDialog() {
     const { onChangeField, selected_goal, new_goal, edit_goal } = useGoalsStore()
@@ -23,16 +24,26 @@ export const CRUD_GoalDialog: React.FC = observer(function CRUD_GoalDialog() {
         }, 20)
     }
 
+    useEffect(() => {
+        const action = (e: KeyboardEvent) => {
+            if (e?.key === 'Escape') {
+                onCancel()
+            }
+        }
+
+        document.body.addEventListener('keydown', action)
+
+        if (!isOpen) document.body.removeEventListener('keydown', action)
+
+        return () => {
+            document.body.removeEventListener('keydown', action)
+        }
+    }, [isOpen])
+
     return (
         <XModal
             open={!!isOpen}
             onCancel={onCancel}
-            onKeyDown={(e) => {
-                console.log('x', e?.key)
-                if (e?.key === 'Escape') {
-                    onCancel()
-                }
-            }}
             title={
                 <div tabIndex={0} className='flex items-center justify-center gap-5'>
                     {new_goal && <NewGoalDialogTitle />}

@@ -31,6 +31,7 @@ export const GoalsSlidesCarousel: React.FC = observer(() => {
         <div className='bg-global-bg-plasma group relative flex w-full items-center justify-center rounded-lg p-4'>
             {!isMobile && (
                 <img
+                    loading='lazy'
                     className='absolute hidden w-[450px] md:flex md:w-[450px]'
                     src='https://firebunny-storage.b-cdn.net/kzen/utility/lotus-bg.png'
                     // className="absolute flex h-full w-full bg-[url('https://firebunny-storage.b-cdn.net/kzen/utility/lotus-bg.png')] bg-cover "
@@ -68,6 +69,7 @@ export const GoalsSlidesCarousel: React.FC = observer(() => {
                                 src={`${import.meta.env.VITE_FIRE_BUNNY_STORAGE}/goals-slides/${gSlide.img_path}`}
                                 title={gSlide.title}
                                 className='rounded-lg'
+                                loading='lazy'
                             />
                         </div>
                     ))}

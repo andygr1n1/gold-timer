@@ -8,7 +8,7 @@ export const UserCoins: React.FC = observer(() => {
     return (
         <div className=' flex items-start justify-start gap-2 '>
             <div className='pointer-events-none flex items-center justify-center gap-1  '>
-                <Icon icon='mingcute:coin-3-line' className='text-indigo-500' width={24} height={24} />
+                <Icon icon='material-symbols:award-star-outline' className='text-rose-500' width={24} height={24} />
                 <span className='font-kzen h-40px text-cText opacity-70 '>{coins}</span>
             </div>
             <RitualPower />

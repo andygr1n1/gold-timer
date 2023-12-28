@@ -91,7 +91,6 @@ export const GoalEdit$ = types
                 const updatedGoalResponse = yield* toGenerator(mutation_upsertGoal(goalData, ritualData))
                 const updatedGoalRitualResponse = updatedGoalResponse?.insert_goals_rituals?.returning?.[0]
                 if (!self.selectedGoal) return
-                console.log('updatedGoalResponse', updatedGoalResponse)
                 self.selectedGoal.updateSelf(updatedGoalResponse?.insert_goals_one)
                 if (updatedGoalRitualResponse) {
                     self.onChangeField('goal_ritual', cast(updatedGoalRitualResponse))
