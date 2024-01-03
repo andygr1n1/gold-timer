@@ -10,7 +10,7 @@ export const GoalSlide: React.FC<{ goalSlide: IGoalSlide$ }> = observer(({ goalS
     const { active } = goalSlide
 
     return (
-        <XDropdown dropdownRender={() => <DropdownRender goalSlide={goalSlide} />}>
+        <XDropdown overlayStyle={{ zIndex: 2000 }} dropdownRender={() => <DropdownRender goalSlide={goalSlide} />}>
             <img
                 title={goalSlide.title}
                 className={clsx('h-[100px] w-[100px] cursor-pointer rounded-md', !active && 'opacity-30')}
