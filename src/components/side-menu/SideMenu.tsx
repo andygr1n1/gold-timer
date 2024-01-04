@@ -52,7 +52,7 @@ export const SideMenu: React.FC = observer(() => {
             >
                 <div className='flex w-[230px] min-w-[230px] flex-col overflow-auto py-5'>
                     <div className='flex flex-auto flex-col gap-5 overflow-auto  '>
-                        <div className='pointer-events-none relative flex flex-col items-center justify-center gap-5'>
+                        <div className='relative flex flex-col items-center justify-center gap-5'>
                             {isDesktop && <UserName />}
                             <UserAvatarSideMenu />
                             {/* {isDesktop && <UserCoins />} */}
