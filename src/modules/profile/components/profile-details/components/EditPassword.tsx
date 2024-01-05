@@ -62,24 +62,26 @@ export const EditPassword: React.FC = observer(() => {
                 />
             </div>
 
-            {!!new_password.length && (
-                <div>
-                    <FormLabel title={'Repeat new password'} />
-                    <XInput
-                        className='animate-opacity-3'
-                        value={repeat_password}
-                        onChange={onChangeRepeatPassword}
-                        error={error}
-                        errorMessage='Password must be the same'
-                        onBlur={() => {
-                            if (new_password.length || repeat_password.length) {
-                                new_password !== repeat_password && setError(true)
-                            }
-                        }}
-                        placeholder='Repeat new password'
-                    />
-                </div>
-            )}
+            <div className='h-[70px]'>
+                {!!new_password.length && (
+                    <div>
+                        <FormLabel title={'Repeat new password'} />
+                        <XInput
+                            className='animate-opacity-3'
+                            value={repeat_password}
+                            onChange={onChangeRepeatPassword}
+                            error={error}
+                            errorMessage='Password must be the same'
+                            onBlur={() => {
+                                if (new_password.length || repeat_password.length) {
+                                    new_password !== repeat_password && setError(true)
+                                }
+                            }}
+                            placeholder='Repeat new password'
+                        />
+                    </div>
+                )}
+            </div>
         </div>
     )
 })
