@@ -18,16 +18,8 @@ export const GoalsIndex: React.FC = observer(() => {
     useListenGoalsFilterStore()
 
     return (
-        <ModuleWrapper
-            context={APP_ROUTES_ENUM.GOALS}
-            topBarNodes={
-                <div className='flex w-full items-center justify-center gap-4 xl:px-20'>
-                    <GoalsModuleDropdown />
-                    <SearchGoalsInput />
-                </div>
-            }
-        >
-            <div className='animate-opacity-5 flex h-full w-full flex-col xl:w-[calc(100%-160px)] xl:px-20'>
+        <ModuleWrapper context={APP_ROUTES_ENUM.GOALS}>
+            <div className='mb-5 flex flex-wrap justify-start gap-8'>
                 {!!!goals.length && !show_deleted ? (
                     <img
                         className='absolute-center pointer-events-none h-[200px] w-[200px] opacity-10'
@@ -36,6 +28,10 @@ export const GoalsIndex: React.FC = observer(() => {
                 ) : (
                     <img className='pointer-events-none m-auto my-10 h-[50px] w-[50px] opacity-100' src={goalsImage} />
                 )}
+                <div className='flex w-full items-center justify-center gap-4 xl:px-20'>
+                    <GoalsModuleDropdown />
+                    <SearchGoalsInput />
+                </div>
                 <GoalsList />
             </div>
             <CRUD_GoalDialog />

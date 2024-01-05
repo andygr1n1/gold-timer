@@ -8,8 +8,6 @@ import { SearchNotesInput } from './components/filters/SearchNotesInput'
 import { CRUD_NoteDialog } from './components/crud-note/CRUD_NoteDialog'
 import notesImage from '@/assets/notes-1.png'
 import { GoalsSlidesCarouselWidget } from '../goals-slides/GoalsSlidesCarouselWidget'
-import clsx from 'clsx'
-import { UserCoins } from '@/components/side-menu/components/UserCoins'
 import { ArtifactsCounter } from '../dashboard/components/artifacts-counter/ArtifactsCounter'
 import { CRUD_GoalDialog } from '../goals/components/crud-goal/CRUD_GoalDialog'
 import { Icon } from '@iconify/react'
@@ -19,7 +17,7 @@ import { NotesFiltersTextHelper } from './components/NotesFiltersTextHelper'
 import { NotesTagsSelectButton } from './components/filters/NotesTagsSelectButton'
 import { ActiveTagsList } from './components/ActiveTagsList'
 export const NotesIndex: React.FC = observer(function NotesIndex() {
-    const { isDesktop, isLargeDesktop } = useWindowMatchMedia(['isDesktop', 'isLargeDesktop'])
+    const { isLargeDesktop } = useWindowMatchMedia(['isDesktop', 'isLargeDesktop'])
     const {
         notes_filter$: { notes },
     } = useNotesStore()
@@ -28,15 +26,12 @@ export const NotesIndex: React.FC = observer(function NotesIndex() {
         <ModuleWrapper
             context={APP_ROUTES_ENUM.NOTES}
             topBarNodes={
-                <div className='relative flex w-full font-bold'>
-                    <div className='absolute left-0  top-1/2  -translate-y-1/2'> {isDesktop && <UserCoins />}</div>
-                    <div className={clsx('flex w-full justify-center', !isDesktop && 'pl-12')}>
-                        <ArtifactsCounter />
-                        {/* DIALOG */}
-                        <CRUD_NoteDialog />
-                        <CRUD_GoalDialog />
-                    </div>
-                </div>
+                <>
+                    <ArtifactsCounter />
+                    {/* DIALOG */}
+                    <CRUD_NoteDialog />
+                    <CRUD_GoalDialog />
+                </>
             }
         >
             <div className='mb-5 flex flex-wrap justify-start gap-8'>

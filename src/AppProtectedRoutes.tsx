@@ -5,7 +5,7 @@ import { ProfileIndex } from './modules/profile/ProfileIndex'
 import { NotesIndex } from './modules/notes/NotesIndex'
 import { SprintsIndex } from './modules/sprints/SprintsIndex'
 import { DashboardIndex } from './modules/dashboard/DashboardIndex'
-import { CreateEditSprintDialog } from './modules/sprints/components/create-edit-sprint/CreateEditSprintDialog'
+
 import { SideMenuSettings } from './components/side-menu-settings/SideMenuSettings'
 import { FocusGoalOfWeek } from './components/components-modal-windows/focus-goal-of-week/FocusGoalOfWeek'
 import { ProfileImageCropDialog } from './modules/profile/components/profile-avatar/ProfileImageCropDialog'
@@ -34,7 +34,7 @@ export const AppProtectedRoutes: React.FC = () => {
             {/* D I A L O G */}
             {/*  */}
             <FocusGoalOfWeek />
-            <CreateEditSprintDialog />
+
             <ProfileImageCropDialog />
             <GlobalLoadingDialog />
             {/*  */}

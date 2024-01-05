@@ -50,14 +50,14 @@ export const SideMenu: React.FC = observer(() => {
                lg:static  lg:m-0 lg:mr-0 lg:flex
             `}
             >
-                <div className='flex w-[230px] min-w-[230px] flex-col overflow-auto py-5'>
+                <div className='flex w-[230px] min-w-[230px] flex-col overflow-auto py-5 md:py-10 '>
                     <div className='flex flex-auto flex-col gap-5 overflow-auto  '>
                         <div className='relative flex flex-col items-center justify-center gap-5'>
-                            {isDesktop && <UserName />}
+                            <UserName />
                             <UserAvatarSideMenu />
                             {/* {isDesktop && <UserCoins />} */}
                         </div>
-                        <div className='w-full'>
+                        <div className='w-[calc(100%-32px)] pl-8 xl:pt-12'>
                             <div className='mx-auto flex w-[180px] flex-auto flex-col gap-5 overflow-auto '>
                                 <SideMenuLink
                                     to={APP_ROUTES_ENUM.PROFILE}

@@ -37,6 +37,7 @@ export const SideMenuLink: React.FC<{
                 <>
                     <StyledButton
                         variant='text'
+                        size='small'
                         className='!p-0 font-bold !text-inherit duration-300 hover:!text-blue-600'
                         disabled={disabled}
                         startIcon={icon}

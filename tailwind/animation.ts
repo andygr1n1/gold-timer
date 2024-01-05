@@ -10,8 +10,23 @@ export default {
         // sidemenu
         'slide-in': 'slide-in 0.3s linear',
         'slide-out': 'slide-out 0.3s linear',
+        'ping-bg': 'ping-bg 6s ease-in-out infinite ',
     },
     keyframes: {
+        'ping-bg': {
+            '0%': {
+                opacity: '0.3',
+                transform: 'scale(1)',
+            },
+            '50%': {
+                opacity: '0.5',
+                transform: 'scale(1.1)',
+            },
+            '100%': {
+                opacity: '0.3',
+                transform: 'scale(1)',
+            },
+        },
         wiggle: {
             '0%, 100%': { transform: 'rotate(-3deg)' },
             '50%': { transform: 'rotate(3deg)' },

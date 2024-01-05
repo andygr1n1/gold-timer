@@ -14,7 +14,7 @@ export const ArtifactsCounter: React.FC = observer(() => {
     } = useRootStore()
 
     return (
-        <div className='flex w-fit  items-center justify-center gap-5 '>
+        <div className='flex w-fit items-center justify-center gap-5 '>
             <GoalsCounterDropdown
                 button={
                     <ArtifactsCounterItem

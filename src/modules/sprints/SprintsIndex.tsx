@@ -12,6 +12,8 @@ import sprintsImage from '@/assets/sprints-plan-1.png'
 import { useEffect } from 'react'
 import { observer } from 'mobx-react-lite'
 import { StyledButton } from '@/components/buttons/StyledButton'
+import { Icon } from '@iconify/react'
+import { CreateEditSprintDialog } from './components/create-edit-sprint/CreateEditSprintDialog'
 
 export const SprintsIndex: React.FC = observer(() => {
     const { isMobile } = useWindowMatchMedia(['isMobile'])
@@ -25,23 +27,36 @@ export const SprintsIndex: React.FC = observer(() => {
         <ModuleWrapper
             context={APP_ROUTES_ENUM.SPRINTS}
             topBarNodes={
-                <div className='flex w-full items-center justify-center gap-4  xl:px-20'>
-                    <SearchSprintsInput />
-                    <SprintsSettingsIcon />
-                </div>
+                <>
+                    <StyledButton
+                        variant='text'
+                        size='small'
+                        onClick={() => {
+                            activateNewSprintCreator()
+                        }}
+                        className='opacity-70 hover:opacity-100'
+                        startIcon={<Icon icon='ic:round-fiber-new' width={24} height={24} />}
+                    >
+                        New sprint
+                    </StyledButton>
+                    <CreateEditSprintDialog />
+                </>
             }
         >
-            <div className='animate-opacity-5 flex h-full w-full flex-col gap-5 xl:w-[calc(100%-160px)] xl:px-20'>
-                {!isMobile && (
+            <div className='mb-5 flex flex-wrap justify-start gap-8'>
+                {!isMobile && sprints.length && (
                     <div className='mt-5 flex justify-between'>
                         <SprintsFilters />
-                        <StyledButton variant='outlined' onClick={activateNewSprintCreator}>
-                            + Add new sprint
-                        </StyledButton>
+                        <div className='w-full max-w-lg'>
+                            <SearchSprintsInput />
+                            <SprintsSettingsIcon />
+                        </div>
                     </div>
                 )}
                 {sprints.length ? (
-                    <SprintsList />
+                    <>
+                        <SprintsList />
+                    </>
                 ) : (
                     <img
                         className='absolute-center pointer-events-none h-[250px] w-[250px] opacity-10'
