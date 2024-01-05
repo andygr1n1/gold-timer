@@ -1,7 +1,7 @@
 import { Icon } from '@iconify/react'
 import { observer } from 'mobx-react-lite'
 import { useGoalsSlidesStore } from '@/StoreProvider'
-import { onSelectUploadFile } from '@/functions/onSelectUploadFile'
+import { useSelectUploadFile } from '@/functions/useSelectUploadFile'
 import { UploadGoalSlideCropDialog } from './UploadGoalSlideCropDialog'
 
 export const UploadGoalSlide = observer(() => {
@@ -30,7 +30,7 @@ export const UploadGoalSlide = observer(() => {
                 id='upload-goal-slide-file_input'
                 type='file'
                 onChange={(e) => {
-                    onSelectUploadFile(e, (src: string) => {
+                    useSelectUploadFile(e, (src: string) => {
                         onChangeField('img_src', src)
                     })
                 }}

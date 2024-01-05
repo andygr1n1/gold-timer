@@ -10,9 +10,9 @@ const createImage = (url: string): Promise<HTMLImageElement> =>
         image.src = url
     })
 
-function getRadianAngle(degreeValue: number) {
-    return (degreeValue * Math.PI) / 180
-}
+// function getRadianAngle(degreeValue: number) {
+//     return (degreeValue * Math.PI) / 180
+// }
 
 /**
  * This function was adapted from the one in the ReadMe of https://github.com/DominicTobias/react-image-crop
@@ -21,23 +21,16 @@ function getRadianAngle(degreeValue: number) {
  * @param {Object} pixelCrop - pixelCrop Object provided by react-easy-crop
  * @param {number} rotation - optional rotation parameter
  */
-export default async function getCroppedImg(
-    imageSrc: string,
-    pixelCrop: Area,
-    rotation = 0,
-): Promise<string | undefined> {
+export default async function getCroppedImg(imageSrc: string, pixelCrop: Area): Promise<string | undefined> {
     try {
-        const image = await createImage(imageSrc)
+        const image: HTMLImageElement = await createImage(imageSrc)
         const canvas = document.createElement('canvas')
         const ctx = canvas.getContext('2d')
 
         if (!ctx) throw new Error('getCroppedImg error: ctx is null')
 
-        // const maxSize = Math.max(image.width, image.height)
-        // const safeArea = 2 * ((maxSize / 2) * Math.sqrt(2))
-
-        image.width = image.width / 2
-        image.height = image.height / 2
+        // image.width = image.width / 2
+        // image.height = image.height /2
 
         const safeArea = Math.max(image.width, image.height) * 2
 
@@ -48,11 +41,10 @@ export default async function getCroppedImg(
 
         // translate canvas context to a central location on image to allow rotating around the center.
         ctx.translate(safeArea / 2, safeArea / 2)
-        ctx.rotate(getRadianAngle(rotation))
         ctx.translate(-safeArea / 2, -safeArea / 2)
 
         // draw rotated image and store data.
-        ctx.drawImage(image, safeArea / 2 - image.width * 0.5, safeArea / 2 - image.height * 0.5)
+        ctx.drawImage(image, safeArea / 2 - image.width, safeArea / 2 - image.height)
         const data = ctx.getImageData(0, 0, safeArea, safeArea)
 
         // set canvas width to final desired crop size - this will clear existing context
@@ -62,19 +54,11 @@ export default async function getCroppedImg(
         // paste generated rotate image with correct offsets for x,y crop values.
         ctx.putImageData(
             data,
-            0 - safeArea / 2 + image.width * 0.5 - pixelCrop.x,
-            0 - safeArea / 2 + image.height * 0.5 - pixelCrop.y,
+            0 - safeArea / 2 + image.width - pixelCrop.x,
+            0 - safeArea / 2 + image.height - pixelCrop.y,
         )
 
-        // As Base64 string
-        return canvas.toDataURL('image/jpeg')
-
-        // As a blob
-        // return new Promise((resolve) => {
-        //     canvas.toBlob((file) => {
-        //         file && resolve(URL.createObjectURL(file))
-        //     }, 'image/jpeg')
-        // })
+        return canvas.toDataURL('image/jpeg', 'low')
     } catch (e) {
         processError('getCroppedImg error: ctx is null')
     }

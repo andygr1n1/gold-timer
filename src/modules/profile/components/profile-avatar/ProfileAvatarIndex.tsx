@@ -1,7 +1,7 @@
 import { Icon } from '@iconify/react'
 import { observer } from 'mobx-react-lite'
 import { useUserStore } from '@/StoreProvider'
-import { onSelectUploadFile } from '@/functions/onSelectUploadFile'
+import { useSelectUploadFile } from '@/functions/useSelectUploadFile'
 import { Avatar } from 'antd'
 
 export const ProfileAvatarIndex = observer(() => {
@@ -62,7 +62,7 @@ export const ProfileAvatarIndex = observer(() => {
                 id='file_input'
                 type='file'
                 onChange={(e) =>
-                    onSelectUploadFile(e, (src: string) => {
+                    useSelectUploadFile(e, (src: string) => {
                         onChangeField('img_src', src)
                     })
                 }
