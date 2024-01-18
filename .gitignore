@@ -1,3 +1,5 @@
+src/graphql/generated
+
 # Logs
 logs
 *.log

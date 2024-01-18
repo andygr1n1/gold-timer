@@ -23,7 +23,10 @@ export const query_fetchNotes = async (): Promise<INote$SnapshotIn[]> => {
     `
 
     return await fetchData<INote$SnapshotIn[], INote$SnapshotIn[]>(
-        () => client.request(query, { owner_id }).then((res) => res.notes),
+        () =>
+            client.request(query, { owner_id }).then((res) => {
+                return res.notes
+            }),
         (e) => {
             processError(`query_fetchNotes: ${e}`)
             return []

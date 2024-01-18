@@ -1,10 +1,5 @@
 {
-    "compilerOptions": {
-        "composite": true,
-        "module": "ESNext",
-        "moduleResolution": "Node",
-        "allowSyntheticDefaultImports": true
-    },
+    "compilerOptions": { "composite": true },
     "include": [
         "vite.config.ts",
         "vite.outputPluginStats.plugin.ts",
