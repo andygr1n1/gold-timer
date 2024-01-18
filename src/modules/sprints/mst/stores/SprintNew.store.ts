@@ -9,7 +9,7 @@ import { compact, last } from 'lodash-es'
 import { mutation_insertNewSprint } from '@/modules/sprints/graphql/mutation_insertNewSprint'
 import { mutation_updateSprint } from '@/modules/sprints/graphql/mutation_updateSprint'
 import { deleteImageFromServer, uploadNewImageToServer } from '@/services/image.service'
-import { SERVER_ROUTES } from '@/helpers/enums'
+import { SERVER_ROUTES } from '@/lib/enums'
 import { setZeroTime } from '../../../../functions/date.helpers'
 
 export const SprintNew$ = types

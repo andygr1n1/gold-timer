@@ -1,7 +1,5 @@
 import { query_fetchNotes } from '@/modules/notes/graphql/query_fetchNotes'
-import { getOwnerId } from '@/functions/getUserId'
 import { applySnapshot, cast, destroy, detach, flow, toGenerator, types } from 'mobx-state-tree'
-import { INote$SnapshotIn } from '../types'
 import { Note$ } from './Note.store'
 import { processError } from '@/functions/processMessage'
 import { NotesFilter$ } from './NotesFilter.store'
@@ -29,10 +27,7 @@ export const Notes$ = types
         onChangeField<Key extends keyof typeof self>(key: Key, value: (typeof self)[Key]) {
             self[key] = value
         },
-        fetchNotes: flow(function* _fetchNotes() {
-            const res: INote$SnapshotIn[] = yield query_fetchNotes(getOwnerId())
-            applySnapshot(self.notes, res)
-        }),
+        fetchNotes: async () => applySnapshot(self.notes, await query_fetchNotes()),
         openNoteCreateMode(): void {
             self.new_note = cast({})
             self.selected_note = undefined

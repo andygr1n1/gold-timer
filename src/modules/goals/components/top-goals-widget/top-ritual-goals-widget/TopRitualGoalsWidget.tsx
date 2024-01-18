@@ -4,7 +4,7 @@ import { TopGoal } from '../TopGoal'
 import styles from '../TopGoalsWidgets.module.scss'
 import clsx from 'clsx'
 import { StyledButton } from '@/components/buttons/StyledButton'
-import { GOAL_STATUS_ENUM_FILTERS } from '@/helpers/enums'
+import { GOAL_STATUS_ENUM_FILTERS } from '@/lib/enums'
 import { RitualIcon } from '../components/Icons'
 
 export const TopRitualGoalsWidget: React.FC = observer(() => {

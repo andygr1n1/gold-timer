@@ -1,6 +1,6 @@
 import { gql } from 'graphql-request'
 import { generateClient } from '../../../graphql/client'
-import { RITUAL_TYPE_ENUM } from '@/helpers/enums'
+import { RITUAL_TYPE_ENUM } from '@/lib/enums'
 import { processError } from '@/functions/processMessage'
 
 export const mutation_updateRitualInterval = async (

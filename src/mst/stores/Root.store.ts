@@ -11,7 +11,7 @@ import { Notes$ } from '@/modules/notes/mst/stores/Notes.store'
 import { Sprints$ } from '@/modules/sprints/mst/stores/Sprints.store'
 import { IGoal$SnapshotIn, IGoalRitual, IGoalRitualSnapshotIn } from '@/modules/goals/mst/types'
 import { GoalsSlides$ } from '@/modules/goals-slides/mst/stores/GoalsSlides.store'
-import { GOAL_STATUS_ENUM } from '@/helpers/enums'
+import { GOAL_STATUS_ENUM } from '@/lib/enums'
 import { uniqBy } from 'lodash-es'
 
 export const Root$ = types

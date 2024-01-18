@@ -2,7 +2,7 @@ import { compact, filter, orderBy, uniq } from 'lodash-es'
 import { format, isPast, sub } from 'date-fns'
 import { types, getParentOfType, cast } from 'mobx-state-tree'
 import { Goals$ } from './Goals.store'
-import { GOAL_STATUS_ENUM, GOAL_STATUS_ENUM_FILTERS } from '@/helpers/enums'
+import { GOAL_STATUS_ENUM, GOAL_STATUS_ENUM_FILTERS } from '@/lib/enums'
 import { IGoal$ } from '@/modules/goals/mst/types'
 
 export const GoalsFilter$ = types

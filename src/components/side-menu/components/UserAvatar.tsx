@@ -1,4 +1,4 @@
-import { APP_ROUTES_ENUM } from '@/helpers/enums'
+import { APP_ROUTES_ENUM } from '@/lib/enums'
 import { useSideMenu } from '@/hooks/useSideMenu.hook'
 import { useUserStore } from '@/StoreProvider'
 import { observer } from 'mobx-react-lite'

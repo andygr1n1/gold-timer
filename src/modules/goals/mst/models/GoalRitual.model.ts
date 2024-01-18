@@ -1,4 +1,4 @@
-import { RITUAL_TYPE_ENUM } from '@/helpers/enums'
+import { RITUAL_TYPE_ENUM } from '@/lib/enums'
 import { types } from 'mobx-state-tree'
 
 export const GoalRitual = types

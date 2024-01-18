@@ -7,7 +7,7 @@ export default {
         opacity: 'opacity 0.150s ease-in',
         'opacity-3': 'opacity 0.300s ease-in',
         'opacity-5': 'opacity 0.500s ease-in',
-        // sidemenu
+        // side menu
         'slide-in': 'slide-in 0.3s linear',
         'slide-out': 'slide-out 0.3s linear',
         'ping-bg': 'ping-bg 6s ease-in-out infinite ',
@@ -60,7 +60,7 @@ export default {
                 opacity: '1',
             },
         },
-        // sidemenu
+        // side menu
         'slide-in': {
             '0%': { margin: '0 0 0 -320px' },
             '100%': { margin: '0' },

@@ -5,7 +5,7 @@ import { TopGoal } from '../TopGoal'
 import { XInput } from '@/components-x/x-input/XInput'
 import { FormLabel } from '@/components/form/FormLabel'
 import React from 'react'
-import { getMonthNumber } from '@/helpers/getMonthNumber.helper'
+import { getMonthNumber } from '@/functions/getMonthNumber.helper'
 import { SelectedWidgetGoalsViewLogo } from './SelectedWidgetGoalsViewLogo'
 
 export const SelectedWidgetGoalsView: React.FC = observer(function CRUD_GoalDialog() {

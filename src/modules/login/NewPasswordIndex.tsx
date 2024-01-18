@@ -12,7 +12,7 @@ import { getCodeFromUrlParams } from '@/functions/urlSearchParams'
 import { fetchEmailByRestoreCode } from '@/graphql/queries/fetchEmailByRestoreCode.query'
 import { updatePasswordByEmail } from '@/graphql/mutations/updatePasswordByEmail.mutation'
 import { NavLink } from 'react-router-dom'
-import { APP_ROUTES_ENUM } from '@/helpers/enums'
+import { APP_ROUTES_ENUM } from '@/lib/enums'
 import { deleteRestoreCode } from '@/graphql/mutations/deleteRestoreCode.mutation'
 import { processNotificationApi } from '@/functions/processMessage'
 

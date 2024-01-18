@@ -1,6 +1,6 @@
 import { useNotesStore } from '@/StoreProvider'
 import { ModuleWrapper } from '@/components/ModuleWrapper'
-import { APP_ROUTES_ENUM } from '@/helpers/enums'
+import { APP_ROUTES_ENUM } from '@/lib/enums'
 import { useWindowMatchMedia } from '@/hooks/useMatchMedia.hook'
 import { NotesList } from '@/modules/notes/components/NotesList'
 import { observer } from 'mobx-react-lite'

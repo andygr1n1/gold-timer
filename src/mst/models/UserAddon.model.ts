@@ -1,4 +1,4 @@
-import { ADDONS_ENUM } from '@/helpers/enums'
+import { ADDONS_ENUM } from '@/lib/enums'
 import { types } from 'mobx-state-tree'
 
 export const UserAddon = types

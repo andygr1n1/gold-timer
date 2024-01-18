@@ -5,7 +5,7 @@ import styles from '../TopGoalsWidgets.module.scss'
 import { TopGoal } from '../TopGoal'
 import { StyledButton } from '@/components/buttons/StyledButton'
 import clsx from 'clsx'
-import { GOAL_STATUS_ENUM_FILTERS } from '@/helpers/enums'
+import { GOAL_STATUS_ENUM_FILTERS } from '@/lib/enums'
 import { ActiveIcon } from '../components/Icons'
 
 export const TopActiveGoalsWidget: React.FC = observer(() => {

@@ -1,4 +1,4 @@
-import { APP_ROUTES_ENUM } from '@/helpers/enums'
+import { APP_ROUTES_ENUM } from '@/lib/enums'
 import { useSideMenu } from '@/hooks/useSideMenu.hook'
 import { Icon } from '@iconify/react'
 import { observer } from 'mobx-react-lite'
@@ -11,7 +11,7 @@ import { Transition } from '@headlessui/react'
 import { GoToDashboard } from './components/GoToDashboard'
 import { UserName } from './components/UserName'
 import { XMenuDivider } from '@/components-x/x-dropdown/XMenuDivider'
-import { isUnderDevelopment } from '@/helpers/isDev.helper'
+import { isUnderDevelopment } from '@/functions/isUnderDevelopment.helper'
 
 export const SideMenu: React.FC = observer(() => {
     const wrapperRef = useRef<HTMLDivElement | null>(null)

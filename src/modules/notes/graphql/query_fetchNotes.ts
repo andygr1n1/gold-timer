@@ -2,9 +2,12 @@ import { processError } from '../../../functions/processMessage'
 import { generateClient } from '@/graphql/client'
 import { INote$SnapshotIn } from '@/modules/notes/mst/types'
 import { gql } from 'graphql-request'
+import { getOwnerId } from '@/functions/getUserId'
+import { fetchData } from '@/functions/fetchData'
 
-export const query_fetchNotes = async (owner_id: string): Promise<INote$SnapshotIn[] | undefined> => {
+export const query_fetchNotes = async (): Promise<INote$SnapshotIn[]> => {
     const client = generateClient()
+    const owner_id = getOwnerId()
 
     const query = gql`
         query query_fetchNotes($owner_id: uuid) {
@@ -19,12 +22,11 @@ export const query_fetchNotes = async (owner_id: string): Promise<INote$Snapshot
         }
     `
 
-    try {
-        const response = await client.request(query, { owner_id })
-
-        return response.notes
-    } catch (e) {
-        processError(e, 'query_fetchNotes error')
-        return
-    }
+    return await fetchData<INote$SnapshotIn[], INote$SnapshotIn[]>(
+        () => client.request(query, { owner_id }).then((res) => res.notes),
+        (e) => {
+            processError(`query_fetchNotes: ${e}`)
+            return []
+        },
+    )
 }

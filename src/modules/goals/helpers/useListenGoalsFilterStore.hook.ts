@@ -3,7 +3,7 @@ import { IDisposer, cast, onSnapshot } from 'mobx-state-tree'
 import { useEffect } from 'react'
 import { getGoals$LocalForage, setGoals$LocalForage } from './goalsLocalForage'
 import { IGoalsFilter$ } from '../mst/types'
-import { GOAL_STATUS_ENUM } from '@/helpers/enums'
+import { GOAL_STATUS_ENUM } from '@/lib/enums'
 
 const injectCompletedGoals = () => {
     rootStore$.goals$.goals_filter$.activeGoalsCompletedStatus &&

@@ -1,6 +1,6 @@
 import { useGoalsStore } from '@/StoreProvider'
 import { ModuleWrapper } from '@/components/ModuleWrapper'
-import { APP_ROUTES_ENUM } from '@/helpers/enums'
+import { APP_ROUTES_ENUM } from '@/lib/enums'
 import { GoalsList } from '@/modules/goals/components/goals-list/GoalsList'
 import { observer } from 'mobx-react-lite'
 import goalsImage from '@/assets/goals-1.png'

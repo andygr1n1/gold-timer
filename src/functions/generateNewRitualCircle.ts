@@ -1,5 +1,5 @@
 import { add, getDay } from 'date-fns'
-import { RITUAL_TYPE_ENUM } from '../helpers/enums'
+import { RITUAL_TYPE_ENUM } from '../lib/enums'
 import { setMidnightTime } from './date.helpers'
 
 export const generateNewRitualCircle = (options: {

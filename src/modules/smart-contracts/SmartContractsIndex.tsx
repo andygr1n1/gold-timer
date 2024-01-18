@@ -1,5 +1,5 @@
 import { ModuleWrapper } from '@/components/ModuleWrapper'
-import { APP_ROUTES_ENUM } from '@/helpers/enums'
+import { APP_ROUTES_ENUM } from '@/lib/enums'
 import { Checkbox } from 'antd'
 import { CheckboxValueType } from 'antd/es/checkbox/Group'
 import { observer } from 'mobx-react-lite'

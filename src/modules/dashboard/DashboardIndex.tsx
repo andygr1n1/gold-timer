@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react-lite'
 import { ModuleWrapper } from '@/components/ModuleWrapper'
 import { CreateNewNoteDashboard } from '../notes/components/create-note-dashboard/CreateNewNoteDashboardIndex'
-import { APP_ROUTES_ENUM } from '@/helpers/enums'
+import { APP_ROUTES_ENUM } from '@/lib/enums'
 import { ArtifactsCounter } from './components/artifacts-counter/ArtifactsCounter'
 import { CRUD_GoalDialog } from '../goals/components/crud-goal/CRUD_GoalDialog'
 import { CRUD_NoteDialog } from '../notes/components/crud-note/CRUD_NoteDialog'

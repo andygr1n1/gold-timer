@@ -1,5 +1,5 @@
 import { useGoalsStore } from '@/StoreProvider'
-import { GOAL_STATUS_ENUM_FILTERS } from '@/helpers/enums'
+import { GOAL_STATUS_ENUM_FILTERS } from '@/lib/enums'
 import { observer } from 'mobx-react-lite'
 import { ActiveIcon, ExpiredIcon, FavoriteIcon, RitualIcon } from '../components/Icons'
 import { ReactNode } from 'react'

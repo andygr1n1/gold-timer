@@ -1,4 +1,4 @@
-import { APP_ROUTES_ENUM } from '@/helpers/enums'
+import { APP_ROUTES_ENUM } from '@/lib/enums'
 import { types } from 'mobx-state-tree'
 
 export const SideMenu$ = types

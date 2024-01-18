@@ -3,7 +3,7 @@ import { observer } from 'mobx-react-lite'
 import { TopGoal } from '../TopGoal'
 import styles from '../TopGoalsWidgets.module.scss'
 import { StyledButton } from '@/components/buttons/StyledButton'
-import { GOAL_STATUS_ENUM_FILTERS } from '@/helpers/enums'
+import { GOAL_STATUS_ENUM_FILTERS } from '@/lib/enums'
 import { ExpiredIcon } from '../components/Icons'
 export const TopExpiredGoalsWidget: React.FC = observer(() => {
     const {

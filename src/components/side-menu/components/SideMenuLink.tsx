@@ -1,5 +1,5 @@
 import { StyledButton } from '@/components/buttons/StyledButton'
-import { APP_ROUTES_ENUM } from '@/helpers/enums'
+import { APP_ROUTES_ENUM } from '@/lib/enums'
 import { useSideMenu } from '@/hooks/useSideMenu.hook'
 import clsx from 'clsx'
 import { observer } from 'mobx-react-lite'

@@ -4,7 +4,7 @@ import { observer } from 'mobx-react-lite'
 import styles from '../TopGoalsWidgets.module.scss'
 import { TopGoal } from '../TopGoal'
 import { StyledButton } from '@/components/buttons/StyledButton'
-import { GOAL_STATUS_ENUM_FILTERS } from '@/helpers/enums'
+import { GOAL_STATUS_ENUM_FILTERS } from '@/lib/enums'
 import { FavoriteIcon } from '../components/Icons'
 
 export const TopFavoriteGoalsWidget: React.FC = observer(() => {

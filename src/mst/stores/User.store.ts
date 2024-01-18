@@ -5,7 +5,7 @@ import { IBaseUserData, updateUserData } from '@/modules/profile/graphql/updateU
 import { processError } from '@/functions/processMessage'
 import { UserAddon } from '../models/UserAddon.model'
 import { deleteImageFromServer, uploadNewImageToServer } from '@/services/image.service'
-import { SERVER_ROUTES } from '@/helpers/enums'
+import { SERVER_ROUTES } from '@/lib/enums'
 import { updateUserProfileImage } from '@/modules/profile/graphql/updateUserProfileImage.m'
 import { User } from '../models/User.model'
 import { UserEdit$ } from './UserEdit.store'

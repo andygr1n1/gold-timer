@@ -1,7 +1,7 @@
 import { SelectDayOfWeek } from './components/SelectDayOfWeek'
 import { SelectDays } from './components/SelectDays'
 import { observer } from 'mobx-react-lite'
-import { RITUAL_TYPE_ENUM } from '@/helpers/enums'
+import { RITUAL_TYPE_ENUM } from '@/lib/enums'
 import { FormLabel } from '@/components/form/FormLabel'
 import { XSwitch } from '@/components-x/x-switch/XSwitch'
 import { IGoal$ } from '@/modules/goals/mst/types'

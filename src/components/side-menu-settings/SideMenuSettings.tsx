@@ -6,7 +6,7 @@ import clsx from 'clsx'
 import { useRootStore } from '../../StoreProvider'
 import { CloseSideMenu } from '@/components/icons/CloseSideMenuIcon'
 import { useLocation } from 'react-router-dom'
-import { APP_ROUTES_ENUM } from '../../helpers/enums'
+import { APP_ROUTES_ENUM } from '../../lib/enums'
 import { SprintsSettings } from './components/SprintsSettings'
 import { NotesSettings } from './components/NotesSettings'
 

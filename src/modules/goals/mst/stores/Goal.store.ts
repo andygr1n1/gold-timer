@@ -1,5 +1,5 @@
-import { GOAL_TYPE_ENUM } from '../../../../helpers/enums'
-import { RITUAL_TYPE_ENUM, GOAL_STATUS_ENUM } from '@/helpers/enums'
+import { GOAL_TYPE_ENUM } from '../../../../lib/enums'
+import { RITUAL_TYPE_ENUM, GOAL_STATUS_ENUM } from '@/lib/enums'
 import { mutation_completeGoal } from '@/modules/goals/graphql/mutation_completeGoal'
 import { cast, flow, getParentOfType, toGenerator, castToSnapshot } from 'mobx-state-tree'
 import { Goal } from '../models/Goal.model'

@@ -1,5 +1,5 @@
-import { PRIVACY_ENUM } from '@/helpers/enums'
-import { DIFFICULTY_ENUM, GOAL_STATUS_ENUM } from '../../../../helpers/enums'
+import { PRIVACY_ENUM } from '@/lib/enums'
+import { DIFFICULTY_ENUM, GOAL_STATUS_ENUM } from '../../../../lib/enums'
 import { types } from 'mobx-state-tree'
 import { differenceInCalendarDays, set, toDate } from 'date-fns'
 import { GoalRitual } from './GoalRitual.model'

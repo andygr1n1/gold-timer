@@ -1,4 +1,4 @@
-import { GOAL_STATUS_ENUM } from '@/helpers/enums'
+import { GOAL_STATUS_ENUM } from '@/lib/enums'
 import { add, isPast, sub } from 'date-fns'
 import { filter, orderBy, differenceWith, cloneDeep, compact } from 'lodash-es'
 import { destroy, detach, toGenerator, types, flow, cast } from 'mobx-state-tree'
