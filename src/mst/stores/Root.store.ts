@@ -104,29 +104,29 @@ export const Root$ = types
     }))
     .actions((self) => ({
         fetchAndStabilizeAppData: flow(function* _fetchAppData() {
-            try {
-                self.loading = true
-                const userId = self.user$.id
-                if (!userId) throw new Error('fetchAndStabilizeAppData error: user id')
+            // try {
+            self.loading = true
+            const userId = self.user$.id
+            if (!userId) throw new Error('fetchAndStabilizeAppData error: user id')
 
-                // fetch details related to user
-                yield self.fetchUserInfo()
-                // fetch ritual power info
-                yield self.fetchRitualPowerInfo()
-                //
-                yield self.fetchGoals([GOAL_STATUS_ENUM.ACTIVE])
-                // yield self.fetchAchievements()
-                yield self.notes$.fetchNotes()
-                //
-                // TODO to fetch only sprints that are not finished and already started
-                yield self.sprints$.fetchSprints()
-                //
-                //
-                self.autoRitualizeExpiredRitualizedGoals()
-                self.loading = false
-            } catch (e) {
-                self.loading = false
-                processError(e, 'fetchAndStabilizeAppData error')
-            }
+            // fetch details related to user
+            yield self.fetchUserInfo()
+            // fetch ritual power info
+            yield self.fetchRitualPowerInfo()
+            //
+            yield self.fetchGoals([GOAL_STATUS_ENUM.ACTIVE])
+            // yield self.fetchAchievements()
+            yield self.notes$.fetchNotes()
+            //
+            // TODO to fetch only sprints that are not finished and already started
+            yield self.sprints$.fetchSprints()
+            //
+            //
+            self.autoRitualizeExpiredRitualizedGoals()
+            self.loading = false
+            // } catch (e) {
+            // self.loading = false
+            // processError(e, 'fetchAndStabilizeAppData error')
+            // }
         }),
     }))
