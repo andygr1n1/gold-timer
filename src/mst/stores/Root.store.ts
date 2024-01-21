@@ -1,6 +1,5 @@
 import { types, flow, applySnapshot, toGenerator, cast } from 'mobx-state-tree'
 import { query_fetchGoalsByUserId } from '../../modules/goals/graphql/query_fetchGoalsByUserId'
-import { Achievements$ } from './Achievements.store'
 import { Goals$ } from '../../modules/goals/mst/stores/Goals.store'
 import { User$ } from './User.store'
 import { fetchRitualPowerInfo } from '@/graphql/queries/fetchRitualPowerInfo.query'
@@ -19,7 +18,6 @@ export const Root$ = types
         user$: types.optional(User$, {}),
         goals$: types.optional(Goals$, {}),
         goals_slides$: types.optional(GoalsSlides$, {}),
-        achievements$: types.optional(Achievements$, {}),
         notes$: types.optional(Notes$, {}),
         sprints$: types.optional(Sprints$, {}),
         loading: false,
@@ -45,7 +43,6 @@ export const Root$ = types
         clearStore(): void {
             self.goals$ = cast({})
             self.goals_slides$ = cast({})
-            self.achievements$ = cast({})
             self.notes$ = cast({})
             self.sprints$ = cast({})
             self.user$ = cast({})

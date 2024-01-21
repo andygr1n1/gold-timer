@@ -12,14 +12,12 @@ import { XTooltip } from '@/components-x/x-tooltip/XTooltip'
 
 export const GoalsSlidesCarousel: React.FC = observer(() => {
     const {
-        achievements$: { fetchAchievements },
         goals_slides$: { fetchGoalsSlides, visibleSlides, onChangeField },
     } = useRootStore()
 
     const { isMobile } = useWindowMatchMedia(['isMobile'])
 
     useEffect(() => {
-        fetchAchievements()
         fetchGoalsSlides()
     }, [])
 

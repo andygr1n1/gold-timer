@@ -11,9 +11,8 @@ module.exports = {
     theme: {
         variables,
         fontFamily: {
-            kzen: ['Roboto', defaultConfig.theme.fontFamily.sans],
-            cinzel: ['Cinzel Decorative', defaultConfig.theme.fontFamily.sans],
-            reggae: ['Reggae One', defaultConfig.theme.fontFamily.serif],
+            kzen: ['Roboto Slab', defaultConfig.theme.fontFamily.sans],
+            cinzel: ['Cinzel', defaultConfig.theme.fontFamily.sans],
         },
         extend: {
             colors,

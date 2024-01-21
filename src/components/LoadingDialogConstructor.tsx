@@ -1,12 +1,20 @@
-import { useRootStore } from '@/StoreProvider'
-import { observer } from 'mobx-react-lite'
 import { Dialog, Transition } from '@headlessui/react'
 import { Fragment } from 'react'
 import { Icon } from '@iconify/react'
+import { useRootStore } from '@/StoreProvider'
+import { observer } from 'mobx-react-lite'
 
-export const GlobalLoadingDialog = observer(() => {
+export const LoadingDialogGlobal = observer(() => {
     const { loading } = useRootStore()
 
+    return <LoadingDialogConstructor loading={loading} />
+})
+
+export const LoadingDialogLocal: React.FC<{ loading: boolean }> = ({ loading = false }) => {
+    return <LoadingDialogConstructor loading={loading} />
+}
+
+const LoadingDialogConstructor: React.FC<{ loading: boolean }> = ({ loading }) => {
     return (
         <Transition appear show={loading} as={Fragment}>
             <Dialog as='div' style={{ zIndex: 900 }} className='font-kzen relative z-[60]' onClose={() => undefined}>
@@ -48,4 +56,4 @@ export const GlobalLoadingDialog = observer(() => {
             </Dialog>
         </Transition>
     )
-})
+}

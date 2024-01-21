@@ -1,0 +1,16 @@
+@font-face {
+    font-family: 'Cinzel';
+    src: url(./fonts/Cinzel-VariableFont_wght.ttf);
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: 'Roboto Slab';
+    src: url(./fonts/RobotoSlab-VariableFont_wght.ttf);
+    font-weight: bold;
+}
+
+.login-bg-4g {
+    background-image: url('./img/kzen-login-background.jpg');
+    background-size: cover;
+}

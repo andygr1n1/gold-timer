@@ -13,6 +13,8 @@
     },
     "dependencies": {
         "@headlessui/react": "^1.7.13",
+        "@tanstack/react-query": "^5.17.15",
+        "@tanstack/react-query-devtools": "^5.17.18",
         "antd": "^5.13.1",
         "axios": "^1.4.0",
         "compressorjs": "^1.2.1",
@@ -47,6 +49,7 @@
         "@genql/cli": "^6.3.0",
         "@iconify/react": "^4.0.0",
         "@mertasan/tailwindcss-variables": "^2.5.1",
+        "@tanstack/eslint-plugin-query": "^5.17.7",
         "@types/localforage": "^0.0.34",
         "@types/lodash-es": "^4.17.7",
         "@types/node": "^18.7.14",
