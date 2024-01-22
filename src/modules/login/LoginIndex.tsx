@@ -1,4 +1,3 @@
-import { useUserStore } from '@/StoreProvider'
 import { Form } from 'antd'
 import { observer } from 'mobx-react-lite'
 import { IValues } from './helpers/login.interface'
@@ -15,26 +14,35 @@ import { LoginPassword } from './components/login/LoginPassword'
 import { LoginFooter } from './components/login/LoginFooter'
 import styles from './LoginIndex.module.scss'
 import clsx from 'clsx'
-import { processNotificationApi } from '@/functions/processMessage'
+import { processError, processNotificationApi } from '@/functions/processMessage'
+import { useAtom } from 'jotai'
+import { fetchData } from '@/functions/fetchData'
+import { setUserId } from '@/stores/login.store'
 
 export const LoginIndex: React.FC = observer(() => {
-    const { onChangeField } = useUserStore()
-    const { processApiError, contextHolder } = processNotificationApi()
     const { isDesktop } = useWindowMatchMedia(['isDesktop'])
+    const { processApiError, contextHolder } = processNotificationApi()
+    const [, setLogin] = useAtom(setUserId)
 
     const onFinish = async (values: IValues) => {
-        const loginUserRes = await sendLoginData(values)
-        if (loginUserRes) {
-            onChangeField('id', loginUserRes.user_id)
-        }
+        const errorString = 'Please try again. Your credentials are wrong'
+        await fetchData<void, void>(
+            () =>
+                sendLoginData(values).then((res) => {
+                    if (!res) throw new Error(errorString)
 
-        if (loginUserRes?.remember) {
-            setRememberUserCookie(loginUserRes.user_id)
-        }
+                    setLogin({
+                        user_id: res.user_id,
+                        remember: res.remember,
+                    })
 
-        if (!loginUserRes) {
-            processApiError({ title: 'Please try again', description: 'Your credentials are wrong' })
-        }
+                    res.remember && setRememberUserCookie(res.user_id)
+                }),
+            () => {
+                processError(errorString)
+                return []
+            },
+        )
     }
 
     const onFinishFailed = () => {

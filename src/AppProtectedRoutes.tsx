@@ -13,8 +13,15 @@ import { AchievementsIndex } from './modules/achievements/AchievementsIndex'
 import { StoriesIndex } from './modules/stories/StoriesIndex'
 import { SmartContractsIndex } from './modules/smart-contracts/SmartContractsIndex'
 import { LoadingDialogGlobal } from './components/LoadingDialogConstructor'
+import { useRootStore } from './StoreProvider'
+import { useEffect } from 'react'
 
 export const AppProtectedRoutes: React.FC = () => {
+    const { fetchAndStabilizeAppData } = useRootStore()
+    useEffect(() => {
+        fetchAndStabilizeAppData()
+    }, [])
+
     return (
         <>
             <Routes>

@@ -8,7 +8,7 @@ import { mutation_favoriteGoal } from '@/modules/goals/graphql/mutation_favorite
 import { mutation_ritualizeGoal } from '@/modules/goals/graphql/mutation_ritualizeGoal'
 import { generateNewRitualCircle } from '@/functions/generateNewRitualCircle'
 import { mutation_deleteGoal } from '@/modules/goals/graphql/mutation_deleteGoal'
-import { Root$ } from '../../../../mst/stores/Root.store'
+import { Root$ } from '../../../login/stores/Root.store'
 import { addCoinsMutation } from '@/graphql/mutations/addCoins.mutation'
 import { getCoinsFromRitual } from '@/functions/getCoinsFromRitual'
 import { getCoinsFromCompletedGoal } from '@/functions/getCoinsFromCompletedGoal'

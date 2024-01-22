@@ -3,7 +3,7 @@ import Cookies from 'universal-cookie'
 
 const cookies = new Cookies()
 
-export const getUserCookie = () => cookies.get('user')
+export const getUserCookie = (): string | null => cookies.get('user')
 
 export const setRememberUserCookie = (userId: string) =>
     cookies.set('user', userId, { path: '/', expires: add(new Date(Date.now()), { days: 60 }) })

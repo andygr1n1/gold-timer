@@ -1,13 +1,14 @@
 import { createContext, ReactNode, useContext } from 'react'
 import type { IRoot$ } from './mst/types'
-import { Root$ } from './mst/stores/Root.store'
+import { Root$ } from './modules/login/stores/Root.store'
 const storeContext = createContext<IRoot$ | null>(null)
 
 const generateRoot$ = () => Root$.create({})
 
 export const rootStore$ = generateRoot$()
 
-export const StoreProvider: React.FC<{ children?: ReactNode }> = ({ children }) => {
+export const ProtectedStoreProvider: React.FC<{ children?: ReactNode; userId: string }> = ({ children, userId }) => {
+    rootStore$.user$.onChangeField('id', userId)
     return <storeContext.Provider value={rootStore$}>{children}</storeContext.Provider>
 }
 
