@@ -1,8 +1,10 @@
 import { fetchData } from '@/functions/fetchData'
 import { processError } from '@/functions/processMessage'
 import { fetchUserByEmail } from '@/graphql/queries/fetchUserByEmail.query'
-import { atom } from 'jotai'
+import { atom, createStore } from 'jotai'
 import { atomWithImmer } from 'jotai-immer'
+
+export const registerStore = createStore()
 
 export const registerAtom = atomWithImmer({ name: '', register_email_input: '', register_email_in_use: false })
 

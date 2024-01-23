@@ -1,25 +1,19 @@
-import { atom } from 'jotai'
+import { atomWithStorage } from 'jotai/utils'
 
-export const themingAtom = atom({
-    night: true,
-})
-
-export const syncAppTheme = atom(null, (get, set) =>
-    set(themingAtom, (prev) => {
-        // "day" | "night" | null
-        const isDay = localStorage.getItem('theming') === 'day'
-        const updatedStore = { ...prev, night: !isDay }
-        document.querySelector('html')!.setAttribute('data-theme', isDay ? 'day' : 'night')
-        return updatedStore
-    }),
-)
-
-export const onThemeChange = atom(null, (get, set) =>
-    set(themingAtom, (prev) => {
-        const updatedStore = { ...prev, night: !prev.night }
-        const theming = updatedStore.night ? 'night' : 'day'
-        localStorage.setItem('theming', theming)
-        document.querySelector('html')!.setAttribute('data-theme', theming)
-        return updatedStore
-    }),
+export const darkModeAtom = atomWithStorage(
+    'dark',
+    true,
+    {
+        getItem: (key) => {
+            const localStorageData = localStorage.getItem(key) || 'true'
+            document.querySelector('html')!.setAttribute(key, localStorageData)
+            return localStorageData === 'false' ? false : true
+        },
+        setItem: (key, dark) => {
+            localStorage.setItem(key, dark.toString())
+            document.querySelector('html')!.setAttribute(key, dark.toString())
+        },
+        removeItem: (key) => key,
+    },
+    { getOnInit: true },
 )

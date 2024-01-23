@@ -3,17 +3,17 @@ import { useAtom } from 'jotai'
 import { loginAtom } from './modules/login/stores/login.store'
 import { AppProtected } from './AppProtected'
 import { useUserCookie } from './hooks/useUserCookie.hook'
-import { useUserTheming } from './hooks/useUserTheming.hook'
+// import { useUserTheming } from './hooks/useUserTheming.hook'
 import { AnonymousRoutes } from './AnonymousRoutes'
 
 export const App = () => {
     const [login] = useAtom(loginAtom)
     useUserCookie()
-    useUserTheming()
 
     return (
         <BrowserRouter>
             {!login.user_id && <AnonymousRoutes />}
+
             {login.user_id && <AppProtected user_id={login.user_id} />}
         </BrowserRouter>
     )
