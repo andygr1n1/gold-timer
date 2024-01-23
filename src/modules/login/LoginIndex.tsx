@@ -14,15 +14,14 @@ import { LoginPassword } from './components/login/LoginPassword'
 import { LoginFooter } from './components/login/LoginFooter'
 import styles from './LoginIndex.module.scss'
 import clsx from 'clsx'
-import { processError, processNotificationApi } from '@/functions/processMessage'
+import { processError } from '@/functions/processMessage'
 import { useAtom } from 'jotai'
 import { fetchData } from '@/functions/fetchData'
-import { setUserId } from '@/stores/login.store'
+import { loginAtom } from './stores/login.store'
 
 export const LoginIndex: React.FC = observer(() => {
     const { isDesktop } = useWindowMatchMedia(['isDesktop'])
-    const { processApiError, contextHolder } = processNotificationApi()
-    const [, setLogin] = useAtom(setUserId)
+    const [, setLogin] = useAtom(loginAtom)
 
     const onFinish = async (values: IValues) => {
         const errorString = 'Please try again. Your credentials are wrong'
@@ -30,11 +29,10 @@ export const LoginIndex: React.FC = observer(() => {
             () =>
                 sendLoginData(values).then((res) => {
                     if (!res) throw new Error(errorString)
-
-                    setLogin({
+                    setLogin(() => ({
                         user_id: res.user_id,
                         remember: res.remember,
-                    })
+                    }))
 
                     res.remember && setRememberUserCookie(res.user_id)
                 }),
@@ -46,15 +44,12 @@ export const LoginIndex: React.FC = observer(() => {
     }
 
     const onFinishFailed = () => {
-        processApiError({ title: 'Login error', description: 'Please provide your credentials' })
+        processError('Login error, please provide your credentials')
     }
 
-    // const is4GConnection = is4G()
     return (
-        //  <div className={clsx([styles['login-bg'], is4GConnection && styles['login-4g']])}>
         <div className={clsx([styles['login-bg']], 'login-bg-4g')}>
             <LoginContainer>
-                {contextHolder}
                 <LoginLogo />
                 <Form
                     name='kzen-login'

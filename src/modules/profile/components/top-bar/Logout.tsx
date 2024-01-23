@@ -3,7 +3,7 @@ import { removeUserCookie } from '@/functions/universalCookie.helper'
 import { Icon } from '@iconify/react'
 import { useAtom } from 'jotai'
 import { observer } from 'mobx-react-lite'
-import { loginAtom } from '@/stores/login.store'
+import { loginAtom } from '@/modules/login/stores/login.store'
 export const Logout: React.FC = observer(() => {
     const { clearStore } = useRootStore()
     const [, setLogin] = useAtom(loginAtom)

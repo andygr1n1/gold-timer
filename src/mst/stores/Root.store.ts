@@ -1,6 +1,6 @@
 import { types, flow, applySnapshot, toGenerator, cast } from 'mobx-state-tree'
-import { query_fetchGoalsByUserId } from '../../goals/graphql/query_fetchGoalsByUserId'
-import { Goals$ } from '../../goals/mst/stores/Goals.store'
+import { query_fetchGoalsByUserId } from '../../modules/goals/graphql/query_fetchGoalsByUserId'
+import { Goals$ } from '../../modules/goals/mst/stores/Goals.store'
 import { User$ } from './User.store'
 import { fetchRitualPowerInfo } from '@/graphql/queries/fetchRitualPowerInfo.query'
 import { IUserByPkResponse, fetchUserByPk } from '@/graphql/queries/fetchUserByPk.query'

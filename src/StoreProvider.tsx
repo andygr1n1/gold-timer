@@ -1,6 +1,6 @@
 import { createContext, ReactNode, useContext } from 'react'
 import type { IRoot$ } from './mst/types'
-import { Root$ } from './modules/login/stores/Root.store'
+import { Root$ } from './mst/stores/Root.store'
 const storeContext = createContext<IRoot$ | null>(null)
 
 const generateRoot$ = () => Root$.create({})

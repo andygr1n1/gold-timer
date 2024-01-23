@@ -1,6 +1,6 @@
 import { flow, toGenerator, types } from 'mobx-state-tree'
 import { fetchUserSecret } from '@/graphql/queries/fetchUserSecret.query'
-import { User } from '../../../mst/models/User.model'
+import { User } from '../models/User.model'
 
 export const UserEdit$ = types
     .compose(

@@ -7,7 +7,7 @@ import { mutation_upsertGoal } from '@/modules/goals/graphql/mutation_upsertGoal
 import { Goals$ } from './Goals.store'
 import { IGoal$ } from '../types'
 import { IInsertNewGoal, IInsertRitual } from '@/modules/goals/interfaces/newGoal.interface'
-import { Root$ } from '@/modules/login/stores/Root.store'
+import { Root$ } from '@/mst/stores/Root.store'
 import { getCoinsFromRitual } from '@/functions/getCoinsFromRitual'
 import { addCoinsMutation } from '@/graphql/mutations/addCoins.mutation'
 

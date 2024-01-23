@@ -4,11 +4,9 @@ import { observer } from 'mobx-react-lite'
 import { useState } from 'react'
 import { IRegisterValues } from './helpers/login.interface'
 import { sendRegistrationData } from './helpers/sendRegistrationData.helper'
-import { useUserStore } from '@/StoreProvider'
 import { RegisterEmail } from './components/register/RegisterEmail'
 import { AnonymousFooter } from './components/AnonymousFooter'
 import { LoginContainer } from './components/LoginContainer'
-import { useLoginStore } from './mst/LoginStoreProvider'
 import { LoginLogo } from './components/LoginLogo'
 import { AlreadyHaveAccount } from './components/AlreadyHaveAccount'
 import { LoginButton } from './components/login/LoginButton'
@@ -17,30 +15,23 @@ import { RegisterName } from './components/register/RegisterName'
 import { RegisterPassword } from './components/register/RegisterPassword'
 import clsx from 'clsx'
 import styles from './LoginIndex.module.scss'
-import { processNotificationApi } from '@/functions/processMessage'
+import { processError } from '@/functions/processMessage'
+import { useAtom } from 'jotai'
+import { loginAtom } from '@/modules/login/stores/login.store'
+import { validateUser } from './stores/register.store'
 
 export const RegisterIndex: React.FC = observer(() => {
-    const { onChangeField } = useUserStore()
-    const {
-        register_credentials: { validateEmail },
-    } = useLoginStore()
-    const { contextHolder, processApiSuccess, processApiError } = processNotificationApi()
+    const [, setLogin] = useAtom(loginAtom)
+    const [, validate] = useAtom(validateUser)
     const { isDesktop } = useWindowMatchMedia(['isDesktop'])
     const [password, setPassword] = useState('')
-
-    const onFinishFailed = () => {
-        processApiError({
-            title: 'Registration error',
-            description: 'Please provide right credentials',
-        })
-    }
 
     const onFinish = async (values: IRegisterValues) => {
         if (values.password !== values.passwordRepeat) {
             onFinishFailed()
             return
         }
-        const validateEmailRes = await validateEmail()
+        const validateEmailRes = await validate()
 
         if (validateEmailRes !== 200) {
             onFinishFailed()
@@ -49,21 +40,19 @@ export const RegisterIndex: React.FC = observer(() => {
 
         const registerUserRes = await sendRegistrationData(values)
         if (registerUserRes) {
-            onChangeField('id', registerUserRes.user_id)
+            setLogin({ user_id: registerUserRes.user_id })
         }
 
         if (!registerUserRes) {
-            processApiSuccess({
-                title: `Login error`,
-                description: 'Your credentials are wrong, Please try again',
-            })
+            processError('Login error your credentials are wrong, Please try again')
         }
     }
 
+    const onFinishFailed = () => processError('Registration error please provide right credentials')
+
     return (
-        <div className={clsx([styles['login-bg'], styles['login-4g']])}>
+        <div className={clsx([styles['login-bg']], 'login-bg-4g')}>
             <LoginContainer>
-                {contextHolder}
                 <LoginLogo />
                 <Form
                     name='kzen-register'
