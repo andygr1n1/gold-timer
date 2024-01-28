@@ -1,17 +1,18 @@
-import { useRootStore } from '@/StoreProvider'
 import { Icon } from '@iconify/react'
 import { observer } from 'mobx-react-lite'
 import { ArtifactsCounterItem } from './ArtifactsCounterItem'
 import { GoalsCounterDropdown } from './components/GoalsCounterDropdown'
 import { NotesCounterDropdown } from './components/NotesCounterDropdown'
 import { SprintsCounterDropdown } from './components/SprintsCounterDropdown'
+import { useFetchArtifactsCount } from './service/useFetchArtifactsCount'
 
 export const ArtifactsCounter: React.FC = observer(() => {
-    const {
-        notes$: { notesLength },
-        sprints$: { allActiveCheckedSprintsLength },
-        goals$: { notCompletedGoalsCount },
-    } = useRootStore()
+    // const {
+    //     notes$: { notesLength },
+    //     sprints$: { allActiveCheckedSprintsLength },
+    // } = useRootStore()
+
+    const { activeGoalsCount, activeNotesCount, activeSprintsCount } = useFetchArtifactsCount()
 
     return (
         <div className='flex w-fit items-center justify-center gap-5 '>
@@ -19,7 +20,7 @@ export const ArtifactsCounter: React.FC = observer(() => {
                 button={
                     <ArtifactsCounterItem
                         // action={openCreateMode}
-                        count={notCompletedGoalsCount}
+                        count={activeGoalsCount}
                         icon={
                             <Icon
                                 icon='octicon:goal-16'
@@ -35,7 +36,7 @@ export const ArtifactsCounter: React.FC = observer(() => {
                 button={
                     <ArtifactsCounterItem
                         // action={openNoteCreateMode}
-                        count={notesLength}
+                        count={activeNotesCount}
                         icon={
                             <Icon
                                 icon='ion:book'
@@ -52,7 +53,8 @@ export const ArtifactsCounter: React.FC = observer(() => {
                 button={
                     <ArtifactsCounterItem
                         // action={activateNewSprintCreator}
-                        count={allActiveCheckedSprintsLength}
+                        // count={allActiveCheckedSprintsLength}
+                        count={activeSprintsCount}
                         icon={
                             <Icon
                                 icon='game-icons:sprint'

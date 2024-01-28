@@ -2,13 +2,10 @@ import { BrowserRouter } from 'react-router-dom'
 import { useAtom } from 'jotai'
 import { loginAtom } from './modules/login/stores/login.store'
 import { AppProtected } from './AppProtected'
-import { useUserCookie } from './hooks/useUserCookie.hook'
-// import { useUserTheming } from './hooks/useUserTheming.hook'
 import { AnonymousRoutes } from './AnonymousRoutes'
 
 export const App = () => {
     const [login] = useAtom(loginAtom)
-    useUserCookie()
 
     return (
         <BrowserRouter>

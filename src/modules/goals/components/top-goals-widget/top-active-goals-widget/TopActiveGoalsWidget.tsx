@@ -2,21 +2,25 @@ import { useRootStore } from '@/StoreProvider'
 import { observer } from 'mobx-react-lite'
 
 import styles from '../TopGoalsWidgets.module.scss'
-import { TopGoal } from '../TopGoal'
 import { StyledButton } from '@/components/buttons/StyledButton'
 import clsx from 'clsx'
 import { GOAL_STATUS_ENUM_FILTERS } from '@/lib/enums'
 import { ActiveIcon } from '../components/Icons'
+import { useFetchActiveGoals } from './service/fetch_active_goals/useFetchActiveGoals'
+import { TopActiveGoal } from './components/TopActiveGoal'
 
 export const TopActiveGoalsWidget: React.FC = observer(() => {
     const {
         goals$: {
-            goals_filter$: { onChangeField, activeDashboardGoals },
+            goals_filter$: { onChangeField },
         },
     } = useRootStore()
 
+    const { activeGoals } = useFetchActiveGoals()
+
+    console.log('activeGoals', activeGoals)
     return (
-        <div key={activeDashboardGoals.length} className='flex max-h-[350px] min-h-[350px] flex-[100%] md:flex-[45%]'>
+        <div key={activeGoals.length} className='flex max-h-[350px] min-h-[350px] flex-[100%] md:flex-[45%]'>
             <div className='bg-global-2-bg relative flex h-[calc(100%)] w-[calc(100%-40px)] flex-col items-start justify-start rounded-lg px-5 '>
                 <div className='absolute left-[-40px] top-[-43px]  cursor-pointer'>
                     <StyledButton
@@ -29,10 +33,10 @@ export const TopActiveGoalsWidget: React.FC = observer(() => {
                     />
                 </div>
                 <div className={styles['dashboard-widget-goals-container']}>
-                    {activeDashboardGoals.length ? (
+                    {activeGoals.length ? (
                         <>
-                            {activeDashboardGoals.slice(0, 8).map((goal) => (
-                                <TopGoal
+                            {activeGoals.slice(0, 8).map((goal) => (
+                                <TopActiveGoal
                                     key={goal.id}
                                     goal={goal}
                                     className={clsx(goal.isFromFuture && 'opacity-70 hover:opacity-100')}

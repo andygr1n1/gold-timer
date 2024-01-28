@@ -73,10 +73,6 @@ export const Goals$ = types
             )
             return orderBy(goals, ['finished_at'], ['asc'])
         },
-
-        get notCompletedGoalsCount(): number {
-            return filter(self.goals, (goal) => goal.status !== GOAL_STATUS_ENUM.COMPLETED).length
-        },
     }))
     .actions((self) => ({
         onChangeField<Key extends keyof typeof self>(key: Key, value: (typeof self)[Key]) {

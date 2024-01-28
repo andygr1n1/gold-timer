@@ -2,16 +2,15 @@ import { APP_ROUTES_ENUM } from '@/lib/enums'
 import { useSideMenu } from '@/hooks/useSideMenu.hook'
 import { Icon } from '@iconify/react'
 import { observer } from 'mobx-react-lite'
-import { UserAvatarSideMenu } from './components/UserAvatar'
 import { SideMenuLink } from './components/SideMenuLink'
 import { useOutsideAlerter } from '@/hooks/useClickOutside.hook'
 import { useEffect, useRef } from 'react'
 import { useWindowMatchMedia } from '@/hooks/useMatchMedia.hook'
 import { Transition } from '@headlessui/react'
 import { GoToDashboard } from './components/GoToDashboard'
-import { UserName } from './components/UserName'
 import { XMenuDivider } from '@/components-x/x-dropdown/XMenuDivider'
 import { isUnderDevelopment } from '@/functions/isUnderDevelopment.helper'
+import { UserInfo } from './components/user-info/UserInfo'
 
 export const SideMenu: React.FC = observer(() => {
     const wrapperRef = useRef<HTMLDivElement | null>(null)
@@ -50,13 +49,9 @@ export const SideMenu: React.FC = observer(() => {
                lg:static  lg:m-0 lg:mr-0 lg:flex
             `}
             >
-                <div className='flex w-[230px] min-w-[230px] flex-col overflow-auto py-5 md:py-10 '>
+                <div className='md:p2-10 flex w-[230px] min-w-[230px] flex-col overflow-auto py-5 '>
                     <div className='flex flex-auto flex-col gap-5 overflow-auto  '>
-                        <div className='relative flex flex-col items-center justify-center gap-5'>
-                            <UserName />
-                            <UserAvatarSideMenu />
-                            {/* {isDesktop && <UserCoins />} */}
-                        </div>
+                        <UserInfo />
                         <div className='w-[calc(100%-32px)] pl-8 xl:pt-12'>
                             <div className='mx-auto flex w-[180px] flex-auto flex-col gap-5 overflow-auto '>
                                 <SideMenuLink

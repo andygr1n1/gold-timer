@@ -34,7 +34,7 @@ export const LoginIndex: React.FC = observer(() => {
                         remember: res.remember,
                     }))
 
-                    res.remember && setRememberUserCookie(res.user_id)
+                    setRememberUserCookie(res.user_id, res.remember)
                 }),
             () => {
                 processError(errorString)
