@@ -1,7 +1,7 @@
 import { flow, toGenerator } from 'mobx-state-tree'
 import { Goal$ } from './Goal.store'
 import { getOwnerId } from '@/functions/getUserId'
-import { IInsertNewGoal } from '@/modules/goals/interfaces/newGoal.interface'
+import { IInsertNewGoal } from '@/modules/goals/interfaces/types'
 import { setGoalDifficulty } from '@/functions/setGoalDifficulty'
 import { set } from 'date-fns'
 import { processError } from '@/functions/processMessage'

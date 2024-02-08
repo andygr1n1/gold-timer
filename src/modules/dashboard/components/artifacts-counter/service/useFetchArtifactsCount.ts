@@ -1,25 +1,22 @@
-import { useAtom } from 'jotai'
-import { loginAtom } from '@/modules/login/stores/login.store'
 import { query_userCoinsInfo } from '@/components/top-bar/service/query_userCoinsInfo'
 import { useQuery } from '@tanstack/react-query'
 import { query_artifactsCount } from './query_artifactsCount'
+import { getUserId } from '@/functions/universalCookie.helper'
 
 type IArtifactsCount = { activeNotesCount: number; activeSprintsCount: number; activeGoalsCount: number }
 
 export const useFetchArtifactsCount = (): IArtifactsCount => {
-    const [{ user_id }] = useAtom(loginAtom)
-
     const { data: goalsData } = useQuery({
-        queryKey: ['useFetchUserCoinsInfo', user_id],
-        queryFn: async () => await query_userCoinsInfo(user_id),
+        queryKey: ['useFetchUserCoinsInfo'],
+        queryFn: async () => await query_userCoinsInfo(getUserId()),
         staleTime: Infinity,
         refetchOnWindowFocus: false,
         refetchOnMount: false,
     })
 
     const { data: artifactsData } = useQuery({
-        queryKey: ['useFetchArtifactsCount', user_id],
-        queryFn: async () => await query_artifactsCount(user_id),
+        queryKey: ['useFetchArtifactsCount'],
+        queryFn: async () => await query_artifactsCount(getUserId()),
         staleTime: Infinity,
         refetchOnWindowFocus: false,
         refetchOnMount: false,

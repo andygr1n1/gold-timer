@@ -18,7 +18,17 @@ export default ({ mode }: { mode: string }) => {
             host: '0.0.0.0',
             port: process.env.VITE_PORT ? Number(process.env.VITE_PORT) : 9999,
         },
-        plugins: [react(), macrosPlugin(), requestAnalytics(), outputPluginStats(), hotUpdateReport()],
+        plugins: [
+            react({
+                babel: {
+                    presets: ['jotai/babel/preset'],
+                },
+            }),
+            macrosPlugin(),
+            requestAnalytics(),
+            outputPluginStats(),
+            hotUpdateReport(),
+        ],
 
         resolve: {
             alias: [{ find: '@', replacement: path.resolve(__dirname, 'src') }],

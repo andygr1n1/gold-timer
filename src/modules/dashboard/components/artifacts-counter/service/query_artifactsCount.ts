@@ -1,4 +1,4 @@
-import { fetchData } from '@/functions/fetchData'
+import { resolveData } from '@/functions/resolveData'
 import { generateTSClient } from '@/graphql/client'
 import { processError } from '@/functions/processMessage'
 
@@ -7,7 +7,7 @@ type IArtifactsCount = { activeNotesCount?: number; activeSprintsCount?: number 
 export const query_artifactsCount = async (id: string): Promise<IArtifactsCount | null> => {
     const client = generateTSClient()
 
-    return await fetchData<null, IArtifactsCount | null>(
+    return await resolveData<null, IArtifactsCount | null>(
         () =>
             client
                 .query({

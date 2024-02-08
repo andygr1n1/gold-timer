@@ -4,6 +4,8 @@ import Cookies from 'universal-cookie'
 const cookies = new Cookies()
 
 export const getUserId = (): string => cookies.get('user') || ''
+export const getUserCoins = (): number =>
+    window.queryClient.getQueryData<unknown, string[], { coins?: number }>(['useFetchUserCoinsInfo'])?.coins || 0
 
 export const setRememberUserCookie = (userId: string, remember_me: boolean) =>
     cookies.set('user', userId, {

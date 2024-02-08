@@ -9,7 +9,6 @@ import { CRUD_NoteDialog } from './components/crud-note/CRUD_NoteDialog'
 import notesImage from '@/assets/notes-1.png'
 import { GoalsSlidesCarouselWidget } from '../goals-slides/GoalsSlidesCarouselWidget'
 import { ArtifactsCounter } from '../dashboard/components/artifacts-counter/ArtifactsCounter'
-import { CRUD_GoalDialog } from '../goals/components/crud-goal/CRUD_GoalDialog'
 import { Icon } from '@iconify/react'
 import { CreateNewNote } from './components/create-note-dashboard/CreateNewNote'
 import { NotesStatusSelect } from './components/filters/NotesStatusSelect'
@@ -30,7 +29,6 @@ export const NotesIndex: React.FC = observer(function NotesIndex() {
                     <ArtifactsCounter />
                     {/* DIALOG */}
                     <CRUD_NoteDialog />
-                    <CRUD_GoalDialog />
                 </>
             }
         >

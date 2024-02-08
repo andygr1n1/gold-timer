@@ -1,13 +1,13 @@
 import { generateTSClient } from '../../../graphql/client'
 import { processError } from '@/functions/processMessage'
 import { getOwnerId } from '@/functions/getUserId'
-import { fetchData } from '@/functions/fetchData'
+import { resolveData } from '@/functions/resolveData'
 import type { achievements } from '@/graphql/generated'
 
 export const query_fetchAchievements = async (): Promise<Partial<achievements>[] | undefined> => {
     const client = generateTSClient()
 
-    return await fetchData<Partial<achievements>[], Partial<achievements>[]>(
+    return await resolveData<Partial<achievements>[], Partial<achievements>[]>(
         () =>
             client
                 .query({

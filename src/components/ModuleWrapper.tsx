@@ -9,9 +9,9 @@ export const ModuleWrapper: React.FC<{
     hideTopBar?: boolean
 }> = observer(function ModuleWrapper({ children, topBarNodes, hideTopBar }) {
     return (
-        <div className='bg-global-bg mx-auto my-5 w-[calc(100%-40px)] max-w-[1300px] flex-auto rounded-lg md:my-2   md:w-[calc(100%-160px)]'>
+        <div className='bg-global-bg mx-auto my-5 w-[calc(100%-40px)] max-w-[1300px] flex-auto rounded-lg md:my-2 md:w-[calc(100%-160px)]'>
             {!hideTopBar && <TopBar>{topBarNodes}</TopBar>}
-            <div className='font-kzen flex w-full flex-col '>{children}</div>
+            <div className='mb-5 flex w-full flex-wrap justify-start gap-8'>{children}</div>
         </div>
     )
 })

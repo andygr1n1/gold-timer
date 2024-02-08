@@ -20,3 +20,9 @@ compressorjs
 
 <https://tanstack.com/query/latest/docs/react/reference/useQuery>
 <https://tanstack.com/query/latest/docs/react/guides/important-defaults>
+
+## UTILITY
+```
+optics-ts:
+https://akheron.github.io/optics-ts/tutorial/
+```

@@ -1,5 +1,13 @@
 /// <reference types="vite/client" />
 
+import { QueryClient } from '@tanstack/react-query'
+
+declare global {
+    interface Window {
+        queryClient: QueryClient
+    }
+}
+
 interface ImportMetaEnv {
     readonly PORT: number
     readonly VITE_CLIENT_ENDPOINT: string
@@ -13,9 +21,4 @@ interface ImportMetaEnv {
 
 interface ImportMeta {
     readonly env: ImportMetaEnv
-}
-
-declare module 'passive-events-support/src/utils' {
-    type ISupport = ({ debug: boolean }) => void
-    let passiveSupport: ISupport
 }

@@ -1,9 +1,10 @@
 import { add, getDay } from 'date-fns'
 import { RITUAL_TYPE_ENUM } from '../lib/enums'
 import { setMidnightTime } from './date.helpers'
+import { ritual_type_enum_enum } from '@/graphql/generated'
 
 export const generateNewRitualCircle = (options: {
-    ritual_type: RITUAL_TYPE_ENUM
+    ritual_type: ritual_type_enum_enum
     new_ritual_interval: number
     goal_created_at?: Date
     goal_finished_at?: Date

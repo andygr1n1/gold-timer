@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
 import { query_fetchAchievements } from './graphql/query_fetchAchievements'
 import type { achievements } from '@/graphql/generated'
-import { queryClient } from '@/main'
+// import { queryClient } from '@/App'
 
 export const useFetchAchievements = (): {
     isLoading: boolean
@@ -12,7 +12,7 @@ export const useFetchAchievements = (): {
         queryKey: ['achievements'],
         queryFn: async () => await query_fetchAchievements(),
         initialData: () => {
-            return queryClient.getQueryData<achievements[]>(['achievements'])
+            return window.queryClient.getQueryData<achievements[]>(['achievements'])
         },
         staleTime: Infinity,
         refetchOnWindowFocus: false,

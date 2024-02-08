@@ -1,6 +1,6 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
 import { APP_ROUTES_ENUM } from './lib/enums'
-import { GoalsIndex } from './modules/goals/GoalsIndex'
+import { GoalsManager } from './modules/goals/components/goals-manager/GoalsManager'
 import { ProfileIndex } from './modules/profile/ProfileIndex'
 import { NotesIndex } from './modules/notes/NotesIndex'
 import { SprintsIndex } from './modules/sprints/SprintsIndex'
@@ -24,11 +24,11 @@ export const AppProtectedRoutes: React.FC = () => {
                 <Route path={`/${APP_ROUTES_ENUM.ACHIEVEMENTS}`} element={<AchievementsIndex />} />
                 <Route path={`/${APP_ROUTES_ENUM.STORIES}`} element={<StoriesIndex />} />
                 <Route path={`/${APP_ROUTES_ENUM.NOTES}`} element={<NotesIndex />} />
-                <Route path={`/${APP_ROUTES_ENUM.GOALS}`} element={<GoalsIndex />} />
+                <Route path={`/${APP_ROUTES_ENUM.GOALS}`} element={<GoalsManager />} />
                 <Route path={`/${APP_ROUTES_ENUM.SPRINTS}`} element={<SprintsIndex />} />
                 <Route path={`/${APP_ROUTES_ENUM.SMART_CONTRACTS}`} element={<SmartContractsIndex />} />
                 {/*  */}
-                <Route path={`/${APP_ROUTES_ENUM.DASHBOARD}`} element={<DashboardIndex />} />
+                <Route path={`/${APP_ROUTES_ENUM.DASHBOARD}/*`} element={<DashboardIndex />} />
             </Routes>
             {/*  */}
             {/* D I A L O G */}

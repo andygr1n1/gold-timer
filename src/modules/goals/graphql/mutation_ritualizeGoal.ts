@@ -19,7 +19,6 @@ export const mutation_ritualizeGoal = async (
             $created_at: timestamptz
             $finished_at: timestamptz
             $ritual_power: Int
-            $log_description: goal_logs_enum_enum
         ) {
             update_goals_by_pk(
                 pk_columns: { id: $goal_id }
@@ -29,9 +28,6 @@ export const mutation_ritualizeGoal = async (
             }
             update_goals_rituals(where: { goal_id: { _eq: $goal_id } }, _set: { ritual_power: $ritual_power }) {
                 affected_rows
-            }
-            insert_goals_logs_one(object: { goal_id: $goal_id, log_description: $log_description }) {
-                log_id
             }
         }
     `

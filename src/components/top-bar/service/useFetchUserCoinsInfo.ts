@@ -1,7 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
-import { useAtom } from 'jotai'
-import { loginAtom } from '@/modules/login/stores/login.store'
 import { query_userCoinsInfo } from './query_userCoinsInfo'
+import { getUserId } from '@/functions/universalCookie.helper'
 
 type IRes = {
     isLoading: boolean
@@ -10,11 +9,9 @@ type IRes = {
 }
 
 export const useFetchUserCoinsInfo = (): IRes => {
-    const [{ user_id }] = useAtom(loginAtom)
-
     const { data, isLoading } = useQuery({
-        queryKey: ['useFetchUserCoinsInfo', user_id],
-        queryFn: async () => await query_userCoinsInfo(user_id),
+        queryKey: ['useFetchUserCoinsInfo'],
+        queryFn: async () => await query_userCoinsInfo(getUserId()),
         staleTime: Infinity,
         refetchOnWindowFocus: false,
         refetchOnMount: false,

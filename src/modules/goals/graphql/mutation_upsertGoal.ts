@@ -1,4 +1,4 @@
-import { IInsertRitual, IInsertNewGoal } from '@/modules/goals/interfaces/newGoal.interface'
+import { IInsertRitual, IInsertNewGoal } from '@/modules/goals/interfaces/types'
 import { gql } from 'graphql-request'
 import { generateClient } from '../../../graphql/client'
 import { processError } from '@/functions/processMessage'

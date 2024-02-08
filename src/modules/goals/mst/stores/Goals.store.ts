@@ -1,20 +1,19 @@
 import { GOAL_STATUS_ENUM } from '@/lib/enums'
 import { add, isPast, sub } from 'date-fns'
-import { filter, orderBy, differenceWith, cloneDeep, compact } from 'lodash-es'
-import { destroy, detach, toGenerator, types, flow, cast } from 'mobx-state-tree'
+import { filter, orderBy, differenceWith, compact } from 'lodash-es'
+import { destroy, detach, toGenerator, types, flow, cast, castToSnapshot } from 'mobx-state-tree'
 import { Goal$ } from './Goal.store'
 import { GoalsFilter$ } from './GoalsFilter.store'
 import { processError } from '@/functions/processMessage'
 import { GoalNew$ } from './GoalNew.store'
 import { IGoal$ } from '../types'
-import { GoalEdit$ } from './GoalEdit.store'
+import { query_fetchGoalById } from '../../components/goal-crud/service/query_fetchGoalById'
 
 export const Goals$ = types
     .model('Goals$', {
         goals: types.array(Goal$),
         new_goal: types.maybe(GoalNew$),
-        edit_goal: types.maybe(GoalEdit$),
-        selected_goal: types.safeReference(Goal$),
+        selected_goal: types.maybe(GoalNew$),
         goals_filter$: types.optional(GoalsFilter$, {
             goals_estimation_filter: add(new Date(Date.now()), { days: 60 }),
         }),
@@ -89,39 +88,28 @@ export const Goals$ = types
                 parent_goal_id: options?.parentGoalId ? options?.parentGoalId : null,
             })
             self.selected_goal = undefined
-            self.edit_goal = undefined
         },
-        openViewMode(id: string | undefined): void {
+        openViewMode: flow(function* _openViewMode(id: string | undefined) {
             if (!id) return
-            const selectedGoal = self.goals.find((goal) => goal.id === id)
-            self.selected_goal = selectedGoal
+            self.selected_goal = castToSnapshot(yield query_fetchGoalById(id))
             self.new_goal = undefined
-            self.edit_goal = undefined
-        },
-        openEditMode(id: string | undefined, redirected?: boolean): void {
-            if (!id) return
-            const selectedGoal = self.goals.find((goal) => goal.id === id)
-            self.edit_goal = cast({ ...cloneDeep(selectedGoal), redirected })
-            self.selected_goal = undefined
-        },
-        openCreateRitualMode(id: string | undefined): void {
+        }),
+        openCreateRitualMode: flow(function* _openCreateRitualMode(id: string | undefined) {
             if (!id) return
             const redirectFromViewMode = self.selected_goal
 
             if (redirectFromViewMode) {
-                const selectedGoal = self.goals.find((goal) => goal.id === id)
-                self.edit_goal = cast({
-                    ...cloneDeep(selectedGoal),
+                self.selected_goal = cast({
+                    ...(yield query_fetchGoalById(id)),
                     goal_ritual: {},
                     deleted_at: null,
                     redirected: true,
                 })
-                self.selected_goal = undefined
             } else {
-                self.edit_goal?.onChangeField('goal_ritual', cast({}))
-                self.edit_goal?.onChangeField('deleted_at', null)
+                // self.selected_goal?.onChangeField('goal_ritual', cast({}))
+                // self.selected_goal?.onChangeField('deleted_at', null)
             }
-        },
+        }),
     }))
     .actions((self) => ({
         createNewGoal: flow(function* _createNewGoal() {
@@ -137,18 +125,6 @@ export const Goals$ = types
                 self.new_goal = undefined
             } catch (e) {
                 processError(e, 'createNewGoal error')
-            }
-        }),
-        updateGoal: flow(function* _updateGoal() {
-            if (!self.edit_goal) return
-            const { updateGoal, redirected, id } = self.edit_goal
-
-            try {
-                yield updateGoal()
-                redirected && self.openViewMode(id)
-                self.edit_goal = undefined
-            } catch (e) {
-                processError(e, 'updateGoal error')
             }
         }),
     }))

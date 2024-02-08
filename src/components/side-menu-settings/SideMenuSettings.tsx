@@ -4,7 +4,7 @@ import { Transition } from '@headlessui/react'
 import { useMenuFiltersClickOutside } from './useMenuFiltersClickOutside.hook'
 import clsx from 'clsx'
 import { useRootStore } from '../../StoreProvider'
-import { CloseSideMenu } from '@/components/icons/CloseSideMenuIcon'
+import { CloseSideMenuIcon } from '@/components/icons/CloseSideMenuIcon'
 import { useLocation } from 'react-router-dom'
 import { APP_ROUTES_ENUM } from '../../lib/enums'
 import { SprintsSettings } from './components/SprintsSettings'
@@ -50,7 +50,7 @@ export const SideMenuSettings: React.FC = observer(() => {
                 )}
             >
                 <div className='relative mt-5 flex w-full flex-col gap-5 px-5 pt-10'>
-                    <CloseSideMenu onClose={() => onChangeSideMenu('visible', false)} />
+                    <CloseSideMenuIcon onClose={() => onChangeSideMenu('visible', false)} />
                     {route === APP_ROUTES_ENUM.SPRINTS && <SprintsSettings />}
                     {route === APP_ROUTES_ENUM.NOTES && <NotesSettings />}
                 </div>

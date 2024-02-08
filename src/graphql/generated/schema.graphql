@@ -1384,10 +1384,10 @@ type goals {
   is_favorite: Boolean!
   owner_id: uuid!
   parent_goal_id: uuid
-  privacy: privacy_enum_enum!
+  privacy: privacy_enum_enum
 
   """An object relationship"""
-  privacy_enum: privacy_enum!
+  privacy_enum: privacy_enum
   slogan: String!
   status: goal_status_enum_enum!
   title: String!

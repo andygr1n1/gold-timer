@@ -1,10 +1,8 @@
-import { fetchData } from '@/functions/fetchData'
+import { resolveData } from '@/functions/resolveData'
 import { processError } from '@/functions/processMessage'
 import { fetchUserByEmail } from '@/graphql/queries/fetchUserByEmail.query'
-import { atom, createStore } from 'jotai'
+import { atom } from 'jotai'
 import { atomWithImmer } from 'jotai-immer'
-
-export const registerStore = createStore()
 
 export const registerAtom = atomWithImmer({ name: '', register_email_input: '', register_email_in_use: false })
 
@@ -16,7 +14,7 @@ export const registerEmailInUseError = atom((get) => {
 // actions
 export const validateUser = atom(null, async (get, set): Promise<number> => {
     const store = get(registerAtom)
-    return await fetchData<number, number>(
+    return await resolveData<number, number>(
         () =>
             fetchUserByEmail(store.register_email_input).then((res) => {
                 if (!res) throw new Error('validateEmail error')

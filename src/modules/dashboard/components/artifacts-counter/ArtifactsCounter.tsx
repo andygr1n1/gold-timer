@@ -5,6 +5,7 @@ import { GoalsCounterDropdown } from './components/GoalsCounterDropdown'
 import { NotesCounterDropdown } from './components/NotesCounterDropdown'
 import { SprintsCounterDropdown } from './components/SprintsCounterDropdown'
 import { useFetchArtifactsCount } from './service/useFetchArtifactsCount'
+import { CRUD_NoteDialog } from '@/modules/notes/components/crud-note/CRUD_NoteDialog'
 
 export const ArtifactsCounter: React.FC = observer(() => {
     // const {
@@ -48,6 +49,7 @@ export const ArtifactsCounter: React.FC = observer(() => {
                     />
                 }
             />
+            <CRUD_NoteDialog />
 
             <SprintsCounterDropdown
                 button={

@@ -1,4 +1,4 @@
-import { fetchData } from '@/functions/fetchData'
+import { resolveData } from '@/functions/resolveData'
 import { generateTSClient } from '@/graphql/client'
 import { processError } from '@/functions/processMessage'
 import { heroes } from '@/graphql/generated'
@@ -8,7 +8,7 @@ type IHero = Pick<heroes, 'name' | 'avatar'>
 export const query_baseUserInfo = async (id: string): Promise<IHero | null> => {
     const client = generateTSClient()
 
-    return await fetchData<null, IHero | null>(
+    return await resolveData<null, IHero | null>(
         () =>
             client
                 .query({

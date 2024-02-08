@@ -1,13 +1,13 @@
 import { processError } from '../../../functions/processMessage'
 import { INote$SnapshotIn } from '@/modules/notes/mst/types'
 import { getOwnerId } from '@/functions/getUserId'
-import { fetchData } from '@/functions/fetchData'
+import { resolveData } from '@/functions/resolveData'
 import { generateTSClient } from '@/graphql/client'
 
 export const query_fetchNotes = async (): Promise<INote$SnapshotIn[]> => {
     const client = generateTSClient()
 
-    return await fetchData<INote$SnapshotIn[], INote$SnapshotIn[]>(
+    return await resolveData<INote$SnapshotIn[], INote$SnapshotIn[]>(
         () =>
             client
                 .query({

@@ -1,0 +1,16 @@
+.wrapper {
+    @apply bg-global-2-bg relative mx-auto flex flex-col flex-wrap items-start justify-start rounded-lg md:flex-row xl:w-full;
+}
+
+.goals-container {
+    @apply flex min-h-[56px] w-[calc(100%-40px)] flex-col  items-center justify-center gap-5 p-5 md:h-[56px] 
+    md:flex-row md:flex-wrap md:overflow-hidden xl:ml-2 xl:justify-start;
+}
+
+.dashboard-widget-goals-container {
+    @apply flex  min-h-[140px] w-full flex-wrap  gap-5 overflow-hidden pt-10;
+}
+
+.goal {
+    @apply relative  flex h-[60px] w-[100px] flex-[100%] cursor-pointer items-center justify-between rounded-lg duration-300  2xl:flex-[0_0_48%];
+}

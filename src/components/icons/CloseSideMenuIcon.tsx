@@ -1,7 +1,7 @@
 import { Icon } from '@iconify/react'
 import { observer } from 'mobx-react-lite'
 
-export const CloseSideMenu: React.FC<{ className?: string; onClose: () => void }> = observer(
+export const CloseSideMenuIcon: React.FC<{ className?: string; onClose: () => void }> = observer(
     ({ className = '', onClose }) => {
         return (
             <Icon

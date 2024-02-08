@@ -492,9 +492,9 @@ export interface goals {
     is_favorite: Scalars['Boolean']
     owner_id: Scalars['uuid']
     parent_goal_id: (Scalars['uuid'] | null)
-    privacy: privacy_enum_enum
+    privacy: (privacy_enum_enum | null)
     /** An object relationship */
-    privacy_enum: privacy_enum
+    privacy_enum: (privacy_enum | null)
     slogan: Scalars['String']
     status: goal_status_enum_enum
     title: Scalars['String']

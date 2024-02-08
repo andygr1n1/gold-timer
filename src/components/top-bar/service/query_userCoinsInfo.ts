@@ -1,4 +1,4 @@
-import { fetchData } from '@/functions/fetchData'
+import { resolveData } from '@/functions/resolveData'
 import { generateTSClient } from '@/graphql/client'
 import { processError } from '@/functions/processMessage'
 import { GOAL_STATUS_ENUM } from '@/lib/enums'
@@ -8,7 +8,7 @@ export type IUserCoinsInfo = { coins?: number; totalRitualPower?: number; active
 export const query_userCoinsInfo = async (id: string): Promise<IUserCoinsInfo | null> => {
     const client = generateTSClient()
 
-    return await fetchData<null, IUserCoinsInfo | null>(
+    return await resolveData<null, IUserCoinsInfo | null>(
         () =>
             client
                 .query({

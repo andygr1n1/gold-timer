@@ -1,3 +1,4 @@
+import { isDev } from '@/functions/isUnderDevelopment.helper'
 import { atomWithStorage } from 'jotai/utils'
 
 export const darkModeAtom = atomWithStorage(
@@ -17,3 +18,5 @@ export const darkModeAtom = atomWithStorage(
     },
     { getOnInit: true },
 )
+
+isDev && (darkModeAtom.debugLabel = 'themingStore')

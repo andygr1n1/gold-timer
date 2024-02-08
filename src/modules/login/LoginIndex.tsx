@@ -16,7 +16,7 @@ import styles from './LoginIndex.module.scss'
 import clsx from 'clsx'
 import { processError } from '@/functions/processMessage'
 import { useAtom } from 'jotai'
-import { fetchData } from '@/functions/fetchData'
+import { resolveData } from '@/functions/resolveData'
 import { loginAtom } from './stores/login.store'
 
 export const LoginIndex: React.FC = observer(() => {
@@ -25,7 +25,7 @@ export const LoginIndex: React.FC = observer(() => {
 
     const onFinish = async (values: IValues) => {
         const errorString = 'Please try again. Your credentials are wrong'
-        await fetchData<void, void>(
+        await resolveData<void, void>(
             () =>
                 sendLoginData(values).then((res) => {
                     if (!res) throw new Error(errorString)
