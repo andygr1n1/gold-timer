@@ -22,7 +22,7 @@ export const AppProtectedRoutes: React.FC = () => {
                 <Route path={'*'} element={<Navigate to={`/${APP_ROUTES_ENUM.DASHBOARD}`} />} />
                 <Route path={`/${APP_ROUTES_ENUM.PROFILE}`} element={<ProfileIndex />} />
                 <Route path={`/${APP_ROUTES_ENUM.ACHIEVEMENTS}`} element={<AchievementsIndex />} />
-                <Route path={`/${APP_ROUTES_ENUM.STORIES}`} element={<StoriesIndex />} />
+                <Route path={`/${APP_ROUTES_ENUM.STORIES}/*`} element={<StoriesIndex />} />
                 <Route path={`/${APP_ROUTES_ENUM.NOTES}`} element={<NotesIndex />} />
                 <Route path={`/${APP_ROUTES_ENUM.GOALS}`} element={<GoalsManager />} />
                 <Route path={`/${APP_ROUTES_ENUM.SPRINTS}`} element={<SprintsIndex />} />

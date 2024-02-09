@@ -174,3 +174,11 @@ input[type='number'] {
 .ant-message-custom-content {
     @apply flex h-full items-center justify-center gap-2;
 }
+
+.book-page {
+    @apply mx-5 w-full max-w-3xl text-xl xl:mx-auto;
+
+    p.intro {
+        @apply my-5 text-base;
+    }
+}
