@@ -2,9 +2,11 @@ import { useMutation } from '@tanstack/react-query'
 import { mutation_favoriteGoal } from './mutation_favoriteGoal'
 
 import { useAtom } from 'jotai'
-import { ISelectedGoal, selectedGoalAtom } from '@/modules/goals/stores/selectedGoal.store'
+import { selectedGoalAtom } from '@/modules/goals/stores/selected-goal/selectedGoal.store'
 import { IActiveGoalOptimized } from '../../interfaces/types'
 import { cloneDeep } from 'lodash-es'
+import { ISelectedGoal } from '../../stores/selected-goal/types'
+import { KEY_FetchGoalById, KEY_FetchGoalsByFilter } from '../keys'
 
 export const useMutateGoalFavorite = () => {
     const [selectedGoal] = useAtom(selectedGoalAtom)
@@ -13,10 +15,10 @@ export const useMutateGoalFavorite = () => {
             mutation_favoriteGoal(goal_id, is_favorite),
         onSuccess: (res /*variables*/) => {
             selectedGoal?.id &&
-                window.queryClient.setQueryData(['useFetchGoal', selectedGoal?.id], (oldData: ISelectedGoal) => {
+                window.queryClient.setQueryData(KEY_FetchGoalById(selectedGoal.id), (oldData: ISelectedGoal) => {
                     return { ...oldData, is_favorite: res?.is_favorite }
                 })
-            window.queryClient.setQueryData(['useFetchGoals', 'all', 8], (oldData: IActiveGoalOptimized[]) => {
+            window.queryClient.setQueryData(KEY_FetchGoalsByFilter('all', 8), (oldData: IActiveGoalOptimized[]) => {
                 const proxyArray = new Proxy(
                     cloneDeep(oldData).map((g) => new Proxy(g, {})),
                     {},
@@ -29,7 +31,7 @@ export const useMutateGoalFavorite = () => {
             })
         },
         onSettled: async () => {
-            return await window.queryClient.invalidateQueries({ queryKey: ['useFetchGoals', 'all', 8] })
+            return await window.queryClient.invalidateQueries({ queryKey: KEY_FetchGoalsByFilter('all', 8) })
         },
     })
     return mutation

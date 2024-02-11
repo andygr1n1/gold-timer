@@ -1,9 +1,11 @@
 import { useQuery } from '@tanstack/react-query'
-import { query_fetchGoalById } from '@/modules/goals/components/goal-crud/service/query_fetchGoalById'
+import { query_fetchGoalById } from '@/modules/goals/service/fetchGoalById/query_fetchGoalById'
 import { IActiveGoalOptimized } from '@/modules/goals/interfaces/types'
 import { optimizeActiveGoalsData } from '@/modules/goals/helpers/optimizeActiveGoalsData'
-import { newGoalTemplate, selectedGoalAtom } from '@/modules/goals/stores/selectedGoal.store'
+import { selectedGoalAtom } from '@/modules/goals/stores/selected-goal/selectedGoal.store'
 import { useAtom } from 'jotai'
+import { KEY_FetchGoalById } from '../keys'
+import { newGoalTemplate } from '../../stores/editGoal.store'
 
 export const useFetchGoal = (): Partial<{ goal: IActiveGoalOptimized | null; isLoading: boolean; isEdit: boolean }> => {
     const [_selectedGoal] = useAtom(selectedGoalAtom)
@@ -18,7 +20,7 @@ export const useFetchGoal = (): Partial<{ goal: IActiveGoalOptimized | null; isL
               data: optimizeActiveGoalsData(newGoalTemplate(id, parent_goal_id))[0],
           }
         : useQuery({
-              queryKey: ['useFetchGoal', id],
+              queryKey: KEY_FetchGoalById(id),
               queryFn: async () => await query_fetchGoalById(id),
               staleTime: 2000,
               refetchOnWindowFocus: true,

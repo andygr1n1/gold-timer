@@ -5,7 +5,6 @@ import { GoalsList } from '@/modules/goals/components/goals-manager/GoalsList'
 import { observer } from 'mobx-react-lite'
 import goalsImage from '@/assets/goals-1.png'
 import { SearchGoalsInput } from './SearchGoalsInput'
-import { useListenGoalsFilterStore } from '../../helpers/useListenGoalsFilterStore.hook'
 import { GoalsModuleDropdown } from './components/goals-module-dropdown/GoalsModuleDropdown'
 
 export const GoalsManager: React.FC = observer(() => {
@@ -13,8 +12,6 @@ export const GoalsManager: React.FC = observer(() => {
         goals,
         goals_filter$: { show_deleted },
     } = useGoalsStore()
-
-    useListenGoalsFilterStore()
 
     return (
         <ModuleWrapper context={APP_ROUTES_ENUM.GOALS}>

@@ -32,7 +32,7 @@ export const PopoverGoalActionsContent: React.FC<{
             />
             <MenuItem
                 action={() => {
-                    goal.favoriteGoal()
+                    // goal.favoriteGoal()
                 }}
                 icon={!goal.is_favorite ? 'ic:baseline-favorite-border' : 'ic:outline-favorite'}
                 title={goal.is_favorite ? 'Unfavorite' : 'Favorite'}
@@ -64,7 +64,7 @@ export const PopoverGoalActionsContent: React.FC<{
             )}
             <MenuItem
                 action={() => {
-                    goal.deleteGoal().finally(() => onClose())
+                    // goal.deleteGoal().finally(() => onClose())
                 }}
                 icon='fluent:delete-dismiss-24-filled'
                 title={goal.deleted_at ? 'Restore from bin' : 'Move to bin'}

@@ -3,7 +3,7 @@ import { processError } from '@/functions/processMessage'
 import { IActiveGoalOptimized, IGoalQueryTypeFilter } from '@/modules/goals/interfaces/types'
 // import { query_fetchActiveGoals } from './filters/query_fetchActiveGoals'
 // import { query_fetchFavoriteGoals } from './filters/query_fetchFavoriteGoals'
-import { query_fetchGoals } from './filters/query_fetchGoals'
+import { query_fetchGoalsByFilter } from './query_fetchGoalsByFilter'
 
 export const fabric_goalsByFilter = async (props: {
     limit?: number
@@ -15,7 +15,7 @@ export const fabric_goalsByFilter = async (props: {
 
     if (queryFilter === 'all') {
         getGoals = () =>
-            query_fetchGoals({ limit, filter: { active: true, expired: true, ritual: true, favorite: true } })
+            query_fetchGoalsByFilter({ limit, filter: { active: true, expired: true, ritual: true, favorite: true } })
     }
 
     // if (queryFilter === 'active') {

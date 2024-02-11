@@ -1,8 +1,8 @@
-import { optimizeActiveGoalsData } from '../../../helpers/optimizeActiveGoalsData'
-import { processError } from '../../../../../functions/processMessage'
+import { optimizeActiveGoalsData } from '../../helpers/optimizeActiveGoalsData'
+import { processError } from '../../../../functions/processMessage'
 import { resolveData } from '@/functions/resolveData'
 import { generateTSClient } from '@/graphql/client'
-import { IActiveGoalOptimized } from '../../../interfaces/types'
+import { IActiveGoalOptimized } from '../../interfaces/types'
 
 export const query_fetchGoalById = async (goal_id: string): Promise<IActiveGoalOptimized | null> => {
     const client = generateTSClient()

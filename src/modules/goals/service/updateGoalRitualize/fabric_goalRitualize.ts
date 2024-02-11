@@ -1,4 +1,4 @@
-import { convertDateToString, setMidnightTime, setZeroTime } from './../../../../functions/date.helpers'
+import { convertDateToString, setMidnightTime, setZeroTime } from '../../../../functions/date.helpers'
 import { generateTSClient } from '@/graphql/client'
 import { IActiveGoalOptimized } from '../../interfaces/types'
 import { mutation_coinsOnRitualizeGoal } from './mutation_coinsOnRitualizeGoal'

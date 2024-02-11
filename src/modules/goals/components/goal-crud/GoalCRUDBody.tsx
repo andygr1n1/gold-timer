@@ -1,4 +1,4 @@
-import { useFetchGoal } from './service/useFetchGoal'
+import { useFetchGoal } from '../../service/fetchGoalById/useFetchGoal'
 import { ViewGoalDialogBody } from './components/view-goal/ViewGoalDialogBody'
 import { EditGoalDialogBody } from './components/edit-goal/EditGoalDialogBody'
 import { GoalManagerActions } from './GoalManagerActions'

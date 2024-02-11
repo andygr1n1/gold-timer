@@ -1,8 +1,7 @@
-import { PRIVACY_ENUM } from '@/lib/enums'
-import { DIFFICULTY_ENUM, GOAL_STATUS_ENUM } from '../../../../lib/enums'
+import { PRIVACY_ENUM, RITUAL_TYPE_ENUM } from '@/lib/enums'
+import { DIFFICULTY_ENUM, GOAL_STATUS_ENUM } from '../../../lib/enums'
 import { types } from 'mobx-state-tree'
 import { differenceInCalendarDays, set, toDate } from 'date-fns'
-import { GoalRitual } from './GoalRitual.model'
 
 export const Goal = types
     .model('Goal', {
@@ -65,7 +64,19 @@ export const Goal = types
                 },
             }),
         ),
-        goal_ritual: types.maybeNull(GoalRitual),
+        goal_ritual: types.maybeNull(
+            types.model('GoalRitual', {
+                ritual_id: '',
+                goal_id: '',
+                ritual_type: types.optional(
+                    types.enumeration(Object.values(RITUAL_TYPE_ENUM)),
+                    RITUAL_TYPE_ENUM.INTERVAL_IN_DAYS,
+                ),
+                ritual_power: 0,
+                ritual_interval: 1,
+                goal_title: '',
+            }),
+        ),
     })
     .views((self) => ({
         get isValidForMutation(): boolean {

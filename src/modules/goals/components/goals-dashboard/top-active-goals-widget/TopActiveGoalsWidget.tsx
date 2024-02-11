@@ -4,7 +4,7 @@ import styles from '../TopGoalsWidgets.module.scss'
 import { StyledButton } from '@/components/buttons/StyledButton'
 import clsx from 'clsx'
 import { ActiveIcon } from '../components/Icons'
-import { useFetchGoalsByFilter } from '../../../service/fetchGoalsByFilter/useFetchGoals'
+import { useFetchGoalsByFilter } from '../../../service/fetchGoalsByFilter/useFetchGoalsByFilter'
 import { useNavigate } from 'react-router-dom'
 import { TopGoal } from '../components/TopGoal'
 

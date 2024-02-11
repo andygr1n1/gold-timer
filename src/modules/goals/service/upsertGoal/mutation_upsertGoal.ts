@@ -60,7 +60,6 @@ export const mutation_upsertGoal = async (newGoal: IInsertNewGoal, newRitual?: I
                     },
                 })
                 .then((res) => {
-                    console.log('res', res)
                     return res.insert_goals_one ? optimizeActiveGoalsData(res.insert_goals_one) : null
                 }),
         (e) => {

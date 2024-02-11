@@ -2,7 +2,7 @@ import { StyledButton } from '@/components/buttons/StyledButton'
 import { IActiveGoalOptimized } from '@/modules/goals/interfaces/types'
 import { IconComplete } from '@/assets/icons/IconComplete'
 import { useAtom } from 'jotai'
-import { cancelViewMode } from '@/modules/goals/stores/selectedGoal.store'
+import { cancelViewMode } from '@/modules/goals/stores/selected-goal/selectedGoal.store'
 import { useMutateGoalStatus } from '@/modules/goals/service'
 
 export const CompleteRitualGoal: React.FC<{ goal: IActiveGoalOptimized }> = ({ goal }) => {

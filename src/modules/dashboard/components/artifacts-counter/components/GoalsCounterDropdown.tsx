@@ -6,7 +6,7 @@ import { ReactNode } from 'react'
 import { Icon } from '@iconify/react'
 import { NavLink } from 'react-router-dom'
 import { APP_ROUTES_ENUM } from '@/lib/enums'
-import { selectedGoalAtom, selectedGoalAtom$ } from '@/modules/goals/stores/selectedGoal.store'
+import { selectedGoalAtom, selectedGoalAtom$ } from '@/modules/goals/stores/selected-goal/selectedGoal.store'
 
 export const GoalsCounterDropdown: React.FC<{ button: ReactNode }> = observer(({ button }) => {
     return (

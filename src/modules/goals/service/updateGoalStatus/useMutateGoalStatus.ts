@@ -7,6 +7,7 @@ import { cloneDeep } from 'lodash-es'
 import { IUserCoinsInfo } from '@/components/top-bar/service/query_userCoinsInfo'
 import { processSuccess } from '@/functions/processMessage'
 import { isCompleted } from '../../helpers/guards'
+import { KEY_FetchGoalsByFilter } from '../keys'
 
 export const useMutateGoalStatus = () => {
     const mutation = useMutation({
@@ -18,7 +19,7 @@ export const useMutateGoalStatus = () => {
             const resGoalId = res.status?.id
             const resUserCoins = res.coins
 
-            window.queryClient.setQueryData(['useFetchGoals', 'all', 8], (oldData: IActiveGoalOptimized[]) => {
+            window.queryClient.setQueryData(KEY_FetchGoalsByFilter('all', 8), (oldData: IActiveGoalOptimized[]) => {
                 const proxyArray = new Proxy(
                     cloneDeep(oldData).map((g) => new Proxy(g, {})),
                     {},

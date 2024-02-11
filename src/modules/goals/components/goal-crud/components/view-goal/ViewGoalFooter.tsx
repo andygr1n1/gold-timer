@@ -2,12 +2,12 @@ import { IconComplete } from '@/assets/icons/IconComplete'
 import { IconInfinity } from '@/assets/icons/IconInfinity'
 import { FormFooter } from '@/components/form/FormFooter'
 import { IActiveGoalOptimized } from '@/modules/goals/interfaces/types'
-import { cancelViewMode } from '@/modules/goals/stores/selectedGoal.store'
+import { cancelViewMode } from '@/modules/goals/stores/selected-goal/selectedGoal.store'
 import { useAtom } from 'jotai'
 import { NewRitualGoal } from '../../goal-actions/NewRitualGoal'
 import { CompleteRitualGoal } from '../../goal-actions/CompleteRitualGoal'
 import { useMutateGoalStatus } from '@/modules/goals/service'
-import { useMutateGoalRitualize } from '@/modules/goals/service/goal_ritualize/useMutateGoalRitualize'
+import { useMutateGoalRitualize } from '@/modules/goals/service/updateGoalRitualize/useMutateGoalRitualize'
 
 export const ViewGoalFooter: React.FC<{ goal: IActiveGoalOptimized }> = ({ goal }) => {
     const { deleted_at, goal_ritual, isFromFuture, id } = goal

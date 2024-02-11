@@ -5,7 +5,7 @@ import { useTogglePopoverState } from '@/hooks/useTogglePopoverState'
 import { XDropdown } from '@/components-x/x-dropdown/XDropdown'
 import { IActiveGoalOptimized } from '@/modules/goals/interfaces/types'
 import { TopGoalMenu } from './TopGoalMenu'
-import { selectedGoalAtom, selectedGoalAtom$ } from '@/modules/goals/stores/selectedGoal.store'
+import { selectedGoalAtom, selectedGoalAtom$ } from '@/modules/goals/stores/selected-goal/selectedGoal.store'
 import { IconBellUrgent } from '@/assets/icons/IconBellUrgent'
 
 export const TopGoal: React.FC<{ goal: IActiveGoalOptimized; className?: string; zIndex?: number }> = observer(

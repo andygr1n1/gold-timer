@@ -5,6 +5,7 @@ import { IActiveGoalOptimized, IGoalQueryTypeFilter } from '@/modules/goals/inte
 import { isPast } from 'date-fns'
 import { GOAL_STATUS_ENUM } from '@/lib/enums'
 import { orderBy } from 'lodash-es'
+import { KEY_FetchGoalsByFilter } from '../keys'
 
 type IActiveGoals = {
     isLoading: boolean
@@ -19,14 +20,17 @@ type IActiveGoals = {
 export const useFetchGoalsByFilter = (props: { queryFilter?: IGoalQueryTypeFilter; limit?: number }): IActiveGoals => {
     const { queryFilter = 'all', limit = 8 } = props
     const { isLoading, data } = useQuery({
-        queryKey: ['useFetchGoals', queryFilter, limit],
+        queryKey: KEY_FetchGoalsByFilter(queryFilter, limit),
         queryFn: async () => {
             const data = await fabric_goalsByFilter({ limit, queryFilter })
             return data
         },
         // 5 minutes
         // staleTime: 300000,
-        staleTime: Infinity,
+        // staleTime: Infinity,
+
+        // 1 minute
+        staleTime: 60000,
         refetchOnWindowFocus: true,
         refetchOnMount: true,
     })

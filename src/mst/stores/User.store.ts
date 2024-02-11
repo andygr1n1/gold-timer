@@ -1,5 +1,4 @@
 import { flow, toGenerator, types, cast } from 'mobx-state-tree'
-import { GoalRitual } from '../../modules/goals/mst/models/GoalRitual.model'
 import { IUser$ } from '../types'
 import { IBaseUserData, updateUserData } from '@/modules/profile/graphql/updateUserData.m'
 import { processError } from '@/functions/processMessage'
@@ -19,7 +18,6 @@ export const User$ = types
             coins: 0,
             total_ritual_power: 0,
             number_of_rituals: 0,
-            most_powerful_ritual: types.optional(GoalRitual, {}),
             avatar: types.maybeNull(types.string),
             addons: types.array(UserAddon),
             //

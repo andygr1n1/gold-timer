@@ -1,13 +1,12 @@
 import { GOAL_STATUS_ENUM } from '@/lib/enums'
 import { add, isPast, sub } from 'date-fns'
 import { filter, orderBy, differenceWith, compact } from 'lodash-es'
-import { destroy, detach, toGenerator, types, flow, cast, castToSnapshot } from 'mobx-state-tree'
+import { destroy, detach, types, flow, cast, castToSnapshot } from 'mobx-state-tree'
 import { Goal$ } from './Goal.store'
 import { GoalsFilter$ } from './GoalsFilter.store'
-import { processError } from '@/functions/processMessage'
 import { GoalNew$ } from './GoalNew.store'
-import { IGoal$ } from '../types'
-import { query_fetchGoalById } from '../../components/goal-crud/service/query_fetchGoalById'
+import { IGoal$ } from './types'
+import { query_fetchGoalById } from '../service/fetchGoalById/query_fetchGoalById'
 
 export const Goals$ = types
     .model('Goals$', {
@@ -108,23 +107,6 @@ export const Goals$ = types
             } else {
                 // self.selected_goal?.onChangeField('goal_ritual', cast({}))
                 // self.selected_goal?.onChangeField('deleted_at', null)
-            }
-        }),
-    }))
-    .actions((self) => ({
-        createNewGoal: flow(function* _createNewGoal() {
-            if (!self.new_goal) return
-            const { createNewGoal } = self.new_goal
-
-            try {
-                const res = yield* toGenerator(createNewGoal())
-                res && self.goals.push(res)
-                if (res?.parent_goal_id) {
-                    self.openViewMode(res?.parent_goal_id)
-                }
-                self.new_goal = undefined
-            } catch (e) {
-                processError(e, 'createNewGoal error')
             }
         }),
     }))

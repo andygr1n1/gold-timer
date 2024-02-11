@@ -1,5 +1,5 @@
 import { StyledButton } from '@/components/buttons/StyledButton'
-import { selectedGoalAtom, selectedGoalAtom$ } from '@/modules/goals/stores/selectedGoal.store'
+import { selectedGoalAtom, selectedGoalAtom$ } from '@/modules/goals/stores/selected-goal/selectedGoal.store'
 import { IconInfinity } from '@/assets/icons/IconInfinity'
 
 export const NewRitualGoal: React.FC<{ goalId?: string }> = ({ goalId }) => {

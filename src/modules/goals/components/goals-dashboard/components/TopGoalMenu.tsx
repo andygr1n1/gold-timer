@@ -1,7 +1,7 @@
 import { XMenuDivider } from '@/components-x/x-dropdown/XMenuDivider'
 import { XMenuDropdown } from '@/components-x/x-dropdown/XMenuDropdown'
 import { XMenuItem } from '@/components-x/x-dropdown/XMenuItem'
-import { selectedGoalAtom, selectedGoalAtom$ } from '@/modules/goals/stores/selectedGoal.store'
+import { selectedGoalAtom, selectedGoalAtom$ } from '@/modules/goals/stores/selected-goal/selectedGoal.store'
 import { IconEye } from '@/assets/icons/IconEye'
 import { IActiveGoalOptimized } from '@/modules/goals/interfaces/types'
 import { ToggleFavorite } from '../../goal-crud/goal-actions/ToggleFavoriteGoal'

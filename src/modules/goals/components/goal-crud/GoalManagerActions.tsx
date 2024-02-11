@@ -1,5 +1,5 @@
 import { useAtom } from 'jotai'
-import { selectedGoalAtom } from '../../stores/selectedGoal.store'
+import { selectedGoalAtom } from '../../stores/selected-goal/selectedGoal.store'
 import { IActiveGoalOptimized } from '../../interfaces/types'
 import { ToggleEditGoal } from './goal-actions/ToggleEditGoal'
 import { ToggleFavorite } from './goal-actions/ToggleFavoriteGoal'
