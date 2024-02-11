@@ -40,4 +40,7 @@ export const useUpsertGoal = () =>
                 return cloneDeep({ ...oldData, ...resGoal })
             })
         },
+        onSettled: async () => {
+            return await window.queryClient.invalidateQueries({ queryKey: KEY_FetchGoalsByFilter('all', 8) })
+        },
     })
