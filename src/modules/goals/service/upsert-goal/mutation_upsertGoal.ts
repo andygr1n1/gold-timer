@@ -13,6 +13,22 @@ export const mutation_upsertGoal = async (newGoal: IInsertNewGoal, newRitual?: I
             client
                 .mutation({
                     __name: 'mutation_upsertGoal',
+                    insert_goals_rituals_one: newRitual
+                        ? {
+                              __args: {
+                                  object: newRitual,
+                                  on_conflict: {
+                                      constraint: 'goals_rituals_pkey',
+                                      update_columns: ['ritual_interval', 'ritual_power', 'ritual_type'],
+                                  },
+                              },
+                              ritual_id: true,
+                              goal_id: true,
+                              ritual_power: true,
+                              ritual_interval: true,
+                              ritual_type: true,
+                          }
+                        : undefined,
                     insert_goals_one: {
                         __args: {
                             object: newGoal,
@@ -42,24 +58,9 @@ export const mutation_upsertGoal = async (newGoal: IInsertNewGoal, newRitual?: I
                             ritual_type: true,
                         },
                     },
-                    insert_goals_rituals_one: newRitual
-                        ? {
-                              __args: {
-                                  object: newRitual,
-                                  on_conflict: {
-                                      constraint: 'goals_rituals_pkey',
-                                      update_columns: ['ritual_interval', 'ritual_power', 'ritual_type'],
-                                  },
-                              },
-                              ritual_id: true,
-                              goal_id: true,
-                              ritual_power: true,
-                              ritual_interval: true,
-                              ritual_type: true,
-                          }
-                        : undefined,
                 })
                 .then((res) => {
+                    console.log('res', res)
                     return res.insert_goals_one ? optimizeActiveGoalsData(res.insert_goals_one) : null
                 }),
         (e) => {

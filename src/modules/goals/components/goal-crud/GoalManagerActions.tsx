@@ -4,18 +4,22 @@ import { IActiveGoalOptimized } from '../../interfaces/types'
 import { ToggleEditGoal } from './goal-actions/ToggleEditGoal'
 import { ToggleFavorite } from './goal-actions/ToggleFavoriteGoal'
 import { DeleteGoal } from './goal-actions/DeleteGoal'
+import { CreateChildGoal } from './goal-actions/CreateChildGoal'
+import { ToggleFavoriteNewGoal } from './goal-actions/ToggleFavoriteNewGoal'
 
 export const GoalManagerActions: React.FC<{ goal: IActiveGoalOptimized }> = ({ goal }) => {
     const [_selectedGoal] = useAtom(selectedGoalAtom)
 
-    return !_selectedGoal?.is_new ? (
+    return (
         <div className='relative flex w-full flex-wrap items-center justify-center gap-5'>
-            {/* <ConvertToRitualGoal goal={goal} hide={!!goal.goal_ritual || goal.isCompleted} /> */}
-            {/* <CreateChildGoal goal={goal} hide={!!goal.goal_ritual && !!!goal.isRitualGoal} /> */}
-
-            <ToggleEditGoal />
-            <ToggleFavorite goalId={goal.id} isFavorite={!!goal.is_favorite} />
-            <DeleteGoal goalId={goal.id} deletedAt={!!goal.deleted_at} />
+            {!_selectedGoal?.is_new && <ToggleEditGoal />}
+            {_selectedGoal?.is_new ? (
+                <ToggleFavoriteNewGoal />
+            ) : (
+                <ToggleFavorite goalId={goal.id} isFavorite={!!goal.is_favorite} />
+            )}
+            {!_selectedGoal?.is_new && <DeleteGoal goalId={goal.id} deletedAt={!!goal.deleted_at} />}
+            {!_selectedGoal?.is_new && <CreateChildGoal parentGoalId={goal.id} />}
         </div>
-    ) : null
+    )
 }

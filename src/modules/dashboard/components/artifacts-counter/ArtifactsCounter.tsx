@@ -20,7 +20,6 @@ export const ArtifactsCounter: React.FC = observer(() => {
             <GoalsCounterDropdown
                 button={
                     <ArtifactsCounterItem
-                        // action={openCreateMode}
                         count={activeGoalsCount}
                         icon={
                             <Icon

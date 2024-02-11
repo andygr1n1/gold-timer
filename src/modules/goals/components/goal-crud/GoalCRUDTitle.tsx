@@ -4,12 +4,13 @@ import { IconEdit } from '@/assets/icons/IconEdit'
 import { IconEye } from '@/assets/icons/IconEye'
 import { NewChildIcon } from '@/components/icons/NewChildIcon'
 import { IconInfinity } from '@/assets/icons/IconInfinity'
+import { capitalize } from 'lodash-es'
 
 export const GoalCRUDTitle = () => {
     const [state] = useAtom(selectedGoalState)
     const isEdit = state === 'edit'
     const isNew = state === 'create'
-    const isNewChild = state === 'create child goal'
+    const isNewChild = state === 'create child'
     const isNewRitual = state === 'ritualize'
 
     const icon = isEdit ? (
@@ -27,7 +28,7 @@ export const GoalCRUDTitle = () => {
     return (
         <span className='flex items-center justify-center gap-5 focus-visible:outline-none' tabIndex={0}>
             {icon}
-            <span className='capitalize'>{state}</span>
+            <span>{capitalize(state)} goal</span>
         </span>
     )
 }

@@ -35,6 +35,10 @@ export const editGoalAtom_finished_at = focusAtom(editGoalAtom, (optic) => {
     return optic.optional().prop('finished_at') || ''
 })
 
+export const editGoalAtom_is_favorite = focusAtom(editGoalAtom, (optic) => {
+    return optic.optional().prop('is_favorite') || ''
+})
+
 export const editGoalAtom_goal_ritual___ritual_type = focusAtom<
     IActiveGoalOptimized | undefined,
     RITUAL_TYPE_ENUM,

@@ -1,6 +1,4 @@
 import { observer } from 'mobx-react-lite'
-
-import { useRootStore } from '@/StoreProvider'
 import { XDropdown } from '@/components-x/x-dropdown/XDropdown'
 import { XMenuDropdown } from '@/components-x/x-dropdown/XMenuDropdown'
 import { XMenuItem } from '@/components-x/x-dropdown/XMenuItem'
@@ -8,6 +6,8 @@ import { ReactNode } from 'react'
 import { Icon } from '@iconify/react'
 import { NavLink } from 'react-router-dom'
 import { APP_ROUTES_ENUM } from '@/lib/enums'
+import { selectedGoalAtom, selectedGoalAtom$ } from '@/modules/goals/stores/selectedGoal.store'
+
 export const GoalsCounterDropdown: React.FC<{ button: ReactNode }> = observer(({ button }) => {
     return (
         <XDropdown
@@ -21,16 +21,17 @@ export const GoalsCounterDropdown: React.FC<{ button: ReactNode }> = observer(({
     )
 })
 
-const DropdownRender = observer(() => {
-    const {
-        goals$: { openGoalCreateMode },
-    } = useRootStore()
+const DropdownRender = () => {
     return (
         <XMenuDropdown>
             <XMenuItem
-                onClick={() => {
-                    openGoalCreateMode()
-                }}
+                onClick={() =>
+                    selectedGoalAtom$.set(selectedGoalAtom, {
+                        id: crypto.randomUUID(),
+                        is_edit: true,
+                        is_new: true,
+                    })
+                }
             >
                 <Icon
                     icon='ic:round-fiber-new'
@@ -53,4 +54,4 @@ const DropdownRender = observer(() => {
             </NavLink>
         </XMenuDropdown>
     )
-})
+}

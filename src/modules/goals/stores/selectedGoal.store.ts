@@ -3,6 +3,7 @@ import { formatISO } from 'date-fns'
 import { Atom, atom, createStore } from 'jotai'
 import { atomWithImmer } from 'jotai-immer'
 import { goal_status_enum_enum } from '@/graphql/generated'
+import { cloneDeep } from 'lodash-es'
 
 //*
 // is_redirect_from_view_mode to understand if edit was clicked from view mode
@@ -15,7 +16,7 @@ export type ISelectedGoal = {
     is_new_ritual?: boolean
 }
 export type IGoalsFilter = 'active'
-export type ISelectedGoalState = 'view' | 'edit' | 'create' | 'create child goal' | 'ritualize'
+export type ISelectedGoalState = 'view' | 'edit' | 'create' | 'create child' | 'ritualize'
 //
 //
 
@@ -32,7 +33,7 @@ export const selectedGoalState: Atom<ISelectedGoalState> = atom((get) => {
     // *
     // order matters
     if (!selectedGoal) return 'view'
-    if (selectedGoal.is_edit && selectedGoal.is_new && selectedGoal.parent_goal_id) return 'create child goal'
+    if (selectedGoal.is_edit && selectedGoal.is_new && selectedGoal.parent_goal_id) return 'create child'
     if (selectedGoal.is_edit && selectedGoal.is_new) return 'create'
     if (selectedGoal.is_edit && selectedGoal.is_new_ritual) return 'ritualize'
     if (selectedGoal.is_edit) return 'edit'
@@ -48,6 +49,9 @@ export const selectGoalId = atom<null, [update: { id: string; is_edit: boolean; 
 )
 export const cancelEditMode = atom(null, (get, set) => {
     set(selectedGoalAtom, (store) => {
+        console.log('store', cloneDeep(store))
+        if (store?.is_redirect_from_view_mode && store?.is_new && store?.parent_goal_id)
+            return { id: store.parent_goal_id, is_edit: false, is_new: false }
         return store?.is_new || !store?.is_redirect_from_view_mode ? null : { ...store, is_edit: false }
     })
 })

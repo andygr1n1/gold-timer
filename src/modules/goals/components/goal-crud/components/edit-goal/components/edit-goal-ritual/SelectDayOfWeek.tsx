@@ -1,5 +1,5 @@
 import { XSelect } from '@/components-x/x-select/XSelect'
-import { convertDateToString, setMidnightTime } from '@/functions/date.helpers'
+import { DaysOfTheWeek, convertDateToString, setMidnightTime } from '@/functions/date.helpers'
 import { generateNewRitualCircle } from '@/functions/generateNewRitualCircle'
 import { editGoalAtom, getImmutableFinishedAt } from '@/modules/goals/stores/editGoal.store'
 import { parseISO } from 'date-fns'
@@ -46,15 +46,5 @@ export const SelectDayOfWeek = () => {
         }))
     }
 
-    const options = [
-        { value: '1', label: 'Monday' },
-        { value: '2', label: 'Tuesday' },
-        { value: '3', label: 'Wednesday' },
-        { value: '4', label: 'Thursday' },
-        { value: '5', label: 'Friday' },
-        { value: '6', label: 'Saturday' },
-        { value: '0', label: 'Sunday' },
-    ]
-
-    return <XSelect value={goal_ritual.ritual_interval} onChange={handleChange} options={options} />
+    return <XSelect value={goal_ritual.ritual_interval} onChange={handleChange} options={DaysOfTheWeek} />
 }

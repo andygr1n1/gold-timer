@@ -4,6 +4,7 @@ import { IActiveGoalOptimized } from '@/modules/goals/interfaces/types'
 import { XSelect } from '@/components-x/x-select/XSelect'
 import { XInput } from '@/components-x/x-input/XInput'
 import { IconInfinity } from '@/assets/icons/IconInfinity'
+import { DaysOfTheWeek } from '@/functions/date.helpers'
 
 export const GoalRitualIntervalInput: React.FC<{
     goal: IActiveGoalOptimized
@@ -37,7 +38,7 @@ export const GoalRitualIntervalInput: React.FC<{
                         </div>
                     </div>
                     {isIntervalDayOfWeek ? (
-                        <XSelect readOnly={true} value={ritual_interval} onChange={() => {}} options={[]} />
+                        <XSelect readOnly={true} value={ritual_interval} onChange={() => {}} options={DaysOfTheWeek} />
                     ) : (
                         <XInput readOnly={true} type='number' value={ritual_interval} onChange={() => {}} />
                     )}

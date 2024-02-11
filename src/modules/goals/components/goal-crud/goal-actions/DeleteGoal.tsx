@@ -19,9 +19,7 @@ export const DeleteGoal: React.FC<{ goalId: string; deletedAt: boolean; label?: 
                 error={!!deletedAt}
                 variant={'text'}
                 onClick={() => mutate({ deleted_at: !deletedAt, goal_id: goalId })}
-                startIcon={
-                    <IconDeleteTemp width={24} height={24} className='mb-0.5 h-6 w-6 opacity-70 hover:opacity-100' />
-                }
+                startIcon={<IconDeleteTemp width={24} height={24} className='h-6 w-6 opacity-70 hover:opacity-100' />}
             >
                 {label}
             </StyledButton>
