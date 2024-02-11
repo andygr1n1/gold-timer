@@ -51,7 +51,11 @@ export const mutation_upsertGoal = async (newGoal: IInsertNewGoal, newRitual?: I
                                       update_columns: ['ritual_interval', 'ritual_power', 'ritual_type'],
                                   },
                               },
+                              ritual_id: true,
                               goal_id: true,
+                              ritual_power: true,
+                              ritual_interval: true,
+                              ritual_type: true,
                           }
                         : undefined,
                 })

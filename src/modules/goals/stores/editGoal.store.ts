@@ -13,6 +13,7 @@ import { parseISO } from 'date-fns'
 import { setGoalDifficulty } from '@/functions/setGoalDifficulty'
 import { cloneDeep } from 'lodash-es'
 import { RITUAL_TYPE_ENUM } from '@/lib/enums'
+import { convertStringToDate, setMidnightTime } from '@/functions/date.helpers'
 
 export const editGoalAtom = atomWithImmer<IActiveGoalOptimized | undefined>(undefined)
 isDev && (editGoalAtom.debugLabel = 'editGoalAtom')
@@ -55,6 +56,7 @@ export const editGoalAtom_goal_ritual___ritual_type = focusAtom<
 // *
 // derived
 export const goalHasTitle = atom((get) => !!get(editGoalAtom_title)?.length)
+export const goalIsRitual = atom((get) => !!get(editGoalAtom)?.goal_ritual)
 
 // *
 // actions
@@ -72,7 +74,7 @@ export const upsertGoal = atomWithMutation(() => ({
             title,
             slogan,
             description,
-            finished_at: parseISO(finished_at),
+            finished_at: setMidnightTime(convertStringToDate(finished_at)),
             status: editGoal.status || 'active',
             difficulty: setGoalDifficulty(parseISO(editGoal.finished_at)),
             parent_goal_id: editGoal.parent_goal_id ?? null,
@@ -93,10 +95,18 @@ export const upsertGoal = atomWithMutation(() => ({
         window.queryClient.setQueryData(['useFetchGoal', resGoal.id], (oldData: IActiveGoalOptimized[]) => {
             if (!oldData) return oldData
 
-            return { ...oldData, ...resGoal }
+            console.log('oldData', oldData)
+            console.log('resGoal', resGoal)
+
+            return cloneDeep({ ...oldData, ...resGoal })
         })
     },
 }))
+
+// *
+// helpers
+export const getImmutableFinishedAt = (goalId: string): string | undefined =>
+    window.queryClient.getQueryData<unknown, string[], { finished_at: string }>(['useFetchGoal', goalId])?.finished_at
 
 //  updateGoal: flow(function* updateGoal() {
 //         try {

@@ -1,7 +1,7 @@
 import { editGoalAtom } from '../../../../stores/editGoal.store'
 import { IActiveGoalOptimized } from '@/modules/goals/interfaces/types'
 import { EditGoalTitle } from './components/EditGoalTitle'
-import { EditGoalFooter } from './components/EditGoalFooter'
+import { EditGoalFooter } from './EditGoalFooter'
 import { selectedGoalAtom, selectedGoalAtom$ } from '@/modules/goals/stores/selectedGoal.store'
 import { useMemo } from 'react'
 import { EditGoalSlogan } from './components/EditGoalSlogan'
@@ -12,8 +12,6 @@ import { convertDateToString } from '@/functions/date.helpers'
 
 export const EditGoalDialogBody: React.FC<{ goal: IActiveGoalOptimized }> = ({ goal }) => {
     const isNewRitual = selectedGoalAtom$.get(selectedGoalAtom)?.is_new_ritual
-
-    console.log('isNewRitual', isNewRitual)
 
     // useMemo helps to prevent updating EditStore, example can be toggle favorite goal
     // we need only to initialize editStore
@@ -51,6 +49,7 @@ export const EditGoalDialogBody: React.FC<{ goal: IActiveGoalOptimized }> = ({ g
                         <EditGoalSlogan />
                         <EditGoalDescription />
                         <EditGoalFinishedAt />
+                        <EditGoalRitualIntervalInput />
                     </>
                 )}
                 <EditGoalFooter />

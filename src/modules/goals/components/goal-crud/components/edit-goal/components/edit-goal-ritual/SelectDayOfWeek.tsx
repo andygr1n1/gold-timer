@@ -1,7 +1,7 @@
 import { XSelect } from '@/components-x/x-select/XSelect'
-import { convertDateToString, setMidnightTime, setZeroTime } from '@/functions/date.helpers'
+import { convertDateToString, setMidnightTime } from '@/functions/date.helpers'
 import { generateNewRitualCircle } from '@/functions/generateNewRitualCircle'
-import { editGoalAtom } from '@/modules/goals/stores/editGoal.store'
+import { editGoalAtom, getImmutableFinishedAt } from '@/modules/goals/stores/editGoal.store'
 import { parseISO } from 'date-fns'
 import { useAtom } from 'jotai'
 import { useEffect } from 'react'
@@ -22,21 +22,19 @@ export const SelectDayOfWeek = () => {
     const { goal_ritual } = _editGoalAtom
 
     const handleChange = (value: string) => {
-        const new_ritual_interval = _editGoalAtom.goal_ritual?.ritual_interval
-        const ritual_type = _editGoalAtom.goal_ritual?.ritual_type
-        const goal_created_at = _editGoalAtom.created_at
-            ? parseISO(_editGoalAtom.created_at)
-            : setZeroTime(new Date(Date.now()))
-        const goal_finished_at = _editGoalAtom.finished_at
-            ? setMidnightTime(parseISO(_editGoalAtom.finished_at))
-            : setMidnightTime(new Date(Date.now()))
+        if (!_editGoalAtom.goal_ritual) return
 
-        if (!ritual_type || !new_ritual_interval) return
+        const new_ritual_interval = +value
+        const ritual_type = _editGoalAtom.goal_ritual.ritual_type
+
+        const immutableFinishedAt = getImmutableFinishedAt(_editGoalAtom.id)
+        const goal_finished_at = setMidnightTime(
+            immutableFinishedAt ? parseISO(immutableFinishedAt) : new Date(Date.now()),
+        )
 
         const { ritual_goal_finished_at } = generateNewRitualCircle({
             ritual_type,
             new_ritual_interval,
-            goal_created_at,
             goal_finished_at,
             edit: true,
         })

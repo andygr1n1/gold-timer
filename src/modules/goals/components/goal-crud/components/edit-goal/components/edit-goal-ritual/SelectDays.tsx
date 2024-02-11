@@ -4,7 +4,7 @@ import { generateNewRitualCircle } from '@/functions/generateNewRitualCircle'
 import { useAtom } from 'jotai'
 import { editGoalAtom } from '@/modules/goals/stores/editGoal.store'
 import { parseISO } from 'date-fns'
-import { convertDateToString, setMidnightTime, setZeroTime } from '@/functions/date.helpers'
+import { convertDateToString, setMidnightTime } from '@/functions/date.helpers'
 
 export const SelectDays = () => {
     const [_editGoalAtom, _setEditGoalAtom] = useAtom(editGoalAtom)
@@ -27,9 +27,6 @@ export const SelectDays = () => {
         }
 
         const ritual_type = _editGoalAtom.goal_ritual?.ritual_type
-        const goal_created_at = _editGoalAtom.created_at
-            ? parseISO(_editGoalAtom.created_at)
-            : setZeroTime(new Date(Date.now()))
         const goal_finished_at = _editGoalAtom.finished_at
             ? setMidnightTime(parseISO(_editGoalAtom.finished_at))
             : setMidnightTime(new Date(Date.now()))
@@ -39,7 +36,6 @@ export const SelectDays = () => {
         const { ritual_goal_finished_at } = generateNewRitualCircle({
             ritual_type,
             new_ritual_interval: value || 1,
-            goal_created_at,
             goal_finished_at,
             edit: true,
         })

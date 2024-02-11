@@ -4,9 +4,18 @@ import {
     goals_rituals,
     goal_difficulty_enum_enum,
     privacy_enum_enum,
+    Scalars,
+    ritual_type_enum_enum,
+    // ritual_type_enum_enum,
 } from '@/graphql/generated'
 import { RITUAL_TYPE_ENUM } from '@/lib/enums'
 export type IGoalQueryTypeFilter = 'active' | 'ritual' | 'expired' | 'favorite' | 'completed' | 'deleted' | 'all'
+
+export type IGoalRitualOptimized = Partial<Omit<goals_rituals, 'ritual_power' | 'ritual_interval' | 'ritual_type'>> & {
+    ritual_interval: Scalars['Int']
+    ritual_power: Scalars['Int']
+    ritual_type: ritual_type_enum_enum
+}
 
 export type IGoalWithRituals = Partial<
     Omit<goals, 'goal_ritual' | 'title' | 'finished_at' | 'id' | 'is_favorite' | 'slogan' | 'created_at'>
@@ -15,10 +24,10 @@ export type IGoalWithRituals = Partial<
     title: string
     slogan?: string
     finished_at: string
-    goal_ritual?: Partial<goals_rituals> | null
+    goal_ritual?: IGoalRitualOptimized | null
     is_favorite?: boolean
     status: goal_status_enum_enum
-    created_at?: string
+    created_at: string
 }
 
 export type IActiveGoalOptimized = IGoalWithRituals & {

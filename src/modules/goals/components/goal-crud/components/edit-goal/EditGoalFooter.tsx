@@ -1,7 +1,7 @@
 import { FormFooter } from '@/components/form/FormFooter'
 import { cancelEditMode } from '@/modules/goals/stores/selectedGoal.store'
 import { useAtom } from 'jotai'
-import { editGoalAtom, goalHasTitle, upsertGoal } from '../../../../../stores/editGoal.store'
+import { editGoalAtom, goalHasTitle, upsertGoal } from '../../../../stores/editGoal.store'
 
 export const EditGoalFooter = () => {
     const [_editGoalAtom] = useAtom(editGoalAtom)

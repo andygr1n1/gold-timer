@@ -10,13 +10,11 @@ import { convertStringToDate } from '@/functions/date.helpers'
 export const fabric_goalRitualize = async (goal: IActiveGoalOptimized): Promise<IFabricGoalRitualize | undefined> => {
     const client = generateTSClient({ batch: true })
 
-    if (!goal.created_at || !goal.finished_at || !goal.goal_ritual?.ritual_interval || !goal.goal_ritual?.ritual_type)
-        return
+    if (!goal.goal_ritual) return
 
     const { ritual_goal_created_at, ritual_goal_finished_at } = generateNewRitualCircle({
         ritual_type: goal.goal_ritual?.ritual_type,
         new_ritual_interval: goal.goal_ritual?.ritual_interval,
-        goal_created_at: convertStringToDate(goal.created_at),
         goal_finished_at: convertStringToDate(goal.finished_at),
     })
 
