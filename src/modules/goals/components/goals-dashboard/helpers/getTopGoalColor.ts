@@ -26,7 +26,7 @@ export const getTopGoalColor = (goal: IActiveGoalOptimized): { containerClass: s
 
     if (isFavorite && isExpired) {
         containerClass = clsx(
-            'bg-gradient-to-r from-amber-600 via-amber-500 to-rose-500 shadow-[0_2px_50px_rgba(8,_212,_184,_0.7)]',
+            'bg-gradient-to-r from-amber-600 via-amber-500 to-rose-500 shadow-[0_2px_50px_rgba(255,_193,_71,_0.7)]',
         )
     }
 
