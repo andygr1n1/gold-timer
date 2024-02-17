@@ -2,7 +2,7 @@ import { optimizeActiveGoalsData } from '@/modules/goals/helpers/optimizeActiveG
 import { resolveData } from '@/functions/resolveData'
 import { processError } from '@/functions/processMessage'
 import { Client } from '@/graphql/generated'
-import { IActiveGoalOptimized } from '../../interfaces/types'
+import { IActiveGoalOptimized } from '../types'
 import { IRitualizeUpdateFields } from './types'
 
 export const mutation_goalGoalRitualize = async (

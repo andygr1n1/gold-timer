@@ -2,14 +2,14 @@ import { useMutation } from '@tanstack/react-query'
 import { fabric_goalStatus } from './fabric_goalStatus'
 
 import { goal_status_enum_enum } from '@/graphql/generated'
-import { IActiveGoalOptimized } from '@/modules/goals/interfaces/types'
+import { IActiveGoalOptimized } from '@/modules/goals/service/types'
 import { cloneDeep } from 'lodash-es'
 import { IUserCoinsInfo } from '@/components/top-bar/service/query_userCoinsInfo'
 import { processSuccess } from '@/functions/processMessage'
 import { isCompleted } from '../../helpers/goalsGuards'
 import { KEY_FetchGoalsByFilter, goalsQueryKeysValues } from '../keys'
 import { proxyConvert } from '@/functions/proxyConvert'
-import { getSelectedGoalFromCache } from '../../helpers/getSelectedGoalFromCache'
+import { getSelectedGoalFromCache } from '../../helpers/goalsCache'
 
 export const useMutateGoalStatus = () => {
     const mutation = useMutation({

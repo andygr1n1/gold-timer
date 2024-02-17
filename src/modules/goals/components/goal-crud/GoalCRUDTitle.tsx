@@ -1,5 +1,5 @@
 import { useAtom } from 'jotai'
-import { selectedGoalState } from '../../stores/selected-goal/selectedGoal.store'
+import { selectedGoalState } from '../../stores/selectedGoal.store'
 import { IconEdit } from '@/assets/icons/IconEdit'
 import { IconEye } from '@/assets/icons/IconEye'
 import { NewChildIcon } from '@/components/icons/NewChildIcon'

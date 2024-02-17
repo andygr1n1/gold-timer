@@ -1,7 +1,7 @@
 import { setMidnightTime } from '@/functions/date.helpers'
 import { differenceInCalendarDays, parseISO } from 'date-fns'
 import { isArray } from 'lodash-es'
-import { IActiveGoalOptimized, IGoalWithRituals } from '../interfaces/types'
+import { IActiveGoalOptimized, IGoalWithRituals } from '../service/types'
 
 export const optimizeActiveGoalsData = (data: IGoalWithRituals[] | IGoalWithRituals | null): IActiveGoalOptimized[] => {
     if (!data) return []

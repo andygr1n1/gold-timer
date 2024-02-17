@@ -1,5 +1,5 @@
 import { FormFooter } from '@/components/form/FormFooter'
-import { cancelEditMode } from '@/modules/goals/stores/selected-goal/selectedGoal.store'
+import { cancelEditMode } from '@/modules/goals/stores/selectedGoal.store'
 import { useAtom } from 'jotai'
 import { editGoalAtom, goalHasTitle } from '../../../../stores/editGoal.store'
 import { useUpsertGoal } from '@/modules/goals/service/upsertGoal/useUpsertGoal'

@@ -2,12 +2,12 @@ import { useMutation } from '@tanstack/react-query'
 import { mutation_favoriteGoal } from './mutation_favoriteGoal'
 
 import { useAtom } from 'jotai'
-import { selectedGoalAtom } from '@/modules/goals/stores/selected-goal/selectedGoal.store'
-import { IActiveGoalOptimized } from '../../interfaces/types'
-import { ISelectedGoal } from '../../stores/selected-goal/types'
+import { selectedGoalAtom } from '@/modules/goals/stores/selectedGoal.store'
+import { IActiveGoalOptimized } from '../types'
+import { ISelectedGoal } from '../../stores/types'
 import { KEY_FetchGoalById, KEY_FetchGoalsByFilter, goalsQueryKeysValues } from '../keys'
 import { proxyConvert } from '@/functions/proxyConvert'
-import { getSelectedGoalFromCache } from '../../helpers/getSelectedGoalFromCache'
+import { getSelectedGoalFromCache } from '../../helpers/goalsCache'
 
 export const useMutateGoalFavorite = () => {
     const [selectedGoal] = useAtom(selectedGoalAtom)

@@ -6,7 +6,7 @@ import { GOAL_STATUS_ENUM } from '@/lib/enums'
 import { compact, orderBy } from 'lodash-es'
 import { KEY_FetchGoalsByFilter } from '../keys'
 import { IActiveGoals } from '../types'
-import { IGoalQueryTypeFilter } from '../../interfaces/types'
+import { IGoalQueryTypeFilter } from '../types'
 
 export const useFetchGoalsByFilter = (props: { queryFilter?: IGoalQueryTypeFilter; limit?: number }): IActiveGoals => {
     const { queryFilter = 'all', limit } = props

@@ -1,6 +1,6 @@
 import { resolveData } from '@/functions/resolveData'
 import { processError } from '@/functions/processMessage'
-import { IActiveGoalOptimized, IGoalQueryTypeFilter } from '@/modules/goals/interfaces/types'
+import { IActiveGoalOptimized, IGoalQueryTypeFilter } from '@/modules/goals/service/types'
 import { query_fetchGoalsByFilter } from './query_fetchGoalsByFilter'
 
 export const fabric_goalsByFilter = async (props: {

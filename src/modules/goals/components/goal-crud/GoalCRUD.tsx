@@ -1,6 +1,6 @@
 import { XModal } from '@/components-x/x-modal/XModal'
 import { Provider, useAtom } from 'jotai'
-import { selectedGoalAtom, selectedGoalAtom$, selectedGoalId } from '../../stores/selected-goal/selectedGoal.store'
+import { selectedGoalAtom, selectedGoalAtom$, selectedGoalId } from '../../stores/selectedGoal.store'
 import { PropsWithChildren } from 'react'
 import { useAtomDevtools } from 'jotai-devtools'
 import { GoalCRUDTitle } from './GoalCRUDTitle'

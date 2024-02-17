@@ -1,9 +1,9 @@
 import { optimizeActiveGoalsData } from '../../helpers/optimizeActiveGoalsData'
-import { IInsertRitual, IInsertNewGoal } from '@/modules/goals/interfaces/types'
+import { IInsertRitual, IInsertNewGoal } from '@/modules/goals/service/types'
 import { processError } from '@/functions/processMessage'
 import { generateTSClient } from '@/graphql/client'
 import { resolveData } from '@/functions/resolveData'
-import { IActiveGoalOptimized } from '@/modules/goals/interfaces/types'
+import { IActiveGoalOptimized } from '@/modules/goals/service/types'
 
 export const mutation_upsertGoal = async (newGoal: IInsertNewGoal, newRitual?: IInsertRitual) => {
     const client = generateTSClient()

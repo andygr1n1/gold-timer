@@ -1,6 +1,6 @@
 import { GoalTitleInput } from '../common-components/GoalTitleInput'
 import { GoalSloganInput } from '../common-components/GoalSloganInput'
-import { IActiveGoalOptimized } from '@/modules/goals/interfaces/types'
+import { IActiveGoalOptimized } from '@/modules/goals/service/types'
 import { ViewGoalFooter } from './ViewGoalFooter'
 import { GoalDescriptionRichInput } from '../common-components/GoalDescriptionRichInput'
 import { GoalCreatedAt } from '../common-components/GoalCreatedAt'

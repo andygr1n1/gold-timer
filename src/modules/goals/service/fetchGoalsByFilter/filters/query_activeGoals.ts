@@ -3,7 +3,7 @@ import { getUserId } from '@/functions/universalCookie.helper'
 import { Client } from '@/graphql/generated'
 import { GOAL_STATUS_ENUM } from '@/lib/enums'
 import { filterGoalAtom } from '@/modules/goals/stores/filterGoal.store'
-import { selectedGoalAtom$ } from '@/modules/goals/stores/selected-goal/selectedGoal.store'
+import { selectedGoalAtom$ } from '@/modules/goals/stores/selectedGoal.store'
 
 export const query_activeGoals = (props: {
     client: Client

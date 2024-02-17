@@ -3,7 +3,7 @@ import todayLogoIcon from '@/assets/today-goal-logo.svg'
 import ritualLogoIcon from '@/assets/ritual-logo.svg'
 import expiredLogoIcon from '@/assets/expired-goals-logo.svg'
 import completedLogoIcon from '@/assets/checked.png'
-import { IActiveGoalOptimized } from '@/modules/goals/interfaces/types'
+import { IActiveGoalOptimized } from '@/modules/goals/service/types'
 import { isCompleted } from '@/modules/goals/helpers/goalsGuards'
 
 export const GoalDetails: React.FC<{ goal: IActiveGoalOptimized }> = observer(({ goal }) => {

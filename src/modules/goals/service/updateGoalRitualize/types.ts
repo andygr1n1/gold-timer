@@ -1,4 +1,4 @@
-import { IActiveGoalOptimized } from '../../interfaces/types'
+import { IActiveGoalOptimized } from '../types'
 
 export interface IFabricGoalRitualize {
     goal?: IActiveGoalOptimized | null

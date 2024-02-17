@@ -1,4 +1,4 @@
-import { IActiveGoalOptimized } from '@/modules/goals/interfaces/types'
+import { IActiveGoalOptimized } from '@/modules/goals/service/types'
 import clsx from 'clsx'
 
 export const getTopGoalColor = (goal: IActiveGoalOptimized): { containerClass: string } => {

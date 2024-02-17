@@ -1,6 +1,6 @@
 import { setMidnightTime } from '@/functions/date.helpers'
 import { useInfiniteQuery } from '@tanstack/react-query'
-import { IGoalQueryTypeFilter } from '@/modules/goals/interfaces/types'
+import { IGoalQueryTypeFilter } from '@/modules/goals/service/types'
 import { isPast } from 'date-fns'
 import { GOAL_STATUS_ENUM } from '@/lib/enums'
 import { compact, flatten, last, orderBy } from 'lodash-es'

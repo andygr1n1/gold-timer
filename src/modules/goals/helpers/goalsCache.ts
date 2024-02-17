@@ -1,5 +1,5 @@
 import { flatten } from 'lodash-es'
-import { IActiveGoalOptimized } from '../interfaces/types'
+import { IActiveGoalOptimized } from '../service/types'
 
 export const getSelectedGoalFromCache = (
     data: IActiveGoalOptimized[] | { pages: { data: IActiveGoalOptimized[] }[] },

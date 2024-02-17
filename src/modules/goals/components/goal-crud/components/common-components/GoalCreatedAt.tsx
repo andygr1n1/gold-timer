@@ -1,7 +1,7 @@
 import { XInput } from '@/components-x/x-input/XInput'
-import { ActiveGoalCreatedAt } from '@/components/components-modal-windows/goals-manager-mw/components/ActiveGoalCreatedAt'
+import { ActiveGoalCreatedAt } from '@/modules/goals/components/goal-crud/components/common-components/ActiveGoalCreatedAt'
 import { FormLabel } from '@/components/form/FormLabel'
-import { IActiveGoalOptimized } from '@/modules/goals/interfaces/types'
+import { IActiveGoalOptimized } from '@/modules/goals/service/types'
 import { format, parseISO } from 'date-fns'
 import { observer } from 'mobx-react-lite'
 

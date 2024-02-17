@@ -1,6 +1,6 @@
 import { RITUAL_TYPE_ENUM } from '@/lib/enums'
 import { FormLabel } from '@/components/form/FormLabel'
-import { IActiveGoalOptimized } from '@/modules/goals/interfaces/types'
+import { IActiveGoalOptimized } from '@/modules/goals/service/types'
 import { XSelect } from '@/components-x/x-select/XSelect'
 import { XInput } from '@/components-x/x-input/XInput'
 import { IconInfinity } from '@/assets/icons/IconInfinity'

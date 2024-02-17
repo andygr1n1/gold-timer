@@ -5,7 +5,7 @@ import {
     isFilterStateRitualized,
     isFilterStateFavorite,
 } from '@/modules/goals/helpers/goalsGuards'
-import { IGoalQueryTypeFilter } from '@/modules/goals/interfaces/types'
+import { IGoalQueryTypeFilter } from '@/modules/goals/service/types'
 
 export const ActiveFilterIcon: React.FC<{ state: IGoalQueryTypeFilter }> = ({ state }) => {
     let icon = <ActiveIcon />

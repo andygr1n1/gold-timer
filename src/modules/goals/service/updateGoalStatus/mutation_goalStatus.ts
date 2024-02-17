@@ -1,7 +1,7 @@
 import { resolveData } from '@/functions/resolveData'
 import { processError } from '@/functions/processMessage'
 import { Client, goal_status_enum_enum } from '@/graphql/generated'
-import { IActiveGoalOptimized } from '../../interfaces/types'
+import { IActiveGoalOptimized } from '../types'
 import { IGoalStatus } from './types'
 
 export const mutation_goalStatus = async (

@@ -1,4 +1,4 @@
-import { IActiveGoalOptimized } from '@/modules/goals/interfaces/types'
+import { IActiveGoalOptimized } from '@/modules/goals/service/types'
 import { observer } from 'mobx-react-lite'
 
 export const ActiveGoalCreatedAt: React.FC<{ goal: IActiveGoalOptimized }> = observer(({ goal }) => {

@@ -1,6 +1,6 @@
 import { generateTSClient } from '@/graphql/client'
 import { goal_status_enum_enum } from '@/graphql/generated'
-import { IActiveGoalOptimized } from '../../interfaces/types'
+import { IActiveGoalOptimized } from '../types'
 import { mutation_goalStatus } from './mutation_goalStatus'
 import { IFabricGoalStatus } from './types'
 import { mutation_coinsOnCompleteGoal } from './mutation_coinsOnCompleteGoal'

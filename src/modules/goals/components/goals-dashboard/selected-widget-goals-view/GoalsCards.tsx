@@ -1,10 +1,10 @@
 import { IconLoading } from '@/assets/icons/iconLoading'
-import { IGoalQueryTypeFilter } from '@/modules/goals/interfaces/types'
+import { IGoalQueryTypeFilter } from '@/modules/goals/service/types'
 import { useFetchGoalsByFilterInfinity } from '@/modules/goals/service/fetchGoalsByFilter/useFetchGoalsByFilterInfinity'
 import React, { useEffect } from 'react'
 import { useInView } from 'react-intersection-observer'
 import { TopGoal } from '../components/TopGoal'
-import { filteredGoalsConstructor } from '@/modules/goals/helpers/filteredGoalsConstructor'
+import { filteredGoalsFabric } from '@/modules/goals/helpers/filteredGoalsFabric'
 import { FormLabel } from '@/components/form/FormLabel'
 import { getMonthNumber } from '@/functions/getMonthNumber.helper'
 
@@ -17,7 +17,7 @@ export const GoalsCards: React.FC<{ state: IGoalQueryTypeFilter }> = ({ state })
         inView && hasNextPage && fetchNextPage()
     }, [inView, hasNextPage])
 
-    const { filteredGoals, timeFrame } = filteredGoalsConstructor(data[state])
+    const { filteredGoals, timeFrame } = filteredGoalsFabric(data[state])
 
     return (
         <div className='animate-opacity-3 mx-auto flex w-full max-w-sm flex-col gap-5'>

@@ -2,7 +2,7 @@ import { atom } from 'jotai'
 import { atomWithImmer } from 'jotai-immer'
 
 import { isDev } from '@/functions/isUnderDevelopment.helper'
-import { IActiveGoalOptimized } from '@/modules/goals/interfaces/types'
+import { IActiveGoalOptimized } from '@/modules/goals/service/types'
 import { focusAtom } from 'jotai-optics'
 
 import { RITUAL_TYPE_ENUM } from '@/lib/enums'

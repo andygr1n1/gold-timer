@@ -2,7 +2,7 @@ import { resolveData } from '@/functions/resolveData'
 import { processError } from '@/functions/processMessage'
 import { Client } from '@/graphql/generated'
 import { getUserCoins, getUserId } from '@/functions/universalCookie.helper'
-import { IActiveGoalOptimized } from '../../interfaces/types'
+import { IActiveGoalOptimized } from '../types'
 import { getCoinsFromRitual } from '@/functions/getCoinsFromRitual'
 
 export const mutation_coinsOnRitualizeGoal = async (

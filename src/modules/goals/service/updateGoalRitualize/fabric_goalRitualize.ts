@@ -1,6 +1,6 @@
 import { convertDateToString, setMidnightTime, setZeroTime } from '../../../../functions/date.helpers'
 import { generateTSClient } from '@/graphql/client'
-import { IActiveGoalOptimized } from '../../interfaces/types'
+import { IActiveGoalOptimized } from '../types'
 import { mutation_coinsOnRitualizeGoal } from './mutation_coinsOnRitualizeGoal'
 import { mutation_goalGoalRitualize } from './mutation_goalGoalRitualize'
 import { IFabricGoalRitualize, IRitualizeUpdateFields } from './types'

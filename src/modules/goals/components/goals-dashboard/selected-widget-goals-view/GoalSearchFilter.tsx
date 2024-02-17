@@ -1,6 +1,6 @@
 import { XInput } from '@/components-x/x-input/XInput'
 import { FormLabel } from '@/components/form/FormLabel'
-import { IGoalQueryTypeFilter } from '@/modules/goals/interfaces/types'
+import { IGoalQueryTypeFilter } from '@/modules/goals/service/types'
 import { filterGoalAtom_search } from '@/modules/goals/stores/filterGoal.store'
 import { useAtom } from 'jotai'
 import { debounce } from 'lodash-es'

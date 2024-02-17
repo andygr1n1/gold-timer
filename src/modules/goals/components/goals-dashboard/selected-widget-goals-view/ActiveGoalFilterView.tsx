@@ -6,7 +6,7 @@ import { ActiveFilterIcon } from './ActiveFilterIcon'
 import { BackToDashboardIcon } from './BackToDashboardIcon'
 import { GoalSearchFilter } from './GoalSearchFilter'
 import { GoalsCards } from './GoalsCards'
-import { IGoalQueryTypeFilter } from '@/modules/goals/interfaces/types'
+import { IGoalQueryTypeFilter } from '@/modules/goals/service/types'
 
 export const ActiveGoalFilterView: React.FC = () => {
     const location = useLocation()

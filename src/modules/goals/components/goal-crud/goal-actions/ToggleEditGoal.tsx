@@ -1,7 +1,7 @@
 import { XTooltip } from '@/components-x/x-tooltip/XTooltip'
 import { StyledButton } from '@/components/buttons/StyledButton'
 import { useAtom } from 'jotai'
-import { selectedGoalAtom, selectedGoalAtom$ } from '@/modules/goals/stores/selected-goal/selectedGoal.store'
+import { selectedGoalAtom, selectedGoalAtom$ } from '@/modules/goals/stores/selectedGoal.store'
 import { IconEdit } from '@/assets/icons/IconEdit'
 import { ReactNode } from 'react'
 

@@ -1,13 +1,13 @@
 import { useMutation } from '@tanstack/react-query'
 
-import { selectedGoalAtom } from '@/modules/goals/stores/selected-goal/selectedGoal.store'
+import { selectedGoalAtom } from '@/modules/goals/stores/selectedGoal.store'
 import { useAtom } from 'jotai'
 import { optimizeActiveGoalsData } from '../../helpers/optimizeActiveGoalsData'
-import { IActiveGoalOptimized } from '@/modules/goals/interfaces/types'
+import { IActiveGoalOptimized } from '@/modules/goals/service/types'
 import { mutation_goalDeletedAt } from './mutation_goalDeletedAt'
 import { KEY_FetchGoalById, KEY_FetchGoalsByFilter, goalsQueryKeysValues } from '../keys'
 import { proxyConvert } from '@/functions/proxyConvert'
-import { getSelectedGoalFromCache } from '../../helpers/getSelectedGoalFromCache'
+import { getSelectedGoalFromCache } from '../../helpers/goalsCache'
 
 export const useMutateGoalDeletedAt = () => {
     const [selectedGoal] = useAtom(selectedGoalAtom)

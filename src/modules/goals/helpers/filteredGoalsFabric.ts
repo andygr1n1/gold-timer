@@ -1,9 +1,9 @@
 import { compact, uniq } from 'lodash-es'
-import { IActiveGoalOptimized } from '../interfaces/types'
+import { IActiveGoalOptimized } from '../service/types'
 import { format } from 'date-fns'
 import { convertStringToDate } from '@/functions/date.helpers'
 
-export const filteredGoalsConstructor = (
+export const filteredGoalsFabric = (
     goals: IActiveGoalOptimized[] = [],
 ): {
     timeFrame: string[]

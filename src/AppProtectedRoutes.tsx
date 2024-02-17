@@ -1,6 +1,6 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
 import { APP_ROUTES_ENUM } from './lib/enums'
-import { GoalsManager } from './modules/goals/components/goals-manager/GoalsManager'
+import { GoalsManager } from './modules/goals/components/goals-cms/GoalsManager'
 import { ProfileIndex } from './modules/profile/ProfileIndex'
 import { NotesIndex } from './modules/notes/NotesIndex'
 import { SprintsIndex } from './modules/sprints/SprintsIndex'

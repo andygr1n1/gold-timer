@@ -1,5 +1,4 @@
 import { types, cast } from 'mobx-state-tree'
-import { Goals$ } from '../../modules/goals/mst/Goals.store'
 import { User$ } from './User.store'
 import { SideMenu$ } from './side-menu/SideMenu.store'
 import { Notes$ } from '@/modules/notes/mst/stores/Notes.store'
@@ -9,7 +8,6 @@ import { GoalsSlides$ } from '@/modules/goals-slides/mst/stores/GoalsSlides.stor
 export const Root$ = types
     .model('Root$', {
         user$: types.optional(User$, {}),
-        goals$: types.optional(Goals$, {}),
         goals_slides$: types.optional(GoalsSlides$, {}),
         notes$: types.optional(Notes$, {}),
         sprints$: types.optional(Sprints$, {}),
@@ -31,7 +29,6 @@ export const Root$ = types
     }))
     .actions((self) => ({
         clearStore(): void {
-            self.goals$ = cast({})
             self.goals_slides$ = cast({})
             self.notes$ = cast({})
             self.sprints$ = cast({})

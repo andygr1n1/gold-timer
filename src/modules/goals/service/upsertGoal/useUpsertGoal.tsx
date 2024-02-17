@@ -1,13 +1,13 @@
 import { useMutation } from '@tanstack/react-query'
-import { IActiveGoalOptimized, IInsertNewGoal } from '../../interfaces/types'
+import { IActiveGoalOptimized, IInsertNewGoal } from '../types'
 import { getUserId } from '@/functions/universalCookie.helper'
 import { convertStringToDate, setMidnightTime } from '@/functions/date.helpers'
 import { setGoalDifficulty } from '@/functions/setGoalDifficulty'
 import { mutation_upsertGoal } from './mutation_upsertGoal'
 import { KEY_FetchGoalById, KEY_FetchGoalsByFilter, goalsQueryKeysValues } from '../keys'
 import { proxyConvert } from '@/functions/proxyConvert'
-import { replaceObjectValues } from '../../helpers/replaceObjectValues'
-import { getSelectedGoalFromCache, pushGoalInCache } from '../../helpers/getSelectedGoalFromCache'
+import { replaceObjectValues } from '../../../../functions/replaceObjectValues'
+import { getSelectedGoalFromCache, pushGoalInCache } from '../../helpers/goalsCache'
 
 export const useUpsertGoal = () =>
     useMutation({
