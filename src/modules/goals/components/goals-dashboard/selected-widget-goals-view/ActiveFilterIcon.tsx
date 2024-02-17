@@ -1,6 +1,10 @@
 import { StyledButton } from '@/components/buttons/StyledButton'
 import { ActiveIcon, ExpiredIcon, FavoriteIcon, RitualIcon } from '../components/Icons'
-import { isFilterStateExpired, isFilterStateRitualized, isFilterStateFavorite } from '@/modules/goals/helpers/guards'
+import {
+    isFilterStateExpired,
+    isFilterStateRitualized,
+    isFilterStateFavorite,
+} from '@/modules/goals/helpers/goalsGuards'
 import { IGoalQueryTypeFilter } from '@/modules/goals/interfaces/types'
 
 export const ActiveFilterIcon: React.FC<{ state: IGoalQueryTypeFilter }> = ({ state }) => {

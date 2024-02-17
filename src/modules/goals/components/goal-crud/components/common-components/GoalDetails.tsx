@@ -1,45 +1,33 @@
 import { observer } from 'mobx-react-lite'
 import todayLogoIcon from '@/assets/today-goal-logo.svg'
-// import favoriteIcon from '@/assets/heart-favorite.svg'
 import ritualLogoIcon from '@/assets/ritual-logo.svg'
 import expiredLogoIcon from '@/assets/expired-goals-logo.svg'
 import completedLogoIcon from '@/assets/checked.png'
-import { IGoal$ } from '../../../../mst/types'
+import { IActiveGoalOptimized } from '@/modules/goals/interfaces/types'
+import { isCompleted } from '@/modules/goals/helpers/goalsGuards'
 
-export const GoalDetails: React.FC<{ goal: IGoal$ }> = observer(({ goal }) => {
+export const GoalDetails: React.FC<{ goal: IActiveGoalOptimized }> = observer(({ goal }) => {
     return (
-        <div className='flex w-full items-center justify-center  gap-5 rounded-md'>
+        <div className='my-10 flex w-full items-center justify-center  gap-5 rounded-md'>
             <GoalDaysUntilDeadline goal={goal} />
             <GoalRitualCount goal={goal} />
             <ImageByGoalType goal={goal} />
-            {/* <ImageGoalCompleted goal={goal} /> */}
         </div>
     )
 })
 
-// const ImageGoalCompleted: React.FC<{ goal: IGoal$ }> = observer(({ goal }) => {
-//     return goal.isCompleted ? (
-//         <Icon
-//             icon='material-symbols-light:auto-delete-outline'
-//             className='mb-1 min-w-[55px] text-[#9c0b1c]'
-//             width={70}
-//             height={70}
-//         />
-//     ) : null
-// })
-
-const ImageByGoalType: React.FC<{ goal: IGoal$ }> = observer(({ goal }) => {
-    const { isExpired, isRitualGoal: isRitualGoal, isCompleted } = goal
+const ImageByGoalType: React.FC<{ goal: IActiveGoalOptimized }> = observer(({ goal }) => {
+    const { isExpired, isRitual } = goal
     let goalIcon = todayLogoIcon
     const className = 'w-[60px] h-[60px]'
     if (isExpired) {
         goalIcon = expiredLogoIcon
     }
-    if (isRitualGoal) {
+    if (isRitual) {
         goalIcon = ritualLogoIcon
     }
 
-    if (isCompleted) {
+    if (isCompleted(goal.status)) {
         goalIcon = completedLogoIcon
     }
 
@@ -51,22 +39,22 @@ const ImageByGoalType: React.FC<{ goal: IGoal$ }> = observer(({ goal }) => {
     )
 })
 
-const GoalRitualCount: React.FC<{ goal: IGoal$ }> = observer(({ goal }) => {
-    if (!goal?.isRitualGoal) return null
+const GoalRitualCount: React.FC<{ goal: IActiveGoalOptimized }> = observer(({ goal }) => {
+    if (!goal?.isRitual) return null
     const { goal_ritual } = goal
 
     return (
         <div className='flex flex-col items-center justify-center gap-2 '>
             <div className='pl-2 font-extralight'>Power</div>
-            <div className='flex gap-5 text-3xl text-green-500'>{goal_ritual?.ritual_power}</div>
+            <div className='flex gap-5 text-3xl text-teal-600'>{goal_ritual?.ritual_power}</div>
         </div>
     )
 })
 
-const GoalDaysUntilDeadline: React.FC<{ goal: IGoal$ }> = observer(({ goal }) => {
-    const { totalRemainingDays, isCompleted } = goal
+const GoalDaysUntilDeadline: React.FC<{ goal: IActiveGoalOptimized }> = observer(({ goal }) => {
+    const { totalRemainingDays, status } = goal
 
-    if (isCompleted) return null
+    if (isCompleted(status)) return null
 
     return (
         <div className='flex flex-col items-center justify-center gap-2 '>
