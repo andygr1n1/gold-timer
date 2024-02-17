@@ -7,15 +7,26 @@ import { compact, flatten, last, orderBy } from 'lodash-es'
 import { KEY_FetchGoalsByFilter } from '../keys'
 import { IActiveGoals } from '../types'
 import { fabric_goalsByFilter } from './fabric_goalsByFilter'
+// import { useAtom } from 'jotai'
+// import { filterGoalAtom_search } from '../../stores/filterGoal.store'
+// import { useEffect } from 'react'
 
 export const useFetchGoalsByFilterInfinity = (props: {
     queryFilter?: IGoalQueryTypeFilter
 }): IActiveGoals & { isFetchingNextPage: boolean; fetchNextPage: () => void; hasNextPage: boolean } => {
     const { queryFilter = 'all' } = props
+
+    // const [_filterGoalAtom_search] = useAtom(filterGoalAtom_search)
+
+    // useEffect(() => {
+    //     console.log('textFilter', _filterGoalAtom_search)
+    //     window.queryClient.invalidateQueries({ queryKey: ['KEY_FetchGoalsByFilter', queryFilter] })
+    // }, [_filterGoalAtom_search?.length])
+
     const { data, fetchNextPage, hasNextPage, isFetching, isFetchingNextPage } = useInfiniteQuery({
         queryKey: KEY_FetchGoalsByFilter(['KEY_FetchGoalsByFilter', queryFilter]),
         queryFn: async ({ pageParam }) => {
-            const data = await fabric_goalsByFilter({ pageParam, queryFilter, limit: 25 })
+            const data = await fabric_goalsByFilter({ pageParam, queryFilter, limit: 25, filterByText: true })
             return { data, nextCursor: pageParam + 25 }
         },
         initialPageParam: 0,

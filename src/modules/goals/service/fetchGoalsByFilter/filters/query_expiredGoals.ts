@@ -1,10 +1,22 @@
 import { setZeroTime } from '@/functions/date.helpers'
 import { getUserId } from '@/functions/universalCookie.helper'
 import { Client } from '@/graphql/generated'
+import { filterGoalAtom } from '@/modules/goals/stores/filterGoal.store'
+import { selectedGoalAtom$ } from '@/modules/goals/stores/selected-goal/selectedGoal.store'
 
-export const query_expiredGoals = (client: Client, expired = true, limit?: number, offset?: number) => {
+export const query_expiredGoals = (props: {
+    client: Client
+    queryIsActive: boolean
+    limit?: number
+    offset?: number
+    filterByText: boolean
+}) => {
+    const { client, queryIsActive = true, limit, offset, filterByText } = props
+
+    const searchText = selectedGoalAtom$.get(filterGoalAtom)?.search
+
     return (
-        expired &&
+        queryIsActive &&
         client.query({
             __name: 'query_expiredGoals',
             goals: {
@@ -13,12 +25,31 @@ export const query_expiredGoals = (client: Client, expired = true, limit?: numbe
                     offset,
                     order_by: [{ finished_at: 'asc' }],
                     where: {
-                        owner_id: { _eq: getUserId() },
-                        deleted_at: { _is_null: true },
-                        // not ritual
-                        _not: { goal_ritual: {} },
-                        // not expired
-                        finished_at: { _lt: setZeroTime(new Date(Date.now())) },
+                        _and: [
+                            {
+                                owner_id: { _eq: getUserId() },
+                                deleted_at: { _is_null: true },
+                                // not ritual
+                                _not: { goal_ritual: {} },
+                                // not expired
+                                finished_at: { _lt: setZeroTime(new Date(Date.now())) },
+                            },
+                            {
+                                _or: filterByText
+                                    ? [
+                                          {
+                                              title: { _ilike: `%${searchText}%` },
+                                          },
+                                          {
+                                              slogan: { _ilike: `%${searchText}%` },
+                                          },
+                                          {
+                                              description: { _ilike: `%${searchText}%` },
+                                          },
+                                      ]
+                                    : undefined,
+                            },
+                        ],
                     },
                 },
                 id: true,

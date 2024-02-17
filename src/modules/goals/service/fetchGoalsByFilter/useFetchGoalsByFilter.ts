@@ -10,10 +10,11 @@ import { IGoalQueryTypeFilter } from '../../interfaces/types'
 
 export const useFetchGoalsByFilter = (props: { queryFilter?: IGoalQueryTypeFilter; limit?: number }): IActiveGoals => {
     const { queryFilter = 'all', limit } = props
+
     const { isLoading, data } = useQuery({
         queryKey: KEY_FetchGoalsByFilter([...compact(['KEY_FetchGoalsByFilter', queryFilter, limit])]),
         queryFn: async () => {
-            const data = await fabric_goalsByFilter({ limit, queryFilter })
+            const data = await fabric_goalsByFilter({ limit, queryFilter, filterByText: false })
             return data
         },
         // 5 minutes

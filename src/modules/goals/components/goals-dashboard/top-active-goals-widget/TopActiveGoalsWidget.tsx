@@ -1,5 +1,3 @@
-import { observer } from 'mobx-react-lite'
-
 import styles from '../TopGoalsWidgets.module.scss'
 import { StyledButton } from '@/components/buttons/StyledButton'
 import clsx from 'clsx'
@@ -8,7 +6,7 @@ import { useFetchGoalsByFilter } from '../../../service/fetchGoalsByFilter/useFe
 import { useNavigate } from 'react-router-dom'
 import { TopGoal } from '../components/TopGoal'
 
-export const TopActiveGoalsWidget: React.FC = observer(() => {
+export const TopActiveGoalsWidget: React.FC = () => {
     const navigate = useNavigate()
 
     const {
@@ -51,4 +49,4 @@ export const TopActiveGoalsWidget: React.FC = observer(() => {
             </div>
         </div>
     )
-})
+}

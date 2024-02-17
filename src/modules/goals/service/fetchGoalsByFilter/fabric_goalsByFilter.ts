@@ -7,8 +7,9 @@ export const fabric_goalsByFilter = async (props: {
     limit?: number
     pageParam?: number
     queryFilter?: IGoalQueryTypeFilter
+    filterByText: boolean
 }): Promise<IActiveGoalOptimized[] | null> => {
-    const { limit, queryFilter, pageParam } = props
+    const { limit, queryFilter, pageParam, filterByText } = props
 
     let getGoals: () => Promise<IActiveGoalOptimized[] | null> = async () => null
 
@@ -18,6 +19,7 @@ export const fabric_goalsByFilter = async (props: {
                 offset: pageParam,
                 limit,
                 filter: { active: true, expired: true, ritual: true, favorite: true },
+                filterByText,
             })
     }
 
@@ -27,6 +29,7 @@ export const fabric_goalsByFilter = async (props: {
                 offset: pageParam,
                 limit,
                 filter: { active: true, expired: false, ritual: false, favorite: false },
+                filterByText,
             })
     }
 
@@ -36,6 +39,7 @@ export const fabric_goalsByFilter = async (props: {
                 offset: pageParam,
                 limit,
                 filter: { active: false, expired: true, ritual: false, favorite: false },
+                filterByText,
             })
     }
 
@@ -45,6 +49,7 @@ export const fabric_goalsByFilter = async (props: {
                 offset: pageParam,
                 limit,
                 filter: { active: false, expired: false, ritual: true, favorite: false },
+                filterByText,
             })
     }
     if (queryFilter === 'favorite') {
@@ -53,6 +58,7 @@ export const fabric_goalsByFilter = async (props: {
                 offset: pageParam,
                 limit,
                 filter: { active: false, expired: false, ritual: false, favorite: true },
+                filterByText,
             })
     }
 

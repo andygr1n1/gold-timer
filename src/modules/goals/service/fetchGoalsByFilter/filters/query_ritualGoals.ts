@@ -1,9 +1,21 @@
 import { getUserId } from '@/functions/universalCookie.helper'
 import { Client } from '@/graphql/generated'
+import { filterGoalAtom } from '@/modules/goals/stores/filterGoal.store'
+import { selectedGoalAtom$ } from '@/modules/goals/stores/selected-goal/selectedGoal.store'
 
-export const query_ritualGoals = (client: Client, ritual = true, limit?: number, offset?: number) => {
+export const query_ritualGoals = (props: {
+    client: Client
+    queryIsActive: boolean
+    limit?: number
+    offset?: number
+    filterByText: boolean
+}) => {
+    const { client, queryIsActive = true, limit, offset, filterByText } = props
+
+    const searchText = selectedGoalAtom$.get(filterGoalAtom)?.search
+
     return (
-        ritual &&
+        queryIsActive &&
         client.query({
             __name: 'query_ritualGoals',
             goals: {
@@ -12,10 +24,29 @@ export const query_ritualGoals = (client: Client, ritual = true, limit?: number,
                     offset,
                     order_by: [{ finished_at: 'asc' }],
                     where: {
-                        owner_id: { _eq: getUserId() },
-                        deleted_at: { _is_null: true },
-                        // not ritual
-                        goal_ritual: { ritual_power: { _gt: 0 } },
+                        _and: [
+                            {
+                                owner_id: { _eq: getUserId() },
+                                deleted_at: { _is_null: true },
+                                // is ritual
+                                goal_ritual: { ritual_power: { _gt: 0 } },
+                            },
+                            {
+                                _or: filterByText
+                                    ? [
+                                          {
+                                              title: { _ilike: `%${searchText}%` },
+                                          },
+                                          {
+                                              slogan: { _ilike: `%${searchText}%` },
+                                          },
+                                          {
+                                              description: { _ilike: `%${searchText}%` },
+                                          },
+                                      ]
+                                    : undefined,
+                            },
+                        ],
                     },
                 },
                 id: true,

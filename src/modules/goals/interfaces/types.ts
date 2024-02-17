@@ -28,7 +28,7 @@ export type IGoalWithRituals = Partial<
     is_favorite?: boolean
     status: goal_status_enum_enum
     created_at: string
-    deleted_at: string | null
+    deleted_at?: string | null
 }
 
 export type IActiveGoalOptimized = IGoalWithRituals & {
