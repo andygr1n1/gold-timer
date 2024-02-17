@@ -8,7 +8,6 @@ import { editGoalAtom_goal_ritual___ritual_type } from '@/modules/goals/stores/e
 
 export const EditGoalRitualIntervalInput = () => {
     const [_editGoalAtom_goal_ritual_ritual_type] = useAtom(editGoalAtom_goal_ritual___ritual_type)
-    console.log('_editGoalAtom_goal_ritual_ritual_type', _editGoalAtom_goal_ritual_ritual_type)
     const isIntervalDayOfWeek = _editGoalAtom_goal_ritual_ritual_type === RITUAL_TYPE_ENUM.DAYS_OF_WEEK
 
     return _editGoalAtom_goal_ritual_ritual_type ? (

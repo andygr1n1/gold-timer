@@ -5,23 +5,41 @@ import { IActiveGoalOptimized } from '@/modules/goals/interfaces/types'
 import { cloneDeep } from 'lodash-es'
 import { IUserCoinsInfo } from '@/components/top-bar/service/query_userCoinsInfo'
 import { processSuccess } from '@/functions/processMessage'
-import { KEY_FetchGoalsByFilter } from '../keys'
+import { KEY_FetchGoalById, KEY_FetchGoalsByFilter, goalsQueryKeysValues } from '../keys'
+import { proxyConvert } from '@/functions/proxyConvert'
+import { getSelectedGoalFromCache } from '../../helpers/getSelectedGoalFromCache'
+import { replaceObjectValues } from '../../helpers/replaceObjectValues'
 
 export const useMutateGoalRitualize = () => {
     const mutation = useMutation({
         mutationFn: ({ goal }: { goal: IActiveGoalOptimized }) => fabric_goalRitualize(goal),
         onSuccess: (res) => {
-            if (!res) return
+            const goalId = res?.goal?.id
+            if (!goalId) return
 
-            window.queryClient.setQueryData(KEY_FetchGoalsByFilter('all', 8), (oldData: IActiveGoalOptimized[]) => {
-                const proxyArray = new Proxy(cloneDeep(oldData.filter((g) => g.id !== res.goal?.id)), {})
-                res.goal && proxyArray.push(res.goal)
-                return proxyArray
+            goalsQueryKeysValues.forEach((filter) => {
+                window.queryClient.setQueryData(
+                    KEY_FetchGoalsByFilter(filter),
+                    (oldData: IActiveGoalOptimized[] | { pages: { data: IActiveGoalOptimized[] }[] }) => {
+                        const newData = oldData ? proxyConvert(oldData) : undefined
+                        if (!newData) return
+
+                        const selected = getSelectedGoalFromCache(newData, goalId)
+                        replaceObjectValues(selected, res.goal)
+
+                        return newData
+                    },
+                )
+            })
+
+            window.queryClient.setQueryData(KEY_FetchGoalById(goalId), (oldData: IActiveGoalOptimized) => {
+                const selected = oldData ? proxyConvert(oldData) : undefined
+                replaceObjectValues(selected, res.goal)
+                return selected
             })
 
             res.coins &&
                 window.queryClient.setQueryData(['useFetchUserCoinsInfo'], (oldData: IUserCoinsInfo) => {
-                    console.log('res.coins', res.coins, oldData.totalRitualPower)
                     return cloneDeep({
                         ...oldData,
                         coins: res.coins,

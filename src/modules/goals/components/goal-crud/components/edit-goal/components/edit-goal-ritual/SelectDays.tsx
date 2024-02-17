@@ -39,7 +39,6 @@ export const SelectDays = () => {
             goal_finished_at,
             edit: true,
         })
-        console.log('ritual_goal_finished_at', ritual_goal_finished_at)
         _setEditGoalAtom((prev) => ({
             ...prev,
             finished_at: convertDateToString(ritual_goal_finished_at),

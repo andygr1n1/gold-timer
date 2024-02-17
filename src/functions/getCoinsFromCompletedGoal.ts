@@ -3,7 +3,6 @@ import { DIFFICULTY_ENUM } from '../lib/enums'
 
 export const getCoinsFromCompletedGoal = (goal: IActiveGoalOptimized, currentCoins: number): number => {
     const { difficulty, goal_ritual } = goal
-    console.log('difficulty', difficulty)
     if (goal_ritual) {
         //
         //

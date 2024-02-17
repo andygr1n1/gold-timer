@@ -11,10 +11,10 @@ export const TopRitualGoalsWidget: React.FC = observer(() => {
     const navigate = useNavigate()
 
     const {
-        data: { ritualGoals },
-    } = useFetchGoalsByFilter({ queryFilter: 'all' })
+        data: { ritual },
+    } = useFetchGoalsByFilter({ queryFilter: 'all', limit: 8 })
 
-    if (!ritualGoals.length) return null
+    if (!ritual?.length) return null
 
     return (
         <div className='min-h-[350px]flex-[100%] flex  max-h-[350px] md:flex-[45%]'>
@@ -33,7 +33,7 @@ export const TopRitualGoalsWidget: React.FC = observer(() => {
                     />
                 </div>
                 <div className={styles['dashboard-widget-goals-container']}>
-                    {ritualGoals.slice(0.8).map((goal) => (
+                    {ritual.slice(0.8).map((goal) => (
                         <TopGoal
                             key={goal.id}
                             goal={goal}

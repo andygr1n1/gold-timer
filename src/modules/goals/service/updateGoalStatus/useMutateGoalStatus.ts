@@ -7,28 +7,34 @@ import { cloneDeep } from 'lodash-es'
 import { IUserCoinsInfo } from '@/components/top-bar/service/query_userCoinsInfo'
 import { processSuccess } from '@/functions/processMessage'
 import { isCompleted } from '../../helpers/guards'
-import { KEY_FetchGoalsByFilter } from '../keys'
+import { KEY_FetchGoalsByFilter, goalsQueryKeysValues } from '../keys'
+import { proxyConvert } from '@/functions/proxyConvert'
+import { getSelectedGoalFromCache } from '../../helpers/getSelectedGoalFromCache'
 
 export const useMutateGoalStatus = () => {
     const mutation = useMutation({
         mutationFn: ({ goal, status }: { status: goal_status_enum_enum; goal: IActiveGoalOptimized }) =>
             fabric_goalStatus(goal, status),
         onSuccess: (res) => {
-            if (!res) return
             const resStatus = res.status?.status
-            const resGoalId = res.status?.id
+            const goalId = res.status?.id
             const resUserCoins = res.coins
+            if (!resStatus || !goalId) return
 
-            window.queryClient.setQueryData(KEY_FetchGoalsByFilter('all', 8), (oldData: IActiveGoalOptimized[]) => {
-                const proxyArray = new Proxy(
-                    cloneDeep(oldData).map((g) => new Proxy(g, {})),
-                    {},
+            goalsQueryKeysValues.forEach((filter) => {
+                window.queryClient.setQueryData(
+                    KEY_FetchGoalsByFilter(filter),
+                    (oldData: IActiveGoalOptimized[] | { pages: { data: IActiveGoalOptimized[] }[] }) => {
+                        const newData = oldData ? proxyConvert(oldData) : undefined
+
+                        if (!newData) return
+
+                        const selected = getSelectedGoalFromCache(newData, goalId)
+                        selected && (selected.status = resStatus)
+
+                        return newData
+                    },
                 )
-                const selected = proxyArray.find((goal) => goal.id === resGoalId)
-                if (selected && resStatus) {
-                    selected.status = resStatus
-                }
-                return proxyArray
             })
 
             resUserCoins &&

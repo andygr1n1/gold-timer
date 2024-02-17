@@ -21,7 +21,7 @@ export const ViewGoalFooter: React.FC<{ goal: IActiveGoalOptimized }> = ({ goal 
                 onOk={() => {
                     !!goal_ritual
                         ? _useMutateGoalRitualize.mutate({ goal })
-                        : _useMutateGoalStatus.mutate({ goal, status: 'active' })
+                        : _useMutateGoalStatus.mutate({ goal, status: 'completed' })
                     _cancelViewMode()
                 }}
                 cancelTitle='Cancel'

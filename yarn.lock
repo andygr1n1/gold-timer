@@ -5007,6 +5007,11 @@ prop-types@^15.5.8, prop-types@^15.8.1:
     object-assign "^4.1.1"
     react-is "^16.13.1"
 
+proxy-deep@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/proxy-deep/-/proxy-deep-4.0.0.tgz#0cd7663446c0a6466488c79ee1fbdb4c7a22ad22"
+  integrity sha512-kZF6uVELCrk2khKHYKCLtk7SZirAdiksIpTBPGYG+cjF3KEWbDsoUN2mNDXuSX/ujmQaCsZhE0oFY50ONywoLw==
+
 proxy-from-env@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/proxy-from-env/-/proxy-from-env-1.1.0.tgz#e102f16ca355424865755d2c9e8ea4f24d58c3e2"
@@ -5579,6 +5584,11 @@ react-imask@^7.1.3:
   dependencies:
     imask "^7.1.3"
     prop-types "^15.8.1"
+
+react-intersection-observer@^9.8.0:
+  version "9.8.0"
+  resolved "https://registry.yarnpkg.com/react-intersection-observer/-/react-intersection-observer-9.8.0.tgz#71c2156b90765ea9bae7537614e387972c963772"
+  integrity sha512-wXHvMQUsTagh3X0Z6jDtGkIXc3VVCd2tjDRYR9kII3GKrZr0XF0xtpfdamo2n8BSF+zzfeeBVOTjxZWpBp9X0g==
 
 react-is@^16.12.0, react-is@^16.13.1, react-is@^16.7.0:
   version "16.13.1"

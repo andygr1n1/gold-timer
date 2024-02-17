@@ -1,5 +1,4 @@
 import ReactDOM from 'react-dom/client'
-import { SnowfallAnimation } from './components/SnowfallAnimation'
 import { App } from './App'
 import './styles/index.scss'
 
@@ -15,7 +14,7 @@ console.info('environment', import.meta.env.VITE_NODE_ENV)
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     <>
-        <SnowfallAnimation />
+        {/* <SnowfallAnimation /> */}
         <App />
     </>,
 )

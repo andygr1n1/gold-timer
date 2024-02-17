@@ -2,7 +2,7 @@ import { setZeroTime } from '@/functions/date.helpers'
 import { getUserId } from '@/functions/universalCookie.helper'
 import { Client } from '@/graphql/generated'
 
-export const query_expiredGoals = (client: Client, expired = true, limit?: number) => {
+export const query_expiredGoals = (client: Client, expired = true, limit?: number, offset?: number) => {
     return (
         expired &&
         client.query({
@@ -10,6 +10,7 @@ export const query_expiredGoals = (client: Client, expired = true, limit?: numbe
             goals: {
                 __args: {
                     limit,
+                    offset,
                     order_by: [{ finished_at: 'asc' }],
                     where: {
                         owner_id: { _eq: getUserId() },

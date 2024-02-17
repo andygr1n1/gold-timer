@@ -4,8 +4,10 @@ import { getUserId } from '@/functions/universalCookie.helper'
 import { convertStringToDate, setMidnightTime } from '@/functions/date.helpers'
 import { setGoalDifficulty } from '@/functions/setGoalDifficulty'
 import { mutation_upsertGoal } from './mutation_upsertGoal'
-import { cloneDeep } from 'lodash-es'
-import { KEY_FetchGoalById, KEY_FetchGoalsByFilter } from '../keys'
+import { KEY_FetchGoalById, KEY_FetchGoalsByFilter, goalsQueryKeysValues } from '../keys'
+import { proxyConvert } from '@/functions/proxyConvert'
+import { replaceObjectValues } from '../../helpers/replaceObjectValues'
+import { getSelectedGoalFromCache, pushGoalInCache } from '../../helpers/getSelectedGoalFromCache'
 
 export const useUpsertGoal = () =>
     useMutation({
@@ -29,18 +31,32 @@ export const useUpsertGoal = () =>
         onSuccess: (res) => {
             const resGoal = res?.[0]
             if (!resGoal) return
-            window.queryClient.setQueryData(KEY_FetchGoalsByFilter('all', 8), (oldData: IActiveGoalOptimized[]) => {
-                let proxyArray = new Proxy(cloneDeep(oldData), {})
-                proxyArray = proxyArray.filter((goal) => goal.id !== resGoal.id)
-                proxyArray.push(resGoal)
-                return proxyArray
+
+            goalsQueryKeysValues.forEach((filter) => {
+                window.queryClient.setQueryData(
+                    KEY_FetchGoalsByFilter(filter),
+                    (oldData: IActiveGoalOptimized[] | { pages: { data: IActiveGoalOptimized[] }[] }) => {
+                        const newData = oldData ? proxyConvert(oldData) : undefined
+                        if (!newData) return
+
+                        const selected = getSelectedGoalFromCache(newData, resGoal.id)
+                        if (selected) {
+                            replaceObjectValues(selected, resGoal)
+                        } else {
+                            // push only into active goals cache
+                            ;(filter.toString().includes('all') || filter.toString().includes('active')) &&
+                                pushGoalInCache(newData, resGoal)
+                        }
+
+                        return newData
+                    },
+                )
             })
-            window.queryClient.setQueryData(KEY_FetchGoalById(resGoal.id), (oldData: IActiveGoalOptimized[]) => {
-                if (!oldData) return oldData
-                return cloneDeep({ ...oldData, ...resGoal })
+
+            window.queryClient.setQueryData(KEY_FetchGoalById(resGoal.id), (oldData: IActiveGoalOptimized) => {
+                const selected = oldData ? proxyConvert(oldData) : undefined
+                replaceObjectValues(selected, resGoal)
+                return selected
             })
-        },
-        onSettled: async () => {
-            return await window.queryClient.invalidateQueries({ queryKey: KEY_FetchGoalsByFilter('all', 8) })
         },
     })

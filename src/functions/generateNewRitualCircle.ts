@@ -23,13 +23,10 @@ export const generateNewRitualCircle = (
 
     let ritual_goal_created_at = today
     let ritual_goal_finished_at = today
-    console.log('goal_finished_at', goal_finished_at)
-    console.log('today', today)
 
     if (goal_finished_at <= today) {
         // *
         // expired ritual
-        console.log('x1')
         ritual_goal_created_at = today
         isRitualDaysInterval && (ritual_goal_finished_at = add(ritual_goal_created_at, { days: new_ritual_interval }))
         isRitualDaysOfWeek &&
@@ -39,7 +36,6 @@ export const generateNewRitualCircle = (
     } else {
         // *
         // normal ritualization
-        console.log('x2')
         ritual_goal_created_at = edit ? ritual_goal_finished_at : goal_finished_at
         isRitualDaysInterval && (ritual_goal_finished_at = add(ritual_goal_created_at, { days: new_ritual_interval }))
         isRitualDaysOfWeek &&
@@ -55,8 +51,6 @@ export const generateNewRitualCircle = (
 }
 
 export const generateEstimationForRitualDaysOfWeek = (created: Date, finishPoint: number): number => {
-    console.log('created', created)
-    console.log('finishPoint', finishPoint)
     let pushDays = 0
     const createPoint = getDay(created)
     if (createPoint > finishPoint) {

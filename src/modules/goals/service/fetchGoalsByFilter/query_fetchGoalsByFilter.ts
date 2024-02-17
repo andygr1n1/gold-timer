@@ -10,18 +10,19 @@ import { generateTSClient } from '@/graphql/client'
 // *
 // The main reason is to always have at least 8 goals in each filter
 export const query_fetchGoalsByFilter = async (props: {
+    offset?: number
     limit?: number
     filter: { active: boolean; favorite: boolean; expired: boolean; ritual: boolean }
 }): Promise<IActiveGoalOptimized[] | null> => {
-    const { limit, filter } = props
+    const { limit, filter, offset } = props
     const client = generateTSClient({ batch: true })
 
     const res = await Promise.all(
         compact([
-            query_activeGoals(client, filter.active, limit),
-            query_expiredGoals(client, filter.expired, limit),
-            query_ritualGoals(client, filter.ritual, limit),
-            query_favoriteGoals(client, filter.favorite, limit),
+            query_activeGoals(client, filter.active, limit, offset),
+            query_expiredGoals(client, filter.expired, limit, offset),
+            query_ritualGoals(client, filter.ritual, limit, offset),
+            query_favoriteGoals(client, filter.favorite, limit, offset),
         ]),
     )
 

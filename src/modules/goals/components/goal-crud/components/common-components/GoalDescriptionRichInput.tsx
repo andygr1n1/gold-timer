@@ -1,5 +1,5 @@
 import { FormLabel } from '@/components/form/FormLabel'
-import { cn } from '@/functions/cn'
+import { cn } from '@/functions/helpers'
 import { observer } from 'mobx-react-lite'
 import ReactQuill from 'react-quill'
 

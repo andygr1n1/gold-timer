@@ -9,10 +9,10 @@ export const TopExpiredGoalsWidget: React.FC = observer(() => {
     const navigate = useNavigate()
 
     const {
-        data: { expiredGoals },
-    } = useFetchGoalsByFilter({ queryFilter: 'all' })
+        data: { expired },
+    } = useFetchGoalsByFilter({ queryFilter: 'all', limit: 8 })
 
-    return expiredGoals.length ? (
+    return expired?.length ? (
         <div className='flex max-h-[350px] min-h-[350px] flex-[100%] md:flex-[45%]'>
             <div className='bg-global-2-bg relative flex h-[calc(100%)] w-[calc(100%-40px)] flex-col items-start justify-start rounded-lg px-5'>
                 <div className='absolute left-[-40px] top-[-42px]  cursor-pointer '>
@@ -30,7 +30,7 @@ export const TopExpiredGoalsWidget: React.FC = observer(() => {
                 </div>
 
                 <div className={styles['dashboard-widget-goals-container']}>
-                    {expiredGoals.slice(0, 8).map((goal) => (
+                    {expired?.slice(0, 8).map((goal) => (
                         <TopGoal key={goal.id} goal={goal} />
                     ))}
                 </div>

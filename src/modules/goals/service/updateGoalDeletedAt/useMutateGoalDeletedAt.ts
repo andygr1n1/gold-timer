@@ -5,7 +5,9 @@ import { useAtom } from 'jotai'
 import { optimizeActiveGoalsData } from '../../helpers/optimizeActiveGoalsData'
 import { IActiveGoalOptimized } from '@/modules/goals/interfaces/types'
 import { mutation_goalDeletedAt } from './mutation_goalDeletedAt'
-import { KEY_FetchGoalById, KEY_FetchGoalsByFilter } from '../keys'
+import { KEY_FetchGoalById, KEY_FetchGoalsByFilter, goalsQueryKeysValues } from '../keys'
+import { proxyConvert } from '@/functions/proxyConvert'
+import { getSelectedGoalFromCache } from '../../helpers/getSelectedGoalFromCache'
 
 export const useMutateGoalDeletedAt = () => {
     const [selectedGoal] = useAtom(selectedGoalAtom)
@@ -15,25 +17,26 @@ export const useMutateGoalDeletedAt = () => {
             mutation_goalDeletedAt(goal_id, deleted_at),
         onSuccess: (res) => {
             if (!res) return
-            window.queryClient.setQueryData(KEY_FetchGoalsByFilter('all', 8), (oldData: IActiveGoalOptimized[]) => {
-                if (res?.deleted_at) return oldData.filter((goal) => goal.id !== res?.id)
 
-                if (!res?.deleted_at) {
-                    const deletedGoal: IActiveGoalOptimized | undefined = window.queryClient.getQueryData(
-                        KEY_FetchGoalById(res.id),
-                    )
-                    if (!deletedGoal) return oldData
-                    const proxyArray = new Proxy([...oldData, ...optimizeActiveGoalsData([deletedGoal])], {})
-                    return proxyArray
-                }
+            goalsQueryKeysValues.forEach((filter) => {
+                window.queryClient.setQueryData(
+                    KEY_FetchGoalsByFilter(filter),
+                    (oldData: IActiveGoalOptimized[] | { pages: { data: IActiveGoalOptimized[] }[] }) => {
+                        const newData = oldData ? proxyConvert(oldData) : undefined
+                        if (!newData) return
+
+                        const selected = getSelectedGoalFromCache(newData, res.id)
+
+                        selected && (selected.deleted_at = res.deleted_at)
+
+                        return newData
+                    },
+                )
             })
             selectedGoal?.id &&
                 window.queryClient.setQueryData(KEY_FetchGoalById(selectedGoal.id), (oldData: IActiveGoalOptimized) => {
                     return optimizeActiveGoalsData({ ...oldData, deleted_at: res?.deleted_at })?.[0]
                 })
-        },
-        onSettled: async () => {
-            return await window.queryClient.invalidateQueries({ queryKey: KEY_FetchGoalsByFilter('all', 8) })
         },
     })
 

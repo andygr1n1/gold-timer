@@ -1,5 +1,5 @@
 import { observer } from 'mobx-react-lite'
-import { getTopGoalColor } from '../helpers/getTopGoalColor'
+import { getTopGoalColor } from '../../../helpers/getTopGoalColor'
 import styles from '../TopGoalsWidgets.module.scss'
 import { useTogglePopoverState } from '@/hooks/useTogglePopoverState'
 import { XDropdown } from '@/components-x/x-dropdown/XDropdown'

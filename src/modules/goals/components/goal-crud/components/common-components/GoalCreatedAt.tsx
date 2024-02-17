@@ -7,7 +7,6 @@ import { observer } from 'mobx-react-lite'
 
 export const GoalCreatedAt: React.FC<{ goal: IActiveGoalOptimized }> = observer(({ goal }) => {
     const created = goal?.goal_ritual?.created_at ? goal?.goal_ritual?.created_at : goal.created_at
-    console.log('goal?.goal_ritual?.created_at ', goal?.goal_ritual?.created_at)
     return created ? (
         <div>
             <FormLabel title='Created' />

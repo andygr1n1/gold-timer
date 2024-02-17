@@ -3,7 +3,7 @@ import { getUserId } from '@/functions/universalCookie.helper'
 import { Client } from '@/graphql/generated'
 import { GOAL_STATUS_ENUM } from '@/lib/enums'
 
-export const query_activeGoals = (client: Client, active = true, limit?: number) => {
+export const query_activeGoals = (client: Client, active = true, limit?: number, offset?: number) => {
     return (
         active &&
         client.query({
@@ -11,6 +11,7 @@ export const query_activeGoals = (client: Client, active = true, limit?: number)
             goals: {
                 __args: {
                     limit,
+                    offset,
                     order_by: [{ finished_at: 'asc' }],
                     where: {
                         owner_id: { _eq: getUserId() },

@@ -1,7 +1,7 @@
 import { getUserId } from '@/functions/universalCookie.helper'
 import { Client } from '@/graphql/generated'
 
-export const query_ritualGoals = (client: Client, ritual = true, limit?: number) => {
+export const query_ritualGoals = (client: Client, ritual = true, limit?: number, offset?: number) => {
     return (
         ritual &&
         client.query({
@@ -9,6 +9,7 @@ export const query_ritualGoals = (client: Client, ritual = true, limit?: number)
             goals: {
                 __args: {
                     limit,
+                    offset,
                     order_by: [{ finished_at: 'asc' }],
                     where: {
                         owner_id: { _eq: getUserId() },

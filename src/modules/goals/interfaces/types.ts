@@ -18,7 +18,7 @@ export type IGoalRitualOptimized = Partial<Omit<goals_rituals, 'ritual_power' | 
 }
 
 export type IGoalWithRituals = Partial<
-    Omit<goals, 'goal_ritual' | 'title' | 'finished_at' | 'id' | 'is_favorite' | 'slogan' | 'created_at'>
+    Omit<goals, 'goal_ritual' | 'title' | 'finished_at' | 'id' | 'is_favorite' | 'slogan' | 'created_at' | 'deleted_at'>
 > & {
     id: string
     title: string
@@ -28,6 +28,7 @@ export type IGoalWithRituals = Partial<
     is_favorite?: boolean
     status: goal_status_enum_enum
     created_at: string
+    deleted_at: string | null
 }
 
 export type IActiveGoalOptimized = IGoalWithRituals & {

@@ -9,11 +9,11 @@ export const TopFavoriteGoalsWidget: React.FC = () => {
     const navigate = useNavigate()
 
     const {
-        data: { favoriteGoals },
-    } = useFetchGoalsByFilter({ queryFilter: 'all' })
+        data: { favorite },
+    } = useFetchGoalsByFilter({ queryFilter: 'all', limit: 8 })
 
     return (
-        <div key={favoriteGoals.length} className='flex max-h-[350px] min-h-[350px] flex-[100%] md:flex-[45%]'>
+        <div key={favorite?.length} className='flex max-h-[350px] min-h-[350px] flex-[100%] md:flex-[45%]'>
             <div className='bg-global-2-bg relative flex h-[calc(100%)] w-[calc(100%-40px)] flex-col items-start justify-start rounded-lg px-5'>
                 <div className='absolute left-[-39px] top-[-44px]  cursor-pointer'>
                     <StyledButton
@@ -29,7 +29,7 @@ export const TopFavoriteGoalsWidget: React.FC = () => {
                     />
                 </div>
                 <div className={styles['dashboard-widget-goals-container']}>
-                    {favoriteGoals.map((goal) => (
+                    {favorite?.map((goal) => (
                         <TopGoal key={goal.id} goal={goal} />
                     ))}
                 </div>

@@ -1,24 +1,27 @@
 import { setMidnightTime } from '@/functions/date.helpers'
-import { useQuery } from '@tanstack/react-query'
-import { fabric_goalsByFilter } from './fabric_goalsByFilter'
+import { useInfiniteQuery } from '@tanstack/react-query'
+import { IGoalQueryTypeFilter } from '@/modules/goals/interfaces/types'
 import { isPast } from 'date-fns'
 import { GOAL_STATUS_ENUM } from '@/lib/enums'
-import { compact, orderBy } from 'lodash-es'
+import { compact, flatten, last, orderBy } from 'lodash-es'
 import { KEY_FetchGoalsByFilter } from '../keys'
 import { IActiveGoals } from '../types'
-import { IGoalQueryTypeFilter } from '../../interfaces/types'
+import { fabric_goalsByFilter } from './fabric_goalsByFilter'
 
-export const useFetchGoalsByFilter = (props: { queryFilter?: IGoalQueryTypeFilter; limit?: number }): IActiveGoals => {
-    const { queryFilter = 'all', limit } = props
-    const { isLoading, data } = useQuery({
-        queryKey: KEY_FetchGoalsByFilter([...compact(['KEY_FetchGoalsByFilter', queryFilter, limit])]),
-        queryFn: async () => {
-            const data = await fabric_goalsByFilter({ limit, queryFilter })
-            return data
+export const useFetchGoalsByFilterInfinity = (props: {
+    queryFilter?: IGoalQueryTypeFilter
+}): IActiveGoals & { isFetchingNextPage: boolean; fetchNextPage: () => void; hasNextPage: boolean } => {
+    const { queryFilter = 'all' } = props
+    const { data, fetchNextPage, hasNextPage, isFetching, isFetchingNextPage } = useInfiniteQuery({
+        queryKey: KEY_FetchGoalsByFilter(['KEY_FetchGoalsByFilter', queryFilter]),
+        queryFn: async ({ pageParam }) => {
+            const data = await fabric_goalsByFilter({ pageParam, queryFilter, limit: 25 })
+            return { data, nextCursor: pageParam + 25 }
         },
-        // 5 minutes
-        // staleTime: 300000,
-        // staleTime: Infinity,
+        initialPageParam: 0,
+        getNextPageParam: (lastPage, pages) => {
+            return last(pages)?.data?.length ? lastPage?.nextCursor : undefined
+        },
 
         // 1 minute
         staleTime: 60000,
@@ -26,9 +29,11 @@ export const useFetchGoalsByFilter = (props: { queryFilter?: IGoalQueryTypeFilte
         refetchOnMount: true,
     })
 
+    const unifiedPages = compact(flatten(data?.pages.map((page) => page.data)))
+
     const activeGoals =
         orderBy(
-            data?.filter(
+            unifiedPages?.filter(
                 (goal) =>
                     !goal.deleted_at &&
                     !!!goal.goal_ritual?.ritual_power &&
@@ -41,14 +46,14 @@ export const useFetchGoalsByFilter = (props: { queryFilter?: IGoalQueryTypeFilte
 
     const favoriteGoals =
         orderBy(
-            data?.filter((goal) => goal.is_favorite),
+            unifiedPages?.filter((goal) => !goal.deleted_at && goal.is_favorite),
             ['finished_at'],
             ['asc'],
         ) || []
 
     const ritualGoals =
         orderBy(
-            data?.filter(
+            unifiedPages?.filter(
                 (goal) =>
                     !goal.deleted_at && !!goal.goal_ritual?.ritual_power && goal.status !== GOAL_STATUS_ENUM.COMPLETED,
             ),
@@ -58,7 +63,7 @@ export const useFetchGoalsByFilter = (props: { queryFilter?: IGoalQueryTypeFilte
 
     const expiredGoals =
         orderBy(
-            data?.filter(
+            unifiedPages?.filter(
                 (goal) =>
                     !goal.deleted_at &&
                     !!!goal.goal_ritual?.ritual_power &&
@@ -70,7 +75,10 @@ export const useFetchGoalsByFilter = (props: { queryFilter?: IGoalQueryTypeFilte
         ) || []
 
     return {
-        isLoading,
+        isLoading: isFetching,
+        fetchNextPage,
+        isFetchingNextPage,
+        hasNextPage,
         data: { active: activeGoals, favorite: favoriteGoals, ritual: ritualGoals, expired: expiredGoals },
     }
 }
