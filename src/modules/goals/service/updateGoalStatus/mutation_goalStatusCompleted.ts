@@ -1,6 +1,6 @@
 import { resolveData } from '@/functions/resolveData'
 import { processError } from '@/functions/processMessage'
-import { Client } from '@/graphql/generated'
+import { Client } from 'gold-timer-genql/lib/generated'
 import { IGoalStatus } from './types'
 
 export const mutation_goalStatusCompleted = async (client: Client, id: string): Promise<IGoalStatus | null> => {

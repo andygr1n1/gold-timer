@@ -7,7 +7,7 @@ import { focusAtom } from 'jotai-optics'
 
 import { RITUAL_TYPE_ENUM } from '@/lib/enums'
 import { formatISO } from 'date-fns'
-import { goal_status_enum_enum } from '@/graphql/generated'
+import { goal_status_enum_enum } from 'gold-timer-genql/lib/generated'
 import { KEY_FetchGoalById } from '../service/keys'
 
 export const editGoalAtom = atomWithImmer<IActiveGoalOptimized | undefined>(undefined)

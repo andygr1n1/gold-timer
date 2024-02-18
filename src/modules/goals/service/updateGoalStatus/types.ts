@@ -1,4 +1,4 @@
-import { goal_status_enum_enum } from '@/graphql/generated'
+import { goal_status_enum_enum } from 'gold-timer-genql/lib/generated'
 
 export interface IGoalStatus {
     id?: string

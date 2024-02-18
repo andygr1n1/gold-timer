@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 import { query_fetchAchievements } from './graphql/query_fetchAchievements'
-import type { achievements } from '@/graphql/generated'
+import type { achievements } from 'gold-timer-genql/lib/generated'
 // import { queryClient } from '@/App'
 
 export const useFetchAchievements = (): {

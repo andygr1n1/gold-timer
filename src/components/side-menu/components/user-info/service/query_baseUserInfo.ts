@@ -1,7 +1,7 @@
 import { resolveData } from '@/functions/resolveData'
 import { generateTSClient } from '@/graphql/client'
 import { processError } from '@/functions/processMessage'
-import { heroes } from '@/graphql/generated'
+import { heroes } from 'gold-timer-genql/lib/generated'
 
 type IHero = Pick<heroes, 'name' | 'avatar'>
 

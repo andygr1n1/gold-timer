@@ -6,7 +6,7 @@ import {
     privacy_enum_enum,
     Scalars,
     ritual_type_enum_enum,
-} from '@/graphql/generated'
+} from 'gold-timer-genql/lib/generated'
 
 import { RITUAL_TYPE_ENUM } from '@/lib/enums'
 export type IGoalQueryTypeFilter = 'active' | 'ritual' | 'expired' | 'favorite' | 'completed' | 'deleted' | 'all'

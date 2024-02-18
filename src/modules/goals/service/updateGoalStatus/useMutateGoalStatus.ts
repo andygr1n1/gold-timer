@@ -1,7 +1,7 @@
 import { useMutation } from '@tanstack/react-query'
 import { fabric_goalStatus } from './fabric_goalStatus'
 
-import { goal_status_enum_enum } from '@/graphql/generated'
+import { goal_status_enum_enum } from 'gold-timer-genql/lib/generated'
 import { IActiveGoalOptimized } from '@/modules/goals/service/types'
 import { cloneDeep } from 'lodash-es'
 import { IUserCoinsInfo } from '@/components/top-bar/service/query_userCoinsInfo'

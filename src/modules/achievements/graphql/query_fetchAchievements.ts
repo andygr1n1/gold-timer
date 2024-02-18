@@ -2,7 +2,7 @@ import { generateTSClient } from '../../../graphql/client'
 import { processError } from '@/functions/processMessage'
 import { getOwnerId } from '@/functions/getUserId'
 import { resolveData } from '@/functions/resolveData'
-import type { achievements } from '@/graphql/generated'
+import type { achievements } from 'gold-timer-genql/lib/generated'
 
 export const query_fetchAchievements = async (): Promise<Partial<achievements>[] | undefined> => {
     const client = generateTSClient()

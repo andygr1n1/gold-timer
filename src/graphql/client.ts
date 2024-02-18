@@ -1,5 +1,5 @@
 import { GraphQLClient } from 'graphql-request'
-import { createClient } from './generated'
+import { createClient } from 'gold-timer-genql/lib/generated'
 
 export const generateClient = (): GraphQLClient => {
     const endpoint = import.meta.env.VITE_CLIENT_ENDPOINT

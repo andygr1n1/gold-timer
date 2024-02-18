@@ -1,5 +1,5 @@
 import { generateTSClient } from '@/graphql/client'
-import { goal_status_enum_enum } from '@/graphql/generated'
+import { goal_status_enum_enum } from 'gold-timer-genql/lib/generated'
 import { IActiveGoalOptimized } from '../types'
 import { mutation_goalStatus } from './mutation_goalStatus'
 import { IFabricGoalStatus } from './types'

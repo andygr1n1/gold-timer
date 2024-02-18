@@ -1,5 +1,5 @@
 import { getUserId } from '@/functions/universalCookie.helper'
-import { Client } from '@/graphql/generated'
+import { Client } from 'gold-timer-genql/lib/generated'
 import { filterGoalAtom } from '@/modules/goals/stores/filterGoal.store'
 import { selectedGoalAtom$ } from '@/modules/goals/stores/selectedGoal.store'
 

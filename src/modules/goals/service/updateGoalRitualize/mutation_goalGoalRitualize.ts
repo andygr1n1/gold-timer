@@ -1,7 +1,7 @@
 import { optimizeActiveGoalsData } from '@/modules/goals/helpers/optimizeActiveGoalsData'
 import { resolveData } from '@/functions/resolveData'
 import { processError } from '@/functions/processMessage'
-import { Client } from '@/graphql/generated'
+import { Client } from 'gold-timer-genql/lib/generated'
 import { IActiveGoalOptimized } from '../types'
 import { IRitualizeUpdateFields } from './types'
 
