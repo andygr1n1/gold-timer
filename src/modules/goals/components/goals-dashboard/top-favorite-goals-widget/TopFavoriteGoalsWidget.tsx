@@ -1,7 +1,7 @@
+import { IconFavorite } from '@/assets/icons/IconFavorite'
 import styles from '../TopGoalsWidgets.module.scss'
 import { TopGoal } from '../components/TopGoal'
 import { StyledButton } from '@/components/buttons/StyledButton'
-import { FavoriteIcon } from '../components/Icons'
 import { useFetchGoalsByFilter } from '@/modules/goals/service'
 import { useNavigate } from 'react-router-dom'
 
@@ -25,7 +25,9 @@ export const TopFavoriteGoalsWidget: React.FC = () => {
                         }}
                         variant='text'
                         className='!h-24 !w-24 !rounded-full'
-                        startIcon={<FavoriteIcon />}
+                        startIcon={
+                            <IconFavorite width={70} height={70} className='min-h-[70px] min-w-[70px] text-rose-600' />
+                        }
                     />
                 </div>
                 <div className={styles['dashboard-widget-goals-container']}>

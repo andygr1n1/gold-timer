@@ -1,5 +1,5 @@
+import { IconClose } from '@/assets/icons'
 import { Dialog, Transition } from '@headlessui/react'
-import { Icon } from '@iconify/react'
 import clsx from 'clsx'
 import { Fragment, ReactNode } from 'react'
 
@@ -61,8 +61,7 @@ export const XModal: React.FC<{
                                     )}
                                 >
                                     <div className='absolute right-1 top-[-32px] md:top-[-40px] '>
-                                        <Icon
-                                            icon='line-md:close-small'
+                                        <IconClose
                                             className={`h-7 w-7 cursor-pointer text-white/70 duration-300 hover:h-8 hover:w-8 hover:text-blue-500`}
                                             onClick={onCancel}
                                         />

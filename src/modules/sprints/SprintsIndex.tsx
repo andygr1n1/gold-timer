@@ -7,13 +7,12 @@ import { SprintMenuDialogConfirm } from './components/sprint-info/SprintMenuDial
 import { useSprintsStore } from '@/StoreProvider'
 import { APP_ROUTES_ENUM } from '@/lib/enums'
 import { SearchSprintsInput } from '@/modules/sprints/components/SearchSprintsInput'
-import { SprintsSettingsIcon } from './components/SprintsSettingsIcon'
 import sprintsImage from '@/assets/sprints-plan-1.png'
 import { useEffect } from 'react'
 import { observer } from 'mobx-react-lite'
 import { StyledButton } from '@/components/buttons/StyledButton'
-import { Icon } from '@iconify/react'
 import { CreateEditSprintDialog } from './components/create-edit-sprint/CreateEditSprintDialog'
+import { IconSunny } from '@/assets/icons/IconSunny'
 
 export const SprintsIndex: React.FC = observer(() => {
     const { isMobile } = useWindowMatchMedia(['isMobile'])
@@ -35,7 +34,7 @@ export const SprintsIndex: React.FC = observer(() => {
                             activateNewSprintCreator()
                         }}
                         className='opacity-70 hover:opacity-100'
-                        startIcon={<Icon icon='ic:round-fiber-new' width={24} height={24} />}
+                        startIcon={<IconSunny width={24} height={24} />}
                     >
                         New sprint
                     </StyledButton>
@@ -49,7 +48,6 @@ export const SprintsIndex: React.FC = observer(() => {
                         <SprintsFilters />
                         <div className='w-full max-w-lg'>
                             <SearchSprintsInput />
-                            <SprintsSettingsIcon />
                         </div>
                     </div>
                 )}

@@ -1,6 +1,6 @@
+import { IconNew } from '@/assets/icons'
 import { XTooltip } from '@/components-x/x-tooltip/XTooltip'
 import { StyledButton } from '@/components/buttons/StyledButton'
-import { NewChildIcon } from '@/components/icons/NewChildIcon'
 import { selectedGoalAtom, selectedGoalAtom$ } from '@/modules/goals/stores/selectedGoal.store'
 import { useAtom } from 'jotai'
 import { ReactNode } from 'react'
@@ -32,7 +32,7 @@ export const CreateChildGoal: React.FC<{ label?: ReactNode; parentGoalId: string
                         }))
                     }
                 }}
-                startIcon={<NewChildIcon className='h-6 w-6 opacity-70 hover:opacity-100' />}
+                startIcon={<IconNew className='h-6 w-6 opacity-70 hover:opacity-100' />}
             >
                 {label}
             </StyledButton>

@@ -4,8 +4,8 @@ import { ProfileAvatarIndex } from '../profile-avatar/ProfileAvatarIndex'
 import { FormLabel } from '@/components/form/FormLabel'
 import { format } from 'date-fns'
 import { ProfileDetailsEditDialog } from './ProfileDetailsEditDialog'
-import { Icon } from '@iconify/react'
 import { StyledButton } from '@/components/buttons/StyledButton'
+import { IconEdit } from '@/assets/icons'
 
 const ProfileDetail: React.FC<{ data: string }> = ({ data }) => {
     return <div className='h-[18px] text-lg'>{data}</div>
@@ -47,7 +47,7 @@ export const ProfileDetails: React.FC = observer(() => {
                             className='w-28'
                             variant='text'
                             onClick={openProfileEdit}
-                            startIcon={<Icon icon='material-symbols:edit' className='' width={20} height={20} />}
+                            startIcon={<IconEdit width={24} height={24} />}
                         />
                     </div>
                 </div>

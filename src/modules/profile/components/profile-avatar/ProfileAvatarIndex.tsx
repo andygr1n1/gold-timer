@@ -1,8 +1,9 @@
-import { Icon } from '@iconify/react'
 import { observer } from 'mobx-react-lite'
 import { useUserStore } from '@/StoreProvider'
 import { useSelectUploadFile } from '@/functions/useSelectUploadFile'
 import { Avatar } from 'antd'
+import { IconUpload } from '@/assets/icons/IconUpload'
+import { IconAvatar } from '@/assets/icons'
 
 export const ProfileAvatarIndex = observer(() => {
     const { img_cropped_src, onChangeField, avatar } = useUserStore()
@@ -30,8 +31,7 @@ export const ProfileAvatarIndex = observer(() => {
                                 <Avatar
                                     className='animate-opacity-5 !m-0 h-full max-h-[240px] w-full max-w-[240px]  cursor-pointer'
                                     icon={
-                                        <Icon
-                                            icon='carbon:user-avatar-filled'
+                                        <IconAvatar
                                             className='bg-global-bg text-global-2-bg'
                                             width={240}
                                             height={240}
@@ -44,8 +44,7 @@ export const ProfileAvatarIndex = observer(() => {
                                     animate-opacity-5  absolute top-0 z-10 flex h-full w-full
                                     items-center justify-center rounded-full bg-transparent text-xl text-blue-600 opacity-0  group-hover:opacity-100'
                             >
-                                <Icon
-                                    icon='line-md:uploading-loop'
+                                <IconUpload
                                     className='animate-opacity-5 hidden group-hover:flex'
                                     width={50}
                                     height={50}

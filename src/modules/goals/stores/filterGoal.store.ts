@@ -7,7 +7,7 @@ interface IFilterGoal {
 }
 
 export const filterGoalAtom = atomWithImmer<IFilterGoal>({ search: '' })
-isDev && (filterGoalAtom.debugLabel = 'filterGoalAtom')
+isDev() && (filterGoalAtom.debugLabel = 'filterGoalAtom')
 
 export const filterGoalAtom_search = focusAtom(filterGoalAtom, (optic) => {
     return optic.optional().prop('search') || ''

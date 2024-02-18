@@ -9,7 +9,6 @@ import { SprintGoals } from './components/SprintGoals'
 import { NewSprintAchievementIndex } from './components/NewSprintAchievementIndex'
 import { NewSprintDurationIndex } from './components/NewSprintDurationIndex'
 import { NewSprintStartDateIndex } from './components/NewSprintStartDateIndex'
-import { XLoader } from '@/components-x/x-loader/XLoader'
 import { FormFooter } from '@/components/form/FormFooter'
 
 export const CreateEditSprintDialog: React.FC = observer(() => {
@@ -19,34 +18,30 @@ export const CreateEditSprintDialog: React.FC = observer(() => {
 
     return (
         <XModal title={new_sprint?.edit_mode ? 'Edit Sprint' : 'Create Sprint'} open={!!new_sprint} onCancel={onCancel}>
-            {new_sprint?.loading ? (
-                <XLoader />
-            ) : (
-                <>
-                    {/* New Sprint Image */}
-                    <NewSprintImageIndex />
-                    {/* New Sprint Form */}
-                    <Form className='py-5'>
-                        <NewSprintTitle />
-                        <NewSprintDescription />
-                        <SprintGoals />
-                        <NewSprintAchievementIndex />
-                        <NewSprintDurationIndex />
-                        <NewSprintStartDateIndex />
-                        {/*  New Sprint Form Footer */}
-                        <FormFooter
-                            okTitle={new_sprint?.edit_mode ? 'Save' : 'Create'}
-                            onOk={
-                                new_sprint?.edit_mode
-                                    ? () => new_sprint?.updateSprint()
-                                    : () => new_sprint?.activateNewSprint()
-                            }
-                            onCancel={onCancel}
-                            disabled={!new_sprint?.title}
-                        />
-                    </Form>
-                </>
-            )}
+            <>
+                {/* New Sprint Image */}
+                <NewSprintImageIndex />
+                {/* New Sprint Form */}
+                <Form className='py-5'>
+                    <NewSprintTitle />
+                    <NewSprintDescription />
+                    <SprintGoals />
+                    <NewSprintAchievementIndex />
+                    <NewSprintDurationIndex />
+                    <NewSprintStartDateIndex />
+                    {/*  New Sprint Form Footer */}
+                    <FormFooter
+                        okTitle={new_sprint?.edit_mode ? 'Save' : 'Create'}
+                        onOk={
+                            new_sprint?.edit_mode
+                                ? () => new_sprint?.updateSprint()
+                                : () => new_sprint?.activateNewSprint()
+                        }
+                        onCancel={onCancel}
+                        disabled={!new_sprint?.title}
+                    />
+                </Form>
+            </>
         </XModal>
     )
 })

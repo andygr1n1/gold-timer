@@ -1,6 +1,5 @@
 import { APP_ROUTES_ENUM } from '@/lib/enums'
 import { useSideMenu } from '@/hooks/useSideMenu.hook'
-import { Icon } from '@iconify/react'
 import { observer } from 'mobx-react-lite'
 import { SideMenuLink } from './components/SideMenuLink'
 import { useOutsideAlerter } from '@/hooks/useClickOutside.hook'
@@ -11,6 +10,8 @@ import { GoToDashboard } from './components/GoToDashboard'
 import { XMenuDivider } from '@/components-x/x-dropdown/XMenuDivider'
 import { isUnderDevelopment } from '@/functions/isUnderDevelopment.helper'
 import { UserInfo } from './components/user-info/UserInfo'
+import { IconAchievements, IconBook, IconFocus, IconLandscape, IconProfile, IconSprint } from '@/assets/icons'
+import { IconReact } from '@/assets/icons/IconReact'
 
 export const SideMenu: React.FC = observer(() => {
     const wrapperRef = useRef<HTMLDivElement | null>(null)
@@ -57,27 +58,18 @@ export const SideMenu: React.FC = observer(() => {
                                 <SideMenuLink
                                     to={APP_ROUTES_ENUM.PROFILE}
                                     title='Profile'
-                                    icon={
-                                        <Icon icon='solar:user-id-bold' width={26} height={26} className='ml-[-3px]' />
-                                    }
+                                    icon={<IconProfile width={26} height={26} className='ml-[-3px]' />}
                                 />
                                 <SideMenuLink
                                     to={APP_ROUTES_ENUM.ACHIEVEMENTS}
                                     title='Achievements'
-                                    icon={<Icon icon='eva:star-fill' width={24} height={24} className='ml-[-3px]' />}
+                                    icon={<IconAchievements width={24} height={24} className='ml-[-3px]' />}
                                 />
                                 {isUnderDevelopment() && (
                                     <SideMenuLink
                                         to={APP_ROUTES_ENUM.STORIES}
                                         title='Stories'
-                                        icon={
-                                            <Icon
-                                                icon='ri:landscape-fill'
-                                                width={24}
-                                                height={24}
-                                                className='ml-[-2px]'
-                                            />
-                                        }
+                                        icon={<IconLandscape width={24} height={24} className='ml-[-2px]' />}
                                     />
                                 )}
                                 <XMenuDivider />
@@ -85,23 +77,23 @@ export const SideMenu: React.FC = observer(() => {
                                 <SideMenuLink
                                     to={APP_ROUTES_ENUM.GOALS}
                                     title='Goals'
-                                    icon={<Icon icon='octicon:goal-16' width={24} height={24} />}
+                                    icon={<IconFocus width={24} height={24} />}
                                 />
                                 <SideMenuLink
                                     to={APP_ROUTES_ENUM.NOTES}
                                     title='Notes'
-                                    icon={<Icon icon='ion:book' width={24} height={24} />}
+                                    icon={<IconBook width={24} height={24} />}
                                 />
                                 <SideMenuLink
                                     to={APP_ROUTES_ENUM.SPRINTS}
                                     title='Sprints'
-                                    icon={<Icon icon='game-icons:sprint' width={24} height={24} />}
+                                    icon={<IconSprint width={24} height={24} />}
                                 />
                                 {isUnderDevelopment() && (
                                     <SideMenuLink
                                         to={APP_ROUTES_ENUM.SMART_CONTRACTS}
                                         title='Smart contracts'
-                                        icon={<Icon icon='file-icons:smartos-alt' width={22} height={22} />}
+                                        icon={<IconReact width={24} height={24} />}
                                     />
                                 )}
                             </div>

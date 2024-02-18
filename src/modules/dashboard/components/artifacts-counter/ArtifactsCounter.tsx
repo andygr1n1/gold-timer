@@ -1,4 +1,3 @@
-import { Icon } from '@iconify/react'
 import { observer } from 'mobx-react-lite'
 import { ArtifactsCounterItem } from './ArtifactsCounterItem'
 import { GoalsCounterDropdown } from './components/GoalsCounterDropdown'
@@ -6,6 +5,7 @@ import { NotesCounterDropdown } from './components/NotesCounterDropdown'
 import { SprintsCounterDropdown } from './components/SprintsCounterDropdown'
 import { useFetchArtifactsCount } from './service/useFetchArtifactsCount'
 import { CRUD_NoteDialog } from '@/modules/notes/components/crud-note/CRUD_NoteDialog'
+import { IconBook, IconFocus, IconSprint } from '@/assets/icons'
 
 export const ArtifactsCounter: React.FC = observer(() => {
     // const {
@@ -22,8 +22,7 @@ export const ArtifactsCounter: React.FC = observer(() => {
                     <ArtifactsCounterItem
                         count={activeGoalsCount}
                         icon={
-                            <Icon
-                                icon='octicon:goal-16'
+                            <IconFocus
                                 width={24}
                                 height={24}
                                 className='cursor-pointer duration-300 group-hover:text-blue-500'
@@ -38,8 +37,7 @@ export const ArtifactsCounter: React.FC = observer(() => {
                         // action={openNoteCreateMode}
                         count={activeNotesCount}
                         icon={
-                            <Icon
-                                icon='ion:book'
+                            <IconBook
                                 width={24}
                                 height={24}
                                 className='cursor-pointer duration-300 group-hover:text-blue-500'
@@ -57,8 +55,7 @@ export const ArtifactsCounter: React.FC = observer(() => {
                         // count={allActiveCheckedSprintsLength}
                         count={activeSprintsCount}
                         icon={
-                            <Icon
-                                icon='game-icons:sprint'
+                            <IconSprint
                                 width={24}
                                 height={24}
                                 className='cursor-pointer duration-300 group-hover:text-blue-500'

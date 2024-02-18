@@ -5,11 +5,11 @@ import { format } from 'date-fns'
 import { ChangeEventHandler, useRef, useState } from 'react'
 import { XCalendar } from './XCalendar'
 import { XInput } from '../x-input/XInput'
-import { Icon } from '@iconify/react'
 import { XModal } from '../x-modal/XModal'
 import { FormFooter } from '@/components/form/FormFooter'
 import { type DayPicker, type DayPickerSingleProps } from 'react-day-picker'
 import { FormLabel } from '@/components/form/FormLabel'
+import { IconCalendar } from '@/assets/icons'
 
 export const XDatePickerAntd = generatePicker<Date>(dateFnsGenerateConfig)
 export type CalendarProps = React.ComponentProps<typeof DayPicker>
@@ -58,7 +58,7 @@ export const XDatePicker: React.FC<XDatePickerProps> = ({
                 <XInput
                     value={getValue({ date: props.selected, dateFormat }) || ''}
                     disabled={inputDisabled}
-                    endIcon={<Icon icon='mdi:calendar' className='cursor-pointer' />}
+                    endIcon={<IconCalendar width={24} height={24} className='cursor-pointer' />}
                     className={inputClassName}
                     onChange={() => undefined}
                     placeholder={placeholder}

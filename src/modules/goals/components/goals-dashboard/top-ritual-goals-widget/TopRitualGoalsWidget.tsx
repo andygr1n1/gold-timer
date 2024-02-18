@@ -2,10 +2,10 @@ import { observer } from 'mobx-react-lite'
 import { TopGoal } from '../components/TopGoal'
 import styles from '../TopGoalsWidgets.module.scss'
 import { StyledButton } from '@/components/buttons/StyledButton'
-import { RitualIcon } from '../components/Icons'
 import { useNavigate } from 'react-router-dom'
 import { useFetchGoalsByFilter } from '@/modules/goals/service'
 import clsx from 'clsx'
+import { IconRitual } from '@/assets/icons/IconRitual'
 
 export const TopRitualGoalsWidget: React.FC = observer(() => {
     const navigate = useNavigate()
@@ -29,7 +29,9 @@ export const TopRitualGoalsWidget: React.FC = observer(() => {
                         }}
                         variant='text'
                         className='!h-24 !w-24 !rounded-full'
-                        startIcon={<RitualIcon />}
+                        startIcon={
+                            <IconRitual width={75} height={75} className='min-h-[65px] min-w-[65px] text-teal-600' />
+                        }
                     />
                 </div>
                 <div className={styles['dashboard-widget-goals-container']}>

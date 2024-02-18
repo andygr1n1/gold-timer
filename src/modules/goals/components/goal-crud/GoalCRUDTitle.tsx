@@ -1,10 +1,7 @@
 import { useAtom } from 'jotai'
 import { selectedGoalState } from '../../stores/selectedGoal.store'
-import { IconEdit } from '@/assets/icons/IconEdit'
-import { IconEye } from '@/assets/icons/IconEye'
-import { NewChildIcon } from '@/components/icons/NewChildIcon'
-import { IconInfinity } from '@/assets/icons/IconInfinity'
 import { capitalize } from 'lodash-es'
+import { IconEdit, IconEye, IconInfinity, IconNew } from '@/assets/icons'
 
 export const GoalCRUDTitle = () => {
     const [state] = useAtom(selectedGoalState)
@@ -16,9 +13,9 @@ export const GoalCRUDTitle = () => {
     const icon = isEdit ? (
         <IconEdit width={24} height={24} />
     ) : isNew ? (
-        <NewChildIcon width={24} height={24} />
+        <IconNew width={24} height={24} />
     ) : isNewChild ? (
-        <NewChildIcon width={24} height={24} />
+        <IconNew width={24} height={24} />
     ) : isNewRitual ? (
         <IconInfinity width={24} height={24} className='text-teal-500' />
     ) : (

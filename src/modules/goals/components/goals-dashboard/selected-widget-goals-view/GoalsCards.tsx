@@ -1,4 +1,4 @@
-import { IconLoading } from '@/assets/icons/iconLoading'
+import { IconLoading } from '@/assets/icons/IconLoading'
 import { IGoalQueryTypeFilter } from '@/modules/goals/service/types'
 import { useFetchGoalsByFilterInfinity } from '@/modules/goals/service/fetchGoalsByFilter/useFetchGoalsByFilterInfinity'
 import React, { useEffect } from 'react'

@@ -1,6 +1,5 @@
 import { ReactNode } from 'react'
 import { StyledButton } from '../buttons/StyledButton'
-import { Icon } from '@iconify/react'
 import { XTooltip } from '@/components-x/x-tooltip/XTooltip'
 
 export const FormFooter: React.FC<{
@@ -28,7 +27,6 @@ export const FormFooter: React.FC<{
                         cancelTitle
                     ) : (
                         <>
-                            <Icon icon='uiw:left-circle' width={17} height={17} />
                             <div>Return</div>
                         </>
                     )}

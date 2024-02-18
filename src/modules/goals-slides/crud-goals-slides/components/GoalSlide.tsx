@@ -1,10 +1,10 @@
 import { observer } from 'mobx-react-lite'
 import { IGoalSlide$ } from '../../mst/types'
-import { Icon } from '@iconify/react'
 import clsx from 'clsx'
 import { XDropdown } from '@/components-x/x-dropdown/XDropdown'
 import { XMenuDropdown } from '@/components-x/x-dropdown/XMenuDropdown'
 import { XMenuItem } from '@/components-x/x-dropdown/XMenuItem'
+import { IconDeleteForever, IconHide, IconShow } from '@/assets/icons'
 
 export const GoalSlide: React.FC<{ goalSlide: IGoalSlide$ }> = observer(({ goalSlide }) => {
     const { active } = goalSlide
@@ -26,11 +26,11 @@ const DropdownRender: React.FC<{ goalSlide: IGoalSlide$ }> = observer(({ goalSli
     return (
         <XMenuDropdown>
             <XMenuItem onClick={() => toggleShow()}>
-                <Icon icon={active ? 'mdi:hide' : 'mdi:show'} width={24} height={24} />
+                {active ? <IconShow width={24} height={24} /> : <IconHide width={24} height={24} />}
                 <span className='text-lg'>{active ? 'Hide' : 'Show'}</span>
             </XMenuItem>
             <XMenuItem onClick={() => deleteGoalSlide()}>
-                <Icon icon='fluent:delete-dismiss-24-filled' width={24} height={24} />
+                <IconDeleteForever width={24} height={24} />
                 <span className='text-lg'>Delete</span>
             </XMenuItem>
         </XMenuDropdown>

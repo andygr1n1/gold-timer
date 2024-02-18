@@ -56,7 +56,6 @@
     "devDependencies": {
         "@emotion/react": "^11.11.3",
         "@genql/cli": "^6.3.0",
-        "@iconify/react": "^4.0.0",
         "@mertasan/tailwindcss-variables": "^2.5.1",
         "@tanstack/eslint-plugin-query": "^5.17.7",
         "@types/localforage": "^0.0.34",

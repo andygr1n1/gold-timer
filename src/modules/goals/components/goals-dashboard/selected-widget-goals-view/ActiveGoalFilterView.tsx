@@ -4,7 +4,7 @@ import { APP_ROUTES_ENUM } from '@/lib/enums'
 import { useLocation } from 'react-router-dom'
 import { ActiveFilterIcon } from './ActiveFilterIcon'
 import { BackToDashboardIcon } from './BackToDashboardIcon'
-import { GoalSearchFilter } from './GoalSearchFilter'
+import { GoalSearchFilter } from '../../shared/GoalSearchFilter'
 import { GoalsCards } from './GoalsCards'
 import { IGoalQueryTypeFilter } from '@/modules/goals/service/types'
 

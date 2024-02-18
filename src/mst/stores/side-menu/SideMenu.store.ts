@@ -10,16 +10,4 @@ export const SideMenu$ = types
         onChangeField<Key extends keyof typeof self>(key: Key, value: (typeof self)[Key]) {
             self[key] = value
         },
-        openDashboardMenu(): void {
-            self.visible = true
-            self.state = APP_ROUTES_ENUM.DASHBOARD
-        },
-        openSprintsMenu(): void {
-            self.visible = true
-            self.state = APP_ROUTES_ENUM.SPRINTS
-        },
-        openNotesMenu(): void {
-            self.visible = true
-            self.state = APP_ROUTES_ENUM.NOTES
-        },
     }))

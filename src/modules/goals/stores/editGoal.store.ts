@@ -11,7 +11,7 @@ import { goal_status_enum_enum } from '@/graphql/generated'
 import { KEY_FetchGoalById } from '../service/keys'
 
 export const editGoalAtom = atomWithImmer<IActiveGoalOptimized | undefined>(undefined)
-isDev && (editGoalAtom.debugLabel = 'editGoalAtom')
+isDev() && (editGoalAtom.debugLabel = 'editGoalAtom')
 
 // *
 // optics

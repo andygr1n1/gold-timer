@@ -2,7 +2,7 @@ import { useFetchGoal } from '../../service/fetchGoalById/useFetchGoal'
 import { ViewGoalDialogBody } from './components/view-goal/ViewGoalDialogBody'
 import { EditGoalDialogBody } from './components/edit-goal/EditGoalDialogBody'
 import { GoalDetails } from './components/common-components/GoalDetails'
-import { GoalCRUDActions } from './GoalCrudActions'
+import { GoalCRUDActions } from './GoalCRUDActions'
 
 export const GoalCRUDBody = () => {
     const { isLoading, goal, isEdit } = useFetchGoal()

@@ -1,12 +1,11 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
 import { APP_ROUTES_ENUM } from './lib/enums'
-import { GoalsManager } from './modules/goals/components/goals-cms/GoalsManager'
+import { GoalsCms } from './modules/goals/components/goals-cms/GoalsCms'
 import { ProfileIndex } from './modules/profile/ProfileIndex'
 import { NotesIndex } from './modules/notes/NotesIndex'
 import { SprintsIndex } from './modules/sprints/SprintsIndex'
 import { DashboardIndex } from './modules/dashboard/DashboardIndex'
 
-import { SideMenuSettings } from './components/side-menu-settings/SideMenuSettings'
 import { FocusGoalOfWeek } from './components/components-modal-windows/focus-goal-of-week/FocusGoalOfWeek'
 import { ProfileImageCropDialog } from './modules/profile/components/profile-avatar/ProfileImageCropDialog'
 import { AchievementsIndex } from './modules/achievements/AchievementsIndex'
@@ -24,7 +23,7 @@ export const AppProtectedRoutes: React.FC = () => {
                 <Route path={`/${APP_ROUTES_ENUM.ACHIEVEMENTS}`} element={<AchievementsIndex />} />
                 <Route path={`/${APP_ROUTES_ENUM.STORIES}/*`} element={<StoriesIndex />} />
                 <Route path={`/${APP_ROUTES_ENUM.NOTES}`} element={<NotesIndex />} />
-                <Route path={`/${APP_ROUTES_ENUM.GOALS}`} element={<GoalsManager />} />
+                <Route path={`/${APP_ROUTES_ENUM.GOALS}`} element={<GoalsCms />} />
                 <Route path={`/${APP_ROUTES_ENUM.SPRINTS}`} element={<SprintsIndex />} />
                 <Route path={`/${APP_ROUTES_ENUM.SMART_CONTRACTS}`} element={<SmartContractsIndex />} />
                 {/*  */}
@@ -37,10 +36,6 @@ export const AppProtectedRoutes: React.FC = () => {
 
             <ProfileImageCropDialog />
             <LoadingDialogGlobal />
-            {/*  */}
-            {/* S I D E _ M E N U */}
-            {/*  */}
-            <SideMenuSettings />
         </>
     )
 }

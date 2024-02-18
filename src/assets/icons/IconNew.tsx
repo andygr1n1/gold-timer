@@ -1,7 +1,6 @@
-import React from 'react'
 import type { SVGProps } from 'react'
 
-export function NewChildIcon(props: SVGProps<SVGSVGElement>) {
+export function IconNew(props: SVGProps<SVGSVGElement>) {
     return (
         <svg xmlns='http://www.w3.org/2000/svg' width='1rem' height='1rem' viewBox='0 0 24 24' {...props}>
             <path

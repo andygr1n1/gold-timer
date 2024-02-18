@@ -19,4 +19,4 @@ export const darkModeAtom = atomWithStorage(
     { getOnInit: true },
 )
 
-isDev && (darkModeAtom.debugLabel = 'themingStore')
+isDev() && (darkModeAtom.debugLabel = 'themingStore')

@@ -6,7 +6,7 @@ import { ISelectedGoal, ISelectedGoalState } from './types'
 export const selectedGoalAtom$ = createStore()
 
 export const selectedGoalAtom = atomWithImmer<ISelectedGoal | null>(null)
-isDev && (selectedGoalAtom.debugLabel = 'selectedGoalAtom')
+isDev() && (selectedGoalAtom.debugLabel = 'selectedGoalAtom')
 
 // derived
 export const selectedGoalId = atom((get) => get(selectedGoalAtom)?.id)

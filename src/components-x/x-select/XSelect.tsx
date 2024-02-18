@@ -1,8 +1,8 @@
 import { ReactNode, useLayoutEffect, useRef, useState } from 'react'
 import { XInput } from '../x-input/XInput'
-import { Icon } from '@iconify/react'
 import clsx from 'clsx'
 import { useSelectDropdownClickOutside } from './useSelectDropdownClickOutside.hook'
+import { IconSelect } from '@/assets/icons'
 
 type XSelectOption = {
     label: string
@@ -42,7 +42,7 @@ export const XSelect: React.FC<TXSelect> = ({ value, options, readOnly, onChange
             <XInput
                 variant='select'
                 value={isNaN(Number(value)) ? '' : inputLabel}
-                endIcon={<Icon icon='mi:select' className='x-select-icon cursor-pointer' onClick={onClick} />}
+                endIcon={<IconSelect className='x-select-icon cursor-pointer' onClick={onClick} />}
                 onChange={() => undefined}
                 onClick={onClick}
                 readOnly={readOnly}
