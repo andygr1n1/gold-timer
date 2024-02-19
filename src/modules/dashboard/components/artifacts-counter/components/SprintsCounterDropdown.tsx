@@ -29,6 +29,7 @@ const DropdownRender = observer(() => {
     return (
         <XMenuDropdown>
             <XMenuItem
+                className='!opacity-100'
                 onClick={() => {
                     openSprintCreateMode()
                 }}

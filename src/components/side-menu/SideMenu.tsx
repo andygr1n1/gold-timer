@@ -11,7 +11,6 @@ import { XMenuDivider } from '@/components-x/x-dropdown/XMenuDivider'
 import { isUnderDevelopment } from '@/functions/isUnderDevelopment.helper'
 import { UserInfo } from './components/user-info/UserInfo'
 import { IconAchievements, IconBook, IconFocus, IconLandscape, IconProfile, IconSprint } from '@/assets/icons'
-import { IconReact } from '@/assets/icons/IconReact'
 
 export const SideMenu: React.FC = observer(() => {
     const wrapperRef = useRef<HTMLDivElement | null>(null)
@@ -53,18 +52,20 @@ export const SideMenu: React.FC = observer(() => {
                 <div className='md:p2-10 flex w-[230px] min-w-[230px] flex-col overflow-auto py-5 '>
                     <div className='flex flex-auto flex-col gap-5 overflow-auto  '>
                         <UserInfo />
-                        <div className='w-[calc(100%-32px)] pl-8 xl:pt-12'>
+                        <div className='w-[calc(100%-32px)] pl-8'>
                             <div className='mx-auto flex w-[180px] flex-auto flex-col gap-5 overflow-auto '>
                                 <SideMenuLink
                                     to={APP_ROUTES_ENUM.PROFILE}
                                     title='Profile'
                                     icon={<IconProfile width={26} height={26} className='ml-[-3px]' />}
                                 />
-                                <SideMenuLink
-                                    to={APP_ROUTES_ENUM.ACHIEVEMENTS}
-                                    title='Achievements'
-                                    icon={<IconAchievements width={24} height={24} className='ml-[-3px]' />}
-                                />
+                                {isUnderDevelopment() && (
+                                    <SideMenuLink
+                                        to={APP_ROUTES_ENUM.ACHIEVEMENTS}
+                                        title='Achievements'
+                                        icon={<IconAchievements width={24} height={24} className='ml-[-3px]' />}
+                                    />
+                                )}
                                 {isUnderDevelopment() && (
                                     <SideMenuLink
                                         to={APP_ROUTES_ENUM.STORIES}
@@ -84,16 +85,11 @@ export const SideMenu: React.FC = observer(() => {
                                     title='Notes'
                                     icon={<IconBook width={24} height={24} />}
                                 />
-                                <SideMenuLink
-                                    to={APP_ROUTES_ENUM.SPRINTS}
-                                    title='Sprints'
-                                    icon={<IconSprint width={24} height={24} />}
-                                />
                                 {isUnderDevelopment() && (
                                     <SideMenuLink
-                                        to={APP_ROUTES_ENUM.SMART_CONTRACTS}
-                                        title='Smart contracts'
-                                        icon={<IconReact width={24} height={24} />}
+                                        to={APP_ROUTES_ENUM.SPRINTS}
+                                        title='Sprints'
+                                        icon={<IconSprint width={24} height={24} />}
                                     />
                                 )}
                             </div>

@@ -7,6 +7,7 @@ import { Logout } from '@/modules/profile/components/top-bar/Logout'
 import { ThemeSwitcher } from '@/modules/profile/components/top-bar/ThemeSwitcher'
 import { StyledButton } from '@/components/buttons/StyledButton'
 import { XMenuDivider } from '@/components-x/x-dropdown/XMenuDivider'
+import { isUnderDevelopment } from '@/functions/isUnderDevelopment.helper'
 
 export const GoToDashboard = () => {
     const location = useLocation()
@@ -21,8 +22,12 @@ export const GoToDashboard = () => {
             </SideMenuLink>
             <XMenuDivider />
             <div className='flex h-[45px] w-full items-center justify-center gap-2'>
-                <GithubLink />
-                <FigmaLink />
+                {isUnderDevelopment() && (
+                    <>
+                        <GithubLink />
+                        <FigmaLink />
+                    </>
+                )}
                 <ThemeSwitcher />
                 <Logout />
             </div>

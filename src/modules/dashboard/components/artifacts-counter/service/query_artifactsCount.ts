@@ -2,7 +2,7 @@ import { resolveData } from '@/functions/resolveData'
 import { generateTSClient } from '@/graphql/client'
 import { processError } from '@/functions/processMessage'
 
-type IArtifactsCount = { activeNotesCount?: number; activeSprintsCount?: number }
+export type IArtifactsCount = { activeNotesCount?: number; activeSprintsCount?: number }
 
 export const query_artifactsCount = async (id: string): Promise<IArtifactsCount | null> => {
     const client = generateTSClient()
@@ -13,7 +13,9 @@ export const query_artifactsCount = async (id: string): Promise<IArtifactsCount 
                 .query({
                     __name: 'query_artifactsCount',
                     notes_aggregate: {
-                        __args: { where: { owner_id: { _eq: id } } },
+                        __args: {
+                            where: { owner_id: { _eq: id }, archived: { _eq: false }, deleted_at: { _is_null: true } },
+                        },
                         aggregate: { count: true },
                     },
                     sprints_aggregate: {

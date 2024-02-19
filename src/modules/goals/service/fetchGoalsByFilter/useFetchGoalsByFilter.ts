@@ -22,7 +22,8 @@ export const useFetchGoalsByFilter = (props: { queryFilter?: IGoalQueryTypeFilte
         // staleTime: Infinity,
 
         // 1 minute
-        staleTime: 60000,
+        // staleTime: 60000,
+        staleTime: 1000,
         refetchOnWindowFocus: true,
         refetchOnMount: true,
     })

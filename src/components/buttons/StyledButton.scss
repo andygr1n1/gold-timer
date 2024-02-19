@@ -32,8 +32,8 @@
 
         &:disabled {
             pointer-events: none;
-            @apply select-none opacity-60 backdrop-blur-xl;
-            color: var(--colors-button-#{$type}-#{$color}-disabled-text-color);
+            @apply select-none text-gray-500 backdrop-blur-xl;
+
             background-color: var(--colors-button-#{$type}-#{$color}-disabled-bg-color);
             border-color: var(--colors-button-#{$type}-#{$color}-disabled-border-color);
         }

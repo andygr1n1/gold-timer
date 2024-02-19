@@ -35,7 +35,8 @@ export const useFetchGoalsByFilterInfinity = (props: {
         },
 
         // 1 minute
-        staleTime: 60000,
+        // staleTime: 60000,
+        staleTime: 1000,
         refetchOnWindowFocus: true,
         refetchOnMount: true,
     })

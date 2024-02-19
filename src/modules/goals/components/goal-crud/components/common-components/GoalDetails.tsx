@@ -1,10 +1,7 @@
 import { observer } from 'mobx-react-lite'
-import todayLogoIcon from '@/assets/today-goal-logo.svg'
-import ritualLogoIcon from '@/assets/ritual-logo.svg'
-import expiredLogoIcon from '@/assets/expired-goals-logo.svg'
-import completedLogoIcon from '@/assets/checked.png'
 import { IActiveGoalOptimized } from '@/modules/goals/service/types'
 import { isCompleted } from '@/modules/goals/helpers/goalsGuards'
+import { IconExpired, IconFocus, IconInfinity } from '@/assets/icons'
 
 export const GoalDetails: React.FC<{ goal: IActiveGoalOptimized }> = observer(({ goal }) => {
     return (
@@ -18,25 +15,15 @@ export const GoalDetails: React.FC<{ goal: IActiveGoalOptimized }> = observer(({
 
 const ImageByGoalType: React.FC<{ goal: IActiveGoalOptimized }> = observer(({ goal }) => {
     const { isExpired, isRitual } = goal
-    let goalIcon = todayLogoIcon
-    const className = 'w-[60px] h-[60px]'
+    let goalIcon = <IconFocus className='h-[60px] w-[60px] text-blue-600' />
     if (isExpired) {
-        goalIcon = expiredLogoIcon
+        goalIcon = <IconExpired className='h-[60px] w-[60px] text-amber-600' />
     }
     if (isRitual) {
-        goalIcon = ritualLogoIcon
+        goalIcon = <IconInfinity className='h-[60px] w-[60px] text-teal-700' />
     }
 
-    if (isCompleted(goal.status)) {
-        goalIcon = completedLogoIcon
-    }
-
-    return (
-        <div className='flex items-center justify-center gap-5'>
-            {/* {is_favorite && <img src={favoriteIcon} width={55} height={55} />} */}
-            <img src={goalIcon} className={className} />
-        </div>
-    )
+    return <div className='flex items-center justify-center gap-5'>{goalIcon}</div>
 })
 
 const GoalRitualCount: React.FC<{ goal: IActiveGoalOptimized }> = observer(({ goal }) => {

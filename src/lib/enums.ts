@@ -50,7 +50,6 @@ export enum APP_ROUTES_ENUM {
     PROFILE = 'profile',
     ACHIEVEMENTS = 'achievements',
     NOTES = 'notes',
-    SMART_CONTRACTS = 'smart_contracts',
     STORIES = 'stories',
     GOALS = 'goals',
     SPRINTS = 'sprints',

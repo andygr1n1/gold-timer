@@ -17,7 +17,7 @@ export const TopRitualGoalsWidget: React.FC = observer(() => {
     if (!ritual?.length) return null
 
     return (
-        <div className='min-h-[350px]flex-[100%] flex  max-h-[350px] md:flex-[45%]'>
+        <div className='min-h-[350px]flex-[100%] flex max-h-[350px] rounded-md  shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] md:flex-[45%]'>
             <div className='bg-global-2-bg relative flex h-[calc(100%)] w-[calc(100%-40px)] flex-col items-start justify-start rounded-lg px-5'>
                 <div className='absolute left-[-40px] top-[-40px] cursor-pointer'>
                     <StyledButton

@@ -25,6 +25,7 @@ const DropdownRender = () => {
     return (
         <XMenuDropdown>
             <XMenuItem
+                className='!opacity-100'
                 onClick={() =>
                     selectedGoalAtom$.set(selectedGoalAtom, {
                         id: crypto.randomUUID(),

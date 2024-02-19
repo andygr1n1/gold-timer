@@ -10,6 +10,7 @@ export const Logout: React.FC = observer(() => {
 
     const onLogout = () => {
         removeUserCookie()
+        window.queryClient.clear()
         clearStore()
         setLogin((prev) => ({ ...prev, user_id: '' }))
     }

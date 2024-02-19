@@ -30,7 +30,7 @@ export const GoalsSlidesCarousel: React.FC = observer(() => {
             {!isMobile && (
                 <img
                     loading='lazy'
-                    className='absolute hidden w-[450px] md:flex md:w-[450px]'
+                    className='absolute hidden w-[450px] opacity-70 md:flex md:w-[450px]'
                     src='https://firebunny-storage.b-cdn.net/kzen/utility/lotus-bg.png'
                     // className="absolute flex h-full w-full bg-[url('https://firebunny-storage.b-cdn.net/kzen/utility/lotus-bg.png')] bg-cover "
                 />
@@ -46,7 +46,7 @@ export const GoalsSlidesCarousel: React.FC = observer(() => {
             <XTooltip className='z-[900]' anchorSelect='#goalsSlidesEditor'>
                 {'Open editor'}
             </XTooltip>
-            {visibleSlides.length && (
+            {!!visibleSlides.length && (
                 <Carousel
                     autoPlay
                     infiniteLoop

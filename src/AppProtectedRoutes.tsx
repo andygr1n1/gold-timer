@@ -10,7 +10,6 @@ import { FocusGoalOfWeek } from './components/components-modal-windows/focus-goa
 import { ProfileImageCropDialog } from './modules/profile/components/profile-avatar/ProfileImageCropDialog'
 import { AchievementsIndex } from './modules/achievements/AchievementsIndex'
 import { StoriesIndex } from './modules/stories/StoriesIndex'
-import { SmartContractsIndex } from './modules/smart-contracts/SmartContractsIndex'
 import { LoadingDialogGlobal } from './components/LoadingDialogConstructor'
 
 export const AppProtectedRoutes: React.FC = () => {
@@ -25,7 +24,6 @@ export const AppProtectedRoutes: React.FC = () => {
                 <Route path={`/${APP_ROUTES_ENUM.NOTES}`} element={<NotesIndex />} />
                 <Route path={`/${APP_ROUTES_ENUM.GOALS}`} element={<GoalsCms />} />
                 <Route path={`/${APP_ROUTES_ENUM.SPRINTS}`} element={<SprintsIndex />} />
-                <Route path={`/${APP_ROUTES_ENUM.SMART_CONTRACTS}`} element={<SmartContractsIndex />} />
                 {/*  */}
                 <Route path={`/${APP_ROUTES_ENUM.DASHBOARD}/*`} element={<DashboardIndex />} />
             </Routes>
