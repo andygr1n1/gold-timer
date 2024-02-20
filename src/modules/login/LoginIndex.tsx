@@ -1,4 +1,3 @@
-import { useUserStore } from '@/StoreProvider'
 import { Form } from 'antd'
 import { observer } from 'mobx-react-lite'
 import { IValues } from './helpers/login.interface'
@@ -15,38 +14,42 @@ import { LoginPassword } from './components/login/LoginPassword'
 import { LoginFooter } from './components/login/LoginFooter'
 import styles from './LoginIndex.module.scss'
 import clsx from 'clsx'
-import { processNotificationApi } from '@/functions/processMessage'
+import { processError } from '@/functions/processMessage'
+import { useAtom } from 'jotai'
+import { resolveData } from '@/functions/resolveData'
+import { loginAtom } from './stores/login.store'
 
 export const LoginIndex: React.FC = observer(() => {
-    const { onChangeField } = useUserStore()
-    const { processApiError, contextHolder } = processNotificationApi()
     const { isDesktop } = useWindowMatchMedia(['isDesktop'])
+    const [, setLogin] = useAtom(loginAtom)
 
     const onFinish = async (values: IValues) => {
-        const loginUserRes = await sendLoginData(values)
-        if (loginUserRes) {
-            onChangeField('id', loginUserRes.user_id)
-        }
+        const errorString = 'Please try again. Your credentials are wrong'
+        await resolveData<void, void>(
+            () =>
+                sendLoginData(values).then((res) => {
+                    if (!res) throw new Error(errorString)
+                    setLogin(() => ({
+                        user_id: res.user_id,
+                        remember: res.remember,
+                    }))
 
-        if (loginUserRes?.remember) {
-            setRememberUserCookie(loginUserRes.user_id)
-        }
-
-        if (!loginUserRes) {
-            processApiError({ title: 'Please try again', description: 'Your credentials are wrong' })
-        }
+                    setRememberUserCookie(res.user_id, res.remember)
+                }),
+            () => {
+                processError(errorString)
+                return []
+            },
+        )
     }
 
     const onFinishFailed = () => {
-        processApiError({ title: 'Login error', description: 'Please provide your credentials' })
+        processError('Login error, please provide your credentials')
     }
 
-    // const is4GConnection = is4G()
     return (
-        //  <div className={clsx([styles['login-bg'], is4GConnection && styles['login-4g']])}>
-        <div className={clsx([styles['login-bg'], styles['login-4g']])}>
+        <div className={clsx([styles['login-bg']], 'login-bg-4g')}>
             <LoginContainer>
-                {contextHolder}
                 <LoginLogo />
                 <Form
                     name='kzen-login'

@@ -14,12 +14,13 @@ import { updatePasswordByEmail } from '@/graphql/mutations/updatePasswordByEmail
 import { NavLink } from 'react-router-dom'
 import { APP_ROUTES_ENUM } from '@/lib/enums'
 import { deleteRestoreCode } from '@/graphql/mutations/deleteRestoreCode.mutation'
-import { processNotificationApi } from '@/functions/processMessage'
+import { processError, processSuccess } from '@/functions/processMessage'
+import clsx from 'clsx'
+import styles from './LoginIndex.module.scss'
 
 export const NewPasswordIndex: React.FC = observer(() => {
     const { isDesktop } = useWindowMatchMedia(['isDesktop'])
     const [password, setPassword] = useState('')
-    const { contextHolder, processApiSuccess, processApiError } = processNotificationApi()
     const [userStatus, setUserStatus] = useState<'login' | 'restore' | null>(null)
 
     const onFinish = async (values: { password: string; passwordRepeat: string }) => {
@@ -48,10 +49,7 @@ export const NewPasswordIndex: React.FC = observer(() => {
         if (success) {
             setUserStatus('login')
             deleteRestoreCode(code)
-            processApiSuccess({
-                title: 'Success!',
-                description: 'Password has been successfully changed, please login',
-            })
+            processSuccess('Success! password has been successfully changed, please login')
         } else {
             onFinishFailed('Token has been expired, please create a new one')
             setUserStatus('restore')
@@ -60,16 +58,12 @@ export const NewPasswordIndex: React.FC = observer(() => {
     }
 
     const onFinishFailed = (info = '') => {
-        processApiError({
-            title: `Restore password error`,
-            description: info,
-        })
+        processError(`Restore password error: ${info}`)
     }
 
     return (
-        <div className='flex h-full w-full flex-col '>
+        <div className={clsx([styles['login-bg']], 'login-bg-4g')}>
             <LoginContainer>
-                {contextHolder}
                 <LoginLogo />
                 {!userStatus && (
                     <Form

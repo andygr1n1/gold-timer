@@ -4,22 +4,20 @@ import { Carousel } from 'react-responsive-carousel'
 import { useEffect } from 'react'
 import { useRootStore } from '@/StoreProvider'
 import { useWindowMatchMedia } from '@/hooks/useMatchMedia.hook'
-import { Icon } from '@iconify/react'
 
 import 'react-responsive-carousel/lib/styles/carousel.min.css' // requires a loader
 import { CRUD_GoalsSlidesDialog } from './crud-goals-slides/CRUD_GoalsSlidesDialog'
 import { XTooltip } from '@/components-x/x-tooltip/XTooltip'
+import { IconEdit } from '@/assets/icons'
 
 export const GoalsSlidesCarousel: React.FC = observer(() => {
     const {
-        achievements$: { fetchAchievements },
         goals_slides$: { fetchGoalsSlides, visibleSlides, onChangeField },
     } = useRootStore()
 
     const { isMobile } = useWindowMatchMedia(['isMobile'])
 
     useEffect(() => {
-        fetchAchievements()
         fetchGoalsSlides()
     }, [])
 
@@ -32,7 +30,7 @@ export const GoalsSlidesCarousel: React.FC = observer(() => {
             {!isMobile && (
                 <img
                     loading='lazy'
-                    className='absolute hidden w-[450px] md:flex md:w-[450px]'
+                    className='absolute hidden w-[450px] opacity-70 md:flex md:w-[450px]'
                     src='https://firebunny-storage.b-cdn.net/kzen/utility/lotus-bg.png'
                     // className="absolute flex h-full w-full bg-[url('https://firebunny-storage.b-cdn.net/kzen/utility/lotus-bg.png')] bg-cover "
                 />
@@ -43,12 +41,12 @@ export const GoalsSlidesCarousel: React.FC = observer(() => {
                 className='animate-opacity-3 absolute top-10 z-50 flex cursor-pointer items-center justify-center rounded-full bg-transparent p-2
                        text-gray-300 opacity-0 bg-blend-saturation backdrop-blur-3xl transition-all duration-300 hover:bg-gray-500/20 hover:text-white group-hover:opacity-100'
             >
-                <Icon icon='material-symbols:edit' width={24} height={24} />
+                <IconEdit width={24} height={24} />
             </div>
             <XTooltip className='z-[900]' anchorSelect='#goalsSlidesEditor'>
                 {'Open editor'}
             </XTooltip>
-            {visibleSlides.length && (
+            {!!visibleSlides.length && (
                 <Carousel
                     autoPlay
                     infiniteLoop

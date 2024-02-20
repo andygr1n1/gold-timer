@@ -9,10 +9,10 @@ export const CreateNewNote: React.FC = observer(() => {
     const { createWidgetNewNote, widget_new_note } = useNotesStore()
 
     return (
-        <div className='flex max-h-[370px] flex-[45%]'>
-            <div className='bg-global-bg-plasma m-auto flex h-[calc(100%-12px)] w-[calc(100%)] flex-col gap-5 rounded-md py-2  '>
-                <div className='m-auto flex max-h-[330px]  max-w-[380px] flex-col gap-5 '>
-                    <div className='flex flex-auto flex-col '>
+        <div className='flex max-h-[350px] min-h-[350px] flex-[100%] rounded-md shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] md:flex-[45%]'>
+            <div className='bg-global-bg-plasma m-auto flex h-[calc(100%-12px)] w-full flex-col gap-5 rounded-md py-2  '>
+                <div className='m-auto flex max-h-[330px] w-full max-w-[380px]  flex-col gap-5 '>
+                    <div className='flex w-full flex-auto flex-col gap-5 bg-inherit '>
                         <NewNoteInput />
                         <TagInput />
                     </div>

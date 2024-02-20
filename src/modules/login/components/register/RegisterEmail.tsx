@@ -1,39 +1,33 @@
 import { Form } from 'antd'
 import { observer } from 'mobx-react-lite'
-import { useLoginStore } from '../../mst/LoginStoreProvider'
 import { XInput } from '@/components-x/x-input/XInput'
+import { useAtom } from 'jotai'
+import { registerAtom, registerEmailInUseError, validateUser } from '../../stores/register.store'
 
 export const RegisterEmail: React.FC = observer(() => {
-    const {
-        register_credentials: {
-            register_email_input,
-            onChangeField,
-            validateEmail,
-            register_email_in_use,
-            registerEmailInUseError,
-        },
-    } = useLoginStore()
+    const [{ register_email_input }, setRegAtom] = useAtom(registerAtom)
+    const [emailInUseError] = useAtom(registerEmailInUseError)
+    const [, validate] = useAtom(validateUser)
+
     return (
         <div className='relative'>
             <Form.Item className='form-field-email' name='email' rules={[{ required: true, message: '* required' }]}>
                 <XInput
                     value={register_email_input}
                     onChange={(e) => {
-                        onChangeField('register_email_input', e.target.value)
-                        if (register_email_in_use) {
-                            onChangeField('register_email_in_use', false)
-                        }
+                        setRegAtom((store) => {
+                            store.register_email_input = e.target.value
+                            store.register_email_in_use && (store.register_email_in_use = false)
+                        })
                     }}
                     onBlur={() => {
-                        validateEmail()
+                        validate()
                     }}
                     className='w-[220px]'
-                    placeholder='@-email'
+                    placeholder='Email'
                 />
             </Form.Item>
-            {registerEmailInUseError && (
-                <div className='absolute bottom-[2px] text-red-500'>Email is already in use</div>
-            )}
+            {emailInUseError && <div className='absolute bottom-[2px] text-red-500'>Email is already in use</div>}
         </div>
     )
 })

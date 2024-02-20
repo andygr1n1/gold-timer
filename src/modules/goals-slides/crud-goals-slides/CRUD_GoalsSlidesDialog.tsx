@@ -3,7 +3,6 @@ import { XModal } from '@/components-x/x-modal/XModal'
 import { useGoalsSlidesStore } from '@/StoreProvider'
 import { GoalsSlides } from './components/GoalsSlides'
 import { UploadGoalSlide } from './components/UploadGoalSlide'
-import { FormFooter } from '@/components/form/FormFooter'
 
 export const CRUD_GoalsSlidesDialog: React.FC = observer(function CRUD_GoalsSlidesDialog() {
     const { onChangeField, is_crud_open } = useGoalsSlidesStore()
@@ -26,17 +25,6 @@ export const CRUD_GoalsSlidesDialog: React.FC = observer(function CRUD_GoalsSlid
                 <UploadGoalSlide />
                 <GoalsSlides />
             </div>
-            <Footer />
         </XModal>
     )
-})
-
-const Footer: React.FC = observer(() => {
-    const { onChangeField } = useGoalsSlidesStore()
-
-    const onCancel = () => {
-        onChangeField('is_crud_open', false)
-    }
-
-    return <FormFooter onOk={() => undefined} hideOkButton onCancel={onCancel} />
 })

@@ -1,4 +1,3 @@
-import { Icon } from '@iconify/react'
 import { DayPicker, useNavigation } from 'react-day-picker'
 import { XDatePickerProps } from './XDatePicker'
 import { Dispatch, SetStateAction, useEffect } from 'react'
@@ -6,6 +5,7 @@ import { StyledButton } from '@/components/buttons/StyledButton'
 import { XTooltip } from '../x-tooltip/XTooltip'
 import clsx from 'clsx'
 import styles from './XCalendar.module.scss'
+import { IconChevronLeft, IconChevronRight, IconEraser } from '@/assets/icons'
 // possible to redesign dropdown with  useNavigation  from 'react-day-picker'
 
 type IXCalendarProps = {
@@ -27,8 +27,8 @@ export const XCalendar: React.FC<IXCalendarProps> = (props) => {
                     day_today: 'text-red-500',
                 }}
                 components={{
-                    IconLeft: () => <Icon icon='akar-icons:chevron-left' />,
-                    IconRight: () => <Icon icon='akar-icons:chevron-right' />,
+                    IconLeft: () => <IconChevronLeft width={24} height={24} />,
+                    IconRight: () => <IconChevronRight width={24} height={24} />,
                 }}
                 onSelect={onSelect}
                 selected={props.bufferSelect}
@@ -57,16 +57,15 @@ const DayPickerFooter: React.FC<IXCalendarProps> = (props) => {
                 id='resetDate'
                 variant='text'
                 className='z-10'
+                onClick={() => onSelect(undefined)}
                 startIcon={
-                    <Icon
-                        onClick={() => onSelect(undefined)}
-                        icon='bx:reset'
+                    <IconEraser
                         width={24}
                         height={24}
                         className='cursor-pointer p-2 duration-300 hover:text-blue-600'
                     />
                 }
-            ></StyledButton>
+            />
             <XTooltip anchorSelect='#resetDate'>Reset</XTooltip>
 
             {props.showToday && (

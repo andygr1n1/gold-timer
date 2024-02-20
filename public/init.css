@@ -1,0 +1,17 @@
+@import url(./normalize.css);
+
+@font-face {
+    font-family: 'Allura';
+    src: url(./fonts/Allura-Regular.ttf);
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: 'Roboto Slab';
+    src: url(./fonts/RobotoSlab-VariableFont_wght.ttf);
+}
+
+.login-bg-4g {
+    background-image: url('./img/kzen-login-background.jpg');
+    background-size: cover;
+}

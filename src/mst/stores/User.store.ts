@@ -1,62 +1,25 @@
-import { flow, toGenerator, types, cast } from 'mobx-state-tree'
-import { GoalRitual } from '../../modules/goals/mst/models/GoalRitual.model'
-import { IUser$ } from '../types'
-import { IBaseUserData, updateUserData } from '@/modules/profile/graphql/updateUserData.m'
+import { flow, toGenerator, types } from 'mobx-state-tree'
 import { processError } from '@/functions/processMessage'
-import { UserAddon } from '../models/UserAddon.model'
 import { deleteImageFromServer, uploadNewImageToServer } from '@/services/image.service'
 import { SERVER_ROUTES } from '@/lib/enums'
-import { updateUserProfileImage } from '@/modules/profile/graphql/updateUserProfileImage.m'
-import { User } from '../models/User.model'
-import { UserEdit$ } from './UserEdit.store'
-import { cloneDeep } from 'lodash-es'
+import { updateUserProfileImage } from '@/modules/profile/service/update-avatar/updateUserProfileImage.m'
 import { rootStore$ } from '@/StoreProvider'
+import { KEY_FetchAvatar } from '@/modules/profile/service'
 
 export const User$ = types
-    .compose(
-        User,
-        types.model('User$', {
-            coins: 0,
-            total_ritual_power: 0,
-            number_of_rituals: 0,
-            most_powerful_ritual: types.optional(GoalRitual, {}),
-            avatar: types.maybeNull(types.string),
-            addons: types.array(UserAddon),
-            //
-            // crop data manipulators
-            // =>
-            img_cropped_src: '',
-            img_src: '',
-            //
-            user_edit: types.maybe(UserEdit$),
-        }),
-    )
-    .views((self) => ({
-        get enabledProfileDataUpdate(): boolean {
-            return !!self.user_edit?.name.length && !!self.user_edit?.passwordIsValid
-        },
-        get profileEditIsOpen(): boolean {
-            return !!self.user_edit
-        },
-        get isAuthenticated(): boolean {
-            return !!self.id
-        },
-        get userStore(): IUser$ {
-            return self as IUser$
-        },
-        get hasGoalsOfWeekAddon(): boolean {
-            return !!self.addons.find((addon) => addon.isGoalsOfWeek)?.isGoalsOfWeek
-        },
-    }))
+    .model('User$', {
+        id: '',
+        avatar: types.maybeNull(types.string),
+        //
+        // crop data manipulators
+        // =>
+        img_cropped_src: '',
+        img_src: '',
+        //
+    })
     .actions((self) => ({
         onChangeField<Key extends keyof typeof self>(key: Key, value: (typeof self)[Key]) {
             self[key] = value
-        },
-        closeProfileEdit(): void {
-            self.user_edit = undefined
-        },
-        openProfileEdit(): void {
-            self.user_edit = cast(cloneDeep(self))
         },
     }))
     .actions((self) => ({
@@ -73,31 +36,10 @@ export const User$ = types
                 yield updateUserProfileImage(newAvatar)
                 avatarToDelete && (yield deleteImageFromServer(avatarToDelete, SERVER_ROUTES.PROFILE_IMAGE_DELETE))
                 rootStore$.onChangeField('loading', false)
+                window.queryClient.invalidateQueries({ queryKey: KEY_FetchAvatar() })
             } catch (e) {
                 processError(e, 'saveNewProfileImage error')
                 rootStore$.onChangeField('loading', false)
             }
-        }),
-        updateProfileData: flow(function* _updateProfileData() {
-            if (!self.user_edit) return
-
-            const { name, email, birthday, updatePassword, phone } = self.user_edit
-
-            const newData: IBaseUserData = {
-                name,
-                email,
-                phone,
-                birthday: birthday ? birthday.toDateString() : null,
-                password: updatePassword,
-            }
-
-            yield* toGenerator(updateUserData(self.id, newData))
-
-            self.name = name
-            self.email = email
-            self.phone = phone
-            self.birthday = birthday
-            self.password = updatePassword
-            self.closeProfileEdit()
         }),
     }))

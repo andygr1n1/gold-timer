@@ -1,9 +1,9 @@
-import { Icon } from '@iconify/react'
-import { observer } from 'mobx-react-lite'
 import { Buffer } from 'buffer'
 import { processError } from '@/functions/processMessage'
 import { useSprintsStore } from '@/StoreProvider'
 import clsx from 'clsx'
+import { IconUpload } from '@/assets/icons'
+import { observer } from 'mobx-react-lite'
 
 export const NewSprintImage = observer(() => {
     const { new_sprint } = useSprintsStore()
@@ -36,8 +36,7 @@ export const NewSprintImage = observer(() => {
                 {img_cropped_src && (
                     <img src={img_cropped_src} className=' h-[300px]  w-[300px] rounded-md shadow-slate-900/50' />
                 )}
-                <Icon
-                    icon='line-md:uploading-loop'
+                <IconUpload
                     className={clsx(
                         img_cropped_src ? 'hidden' : 'flex',
                         'absolute-center animate-opacity-5 pointer-events-none absolute left-0 top-0 z-50 text-white/10 opacity-70 duration-300 group-hover:flex group-hover:text-blue-600 group-hover:opacity-100',

@@ -1,0 +1,85 @@
+@mixin button($type, $color) {
+    @apply relative flex w-fit cursor-pointer
+    items-center justify-center 
+    rounded-md border border-solid 
+    text-base font-semibold transition duration-300 ease-in-out;
+
+    &.#{$type}.#{$color} {
+        color: var(--colors-button-#{$type}-#{$color}-text-color);
+        background-color: var(--colors-button-#{$type}-#{$color}-bg-color);
+        border-color: var(--colors-button-#{$type}-#{$color}-border-color);
+
+        &:active {
+            color: var(--colors-button-#{$type}-#{$color}-active-text-color);
+            background-color: var(--colors-button-#{$type}-#{$color}-active-bg-color);
+            border-color: var(--colors-button-#{$type}-#{$color}-active-border-color);
+            outline: none;
+        }
+
+        &:hover {
+            color: var(--colors-button-#{$type}-#{$color}-hover-text-color);
+            background-color: var(--colors-button-#{$type}-#{$color}-hover-bg-color);
+            border-color: var(--colors-button-#{$type}-#{$color}-hover-border-color);
+        }
+
+        &:focus {
+            outline: 2px solid var(--colors-button-#{$type}-#{$color}-focused-border-color);
+            outline-offset: -1px;
+            color: var(--colors-button-#{$type}-#{$color}-focused-text-color);
+            background-color: var(--colors-button-#{$type}-#{$color}-focused-bg-color);
+            border-color: transparent;
+        }
+
+        &:disabled {
+            pointer-events: none;
+            @apply select-none text-gray-500 backdrop-blur-xl;
+
+            background-color: var(--colors-button-#{$type}-#{$color}-disabled-bg-color);
+            border-color: var(--colors-button-#{$type}-#{$color}-disabled-border-color);
+        }
+
+        &:active {
+            @apply shadow-[0px_9px_30px] shadow-[var(--colors-button-#{$type}-#{$color}-hover-bg-color)];
+        }
+
+        &:active:after {
+            padding: 0;
+            margin: 0;
+            bottom: 0;
+            left: 0;
+            opacity: 1;
+            transition: 0s;
+            @apply w-0;
+        }
+
+        &:after {
+            content: '';
+            @apply absolute h-full w-full rounded-full bg-white/40 opacity-0 duration-700;
+        }
+    }
+
+    &.large {
+        @apply h-[40px] min-h-[40px];
+    }
+    &.extraLarge {
+        @apply h-12 min-h-[45px];
+    }
+    &.small {
+        @apply h-8;
+    }
+
+    &.radius15 {
+        @apply rounded-2xl;
+    }
+}
+
+.button {
+    @include button('contained', 'common');
+    @include button('contained', 'error');
+
+    @include button('outlined', 'common');
+    @include button('outlined', 'error');
+
+    @include button('text', 'common');
+    @include button('text', 'error');
+}

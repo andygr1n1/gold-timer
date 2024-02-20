@@ -1,7 +1,7 @@
+import { IconDeleteTemp } from '@/assets/icons'
 import { XTooltip } from '@/components-x/x-tooltip/XTooltip'
 import { StyledButton } from '@/components/buttons/StyledButton'
 import { INote$ } from '@/modules/notes/mst/types'
-import { Icon } from '@iconify/react'
 import { observer } from 'mobx-react-lite'
 
 export const DeleteNote: React.FC<{ note: INote$ }> = observer(({ note }) => {
@@ -16,7 +16,7 @@ export const DeleteNote: React.FC<{ note: INote$ }> = observer(({ note }) => {
                 variant={deleted_at ? 'contained' : 'outlined'}
                 onClick={deleteNote}
             >
-                <Icon icon='fluent:delete-dismiss-24-filled' width={24} height={24} />
+                <IconDeleteTemp width={24} height={24} />
             </StyledButton>
             <XTooltip anchorSelect='#toggleMoveNoteToBin'>{deleted_at ? 'Restore from bin' : 'Move to bin'}</XTooltip>
         </>

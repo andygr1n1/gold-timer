@@ -1,8 +1,8 @@
-import { Icon } from '@iconify/react'
 import { observer } from 'mobx-react-lite'
 import { useGoalsSlidesStore } from '@/StoreProvider'
 import { useSelectUploadFile } from '@/functions/useSelectUploadFile'
 import { UploadGoalSlideCropDialog } from './UploadGoalSlideCropDialog'
+import { IconUpload } from '@/assets/icons/IconUpload'
 
 export const UploadGoalSlide = observer(() => {
     const { img_cropped_src, onChangeField } = useGoalsSlidesStore()
@@ -10,18 +10,17 @@ export const UploadGoalSlide = observer(() => {
     return (
         <div
             title='upload image'
-            className='bg-global-bg-plasma  group relative mx-auto
-            flex h-[300px] w-[300px] items-center justify-center rounded-md border border-solid border-white/10
-           shadow-md transition-shadow duration-300 '
+            className=' group relative mx-auto
+            flex h-[300px] w-[300px] items-center justify-center rounded-md border border-solid 
+            border-gray-500/10 shadow-md transition-shadow duration-300'
         >
             {img_cropped_src && (
-                <img src={img_cropped_src} className='absolute h-[300px] w-[300px] rounded-md opacity-10 ' />
+                <img src={img_cropped_src} className='absolute h-[300px] w-[300px] rounded-md opacity-10' />
             )}
-            <Icon
-                icon='line-md:uploading-loop'
-                className='animate-opacity-5 flex text-white/10 opacity-70 duration-300 group-hover:text-blue-600 group-hover:opacity-100'
-                width={50}
-                height={50}
+            <IconUpload
+                width={64}
+                height={64}
+                className='text-cText opacity-10 duration-300 group-hover:text-blue-600 group-hover:opacity-100'
             />
             <input
                 title='upload'
@@ -39,3 +38,6 @@ export const UploadGoalSlide = observer(() => {
         </div>
     )
 })
+//   <div className=' rounded-full border-solid border-gray-500/10'>
+
+//                                     </div>

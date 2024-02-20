@@ -7,7 +7,7 @@ export default {
             ...twThemeDefaultColors,
         },
     },
-    '[data-theme="night"]': {
+    '[dark="true"]': {
         colors: {
             ...twThemeNightColors,
         },

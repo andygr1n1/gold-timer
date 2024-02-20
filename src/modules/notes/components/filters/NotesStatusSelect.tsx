@@ -4,11 +4,11 @@ import { useNotesStore } from '@/StoreProvider'
 import { XDropdown } from '@/components-x/x-dropdown/XDropdown'
 import { XMenuDropdown } from '@/components-x/x-dropdown/XMenuDropdown'
 import { XMenuItem } from '@/components-x/x-dropdown/XMenuItem'
-import { Icon } from '@iconify/react'
 import { StyledButton } from '@/components/buttons/StyledButton'
 import { NotesViewStatus } from '../../helpers/enums'
 import { useState } from 'react'
 import clsx from 'clsx'
+import { IconBackInTime, IconFolder } from '@/assets/icons'
 
 export const NotesStatusSelect: React.FC = observer(() => {
     const [open, setOpen] = useState(false)
@@ -35,7 +35,7 @@ export const NotesStatusSelect: React.FC = observer(() => {
             overlayClassName='!z-[55]'
         >
             <div>
-                <StyledButton startIcon={<Icon icon='entypo:back-in-time' width={24} height={24} />} />
+                <StyledButton startIcon={<IconBackInTime width={24} height={24} />} />
             </div>
         </XDropdown>
     )
@@ -56,12 +56,7 @@ const DropdownRender: React.FC<{ isShowActiveMode: boolean; onClose: (selected: 
                             onClose(NotesViewStatus.ARCHIVED)
                         }}
                     >
-                        <Icon
-                            icon='fluent:folder-28-filled'
-                            width={24}
-                            height={24}
-                            className={clsx('duration-300 group-hover:text-blue-500')}
-                        />
+                        <IconFolder width={24} height={24} className={clsx('duration-300 group-hover:text-blue-500')} />
                         <span className='text-inherit'>Show archived</span>
                     </XMenuItem>
                 )}
@@ -72,12 +67,7 @@ const DropdownRender: React.FC<{ isShowActiveMode: boolean; onClose: (selected: 
                             onClose(NotesViewStatus.DELETED)
                         }}
                     >
-                        <Icon
-                            icon='fluent:folder-28-filled'
-                            width={24}
-                            height={24}
-                            className={clsx('duration-300 group-hover:text-blue-500')}
-                        />
+                        <IconFolder width={24} height={24} className={clsx('duration-300 group-hover:text-blue-500')} />
                         <span>Show deleted</span>
                     </XMenuItem>
                 )}
@@ -88,12 +78,7 @@ const DropdownRender: React.FC<{ isShowActiveMode: boolean; onClose: (selected: 
                             onClose(NotesViewStatus.ALL)
                         }}
                     >
-                        <Icon
-                            icon='fluent:folder-28-filled'
-                            width={24}
-                            height={24}
-                            className={clsx('duration-300 group-hover:text-blue-500')}
-                        />
+                        <IconFolder width={24} height={24} className={clsx('duration-300 group-hover:text-blue-500')} />
                         <span>Show active</span>
                     </XMenuItem>
                 )}

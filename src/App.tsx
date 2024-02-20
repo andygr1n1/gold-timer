@@ -1,19 +1,27 @@
-import { useRootStore } from './StoreProvider'
-import { observer } from 'mobx-react-lite'
-import { getUserCookie } from './functions/universalCookie.helper'
+import { BrowserRouter } from 'react-router-dom'
+import { useAtom } from 'jotai'
+import { loginAtom } from './modules/login/stores/login.store'
 import { AppProtected } from './AppProtected'
-import { AppAnonymous } from './AppAnonymous'
+import { AnonymousRoutes } from './AnonymousRoutes'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 
-export const App = observer(() => {
-    const {
-        user$: { isAuthenticated, onChangeField },
-    } = useRootStore()
+// *
+//
+// important to inject query into window
+// it saves react hmr
+window.queryClient = new QueryClient()
 
-    const getUserIdCookie = getUserCookie()
-    if (getUserIdCookie) onChangeField('id', getUserIdCookie)
+export const App = () => {
+    const [login] = useAtom(loginAtom)
+    return (
+        <QueryClientProvider client={window.queryClient}>
+            <BrowserRouter basename='/' future={{ v7_startTransition: true }}>
+                {!login.user_id && <AnonymousRoutes />}
 
-    if (!isAuthenticated && !getUserIdCookie) {
-        return <AppAnonymous />
-    }
-    return <AppProtected />
-})
+                {login.user_id && <AppProtected user_id={login.user_id} />}
+            </BrowserRouter>
+            <ReactQueryDevtools initialIsOpen={false} />
+        </QueryClientProvider>
+    )
+}

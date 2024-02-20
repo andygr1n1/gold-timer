@@ -1,13 +1,13 @@
-import { IGoal$ } from '@/modules/goals/mst/types'
+import { IActiveGoalOptimized } from '@/modules/goals/service/types'
 import { DIFFICULTY_ENUM } from '../lib/enums'
 
-export const getCoinsFromCompletedGoal = (goal: IGoal$, currentCoins: number): number => {
-    const { difficulty, isRitualGoal: isRitualGoal, goal_ritual } = goal
-    if (isRitualGoal && goal_ritual) {
+export const getCoinsFromCompletedGoal = (goal: IActiveGoalOptimized, currentCoins: number): number => {
+    const { difficulty, goal_ritual } = goal
+    if (goal_ritual) {
         //
         //
         // ritual
-        const power = goal_ritual.ritual_power
+        const power = goal_ritual.ritual_power || 0
         if (power <= 10) {
             return currentCoins + 10 + 1 * power
         } else if (power <= 30) {

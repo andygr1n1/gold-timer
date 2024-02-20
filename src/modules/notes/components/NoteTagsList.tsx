@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react-lite'
 import { INote$ } from '../mst/types'
 import { capitalize } from 'lodash-es'
-import { Icon } from '@iconify/react'
+import { IconClose } from '@/assets/icons'
 
 export const NoteTagsList: React.FC<{ note: INote$; deleteAction?: (goal: string) => void }> = observer(
     ({ note, deleteAction }) => {
@@ -15,8 +15,7 @@ export const NoteTagsList: React.FC<{ note: INote$; deleteAction?: (goal: string
                     >
                         <span className='p-1'> #{capitalize(tag.trim())}</span>
                         {deleteAction && (
-                            <Icon
-                                icon='line-md:menu-to-close-transition'
+                            <IconClose
                                 className={`flex h-full cursor-pointer items-center justify-center rounded-r-md text-red-500`}
                                 onClick={() => deleteAction?.(tag)}
                             />

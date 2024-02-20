@@ -7,9 +7,9 @@
  */
 
 .ql-container {
-    @apply text-lg;
+    @apply font-kzen text-lg;
     box-sizing: border-box;
-    font-family: Droid Sans Exotic, sans-serif;
+    /* font-family: Droid Sans Exotic, sans-serif; */
     height: 100%;
     margin: 0px;
     position: relative;
@@ -36,6 +36,7 @@
     @apply scrollbar-thumb-blue-500 scrollbar-track-global-3-bg  scrollbar-thin max-h-[150px] min-h-[100px] overflow-auto
     rounded-md border border-solid border-blue-900 px-3 py-2 text-base outline-transparent focus-within:border
      hover:border-blue-600;
+    background: var(--colors-global-bg);
     box-sizing: border-box;
     line-height: 1.42;
     outline: none;
@@ -46,6 +47,11 @@
     word-wrap: break-word;
     color: var(--colors-cText);
 }
+
+.ql-disabled > .ql-editor {
+    @apply scrollbar-thumb-blue-500 scrollbar-track-global-3-bg  scrollbar-thin min-h-min border-transparent px-0 hover:border-transparent;
+}
+
 .ql-editor > * {
     cursor: text;
 }
@@ -363,10 +369,12 @@
     color: #93f;
 }
 .ql-editor .ql-font-serif {
-    font-family: Georgia, Times New Roman, serif;
+    @apply font-kzen;
+    /* font-family: Georgia, Times New Roman, serif; */
 }
 .ql-editor .ql-font-monospace {
-    font-family: Droid Sans, Courier New, monospace;
+    @apply font-kzen;
+    /* font-family: Droid Sans, Courier New, monospace; */
 }
 .ql-editor .ql-size-small {
     font-size: 0.75em;
@@ -398,6 +406,10 @@
     pointer-events: none;
     position: absolute;
 }
+.view-mode > .ql-toolbar {
+    @apply hidden;
+}
+
 .ql-snow.ql-toolbar {
     color: white;
 }
@@ -814,10 +826,12 @@
     content: 'Monospace';
 }
 .ql-snow .ql-picker.ql-font .ql-picker-item[data-value='serif']::before {
-    font-family: Georgia, Times New Roman, serif;
+    @apply font-kzen;
+    /* font-family: Georgia, Times New Roman, serif; */
 }
 .ql-snow .ql-picker.ql-font .ql-picker-item[data-value='monospace']::before {
-    font-family: 'Droid Sans', Courier New, monospace;
+    @apply font-kzen;
+    /* font-family: 'Droid Sans', Courier New, monospace; */
 }
 .ql-snow .ql-picker.ql-size {
     width: 98px;
@@ -948,6 +962,10 @@
     color: #06c;
 }
 .ql-container.ql-snow {
-    background: var(--colors-global-bg);
+    background: transparent;
     @apply rounded-md;
+}
+
+.ql-container.ql-disabled.ql-snow {
+    background: transparent;
 }

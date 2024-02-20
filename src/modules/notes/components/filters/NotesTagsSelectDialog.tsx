@@ -4,7 +4,6 @@ import { IDisposer, cast, onSnapshot } from 'mobx-state-tree'
 import { useEffect, useState } from 'react'
 import { getNotes$LocalForage, setNotes$LocalForage } from '../../helpers/notesLocalForage'
 import { INotesFilter$ } from '../../mst/types'
-import { Icon } from '@iconify/react'
 import clsx from 'clsx'
 import { useSelectedTagValidation } from '../../hooks/useSelectedTagValidation'
 import { XModal } from '@/components-x/x-modal/XModal'
@@ -12,6 +11,7 @@ import { FormLabel } from '@/components/form/FormLabel'
 import { XInput } from '@/components-x/x-input/XInput'
 import { XCheckbox } from '@/components-x/x-checkbox/XCheckbox'
 import { StyledButton } from '@/components/buttons/StyledButton'
+import { IconEraser } from '@/assets/icons'
 
 export const NotesTagsSelectDialog: React.FC = observer(() => {
     const {
@@ -69,7 +69,7 @@ export const NotesTagsSelectDialog: React.FC = observer(() => {
                 />
                 <StyledButton
                     disabled={!selected_tags.length}
-                    startIcon={<Icon icon='solar:eraser-bold-duotone' width={24} height={24} />}
+                    startIcon={<IconEraser width={24} height={24} />}
                     onClick={() => onChangeNotesFilter$('selected_tags', cast([]))}
                 />
             </div>

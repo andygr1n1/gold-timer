@@ -1,4 +1,4 @@
-import { Icon } from '@iconify/react'
+import { IconFigma } from '@/assets/icons'
 import { observer } from 'mobx-react-lite'
 
 export const FigmaLink: React.FC = observer(() => {
@@ -8,8 +8,7 @@ export const FigmaLink: React.FC = observer(() => {
             target='_blank'
             className='flex items-center justify-center'
         >
-            <Icon
-                icon='devicon:figma'
+            <IconFigma
                 width={25}
                 height={20}
                 className='text-cText cursor-pointer  opacity-70 duration-300  hover:text-blue-500 hover:opacity-100'

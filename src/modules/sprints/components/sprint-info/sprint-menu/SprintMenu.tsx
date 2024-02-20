@@ -1,4 +1,3 @@
-import { Icon } from '@iconify/react'
 import { Popover } from 'antd'
 import { observer } from 'mobx-react-lite'
 import { useState } from 'react'
@@ -6,6 +5,7 @@ import { PopoverItem } from '@/components/popover-settings/PopoverItem'
 import { Dispatch, SetStateAction } from 'react'
 import { useSprintsStore } from '@/StoreProvider'
 import { ISprint$ } from '@/modules/sprints/mst/types'
+import { IconMenu } from '@/assets/icons'
 export const SprintMenu: React.FC<{ sprint: ISprint$ }> = observer(({ sprint }) => {
     const [popoverState, setPopoverState] = useState(false)
 
@@ -21,10 +21,7 @@ export const SprintMenu: React.FC<{ sprint: ISprint$ }> = observer(({ sprint }) 
             placement='bottom'
         >
             <div className='flex min-w-[50px] items-center justify-center'>
-                <Icon
-                    icon='simple-line-icons:options-vertical'
-                    className='cursor-pointer duration-300 hover:text-blue-200 '
-                />
+                <IconMenu width={24} height={24} className='cursor-pointer duration-300 hover:text-blue-200 ' />
             </div>
         </Popover>
     )
@@ -43,8 +40,6 @@ export const SprintMenuContent: React.FC<{ sprint: ISprint$; setPopoverState: Di
                             action={() => {
                                 setPopoverState(false)
                             }}
-                            icon='fluent:open-24-filled'
-                            iconClassName='text-blue-600'
                             className='hover:text-blue-600'
                             title='Open'
                         />
@@ -53,8 +48,6 @@ export const SprintMenuContent: React.FC<{ sprint: ISprint$; setPopoverState: Di
                                 setPopoverState(false)
                                 activateEditSprintCreator(sprint)
                             }}
-                            icon='uil:edit'
-                            iconClassName='text-blue-600'
                             className='hover:text-blue-600'
                             title='Edit'
                         />
@@ -63,8 +56,6 @@ export const SprintMenuContent: React.FC<{ sprint: ISprint$; setPopoverState: Di
                                 setPopoverState(false)
                                 selectSprintAndActivateMenuAction(sprint, 'restart')
                             }}
-                            icon='solar:restart-circle-broken'
-                            iconClassName='text-blue-600'
                             className='hover:text-blue-600'
                             title='Restart'
                         />
@@ -73,8 +64,6 @@ export const SprintMenuContent: React.FC<{ sprint: ISprint$; setPopoverState: Di
                                 setPopoverState(false)
                                 selectSprintAndActivateMenuAction(sprint, 'delete')
                             }}
-                            icon='fluent:delete-dismiss-28-regular'
-                            iconClassName='text-red-700'
                             className='hover:text-red-700'
                             title='Delete'
                             width={18}

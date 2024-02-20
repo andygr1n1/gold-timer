@@ -1,11 +1,11 @@
 import React, { useRef, type ReactNode } from 'react'
 
-import styles from './StyledButton.module.scss'
-import clsx from 'clsx'
+import { cn } from '@/functions/helpers'
+import './StyledButton.scss'
 
-export type StyledButtonType = 'contained' | 'outlined' | 'text'
+type StyledButtonType = 'contained' | 'outlined' | 'text'
 
-export type StyledButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
+type StyledButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
     variant?: StyledButtonType
     refLink?: React.Ref<HTMLButtonElement>
     size?: 'large' | 'small' | 'extraLarge' | 'custom'
@@ -17,7 +17,6 @@ export type StyledButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & 
     noBlur?: boolean
 }
 /**
- * Developer: daria.bogatiriov@carasent.com
  *
  * @remarks for icon button add only startIcon prop
  *
@@ -54,6 +53,8 @@ export const StyledButton = ({
     return (
         <button
             {...otherProps}
+            ref={refButton || refLink}
+            data-test={dataTest}
             onClick={(e) => {
                 otherProps.onClick?.(e)
                 if (!noBlur) {
@@ -61,17 +62,15 @@ export const StyledButton = ({
                     ;(refLink as React.MutableRefObject<HTMLButtonElement | null>)?.current?.blur()
                 }
             }}
-            className={clsx(
+            className={cn(
+                'button',
                 isLarge ? 'px-2' : 'px-1.5',
-                styles['button'],
-                styles[variant],
-                styles[color],
-                styles[size],
-                rounded && styles['radius15'],
+                size,
+                variant,
+                color,
+                rounded && 'radius15',
                 className,
             )}
-            ref={refButton || refLink}
-            data-test={dataTest}
         >
             {startIcon && startIcon}
             {children && (

@@ -19,7 +19,7 @@
 }
 
 // night theme
-[data-theme='night'] {
+[dark='true'] {
     .x-menu-dropdown {
         background-color: var(--colors-global-bg-plasma);
         box-shadow: 0 2px 9px 3px rgba(0, 0, 0, 0.25);

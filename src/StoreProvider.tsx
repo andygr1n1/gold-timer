@@ -7,7 +7,8 @@ const generateRoot$ = () => Root$.create({})
 
 export const rootStore$ = generateRoot$()
 
-export const StoreProvider: React.FC<{ children?: ReactNode }> = ({ children }) => {
+export const ProtectedStoreProvider: React.FC<{ children?: ReactNode; userId: string }> = ({ children, userId }) => {
+    rootStore$.user$.onChangeField('id', userId)
     return <storeContext.Provider value={rootStore$}>{children}</storeContext.Provider>
 }
 
@@ -23,8 +24,6 @@ export const useRootStore = (): IRoot$ => {
 export const useUserStore = () => useRootStore().user$
 
 export const useSprintsStore = () => useRootStore().sprints$
-
-export const useGoalsStore = () => useRootStore().goals$
 
 export const useGoalsSlidesStore = () => useRootStore().goals_slides$
 

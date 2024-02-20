@@ -21,7 +21,7 @@
         "plugins": [{ "name": "typescript-plugin-css-modules" }]
     },
     "include": ["src/**/*"],
-    "exclude": ["node_modules"],
+    "exclude": ["node_modules", "/src/graphql/generated/"],
     "extends": "./tsconfig.paths.json",
     "references": [{ "path": "./tsconfig.node.json" }]
 }

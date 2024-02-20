@@ -1,29 +1,28 @@
 import { processError } from '../../../functions/processMessage'
-import { generateClient } from '@/graphql/client'
 import { INote$SnapshotIn } from '@/modules/notes/mst/types'
-import { gql } from 'graphql-request'
 import { getOwnerId } from '@/functions/getUserId'
-import { fetchData } from '@/functions/fetchData'
+import { resolveData } from '@/functions/resolveData'
+import { generateTSClient } from '@/graphql/client'
 
 export const query_fetchNotes = async (): Promise<INote$SnapshotIn[]> => {
-    const client = generateClient()
-    const owner_id = getOwnerId()
+    const client = generateTSClient()
 
-    const query = gql`
-        query query_fetchNotes($owner_id: uuid) {
-            notes(where: { owner_id: { _eq: $owner_id } }, order_by: { created_at: asc }) {
-                description
-                tag
-                created_at
-                id
-                deleted_at
-                archived
-            }
-        }
-    `
-
-    return await fetchData<INote$SnapshotIn[], INote$SnapshotIn[]>(
-        () => client.request(query, { owner_id }).then((res) => res.notes),
+    return await resolveData<INote$SnapshotIn[], INote$SnapshotIn[]>(
+        () =>
+            client
+                .query({
+                    __name: 'query_fetchNotes',
+                    notes: {
+                        __args: { order_by: [{ created_at: 'asc' }], where: { owner_id: { _eq: getOwnerId() } } },
+                        id: true,
+                        description: true,
+                        tag: true,
+                        created_at: true,
+                        deleted_at: true,
+                        archived: true,
+                    },
+                })
+                .then((res) => res.notes),
         (e) => {
             processError(`query_fetchNotes: ${e}`)
             return []
