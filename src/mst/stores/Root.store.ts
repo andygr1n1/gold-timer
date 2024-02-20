@@ -12,16 +12,9 @@ export const Root$ = types
         notes$: types.optional(Notes$, {}),
         sprints$: types.optional(Sprints$, {}),
         loading: false,
-        //
         side_menu$: types.optional(SideMenu$, {}),
-        //
-        theme: types.maybeNull(types.enumeration(['night', 'day'])),
     })
-    .views((self) => ({
-        get isDarkTheme(): boolean {
-            return self.theme === 'night'
-        },
-    }))
+
     .actions((self) => ({
         onChangeField<Key extends keyof typeof self>(key: Key, value: (typeof self)[Key]) {
             self[key] = value

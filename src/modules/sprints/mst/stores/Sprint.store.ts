@@ -5,11 +5,16 @@ import { isFuture, isPast, isToday, set } from 'date-fns'
 import { compact, last } from 'lodash-es'
 import { SPRINT_STATUS_ENUM } from '@/modules/sprints/helpers/sprints.enum'
 import { mutation_updateSprintDays } from '@/modules/sprints/graphql/mutation_updateSprintDays'
-import { generateMstId } from '@/mst/mst.helper'
 
 export const Sprint$ = types
     .model('Sprint$', {
-        id: generateMstId(),
+        id: types.snapshotProcessor(types.identifier, {
+            preProcessor(sn: string | undefined) {
+                if (!sn) return crypto.randomUUID()
+
+                return sn
+            },
+        }),
         title: '',
         description: types.maybeNull(types.string),
         sprint_goals: types.maybeNull(types.string),

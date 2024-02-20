@@ -28,22 +28,26 @@ export const ArtifactsCounter: React.FC = observer(() => {
                     />
                 }
             />
-            <NotesCounterDropdown
-                button={
-                    <ArtifactsCounterItem
-                        // action={openNoteCreateMode}
-                        count={activeNotesCount}
-                        icon={
-                            <IconBook
-                                width={24}
-                                height={24}
-                                className='cursor-pointer duration-300 group-hover:text-blue-500'
+            {isUnderDevelopment() && (
+                <>
+                    <NotesCounterDropdown
+                        button={
+                            <ArtifactsCounterItem
+                                // action={openNoteCreateMode}
+                                count={activeNotesCount}
+                                icon={
+                                    <IconBook
+                                        width={24}
+                                        height={24}
+                                        className='cursor-pointer duration-300 group-hover:text-blue-500'
+                                    />
+                                }
                             />
                         }
                     />
-                }
-            />
-            <CRUD_NoteDialog />
+                    <CRUD_NoteDialog />
+                </>
+            )}
 
             {isUnderDevelopment() && (
                 <>

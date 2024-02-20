@@ -1,4 +1,4 @@
-import { format, set } from 'date-fns'
+import { format, parseISO, set } from 'date-fns'
 
 export const setMidnightTime = (date: Date): Date => {
     return set(date, {
@@ -22,7 +22,7 @@ export const convertDateToString = (date: Date): string => {
 }
 
 export const convertStringToDate = (date: string): Date => {
-    return new Date(date)
+    return parseISO(date)
 }
 
 export const DaysOfTheWeek = [

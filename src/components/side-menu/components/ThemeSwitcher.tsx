@@ -1,5 +1,5 @@
 import { IconSunny, IconMoon } from '@/assets/icons'
-import { darkModeAtom } from '@/modules/stores/themingStore'
+import { darkModeAtom } from '@/stores/themingStore'
 import { useAtom } from 'jotai'
 
 export const ThemeSwitcher: React.FC = () => {

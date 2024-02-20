@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react-lite'
 import { useFetchAchievements } from './useFetchAchievements'
-import { LoadingDialogLocal } from '@/components/LoadingDialogConstructor'
+import { LoadingDialogLocal } from '@/components/loading/LoadingDialogConstructor'
 
 export const AchievementsList: React.FC = observer(() => {
     const { isLoading, visibleAchievements } = useFetchAchievements()

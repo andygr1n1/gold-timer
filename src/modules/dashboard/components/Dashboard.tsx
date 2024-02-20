@@ -7,11 +7,12 @@ import { TopFavoriteGoalsWidget } from '@/modules/goals/components/goals-dashboa
 import { TopRitualGoalsWidget } from '@/modules/goals/components/goals-dashboard/top-ritual-goals-widget/TopRitualGoalsWidget'
 import { CreateNewNoteDashboard } from '@/modules/notes/components/create-note-dashboard/CreateNewNoteDashboardIndex'
 import { ArtifactsCounter } from './artifacts-counter/ArtifactsCounter'
+import { isUnderDevelopment } from '@/functions/isUnderDevelopment.helper'
 
 export const Dashboard: React.FC = () => {
     return (
         <ModuleWrapper context={APP_ROUTES_ENUM.DASHBOARD} topBarNodes={<ArtifactsCounter />}>
-            <CreateNewNoteDashboard />
+            {isUnderDevelopment() && <CreateNewNoteDashboard />}
             <GoalsSlidesCarouselWidget />
             <TopActiveGoalsWidget />
             <TopExpiredGoalsWidget />

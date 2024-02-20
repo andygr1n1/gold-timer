@@ -75,16 +75,20 @@ export const SideMenu: React.FC = observer(() => {
                                 )}
                                 <XMenuDivider />
 
-                                <SideMenuLink
-                                    to={APP_ROUTES_ENUM.GOALS}
-                                    title='Goals'
-                                    icon={<IconFocus width={24} height={24} />}
-                                />
-                                <SideMenuLink
-                                    to={APP_ROUTES_ENUM.NOTES}
-                                    title='Notes'
-                                    icon={<IconBook width={24} height={24} />}
-                                />
+                                {isUnderDevelopment() && (
+                                    <SideMenuLink
+                                        to={APP_ROUTES_ENUM.GOALS}
+                                        title='Goals'
+                                        icon={<IconFocus width={24} height={24} />}
+                                    />
+                                )}
+                                {isUnderDevelopment() && (
+                                    <SideMenuLink
+                                        to={APP_ROUTES_ENUM.NOTES}
+                                        title='Notes'
+                                        icon={<IconBook width={24} height={24} />}
+                                    />
+                                )}
                                 {isUnderDevelopment() && (
                                     <SideMenuLink
                                         to={APP_ROUTES_ENUM.SPRINTS}

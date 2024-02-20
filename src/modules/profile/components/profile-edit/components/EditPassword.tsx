@@ -1,28 +1,26 @@
-import { useUserStore } from '@/StoreProvider'
 import { XInput } from '@/components-x/x-input/XInput'
 import { FormLabel } from '@/components/form/FormLabel'
+import {
+    editProfile$_NewPassword,
+    editProfile$_Password,
+    editProfile$_RepeatPassword,
+} from '@/modules/profile/stores/editProfile.store'
+import { useAtom } from 'jotai'
 import { observer } from 'mobx-react-lite'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
 export const EditPassword: React.FC = observer(() => {
-    const { user_edit } = useUserStore()
-
-    useEffect(() => {
-        if (!user_edit) return
-        const { fetchUserPassword } = user_edit
-        fetchUserPassword()
-    }, [])
+    const [_password] = useAtom(editProfile$_Password)
+    const [_newPassword, _setNewPassword] = useAtom(editProfile$_NewPassword)
+    const [_repeatPassword, _setRepeatPassword] = useAtom(editProfile$_RepeatPassword)
 
     const [error, setError] = useState(false)
 
-    if (!user_edit) return null
-    const { password, repeat_password, new_password, onChangeField } = user_edit
-
     const onChangeNewPassword = (e: React.ChangeEvent<HTMLInputElement>) => {
         const newValue = e.target.value.trim()
-        onChangeField('new_password', newValue)
-        if (newValue.length || repeat_password.length) {
-            newValue === repeat_password && setError(false)
+        _setNewPassword(newValue)
+        if (newValue.length || _repeatPassword?.length) {
+            newValue === _repeatPassword && setError(false)
         } else {
             setError(false)
         }
@@ -30,11 +28,11 @@ export const EditPassword: React.FC = observer(() => {
 
     const onChangeRepeatPassword = (e: React.ChangeEvent<HTMLInputElement>) => {
         const newValue = e.target.value.trim()
-        onChangeField('repeat_password', newValue)
-        if (new_password.length || newValue.length) {
-            if (new_password === newValue) setError(false)
+        _setRepeatPassword(newValue)
+        if (_newPassword?.length || newValue.length) {
+            if (_newPassword === newValue) setError(false)
 
-            if (newValue.length >= new_password.length && new_password !== newValue) setError(true)
+            if (newValue.length >= (_newPassword?.length || 0) && _newPassword !== newValue) setError(true)
         } else {
             setError(false)
         }
@@ -44,18 +42,18 @@ export const EditPassword: React.FC = observer(() => {
         <div className='flex flex-col gap-5'>
             <div>
                 <FormLabel title={'Old Password'} />
-                <XInput disabled value={password} />
+                <XInput disabled value={_password} />
             </div>
             <div>
                 <FormLabel title={'New Password'} />
                 <XInput
-                    value={new_password}
+                    value={_newPassword}
                     onChange={onChangeNewPassword}
                     error={error}
                     errorMessage='Password must be the same'
                     onBlur={() => {
-                        if (repeat_password.length) {
-                            new_password !== repeat_password && setError(true)
+                        if (_repeatPassword?.length) {
+                            _newPassword !== _repeatPassword && setError(true)
                         }
                     }}
                     placeholder='Set new password'
@@ -63,18 +61,18 @@ export const EditPassword: React.FC = observer(() => {
             </div>
 
             <div className='h-[70px]'>
-                {!!new_password.length && (
+                {!!_newPassword?.length && (
                     <div>
                         <FormLabel title={'Repeat new password'} />
                         <XInput
                             className='animate-opacity-3'
-                            value={repeat_password}
+                            value={_repeatPassword}
                             onChange={onChangeRepeatPassword}
                             error={error}
                             errorMessage='Password must be the same'
                             onBlur={() => {
-                                if (new_password.length || repeat_password.length) {
-                                    new_password !== repeat_password && setError(true)
+                                if (_newPassword?.length || _repeatPassword?.length) {
+                                    _newPassword !== _repeatPassword && setError(true)
                                 }
                             }}
                             placeholder='Repeat new password'

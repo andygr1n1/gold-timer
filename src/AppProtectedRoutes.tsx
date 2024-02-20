@@ -10,7 +10,7 @@ import { FocusGoalOfWeek } from './components/components-modal-windows/focus-goa
 import { ProfileImageCropDialog } from './modules/profile/components/profile-avatar/ProfileImageCropDialog'
 import { AchievementsIndex } from './modules/achievements/AchievementsIndex'
 import { StoriesIndex } from './modules/stories/StoriesIndex'
-import { LoadingDialogGlobal } from './components/LoadingDialogConstructor'
+import { LoadingDialogGlobal } from './components/loading/LoadingDialogConstructor'
 
 export const AppProtectedRoutes: React.FC = () => {
     return (

@@ -1,9 +1,9 @@
 import { UserAvatarSideMenu } from './UserAvatar'
 import { UserName } from './UserName'
-import { useFetchUserArtifactsInfo } from './service/useFetchUserArtifactsInfo'
+import { useFetchAvatar } from '../../../../modules/profile/service/fetch-avatar/useFetchAvatar'
 
 export const UserInfo: React.FC = () => {
-    const { isLoading, name, avatar } = useFetchUserArtifactsInfo()
+    const { isLoading, name, avatar } = useFetchAvatar()
     return (
         <div className=' min-h-[220px]'>
             {!isLoading && (
