@@ -5,7 +5,7 @@
     "type": "module",
     "scripts": {
         "dev": "vite",
-        "build": "rm -rf ./src/graphql/generated && mkdir ./src/graphql/generated && npm run genql && tsc && vite build",
+        "build": "tsc && vite build",
         "preview": "vite preview",
         "lint:fix": "eslint ./src --ext .jsx,.js,.ts,.tsx --quiet --fix --ignore-path ./.gitignore",
         "tsc": "tsc && yarn lint:fix"

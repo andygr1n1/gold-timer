@@ -24,7 +24,7 @@ export const RegisterEmail: React.FC = observer(() => {
                         validate()
                     }}
                     className='w-[220px]'
-                    placeholder='@-email'
+                    placeholder='Email'
                 />
             </Form.Item>
             {emailInUseError && <div className='absolute bottom-[2px] text-red-500'>Email is already in use</div>}

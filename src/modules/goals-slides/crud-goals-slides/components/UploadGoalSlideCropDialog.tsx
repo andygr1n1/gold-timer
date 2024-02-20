@@ -52,7 +52,7 @@ export const UploadGoalSlideCropDialog = observer(() => {
                     />
                 </div>
 
-                <div className='bg-global-2-bg text-cText m-auto flex w-[280px] flex-col gap-5 p-10'>
+                <div className='text-cText m-auto flex w-[280px] flex-col gap-5 bg-transparent p-10'>
                     <div className='controls'>
                         <Slider
                             value={zoom}

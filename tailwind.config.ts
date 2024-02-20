@@ -12,7 +12,7 @@ module.exports = {
         variables,
         fontFamily: {
             kzen: ['Roboto Slab', defaultConfig.theme.fontFamily.sans],
-            cinzel: ['Cinzel', defaultConfig.theme.fontFamily.sans],
+            allura: ['Allura', defaultConfig.theme.fontFamily.sans],
         },
         extend: {
             colors,

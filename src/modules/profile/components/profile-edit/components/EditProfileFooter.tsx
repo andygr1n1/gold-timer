@@ -1,4 +1,4 @@
-import { FormFooter } from '@/components/form/FormFooter'
+import { StyledButton } from '@/components/buttons/StyledButton'
 import { buildProfileDataUpdate } from '@/modules/profile/helpers/buildProfileDataUpdate'
 import { useMutateProfile } from '@/modules/profile/service/update-profile-data/useMutateProfile'
 import { editProfile$, enabledProfileDataUpdate } from '@/modules/profile/stores/editProfile.store'
@@ -16,14 +16,17 @@ export const EditProfileFooter: React.FC = () => {
     if (!_editProfile$) return null
 
     return (
-        <FormFooter
-            okTitle={'Save'}
-            onOk={() => {
+        <StyledButton
+            rounded
+            disabled={!_enabledProfileDataUpdate}
+            size='extraLarge'
+            onClick={() => {
                 _useMutateProfile.mutate({ data: buildProfileDataUpdate(_editProfile$) })
                 onClose()
             }}
-            onCancel={() => onClose()}
-            disabled={!_enabledProfileDataUpdate}
-        />
+            className='z-10 !min-w-[112px] self-end'
+        >
+            Save
+        </StyledButton>
     )
 }
