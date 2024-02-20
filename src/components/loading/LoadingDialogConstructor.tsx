@@ -2,7 +2,7 @@ import { Dialog, Transition } from '@headlessui/react'
 import { Fragment } from 'react'
 import { useRootStore } from '@/StoreProvider'
 import { observer } from 'mobx-react-lite'
-import { IconLoading } from '@/assets/icons'
+import { IconInfiniteLoading } from '@/assets/icons'
 
 export const LoadingDialogGlobal = observer(() => {
     const { loading } = useRootStore()
@@ -44,7 +44,11 @@ const LoadingDialogConstructor: React.FC<{ loading: boolean }> = ({ loading }) =
                             <Dialog.Panel
                                 className={`relative mx-auto flex w-fit transform items-center justify-center bg-transparent transition-all `}
                             >
-                                <IconLoading width={100} height={100} className='animate-opacity-5 text-blue-700' />
+                                <IconInfiniteLoading
+                                    width={100}
+                                    height={100}
+                                    className='animate-opacity-5 text-blue-700'
+                                />
                             </Dialog.Panel>
                         </Transition.Child>
                     </div>

@@ -1,4 +1,4 @@
-import { IconLoading } from '@/assets/icons/IconLoading'
+import { IconInfiniteLoading } from '@/assets/icons/IconInfiniteLoading'
 import { IGoalQueryTypeFilter } from '@/modules/goals/service/types'
 import { useFetchGoalsByFilterInfinity } from '@/modules/goals/service/fetchGoalsByFilter/useFetchGoalsByFilterInfinity'
 import React, { useEffect } from 'react'
@@ -63,7 +63,7 @@ export const GoalsCards: React.FC<{ state: IGoalQueryTypeFilter }> = ({ state })
 
             {isLoading && (
                 <div className='flex w-full justify-center'>
-                    <IconLoading className='animate-opacity-5 text-blue-500' width={44} height={44} />
+                    <IconInfiniteLoading className='animate-opacity-5 text-blue-500' width={44} height={44} />
                 </div>
             )}
         </div>

@@ -1,7 +1,7 @@
-import { IconLoading } from '@/assets/icons'
+import { IconInfiniteLoading } from '@/assets/icons'
 
 export const IsLoading: React.FC<{ isLoading: boolean }> = ({ isLoading }) => {
     return isLoading ? (
-        <IconLoading width={100} height={100} className='absolute-center mx-auto text-blue-600/50 opacity-10' />
+        <IconInfiniteLoading width={100} height={100} className='absolute-center mx-auto text-blue-600/50 opacity-10' />
     ) : null
 }
