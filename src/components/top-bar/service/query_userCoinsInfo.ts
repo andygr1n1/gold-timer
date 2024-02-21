@@ -1,7 +1,7 @@
 import { resolveData } from '@/functions/resolveData'
 import { generateTSClient } from '@/graphql/client'
 import { processError } from '@/functions/processMessage'
-import { GOAL_STATUS_ENUM } from '@/lib/enums'
+import { GOAL_STATUS_ENUM } from '@/helpers/enums'
 
 export type IUserCoinsInfo = { coins?: number; totalRitualPower?: number; activeGoalsCount: number }
 

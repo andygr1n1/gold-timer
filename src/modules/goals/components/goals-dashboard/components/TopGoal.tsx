@@ -7,11 +7,13 @@ import { IActiveGoalOptimized } from '@/modules/goals/service/types'
 import { TopGoalMenu } from './TopGoalMenu'
 import { selectedGoalAtom, selectedGoalAtom$ } from '@/modules/goals/stores/selectedGoal.store'
 import { IconBellUrgent } from '@/assets/icons/IconBellUrgent'
+import { calculateIsExpired } from '@/modules/goals/helpers/optimizeActiveGoalsData'
 
 export const TopGoal: React.FC<{ goal: IActiveGoalOptimized; className?: string; zIndex?: number }> = observer(
     ({ goal, className = '', zIndex }) => {
         const { popoverState, setPopoverState } = useTogglePopoverState()
         const goalClass = getTopGoalColor(goal).containerClass
+        const isExpired = calculateIsExpired(goal)
 
         return (
             <XDropdown
@@ -40,7 +42,7 @@ export const TopGoal: React.FC<{ goal: IActiveGoalOptimized; className?: string;
                         {goal.title}
                     </span>
                     <span className='flex w-12 items-center justify-center px-1'>
-                        {goal.isExpired ? null : isDeadline(goal) ? (
+                        {isExpired ? null : isDeadline(goal) ? (
                             <IconBellUrgent width={30} height={30} className='text-white' />
                         ) : (
                             <span className='text-xl text-white opacity-70'>
@@ -55,7 +57,8 @@ export const TopGoal: React.FC<{ goal: IActiveGoalOptimized; className?: string;
 )
 
 const isDeadline = (goal: IActiveGoalOptimized) => {
-    if (goal.isExpired) return true
+    const isExpired = calculateIsExpired(goal)
+    if (isExpired) return true
     // if (goal.isRitual) {
     return goal.totalRemainingDays < 1
     // }

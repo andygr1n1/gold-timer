@@ -5,9 +5,10 @@ import { useAtom } from 'jotai'
 import { optimizeActiveGoalsData } from '../../helpers/optimizeActiveGoalsData'
 import { IActiveGoalOptimized } from '@/modules/goals/service/types'
 import { mutation_goalDeletedAt } from './mutation_goalDeletedAt'
-import { KEY_FetchGoalById, KEY_FetchGoalsByFilter, goalsQueryKeysValues } from '../keys'
+import { KEY_FetchGoalById, KEY_FetchGoalsByFilter, goalsQueryKeys, goalsQueryKeysValues } from '../keys'
 import { proxyConvert } from '@/functions/proxyConvert'
 import { getSelectedGoalFromCache } from '../../helpers/goalsCache'
+import { isDashboard } from '@/helpers/guards'
 
 export const useMutateGoalDeletedAt = () => {
     const [selectedGoal] = useAtom(selectedGoalAtom)
@@ -37,6 +38,9 @@ export const useMutateGoalDeletedAt = () => {
                 window.queryClient.setQueryData(KEY_FetchGoalById(selectedGoal.id), (oldData: IActiveGoalOptimized) => {
                     return optimizeActiveGoalsData({ ...oldData, deleted_at: res?.deleted_at })?.[0]
                 })
+        },
+        onSettled: () => {
+            isDashboard() && window.queryClient.invalidateQueries({ queryKey: goalsQueryKeys.DASHBOARD })
         },
     })
 

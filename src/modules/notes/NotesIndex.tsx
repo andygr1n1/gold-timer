@@ -1,5 +1,5 @@
 import { ModuleWrapper } from '@/components/ModuleWrapper'
-import { APP_ROUTES_ENUM } from '@/lib/enums'
+import { APP_ROUTES_ENUM } from '@/helpers/enums'
 import { observer } from 'mobx-react-lite'
 import { ArtifactsCounter } from '../dashboard/components/artifacts-counter/ArtifactsCounter'
 import { NotesList } from './components/NotesList'

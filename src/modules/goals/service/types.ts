@@ -8,7 +8,7 @@ import {
     ritual_type_enum_enum,
 } from 'gold-timer-genql/lib/generated'
 
-import { RITUAL_TYPE_ENUM } from '@/lib/enums'
+import { RITUAL_TYPE_ENUM } from '@/helpers/enums'
 export type IGoalQueryTypeFilter = 'active' | 'ritual' | 'expired' | 'favorite' | 'completed' | 'deleted' | 'all'
 
 export type IGoalRitualOptimized = Partial<Omit<goals_rituals, 'ritual_power' | 'ritual_interval' | 'ritual_type'>> & {
@@ -36,8 +36,6 @@ export type IActiveGoalOptimized = IGoalWithRituals & {
     isDeadline: boolean
     totalRemainingDays: number
     createdDaysAgo: number
-    isExpired?: boolean
-    isRitual?: boolean
 }
 
 // IInsertNewGoal

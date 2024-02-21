@@ -1,4 +1,4 @@
-import { GOAL_STATUS_ENUM } from '@/lib/enums'
+import { GOAL_STATUS_ENUM } from '@/helpers/enums'
 import { gql } from 'graphql-request'
 import { generateClient } from '../client'
 import { processError } from '@/functions/processMessage'

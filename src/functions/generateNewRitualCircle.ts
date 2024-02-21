@@ -1,6 +1,6 @@
 import { setZeroTime } from '@/functions/date.helpers'
 import { add, getDay } from 'date-fns'
-import { RITUAL_TYPE_ENUM } from '../lib/enums'
+import { RITUAL_TYPE_ENUM } from '../helpers/enums'
 import { setMidnightTime } from './date.helpers'
 import { ritual_type_enum_enum } from 'gold-timer-genql/lib/generated'
 

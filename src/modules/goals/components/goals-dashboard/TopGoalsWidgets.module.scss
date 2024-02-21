@@ -12,5 +12,5 @@
 }
 
 .goal {
-    @apply relative  flex h-[60px] w-[100px] flex-[100%] cursor-pointer items-center justify-between rounded-lg duration-300  2xl:flex-[0_0_48%];
+    @apply relative flex h-[60px] cursor-pointer items-center justify-between rounded-lg duration-300;
 }

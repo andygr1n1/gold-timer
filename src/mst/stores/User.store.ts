@@ -1,7 +1,7 @@
 import { flow, toGenerator, types } from 'mobx-state-tree'
 import { processError } from '@/functions/processMessage'
 import { deleteImageFromServer, uploadNewImageToServer } from '@/services/image.service'
-import { SERVER_ROUTES } from '@/lib/enums'
+import { SERVER_ROUTES } from '@/helpers/enums'
 import { updateUserProfileImage } from '@/modules/profile/service/update-avatar/updateUserProfileImage.m'
 import { rootStore$ } from '@/StoreProvider'
 import { KEY_FetchAvatar } from '@/modules/profile/service'

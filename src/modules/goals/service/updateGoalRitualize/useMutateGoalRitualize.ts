@@ -5,10 +5,11 @@ import { IActiveGoalOptimized } from '@/modules/goals/service/types'
 import { cloneDeep } from 'lodash-es'
 import { IUserCoinsInfo } from '@/components/top-bar/service/query_userCoinsInfo'
 import { processSuccess } from '@/functions/processMessage'
-import { KEY_FetchGoalById, KEY_FetchGoalsByFilter, goalsQueryKeysValues } from '../keys'
+import { KEY_FetchGoalById, KEY_FetchGoalsByFilter, goalsQueryKeys, goalsQueryKeysValues } from '../keys'
 import { proxyConvert } from '@/functions/proxyConvert'
 import { getSelectedGoalFromCache } from '../../helpers/goalsCache'
 import { replaceObjectValues } from '../../../../functions/replaceObjectValues'
+import { isDashboard } from '@/helpers/guards'
 
 export const useMutateGoalRitualize = () => {
     const mutation = useMutation({
@@ -48,6 +49,9 @@ export const useMutateGoalRitualize = () => {
                 })
 
             res && processSuccess('Goal successfully ritualized')
+        },
+        onSettled: () => {
+            isDashboard() && window.queryClient.invalidateQueries({ queryKey: goalsQueryKeys.DASHBOARD })
         },
     })
 

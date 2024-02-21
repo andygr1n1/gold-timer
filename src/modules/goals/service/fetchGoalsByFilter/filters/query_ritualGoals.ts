@@ -29,6 +29,7 @@ export const query_ritualGoals = (props: {
                                 owner_id: { _eq: getUserId() },
                                 deleted_at: { _is_null: true },
                                 // is ritual
+                                status: { _eq: 'active' },
                                 goal_ritual: { ritual_power: { _gt: 0 } },
                             },
                             {

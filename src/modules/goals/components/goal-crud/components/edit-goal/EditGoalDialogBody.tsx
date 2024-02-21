@@ -9,6 +9,7 @@ import { EditGoalDescription } from './components/EditGoalDescription'
 import { EditGoalFinishedAt } from './components/EditGoalFinishedAt'
 import { EditGoalRitualIntervalInput } from './components/edit-goal-ritual/EditGoalRitualIntervalInput'
 import { convertDateToString } from '@/functions/date.helpers'
+import { EditModeGoalDetails } from './components/EditModeGoalDetails'
 
 export const EditGoalDialogBody: React.FC<{ goal: IActiveGoalOptimized }> = ({ goal }) => {
     const isNewRitual = selectedGoalAtom$.get(selectedGoalAtom)?.is_new_ritual
@@ -45,6 +46,7 @@ export const EditGoalDialogBody: React.FC<{ goal: IActiveGoalOptimized }> = ({ g
                     </div>
                 ) : (
                     <>
+                        <EditModeGoalDetails />
                         <EditGoalTitle />
                         <EditGoalSlogan />
                         <EditGoalDescription />
