@@ -1,4 +1,4 @@
-import { RITUAL_TYPE_ENUM } from '@/lib/enums'
+import { RITUAL_TYPE_ENUM } from '@/helpers/enums'
 import { FormLabel } from '@/components/form/FormLabel'
 import { IActiveGoalOptimized } from '@/modules/goals/service/types'
 import { XSelect } from '@/components-x/x-select/XSelect'

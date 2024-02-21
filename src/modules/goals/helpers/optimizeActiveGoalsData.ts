@@ -14,18 +14,16 @@ export const optimizeActiveGoalsData = (data: IGoalWithRituals[] | IGoalWithRitu
         totalRemainingDays: totalRemainingDays(goal),
         createdDaysAgo: calculateCreatedDaysAgo(goal),
         title: goal.title?.toString(),
-        isExpired: calculateIsExpired(goal),
-        isRitual: calculateIsRitual(goal),
         // finishedAtData: parseISO(goal.finished_at),
     }))
 
     return optimizedGoals
 }
 
-const calculateIsExpired = (goal: IGoalWithRituals): boolean => {
+export const calculateIsExpired = (goal: IGoalWithRituals): boolean => {
     return !!(setMidnightTime(parseISO(goal.finished_at)) < new Date(Date.now()))
 }
-const calculateIsRitual = (goal: IGoalWithRituals): boolean => {
+export const calculateIsRitual = (goal: IGoalWithRituals): boolean => {
     return !!goal.goal_ritual?.ritual_power
 }
 

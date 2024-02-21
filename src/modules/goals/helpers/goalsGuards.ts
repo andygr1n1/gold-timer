@@ -1,5 +1,5 @@
 import { goal_status_enum_enum } from 'gold-timer-genql/lib/generated'
-import { GOAL_STATUS_ENUM } from '@/lib/enums'
+import { GOAL_STATUS_ENUM } from '@/helpers/enums'
 import { IGoalQueryTypeFilter } from '../service/types'
 
 export const isCompleted = (status: goal_status_enum_enum) => {

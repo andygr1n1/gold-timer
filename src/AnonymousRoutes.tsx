@@ -1,5 +1,5 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
-import { APP_ROUTES_ENUM } from './lib/enums'
+import { APP_ROUTES_ENUM } from './helpers/enums'
 import { LoginIndex } from './modules/login/LoginIndex'
 import { RegisterIndex } from './modules/login/RegisterIndex'
 import { RestoreAccountIndex } from './modules/login/RestoreAccountIndex'

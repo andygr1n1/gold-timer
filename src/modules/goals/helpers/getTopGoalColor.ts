@@ -1,11 +1,11 @@
 import { IActiveGoalOptimized } from '@/modules/goals/service/types'
 import clsx from 'clsx'
+import { calculateIsExpired, calculateIsRitual } from './optimizeActiveGoalsData'
 
 export const getTopGoalColor = (goal: IActiveGoalOptimized): { containerClass: string } => {
     let containerClass = 'bg-blue-700 hover:bg-blue-600'
-
-    const isExpired = goal.isExpired
-    const isRitual = goal.isRitual
+    const isRitual = calculateIsRitual(goal)
+    const isExpired = calculateIsExpired(goal)
     const isFavorite = goal.is_favorite
 
     if (isFavorite) {

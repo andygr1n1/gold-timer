@@ -6,7 +6,7 @@ import { XMenuDropdown } from '@/components-x/x-dropdown/XMenuDropdown'
 import { XMenuItem } from '@/components-x/x-dropdown/XMenuItem'
 import { ReactNode } from 'react'
 import { NavLink } from 'react-router-dom'
-import { APP_ROUTES_ENUM } from '@/lib/enums'
+import { APP_ROUTES_ENUM } from '@/helpers/enums'
 import { IconNew, IconFolder } from '@/assets/icons'
 export const NotesCounterDropdown: React.FC<{ button: ReactNode }> = observer(({ button }) => {
     return (

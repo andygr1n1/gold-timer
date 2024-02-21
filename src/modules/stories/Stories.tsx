@@ -1,6 +1,6 @@
 import { ModuleWrapper } from '@/components/ModuleWrapper'
 import { isUnderDevelopment } from '@/functions/isUnderDevelopment.helper'
-import { APP_ROUTES_ENUM } from '@/lib/enums'
+import { APP_ROUTES_ENUM } from '@/helpers/enums'
 
 export const Stories: React.FC = () => {
     return (

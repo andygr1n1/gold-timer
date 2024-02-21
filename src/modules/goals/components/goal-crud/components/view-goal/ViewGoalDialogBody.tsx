@@ -6,10 +6,12 @@ import { GoalDescriptionRichInput } from '../common-components/GoalDescriptionRi
 import { GoalCreatedAt } from '../common-components/GoalCreatedAt'
 import { GoalFinishCalendarInput } from '../common-components/GoalFinishCalendarInput'
 import { GoalRitualIntervalInput } from '../common-components/GoalRitualIntervalInput'
+import { GoalDetails } from '../common-components/GoalDetails'
 
 export const ViewGoalDialogBody: React.FC<{ goal: IActiveGoalOptimized }> = ({ goal }) => {
     return (
         <>
+            <GoalDetails goal={goal} />
             <div className='animate-opacity-3 flex flex-col gap-4 py-2'>
                 <GoalTitleInput value={goal!.title} view_mode />
                 <GoalSloganInput value={goal!.slogan} view_mode hide={!goal.slogan} />

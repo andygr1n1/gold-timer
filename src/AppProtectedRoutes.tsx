@@ -1,5 +1,5 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
-import { APP_ROUTES_ENUM } from './lib/enums'
+import { APP_ROUTES_ENUM } from './helpers/enums'
 import { GoalsCms } from './modules/goals/components/goals-cms/GoalsCms'
 import { ProfileIndex } from './modules/profile/ProfileIndex'
 import { NotesIndex } from './modules/notes/NotesIndex'

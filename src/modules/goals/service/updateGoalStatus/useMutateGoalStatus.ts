@@ -7,9 +7,10 @@ import { cloneDeep } from 'lodash-es'
 import { IUserCoinsInfo } from '@/components/top-bar/service/query_userCoinsInfo'
 import { processSuccess } from '@/functions/processMessage'
 import { isCompleted } from '../../helpers/goalsGuards'
-import { KEY_FetchGoalsByFilter, goalsQueryKeysValues } from '../keys'
+import { KEY_FetchGoalsByFilter, goalsQueryKeys, goalsQueryKeysValues } from '../keys'
 import { proxyConvert } from '@/functions/proxyConvert'
 import { getSelectedGoalFromCache } from '../../helpers/goalsCache'
+import { isDashboard } from '@/helpers/guards'
 
 export const useMutateGoalStatus = () => {
     const mutation = useMutation({
@@ -43,6 +44,9 @@ export const useMutateGoalStatus = () => {
                 })
 
             resStatus && isCompleted(resStatus) && processSuccess('Goal successfully completed')
+        },
+        onSettled: () => {
+            isDashboard() && window.queryClient.invalidateQueries({ queryKey: goalsQueryKeys.DASHBOARD })
         },
     })
 

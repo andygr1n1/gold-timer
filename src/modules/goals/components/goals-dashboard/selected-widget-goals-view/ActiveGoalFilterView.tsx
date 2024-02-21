@@ -1,6 +1,6 @@
 import { ModuleWrapper } from '@/components/ModuleWrapper'
 import { ArtifactsCounter } from '../../../../dashboard/components/artifacts-counter/ArtifactsCounter'
-import { APP_ROUTES_ENUM } from '@/lib/enums'
+import { APP_ROUTES_ENUM } from '@/helpers/enums'
 import { useLocation } from 'react-router-dom'
 import { ActiveFilterIcon } from './ActiveFilterIcon'
 import { BackToDashboardIcon } from './BackToDashboardIcon'

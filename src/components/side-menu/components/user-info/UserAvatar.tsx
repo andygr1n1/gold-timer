@@ -1,4 +1,4 @@
-import { APP_ROUTES_ENUM } from '@/lib/enums'
+import { APP_ROUTES_ENUM } from '@/helpers/enums'
 import { useSideMenu } from '@/hooks/useSideMenu.hook'
 import { observer } from 'mobx-react-lite'
 import { NavLink } from 'react-router-dom'

@@ -1,4 +1,3 @@
-import styles from '../TopGoalsWidgets.module.scss'
 import { StyledButton } from '@/components/buttons/StyledButton'
 import clsx from 'clsx'
 import { useFetchGoalsByFilter } from '../../../service/fetchGoalsByFilter/useFetchGoalsByFilter'
@@ -7,20 +6,22 @@ import { TopGoal } from '../components/TopGoal'
 import { IconFocus } from '@/assets/icons/IconFocus'
 import { IconNew } from '@/assets/icons'
 import { selectedGoalAtom, selectedGoalAtom$ } from '@/modules/goals/stores/selectedGoal.store'
+import { IsLoading } from '@/components/loading/IsLoading'
 
 export const TopActiveGoalsWidget: React.FC = () => {
     const navigate = useNavigate()
 
     const {
+        isLoading,
         data: { active },
     } = useFetchGoalsByFilter({ queryFilter: 'all', limit: 8 })
 
     return (
         <div
             key={active?.length}
-            className='flex max-h-[350px] min-h-[350px] flex-[100%] rounded-md shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] md:flex-[45%]'
+            className='bg-global-2-bg flex max-h-[350px] min-h-[350px] w-full flex-[100%] rounded-md shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] md:flex-[45%]'
         >
-            <div className='bg-global-2-bg relative flex h-[calc(100%)] w-[calc(100%-40px)] flex-col items-start justify-start rounded-lg px-5 '>
+            <div className=' relative flex w-full flex-col flex-wrap  gap-5 rounded-lg px-5 pt-10'>
                 {!!active?.length && (
                     <div className='absolute left-[-40px] top-[-43px]  cursor-pointer'>
                         <StyledButton
@@ -38,15 +39,20 @@ export const TopActiveGoalsWidget: React.FC = () => {
                         />
                     </div>
                 )}
-                <div className={styles['dashboard-widget-goals-container']}>
-                    {active?.length ? (
+                <>
+                    {isLoading ? (
+                        <IsLoading isLoading={isLoading} />
+                    ) : active?.length ? (
                         <>
-                            {active.slice(0, 8).map((goal) => (
-                                <TopGoal
-                                    key={goal.id}
-                                    goal={goal}
-                                    className={clsx(goal.isFromFuture && 'opacity-70 hover:opacity-100')}
-                                />
+                            {active.slice(0, 4).map((goal) => (
+                                <div key={goal.id}>
+                                    <TopGoal
+                                        goal={goal}
+                                        className={clsx(
+                                            goal.isFromFuture && !goal.is_favorite && 'opacity-70 hover:opacity-100',
+                                        )}
+                                    />
+                                </div>
                             ))}
                         </>
                     ) : (
@@ -66,7 +72,7 @@ export const TopActiveGoalsWidget: React.FC = () => {
                             <span className='text-cText cursor-default opacity-70'>Create goal</span>
                         </div>
                     )}
-                </div>
+                </>
             </div>
         </div>
     )

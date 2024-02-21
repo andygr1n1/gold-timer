@@ -1,7 +1,9 @@
 import { observer } from 'mobx-react-lite'
 import { IActiveGoalOptimized } from '@/modules/goals/service/types'
 import { isCompleted } from '@/modules/goals/helpers/goalsGuards'
-import { IconExpired, IconFocus, IconInfinity } from '@/assets/icons'
+import { IconCompleted, IconExpired, IconFocus, IconInfinity } from '@/assets/icons'
+import { differenceInCalendarDays, parseISO } from 'date-fns'
+import { calculateIsExpired, calculateIsRitual } from '@/modules/goals/helpers/optimizeActiveGoalsData'
 
 export const GoalDetails: React.FC<{ goal: IActiveGoalOptimized }> = observer(({ goal }) => {
     return (
@@ -14,7 +16,10 @@ export const GoalDetails: React.FC<{ goal: IActiveGoalOptimized }> = observer(({
 })
 
 const ImageByGoalType: React.FC<{ goal: IActiveGoalOptimized }> = observer(({ goal }) => {
-    const { isExpired, isRitual } = goal
+    const isRitual = calculateIsRitual(goal)
+    const isExpired = calculateIsExpired(goal)
+    const _isCompleted = isCompleted(goal.status)
+
     let goalIcon = <IconFocus className='h-[60px] w-[60px] text-blue-600' />
     if (isExpired) {
         goalIcon = <IconExpired className='h-[60px] w-[60px] text-amber-600' />
@@ -23,11 +28,17 @@ const ImageByGoalType: React.FC<{ goal: IActiveGoalOptimized }> = observer(({ go
         goalIcon = <IconInfinity className='h-[60px] w-[60px] text-teal-700' />
     }
 
+    if (_isCompleted) {
+        goalIcon = <IconCompleted className='h-[60px] w-[60px] text-rose-700' />
+    }
+
     return <div className='flex items-center justify-center gap-5'>{goalIcon}</div>
 })
 
 const GoalRitualCount: React.FC<{ goal: IActiveGoalOptimized }> = observer(({ goal }) => {
-    if (!goal?.isRitual) return null
+    const isRitual = calculateIsRitual(goal)
+
+    if (!isRitual) return null
     const { goal_ritual } = goal
 
     return (
@@ -39,7 +50,9 @@ const GoalRitualCount: React.FC<{ goal: IActiveGoalOptimized }> = observer(({ go
 })
 
 const GoalDaysUntilDeadline: React.FC<{ goal: IActiveGoalOptimized }> = observer(({ goal }) => {
-    const { totalRemainingDays, status } = goal
+    const { status } = goal
+
+    const totalRemainingDays = differenceInCalendarDays(parseISO(goal.finished_at).getTime(), new Date(Date.now()))
 
     if (isCompleted(status)) return null
 

@@ -5,9 +5,10 @@ import { useAtom } from 'jotai'
 import { selectedGoalAtom } from '@/modules/goals/stores/selectedGoal.store'
 import { IActiveGoalOptimized } from '../types'
 import { ISelectedGoal } from '../../stores/types'
-import { KEY_FetchGoalById, KEY_FetchGoalsByFilter, goalsQueryKeysValues } from '../keys'
+import { KEY_FetchGoalById, KEY_FetchGoalsByFilter, goalsQueryKeys, goalsQueryKeysValues } from '../keys'
 import { proxyConvert } from '@/functions/proxyConvert'
 import { getSelectedGoalFromCache } from '../../helpers/goalsCache'
+import { isDashboard } from '@/helpers/guards'
 
 export const useMutateGoalFavorite = () => {
     const [selectedGoal] = useAtom(selectedGoalAtom)
@@ -36,6 +37,9 @@ export const useMutateGoalFavorite = () => {
                 window.queryClient.setQueryData(KEY_FetchGoalById(selectedGoal.id), (oldData: ISelectedGoal) => {
                     return { ...oldData, is_favorite: res?.is_favorite }
                 })
+        },
+        onSettled: () => {
+            isDashboard() && window.queryClient.invalidateQueries({ queryKey: goalsQueryKeys.DASHBOARD })
         },
     })
     return mutation
