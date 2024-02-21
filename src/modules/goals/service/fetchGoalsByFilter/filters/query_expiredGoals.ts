@@ -29,6 +29,7 @@ export const query_expiredGoals = (props: {
                             {
                                 owner_id: { _eq: getUserId() },
                                 deleted_at: { _is_null: true },
+                                status: { _eq: 'active' },
                                 // not ritual
                                 _not: { goal_ritual: {} },
                                 // not expired
