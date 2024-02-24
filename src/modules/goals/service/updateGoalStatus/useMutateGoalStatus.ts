@@ -6,8 +6,8 @@ import { IActiveGoalOptimized } from '@/modules/goals/service/types'
 import { cloneDeep } from 'lodash-es'
 import { IUserCoinsInfo } from '@/components/top-bar/service/query_userCoinsInfo'
 import { processSuccess } from '@/functions/processMessage'
-import { isCompleted } from '../../helpers/goalsGuards'
-import { KEY_FetchGoalsByFilter, goalsQueryKeys, goalsQueryKeysValues } from '../keys'
+import { isActive, isCompleted } from '../../helpers/goalsGuards'
+import { KEY_FetchGoalById, KEY_FetchGoalsByFilter, goalsQueryKeys, goalsQueryKeysValues } from '../keys'
 import { proxyConvert } from '@/functions/proxyConvert'
 import { getSelectedGoalFromCache } from '../../helpers/goalsCache'
 import { isDashboard } from '@/helpers/guards'
@@ -45,8 +45,11 @@ export const useMutateGoalStatus = () => {
 
             resStatus && isCompleted(resStatus) && processSuccess('Goal successfully completed')
         },
-        onSettled: () => {
+        onSettled: (res) => {
             isDashboard() && window.queryClient.invalidateQueries({ queryKey: goalsQueryKeys.DASHBOARD })
+            res?.status?.id &&
+                isActive(res.status.status) &&
+                window.queryClient.invalidateQueries({ queryKey: KEY_FetchGoalById(res.status.id) })
         },
     })
 

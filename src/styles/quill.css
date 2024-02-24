@@ -410,6 +410,10 @@
     @apply hidden;
 }
 
+.view-mode .ql-editor {
+    @apply h-full max-h-[100%];
+}
+
 .ql-snow.ql-toolbar {
     color: white;
 }

@@ -2,6 +2,6 @@
     @apply bg-global-2-bg flex max-h-[350px] min-h-[350px] w-full flex-[100%] rounded-md shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] md:flex-[45%];
 
     & > div {
-        @apply relative flex w-[calc(100%-40px)] flex-col flex-wrap  gap-5 rounded-lg px-5 pt-10;
+        @apply relative flex w-[calc(100%-40px)] flex-col flex-wrap  gap-5 rounded-lg px-5 pt-7;
     }
 }
