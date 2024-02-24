@@ -9,7 +9,7 @@ export const TopRitualGoalsWidget: React.FC = () => {
     const {
         isLoading,
         data: { ritual: goals },
-    } = useFetchGoalsByFilter({ queryFilter: 'all', limit: 8 })
+    } = useFetchGoalsByFilter({ queryFilter: 'all', limit: 4 })
 
     if (isLoading) return <IsLoading isLoading={isLoading} />
     if (!goals?.length) return null

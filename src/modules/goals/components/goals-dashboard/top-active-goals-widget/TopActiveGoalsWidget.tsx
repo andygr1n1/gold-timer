@@ -9,7 +9,7 @@ export const TopActiveGoalsWidget: React.FC = () => {
     const {
         isLoading,
         data: { active: goals },
-    } = useFetchGoalsByFilter({ queryFilter: 'all', limit: 8 })
+    } = useFetchGoalsByFilter({ queryFilter: 'all', limit: 4 })
 
     return (
         <div key={goals?.length} className={styles['dashboardWidgetWrapper']}>

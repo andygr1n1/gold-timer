@@ -21,7 +21,7 @@ export const ProfileDetails: React.FC = observer(() => {
             <EditProfileDialog />
 
             <div
-                className='bg-global-2-bg animate-opacity-3 relative mx-auto flex w-[calc(100%-64px)] max-w-sm flex-col
+                className='bg-global-2-bg absolute-center animate-opacity-3 relative mx-auto flex w-[calc(100%-64px)] max-w-sm flex-col
                 rounded-xl px-5 py-10 shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] transition-all'
             >
                 <IsLoading isLoading={isLoading} />

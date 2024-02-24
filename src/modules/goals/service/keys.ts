@@ -5,7 +5,7 @@ export const KEY_FetchGoalsByFilter = (queryFilter: readonly (string | number)[]
 export const KEY_FetchGoalById = (id: string) => ['useFetchGoal', id]
 
 export const goalsQueryKeys = {
-    DASHBOARD: ['KEY_FetchGoalsByFilter', 'all', 8],
+    DASHBOARD: ['KEY_FetchGoalsByFilter', 'all', 4],
     ACTIVE: ['KEY_FetchGoalsByFilter', 'active'],
     RITUAL: ['KEY_FetchGoalsByFilter', 'ritual'],
     EXPIRED: ['KEY_FetchGoalsByFilter', 'expired'],
