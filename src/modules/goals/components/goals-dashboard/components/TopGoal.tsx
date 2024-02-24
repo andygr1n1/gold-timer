@@ -1,6 +1,5 @@
 import { observer } from 'mobx-react-lite'
 import { getTopGoalColor } from '../../../helpers/getTopGoalColor'
-import styles from '../TopGoalsWidgets.module.scss'
 import { useTogglePopoverState } from '@/hooks/useTogglePopoverState'
 import { XDropdown } from '@/components-x/x-dropdown/XDropdown'
 import { IActiveGoalOptimized } from '@/modules/goals/service/types'
@@ -8,6 +7,7 @@ import { TopGoalMenu } from './TopGoalMenu'
 import { selectedGoalAtom, selectedGoalAtom$ } from '@/modules/goals/stores/selectedGoal.store'
 import { IconBellUrgent } from '@/assets/icons/IconBellUrgent'
 import { calculateIsExpired } from '@/modules/goals/helpers/optimizeActiveGoalsData'
+import { truncate } from 'lodash-es'
 
 export const TopGoal: React.FC<{ goal: IActiveGoalOptimized; className?: string; zIndex?: number }> = observer(
     ({ goal, className = '', zIndex }) => {
@@ -36,10 +36,10 @@ export const TopGoal: React.FC<{ goal: IActiveGoalOptimized; className?: string;
                         setPopoverState(!popoverState)
                     }}
                     key={goal.id}
-                    className={`${styles['goal']} ${goalClass} ${className} `}
+                    className={`relative flex h-[60px] cursor-pointer items-center justify-between rounded-lg duration-300 ${goalClass} ${className} `}
                 >
-                    <span className='h-fit w-[calc(100%-16px)] items-center overflow-hidden text-ellipsis whitespace-nowrap rounded-md p-2 align-middle text-white'>
-                        {goal.title}
+                    <span className='h-fit w-[calc(100%-16px)] items-center  rounded-md p-2 align-middle text-white'>
+                        {truncate(goal.title, { length: 70 })}
                     </span>
                     <span className='flex w-12 items-center justify-center px-1'>
                         {isExpired ? null : isDeadline(goal) ? (

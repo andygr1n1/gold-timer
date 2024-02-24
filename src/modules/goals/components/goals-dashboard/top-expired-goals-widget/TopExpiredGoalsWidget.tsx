@@ -1,47 +1,25 @@
-import { observer } from 'mobx-react-lite'
-import { TopGoal } from '../components/TopGoal'
-import { StyledButton } from '@/components/buttons/StyledButton'
 import { useFetchGoalsByFilter } from '@/modules/goals/service'
-import { useNavigate } from 'react-router-dom'
-import { IconExpired } from '@/assets/icons/IconExpired'
-export const TopExpiredGoalsWidget: React.FC = observer(() => {
-    const navigate = useNavigate()
+import { IsLoading } from '@/components/loading/IsLoading'
+import { NavigateExpiredGoals } from './NavigateExpiredGoals'
+import { TopGoalsList } from '../../shared/TopGoalsList'
 
+import styles from '../goalsDashboard.module.scss'
+
+export const TopExpiredGoalsWidget: React.FC = () => {
     const {
-        data: { expired },
+        isLoading,
+        data: { expired: goals },
     } = useFetchGoalsByFilter({ queryFilter: 'all', limit: 8 })
 
-    return expired?.length ? (
-        <div className='flex max-h-[350px] min-h-[350px] flex-[100%] rounded-md shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] md:flex-[45%]'>
-            <div className='bg-global-2-bg relative flex w-full flex-col flex-wrap  gap-5 rounded-lg px-5 pt-10'>
-                {!!expired?.length && (
-                    <div className='absolute left-[-40px] top-[-42px]  cursor-pointer '>
-                        <StyledButton
-                            onClick={() => {
-                                navigate(
-                                    { pathname: '/dashboard/filtered-goals', search: `?filter=expired` },
-                                    { state: { filter: 'expired' } },
-                                )
-                            }}
-                            variant='text'
-                            className='!h-24 !w-24 !rounded-full'
-                            startIcon={
-                                <IconExpired
-                                    width={65}
-                                    height={65}
-                                    className='min-h-[65px] min-w-[65px] text-amber-600'
-                                />
-                            }
-                        />
-                    </div>
-                )}
+    if (isLoading) return <IsLoading isLoading={isLoading} />
+    if (!goals?.length) return null
 
-                {expired?.slice(0, 4).map((goal) => (
-                    <div key={goal.id}>
-                        <TopGoal goal={goal} />
-                    </div>
-                ))}
+    return (
+        <div key={goals?.length} className={styles['dashboardWidgetWrapper']}>
+            <div>
+                <NavigateExpiredGoals />
+                <TopGoalsList goals={goals} />
             </div>
         </div>
-    ) : null
-})
+    )
+}

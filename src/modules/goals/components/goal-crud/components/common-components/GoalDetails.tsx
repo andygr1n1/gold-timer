@@ -7,7 +7,7 @@ import { calculateIsExpired, calculateIsRitual } from '@/modules/goals/helpers/o
 
 export const GoalDetails: React.FC<{ goal: IActiveGoalOptimized }> = observer(({ goal }) => {
     return (
-        <div className='my-10 flex w-full items-center justify-center  gap-5 rounded-md'>
+        <div className='animate-opacity-5 my-10 flex w-full items-center justify-center  gap-5 rounded-md'>
             <GoalDaysUntilDeadline goal={goal} />
             <GoalRitualCount goal={goal} />
             <ImageByGoalType goal={goal} />
