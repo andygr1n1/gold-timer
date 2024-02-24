@@ -12,7 +12,7 @@ export const ViewGoalDialogBody: React.FC<{ goal: IActiveGoalOptimized }> = ({ g
     return (
         <>
             <GoalDetails goal={goal} />
-            <div className='animate-opacity-3 flex flex-col gap-4 py-2'>
+            <div className='flex flex-col gap-4 py-2'>
                 <GoalTitleInput value={goal!.title} view_mode />
                 <GoalSloganInput value={goal!.slogan} view_mode hide={!goal.slogan} />
                 <GoalDescriptionRichInput value={goal.description} view_mode hide={!goal.description} />

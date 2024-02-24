@@ -1,12 +1,14 @@
 import { IActiveGoalOptimized } from '@/modules/goals/service/types'
 import clsx from 'clsx'
 import { calculateIsExpired, calculateIsRitual } from './optimizeActiveGoalsData'
+import { isCompleted } from './goalsGuards'
 
 export const getTopGoalColor = (goal: IActiveGoalOptimized): { containerClass: string } => {
     let containerClass = 'bg-blue-700 hover:bg-blue-600'
     const isRitual = calculateIsRitual(goal)
     const isExpired = calculateIsExpired(goal)
     const isFavorite = goal.is_favorite
+    const _isCompleted = isCompleted(goal.status)
 
     if (isFavorite) {
         containerClass = clsx(
@@ -16,6 +18,8 @@ export const getTopGoalColor = (goal: IActiveGoalOptimized): { containerClass: s
         containerClass = 'bg-amber-600 hover:bg-amber-500'
     } else if (isRitual) {
         containerClass = clsx('bg-emerald-700 hover:bg-emerald-600')
+    } else if (_isCompleted) {
+        containerClass = clsx('bg-rose-700 hover:bg-rose-600')
     }
 
     if (isFavorite && isRitual) {
@@ -27,6 +31,12 @@ export const getTopGoalColor = (goal: IActiveGoalOptimized): { containerClass: s
     if (isFavorite && isExpired) {
         containerClass = clsx(
             'bg-gradient-to-r from-amber-600 via-amber-500 to-rose-500 shadow-[0_2px_50px_rgba(255,_193,_71,_0.7)]',
+        )
+    }
+
+    if (isFavorite && _isCompleted) {
+        containerClass = clsx(
+            'bg-gradient-to-r from-pink-700 via-rose-600 to-rose-500 shadow-[0_2px_50px_rgba(238,_0,_67,_0.7)]',
         )
     }
 

@@ -4,10 +4,11 @@ import { getUserId } from '@/functions/universalCookie.helper'
 import { convertStringToDate, setMidnightTime } from '@/functions/date.helpers'
 import { setGoalDifficulty } from '@/functions/setGoalDifficulty'
 import { mutation_upsertGoal } from './mutation_upsertGoal'
-import { KEY_FetchGoalById, KEY_FetchGoalsByFilter, goalsQueryKeysValues } from '../keys'
+import { KEY_FetchGoalById, KEY_FetchGoalsByFilter, goalsQueryKeys, goalsQueryKeysValues } from '../keys'
 import { proxyConvert } from '@/functions/proxyConvert'
 import { replaceObjectValues } from '../../../../functions/replaceObjectValues'
 import { getSelectedGoalFromCache, pushGoalInCache } from '../../helpers/goalsCache'
+import { isDashboard } from '@/helpers/guards'
 
 export const useUpsertGoal = () =>
     useMutation({
@@ -58,5 +59,8 @@ export const useUpsertGoal = () =>
                 replaceObjectValues(selected, resGoal)
                 return selected
             })
+        },
+        onSettled: () => {
+            isDashboard() && window.queryClient.invalidateQueries({ queryKey: goalsQueryKeys.DASHBOARD })
         },
     })
