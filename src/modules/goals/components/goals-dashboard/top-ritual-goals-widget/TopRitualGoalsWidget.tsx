@@ -1,47 +1,25 @@
-import { observer } from 'mobx-react-lite'
-import { TopGoal } from '../components/TopGoal'
-import { StyledButton } from '@/components/buttons/StyledButton'
-import { useNavigate } from 'react-router-dom'
 import { useFetchGoalsByFilter } from '@/modules/goals/service'
-import clsx from 'clsx'
-import { IconRitual } from '@/assets/icons/IconRitual'
+import { NavigateRitualGoals } from './NavigateRitualGoals'
+import { IsLoading } from '@/components/loading/IsLoading'
+import { TopGoalsList } from '../../shared/TopGoalsList'
 
-export const TopRitualGoalsWidget: React.FC = observer(() => {
-    const navigate = useNavigate()
+import styles from '../goalsDashboard.module.scss'
 
+export const TopRitualGoalsWidget: React.FC = () => {
     const {
-        data: { ritual },
+        isLoading,
+        data: { ritual: goals },
     } = useFetchGoalsByFilter({ queryFilter: 'all', limit: 8 })
 
-    if (!ritual?.length) return null
+    if (isLoading) return <IsLoading isLoading={isLoading} />
+    if (!goals?.length) return null
 
     return (
-        <div className='min-h-[350px]flex-[100%] flex max-h-[350px] rounded-md  shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] md:flex-[45%]'>
-            <div className='bg-global-2-bg relative flex w-full flex-col flex-wrap  gap-5 rounded-lg px-5 pt-10'>
-                <div className='absolute left-[-40px] top-[-40px] cursor-pointer'>
-                    <StyledButton
-                        onClick={() => {
-                            navigate(
-                                { pathname: '/dashboard/filtered-goals', search: `?filter=ritual` },
-                                { state: { filter: 'ritual' } },
-                            )
-                        }}
-                        variant='text'
-                        className='!h-24 !w-24 !rounded-full'
-                        startIcon={
-                            <IconRitual width={75} height={75} className='min-h-[65px] min-w-[65px] text-teal-600' />
-                        }
-                    />
-                </div>
-                {ritual.slice(0, 4).map((goal) => (
-                    <div key={goal.id}>
-                        <TopGoal
-                            goal={goal}
-                            className={clsx(goal.isFromFuture && !goal.is_favorite && 'opacity-50 hover:opacity-100')}
-                        />
-                    </div>
-                ))}
+        <div key={goals?.length} className={styles['dashboardWidgetWrapper']}>
+            <div>
+                <NavigateRitualGoals />
+                <TopGoalsList goals={goals} />
             </div>
         </div>
     )
-})
+}
