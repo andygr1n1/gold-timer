@@ -1,7 +1,7 @@
-import { IActiveGoalOptimized } from '../types'
+import { IGoal } from '../types'
 
 export interface IFabricGoalRitualize {
-    goal?: IActiveGoalOptimized | null
+    goal?: IGoal | null
     coins: number | null
 }
 

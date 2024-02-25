@@ -3,7 +3,7 @@ import { mutation_favoriteGoal } from './mutation_favoriteGoal'
 
 import { useAtom } from 'jotai'
 import { selectedGoalAtom } from '@/modules/goals/stores/selectedGoal.store'
-import { IActiveGoalOptimized } from '../types'
+import { IGoal } from '../types'
 import { ISelectedGoal } from '../../stores/types'
 import { KEY_FetchGoalById, KEY_FetchGoalsByFilter, goalsQueryKeys, goalsQueryKeysValues } from '../keys'
 import { proxyConvert } from '@/functions/proxyConvert'
@@ -21,7 +21,7 @@ export const useMutateGoalFavorite = () => {
             goalsQueryKeysValues.forEach((filter) => {
                 window.queryClient.setQueryData(
                     KEY_FetchGoalsByFilter(filter),
-                    (oldData: IActiveGoalOptimized[] | { pages: { data: IActiveGoalOptimized[] }[] }) => {
+                    (oldData: IGoal[] | { pages: { data: IGoal[] }[] }) => {
                         const newData = oldData ? proxyConvert(oldData) : undefined
                         if (!newData) return
 

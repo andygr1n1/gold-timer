@@ -4,24 +4,26 @@ import { useNotesStore } from '@/StoreProvider'
 import { FormFooter } from '@/components/form/FormFooter'
 import { INote$ } from '@/modules/notes/mst/types'
 import { NoteTagsList } from '../../../NoteTagsList'
-import { Interweave } from 'interweave'
+import ReactQuill from 'react-quill'
+import { useEffect, useState } from 'react'
 
 export const ViewNoteDialogBody: React.FC = observer(() => {
     const { selected_note } = useNotesStore()
+    const [d, setD] = useState('')
+
+    // *
+    // a hack for correct render of description
+    useEffect(() => {
+        selected_note && setD(selected_note?.description)
+    }, [selected_note])
+
     return selected_note ? (
         <>
             <div className='flex flex-col gap-10 pb-4'>
                 <NotesActionsMenu note={selected_note} />
                 <NoteTagsList note={selected_note} />
             </div>
-            <Interweave
-                className='overflow-wrap-anywhere flex h-full flex-auto cursor-pointer flex-col text-lg'
-                allowAttributes
-                disableMatchers
-                disableFilters
-                allowElements
-                content={selected_note.description}
-            />
+            <ReactQuill className='view-mode' value={d} modules={{ toolbar: [] }} readOnly={true} />
             <Footer note={selected_note} />
         </>
     ) : null

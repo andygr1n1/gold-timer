@@ -1,11 +1,14 @@
 import { observer } from 'mobx-react-lite'
-import { IActiveGoalOptimized } from '@/modules/goals/service/types'
+import { IGoal } from '@/modules/goals/service/types'
 import { isCompleted } from '@/modules/goals/helpers/goalsGuards'
 import { IconCompleted, IconExpired, IconFocus, IconInfinity } from '@/assets/icons'
-import { differenceInCalendarDays, parseISO } from 'date-fns'
-import { calculateIsExpired, calculateIsRitual } from '@/modules/goals/helpers/optimizeActiveGoalsData'
+import {
+    calculateIsExpired,
+    calculateIsRitual,
+    totalRemainingDays,
+} from '@/modules/goals/helpers/optimizeActiveGoalsData'
 
-export const GoalDetails: React.FC<{ goal: IActiveGoalOptimized }> = observer(({ goal }) => {
+export const GoalDetails: React.FC<{ goal: IGoal }> = observer(({ goal }) => {
     return (
         <div className='animate-opacity-5 my-10 flex w-full items-center justify-center  gap-5 rounded-md'>
             <GoalDaysUntilDeadline goal={goal} />
@@ -15,7 +18,7 @@ export const GoalDetails: React.FC<{ goal: IActiveGoalOptimized }> = observer(({
     )
 })
 
-const ImageByGoalType: React.FC<{ goal: IActiveGoalOptimized }> = observer(({ goal }) => {
+const ImageByGoalType: React.FC<{ goal: IGoal }> = observer(({ goal }) => {
     const isRitual = calculateIsRitual(goal)
     const isExpired = calculateIsExpired(goal)
     const _isCompleted = isCompleted(goal.status)
@@ -35,7 +38,7 @@ const ImageByGoalType: React.FC<{ goal: IActiveGoalOptimized }> = observer(({ go
     return <div className='flex items-center justify-center gap-5'>{goalIcon}</div>
 })
 
-const GoalRitualCount: React.FC<{ goal: IActiveGoalOptimized }> = observer(({ goal }) => {
+const GoalRitualCount: React.FC<{ goal: IGoal }> = observer(({ goal }) => {
     const isRitual = calculateIsRitual(goal)
 
     if (!isRitual) return null
@@ -49,10 +52,10 @@ const GoalRitualCount: React.FC<{ goal: IActiveGoalOptimized }> = observer(({ go
     )
 })
 
-const GoalDaysUntilDeadline: React.FC<{ goal: IActiveGoalOptimized }> = observer(({ goal }) => {
+const GoalDaysUntilDeadline: React.FC<{ goal: IGoal }> = observer(({ goal }) => {
     const { status } = goal
 
-    const totalRemainingDays = differenceInCalendarDays(parseISO(goal.finished_at).getTime(), new Date(Date.now()))
+    const _totalRemainingDays = totalRemainingDays(goal)
 
     if (isCompleted(status)) return null
 
@@ -60,7 +63,7 @@ const GoalDaysUntilDeadline: React.FC<{ goal: IActiveGoalOptimized }> = observer
         <div className='flex flex-col items-center justify-center gap-2 '>
             <div className='pl-2 font-extralight'>Deadline</div>
             <div className='flex gap-5 text-3xl text-blue-500'>
-                {totalRemainingDays ? `${totalRemainingDays} d` : 'Today'}
+                {_totalRemainingDays ? `${_totalRemainingDays} d` : 'Today'}
             </div>
         </div>
     )

@@ -2,13 +2,10 @@ import { resolveData } from '@/functions/resolveData'
 import { processError } from '@/functions/processMessage'
 import { Client } from 'gold-timer-genql/lib/generated'
 import { getUserCoins, getUserId } from '@/functions/universalCookie.helper'
-import { IActiveGoalOptimized } from '../types'
+import { IGoal } from '../types'
 import { getCoinsFromRitual } from '@/functions/getCoinsFromRitual'
 
-export const mutation_coinsOnRitualizeGoal = async (
-    client: Client,
-    goal: IActiveGoalOptimized,
-): Promise<number | null> => {
+export const mutation_coinsOnRitualizeGoal = async (client: Client, goal: IGoal): Promise<number | null> => {
     const coins = getCoinsFromRitual(goal.goal_ritual?.ritual_power || 0 + 1, getUserCoins())
 
     return await resolveData<null, number | null>(

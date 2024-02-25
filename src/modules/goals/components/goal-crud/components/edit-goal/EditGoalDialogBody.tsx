@@ -1,5 +1,5 @@
 import { editGoalAtom } from '../../../../stores/editGoal.store'
-import { IActiveGoalOptimized } from '@/modules/goals/service/types'
+import { IGoal } from '@/modules/goals/service/types'
 import { EditGoalTitle } from './components/EditGoalTitle'
 import { EditGoalFooter } from './EditGoalFooter'
 import { selectedGoalAtom, selectedGoalAtom$ } from '@/modules/goals/stores/selectedGoal.store'
@@ -11,7 +11,7 @@ import { EditGoalRitualIntervalInput } from './components/edit-goal-ritual/EditG
 import { convertDateToString } from '@/functions/date.helpers'
 import { EditModeGoalDetails } from './components/EditModeGoalDetails'
 
-export const EditGoalDialogBody: React.FC<{ goal: IActiveGoalOptimized }> = ({ goal }) => {
+export const EditGoalDialogBody: React.FC<{ goal: IGoal }> = ({ goal }) => {
     const isNewRitual = selectedGoalAtom$.get(selectedGoalAtom)?.is_new_ritual
 
     // useMemo helps to prevent updating EditStore, example can be toggle favorite goal

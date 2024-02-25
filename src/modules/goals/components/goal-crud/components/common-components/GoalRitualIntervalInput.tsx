@@ -1,13 +1,13 @@
 import { RITUAL_TYPE_ENUM } from '@/helpers/enums'
 import { FormLabel } from '@/components/form/FormLabel'
-import { IActiveGoalOptimized } from '@/modules/goals/service/types'
+import { IGoal } from '@/modules/goals/service/types'
 import { XSelect } from '@/components-x/x-select/XSelect'
 import { XInput } from '@/components-x/x-input/XInput'
 import { IconInfinity } from '@/assets/icons/IconInfinity'
 import { DaysOfTheWeek } from '@/functions/date.helpers'
 
 export const GoalRitualIntervalInput: React.FC<{
-    goal: IActiveGoalOptimized
+    goal: IGoal
 }> = ({ goal }) => {
     const { goal_ritual } = goal
     if (!goal_ritual) return null

@@ -1,11 +1,3 @@
 .note-container {
     @apply bg-global-2-bg flex w-[calc(100%-40px)] flex-col gap-5 overflow-auto rounded-lg p-5 md:h-[220px] md:w-fit md:min-w-[300px] md:flex-[20%];
 }
-
-.interweave {
-    @apply scrollbar-thumb-blue-500 scrollbar-track-global-3-bg scrollbar-thin m-0 flex h-full max-h-[125px] flex-auto cursor-pointer flex-col overflow-auto text-lg;
-
-    p {
-        @apply mb-2 mt-0 #{!important};
-    }
-}

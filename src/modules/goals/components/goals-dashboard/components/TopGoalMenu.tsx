@@ -3,14 +3,14 @@ import { XMenuDropdown } from '@/components-x/x-dropdown/XMenuDropdown'
 import { XMenuItem } from '@/components-x/x-dropdown/XMenuItem'
 import { selectedGoalAtom, selectedGoalAtom$ } from '@/modules/goals/stores/selectedGoal.store'
 import { IconEye } from '@/assets/icons/IconEye'
-import { IActiveGoalOptimized } from '@/modules/goals/service/types'
+import { IGoal } from '@/modules/goals/service/types'
 import { ToggleFavorite } from '../../goal-crud/goal-actions/ToggleFavoriteGoal'
 import { DeleteGoal } from '../../goal-crud/goal-actions/DeleteGoal'
 import { StyledButton } from '@/components/buttons/StyledButton'
 import { ToggleEditGoal } from '../../goal-crud/goal-actions/ToggleEditGoal'
 import { CreateChildGoal } from '../../goal-crud/goal-actions/CreateChildGoal'
 
-export const TopGoalMenu: React.FC<{ goal: IActiveGoalOptimized; action: () => void; forceMode?: boolean }> = ({
+export const TopGoalMenu: React.FC<{ goal: IGoal; action: () => void; forceMode?: boolean }> = ({
     goal,
     action: onClose,
 }) => {

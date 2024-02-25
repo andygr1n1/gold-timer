@@ -1,6 +1,6 @@
 import { resolveData } from '@/functions/resolveData'
 import { processError } from '@/functions/processMessage'
-import { IActiveGoalOptimized, IGoalQueryTypeFilter } from '@/modules/goals/service/types'
+import { IGoal, IGoalQueryTypeFilter } from '@/modules/goals/service/types'
 import { query_fetchGoalsByFilter } from './query_fetchGoalsByFilter'
 
 export const fabric_goalsByFilter = async (props: {
@@ -8,10 +8,10 @@ export const fabric_goalsByFilter = async (props: {
     pageParam?: number
     queryFilter?: IGoalQueryTypeFilter
     filterByText: boolean
-}): Promise<IActiveGoalOptimized[] | null> => {
+}): Promise<IGoal[] | null> => {
     const { limit, queryFilter, pageParam, filterByText } = props
 
-    let getGoals: () => Promise<IActiveGoalOptimized[] | null> = async () => null
+    let getGoals: () => Promise<IGoal[] | null> = async () => null
 
     if (queryFilter === 'all') {
         getGoals = () =>
@@ -62,7 +62,7 @@ export const fabric_goalsByFilter = async (props: {
             })
     }
 
-    return await resolveData<null, IActiveGoalOptimized[] | null>(
+    return await resolveData<null, IGoal[] | null>(
         () => getGoals(),
         (e) => {
             processError(`query_activeGoals: ${e}`)

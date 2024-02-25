@@ -1,13 +1,13 @@
 import { useAtom } from 'jotai'
 import { selectedGoalAtom } from '../../stores/selectedGoal.store'
-import { IActiveGoalOptimized } from '../../service/types'
+import { IGoal } from '../../service/types'
 import { ToggleEditGoal } from './goal-actions/ToggleEditGoal'
 import { ToggleFavorite } from './goal-actions/ToggleFavoriteGoal'
 import { DeleteGoal } from './goal-actions/DeleteGoal'
 import { CreateChildGoal } from './goal-actions/CreateChildGoal'
 import { ToggleFavoriteNewGoal } from './goal-actions/ToggleFavoriteNewGoal'
 
-export const GoalCRUDActions: React.FC<{ goal: IActiveGoalOptimized }> = ({ goal }) => {
+export const GoalCRUDActions: React.FC<{ goal: IGoal }> = ({ goal }) => {
     const [_selectedGoal] = useAtom(selectedGoalAtom)
 
     return (

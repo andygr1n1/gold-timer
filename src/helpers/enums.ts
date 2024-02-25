@@ -54,6 +54,7 @@ export enum APP_ROUTES_ENUM {
     GOALS = 'goals',
     SPRINTS = 'sprints',
     DASHBOARD = 'dashboard',
+    CRYPTO = 'crypto',
 }
 
 export enum RITUAL_TYPE_ENUM {

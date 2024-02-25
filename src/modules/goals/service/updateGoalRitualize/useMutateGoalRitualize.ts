@@ -1,7 +1,7 @@
 import { useMutation } from '@tanstack/react-query'
 import { fabric_goalRitualize } from './fabric_goalRitualize'
 
-import { IActiveGoalOptimized } from '@/modules/goals/service/types'
+import { IGoal } from '@/modules/goals/service/types'
 import { cloneDeep } from 'lodash-es'
 import { IUserCoinsInfo } from '@/components/top-bar/service/query_userCoinsInfo'
 import { processSuccess } from '@/functions/processMessage'
@@ -13,7 +13,7 @@ import { isDashboard } from '@/helpers/guards'
 
 export const useMutateGoalRitualize = () => {
     const mutation = useMutation({
-        mutationFn: ({ goal }: { goal: IActiveGoalOptimized }) => fabric_goalRitualize(goal),
+        mutationFn: ({ goal }: { goal: IGoal }) => fabric_goalRitualize(goal),
         onSuccess: (res) => {
             const goalId = res?.goal?.id
             if (!goalId) return
@@ -21,7 +21,7 @@ export const useMutateGoalRitualize = () => {
             goalsQueryKeysValues.forEach((filter) => {
                 window.queryClient.setQueryData(
                     KEY_FetchGoalsByFilter(filter),
-                    (oldData: IActiveGoalOptimized[] | { pages: { data: IActiveGoalOptimized[] }[] }) => {
+                    (oldData: IGoal[] | { pages: { data: IGoal[] }[] }) => {
                         const newData = oldData ? proxyConvert(oldData) : undefined
                         if (!newData) return
 
@@ -33,7 +33,7 @@ export const useMutateGoalRitualize = () => {
                 )
             })
 
-            window.queryClient.setQueryData(KEY_FetchGoalById(goalId), (oldData: IActiveGoalOptimized) => {
+            window.queryClient.setQueryData(KEY_FetchGoalById(goalId), (oldData: IGoal) => {
                 const selected = oldData ? proxyConvert(oldData) : undefined
                 replaceObjectValues(selected, res.goal)
                 return selected

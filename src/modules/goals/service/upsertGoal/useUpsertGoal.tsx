@@ -1,5 +1,5 @@
 import { useMutation } from '@tanstack/react-query'
-import { IActiveGoalOptimized, IInsertNewGoal } from '../types'
+import { IGoal, IInsertNewGoal } from '../types'
 import { getUserId } from '@/functions/universalCookie.helper'
 import { convertStringToDate, setMidnightTime } from '@/functions/date.helpers'
 import { setGoalDifficulty } from '@/functions/setGoalDifficulty'
@@ -12,7 +12,7 @@ import { isDashboard } from '@/helpers/guards'
 
 export const useUpsertGoal = () =>
     useMutation({
-        mutationFn: ({ editGoal }: { editGoal: IActiveGoalOptimized }) => {
+        mutationFn: ({ editGoal }: { editGoal: IGoal }) => {
             const { title, slogan, description, finished_at, id } = editGoal
             const goalData: IInsertNewGoal = {
                 id,
@@ -36,7 +36,7 @@ export const useUpsertGoal = () =>
             goalsQueryKeysValues.forEach((filter) => {
                 window.queryClient.setQueryData(
                     KEY_FetchGoalsByFilter(filter),
-                    (oldData: IActiveGoalOptimized[] | { pages: { data: IActiveGoalOptimized[] }[] }) => {
+                    (oldData: IGoal[] | { pages: { data: IGoal[] }[] }) => {
                         const newData = oldData ? proxyConvert(oldData) : undefined
                         if (!newData) return
 
@@ -54,7 +54,7 @@ export const useUpsertGoal = () =>
                 )
             })
 
-            window.queryClient.setQueryData(KEY_FetchGoalById(resGoal.id), (oldData: IActiveGoalOptimized) => {
+            window.queryClient.setQueryData(KEY_FetchGoalById(resGoal.id), (oldData: IGoal) => {
                 const selected = oldData ? proxyConvert(oldData) : undefined
                 replaceObjectValues(selected, resGoal)
                 return selected

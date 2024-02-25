@@ -1,11 +1,8 @@
 import { flatten } from 'lodash-es'
-import { IActiveGoalOptimized } from '../service/types'
+import { IGoal } from '../service/types'
 
-export const getSelectedGoalFromCache = (
-    data: IActiveGoalOptimized[] | { pages: { data: IActiveGoalOptimized[] }[] },
-    goalId: string,
-) => {
-    const goals: IActiveGoalOptimized[] =
+export const getSelectedGoalFromCache = (data: IGoal[] | { pages: { data: IGoal[] }[] }, goalId: string) => {
+    const goals: IGoal[] =
         'pages' in data
             ? flatten(
                   data.pages.map((page) => {
@@ -18,10 +15,7 @@ export const getSelectedGoalFromCache = (
     return selected
 }
 
-export const pushGoalInCache = (
-    data: IActiveGoalOptimized[] | { pages: { data: IActiveGoalOptimized[] }[] },
-    goal: IActiveGoalOptimized,
-) => {
+export const pushGoalInCache = (data: IGoal[] | { pages: { data: IGoal[] }[] }, goal: IGoal) => {
     'pages' in data ? data.pages[0].data.push(goal) : data.push(goal)
     return data
 }

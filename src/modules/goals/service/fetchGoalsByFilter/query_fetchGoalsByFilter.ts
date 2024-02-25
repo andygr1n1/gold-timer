@@ -1,5 +1,5 @@
 import { optimizeActiveGoalsData } from '@/modules/goals/helpers/optimizeActiveGoalsData'
-import { IActiveGoalOptimized } from '@/modules/goals/service/types'
+import { IGoal } from '@/modules/goals/service/types'
 import { compact, uniqWith } from 'lodash-es'
 import { query_activeGoals } from './filters/query_activeGoals'
 import { query_expiredGoals } from './filters/query_expiredGoals'
@@ -12,7 +12,7 @@ export const query_fetchGoalsByFilter = async (props: {
     limit?: number
     filter: { active: boolean; favorite: boolean; expired: boolean; ritual: boolean }
     filterByText: boolean
-}): Promise<IActiveGoalOptimized[] | null> => {
+}): Promise<IGoal[] | null> => {
     const { limit, filter, offset, filterByText } = props
     const client = generateTSClient({ batch: true })
 
@@ -25,10 +25,7 @@ export const query_fetchGoalsByFilter = async (props: {
         ]),
     )
 
-    const data: IActiveGoalOptimized[] = res.reduce(
-        (acc, r) => [...acc, ...optimizeActiveGoalsData(r.goals)],
-        [] as IActiveGoalOptimized[],
-    )
+    const data: IGoal[] = res.reduce((acc, r) => [...acc, ...optimizeActiveGoalsData(r.goals)], [] as IGoal[])
 
     return uniqWith(data, (a, b) => a.id === b.id)
 }

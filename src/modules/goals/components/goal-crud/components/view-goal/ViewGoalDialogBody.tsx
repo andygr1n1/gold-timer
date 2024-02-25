@@ -1,6 +1,6 @@
 import { GoalTitleInput } from '../common-components/GoalTitleInput'
 import { GoalSloganInput } from '../common-components/GoalSloganInput'
-import { IActiveGoalOptimized } from '@/modules/goals/service/types'
+import { IGoal } from '@/modules/goals/service/types'
 import { ViewGoalFooter } from './ViewGoalFooter'
 import { GoalDescriptionRichInput } from '../common-components/GoalDescriptionRichInput'
 import { GoalCreatedAt } from '../common-components/GoalCreatedAt'
@@ -8,7 +8,7 @@ import { GoalFinishCalendarInput } from '../common-components/GoalFinishCalendar
 import { GoalRitualIntervalInput } from '../common-components/GoalRitualIntervalInput'
 import { GoalDetails } from '../common-components/GoalDetails'
 
-export const ViewGoalDialogBody: React.FC<{ goal: IActiveGoalOptimized }> = ({ goal }) => {
+export const ViewGoalDialogBody: React.FC<{ goal: IGoal }> = ({ goal }) => {
     return (
         <>
             <GoalDetails goal={goal} />

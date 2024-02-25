@@ -2,14 +2,14 @@ import { optimizeActiveGoalsData } from '@/modules/goals/helpers/optimizeActiveG
 import { resolveData } from '@/functions/resolveData'
 import { processError } from '@/functions/processMessage'
 import { Client } from 'gold-timer-genql/lib/generated'
-import { IActiveGoalOptimized } from '../types'
+import { IGoal } from '../types'
 import { IRitualizeUpdateFields } from './types'
 
 export const mutation_goalGoalRitualize = async (
     client: Client,
     updateFields: IRitualizeUpdateFields,
-): Promise<IActiveGoalOptimized | null> => {
-    return await resolveData<null, IActiveGoalOptimized | null>(
+): Promise<IGoal | null> => {
+    return await resolveData<null, IGoal | null>(
         () =>
             client
                 .mutation({

@@ -1,13 +1,13 @@
 import { useQuery } from '@tanstack/react-query'
 import { query_fetchGoalById } from '@/modules/goals/service/fetchGoalById/query_fetchGoalById'
-import { IActiveGoalOptimized } from '@/modules/goals/service/types'
+import { IGoal } from '@/modules/goals/service/types'
 import { optimizeActiveGoalsData } from '@/modules/goals/helpers/optimizeActiveGoalsData'
 import { selectedGoalAtom } from '@/modules/goals/stores/selectedGoal.store'
 import { useAtom } from 'jotai'
 import { KEY_FetchGoalById } from '../keys'
 import { newGoalTemplate } from '../../stores/editGoal.store'
 
-export const useFetchGoal = (): Partial<{ goal: IActiveGoalOptimized | null; isLoading: boolean; isEdit: boolean }> => {
+export const useFetchGoal = (): Partial<{ goal: IGoal | null; isLoading: boolean; isEdit: boolean }> => {
     const [_selectedGoal] = useAtom(selectedGoalAtom)
 
     if (!_selectedGoal) return { isLoading: true, goal: null, isEdit: false }
