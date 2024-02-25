@@ -30,7 +30,10 @@ export default ({ mode }: { mode: string }) => {
             outputPluginStats(),
             hotUpdateReport(),
         ],
-
+        test: {
+            globals: true,
+            environment: 'jsdom',
+        },
         resolve: {
             alias: [{ find: '@', replacement: path.resolve(__dirname, 'src') }],
         },
