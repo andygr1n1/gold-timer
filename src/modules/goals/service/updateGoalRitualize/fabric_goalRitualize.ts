@@ -1,13 +1,13 @@
 import { convertDateToString, setMidnightTime, setZeroTime } from '../../../../functions/date.helpers'
 import { generateTSClient } from '@/graphql/client'
-import { IActiveGoalOptimized } from '../types'
+import { IGoal } from '../types'
 import { mutation_coinsOnRitualizeGoal } from './mutation_coinsOnRitualizeGoal'
 import { mutation_goalGoalRitualize } from './mutation_goalGoalRitualize'
 import { IFabricGoalRitualize, IRitualizeUpdateFields } from './types'
 import { generateNewRitualCircle } from '@/functions/generateNewRitualCircle'
 import { convertStringToDate } from '@/functions/date.helpers'
 
-export const fabric_goalRitualize = async (goal: IActiveGoalOptimized): Promise<IFabricGoalRitualize | undefined> => {
+export const fabric_goalRitualize = async (goal: IGoal): Promise<IFabricGoalRitualize | undefined> => {
     const client = generateTSClient({ batch: true })
 
     if (!goal.goal_ritual) return

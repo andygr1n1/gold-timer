@@ -1,15 +1,12 @@
 import { generateTSClient } from '@/graphql/client'
 import { goal_status_enum_enum } from 'gold-timer-genql/lib/generated'
-import { IActiveGoalOptimized } from '../types'
+import { IGoal } from '../types'
 import { mutation_goalStatus } from './mutation_goalStatus'
 import { IFabricGoalStatus } from './types'
 import { mutation_coinsOnCompleteGoal } from './mutation_coinsOnCompleteGoal'
 import { mutation_goalStatusCompleted } from './mutation_goalStatusCompleted'
 
-export const fabric_goalStatus = async (
-    goal: IActiveGoalOptimized,
-    status: goal_status_enum_enum,
-): Promise<IFabricGoalStatus> => {
+export const fabric_goalStatus = async (goal: IGoal, status: goal_status_enum_enum): Promise<IFabricGoalStatus> => {
     const client = generateTSClient({ batch: true })
     const statusMutation = () =>
         status === 'completed'

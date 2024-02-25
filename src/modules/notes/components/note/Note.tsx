@@ -1,14 +1,12 @@
 import { observer } from 'mobx-react-lite'
 import { INote$ } from '../../mst/types'
 import { format } from 'date-fns'
-import { Interweave } from 'interweave'
 import { NoteTagsList } from '../NoteTagsList'
-import styles from './Note.module.scss'
-import clsx from 'clsx'
 import { XDropdown } from '@/components-x/x-dropdown/XDropdown'
 import { useTogglePopoverState } from '@/hooks/useTogglePopoverState'
 import { NoteContextMenu } from './NoteContextMenu'
 import { useNotesStore } from '@/StoreProvider'
+import ReactQuill from 'react-quill'
 
 export const Note: React.FC<{ note: INote$ }> = observer(({ note }) => {
     const { openNoteViewMode } = useNotesStore()
@@ -24,7 +22,9 @@ export const Note: React.FC<{ note: INote$ }> = observer(({ note }) => {
             dropdownRender={() => <NoteContextMenu onClose={() => setPopoverState(false)} note={note} />}
         >
             <div
-                className={styles['note-container']}
+                className={
+                    'bg-global-2-bg flex w-[calc(100%-40px)] flex-col gap-5 overflow-auto rounded-lg p-5 md:h-[220px] md:w-fit md:min-w-[300px] md:flex-[20%]'
+                }
                 onClick={(e) => {
                     e.stopPropagation()
                     e.preventDefault()
@@ -42,16 +42,13 @@ export const Note: React.FC<{ note: INote$ }> = observer(({ note }) => {
                     </div>
                 )}
                 <NoteTagsList note={note} />
-                <div className='overflow-wrap-anywhere flex  h-full flex-auto cursor-pointer  '>
-                    <Interweave
-                        className={clsx('overflow-wrap-anywhere', styles['interweave'])}
-                        allowAttributes
-                        disableMatchers
-                        disableFilters
-                        allowElements
-                        content={note.description}
-                    />
-                </div>
+
+                <ReactQuill
+                    className='view-mode [&_.ql-editor]:!max-h-[130px] [&_.ql-editor]:!min-h-[130px]'
+                    value={note.description}
+                    modules={{ toolbar: [] }}
+                    readOnly={true}
+                />
             </div>
         </XDropdown>
     )

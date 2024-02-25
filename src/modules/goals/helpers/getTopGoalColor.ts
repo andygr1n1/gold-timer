@@ -1,9 +1,9 @@
-import { IActiveGoalOptimized } from '@/modules/goals/service/types'
+import { IGoal } from '@/modules/goals/service/types'
 import clsx from 'clsx'
 import { calculateIsExpired, calculateIsRitual } from './optimizeActiveGoalsData'
 import { isCompleted } from './goalsGuards'
 
-export const getTopGoalColor = (goal: IActiveGoalOptimized): { containerClass: string } => {
+export const getTopGoalColor = (goal: IGoal): { containerClass: string } => {
     let containerClass = 'bg-blue-700 hover:bg-blue-600'
     const isRitual = calculateIsRitual(goal)
     const isExpired = calculateIsExpired(goal)

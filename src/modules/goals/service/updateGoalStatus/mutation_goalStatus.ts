@@ -1,12 +1,12 @@
 import { resolveData } from '@/functions/resolveData'
 import { processError } from '@/functions/processMessage'
 import { Client, goal_status_enum_enum } from 'gold-timer-genql/lib/generated'
-import { IActiveGoalOptimized } from '../types'
+import { IGoal } from '../types'
 import { IGoalStatus } from './types'
 
 export const mutation_goalStatus = async (
     client: Client,
-    goal: IActiveGoalOptimized,
+    goal: IGoal,
     status: goal_status_enum_enum,
 ): Promise<IGoalStatus | null> => {
     return await resolveData<null, IGoalStatus | null>(

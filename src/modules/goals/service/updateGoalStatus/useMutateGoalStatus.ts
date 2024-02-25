@@ -2,7 +2,7 @@ import { useMutation } from '@tanstack/react-query'
 import { fabric_goalStatus } from './fabric_goalStatus'
 
 import { goal_status_enum_enum } from 'gold-timer-genql/lib/generated'
-import { IActiveGoalOptimized } from '@/modules/goals/service/types'
+import { IGoal } from '@/modules/goals/service/types'
 import { cloneDeep } from 'lodash-es'
 import { IUserCoinsInfo } from '@/components/top-bar/service/query_userCoinsInfo'
 import { processSuccess } from '@/functions/processMessage'
@@ -14,7 +14,7 @@ import { isDashboard } from '@/helpers/guards'
 
 export const useMutateGoalStatus = () => {
     const mutation = useMutation({
-        mutationFn: ({ goal, status }: { status: goal_status_enum_enum; goal: IActiveGoalOptimized }) =>
+        mutationFn: ({ goal, status }: { status: goal_status_enum_enum; goal: IGoal }) =>
             fabric_goalStatus(goal, status),
         onSuccess: (res) => {
             const resStatus = res.status?.status
@@ -25,7 +25,7 @@ export const useMutateGoalStatus = () => {
             goalsQueryKeysValues.forEach((filter) => {
                 window.queryClient.setQueryData(
                     KEY_FetchGoalsByFilter(filter),
-                    (oldData: IActiveGoalOptimized[] | { pages: { data: IActiveGoalOptimized[] }[] }) => {
+                    (oldData: IGoal[] | { pages: { data: IGoal[] }[] }) => {
                         const newData = oldData ? proxyConvert(oldData) : undefined
 
                         if (!newData) return

@@ -3,7 +3,7 @@ import { useMutation } from '@tanstack/react-query'
 import { selectedGoalAtom } from '@/modules/goals/stores/selectedGoal.store'
 import { useAtom } from 'jotai'
 import { optimizeActiveGoalsData } from '../../helpers/optimizeActiveGoalsData'
-import { IActiveGoalOptimized } from '@/modules/goals/service/types'
+import { IGoal } from '@/modules/goals/service/types'
 import { mutation_goalDeletedAt } from './mutation_goalDeletedAt'
 import { KEY_FetchGoalById, KEY_FetchGoalsByFilter, goalsQueryKeys, goalsQueryKeysValues } from '../keys'
 import { proxyConvert } from '@/functions/proxyConvert'
@@ -22,7 +22,7 @@ export const useMutateGoalDeletedAt = () => {
             goalsQueryKeysValues.forEach((filter) => {
                 window.queryClient.setQueryData(
                     KEY_FetchGoalsByFilter(filter),
-                    (oldData: IActiveGoalOptimized[] | { pages: { data: IActiveGoalOptimized[] }[] }) => {
+                    (oldData: IGoal[] | { pages: { data: IGoal[] }[] }) => {
                         const newData = oldData ? proxyConvert(oldData) : undefined
                         if (!newData) return
 
@@ -35,7 +35,7 @@ export const useMutateGoalDeletedAt = () => {
                 )
             })
             selectedGoal?.id &&
-                window.queryClient.setQueryData(KEY_FetchGoalById(selectedGoal.id), (oldData: IActiveGoalOptimized) => {
+                window.queryClient.setQueryData(KEY_FetchGoalById(selectedGoal.id), (oldData: IGoal) => {
                     return optimizeActiveGoalsData({ ...oldData, deleted_at: res?.deleted_at })?.[0]
                 })
         },

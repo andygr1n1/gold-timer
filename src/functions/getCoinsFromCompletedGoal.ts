@@ -1,7 +1,7 @@
-import { IActiveGoalOptimized } from '@/modules/goals/service/types'
+import { IGoal } from '@/modules/goals/service/types'
 import { DIFFICULTY_ENUM } from '../helpers/enums'
 
-export const getCoinsFromCompletedGoal = (goal: IActiveGoalOptimized, currentCoins: number): number => {
+export const getCoinsFromCompletedGoal = (goal: IGoal, currentCoins: number): number => {
     const { difficulty, goal_ritual } = goal
     if (goal_ritual) {
         //

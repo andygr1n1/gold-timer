@@ -2,7 +2,7 @@ import { atom } from 'jotai'
 import { atomWithImmer } from 'jotai-immer'
 
 import { isDev } from '@/functions/isUnderDevelopment.helper'
-import { IActiveGoalOptimized } from '@/modules/goals/service/types'
+import { IGoal } from '@/modules/goals/service/types'
 import { focusAtom } from 'jotai-optics'
 
 import { RITUAL_TYPE_ENUM } from '@/helpers/enums'
@@ -10,7 +10,7 @@ import { formatISO } from 'date-fns'
 import { goal_status_enum_enum } from 'gold-timer-genql/lib/generated'
 import { KEY_FetchGoalById } from '../service/keys'
 
-export const editGoalAtom = atomWithImmer<IActiveGoalOptimized | undefined>(undefined)
+export const editGoalAtom = atomWithImmer<IGoal | undefined>(undefined)
 isDev() && (editGoalAtom.debugLabel = 'editGoalAtom')
 
 // *
@@ -34,23 +34,22 @@ export const editGoalAtom_is_favorite = focusAtom(editGoalAtom, (optic) => {
     return optic.optional().prop('is_favorite') || ''
 })
 
-export const editGoalAtom_goal_ritual___ritual_type = focusAtom<
-    IActiveGoalOptimized | undefined,
-    RITUAL_TYPE_ENUM,
-    void
->(editGoalAtom, (optic) => {
-    const goal_ritual = optic
-        .optional()
-        .prop('goal_ritual')
-        .when((value) => {
-            return value !== null
-        })
-        .optional()
-        .path('ritual_type')
+export const editGoalAtom_goal_ritual___ritual_type = focusAtom<IGoal | undefined, RITUAL_TYPE_ENUM, void>(
+    editGoalAtom,
+    (optic) => {
+        const goal_ritual = optic
+            .optional()
+            .prop('goal_ritual')
+            .when((value) => {
+                return value !== null
+            })
+            .optional()
+            .path('ritual_type')
 
-    // as never to avoid ts error
-    return goal_ritual as never
-})
+        // as never to avoid ts error
+        return goal_ritual as never
+    },
+)
 
 // *
 // derived

@@ -2,18 +2,19 @@ import { observer } from 'mobx-react-lite'
 import { getTopGoalColor } from '../../../helpers/getTopGoalColor'
 import { useTogglePopoverState } from '@/hooks/useTogglePopoverState'
 import { XDropdown } from '@/components-x/x-dropdown/XDropdown'
-import { IActiveGoalOptimized } from '@/modules/goals/service/types'
+import { IGoal } from '@/modules/goals/service/types'
 import { TopGoalMenu } from './TopGoalMenu'
 import { selectedGoalAtom, selectedGoalAtom$ } from '@/modules/goals/stores/selectedGoal.store'
 import { IconBellUrgent } from '@/assets/icons/IconBellUrgent'
-import { calculateIsExpired } from '@/modules/goals/helpers/optimizeActiveGoalsData'
+import { calculateIsExpired, totalRemainingDays } from '@/modules/goals/helpers/optimizeActiveGoalsData'
 import { truncate } from 'lodash-es'
 
-export const TopGoal: React.FC<{ goal: IActiveGoalOptimized; className?: string; zIndex?: number }> = observer(
+export const TopGoal: React.FC<{ goal: IGoal; className?: string; zIndex?: number }> = observer(
     ({ goal, className = '', zIndex }) => {
         const { popoverState, setPopoverState } = useTogglePopoverState()
         const goalClass = getTopGoalColor(goal).containerClass
         const isExpired = calculateIsExpired(goal)
+        const _totalRemainingDays = totalRemainingDays(goal)
 
         return (
             <XDropdown
@@ -46,7 +47,7 @@ export const TopGoal: React.FC<{ goal: IActiveGoalOptimized; className?: string;
                             <IconBellUrgent width={30} height={30} className='text-white' />
                         ) : (
                             <span className='text-xl text-white opacity-70'>
-                                {goal.totalRemainingDays < 9999 ? goal.totalRemainingDays : '9999+'}
+                                {_totalRemainingDays < 9999 ? _totalRemainingDays : '9999+'}
                             </span>
                         )}
                     </span>
@@ -56,12 +57,9 @@ export const TopGoal: React.FC<{ goal: IActiveGoalOptimized; className?: string;
     },
 )
 
-const isDeadline = (goal: IActiveGoalOptimized) => {
+const isDeadline = (goal: IGoal) => {
     const isExpired = calculateIsExpired(goal)
     if (isExpired) return true
-    // if (goal.isRitual) {
-    return goal.totalRemainingDays < 1
-    // }
-
-    // return goal.totalRemainingDays <= 1
+    const _totalRemainingDays = totalRemainingDays(goal)
+    return _totalRemainingDays < 1
 }

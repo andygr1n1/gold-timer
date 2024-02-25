@@ -11,6 +11,7 @@ import { ProfileImageCropDialog } from './modules/profile/components/profile-ava
 import { AchievementsIndex } from './modules/achievements/AchievementsIndex'
 import { StoriesIndex } from './modules/stories/StoriesIndex'
 import { LoadingDialogGlobal } from './components/loading/LoadingDialogConstructor'
+import { CryptoIndex } from './modules/crypto/CryptoIndex'
 
 export const AppProtectedRoutes: React.FC = () => {
     return (
@@ -24,6 +25,7 @@ export const AppProtectedRoutes: React.FC = () => {
                 <Route path={`/${APP_ROUTES_ENUM.NOTES}`} element={<NotesIndex />} />
                 <Route path={`/${APP_ROUTES_ENUM.GOALS}`} element={<GoalsCms />} />
                 <Route path={`/${APP_ROUTES_ENUM.SPRINTS}`} element={<SprintsIndex />} />
+                <Route path={`/${APP_ROUTES_ENUM.CRYPTO}`} element={<CryptoIndex />} />
                 {/*  */}
                 <Route path={`/${APP_ROUTES_ENUM.DASHBOARD}/*`} element={<DashboardIndex />} />
             </Routes>

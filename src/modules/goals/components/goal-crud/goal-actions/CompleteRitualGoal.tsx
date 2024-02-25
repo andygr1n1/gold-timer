@@ -1,11 +1,11 @@
 import { StyledButton } from '@/components/buttons/StyledButton'
-import { IActiveGoalOptimized } from '@/modules/goals/service/types'
+import { IGoal } from '@/modules/goals/service/types'
 import { IconComplete } from '@/assets/icons/IconComplete'
 import { useAtom } from 'jotai'
 import { cancelViewMode } from '@/modules/goals/stores/selectedGoal.store'
 import { useMutateGoalStatus } from '@/modules/goals/service'
 
-export const CompleteRitualGoal: React.FC<{ goal: IActiveGoalOptimized }> = ({ goal }) => {
+export const CompleteRitualGoal: React.FC<{ goal: IGoal }> = ({ goal }) => {
     if (!goal) return null
     const [, _cancelViewMode] = useAtom(cancelViewMode)
     const _useMutateGoalStatus = useMutateGoalStatus()
