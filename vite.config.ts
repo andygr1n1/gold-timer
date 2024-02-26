@@ -33,6 +33,7 @@ export default ({ mode }: { mode: string }) => {
         test: {
             globals: true,
             environment: 'jsdom',
+            setupFiles: './tests/setup',
         },
         resolve: {
             alias: [{ find: '@', replacement: path.resolve(__dirname, 'src') }],
