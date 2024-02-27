@@ -5,7 +5,7 @@ import { IconCompleted, IconExpired, IconFocus, IconInfinity } from '@/assets/ic
 import {
     calculateIsExpired,
     calculateIsRitual,
-    totalRemainingDays,
+    calculateTotalRemainingDays,
 } from '@/modules/goals/helpers/optimizeActiveGoalsData'
 
 export const GoalDetails: React.FC<{ goal: IGoal }> = observer(({ goal }) => {
@@ -55,7 +55,7 @@ const GoalRitualCount: React.FC<{ goal: IGoal }> = observer(({ goal }) => {
 const GoalDaysUntilDeadline: React.FC<{ goal: IGoal }> = observer(({ goal }) => {
     const { status } = goal
 
-    const _totalRemainingDays = totalRemainingDays(goal)
+    const _totalRemainingDays = calculateTotalRemainingDays(goal)
 
     if (isCompleted(status)) return null
 

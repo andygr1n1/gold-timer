@@ -1,7 +1,6 @@
 import { gql } from 'graphql-request'
 import { generateClient } from '../client'
 import { processError } from '@/functions/processMessage'
-import { heroes } from 'gold-timer-genql/lib/generated'
 
 export interface IFetchUserByEmailResponse {
     id: string
