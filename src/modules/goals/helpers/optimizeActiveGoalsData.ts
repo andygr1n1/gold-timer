@@ -35,7 +35,14 @@ export const calculateCreatedDaysAgo = (goal: IGoal): number => {
     return Math.floor(diff.getTime() / (1000 * 3600 * 24))
 }
 
-export const totalRemainingDays = (goal: IGoal): number => {
+export const calculateTotalRemainingDays = (goal: IGoal): number => {
     const result = differenceInCalendarDays(parseISO(goal.finished_at).getTime(), new Date(Date.now()))
     return result
+}
+
+export const calculateGoalDeadline = (goal: IGoal) => {
+    const isExpired = calculateIsExpired(goal)
+    if (isExpired) return true
+    const _totalRemainingDays = calculateTotalRemainingDays(goal)
+    return _totalRemainingDays < 1
 }

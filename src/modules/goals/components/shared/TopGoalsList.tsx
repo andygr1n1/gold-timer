@@ -7,7 +7,7 @@ export const TopGoalsList: React.FC<{ goals: IGoal[] }> = ({ goals }) => {
     return (
         <>
             {goals.slice(0, 4).map((goal) => (
-                <div key={goal.id}>
+                <div key={goal.id} data-testid='topGoal'>
                     <TopGoal
                         goal={goal}
                         className={clsx(

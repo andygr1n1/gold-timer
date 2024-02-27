@@ -26,14 +26,19 @@
         }
     },
     "rules": {
-        "prettier/prettier": "error",
-        "@typescript-eslint/no-explicit-any": "error",
         "@typescript-eslint/no-unused-vars": "error",
-        "@typescript-eslint/no-empty-interface": "off",
-        "@typescript-eslint/no-extra-semi": "off",
+        "@typescript-eslint/ban-ts-comment": "off",
+        "eslint-plugin/prefer-message-ids": "off",
+        "eslint-plugin/require-meta-schema": "off",
+        "eslint-plugin/require-meta-type": "off",
+        "eslint-plugin/prefer-object-rule": "off",
         "@tanstack/query/exhaustive-deps": "error",
         "@tanstack/query/no-rest-destructuring": "warn",
         "@tanstack/query/stable-query-client": "error",
-        "@typescript-eslint/ban-ts-comment": "off"
+        "@typescript-eslint/no-explicit-any": "warn"
+        // "prettier/prettier": "error",
+
+        // "@typescript-eslint/no-empty-interface": "off",
+        // "@typescript-eslint/no-extra-semi": "off",
     }
 }

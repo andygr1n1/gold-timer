@@ -11,3 +11,7 @@ packages:
 -   vitest
 -   jest
 -   jsdom
+
+rules:
+
+-   Test everything in isolation

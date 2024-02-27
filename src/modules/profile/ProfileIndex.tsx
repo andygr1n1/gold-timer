@@ -1,12 +1,11 @@
 import { ModuleWrapper } from '@/components/ModuleWrapper'
-import { observer } from 'mobx-react-lite'
 import { ProfileDetails } from './components/profile-details/ProfileDetails'
 import { APP_ROUTES_ENUM } from '@/helpers/enums'
 
-export const ProfileIndex: React.FC = observer(() => {
+export const ProfileIndex = () => {
     return (
-        <ModuleWrapper context={APP_ROUTES_ENUM.DASHBOARD}>
+        <ModuleWrapper context={APP_ROUTES_ENUM.PROFILE}>
             <ProfileDetails />
         </ModuleWrapper>
     )
-})
+}
