@@ -14,7 +14,7 @@ export const mutation_cachedSprint = async (id: string) => {
     `
 
     try {
-        const response = await client.request(mutation, { id })
+        const response: any = await client.request(mutation, { id })
         return response.update_sprints_by_pk
     } catch (e) {
         processError(e, 'mutation_cachedSprint error')

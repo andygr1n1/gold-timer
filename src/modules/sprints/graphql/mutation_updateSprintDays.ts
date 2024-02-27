@@ -17,7 +17,7 @@ export const mutation_updateSprintDays = async (options: { id: string; sprintDay
     `
 
     try {
-        const response = await client.request(mutation, {
+        const response: any = await client.request(mutation, {
             id,
             sprintDays,
         })

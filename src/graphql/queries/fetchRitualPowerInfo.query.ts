@@ -2,6 +2,7 @@ import { GOAL_STATUS_ENUM } from '@/helpers/enums'
 import { gql } from 'graphql-request'
 import { generateClient } from '../client'
 import { processError } from '@/functions/processMessage'
+import { goals_rituals } from 'gold-timer-genql/lib/generated'
 
 export const fetchRitualPowerInfo = async (owner_id: string) => {
     const client = generateClient()
@@ -21,7 +22,7 @@ export const fetchRitualPowerInfo = async (owner_id: string) => {
     `
 
     try {
-        const response = await client.request(query, { owner_id })
+        const response = await client.request<{ goals_rituals: goals_rituals }>(query, { owner_id })
         return response.goals_rituals
     } catch (e) {
         processError(e, 'fetchRitualPowerInfo error')

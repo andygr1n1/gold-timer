@@ -15,7 +15,7 @@ export const mutation_deleteNote = async (note_id: string, toggleDelete: boolean
     `
 
     try {
-        const response = await client.request(mutation, { note_id, deleted_at })
+        const response: any = await client.request(mutation, { note_id, deleted_at })
         return response?.update_notes_by_pk?.deleted_at
     } catch (e) {
         processError(e, 'mutation_deleteNote error')

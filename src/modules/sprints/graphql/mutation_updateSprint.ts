@@ -34,7 +34,7 @@ export const mutation_updateSprint = async (options: {
     `
 
     try {
-        const response = await client.request(mutation, {
+        const response: any = await client.request(mutation, {
             sprintId,
             updatedSprint,
         })

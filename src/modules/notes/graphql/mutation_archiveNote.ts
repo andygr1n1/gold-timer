@@ -15,7 +15,7 @@ export const mutation_archiveNote = async (note_id: string, toggleArchive: boole
     `
 
     try {
-        const response = await client.request(mutation, { note_id, archived })
+        const response: any = await client.request(mutation, { note_id, archived })
         return response?.update_notes_by_pk?.archived
     } catch (e) {
         processError(e, 'mutation_archiveNote error')

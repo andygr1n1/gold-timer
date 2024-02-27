@@ -23,7 +23,7 @@ export const mutation_toggleDeleteSprint = async (
     `
 
     try {
-        const response = await client.request(mutation, { id, deleted_at })
+        const response: any = await client.request(mutation, { id, deleted_at })
         return response.update_sprints.returning[0]?.deleted_at
     } catch (e) {
         processError(e, 'mutation_toggleDeleteSprint error')

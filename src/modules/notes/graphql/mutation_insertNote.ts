@@ -21,7 +21,7 @@ export const upsertNote = async (newNote: INoteSnapshotIn): Promise<INote$ | und
     `
 
     try {
-        const response = await client.request(mutation, { newNote })
+        const response: any = await client.request(mutation, { newNote })
 
         return response.insert_notes_one
     } catch (e) {

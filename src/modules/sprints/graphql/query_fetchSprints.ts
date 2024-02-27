@@ -3,6 +3,7 @@ import { generateClient } from '@/graphql/client'
 import { getOwnerId } from '@/functions/getUserId'
 import { gql } from 'graphql-request'
 import { ISprint$SnIn } from '../mst/types'
+import { sprints } from 'gold-timer-genql/lib/generated'
 
 export const query_fetchSprints = async (): Promise<ISprint$SnIn[] | undefined> => {
     const client = generateClient()
@@ -36,7 +37,7 @@ export const query_fetchSprints = async (): Promise<ISprint$SnIn[] | undefined> 
     `
 
     try {
-        const response = await client.request(query, { user_id })
+        const response = await client.request<{ sprints: sprints[] }>(query, { user_id })
 
         return response.sprints.map((sprint: ISprint$SnIn) => ({ ...sprint, sprint_days: sprint.sprint_days || [] }))
     } catch (e) {
