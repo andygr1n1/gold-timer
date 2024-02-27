@@ -1,6 +1,7 @@
 import { gql } from 'graphql-request'
 import { processError } from '@/functions/processMessage'
 import { generateClient } from '@/graphql/client'
+import { sprints_mutation_response } from 'gold-timer-genql/lib/generated'
 
 export const mutation_updateSprintDayStatus = async (id: string, status: boolean): Promise<boolean | undefined> => {
     const client = generateClient()
@@ -14,7 +15,10 @@ export const mutation_updateSprintDayStatus = async (id: string, status: boolean
     `
 
     try {
-        const response = await client.request(mutation, { id, status })
+        const response: any = await client.request(mutation, {
+            id,
+            status,
+        })
 
         return response.update_sprints_days_by_pk.status
     } catch (e) {

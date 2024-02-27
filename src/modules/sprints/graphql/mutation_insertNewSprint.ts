@@ -28,7 +28,7 @@ export const mutation_insertNewSprint = async (newSprint: IInsertNewSprint): Pro
     `
 
     try {
-        const response = await client.request(mutation, { newSprint })
+        const response: any = await client.request(mutation, { newSprint })
         return response.insert_sprints_one
     } catch (e) {
         processError(e, 'mutation_insertNewSprint error')

@@ -1,6 +1,7 @@
 import { gql } from 'graphql-request'
 import { generateClient } from '../client'
 import { processError } from '@/functions/processMessage'
+import { heroes } from 'gold-timer-genql/lib/generated'
 
 export interface IFetchUserByEmailResponse {
     id: string
@@ -18,7 +19,7 @@ export const fetchUserByEmail = async (email: string): Promise<IFetchUserByEmail
     `
 
     try {
-        const response = await client.request(query, { email })
+        const response = await client.request<{ heroes: IFetchUserByEmailResponse[] }>(query, { email })
 
         return response.heroes
     } catch (e) {

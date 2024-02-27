@@ -17,7 +17,7 @@ export const updateUserProfileImage = async (avatar: string): Promise<string | u
     `
 
     try {
-        const response = await client.request(mutation, { id, avatar })
+        const response: any = await client.request(mutation, { id, avatar })
 
         return response.update_heroes.affected_rows
     } catch (e) {

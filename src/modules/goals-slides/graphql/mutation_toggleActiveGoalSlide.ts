@@ -14,7 +14,7 @@ export const mutation_toggleActiveGoalSlide = async (id: string, active: boolean
     `
 
     try {
-        const response = await client.request(mutation, { id, active })
+        const response: any = await client.request(mutation, { id, active })
         return response?.update_goals_slides_by_pk?.active
     } catch (e) {
         processError(e, 'mutation_toggleActiveGoalSlide error')

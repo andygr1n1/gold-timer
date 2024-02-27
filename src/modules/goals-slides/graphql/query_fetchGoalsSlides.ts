@@ -21,7 +21,7 @@ export const query_fetchGoalsSlides = async (): Promise<IGoalSlide$SnIn[] | unde
     `
 
     try {
-        const response = await client.request(query, { owner_id })
+        const response: any = await client.request(query, { owner_id })
 
         return response.goals_slides
     } catch (e) {

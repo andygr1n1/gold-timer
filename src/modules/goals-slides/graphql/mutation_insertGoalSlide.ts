@@ -23,7 +23,7 @@ export const mutation_insertGoalSlide = async (
     `
 
     try {
-        const response = await client.request(mutation, { owner_id, imgPath, title })
+        const response: any = await client.request(mutation, { owner_id, imgPath, title })
 
         return response.insert_goals_slides_one
     } catch (e) {
