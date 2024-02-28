@@ -1,5 +1,5 @@
 export const cryptoBubblesLink = () =>
-    'https://cryptobubbles.net#currencies=1,52,74,1027,1839,1975,2424,3773,3911,4030,5426,5690,5805,6636,7533,8000,8916,9481,10223,10603,10804,11840,11841,19843,20009,20396,20947,21794,23756,28298,28778,28846'
+    'https://cryptobubbles.net#currencies=52,74,1839,1975,2424,5426,5805,6636,8916,9481,10603,11840,11841,20947,21794,28298'
 
 export const cryptoBubblesCount = (): number => {
     const link = cryptoBubblesLink()
