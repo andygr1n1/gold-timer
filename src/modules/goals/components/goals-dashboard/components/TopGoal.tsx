@@ -1,65 +1,39 @@
-import { observer } from 'mobx-react-lite'
-import { getTopGoalColor } from '../../../helpers/getTopGoalColor'
 import { useTogglePopoverState } from '@/hooks/useTogglePopoverState'
 import { XDropdown } from '@/components-x/x-dropdown/XDropdown'
-import { IGoal } from '@/modules/goals/service/types'
-import { TopGoalMenu } from './TopGoalMenu'
 import { selectedGoalAtom, selectedGoalAtom$ } from '@/modules/goals/stores/selectedGoal.store'
-import { IconBellUrgent } from '@/assets/icons/IconBellUrgent'
-import { calculateIsExpired, totalRemainingDays } from '@/modules/goals/helpers/optimizeActiveGoalsData'
-import { truncate } from 'lodash-es'
+import { TopGoalMenu } from './TopGoalMenu'
+import { TopGoalBody } from './TopGoalBody'
 
-export const TopGoal: React.FC<{ goal: IGoal; className?: string; zIndex?: number }> = observer(
-    ({ goal, className = '', zIndex }) => {
-        const { popoverState, setPopoverState } = useTogglePopoverState()
-        const goalClass = getTopGoalColor(goal).containerClass
-        const isExpired = calculateIsExpired(goal)
-        const _totalRemainingDays = totalRemainingDays(goal)
+import { type IGoal } from '@/modules/goals/service/types'
 
-        return (
-            <XDropdown
-                open={popoverState}
-                onOpenChange={() => {
+export const TopGoal: React.FC<{ goal: IGoal; className?: string; zIndex?: number }> = ({
+    goal,
+    className = '',
+    zIndex,
+}) => {
+    const { popoverState, setPopoverState } = useTogglePopoverState()
+
+    return (
+        <XDropdown
+            open={popoverState}
+            onOpenChange={() => {
+                setPopoverState(!popoverState)
+            }}
+            overlayStyle={{ zIndex }}
+            trigger={['click', 'contextMenu']}
+            dropdownRender={() => <TopGoalMenu action={() => setPopoverState(false)} goal={goal} />}
+        >
+            <TopGoalBody
+                goal={goal}
+                selectGoal={() => {
+                    selectedGoalAtom$.set(selectedGoalAtom, { id: goal.id, is_edit: false, is_new: false })
+                    setPopoverState(false)
+                }}
+                onRightClick={() => {
                     setPopoverState(!popoverState)
                 }}
-                overlayStyle={{ zIndex }}
-                trigger={['click', 'contextMenu']}
-                dropdownRender={() => <TopGoalMenu action={() => setPopoverState(false)} goal={goal} />}
-            >
-                <div
-                    onClick={(e) => {
-                        e.preventDefault()
-                        e.stopPropagation()
-                        selectedGoalAtom$.set(selectedGoalAtom, { id: goal.id, is_edit: false, is_new: false })
-                        setPopoverState(false)
-                    }}
-                    onContextMenu={() => {
-                        setPopoverState(!popoverState)
-                    }}
-                    key={goal.id}
-                    className={`relative flex h-[60px] cursor-pointer items-center justify-between rounded-lg duration-300 ${goalClass} ${className} `}
-                >
-                    <span className='h-fit w-[calc(100%-16px)] items-center  rounded-md p-2 align-middle text-white'>
-                        {truncate(goal.title, { length: 70 })}
-                    </span>
-                    <span className='flex w-12 items-center justify-center px-1'>
-                        {isExpired ? null : isDeadline(goal) ? (
-                            <IconBellUrgent width={30} height={30} className='text-white' />
-                        ) : (
-                            <span className='text-xl text-white opacity-70'>
-                                {_totalRemainingDays < 9999 ? _totalRemainingDays : '9999+'}
-                            </span>
-                        )}
-                    </span>
-                </div>
-            </XDropdown>
-        )
-    },
-)
-
-const isDeadline = (goal: IGoal) => {
-    const isExpired = calculateIsExpired(goal)
-    if (isExpired) return true
-    const _totalRemainingDays = totalRemainingDays(goal)
-    return _totalRemainingDays < 1
+                className={className}
+            />
+        </XDropdown>
+    )
 }

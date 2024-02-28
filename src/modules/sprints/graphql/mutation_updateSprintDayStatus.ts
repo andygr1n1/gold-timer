@@ -1,7 +1,6 @@
 import { gql } from 'graphql-request'
 import { processError } from '@/functions/processMessage'
 import { generateClient } from '@/graphql/client'
-import { sprints_mutation_response } from 'gold-timer-genql/lib/generated'
 
 export const mutation_updateSprintDayStatus = async (id: string, status: boolean): Promise<boolean | undefined> => {
     const client = generateClient()

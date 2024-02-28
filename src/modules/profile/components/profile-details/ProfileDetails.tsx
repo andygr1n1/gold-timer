@@ -1,4 +1,3 @@
-import { observer } from 'mobx-react-lite'
 import { ProfileAvatarIndex } from '../profile-avatar/ProfileAvatarIndex'
 import { FormLabel } from '@/components/form/FormLabel'
 import { format } from 'date-fns'
@@ -12,7 +11,7 @@ const ProfileDetail: React.FC<{ data: string }> = ({ data }) => {
     return <div className='h-[18px] text-lg'>{data}</div>
 }
 
-export const ProfileDetails: React.FC = observer(() => {
+export const ProfileDetails: React.FC = () => {
     const { data, isLoading } = useProfileData()
     const { name, email, phone, birthday } = data
 
@@ -61,4 +60,4 @@ export const ProfileDetails: React.FC = observer(() => {
             </div>
         </>
     )
-})
+}
