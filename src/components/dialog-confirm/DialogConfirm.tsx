@@ -6,7 +6,7 @@ import { ReactNode } from 'react'
 export const DialogConfirm: React.FC<{ title: ReactNode; open: boolean; onCancel: () => void; onOk: () => void }> =
     observer(({ title, open, onCancel, onOk }) => {
         return (
-            <XModal header={false} open={open} height='0' onCancel={onCancel}>
+            <XModal open={open} onCancel={onCancel}>
                 <div className='relative flex h-full flex-col items-center justify-center gap-5 px-10 pt-10'>
                     {title}
                     <div className='m-5 flex items-center justify-center gap-5'>

@@ -63,7 +63,12 @@ export const XDatePicker: React.FC<XDatePickerProps> = ({
                 />
             </div>
 
-            <XModal title={'Select Date'} height='80vh' open={dateSelectorIsOpen} onCancel={closeDateSelector}>
+            <XModal
+                title={'Select Date'}
+                // height='80vh'
+                open={dateSelectorIsOpen}
+                onCancel={closeDateSelector}
+            >
                 {dateSelectorIsOpen ? (
                     <div className='animate-opacity-3 flex h-full min-h-[500px] flex-col py-5'>
                         <div className='flex h-full flex-col items-center '>

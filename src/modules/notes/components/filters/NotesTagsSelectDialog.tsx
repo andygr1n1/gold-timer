@@ -57,7 +57,6 @@ export const NotesTagsSelectDialog: React.FC = observer(() => {
             onCancel={() => {
                 onChangeField('tags_list_view', false)
             }}
-            fullHeight
         >
             <FormLabel title='Search:' />
             <div className='flex gap-5'>
