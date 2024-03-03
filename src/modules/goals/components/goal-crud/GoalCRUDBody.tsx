@@ -3,8 +3,8 @@ import { ViewGoalDialogBody } from './components/view-goal/ViewGoalDialogBody'
 import { EditGoalDialogBody } from './components/edit-goal/EditGoalDialogBody'
 import { GoalCRUDActions } from './GoalCRUDActions'
 
-export const GoalCRUDBody = () => {
-    const { isLoading, goal, isEdit } = useFetchGoal()
+export const GoalCRUDBody: React.FC<{ selectedGoalId: string }> = ({ selectedGoalId }) => {
+    const { isLoading, goal, isEdit } = useFetchGoal(selectedGoalId)
 
     return !isLoading && goal ? (
         <>

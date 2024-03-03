@@ -8,4 +8,3 @@ export type IXModal = {
     cancelOnEscape?: boolean
     closeIcon?: boolean
 } & ({ title?: ReactNode; customBody?: never } | { title?: never; customBody?: ReactNode; children?: never })
-

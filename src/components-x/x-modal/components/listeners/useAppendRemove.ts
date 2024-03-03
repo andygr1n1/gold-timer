@@ -19,6 +19,7 @@ export const useAppendRemove = (xModalElement: HTMLDivElement) => {
 
         return () => {
             // document.getElementById('root')?.removeChild(xModalElement)
+            xModalElement.classList.remove('x-modal-wrapper-root')
             legacyParent?.appendChild(xModalElement)
         }
     }, [])

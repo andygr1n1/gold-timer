@@ -50,6 +50,14 @@ export default ({ mode }: { mode: string }) => {
             sourcemap: true,
             chunkSizeWarningLimit: 1500,
             rollupOptions: {
+                // temporary fix to ignore warnings related to source maps
+                onwarn(warning, defaultHandler) {
+                    if (warning.code === 'SOURCEMAP_ERROR') {
+                        return
+                    }
+
+                    defaultHandler(warning)
+                },
                 output: {
                     manualChunks: {
                         antd: ['antd'],
