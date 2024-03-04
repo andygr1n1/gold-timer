@@ -5,6 +5,7 @@ import { deleteImageFromServer } from '@/services/image.service'
 import { SERVER_ROUTES } from '@/helpers/enums'
 import { mutation_deleteGoalSlide } from '../../graphql/mutation_deleteGoalSlide'
 import { GoalsSlides$ } from './GoalsSlides.store'
+import { rootStore$ } from '@/StoreProvider'
 
 export const GoalSlide$ = types
     .model('GoalSlide$', {
@@ -44,6 +45,7 @@ export const GoalSlide$ = types
         }),
         deleteGoalSlide: flow(function* _deleteGoalSlide() {
             try {
+                rootStore$.onChangeField('loading', true)
                 yield deleteImageFromServer(self.img_path, SERVER_ROUTES.GOAL_SLIDE_IMAGE_DELETE)
                 const result = yield mutation_deleteGoalSlide(self.id)
                 if (result === undefined) throw new Error('mutation_deleteGoalSlide error')
@@ -51,6 +53,8 @@ export const GoalSlide$ = types
                 destroySlide(cast(self))
             } catch (e) {
                 processError(e)
+            } finally {
+                rootStore$.onChangeField('loading', false)
             }
         }),
     }))

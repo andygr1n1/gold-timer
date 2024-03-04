@@ -6,6 +6,8 @@ export default {
         'zoom-in-out': 'zoom-in-out 1.0s infinite',
         opacity: 'opacity 0.150s ease-in',
         'opacity-3': 'opacity 0.300s ease-in',
+        'opacity-reverse-sm': 'opacity-reverse 0.300s ease-in',
+        'opacity-reverse-xs': 'opacity-reverse 0.150s ease-in',
         'opacity-5': 'opacity 0.500s ease-in',
         // side menu
         'slide-in': 'slide-in 0.3s linear',
@@ -58,6 +60,14 @@ export default {
             },
             '100%': {
                 opacity: '1',
+            },
+        },
+        'opacity-reverse': {
+            '0%': {
+                opacity: '1',
+            },
+            '100%': {
+                opacity: '0',
             },
         },
         // side menu

@@ -21,7 +21,7 @@ const GoalCRUD: React.FC = () => {
 
     return (
         <XModal open={!!_selectedGoalId} onCancel={onCancel} title={!!_selectedGoalId && <GoalCRUDTitle />}>
-            {_selectedGoalId && <GoalCRUDBody key={_selectedGoalId} />}
+            {_selectedGoalId && <GoalCRUDBody key={_selectedGoalId} selectedGoalId={_selectedGoalId} />}
         </XModal>
     )
 }

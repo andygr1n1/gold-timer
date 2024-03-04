@@ -3,9 +3,15 @@ import { processError } from '../../../../functions/processMessage'
 import { resolveData } from '@/functions/resolveData'
 import { generateTSClient } from '@/graphql/client'
 import { IGoal } from '../types'
+import { newGoalTemplate } from '../../stores/editGoal.store'
+import { selectedGoalAtom, selectedGoalAtom$ } from '../../stores/selectedGoal.store'
 
 export const query_fetchGoalById = async (goal_id: string): Promise<IGoal | null> => {
     const client = generateTSClient()
+    const selectedGoal = selectedGoalAtom$.get(selectedGoalAtom)
+
+    if (selectedGoal?.is_new)
+        return optimizeActiveGoalsData(newGoalTemplate(selectedGoal.id, selectedGoal.parent_goal_id))[0]
 
     return await resolveData<null, IGoal | null>(
         () =>

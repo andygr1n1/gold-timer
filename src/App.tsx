@@ -4,7 +4,7 @@ import { loginAtom } from './modules/login/stores/login.store'
 import { AppProtected } from './AppProtected'
 import { AnonymousRoutes } from './AnonymousRoutes'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+// import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 
 // *
 //
@@ -21,7 +21,7 @@ export const App = () => {
 
                 {login.user_id && <AppProtected user_id={login.user_id} />}
             </BrowserRouter>
-            <ReactQueryDevtools initialIsOpen={false} />
+            {/* <ReactQueryDevtools initialIsOpen={false} /> */}
         </QueryClientProvider>
     )
 }

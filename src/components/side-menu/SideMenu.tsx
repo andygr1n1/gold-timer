@@ -5,7 +5,6 @@ import { SideMenuLink } from './components/SideMenuLink'
 import { useOutsideAlerter } from '@/hooks/useClickOutside.hook'
 import { useEffect, useRef } from 'react'
 import { useWindowMatchMedia } from '@/hooks/useMatchMedia.hook'
-import { Transition } from '@headlessui/react'
 import { GoToDashboard } from './components/GoToDashboard'
 import { XMenuDivider } from '@/components-x/x-dropdown/XMenuDivider'
 import { isUnderDevelopment } from '@/functions/isUnderDevelopment.helper'
@@ -19,35 +18,33 @@ import {
     IconProfile,
     IconSprint,
 } from '@/assets/icons'
+import { cn } from '@/functions'
 
 export const SideMenu: React.FC = observer(() => {
     const wrapperRef = useRef<HTMLDivElement | null>(null)
     const { isDesktop } = useWindowMatchMedia(['isDesktop'])
 
-    useOutsideAlerter(wrapperRef, useSideMenu.onChange, isDesktop)
+    const onClose = () => {
+        useSideMenu.onChange()
+    }
+
+    useOutsideAlerter(wrapperRef, onClose, isDesktop)
 
     useEffect(() => {
-        isDesktop && useSideMenu.is_open && useSideMenu.onChange()
+        isDesktop && useSideMenu.is_open && onClose()
     }, [isDesktop])
 
     if (!isDesktop && useSideMenu.is_detached_from_DOM) return null
 
     return (
         <>
-            <Transition
-                appear={true}
-                show={useSideMenu.is_open}
-                enter='transition-opacity duration-300'
-                enterFrom='opacity-0'
-                enterTo='opacity-40'
-                leave='transition-opacity duration-300'
-                leaveFrom='opacity-40'
-                leaveTo='opacity-0'
-                className={'fixed z-[110] h-full w-full lg:hidden'}
-            >
-                <div className='fixed z-[110] h-full w-full bg-gray-500 lg:hidden' />
-            </Transition>
-            {/*  */}
+            <div
+                className={cn(
+                    useSideMenu.is_open && 'fixed  animate-opacity-3',
+                    'inset-0 animate-opacity-3 bg-gray-900 bg-opacity-90',
+                )}
+                style={{ zIndex: 100 }}
+            />
             <div
                 ref={wrapperRef}
                 className={`${

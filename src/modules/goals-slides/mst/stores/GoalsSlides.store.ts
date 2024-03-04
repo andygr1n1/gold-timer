@@ -1,6 +1,6 @@
 import { applySnapshot, destroy, detach, flow, toGenerator, types } from 'mobx-state-tree'
 import { GoalSlide$ } from './GoalSlide.store'
-import { processError } from '@/functions/processMessage'
+import { processError, processSuccess } from '@/functions/processMessage'
 import { IGoalSlide$ } from '../types'
 import { query_fetchGoalsSlides } from '../../graphql/query_fetchGoalsSlides'
 import { SERVER_ROUTES } from '@/helpers/enums'
@@ -45,10 +45,12 @@ export const GoalsSlides$ = types
                 if (!newGoalSlide) return
                 const newGoalSlideRes = yield* toGenerator(mutation_insertGoalSlide(newGoalSlide, self.img_src_title))
                 newGoalSlideRes && self.goals_slides.push(newGoalSlideRes)
-                rootStore$.onChangeField('loading', false)
+                processSuccess('Slide was successfully uploaded')
             } catch (e) {
                 processError(e, 'saveNewGoalSlide error')
+            } finally {
                 rootStore$.onChangeField('loading', false)
+                self.img_cropped_src = ''
             }
         }),
         destroySlide(slide: IGoalSlide$) {
