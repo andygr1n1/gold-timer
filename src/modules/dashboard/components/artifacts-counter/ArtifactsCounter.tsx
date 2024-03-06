@@ -13,7 +13,7 @@ export const ArtifactsCounter: React.FC = observer(() => {
     const { activeGoalsCount, activeNotesCount, activeSprintsCount } = useFetchArtifactsCount()
 
     return (
-        <div className='flex w-fit items-center justify-center gap-5 '>
+        <div className='xs:flex hidden w-fit items-center justify-center gap-5 '>
             <GoalsCounterDropdown
                 button={
                     <ArtifactsCounterItem
