@@ -3964,10 +3964,10 @@ globby@^11.1.0:
     merge2 "^1.4.1"
     slash "^3.0.0"
 
-gold-timer-genql@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/gold-timer-genql/-/gold-timer-genql-1.0.2.tgz#211b38934493dea991ce83ba827adf402ff320f6"
-  integrity sha512-htUY+pdqk2kfa5AFL/wi2Oy8vPssH2quLt+ioJpbNvhjbUvDb78X5PIOWyu+V5i7qxag1D2vSbsdY2cJJXo29g==
+gold-timer-genql@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/gold-timer-genql/-/gold-timer-genql-1.0.4.tgz#a2e9bf8a53b6760f3781485d357f0735dc74787a"
+  integrity sha512-xJn+UMZi00CjgrvLYsYEHYZyVSkLiBqFE39c1aPmV1HWwhbGpWP3jN2j521sugZj8flwJC9c0lwRFHHDWiBQMA==
   dependencies:
     graphql "^16.6.0"
 

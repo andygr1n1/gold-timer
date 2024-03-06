@@ -55,7 +55,7 @@ export const SideMenu: React.FC = observer(() => {
             `}
             >
                 <div className='md:p2-10 flex w-[230px] min-w-[230px] flex-col overflow-auto py-5 '>
-                    <div className='flex flex-auto flex-col gap-5 overflow-auto  '>
+                    <div className='flex flex-auto flex-col gap-5 overflow-auto mb-10  '>
                         <UserInfo />
                         <div className='w-[calc(100%-32px)] pl-8'>
                             <div className='mx-auto flex w-[180px] flex-auto flex-col gap-5 overflow-auto '>
