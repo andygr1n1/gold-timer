@@ -23,17 +23,20 @@ export const TopGoal: React.FC<{ goal: IGoal; className?: string; zIndex?: numbe
             trigger={['click', 'contextMenu']}
             dropdownRender={() => <TopGoalMenu action={() => setPopoverState(false)} goal={goal} />}
         >
-            <TopGoalBody
-                goal={goal}
-                selectGoal={() => {
-                    selectedGoalAtom$.set(selectedGoalAtom, { id: goal.id, is_edit: false, is_new: false })
-                    setPopoverState(false)
-                }}
-                onRightClick={() => {
-                    setPopoverState(!popoverState)
-                }}
-                className={className}
-            />
+            {/* div is important for context menu positioning */}
+            <div>
+                <TopGoalBody
+                    goal={goal}
+                    selectGoal={() => {
+                        selectedGoalAtom$.set(selectedGoalAtom, { id: goal.id, is_edit: false, is_new: false })
+                        setPopoverState(false)
+                    }}
+                    onRightClick={() => {
+                        setPopoverState(!popoverState)
+                    }}
+                    className={className}
+                />
+            </div>
         </XDropdown>
     )
 }

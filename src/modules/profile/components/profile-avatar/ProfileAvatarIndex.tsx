@@ -32,7 +32,7 @@ export const ProfileAvatarIndex = observer(() => {
                                         <IconUpload
                                             width={64}
                                             height={64}
-                                            className='text-cText opacity-10 duration-300 group-hover:text-blue-600 group-hover:opacity-100'
+                                            className='text-cText opacity-0 duration-300 group-hover:text-blue-600 group-hover:opacity-100'
                                         />
                                     </div>
                                     <div className='animate-ping-bg absolute left-0 top-[-3px] !z-0 h-full w-full  rounded-full bg-blue-500/30 opacity-100 transition '></div>
