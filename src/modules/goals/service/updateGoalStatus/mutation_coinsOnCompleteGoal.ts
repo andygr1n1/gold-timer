@@ -1,7 +1,7 @@
 import { resolveData } from '@/functions/resolveData'
 import { processError } from '@/functions/processMessage'
 import { Client, goal_status_enum_enum } from 'gold-timer-genql/lib/generated'
-import { getUserCoins, getUserId } from '@/functions/universalCookie.helper'
+import { getUserCoins, getUserId } from '@/functions/getUserData'
 import { IGoal } from '../types'
 import { getCoinsFromCompletedGoal } from '@/functions/getCoinsFromCompletedGoal'
 

@@ -1,7 +1,7 @@
 import { resolveData } from '@/functions/resolveData'
 import { generateTSClient } from '@/graphql/client'
 import { processError } from '@/functions/processMessage'
-import { getUserId } from '@/functions/universalCookie.helper'
+import { getUserId } from '@/functions/getUserData'
 
 export const query_fetchNotepad = async (): Promise<string> => {
     const client = generateTSClient()

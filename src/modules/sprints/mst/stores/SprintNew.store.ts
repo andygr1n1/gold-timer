@@ -3,7 +3,6 @@ import { Sprint$ } from './Sprint.store'
 import { processError } from '@/functions/processMessage'
 import { add } from 'date-fns'
 import { Sprints$ } from './Sprints.store'
-import { getOwnerId } from '@/functions/getUserId'
 import { IEditSprintReq, IInsertNewSprint } from '@/modules/sprints/graphql/helpers/interface'
 import { compact, last } from 'lodash-es'
 import { mutation_insertNewSprint } from '@/modules/sprints/graphql/mutation_insertNewSprint'
@@ -11,6 +10,7 @@ import { mutation_updateSprint } from '@/modules/sprints/graphql/mutation_update
 import { deleteImageFromServer, uploadNewImageToServer } from '@/services/image.service'
 import { SERVER_ROUTES } from '@/helpers/enums'
 import { setZeroTime } from '../../../../functions/date.helpers'
+import { getUserId } from '@/functions/getUserData'
 
 export const SprintNew$ = types
     .compose(
@@ -91,7 +91,7 @@ export const SprintNew$ = types
                     finished_at: lastSprintDate,
                     sprint_days,
                     sprint_goals: compact(self.sprint_goals?.split('#,#')).join('#,#'),
-                    owner_id: getOwnerId(),
+                    owner_id: getUserId(),
                 }
 
                 self.loading = true

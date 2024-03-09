@@ -1,7 +1,7 @@
 import { resolveData } from '@/functions/resolveData'
 import { processError } from '@/functions/processMessage'
 import { generateTSClient } from '@/graphql/client'
-import { getUserId } from '@/functions/universalCookie.helper'
+import { getUserId } from '@/functions/getUserData'
 
 export const mutation_notepadStatus = async (locked: boolean): Promise<boolean> => {
     const client = generateTSClient()

@@ -2,7 +2,7 @@ import { resolveData } from '@/functions/resolveData'
 import { generateTSClient } from '@/graphql/client'
 import { processError } from '@/functions/processMessage'
 import { heroes } from 'gold-timer-genql/lib/generated'
-import { getUserId } from '@/functions/universalCookie.helper'
+import { getUserId } from '@/functions/getUserData'
 
 type IHero = Pick<heroes, 'name' | 'avatar'>
 

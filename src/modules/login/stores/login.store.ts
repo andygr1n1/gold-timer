@@ -1,5 +1,5 @@
 import { isDev } from '@/functions/isUnderDevelopment.helper'
-import { getUserId } from '@/functions/universalCookie.helper'
+import { getUserId } from '@/functions/getUserData'
 import { atom } from 'jotai'
 import { atomWithImmer } from 'jotai-immer'
 

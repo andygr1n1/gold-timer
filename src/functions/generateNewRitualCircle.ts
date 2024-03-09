@@ -50,7 +50,7 @@ export const generateNewRitualCircle = (
     }
 }
 
-export const generateEstimationForRitualDaysOfWeek = (created: Date, finishPoint: number): number => {
+const generateEstimationForRitualDaysOfWeek = (created: Date, finishPoint: number): number => {
     let pushDays = 0
     const createPoint = getDay(created)
     if (createPoint > finishPoint) {

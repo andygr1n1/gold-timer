@@ -3,14 +3,8 @@ import { useAtom } from 'jotai'
 import { loginAtom } from './modules/login/stores/login.store'
 import { AppProtected } from './AppProtected'
 import { AnonymousRoutes } from './AnonymousRoutes'
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 // import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
-
-// *
-//
-// important to inject query into window
-// it saves react hmr
-window.queryClient = new QueryClient()
+import { QueryClientProvider } from '@tanstack/react-query'
 
 export const App = () => {
     const [login] = useAtom(loginAtom)

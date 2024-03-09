@@ -1,7 +1,7 @@
 import { ModuleWrapper } from '@/components/ModuleWrapper'
 import { isUnderDevelopment } from '@/functions/isUnderDevelopment.helper'
 import { APP_ROUTES_ENUM } from '@/helpers/enums'
-import { PatronusPreview } from './previews/PatronusPreview'
+import { PhoenixConnectionPreview } from './previews/PhoenixConnectionPreview'
 import { LoveStoryPreview } from './previews/LoveStoryPreview'
 import { EyeTrainingPreview } from './previews/HealingEye'
 
@@ -12,7 +12,7 @@ export const Stories: React.FC = () => {
                 <>
                     <EyeTrainingPreview />
 
-                    <PatronusPreview />
+                    <PhoenixConnectionPreview />
 
                     <LoveStoryPreview />
                     {/* stabilized */}

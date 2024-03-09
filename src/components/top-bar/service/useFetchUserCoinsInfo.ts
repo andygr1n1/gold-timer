@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 import { query_userCoinsInfo } from './query_userCoinsInfo'
-import { getUserId } from '@/functions/universalCookie.helper'
+import { getUserId } from '@/functions/getUserData'
 
 type IRes = {
     isLoading: boolean

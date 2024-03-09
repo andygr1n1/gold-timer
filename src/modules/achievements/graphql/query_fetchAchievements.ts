@@ -1,6 +1,6 @@
+import { getUserId } from '@/functions/getUserData'
 import { generateTSClient } from '../../../graphql/client'
 import { processError } from '@/functions/processMessage'
-import { getOwnerId } from '@/functions/getUserId'
 import { resolveData } from '@/functions/resolveData'
 import type { achievements } from 'gold-timer-genql/lib/generated'
 
@@ -13,7 +13,7 @@ export const query_fetchAchievements = async (): Promise<Partial<achievements>[]
                 .query({
                     __name: 'query_fetchAchievements',
                     achievements: {
-                        __args: { order_by: [{ created_at: 'desc' }], where: { owner_id: { _eq: getOwnerId() } } },
+                        __args: { order_by: [{ created_at: 'desc' }], where: { owner_id: { _eq: getUserId() } } },
                         id: true,
                         img_path: true,
                         title: true,

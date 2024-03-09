@@ -1,6 +1,6 @@
 import { useMutation } from '@tanstack/react-query'
 import { IGoal, IInsertNewGoal } from '../types'
-import { getUserId } from '@/functions/universalCookie.helper'
+import { getUserId } from '@/functions/getUserData'
 import { convertStringToDate, setMidnightTime } from '@/functions/date.helpers'
 import { setGoalDifficulty } from '@/functions/setGoalDifficulty'
 import { mutation_upsertGoal } from './mutation_upsertGoal'

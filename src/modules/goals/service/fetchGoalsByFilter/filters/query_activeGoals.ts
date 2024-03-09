@@ -1,5 +1,5 @@
 import { setZeroTime } from '@/functions/date.helpers'
-import { getUserId } from '@/functions/universalCookie.helper'
+import { getUserId } from '@/functions/getUserData'
 import { Client } from 'gold-timer-genql/lib/generated'
 import { GOAL_STATUS_ENUM } from '@/helpers/enums'
 import { filterGoalAtom } from '@/modules/goals/stores/filterGoal.store'

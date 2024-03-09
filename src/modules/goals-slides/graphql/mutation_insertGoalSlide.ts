@@ -2,14 +2,14 @@ import { gql } from 'graphql-request'
 import { generateClient } from '../../../graphql/client'
 import { processError } from '@/functions/processMessage'
 import { IGoalSlide$SnIn } from '../mst/types'
-import { getOwnerId } from '@/functions/getUserId'
+import { getUserId } from '@/functions/getUserData'
 
 export const mutation_insertGoalSlide = async (
     imgPath: string,
     title: string,
 ): Promise<IGoalSlide$SnIn | undefined> => {
     const client = generateClient()
-    const owner_id = getOwnerId()
+    const owner_id = getUserId()
 
     const mutation = gql`
         mutation mutation_insertGoalSlide($owner_id: uuid, $imgPath: String, $title: String) {
