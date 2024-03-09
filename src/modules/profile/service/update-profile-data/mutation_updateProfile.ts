@@ -2,7 +2,7 @@ import { resolveData } from '@/functions/resolveData'
 import { processError } from '@/functions/processMessage'
 import { IHero } from '../types'
 import { generateTSClient } from '@/graphql/client'
-import { getUserId } from '@/functions/universalCookie.helper'
+import { getUserId } from '@/functions/getUserData'
 import { optimizeProfileData } from '../../helpers/optimizeProfileData'
 
 export const mutation_updateProfile = async (data: IHero): Promise<IHero | null> => {

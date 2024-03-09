@@ -1,7 +1,7 @@
 import { query_userCoinsInfo } from '@/components/top-bar/service/query_userCoinsInfo'
 import { useQuery } from '@tanstack/react-query'
 import { query_artifactsCount } from './query_artifactsCount'
-import { getUserId } from '@/functions/universalCookie.helper'
+import { getUserId } from '@/functions/getUserData'
 
 type IArtifactsCount = { activeNotesCount: number; activeSprintsCount: number; activeGoalsCount: number }
 

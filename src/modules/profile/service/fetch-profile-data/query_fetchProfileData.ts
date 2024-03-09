@@ -2,7 +2,7 @@ import { processError } from '../../../../functions/processMessage'
 import { resolveData } from '@/functions/resolveData'
 import { generateTSClient } from '@/graphql/client'
 import { IHero } from '../types'
-import { getUserId } from '@/functions/universalCookie.helper'
+import { getUserId } from '@/functions/getUserData'
 import { optimizeProfileData } from '../../helpers/optimizeProfileData'
 
 export const query_fetchProfileData = async (): Promise<IHero> => {

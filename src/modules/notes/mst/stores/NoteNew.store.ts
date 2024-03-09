@@ -3,8 +3,9 @@ import { Note$ } from './Note.store'
 import { INote$SnapshotIn } from '../types'
 import { upsertNote } from '@/modules/notes/graphql/mutation_insertNote'
 import { compact } from 'lodash-es'
-import { getOwnerId } from '@/functions/getUserId'
+
 import { processError } from '@/functions/processMessage'
+import { getUserId } from '@/functions/getUserData'
 
 export const NoteNew$ = Note$.named('NoteNew$').actions((self) => ({
     onChangeField<Key extends keyof typeof self>(key: Key, value: (typeof self)[Key]) {
@@ -21,7 +22,7 @@ export const NoteNew$ = Note$.named('NoteNew$').actions((self) => ({
                 tag: compact(self.tag.split(','))
                     .map((t) => t.trim().toLowerCase())
                     .toString(),
-                owner_id: getOwnerId(),
+                owner_id: getUserId(),
             })
 
             return res

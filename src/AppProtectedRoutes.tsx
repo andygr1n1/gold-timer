@@ -17,8 +17,6 @@ export const AppProtectedRoutes: React.FC = () => {
     return (
         <>
             <Routes>
-                <Route path={'/'} element={<Navigate to={`/${APP_ROUTES_ENUM.DASHBOARD}`} />} />
-                <Route path={'*'} element={<Navigate to={`/${APP_ROUTES_ENUM.DASHBOARD}`} />} />
                 <Route path={`/${APP_ROUTES_ENUM.PROFILE}`} element={<ProfileIndex />} />
                 <Route path={`/${APP_ROUTES_ENUM.ACHIEVEMENTS}`} element={<AchievementsIndex />} />
                 <Route path={`/${APP_ROUTES_ENUM.STORIES}/*`} element={<StoriesIndex />} />
@@ -28,6 +26,8 @@ export const AppProtectedRoutes: React.FC = () => {
                 <Route path={`/${APP_ROUTES_ENUM.CRYPTO}`} element={<CryptoIndex />} />
                 {/*  */}
                 <Route path={`/${APP_ROUTES_ENUM.DASHBOARD}/*`} element={<DashboardIndex />} />
+                <Route path={'/'} element={<Navigate to={`/${APP_ROUTES_ENUM.DASHBOARD}`} />} />
+                <Route path={'*'} element={<Navigate to={`/${APP_ROUTES_ENUM.DASHBOARD}`} />} />
             </Routes>
             {/*  */}
             {/* D I A L O G */}

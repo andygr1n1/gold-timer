@@ -1,12 +1,12 @@
 import { gql } from 'graphql-request'
 import { processError } from '@/functions/processMessage'
 import { generateClient } from '@/graphql/client'
-import { getOwnerId } from '@/functions/getUserId'
+import { getUserId } from '@/functions/getUserData'
 
 export const updateUserProfileImage = async (avatar: string): Promise<string | undefined> => {
     const client = generateClient()
 
-    const id = getOwnerId()
+    const id = getUserId()
 
     const mutation = gql`
         mutation updatePasswordByEmail($id: uuid, $avatar: String) {

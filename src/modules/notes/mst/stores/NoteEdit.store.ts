@@ -3,9 +3,9 @@ import { Note$ } from './Note.store'
 import { INote$ } from '../types'
 import { upsertNote } from '@/modules/notes/graphql/mutation_insertNote'
 import { compact } from 'lodash-es'
-import { getOwnerId } from '@/functions/getUserId'
 import { processError } from '@/functions/processMessage'
 import { Notes$ } from './Notes.store'
+import { getUserId } from '@/functions/getUserData'
 
 export const NoteEdit$ = types
     .compose(
@@ -35,7 +35,7 @@ export const NoteEdit$ = types
                         tag: compact(self.tag.split(','))
                             .map((t) => t.trim().toLowerCase())
                             .toString(),
-                        owner_id: getOwnerId(),
+                        owner_id: getUserId(),
                         id: self.id,
                     }),
                 )

@@ -1,5 +1,5 @@
 import { setZeroTime } from '@/functions/date.helpers'
-import { getUserId } from '@/functions/universalCookie.helper'
+import { getUserId } from '@/functions/getUserData'
 import { Client } from 'gold-timer-genql/lib/generated'
 import { filterGoalAtom } from '@/modules/goals/stores/filterGoal.store'
 import { selectedGoalAtom$ } from '@/modules/goals/stores/selectedGoal.store'
@@ -31,7 +31,7 @@ export const query_expiredGoals = (props: {
                                 deleted_at: { _is_null: true },
                                 status: { _eq: 'active' },
                                 // not ritual
-                                _not: { goal_ritual: {} },
+                                // _not: { goal_ritual: {} },
                                 // not expired
                                 finished_at: { _lt: setZeroTime(new Date(Date.now())) },
                             },
@@ -58,6 +58,9 @@ export const query_expiredGoals = (props: {
                 created_at: true,
                 finished_at: true,
                 is_favorite: true,
+                goal_ritual: {
+                    ritual_power: true,
+                },
                 status: true,
                 difficulty: true,
             },

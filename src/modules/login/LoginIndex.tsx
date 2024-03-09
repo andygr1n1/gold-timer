@@ -2,7 +2,6 @@ import { Form } from 'antd'
 import { observer } from 'mobx-react-lite'
 import { IValues } from './helpers/login.interface'
 import { sendLoginData } from './helpers/sendLoginData.helper'
-import { setRememberUserCookie } from '@/functions/universalCookie.helper'
 import { useWindowMatchMedia } from '@/hooks/useMatchMedia.hook'
 import { LoginContainer } from './components/LoginContainer'
 import { LoginLogo } from './components/LoginLogo'
@@ -18,6 +17,7 @@ import { processError } from '@/functions/processMessage'
 import { useAtom } from 'jotai'
 import { resolveData } from '@/functions/resolveData'
 import { loginAtom } from './stores/login.store'
+import { setRememberUserCookie } from '@/functions/universalCookie'
 
 export const LoginIndex: React.FC = observer(() => {
     const { isDesktop } = useWindowMatchMedia(['isDesktop'])

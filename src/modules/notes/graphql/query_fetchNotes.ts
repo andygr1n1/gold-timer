@@ -1,8 +1,9 @@
 import { processError } from '../../../functions/processMessage'
 import { INote$SnapshotIn } from '@/modules/notes/mst/types'
-import { getOwnerId } from '@/functions/getUserId'
+
 import { resolveData } from '@/functions/resolveData'
 import { generateTSClient } from '@/graphql/client'
+import { getUserId } from '@/functions/getUserData'
 
 export const query_fetchNotes = async (): Promise<INote$SnapshotIn[]> => {
     const client = generateTSClient()
@@ -13,7 +14,7 @@ export const query_fetchNotes = async (): Promise<INote$SnapshotIn[]> => {
                 .query({
                     __name: 'query_fetchNotes',
                     notes: {
-                        __args: { order_by: [{ created_at: 'asc' }], where: { owner_id: { _eq: getOwnerId() } } },
+                        __args: { order_by: [{ created_at: 'asc' }], where: { owner_id: { _eq: getUserId() } } },
                         id: true,
                         description: true,
                         tag: true,
