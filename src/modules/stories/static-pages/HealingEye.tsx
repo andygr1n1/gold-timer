@@ -1,54 +1,55 @@
 import { ModuleWrapper } from '@/components/ModuleWrapper'
 import { APP_ROUTES_ENUM } from '@/helpers/enums'
 import { Focus, GoldenFocus, Statement } from './components/Focus'
+import { Paragraph } from './components/Paragraph'
 
 export const HealingEye: React.FC = () => {
     return (
         <ModuleWrapper context={APP_ROUTES_ENUM.STORIES}>
             <div className='book-page'>
                 <h1>Healing Eye</h1>
-                <p className='paragraph'>
+                <Paragraph>
                     Выполняя упражнения для глаз, мы не только тренируем мышцы, но и делаем профилактику
                     <Focus text='всего организма' />.
-                </p>
-                <p className='paragraph'>
+                </Paragraph>
+                <Paragraph>
                     Работу над собой начинаем с принятия мышечного корсета -
                     <GoldenFocus text=' выпрямить спину и улыбнуться' />.
-                </p>
-                <p className='paragraph'>Теперь можно начинать.</p>
+                </Paragraph>
+                <Paragraph>Теперь можно начинать.</Paragraph>
                 {/*  */}
                 {/* 1 */}
                 {/*  */}
-                <p className='paragraph'>
+                <Paragraph>
                     <GoldenFocus text='1. Взгляд вверх-вниз' />
-                </p>
-                <p className='paragraph'>
+                </Paragraph>
+                <Paragraph>
                     Голову держите прямо, не запрокидывайте. Взгляд направлен вверх (в потолок), а{' '}
                     <Focus
                         text='мысленно продолжаем движение глаз под череп на макушку, как будто
                     Вы туда посмотрели.'
                     />
-                </p>
-                <p className='paragraph'>
+                </Paragraph>
+                <Paragraph>
                     А теперь глаза вниз, а
                     <Focus
                         text='внимание в область щитовидной железы, как будто Вы заглянули туда, где наше
                     горло.'
                     />
-                </p>
-                <p className='paragraph'>Выполняем 8-10 раз в каждом направлении.</p>
-                <p className='paragraph'>
+                </Paragraph>
+                <Paragraph>Выполняем 8-10 раз в каждом направлении.</Paragraph>
+                <Paragraph>
                     Почему важно при выполнении этих, казалось, давно известных упражнений продолжать движение глаз на
                     мысленном уровне?
-                </p>
-                <p className='paragraph'>
+                </Paragraph>
+                <Paragraph>
                     Еще в древние времена на Востоке было известно, что в области макушки находится огромный пучок
                     энергетических каналов, а у внешнего края глаз центры, связанные с желчными протоками.
-                </p>
-                <p className='paragraph'>
+                </Paragraph>
+                <Paragraph>
                     Поэтому, мысленно продолжая движение глаз, например за ухо, мы тем самым влияем на желчные протоки и
                     печень. Глаза - это окна печени.
-                </p>
+                </Paragraph>
 
                 <Statement
                     text={
@@ -58,51 +59,51 @@ export const HealingEye: React.FC = () => {
                 {/*  */}
                 {/* 2 */}
                 {/*  */}
-                <p className='paragraph'>
+                <Paragraph>
                     <GoldenFocus text='2. Ходики' />
-                </p>
-                <p className='paragraph'>
+                </Paragraph>
+                <Paragraph>
                     Посмотрели влево: глаза смотрят на стену, а внимание ушло в левое ухо. Посмотрели вправо: глаза
                     смотрят в другую стену, а внимание ушло за правое ухо.
-                </p>
+                </Paragraph>
                 {/*  */}
                 {/* 3 */}
                 {/*  */}
-                <p className='paragraph'>
+                <Paragraph>
                     <GoldenFocus text='3.' />
-                </p>
-                <p className='paragraph'>
+                </Paragraph>
+                <Paragraph>
                     Посмотрели влево и перевели взгляд прямо, затем посмотрели вправо и перевели взгляд прямо.
-                </p>
-                <p className='paragraph'>Выполняем 8-10 раз в каждом направлении.</p>
+                </Paragraph>
+                <Paragraph>Выполняем 8-10 раз в каждом направлении.</Paragraph>
                 {/*  */}
                 {/* 4 */}
                 {/*  */}
-                <p className='paragraph'>
+                <Paragraph>
                     <GoldenFocus text='4. Циферблат' />
-                </p>
-                <p className='paragraph'>
+                </Paragraph>
+                <Paragraph>
                     Выполняем круговые движения глазными яблоками. Голова остаётся неподвижной. Представьте перед собой
                     <GoldenFocus text='большой циферблат золотого цвета' />.
                     <GoldenFocus text='Этот цвет способствует улучшению зрения.' />
-                </p>
-                <p className='paragraph'>
+                </Paragraph>
+                <Paragraph>
                     Медленно ведите взгляд, отмечая цифры 12 вверху и 6 внизу на воображаемом циферблате. Сначала в одну
                     сторону, затем в другую.
-                </p>
-                <p className='paragraph'>
+                </Paragraph>
+                <Paragraph>
                     <Focus text='!!!' /> Отмечать цифры 12 и 6 необходимо, чтобы линия круга получилась ровной и
                     движение было плавным.
-                </p>
-                <p className='paragraph'>Выполняем 8-10 раз по часовой стрелке и против.</p>
+                </Paragraph>
+                <Paragraph>Выполняем 8-10 раз по часовой стрелке и против.</Paragraph>
                 <Statement text={'Спокойно моргайте, не переутомляйте глаза.'} />
-                <p className='paragraph'>
+                <Paragraph>
                     А теперь то же упражнение, но лицо обращено к небу. <Focus text='Глаза открыты ' />
-                </p>
-                <p className='paragraph'>Выполняем 8-10 раз в каждом направлении.</p>
-                <p className='paragraph'>
+                </Paragraph>
+                <Paragraph>Выполняем 8-10 раз в каждом направлении.</Paragraph>
+                <Paragraph>
                     Теперь шею выпрямляем, глаза закрываем. То же самое упражнение выполняем с закрытыми глазами.
-                </p>
+                </Paragraph>
                 <Statement text='В душе радость от того, что, когда откроем глаза, мы будем хорошо видеть.' />
                 <Statement
                     text='Создайте такое трепетное ожидание и в то же время состояние снисходительного спокойствия, 
@@ -111,9 +112,9 @@ export const HealingEye: React.FC = () => {
                 {/*  */}
                 {/* 5 */}
                 {/*  */}
-                <p className='paragraph'>
+                <Paragraph>
                     <GoldenFocus text='5. Бабочка' />
-                </p>
+                </Paragraph>
             </div>
         </ModuleWrapper>
     )

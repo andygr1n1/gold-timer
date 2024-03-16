@@ -11,10 +11,10 @@ export const useOnClick = (xModalElement: HTMLDivElement, onCancel: () => void) 
             }
         }
 
-        xModalElement.addEventListener('click', onClickEvent)
+        xModalElement.addEventListener('mousedown', onClickEvent)
 
         return () => {
-            xModalElement.removeEventListener('click', onClickEvent)
+            xModalElement.removeEventListener('mousedown', onClickEvent)
         }
     }, [])
 }
