@@ -14,7 +14,7 @@ export const ModuleWrapper: React.FC<{
             className='bg-global-bg mx-auto my-5 w-[calc(100%-40px)] max-w-[1300px] flex-auto rounded-lg md:my-2 md:w-[calc(100%-160px)]'
         >
             {!hideTopBar && <TopBar>{topBarNodes}</TopBar>}
-            <div className='my-10 flex w-full flex-wrap justify-start gap-8'>{children}</div>
+            <div className='my-5 flex w-full flex-wrap justify-start gap-8'>{children}</div>
         </div>
     )
 })

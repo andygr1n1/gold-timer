@@ -1,4 +1,3 @@
-import { IconComplete } from '@/assets/icons/IconComplete'
 import { IconInfinity } from '@/assets/icons/IconInfinity'
 import { FormFooter } from '@/components/form/FormFooter'
 import { IGoal } from '@/modules/goals/service/types'
@@ -9,7 +8,7 @@ import { CompleteRitualGoal } from '../../goal-actions/CompleteRitualGoal'
 import { useMutateGoalStatus } from '@/modules/goals/service'
 import { useMutateGoalRitualize } from '@/modules/goals/service/updateGoalRitualize/useMutateGoalRitualize'
 import { isCompleted } from '@/modules/goals/helpers/goalsGuards'
-import { IconFocus } from '@/assets/icons'
+import { IconCompletedFilled, IconFocus } from '@/assets/icons'
 import { calculateIsFromFuture } from '@/modules/goals/helpers/optimizeActiveGoalsData'
 
 export const ViewGoalFooter: React.FC<{ goal: IGoal }> = ({ goal }) => {
@@ -37,7 +36,7 @@ export const ViewGoalFooter: React.FC<{ goal: IGoal }> = ({ goal }) => {
                         ) : _isCompleted ? (
                             <IconFocus className='text-white' width={16} height={16} />
                         ) : (
-                            <IconComplete className='text-white' width={16} height={16} />
+                            <IconCompletedFilled className='text-white' width={16} height={16} />
                         )}
                         <div>{goal_ritual ? 'Ritualize' : _isCompleted ? 'Reactivate' : 'Complete'}</div>
                     </div>

@@ -1,7 +1,7 @@
 import { useTogglePopoverState } from '@/hooks/useTogglePopoverState'
 import { XDropdown } from '@/components-x/x-dropdown/XDropdown'
 import { selectedGoalAtom, selectedGoalAtom$ } from '@/modules/goals/stores/selectedGoal.store'
-import { TopGoalMenu } from './TopGoalMenu'
+import { GoalContextMenu } from './GoalContextMenu'
 import { TopGoalBody } from './TopGoalBody'
 
 import { type IGoal } from '@/modules/goals/service/types'
@@ -21,7 +21,7 @@ export const TopGoal: React.FC<{ goal: IGoal; className?: string; zIndex?: numbe
             }}
             overlayStyle={{ zIndex }}
             trigger={['click', 'contextMenu']}
-            dropdownRender={() => <TopGoalMenu action={() => setPopoverState(false)} goal={goal} />}
+            dropdownRender={() => <GoalContextMenu action={() => setPopoverState(false)} goal={goal} />}
         >
             {/* div is important for context menu positioning */}
             <div className='animate-opacity-5'>

@@ -16,7 +16,6 @@ export const GoalSearchFilter: React.FC = () => {
     const onChangeValue = useMemo(() => {
         return debounce((e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
             _setFilterGoalAtom_search(e.target.value)
-            console.log('state', state)
             window.queryClient.invalidateQueries({ queryKey: ['KEY_FetchGoalsByFilter', state] })
         }, 1000)
     }, [])

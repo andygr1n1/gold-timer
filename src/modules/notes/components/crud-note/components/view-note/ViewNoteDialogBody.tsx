@@ -19,11 +19,13 @@ export const ViewNoteDialogBody: React.FC = observer(() => {
 
     return selected_note ? (
         <>
-            <div className='flex flex-col gap-10 pb-4'>
-                <NotesActionsMenu note={selected_note} />
-                <NoteTagsList note={selected_note} />
+            <div className='flex flex-col flex-auto'>
+                <div className='flex flex-col gap-10 pb-4 '>
+                    <NotesActionsMenu note={selected_note} />
+                    <NoteTagsList note={selected_note} />
+                </div>
+                <ReactQuill className='view-mode' value={d} modules={{ toolbar: [] }} readOnly={true} />
             </div>
-            <ReactQuill className='view-mode' value={d} modules={{ toolbar: [] }} readOnly={true} />
             <Footer note={selected_note} />
         </>
     ) : null

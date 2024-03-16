@@ -28,7 +28,7 @@
 }
 
 .xinput {
-    @apply text-cText placeholder:text-cText m-0 min-h-[40px] w-[calc(100%-24px)] rounded-md border-none px-3 py-0 placeholder:opacity-50 disabled:bg-transparent
+    @apply text-cText placeholder:text-cText m-0 min-h-[40px] w-[calc(100%-24px)] rounded-md border-none px-3 py-0 placeholder:opacity-70 disabled:bg-transparent
     disabled:bg-opacity-10  disabled:opacity-70;
 }
 

@@ -1,7 +1,6 @@
 export * from './IconBack'
 export * from './IconBell'
 export * from './IconBellUrgent'
-export * from './IconComplete'
 export * from './IconDeleteTemp'
 export * from './IconEdit'
 export * from './IconExpired'

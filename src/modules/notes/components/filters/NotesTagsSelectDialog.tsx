@@ -58,36 +58,39 @@ export const NotesTagsSelectDialog: React.FC = observer(() => {
                 onChangeField('tags_list_view', false)
             }}
         >
-            <FormLabel title='Search:' />
-            <div className='flex gap-5'>
-                <XInput
-                    autoFocus={false}
-                    value={notes_tag_filter}
-                    onChange={(e) => onChangeNotesFilter$('notes_tag_filter', e.target.value)}
-                    className='w-full'
-                />
-                <StyledButton
-                    disabled={!selected_tags.length}
-                    startIcon={<IconEraser width={24} height={24} />}
-                    onClick={() => onChangeNotesFilter$('selected_tags', cast([]))}
-                />
-            </div>
-            <div tabIndex={0} className=' my-10 flex flex-col gap-4'>
-                {filteredTags.map((tag) => (
-                    <div
-                        key={tag}
-                        className={clsx(
-                            'flex cursor-pointer gap-2 p-2 duration-300 hover:text-blue-600',
-                            tagIsSelected(tag) && 'text-blue-700',
-                        )}
-                        onClick={() => toggleSelectTag(tag)}
-                    >
-                        <XCheckbox checked={tagIsSelected(tag)} />
-                        <span className={clsx('text-lg', tagIsSelected(tag) ? 'opacity-100' : 'opacity-70')}>
-                            {tag}
-                        </span>
-                    </div>
-                ))}
+            <div className='mt-4 h-[calc(77vh-80px)]'>
+                <FormLabel title='Filter by tag:' />
+                <div className='flex gap-5'>
+                    <XInput
+                        autoFocus={false}
+                        value={notes_tag_filter}
+                        onChange={(e) => onChangeNotesFilter$('notes_tag_filter', e.target.value)}
+                        className='w-full'
+                        placeholder='Find me...'
+                    />
+                    <StyledButton
+                        disabled={!selected_tags.length}
+                        startIcon={<IconEraser width={24} height={24} />}
+                        onClick={() => onChangeNotesFilter$('selected_tags', cast([]))}
+                    />
+                </div>
+                <div tabIndex={0} className=' py-4 flex h-[calc(77vh-160px)] flex-col gap-4  overflow-auto sexy-scroll'>
+                    {filteredTags.map((tag) => (
+                        <div
+                            key={tag}
+                            className={clsx(
+                                'flex cursor-pointer gap-2 p-2 duration-300 hover:text-blue-600',
+                                tagIsSelected(tag) && 'text-blue-700',
+                            )}
+                            onClick={() => toggleSelectTag(tag)}
+                        >
+                            <XCheckbox checked={tagIsSelected(tag)} />
+                            <span className={clsx('text-lg', tagIsSelected(tag) ? 'opacity-100' : 'opacity-70')}>
+                                {tag}
+                            </span>
+                        </div>
+                    ))}
+                </div>
             </div>
         </XModal>
     )

@@ -28,7 +28,6 @@ export const useFetchGoalsByFilter = (props: { queryFilter?: IGoalQueryTypeFilte
         refetchOnMount: true,
     })
 
-    console.log('data', data)
 
     const activeGoals =
         orderBy(
