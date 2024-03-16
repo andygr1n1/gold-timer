@@ -25,7 +25,7 @@ export const DeleteGoal: React.FC<{ goalId: string; deletedAt: boolean; label?: 
             </StyledButton>
             {!label && (
                 <XTooltip anchorSelect='#toggleMoveGoalToBin'>
-                    {deletedAt ? 'Restore from bin' : 'Move to bin'}
+                    {deletedAt ? 'Restore' : 'Move to bin'}
                 </XTooltip>
             )}
         </>

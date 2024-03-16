@@ -9,7 +9,7 @@ export const NewNoteDialogBody: React.FC = observer(() => {
 
     return new_note ? (
         <>
-            <div className='flex flex-col gap-4 py-2'>
+            <div className='flex flex-col flex-auto gap-4 py-2'>
                 <NoteDescriptionInput note={new_note} />
                 <NoteTagInput note={new_note} />
             </div>

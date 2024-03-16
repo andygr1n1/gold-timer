@@ -3,9 +3,9 @@ import { observer } from 'mobx-react-lite'
 import { INote$ } from '../../mst/types'
 import { useNotesStore } from '@/StoreProvider'
 import { XMenuItem } from '@/components-x/x-dropdown/XMenuItem'
-import clsx from 'clsx'
 import { IconDeleteTemp, IconEdit, IconEye } from '@/assets/icons'
 import { IconArchive } from '@/assets/icons/IconArchive'
+import { StyledButton } from '@/components/buttons/StyledButton'
 
 export const NoteContextMenu: React.FC<{ onClose: () => void; note: INote$ }> = observer(({ onClose, note }) => {
     const { openNoteEditMode, openNoteViewMode } = useNotesStore()
@@ -13,47 +13,49 @@ export const NoteContextMenu: React.FC<{ onClose: () => void; note: INote$ }> = 
     return (
         <XMenuDropdown>
             <XMenuItem
-                className={clsx('group ')}
                 onClick={() => {
                     openNoteViewMode(note.id)
                     onClose()
                 }}
             >
-                <IconEye width={24} height={24} className={clsx('text-indigo-500 duration-300')} />
-                <div className='flex w-full items-center justify-between'>
-                    <span className='text-inherit'>Open</span>
-                    <span className='text-xs font-bold text-inherit opacity-50'>CTRL+LKM</span>
-                </div>
+                <StyledButton variant='text' size='small' startIcon={<IconEye width={24} height={24} />}>
+                    <span className='flex w-[110px] justify-start capitalize'>open</span>
+                </StyledButton>
             </XMenuItem>
             <XMenuItem
-                className={clsx('group')}
                 onClick={() => {
                     openNoteEditMode(note.id)
                     onClose()
                 }}
             >
-                <IconEdit width={24} height={24} className='text-blue-500' />
-                <span className='text-inherit'>Edit</span>
+                <StyledButton variant='text' size='small' startIcon={<IconEdit width={24} height={24} />}>
+                    <span className='flex w-[110px] justify-start capitalize'>Edit</span>
+                </StyledButton>
             </XMenuItem>
             <XMenuItem
-                className={clsx('group hover:text-blue-500')}
                 onClick={() => {
                     note.archiveNote()
                     onClose()
                 }}
             >
-                <IconArchive width={24} height={24} className={clsx('text-teal-500 duration-300 ')} />
-                <span className='text-inherit'>{note.archived ? 'Unarchive' : 'Archive'}</span>
+                <StyledButton variant='text' size='small' startIcon={<IconArchive width={24} height={24} />}>
+                    <span className='flex w-[110px] justify-start capitalize'>
+                        {' '}
+                        {note.archived ? 'Unarchive' : 'Archive'}
+                    </span>
+                </StyledButton>
             </XMenuItem>
             <XMenuItem
-                className={clsx('group')}
                 onClick={() => {
                     note.deleteNote()
                     onClose()
                 }}
             >
-                <IconDeleteTemp width={24} height={24} className={clsx('text-red-500 duration-300')} />
-                <span className='text-inherit'>{note.deleted_at ? 'Restore from bin' : 'Move to bin'}</span>
+                <StyledButton variant='text' size='small' startIcon={<IconDeleteTemp width={24} height={24} />}>
+                    <span className='flex w-[110px] justify-start capitalize'>
+                        {note.deleted_at ? 'Restore' : 'Move to bin'}
+                    </span>
+                </StyledButton>
             </XMenuItem>
         </XMenuDropdown>
     )

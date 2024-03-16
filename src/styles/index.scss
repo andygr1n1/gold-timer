@@ -182,3 +182,7 @@ input:-webkit-autofill:active {
         @apply my-5 text-lg;
     }
 }
+
+.sexy-scroll {
+    @apply scrollbar-thumb-blue-500  scrollbar-track-global-bg scrollbar-thin;
+}

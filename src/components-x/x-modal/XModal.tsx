@@ -20,7 +20,7 @@ export const XModal: React.FC<IXModal> = ({ cancelOnEscape = true, onCancel, ...
     }
 
     return (
-        <div className={cn('x-modal-wrapper')} ref={xModalWrapper}>
+        <div className={cn('x-modal-wrapper', 'absolute')} ref={xModalWrapper}>
             {props.open && xModalWrapper?.current && (
                 <div ref={xModalBody} className={cn('fixed inset-0 animate-opacity-3 bg-gray-900 bg-opacity-90')}>
                     {props.open ? (

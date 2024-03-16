@@ -19,7 +19,6 @@ export const useFetchGoalsByFilterInfinity = (props: {
     // const [_filterGoalAtom_search] = useAtom(filterGoalAtom_search)
 
     // useEffect(() => {
-    //     console.log('textFilter', _filterGoalAtom_search)
     //     window.queryClient.invalidateQueries({ queryKey: ['KEY_FetchGoalsByFilter', queryFilter] })
     // }, [_filterGoalAtom_search?.length])
 

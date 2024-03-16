@@ -5,9 +5,7 @@ import { XDropdown } from '@/components-x/x-dropdown/XDropdown'
 import { XMenuDropdown } from '@/components-x/x-dropdown/XMenuDropdown'
 import { XMenuItem } from '@/components-x/x-dropdown/XMenuItem'
 import { ReactNode } from 'react'
-import { NavLink } from 'react-router-dom'
-import { APP_ROUTES_ENUM } from '@/helpers/enums'
-import { IconNew, IconFolder } from '@/assets/icons'
+import { IconNew } from '@/assets/icons'
 export const NotesCounterDropdown: React.FC<{ button: ReactNode }> = observer(({ button }) => {
     return (
         <XDropdown
@@ -33,15 +31,9 @@ const DropdownRender = observer(() => {
                     openNoteCreateMode()
                 }}
             >
-                <IconNew width={24} height={24} className='duration-300 group-hover:text-amber-500' />
-                <span> New note</span>
+                <IconNew width={24} height={24} className='duration-300 group-hover:text-blue-600' />
+                <span> Add note</span>
             </XMenuItem>
-            <NavLink to={`/${APP_ROUTES_ENUM.NOTES}`}>
-                <XMenuItem className='!opacity-100'>
-                    <IconFolder width={24} height={24} className='duration-300 group-hover:text-blue-500' />
-                    <span> My Notes</span>
-                </XMenuItem>
-            </NavLink>
         </XMenuDropdown>
     )
 })

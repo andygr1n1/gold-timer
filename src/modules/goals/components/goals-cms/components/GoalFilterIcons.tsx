@@ -1,20 +1,45 @@
-import { IconExpired, IconFavorite, IconFocus, IconRitual } from '@/assets/icons'
+import { IconCompleted, IconDeleteTemp, IconExpired, IconFavorite, IconFocus, IconRitual } from '@/assets/icons'
 import { StyledButton } from '@/components/buttons/StyledButton'
-import {
-    isFilterStateExpired,
-    isFilterStateRitualized,
-    isFilterStateFavorite,
-} from '@/modules/goals/helpers/goalsGuards'
 
 export const GoalFilterIcons = ({}) => {
-    const state = 'active'
-    let icon = <IconFocus width={76} height={76} className='min-h-[66px] min-w-[66px] text-blue-600' />
-
-    if (isFilterStateExpired(state))
-        icon = <IconExpired width={65} height={65} className='min-h-[65px] min-w-[65px] text-amber-600' />
-    if (isFilterStateRitualized(state))
-        icon = <IconRitual width={75} height={75} className='min-h-[65px] min-w-[65px] text-teal-600' />
-    if (isFilterStateFavorite(state))
-        icon = <IconFavorite width={70} height={70} className='min-h-[70px] min-w-[70px] text-rose-600' />
-    return <StyledButton variant='text' className='absolute-center !h-24 !w-24 !rounded-full ' startIcon={icon} />
+    return (
+        <div className='relative my-10 flex w-fit mx-auto gap-5 flex-wrap items-center '>
+            <StyledButton
+                variant='text'
+                className=''
+                startIcon={<IconFocus width={70} height={70} className='min-h-[66px] min-w-[66px] text-blue-600' />}
+            />
+            <StyledButton
+                variant='text'
+                className=''
+                startIcon={<IconExpired width={70} height={70} className='min-h-[65px] min-w-[65px] text-amber-600' />}
+            />
+            <StyledButton
+                variant='text'
+                className=''
+                startIcon={<IconRitual width={75} height={75} className='min-h-[65px] min-w-[65px] text-teal-600' />}
+            />
+            <StyledButton
+                variant='text'
+                className=''
+                startIcon={
+                    <IconFavorite width={75} height={75} className='min-h-[70px] mb-2 min-w-[70px] text-rose-600' />
+                }
+            />
+            <StyledButton
+                variant='text'
+                className=''
+                startIcon={
+                    <IconCompleted width={70} height={70} className='min-h-[70px] mb-=1 min-w-[70px] text-rose-600' />
+                }
+            />
+            <StyledButton
+                variant='text'
+                className=''
+                startIcon={
+                    <IconDeleteTemp width={60} height={60} className='min-h-[70px] mt-2 min-w-[70px] text-rose-600' />
+                }
+            />
+        </div>
+    )
 }

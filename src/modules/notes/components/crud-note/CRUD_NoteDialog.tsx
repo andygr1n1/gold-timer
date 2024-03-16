@@ -21,6 +21,7 @@ export const CRUD_NoteDialog: React.FC = observer(function CRUD_GoalDialog() {
 
     return (
         <XModal
+            fullHeight
             open={isOpen}
             onCancel={onCancel}
             title={
@@ -31,12 +32,9 @@ export const CRUD_NoteDialog: React.FC = observer(function CRUD_GoalDialog() {
                 </div>
             }
         >
-            <>
-                {new_note && <NewNoteDialogBody />}
-                {edit_note && <EditNoteDialogBody />}
-                {selected_note && <ViewNoteDialogBody />}
-            </>
-            <div />
+            {new_note && <NewNoteDialogBody />}
+            {edit_note && <EditNoteDialogBody />}
+            {selected_note && <ViewNoteDialogBody />}
         </XModal>
     )
 })

@@ -13,8 +13,8 @@ export const SearchNotesInput: React.FC = observer(() => {
             value={notes_input_filter}
             onChange={(e) => onChangeField('notes_input_filter', e.target.value)}
             startIcon={<IconSearch width={24} height={24} />}
-            placeholder='Find note...'
-            width='!max-w-[300px] !w-full'
+            placeholder='Find me...'
+            width='!max-w-[600px] !w-full'
         />
     )
 })

@@ -11,14 +11,14 @@ export const DeleteNote: React.FC<{ note: INote$ }> = observer(({ note }) => {
             <StyledButton
                 id='toggleMoveNoteToBin'
                 size={'custom'}
-                className='h-7 w-10 opacity-70 hover:opacity-100 md:h-10 md:w-14'
-                error
-                variant={deleted_at ? 'contained' : 'outlined'}
+                className='h-7 w-10 opacity-70 hover:opacity-100 hover:!text-red-600 md:h-10 md:w-14'
+                error={deleted_at ? true : false}
+                variant={'text'}
                 onClick={deleteNote}
             >
-                <IconDeleteTemp width={24} height={24} />
+                <IconDeleteTemp width={24} height={24} className='min-h-[24px] min-w-[24px]' />
             </StyledButton>
-            <XTooltip anchorSelect='#toggleMoveNoteToBin'>{deleted_at ? 'Restore from bin' : 'Move to bin'}</XTooltip>
+            <XTooltip anchorSelect='#toggleMoveNoteToBin'>{deleted_at ? 'Restore' : 'Move to bin'}</XTooltip>
         </>
     )
 })

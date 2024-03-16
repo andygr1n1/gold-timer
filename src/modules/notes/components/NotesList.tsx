@@ -1,10 +1,7 @@
 import { useNotesStore } from '@/StoreProvider'
 import { observer } from 'mobx-react-lite'
 import { Note } from './note/Note'
-import styles from './note/Note.module.scss'
-import clsx from 'clsx'
 import { useEffect } from 'react'
-import { CreateNoteAction } from './CreateNoteAction'
 
 export const NotesList: React.FC = observer(() => {
     const {
@@ -16,17 +13,11 @@ export const NotesList: React.FC = observer(() => {
         fetchNotes()
     }, [])
 
-    if (!filteredNotes.length) {
-        return <CreateNoteAction />
-    }
-
     return (
-        <div className='flex w-full flex-col gap-5 md:flex-row md:flex-wrap'>
+        <div className='flex flex-col gap-10 w-full'>
             {filteredNotes.map((t) => (
                 <Note key={t.id} note={t} />
             ))}
-            <div className={clsx(styles['note-container'], '!bg-transparent')} />
-            <div className={clsx(styles['note-container'], '!bg-transparent')} />
         </div>
     )
 })

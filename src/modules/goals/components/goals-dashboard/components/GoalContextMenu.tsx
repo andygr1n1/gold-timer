@@ -10,7 +10,7 @@ import { StyledButton } from '@/components/buttons/StyledButton'
 import { ToggleEditGoal } from '../../goal-crud/goal-actions/ToggleEditGoal'
 import { CreateChildGoal } from '../../goal-crud/goal-actions/CreateChildGoal'
 
-export const TopGoalMenu: React.FC<{ goal: IGoal; action: () => void; forceMode?: boolean }> = ({
+export const GoalContextMenu: React.FC<{ goal: IGoal; action: () => void; forceMode?: boolean }> = ({
     goal,
     action: onClose,
 }) => {
@@ -50,7 +50,7 @@ export const TopGoalMenu: React.FC<{ goal: IGoal; action: () => void; forceMode?
                     deletedAt={!!goal.deleted_at}
                     label={
                         <span className='flex w-[110px] justify-start capitalize'>
-                            {goal.deleted_at ? 'Restore from bin' : 'Move to bin'}
+                            {goal.deleted_at ? 'Restore' : 'Move to bin'}
                         </span>
                     }
                 />

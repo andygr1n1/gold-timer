@@ -9,11 +9,19 @@ import { NotesViewStatus } from '../../helpers/enums'
 import { useState } from 'react'
 import clsx from 'clsx'
 import { IconBackInTime, IconFolder } from '@/assets/icons'
+import { cn } from '@/functions'
 
 export const NotesStatusSelect: React.FC = observer(() => {
     const [open, setOpen] = useState(false)
     const {
-        notes_filter$: { onChangeField, isShowActiveMode, archivedNotes, deletedNotes },
+        notes_filter$: {
+            onChangeField,
+            isShowActiveMode,
+            archivedNotes,
+            deletedNotes,
+            isShowDeletedMode,
+            isShowArchivedMode,
+        },
     } = useNotesStore()
 
     const onClose = (selected: NotesViewStatus) => {
@@ -35,7 +43,11 @@ export const NotesStatusSelect: React.FC = observer(() => {
             overlayClassName='!z-[55]'
         >
             <div>
-                <StyledButton startIcon={<IconBackInTime width={24} height={24} />} />
+                <StyledButton
+                    className={cn(isShowArchivedMode && '!bg-amber-600', isShowActiveMode && '!bg-teal-600')}
+                    error={isShowDeletedMode}
+                    startIcon={<IconBackInTime width={24} height={24} />}
+                />
             </div>
         </XDropdown>
     )
