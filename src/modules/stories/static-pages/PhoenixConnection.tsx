@@ -1,77 +1,119 @@
 import { ModuleWrapper } from '@/components/ModuleWrapper'
 import { APP_ROUTES_ENUM } from '@/helpers/enums'
-import { Focus, GoldenFocus } from './components/Focus'
+import { Focus, GoldenFocus, ShadowFocus, Statement } from './components/Focus'
+import { Paragraph } from './components/Paragraph'
+import { IconPhoenix } from '@/assets/icons/IconPhoenix'
 
 export const PhoenixConnection: React.FC = () => {
     return (
         <ModuleWrapper context={APP_ROUTES_ENUM.STORIES}>
             <div className='book-page'>
-                <h1>Феникс</h1>
-                <p className='paragraph'>
-                    Специальное упражнение, направленное на пробуждение той силы, которая есть в каждом от природы, и
-                    которая будет вести к <Focus text='Свету' />.
-                </p>
-                <p className='paragraph'>
-                    Особое упражнение, для тренировки <Focus text='Духа!' />
-                </p>
-                <p className='paragraph'>
-                    Ощутите себя <Focus text='Сильным, Могущественным' />
-                    покровителем, титаном, защитником своей реальности.
-                </p>
-                <p className='paragraph'>
-                    И вместе с этим <Focus text='Душа наполнится Любовью, Нежностью, Блаженством, Чистотой.' />
-                </p>
-                <p className='paragraph'>
-                    Ощутите как переполняетесь <Focus text='Гордостью' /> за то кем вы являетесь.
-                </p>
-                <h1 className='my-10 text-2xl font-bold uppercase '>
-                    Именно такие чувства и переживания служат основой, внутренней опорой лучших наших стремлений, на
-                    которых будет строиться НАША ЦЕЛЬ.
-                </h1>
-                <p className='paragraph'>
-                    Развивайте искусство <Focus text='Управлять своим телом' />, приказывать ему, заставлять, вынуждать
-                    его постепенно внешне и внутренне <Focus text='  перевоплощаться в тот облик который желаем.' />
-                </p>
-                <p className='paragraph'>
+                <Statement
+                    text={
+                        <>
+                            <IconPhoenix className='w-20 h-20' /> Феникс
+                        </>
+                    }
+                />
+
+                <Paragraph>
+                    Тренировка духа, направленная на пробуждение <GoldenFocus text='твоей природной силы' />, являющейся
+                    проводником <GoldenFocus text='Света' />.
+                </Paragraph>
+
+                <Paragraph>
+                    Ощути себя <Focus text='сильным и могущественным защитником' />
+                    своей реальности.
+                </Paragraph>
+
+                <Paragraph>
+                    Осознай как <GoldenFocus text='Душа наполняется Любовью' />, Нежностью, Блаженством, Чистотой.
+                </Paragraph>
+
+                <Paragraph>
+                    Ощути как переполняешься <Focus text='Гордостью' /> за то кем являешься.
+                </Paragraph>
+
+                <ShadowFocus
+                    text={
+                        <>
+                            <span>
+                                Именно такие чувства и переживания служат внутренней опорой лучших стремлений, на
+                                которых строится{' '}
+                            </span>
+                            <GoldenFocus text='ВЕЛИКАЯ ЦЕЛЬ.' />
+                        </>
+                    }
+                />
+
+                <Paragraph>
+                    Развивай искусство управлять своим телом, приказывать ему, заставлять, вынуждать его постепенно
+                    внешне и внутренне <Focus text='перевоплощаться в тот облик который желаем.' />
+                </Paragraph>
+                <Paragraph>
                     Это утверждение, это внутреннее ощущение, что
                     <GoldenFocus text='будет именно так, как мы этого хотим.' />
-                </p>
-                <h1 className='my-10 text-2xl font-bold uppercase '>
-                    Феникс - это сознательное формирование в душе уверенности, силы, могущества.
-                </h1>
-                <p className='paragraph'>
-                    Вы добрый волшебник, уверенный в силе своего волшебства. Вы просто даёте повеление и уходите! Ваше
-                    повеление такой силы, что всё задуманное сразу исполняется! Такое же утверждение нужно создавать
-                    внутри в отношении выздоровления на любых планах.
-                </p>
-                <h1 className='my-10 text-2xl font-bold uppercase '>
-                    Феникс - это сочетание уверенности, решительности, силы, мощи, могущества, твёрдости и нежности,
-                    любви, доброты, трепетности, чувства полёта и радости.
-                </h1>
+                </Paragraph>
+                <ShadowFocus
+                    text={
+                        <span>
+                            <span className='text-rose-500 font-bold'>Феникс</span> - это сознательное формирование в
+                            душе уверенности, силы, могущества.
+                        </span>
+                    }
+                />
+                <Paragraph>
+                    Ты добрый волшебник, уверенный в силе своего волшебства. Ты просто даёшь повеление и уходишь!
+                </Paragraph>
+                <Paragraph>
+                    <GoldenFocus text='Твоё повеление такой силы, что всё задуманное сразу исполняется!' />
+                </Paragraph>
+                <Paragraph>
+                    Такое же утверждение нужно создавать внутри в отношении выздоровления на любых планах.
+                </Paragraph>
+                <ShadowFocus
+                    text={
+                        <span>
+                            <span className='text-rose-500 font-bold'>Феникс</span> - это сочетание уверенности,
+                            решительности, силы, мощи, могущества, твёрдости и нежности, любви, доброты, трепетности,
+                            чувства полёта и радости.
+                        </span>
+                    }
+                />
+                <ShadowFocus
+                    text={
+                        <span>
+                            <span className='text-rose-500 font-bold'>Феникс</span> - это снисходительное спокойствие,
+                            осознанное и уверенное знание, что будет именно так, как задумано.
+                        </span>
+                    }
+                />
 
-                <h1 className='my-10 text-2xl font-bold uppercase '>
-                    Это снисходительное спокойствие и спокойное уверенное знание, что будет так, как Вы этого захотите.
-                </h1>
-
-                <p className='paragraph'>
-                    Во время упражнения Вы сначала внутри искусственно вызываете гамму чувств, а потом постепенно
-                    добавляете интенсивность, затем еще и еще, еще и еще, чтобы во всем теле, в необходимых частях тела
-                    особенно, звучал <Focus text='Гимн созидания' /> , чтобы каждая клеточка тела получила резонанс.
-                </p>
-                <p className='paragraph'>
-                    Внутреннее стремление, утверждение должно быть властелином в теле, чтобы подавить, уничтожить,
-                    стереть в порошок все другие мысли и чувства, чуждые созиданию, чуждые творению.
-                </p>
-                <p className='paragraph'>
-                    <GoldenFocus text='Феникс ' />
-                    должен разнести в пух и прах всю неуверенность, сомнения и страхи. Уничтожить их
-                    <GoldenFocus text='Навсегда!' />
-                </p>
-                <p className='paragraph'>
+                <Paragraph>
+                    Во время упражнения искусственно вызывается гамма чувств, постепенно добавляется интенсивность, еще
+                    и еще, еще и еще, чтобы во всем теле звучал Гимн созидания, чтобы каждая клеточка тела получила
+                    резонанс.
+                </Paragraph>
+                <Paragraph>
+                    <GoldenFocus text=' Внутреннее сияние' /> должно быть властелином в теле.
+                </Paragraph>
+                <Paragraph>
+                    <ShadowFocus
+                        text={
+                            <span>
+                                <GoldenFocus text='Феникс ' />
+                                должен разнести в пух и прах всю{' '}
+                                <span className='opacity-50 text-gray-400'>неуверенность, сомнения и страхи</span>
+                                <GoldenFocus text=' - Навсегда!' />
+                            </span>
+                        }
+                    />
+                </Paragraph>
+                <Paragraph>
                     Постарайтесь почувствовать свою значимость, силу, мощь, красоту, утверждать это в себе и шаг за
                     шагом продвигаться к цели.
-                </p>
-                <p className='paragraph'>
+                </Paragraph>
+                <Paragraph>
                     Каждый день старайтесь это ощущение восполнять новыми оттенками, новой гаммой чувств. По мере
                     тренировок <Focus text='вы' /> будете становиться более
                     <Focus
@@ -80,17 +122,17 @@ export const PhoenixConnection: React.FC = () => {
                     />
                     которые Вас окружают. Вы станете для них оазисом в пустыне, будете нести{' '}
                     <Focus text='Свет, Добро и Любовь' />
-                </p>
-                <p className='paragraph'>
+                </Paragraph>
+                <Paragraph>
                     Когда вы начнете работать с определённой частью тела, то ощущение, утверждение, команду, приказ,
                     повеление быть такой, какой Вы хотите, чтобы они были, направляете туда. Там создаёте радость и
                     получаете ответную реакцию.
-                </p>
-                <p className='paragraph'>
+                </Paragraph>
+                <Paragraph>
                     Может возникнуть тепло, легкая пульсация или любой другой физический отклик.
                     <GoldenFocus text='Феникс ' /> - это внутреннее слияние с тем образом
                     <GoldenFocus text='молодости ' /> , который был только что создан.
-                </p>
+                </Paragraph>
                 <h1 className='my-10 text-2xl font-bold uppercase '>
                     внутри - снисходительное спокойствие и абсолютное знание того, что будет так, как вы этого хотите.
                 </h1>
@@ -98,7 +140,7 @@ export const PhoenixConnection: React.FC = () => {
                     Вы должны знать, что любую свою проблему спокойно можете решить, что во всех отношениях Вы
                     самый-самый.
                 </h1>
-                <p className='paragraph'>
+                <Paragraph>
                     Здесь
                     <Focus text='Никакого напряжения!' /> Другими словами,
                     <Focus
@@ -108,286 +150,282 @@ export const PhoenixConnection: React.FC = () => {
                     />
                     Это должно быть спокойствие повелителя, спокойствие созидателя, спокойствие любящего, любимого,
                     могущественного человека <GoldenFocus text='Создайте это утверждение!!!' />
-                </p>
-                <p className='paragraph'>
+                </Paragraph>
+                <Paragraph>
                     Внешне упражнение никак не проявляется, лишь на лице легкая улыбочка и спокойствие. Спина - ровная.
                     Голова - ясная и светлая. Дыхание спокойное, сердце бьётся ровно.
-                </p>
-                <p className='paragraph'>Создайте внутреннее ощущение типа:</p>
-                <p className='paragraph'>
+                </Paragraph>
+                <Paragraph>Создайте внутреннее ощущение типа:</Paragraph>
+                <Paragraph>
                     <GoldenFocus text='Я есть воля' />
-                </p>
-                <p className='paragraph'>
+                </Paragraph>
+                <Paragraph>
                     <GoldenFocus text='Я есть сила' />
-                </p>
-                <p className='paragraph'>
+                </Paragraph>
+                <Paragraph>
                     <GoldenFocus text='Я есть любовь' />
-                </p>
-                <p className='paragraph'>
+                </Paragraph>
+                <Paragraph>
                     <GoldenFocus text='Я есть прощение' />
-                </p>
-                <p className='paragraph'>
+                </Paragraph>
+                <Paragraph>
                     <GoldenFocus text='Я есть могущество' />
-                </p>
-                <p className='paragraph'>
+                </Paragraph>
+                <Paragraph>
                     <GoldenFocus text='Я есть юность' />
-                </p>
-                <p className='paragraph'>
+                </Paragraph>
+                <Paragraph>
                     <GoldenFocus text='Я есть молодость' />
-                </p>
-                <p className='paragraph'>
+                </Paragraph>
+                <Paragraph>
                     <GoldenFocus text='Я есть здоровье' />
-                </p>
-                <p className='paragraph'>
+                </Paragraph>
+                <Paragraph>
                     <GoldenFocus text='Я есть мудрость' />
-                </p>
-                <p className='paragraph'>
+                </Paragraph>
+                <Paragraph>
                     <GoldenFocus text='Я есть жизнерадостность' />
-                </p>
-                <p className='paragraph'>
+                </Paragraph>
+                <Paragraph>
                     <GoldenFocus text='Я есть всё прекрасное' />
-                </p>
-                <p className='paragraph'>
+                </Paragraph>
+                <Paragraph>
                     <GoldenFocus text='Всё зависит от меня' />
-                </p>
-                <p className='paragraph'>
+                </Paragraph>
+                <Paragraph>
                     <GoldenFocus text='Всё в моих руках' />
-                </p>
-                <p className='paragraph'>
+                </Paragraph>
+                <Paragraph>
                     Это стремление должно господствовать и уничтожить всякое сомнение, которое само собой никуда не
                     уйдёт.
-                </p>
-                <p className='paragraph'>
-                    Сомнение зубами и когтями будет держаться в Вашем сознании - в этом его суть.
-                </p>
-                <p className='paragraph'>
+                </Paragraph>
+                <Paragraph>Сомнение зубами и когтями будет держаться в Вашем сознании - в этом его суть.</Paragraph>
+                <Paragraph>
                     Заставьте себя ощущать <Focus text='Личностью, Человеком' /> большой буквы. Создайте внутреннее
                     чувство, что лучше Вас никого в мире нет.
-                </p>
-                <p className='paragraph'>
+                </Paragraph>
+                <Paragraph>
                     Это упражнение нужно делать везде, не зависимо от области деятельности или окружения.
-                </p>
-                <p className='paragraph'>
+                </Paragraph>
+                <Paragraph>
                     <h1 className='my-10 text-2xl font-bold uppercase '>Важно!</h1>
-                </p>
-                <p className='paragraph'>
+                </Paragraph>
+                <Paragraph>
                     <h1 className='my-10 text-2xl font-bold uppercase '>Важно!</h1>
-                </p>
-                <p className='paragraph'>
+                </Paragraph>
+                <Paragraph>
                     <h1 className='my-10 text-2xl font-bold uppercase '>Важно!</h1>
-                </p>
+                </Paragraph>
 
-                <p className='paragraph'>
+                <Paragraph>
                     <h1 className='my-10 text-2xl font-bold uppercase '>
                         Когда вы выполняете упражнения, а голова забита посторонними мыслями, все усилия будут пустой
                         тратой времени. При механическом исполнении весь труд уйдёт в никуда.
                     </h1>
-                </p>
+                </Paragraph>
 
-                <p className='paragraph'>
+                <Paragraph>
                     <GoldenFocus text='заниматься надо в состоянии Феникс' />
-                </p>
-                <p className='paragraph'>
+                </Paragraph>
+                <Paragraph>
                     <GoldenFocus text='только так можно достичь успеха' />
-                </p>
-                <p className='paragraph'>
+                </Paragraph>
+                <Paragraph>
                     <h1 className='my-10 text-2xl font-bold uppercase '>
                         <GoldenFocus text='Феникс' /> - это искусство усилием духа созидать, искусство{' '}
                         <GoldenFocus text='перевоплощаться' />в того, кем Вы намерены быть.
                     </h1>
-                </p>
-                <p className='paragraph'>
+                </Paragraph>
+                <Paragraph>
                     <GoldenFocus text='Феникс работает внутренне' />
-                </p>
-                <p className='paragraph'>
+                </Paragraph>
+                <Paragraph>
                     Все действия необходимо начинать с чувства что вы победитель! Вызывать его надо искусственно. Каждый
                     день необходимо формировать Веру в то, что вы победитель, что вы сильный человек, способный
                     управлять течением жизни.
-                </p>
-                <p className='paragraph'>Каждое утро заставляйте себя усилием воли почувствовать, что вы:</p>
-                <p className='paragraph'>
+                </Paragraph>
+                <Paragraph>Каждое утро заставляйте себя усилием воли почувствовать, что вы:</Paragraph>
+                <Paragraph>
                     <GoldenFocus text='Спокойствие' />
-                </p>
-                <p className='paragraph'>
+                </Paragraph>
+                <Paragraph>
                     <GoldenFocus text='Душевность' />
-                </p>
-                <p className='paragraph'>
+                </Paragraph>
+                <Paragraph>
                     <GoldenFocus text='Жизнерадостность' />
-                </p>
-                <p className='paragraph'>
+                </Paragraph>
+                <Paragraph>
                     <GoldenFocus text='Нежность' />
-                </p>
-                <p className='paragraph'>
+                </Paragraph>
+                <Paragraph>
                     <GoldenFocus text='Красота' />
-                </p>
-                <p className='paragraph'>
+                </Paragraph>
+                <Paragraph>
                     <GoldenFocus text='Обаяние' />
-                </p>
-                <p className='paragraph'>
+                </Paragraph>
+                <Paragraph>
                     <GoldenFocus text='Доброта' />
-                </p>
-                <p className='paragraph'>
+                </Paragraph>
+                <Paragraph>
                     <GoldenFocus text='Сила' />
-                </p>
-                <p className='paragraph'>
+                </Paragraph>
+                <Paragraph>
                     <GoldenFocus text='Любовь' />
-                </p>
-                <p className='paragraph'>
+                </Paragraph>
+                <Paragraph>
                     <GoldenFocus text='Могущество' />
-                </p>
-                <p className='paragraph'>
+                </Paragraph>
+                <Paragraph>
                     Просто создайте это. Феникс - это фундамент, на котором держится все Ваше Созидание.
-                </p>
-                <p className='paragraph'>
-                    Феникс - это <Focus text='приказ' />. Вы созидаете самого себя, всё зависит только от вас!
-                    Обратите внимание именно на это!
-                </p>
-                <p className='paragraph'>
+                </Paragraph>
+                <Paragraph>
+                    Феникс - это <Focus text='приказ' />. Вы созидаете самого себя, всё зависит только от вас! Обратите
+                    внимание именно на это!
+                </Paragraph>
+                <Paragraph>
                     <GoldenFocus text='Побеждает не техника, а дух' />
-                </p>
-                <p className='paragraph'>
+                </Paragraph>
+                <Paragraph>
                     Признайте в себе человека с большой буквы, <Focus text='Созидателя, Творца' />
-                </p>
-                <p className='paragraph'>
+                </Paragraph>
+                <Paragraph>
                     <Focus text='Перевоплотитесь' /> в доброго, сильного, нежного человека - человека умеющего прощать,
                     обладающего способностью принимать людей со всеми их достоинствами и недостатками. Это внутренний
                     приказ здоровья, силы, красоты, доброты, света, любви, счастья...
-                </p>
-                <p className='paragraph'>
+                </Paragraph>
+                <Paragraph>
                     <Focus text='Усилием воли' /> создайте внутренний порыв, внутреннее стремление к выздоровлению и
                     <Focus text='Ощущение восторга' /> за то, что вы работаете над собой!!!
-                </p>
-                <p className='paragraph'>
+                </Paragraph>
+                <Paragraph>
                     Сомнений и неверия у всех хоть отбавляй. Их нужно разбить в пух и прах
                     <Focus text='уважением к себе, верой в свои силы!' />
-                </p>
-                <p className='paragraph'>
+                </Paragraph>
+                <Paragraph>
                     <h1 className='my-10 text-2xl font-bold uppercase '>
                         Феникс являет собой полную противоположность сомнению, неверию -
                         <GoldenFocus text='это активное созидание.' />
                     </h1>
-                </p>
-                <p className='paragraph'>
+                </Paragraph>
+                <Paragraph>
                     Попробуйте создать утверждение, что вы самый, самый, самый прекрасный человек в мире. Просто
                     создайте ощущение, что <Focus text='Вы есть сила, Вы есть Доброта, Вы есть юность' />
-                </p>
-                <p className='paragraph'>
+                </Paragraph>
+                <Paragraph>
                     Приказы должны быть сродни просьбе отца, которую дети будут
                     <GoldenFocus text='с радостью выполнять' />. Это приказ - Волшебника, Созидателя, Творца типа
                     <Focus text='Да будет так!' />
-                </p>
-                <p className='paragraph'>
+                </Paragraph>
+                <Paragraph>
                     <GoldenFocus text='Признайте в себе победителя!' />
-                </p>
-                <p className='paragraph'>
+                </Paragraph>
+                <Paragraph>
                     На первых порах лучше всего закрывать глаза. Внутренний взор направляется в область желаемого.
                     <Focus text='  Осанка, позвоночник, плечи,  улыбка!' />. На лице мимика сильного могущественного
                     человека.
-                </p>
-                <p className='paragraph'>
+                </Paragraph>
+                <Paragraph>
                     Мысленным взором проходим по всему телу. Обязательно охватить вниманием глаза, уши, горло,
                     носоглотку, печень, почки.
-                </p>
-                <p className='paragraph'>
+                </Paragraph>
+                <Paragraph>
                     Искусственно создайте чувство, стремление, желание, ощущение быть таким, каким
                     <Focus text='Вы хотите стать.' />
-                </p>
-                <p className='paragraph'>
-                    Постепенно усиливаем, наращиваем это внутреннее чувство, желание, стремление.
-                </p>
-                <p className='paragraph'>
+                </Paragraph>
+                <Paragraph>Постепенно усиливаем, наращиваем это внутреннее чувство, желание, стремление.</Paragraph>
+                <Paragraph>
                     А теперь создайте внутри образ того, к чему стремитесь! И направьте по всему телу желание, своё
                     стремление, свой приказ! <Focus text='Приказ красоты, здоровья, уверенности.' />.
-                </p>
-                <p className='paragraph'>
+                </Paragraph>
+                <Paragraph>
                     <GoldenFocus text='Создайте резонанс!!!' />
-                </p>
-                <p className='paragraph'>
+                </Paragraph>
+                <Paragraph>
                     Добавьте новую гамму ощущений, добавьте утверждение, констатацию своей силы, могущества,
                     уверенности! Еще! Еще! Усиление!
-                </p>
-                <p className='paragraph'>
+                </Paragraph>
+                <Paragraph>
                     Создайте весну внутри себя! Весну созидания, весну творения, весну утверждения, весну пробуждения...
-                </p>
-                <p className='paragraph'>Еще...еще...еще!!! Усиливаем ощущения по возрастающей, по восходящей.</p>
-                <p className='paragraph'>
+                </Paragraph>
+                <Paragraph>Еще...еще...еще!!! Усиливаем ощущения по возрастающей, по восходящей.</Paragraph>
+                <Paragraph>
                     А теперь опять пропустите по всему телу волну приказа! Повеление, утверждение, что
                     <Focus text='Будет так' />, как Вы этого хотите! Почувствуйте как отзываются душа и тело.
-                </p>
-                <p className='paragraph'>
+                </Paragraph>
+                <Paragraph>
                     Усиливаем стремление к красоте, созиданию, творению, могуществу, усиливаем! Еще! Еще! Еще!
-                </p>
-                <p className='paragraph'>
+                </Paragraph>
+                <Paragraph>
                     Отправьте каждому участку своего тела свою нежность, свой завтрашний день, своё стремление, своё
                     повеление и констатацию.
-                </p>
-                <p className='paragraph'>
+                </Paragraph>
+                <Paragraph>
                     Еще с новой силой формируем внутреннее стремление к идеалу, чтобы затем обрушить на него лавину
                     приказа.
-                </p>
-                <p className='paragraph'>
+                </Paragraph>
+                <Paragraph>
                     Мысленно видим своё выздоровление, навязываем его себе, повелеваем... и-и-и <Focus text='ПРИКАЗ!' />
-                </p>
-                <p className='paragraph'>
+                </Paragraph>
+                <Paragraph>
                     Новая волна <Focus text='стремления, желания быть красивым, любимым, счастливым' /> и утверждение:
-                </p>
-                <p className='paragraph'>
+                </Paragraph>
+                <Paragraph>
                     <GoldenFocus text='да будет так!!!' />
-                </p>
-                <p className='paragraph'>
+                </Paragraph>
+                <Paragraph>
                     Еще направляем и распределяем в каждую клеточку, каждую волосинку на теле, каждую фибру своей души
                     идеал...Желание видеть, чувствовать, жить...и-и-и
-                </p>
-                <p className='paragraph'>
+                </Paragraph>
+                <Paragraph>
                     <GoldenFocus text='приказ!' />
-                </p>
-                <p className='paragraph'>
+                </Paragraph>
+                <Paragraph>
                     Мысленно смотрим на себя в будущем, видим всё вокруг чётким, ясным, ярким, таким как в
                     <GoldenFocus text='области тьмы' />. Видим, стремимся и создаём физически ощутимую тягу к той цели.
-                </p>
-                <p className='paragraph'>
+                </Paragraph>
+                <Paragraph>
                     <GoldenFocus
                         text='Каждой волосинкой впитываем свою любовь, впитываем свой завтрашний день, силу своей души, свет
                     своего разума и могущество своего духа!'
                     />
-                </p>
-                <p className='paragraph'>Чтобы резонировала каждая клеточка тела, резонировали все фибры души!</p>
-                <p className='paragraph'>
+                </Paragraph>
+                <Paragraph>Чтобы резонировала каждая клеточка тела, резонировали все фибры души!</Paragraph>
+                <Paragraph>
                     Создайте стремление, похожее на ураган весны, после которого одно Ваше прикосновение будет вызывать
                     <Focus text='распускание бутонов, распускание первых цветов весны во всем теле' />, везде, с чем бы
                     Вы ни соприкасались.
-                </p>
-                <p className='paragraph'>Создайте ощущение, что Вы выше всего суетного, обыденного, что</p>
-                <p className='paragraph'>
+                </Paragraph>
+                <Paragraph>Создайте ощущение, что Вы выше всего суетного, обыденного, что</Paragraph>
+                <Paragraph>
                     <GoldenFocus text='вы есть доброта' />
-                </p>
-                <p className='paragraph'>
+                </Paragraph>
+                <Paragraph>
                     <GoldenFocus text='вы есть любовь' />
-                </p>
-                <p className='paragraph'>
+                </Paragraph>
+                <Paragraph>
                     <GoldenFocus text='вы есть юность' />
-                </p>
-                <p className='paragraph'>
+                </Paragraph>
+                <Paragraph>
                     <GoldenFocus text='вы есть молодость' />
-                </p>
-                <p className='paragraph'>
+                </Paragraph>
+                <Paragraph>
                     <GoldenFocus text='вы есть здоровье' />
-                </p>
-                <p className='paragraph'>
+                </Paragraph>
+                <Paragraph>
                     <GoldenFocus text='вы есть понимание' />
-                </p>
-                <p className='paragraph'>
+                </Paragraph>
+                <Paragraph>
                     <GoldenFocus text='вы есть прощение' />
-                </p>
-                <p className='paragraph'>
+                </Paragraph>
+                <Paragraph>
                     <GoldenFocus text='вы есть всё, что вы считаете свойственно человеку' />
-                </p>
-                <p className='paragraph'>
+                </Paragraph>
+                <Paragraph>
                     <GoldenFocus text='...' />
-                </p>
-                <p className='paragraph'>
+                </Paragraph>
+                <Paragraph>
                     <GoldenFocus text='да будет так!!!' />
-                </p>
+                </Paragraph>
             </div>
         </ModuleWrapper>
     )
