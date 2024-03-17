@@ -21,6 +21,7 @@ export const query_userCoinsInfo = async (id: string): Promise<IUserCoinsInfo | 
                                 where: {
                                     owner_id: { _eq: id },
                                     status: { _eq: GOAL_STATUS_ENUM.ACTIVE },
+                                    deleted_at: { _is_null: true },
                                 },
                             },
                             goal_ritual: { ritual_power: true },

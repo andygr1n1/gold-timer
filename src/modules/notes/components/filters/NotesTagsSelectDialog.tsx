@@ -27,7 +27,7 @@ export const NotesTagsSelectDialog: React.FC = observer(() => {
             onChangeField: onChangeNotesFilter$,
         },
     } = useNotesStore()
-
+    
     const [loadingLocalForage, setLoadingLocalForage] = useState(true)
     useSelectedTagValidation()
 

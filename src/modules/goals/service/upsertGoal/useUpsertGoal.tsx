@@ -9,6 +9,7 @@ import { proxyConvert } from '@/functions/proxyConvert'
 import { replaceObjectValues } from '../../../../functions/replaceObjectValues'
 import { getSelectedGoalFromCache, pushGoalInCache } from '../../helpers/goalsCache'
 import { isDashboard } from '@/helpers/guards'
+import { KEY_FetchArtifactsCount } from '@/modules/dashboard/components/artifacts-counter/service/keys'
 
 export const useUpsertGoal = () =>
     useMutation({
@@ -62,5 +63,6 @@ export const useUpsertGoal = () =>
         },
         onSettled: () => {
             isDashboard() && window.queryClient.invalidateQueries({ queryKey: goalsQueryKeys.DASHBOARD })
+            isDashboard() && window.queryClient.invalidateQueries({ queryKey: KEY_FetchArtifactsCount() })
         },
     })
