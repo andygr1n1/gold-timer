@@ -7,7 +7,6 @@ import { SprintsIndex } from './modules/sprints/SprintsIndex'
 import { DashboardIndex } from './modules/dashboard/DashboardIndex'
 
 import { FocusGoalOfWeek } from './components/components-modal-windows/focus-goal-of-week/FocusGoalOfWeek'
-import { ProfileImageCropDialog } from './modules/profile/components/profile-avatar/ProfileImageCropDialog'
 import { AchievementsIndex } from './modules/achievements/AchievementsIndex'
 import { StoriesIndex } from './modules/stories/StoriesIndex'
 import { LoadingDialogGlobal } from './components/loading/LoadingDialogConstructor'
@@ -34,7 +33,6 @@ export const AppProtectedRoutes: React.FC = () => {
             {/*  */}
             <FocusGoalOfWeek />
 
-            <ProfileImageCropDialog />
             <LoadingDialogGlobal />
         </>
     )

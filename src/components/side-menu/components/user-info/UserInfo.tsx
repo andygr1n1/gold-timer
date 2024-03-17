@@ -1,4 +1,4 @@
-import { ProfileAvatar } from '../../../../modules/profile/components/profile-avatar/ProfileAvatar'
+import { ProfileAvatar } from '../../../../modules/profile/components/profile-avatar/components/ProfileAvatar'
 import { UserName } from './UserName'
 import { useFetchAvatar } from '../../../../modules/profile/service/fetch-avatar/useFetchAvatar'
 import { NavLink } from 'react-router-dom'
