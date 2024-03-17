@@ -4,6 +4,7 @@ import { useSprintsStore } from '@/StoreProvider'
 import clsx from 'clsx'
 import { IconUpload } from '@/assets/icons'
 import { observer } from 'mobx-react-lite'
+import { UploadInput } from '@/components/UploadInput'
 
 export const NewSprintImage = observer(() => {
     const { new_sprint } = useSprintsStore()
@@ -45,14 +46,7 @@ export const NewSprintImage = observer(() => {
                     height={50}
                 />
             </div>
-            <input
-                title='upload'
-                className='absolute left-0 top-0 z-20 flex h-full w-full cursor-pointer rounded-full opacity-0'
-                accept='image/*'
-                id='file_input'
-                type='file'
-                onChange={onSelectFile}
-            />
+            <UploadInput onChange={onSelectFile} />
         </div>
     )
 })
