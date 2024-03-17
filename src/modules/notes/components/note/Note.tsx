@@ -56,12 +56,7 @@ export const Note: React.FC<{ note: INote$ }> = observer(({ note }) => {
                 )}
                 <NoteTagsList note={note} />
 
-                <ReactQuill
-                    className='view-mode [&_.ql-editor]:!min-h-[130px]'
-                    value={note.description}
-                    modules={{ toolbar: [] }}
-                    readOnly={true}
-                />
+                <ReactQuill className='view-mode ' value={note.description} modules={{ toolbar: [] }} readOnly={true} />
             </div>
         </XDropdown>
     )

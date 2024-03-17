@@ -11,7 +11,7 @@ import { NotepadIndex } from '@/modules/notepad/NotepadIndex'
 export const Dashboard: React.FC = () => {
     return (
         <ModuleWrapper context={APP_ROUTES_ENUM.DASHBOARD} topBarNodes={<ArtifactsCounter />}>
-            {<NotepadIndex />}
+            <NotepadIndex />
             <GoalsSlidesCarouselWidget />
             <TopActiveGoalsWidget />
             <TopExpiredGoalsWidget />

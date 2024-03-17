@@ -5,13 +5,14 @@ import { XMenuItem } from '@/components-x/x-dropdown/XMenuItem'
 import { ReactNode } from 'react'
 import { selectedGoalAtom, selectedGoalAtom$ } from '@/modules/goals/stores/selectedGoal.store'
 import { IconNew } from '@/assets/icons'
+import { StyledButton } from '@/components/buttons/StyledButton'
 
 export const GoalsCounterDropdown: React.FC<{ button: ReactNode }> = observer(({ button }) => {
     return (
         <XDropdown
             trigger={['hover']}
             dropdownRender={() => <DropdownRender />}
-            placement='bottomLeft'
+            placement='bottomCenter'
             overlayClassName='!z-[55]'
         >
             <div>{button}</div>
@@ -23,7 +24,6 @@ const DropdownRender = () => {
     return (
         <XMenuDropdown>
             <XMenuItem
-                className='!opacity-100'
                 onClick={() =>
                     selectedGoalAtom$.set(selectedGoalAtom, {
                         id: crypto.randomUUID(),
@@ -32,8 +32,9 @@ const DropdownRender = () => {
                     })
                 }
             >
-                <IconNew width={24} height={24} className='duration-300 group-hover:text-blue-600' />
-                <span>Add goal</span>
+                <StyledButton variant='text' size='small' startIcon={<IconNew width={24} height={24} />}>
+                    <span className='flex w-[110px] justify-start capitalize'>Add goal</span>
+                </StyledButton>
             </XMenuItem>
         </XMenuDropdown>
     )

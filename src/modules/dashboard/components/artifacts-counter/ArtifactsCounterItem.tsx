@@ -11,7 +11,7 @@ export const ArtifactsCounterItem: React.FC<{ count: number; icon: ReactNode }> 
             )}
             startIcon={icon}
         >
-            <span className='font-bold duration-300 group-hover:text-blue-500'>{count || ''}</span>
+            <span className='font-bold duration-300 min-w-[25px] group-hover:text-blue-500'>{count || ''}</span>
         </StyledButton>
     )
 }

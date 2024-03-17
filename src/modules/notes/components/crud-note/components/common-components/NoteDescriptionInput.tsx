@@ -23,6 +23,19 @@ export const NoteDescriptionInput: React.FC<{ note: INote$ }> = observer(({ note
                 }}
                 placeholder='Note...'
                 className='[&_.ql-editor]:!max-h-[130px] [&_.ql-editor]:!min-h-[130px]'
+                formats={['bold', 'italic', 'underline', 'strike', 'color', 'link', 'image', 'clean']}
+                modules={{
+                    toolbar: [
+                        'bold',
+                        'italic',
+                        'underline',
+                        'strike',
+                        { color: ['red', 'blue', 'green'] },
+                        'link',
+                        'image',
+                        'clean',
+                    ],
+                }}
             />
         </Form.Item>
     )
