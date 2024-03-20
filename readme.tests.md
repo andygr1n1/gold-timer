@@ -1,3 +1,7 @@
+# Why
+
+Testing the behavior of product, not variables or values
+
 # Tools
 
 1. Vitest

@@ -7,7 +7,6 @@ export const AddNote: React.FC = observer(() => {
     const { openNoteCreateMode } = useNotesStore()
     return (
         <div className='opacity-70'>
-            {' '}
             <StyledButton
                 startIcon={<IconNew width={24} height={24} />}
                 onClick={() => openNoteCreateMode()}
