@@ -28,7 +28,6 @@ export const useFetchGoalsByFilter = (props: { queryFilter?: IGoalQueryTypeFilte
         refetchOnMount: true,
     })
 
-
     const activeGoals =
         orderBy(
             data?.filter(
@@ -54,7 +53,7 @@ export const useFetchGoalsByFilter = (props: { queryFilter?: IGoalQueryTypeFilte
             data?.filter(
                 (goal) =>
                     !goal.deleted_at &&
-                    !isPast(setMidnightTime(new Date(goal.finished_at))) &&
+                    // !isPast(setMidnightTime(new Date(goal.finished_at))) &&
                     !!goal.goal_ritual?.ritual_power &&
                     goal.status !== GOAL_STATUS_ENUM.COMPLETED,
             ),
