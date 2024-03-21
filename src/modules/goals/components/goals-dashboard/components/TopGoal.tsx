@@ -1,4 +1,4 @@
-import { useTogglePopoverState } from '@/hooks/useTogglePopoverState'
+import { useTogglePopoverState } from '@/hooks/useTogglePopoverState.hook'
 import { XDropdown } from '@/components-x/x-dropdown/XDropdown'
 import { selectedGoalAtom, selectedGoalAtom$ } from '@/modules/goals/stores/selectedGoal.store'
 import { GoalContextMenu } from './GoalContextMenu'

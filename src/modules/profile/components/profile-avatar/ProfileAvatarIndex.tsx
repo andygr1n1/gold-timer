@@ -14,7 +14,7 @@ export const ProfileAvatarIndex = () => {
 
     return (
         <>
-            <div data-testId='profile-avatar-index' className='group relative mx-auto mb-10 w-fit rounded-full'>
+            <div data-testid='profile-avatar-index' className='group relative mx-auto mb-10 w-fit rounded-full'>
                 <ProfileAvatar />
                 <UploadHoverAnimation />
                 <UploadInput onChange={onChange} />

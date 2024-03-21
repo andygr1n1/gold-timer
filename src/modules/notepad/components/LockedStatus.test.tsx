@@ -22,7 +22,6 @@ describe('LockedStatus', () => {
         const user = userEvent.setup()
         const handleClick = vi.fn()
         render(<LockedStatus isLocked={false} onClick={handleClick} />)
-        screen.debug()
 
         await user.click(screen.getByTestId('toggle-lock'))
         expect(handleClick).toHaveBeenCalledOnce()

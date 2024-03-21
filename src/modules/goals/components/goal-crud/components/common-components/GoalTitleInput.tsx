@@ -11,6 +11,7 @@ export const GoalTitleInput: React.FC<{ value?: string; view_mode?: boolean; onC
             <div>
                 <FormLabel title='Title' />
                 <XInput
+                    data-testid='goal-title-input'
                     error={error}
                     errorMessage='Required field'
                     disabled={view_mode}

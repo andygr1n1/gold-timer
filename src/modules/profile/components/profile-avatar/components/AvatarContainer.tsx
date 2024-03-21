@@ -3,7 +3,7 @@ import { IconAvatar } from '@/assets/icons'
 export const AvatarContainer: React.FC<{ avatar: string }> = ({ avatar }) => {
     return (
         <div
-            data-testId='avatar-container'
+            data-testid='avatar-container'
             className='relative group mx-auto flex z-10 md:h-40 md:w-40 h-32 w-32 items-center justify-center rounded-full '
         >
             {avatar ? (

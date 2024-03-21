@@ -5,9 +5,9 @@ import { LockedStatus } from './LockedStatus'
 export const LockedStatusIndex: React.FC = () => {
     const { isLocked, isLoading } = useFetchLockedStatus()
 
-    const toggleLockedStatus = useMutateLockedStatus()
+    const { mutate } = useMutateLockedStatus()
 
     if (isLoading) return null
 
-    return <LockedStatus isLocked={!!isLocked} onClick={(locked) => toggleLockedStatus.mutate({ locked })} />
+    return <LockedStatus isLocked={!!isLocked} onClick={(locked) => mutate({ locked })} />
 }

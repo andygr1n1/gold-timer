@@ -84,7 +84,10 @@ export const XInput: React.FC<XInputProps> = ({
                 )}
 
                 {error && errorMessage && (
-                    <div className='font-kzen bg-global-3-bg absolute bottom-[-5px] left-2 z-20 m-0 rounded-full p-0 px-1 text-xs leading-3 text-red-700 '>
+                    <div
+                        data-testid='error-message'
+                        className='font-kzen bg-global-3-bg absolute bottom-[-5px] left-2 z-20 m-0 rounded-full p-0 px-1 text-xs leading-3 text-red-700 '
+                    >
                         {errorMessage}
                     </div>
                 )}

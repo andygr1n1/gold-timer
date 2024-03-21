@@ -7,7 +7,7 @@ export const ProfileAvatar = () => {
 
     return (
         <div
-            data-testId='profile-avatar'
+            data-testid='profile-avatar'
             className='relative flex h-32 w-32 items-center justify-center
             rounded-full font-bold text-gray-500 md:h-40 md:w-40'
         >
