@@ -36,7 +36,10 @@ export default ({ mode }: { mode: string }) => {
             setupFiles: './tests/setup',
         },
         resolve: {
-            alias: [{ find: '@', replacement: path.resolve(__dirname, 'src') }],
+            alias: [
+                { find: '@', replacement: path.resolve(__dirname, 'src') },
+                { find: 'tests', replacement: path.resolve(__dirname, 'tests') },
+            ],
         },
         css: {
             preprocessorOptions: {

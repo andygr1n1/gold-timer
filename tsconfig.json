@@ -20,7 +20,7 @@
         "types": ["vite/client", "node"],
         "plugins": [{ "name": "typescript-plugin-css-modules" }]
     },
-    "include": ["src/**/*"],
+    "include": ["src/**/*", "tests/**/*"],
     "exclude": ["node_modules", "/src/graphql/generated/"],
     "extends": "./tsconfig.paths.json",
     "references": [{ "path": "./tsconfig.node.json" }]

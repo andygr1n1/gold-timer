@@ -19,6 +19,7 @@ import { processError } from '@/functions/processMessage'
 import { useAtom } from 'jotai'
 import { loginAtom } from '@/modules/login/stores/login.store'
 import { validateUser } from './stores/register.store'
+import { setRememberUserCookie } from '@/functions/universalCookie'
 
 export const RegisterIndex: React.FC = observer(() => {
     const [, setLogin] = useAtom(loginAtom)
@@ -40,6 +41,8 @@ export const RegisterIndex: React.FC = observer(() => {
 
         const registerUserRes = await sendRegistrationData(values)
         if (registerUserRes) {
+            // set cookie
+            setRememberUserCookie(registerUserRes.user_id, true)
             setLogin({ user_id: registerUserRes.user_id })
         }
 
