@@ -1,12 +1,13 @@
 import { ModuleWrapper } from '@/components/ModuleWrapper'
 import { APP_ROUTES_ENUM } from '@/helpers/enums'
+import { BookPage } from './components/BookPage'
 
 export const LoveStory: React.FC = () => {
     return (
         <ModuleWrapper context={APP_ROUTES_ENUM.STORIES}>
-            <div className='book-page'>
+            <BookPage>
                 <h1>Love Story</h1>
-            </div>
+            </BookPage>
         </ModuleWrapper>
     )
 }

@@ -21,7 +21,7 @@ export const TopGoalBody: React.FC<{
             }}
             onContextMenu={onRightClick}
             key={goal.id}
-            className={`relative flex h-[60px] cursor-pointer items-center justify-between rounded-lg duration-300 ${goalClass} ${className} `}
+            className={`relative flex h-[60px] cursor-pointer items-center justify-between rounded-lg  ${goalClass} ${className} `}
         >
             <TopGoalTitle title={goal.title} />
             <TopGoalRemainingDays goal={goal} />

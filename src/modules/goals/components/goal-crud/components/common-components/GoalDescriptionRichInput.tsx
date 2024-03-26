@@ -10,14 +10,13 @@ export const GoalDescriptionRichInput: React.FC<{
     onChange?: (value: string) => void
 }> = ({ value = '', hide = false, view_mode = false, onChange }) => {
     if (view_mode && !value.length) return null
-
     /* Fixing ReactQuill  */
     /* https://github.com/zenoamaro/react-quill/issues/911 */
     /* In react-quill text editor move next line using Enter kay, need to press Enter kay two time. */
     const [val, setVal] = useState('')
     useEffect(() => {
         setVal(value)
-    }, [hide])
+    }, [hide, value])
 
     return !hide ? (
         <div>
