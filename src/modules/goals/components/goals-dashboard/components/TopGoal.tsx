@@ -24,7 +24,7 @@ export const TopGoal: React.FC<{ goal: IGoal; className?: string; zIndex?: numbe
             dropdownRender={() => <GoalContextMenu action={() => setPopoverState(false)} goal={goal} />}
         >
             {/* div is important for context menu positioning */}
-            <div className='animate-opacity-5'>
+            <div>
                 <TopGoalBody
                     goal={goal}
                     selectGoal={() => {

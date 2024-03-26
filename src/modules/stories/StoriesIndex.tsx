@@ -1,6 +1,6 @@
 import { Stories } from './Stories'
 import { Route, Routes } from 'react-router-dom'
-import { PhoenixConnection } from './static-pages/PhoenixConnection'
+import { PhoenixConnection } from './static-pages/phoenix-connection/PhoenixConnection'
 import { LoveStory } from './static-pages/LoveStory'
 import { HealingEye } from './static-pages/HealingEye'
 

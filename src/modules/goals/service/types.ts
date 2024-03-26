@@ -58,6 +58,7 @@ export interface IInsertRitual {
 
 export type IActiveGoals = {
     isLoading: boolean
+    isFetching?: boolean
     data: Partial<{
         [key in IGoalQueryTypeFilter]: IGoal[]
     }>

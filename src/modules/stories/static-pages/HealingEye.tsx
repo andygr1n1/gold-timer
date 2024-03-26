@@ -2,11 +2,12 @@ import { ModuleWrapper } from '@/components/ModuleWrapper'
 import { APP_ROUTES_ENUM } from '@/helpers/enums'
 import { Focus, GoldenFocus, Statement } from './components/Focus'
 import { Paragraph } from './components/Paragraph'
+import { BookPage } from './components/BookPage'
 
 export const HealingEye: React.FC = () => {
     return (
         <ModuleWrapper context={APP_ROUTES_ENUM.STORIES}>
-            <div className='book-page'>
+            <BookPage>
                 <h1>Healing Eye</h1>
                 <Paragraph>
                     Выполняя упражнения для глаз, мы не только тренируем мышцы, но и делаем профилактику
@@ -115,7 +116,7 @@ export const HealingEye: React.FC = () => {
                 <Paragraph>
                     <GoldenFocus text='5. Бабочка' />
                 </Paragraph>
-            </div>
+            </BookPage>
         </ModuleWrapper>
     )
 }
