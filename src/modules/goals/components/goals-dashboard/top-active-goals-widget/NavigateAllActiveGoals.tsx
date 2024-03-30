@@ -10,7 +10,7 @@ export const NavigateAllActiveGoals: React.FC = () => {
             <StyledButton
                 onClick={() => {
                     navigate(
-                        { pathname: '/dashboard/filtered-goals', search: `?filter=active` },
+                        { pathname: '/goals/filtered-goals', search: `?filter=active` },
                         { state: { filter: 'active' } },
                     )
                 }}

@@ -10,7 +10,7 @@ export const NavigateExpiredGoals: React.FC = () => {
             <StyledButton
                 onClick={() => {
                     navigate(
-                        { pathname: '/dashboard/filtered-goals', search: `?filter=expired` },
+                        { pathname: '/goals/filtered-goals', search: `?filter=expired` },
                         { state: { filter: 'expired' } },
                     )
                 }}

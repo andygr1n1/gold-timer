@@ -1,7 +1,6 @@
 import { resolveData } from '@/functions/resolveData'
 import { generateTSClient } from '@/graphql/client'
 import { processError } from '@/functions/processMessage'
-import { GOAL_STATUS_ENUM } from '@/helpers/enums'
 
 export type IUserCoinsInfo = { coins?: number; totalRitualPower?: number; activeGoalsCount: number }
 
@@ -20,7 +19,7 @@ export const query_userCoinsInfo = async (id: string): Promise<IUserCoinsInfo | 
                             __args: {
                                 where: {
                                     owner_id: { _eq: id },
-                                    status: { _eq: GOAL_STATUS_ENUM.ACTIVE },
+                                    status: { _eq: 'active' },
                                     deleted_at: { _is_null: true },
                                 },
                             },

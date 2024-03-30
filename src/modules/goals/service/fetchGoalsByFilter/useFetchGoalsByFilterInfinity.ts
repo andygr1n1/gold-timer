@@ -2,14 +2,10 @@ import { setMidnightTime } from '@/functions/date.helpers'
 import { useInfiniteQuery } from '@tanstack/react-query'
 import { IGoalQueryTypeFilter } from '@/modules/goals/service/types'
 import { isPast } from 'date-fns'
-import { GOAL_STATUS_ENUM } from '@/helpers/enums'
 import { compact, flatten, last, orderBy } from 'lodash-es'
 import { KEY_FetchGoalsByFilter } from '../keys'
 import { IActiveGoals } from '../types'
 import { fabric_goalsByFilter } from './fabric_goalsByFilter'
-// import { useAtom } from 'jotai'
-// import { filterGoalAtom_search } from '../../stores/filterGoal.store'
-// import { useEffect } from 'react'
 
 export const useFetchGoalsByFilterInfinity = (props: {
     queryFilter?: IGoalQueryTypeFilter
@@ -49,7 +45,7 @@ export const useFetchGoalsByFilterInfinity = (props: {
                     !goal.deleted_at &&
                     !!!goal.goal_ritual?.ritual_power &&
                     !isPast(setMidnightTime(new Date(goal.finished_at))) &&
-                    goal.status !== GOAL_STATUS_ENUM.COMPLETED,
+                    goal.status !== 'completed',
             ),
             ['finished_at'],
             ['asc'],
@@ -65,8 +61,7 @@ export const useFetchGoalsByFilterInfinity = (props: {
     const ritualGoals =
         orderBy(
             unifiedPages?.filter(
-                (goal) =>
-                    !goal.deleted_at && !!goal.goal_ritual?.ritual_power && goal.status !== GOAL_STATUS_ENUM.COMPLETED,
+                (goal) => !goal.deleted_at && !!goal.goal_ritual?.ritual_power && goal.status !== 'completed',
             ),
             ['finished_at'],
             ['asc'],
@@ -79,7 +74,7 @@ export const useFetchGoalsByFilterInfinity = (props: {
                     !goal.deleted_at &&
                     // !!!goal.goal_ritual?.ritual_power &&
                     isPast(setMidnightTime(new Date(goal.finished_at))) &&
-                    goal.status !== GOAL_STATUS_ENUM.COMPLETED,
+                    goal.status !== 'completed',
             ),
             ['finished_at'],
             ['asc'],

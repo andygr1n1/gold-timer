@@ -12,8 +12,10 @@ export const NotesHeader: React.FC = () => {
                     <AddNote />
                     <div className='flex w-full items-center justify-end gap-2'>
                         <SearchNotesInput />
-                        <NotesTagsSelectButton />
-                        <NotesStatusSelect />
+                        <div className='flex gap-2 w-[90px]'>
+                            <NotesTagsSelectButton />
+                            <NotesStatusSelect />
+                        </div>
                     </div>
                 </div>
             </div>

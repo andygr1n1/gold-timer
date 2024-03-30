@@ -10,7 +10,7 @@ export const NavigateRitualGoals: React.FC = () => {
             <StyledButton
                 onClick={() => {
                     navigate(
-                        { pathname: '/dashboard/filtered-goals', search: `?filter=ritual` },
+                        { pathname: '/goals/filtered-goals', search: `?filter=ritual` },
                         { state: { filter: 'ritual' } },
                     )
                 }}

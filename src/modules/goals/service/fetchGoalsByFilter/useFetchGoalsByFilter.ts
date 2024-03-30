@@ -2,7 +2,6 @@ import { setMidnightTime } from '@/functions/date.helpers'
 import { useQuery } from '@tanstack/react-query'
 import { fabric_goalsByFilter } from './fabric_goalsByFilter'
 import { isPast } from 'date-fns'
-import { GOAL_STATUS_ENUM } from '@/helpers/enums'
 import { compact, orderBy } from 'lodash-es'
 import { KEY_FetchGoalsByFilter } from '../keys'
 import { IActiveGoals } from '../types'
@@ -35,7 +34,7 @@ export const useFetchGoalsByFilter = (props: { queryFilter?: IGoalQueryTypeFilte
                     !goal.deleted_at &&
                     !!!goal.goal_ritual?.ritual_power &&
                     !isPast(setMidnightTime(new Date(goal.finished_at))) &&
-                    goal.status !== GOAL_STATUS_ENUM.COMPLETED,
+                    goal.status !== 'completed',
             ),
             ['finished_at', 'title'],
             ['asc', 'asc'],
@@ -55,7 +54,7 @@ export const useFetchGoalsByFilter = (props: { queryFilter?: IGoalQueryTypeFilte
                     !goal.deleted_at &&
                     // !isPast(setMidnightTime(new Date(goal.finished_at))) &&
                     !!goal.goal_ritual?.ritual_power &&
-                    goal.status !== GOAL_STATUS_ENUM.COMPLETED,
+                    goal.status !== 'completed',
             ),
             ['finished_at', 'title'],
             ['asc', 'asc'],
@@ -68,7 +67,7 @@ export const useFetchGoalsByFilter = (props: { queryFilter?: IGoalQueryTypeFilte
                     !goal.deleted_at &&
                     // !!!goal.goal_ritual?.ritual_power &&
                     isPast(setMidnightTime(new Date(goal.finished_at))) &&
-                    goal.status !== GOAL_STATUS_ENUM.COMPLETED,
+                    goal.status !== 'completed',
             ),
             ['finished_at', 'title'],
             ['asc', 'asc'],

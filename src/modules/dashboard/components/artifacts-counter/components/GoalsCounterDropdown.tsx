@@ -12,7 +12,7 @@ export const GoalsCounterDropdown: React.FC<{ button: ReactNode }> = observer(({
         <XDropdown
             trigger={['hover']}
             dropdownRender={() => <DropdownRender />}
-            placement='bottomCenter'
+            placement='bottom'
             overlayClassName='!z-[55]'
         >
             <div>{button}</div>
