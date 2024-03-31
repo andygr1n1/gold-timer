@@ -9,12 +9,14 @@ import { GoalsFiltersSelectButton } from './GoalsFiltersSelectButton'
 import { StyledButton } from '@/components/buttons/StyledButton'
 import { useNavigate } from 'react-router-dom'
 import { IGoalQueryTypeFilter } from '@/modules/goals/service'
+import { setGoalsFilterParam } from '@/modules/goals/helpers/goalsFilterParamLocalForage'
 
 export const GoalsFilterSelect: React.FC = observer(() => {
     const [open, setOpen] = useState(false)
     const navigate = useNavigate()
 
     const onClose = (filter: IGoalQueryTypeFilter) => {
+        setGoalsFilterParam(filter)
         navigate({ pathname: '/goals/filtered-goals', search: `?filter=${filter}` }, { state: { filter } })
         setOpen(false)
     }

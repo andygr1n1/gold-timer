@@ -1,5 +1,6 @@
 import { IconRitual } from '@/assets/icons'
 import { StyledButton } from '@/components/buttons/StyledButton'
+import { setGoalsFilterParam } from '@/modules/goals/helpers/goalsFilterParamLocalForage'
 import { useNavigate } from 'react-router-dom'
 
 export const NavigateRitualGoals: React.FC = () => {
@@ -13,6 +14,7 @@ export const NavigateRitualGoals: React.FC = () => {
                         { pathname: '/goals/filtered-goals', search: `?filter=ritual` },
                         { state: { filter: 'ritual' } },
                     )
+                    setGoalsFilterParam('ritual')
                 }}
                 variant='text'
                 className='!h-24 !w-24 !rounded-full'

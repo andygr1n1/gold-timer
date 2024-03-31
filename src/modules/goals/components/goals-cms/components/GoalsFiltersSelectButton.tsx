@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react-lite'
 import { StyledButton } from '@/components/buttons/StyledButton'
 import { ActiveFilterIcon } from './ActiveFilterIcon'
-import { useGetGoalsParamsFilter } from '../hooks/useGetGoalsParamsFilter'
+import { useGetGoalsParamsFilter } from '../../../hooks/useGetGoalsParamsFilter'
 import { cn } from '@/functions'
 
 export const GoalsFiltersSelectButton: React.FC = observer(() => {
