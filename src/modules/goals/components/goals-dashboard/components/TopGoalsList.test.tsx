@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import { render, screen } from '@testing-library/react'
 import { TopGoalsList } from './TopGoalsList'
-import { test_data_TodayGoals } from '../../tests/testData'
+import { test_data_TodayGoals } from '../../../tests/testData'
 
 describe('TopGoalsList', () => {
     it('Renders TopGoalsList of 4 goals', () => {

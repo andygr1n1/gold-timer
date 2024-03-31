@@ -3,7 +3,7 @@ import { IGoalQueryTypeFilter } from '@/modules/goals/service/types'
 import { useFetchGoalsByFilterInfinity } from '@/modules/goals/service/fetchGoalsByFilter/useFetchGoalsByFilterInfinity'
 import React, { useEffect } from 'react'
 import { useInView } from 'react-intersection-observer'
-import { TopGoal } from '../components/TopGoal'
+import { TopGoal } from '../../goals-dashboard/components/TopGoal'
 import { filteredGoalsFabric } from '@/modules/goals/helpers/filteredGoalsFabric'
 import { FormLabel } from '@/components/form/FormLabel'
 import { getMonthNumber } from '@/functions/getMonthNumber.helper'
@@ -13,6 +13,8 @@ export const GoalsCards: React.FC<{ state: IGoalQueryTypeFilter }> = ({ state })
 
     const { isLoading, data, fetchNextPage, hasNextPage } = useFetchGoalsByFilterInfinity({ queryFilter: state })
 
+    console.log('->', data.deleted)
+
     useEffect(() => {
         inView && hasNextPage && fetchNextPage()
     }, [inView, hasNextPage])
@@ -20,7 +22,7 @@ export const GoalsCards: React.FC<{ state: IGoalQueryTypeFilter }> = ({ state })
     const { filteredGoals, timeFrame } = filteredGoalsFabric(data[state])
 
     return (
-        <div className='animate-opacity-3 mx-auto flex w-full max-w-sm flex-col gap-5'>
+        <div className='animate-opacity-3 mx-auto flex w-full flex-col gap-5'>
             {timeFrame.map((tp, index) => {
                 // *
                 //
@@ -31,7 +33,7 @@ export const GoalsCards: React.FC<{ state: IGoalQueryTypeFilter }> = ({ state })
                     <React.Fragment key={tp}>
                         <div>{tp && <FormLabel title={tp} />}</div>
                         {tp && (
-                            <div className='bg-global-2-bg-plasma animate-opacity-5 relative  h-32 max-w-sm'>
+                            <div className='bg-global-2-bg-plasma animate-opacity-5 relative'>
                                 <div className='absolute-center animate-opacity-5 z-1 text-cText flex h-full w-full items-center justify-center text-2xl opacity-20'>
                                     {tp}
                                 </div>
@@ -41,7 +43,7 @@ export const GoalsCards: React.FC<{ state: IGoalQueryTypeFilter }> = ({ state })
                                     src={`${import.meta.env.VITE_FIRE_BUNNY_STORAGE}/utility/seasons/${getMonthNumber(
                                         tp.split(' ')[1],
                                     )}.png`}
-                                    className='rounded-xs animate-opacity-5 absolute-center z-1 z-10 flex h-32 w-full items-center justify-center'
+                                    className='rounded-md animate-opacity-5 z-1 z-10 flex w-full items-center justify-center'
                                 />
                             </div>
                         )}
@@ -52,7 +54,7 @@ export const GoalsCards: React.FC<{ state: IGoalQueryTypeFilter }> = ({ state })
                                         zIndex={2000}
                                         key={goal.id}
                                         goal={goal}
-                                        className='mx-auto min-h-[60px] !w-full max-w-sm !flex-[100%]'
+                                        className='mx-auto min-h-[60px] !w-full !flex-[100%]'
                                     />
                                 )
                             })}

@@ -1,5 +1,5 @@
 import { StyledButton } from '@/components/buttons/StyledButton'
-import { selectedGoalAtom, selectedGoalAtom$ } from '../../stores/selectedGoal.store'
+import { selectedGoalAtom, selectedGoalAtom$ } from '../../../stores/selectedGoal.store'
 import { IconNew } from '@/assets/icons'
 
 export const CreateGoalAction: React.FC = () => {

@@ -9,6 +9,7 @@ import ReactQuill from 'react-quill'
 import { StyledButton } from '@/components/buttons/StyledButton'
 import { IconArchive } from '@/assets/icons/IconArchive'
 import { IconDeleteTemp } from '@/assets/icons'
+import { cn } from '@/functions'
 
 export const Note: React.FC<{ note: INote$ }> = observer(({ note }) => {
     const { popoverState, setPopoverState } = useTogglePopoverState()
@@ -23,9 +24,10 @@ export const Note: React.FC<{ note: INote$ }> = observer(({ note }) => {
             dropdownRender={() => <NoteContextMenu onClose={() => setPopoverState(false)} note={note} />}
         >
             <div
-                className={
-                    'bg-global-2-bg flex w-[calc(100%-40px)] max-w-[600px] flex-col gap-5 overflow-auto rounded-lg p-5 '
-                }
+                className={cn(
+                    `bg-global-2-bg flex w-[calc(100%-40px)] max-w-[600px] flex-col gap-5
+                    overflow-auto rounded-lg p-5 hover:scale-105 duration-300`,
+                )}
                 onContextMenu={() => {
                     setPopoverState(!popoverState)
                 }}
@@ -33,7 +35,9 @@ export const Note: React.FC<{ note: INote$ }> = observer(({ note }) => {
             >
                 {note.created_at && (
                     <div className='flex justify-between items-center'>
-                        <div className='text-sm font-semibold underline'>{format(note.created_at, 'dd MMM, yyyy')}</div>
+                        <div className='text-sm font-semibold cursor-default underline'>
+                            {format(note.created_at, 'dd MMM, yyyy')}
+                        </div>
                         <div className='flex gap items-center'>
                             {note.archived && (
                                 <StyledButton
@@ -56,7 +60,12 @@ export const Note: React.FC<{ note: INote$ }> = observer(({ note }) => {
                 )}
                 <NoteTagsList note={note} />
 
-                <ReactQuill className='view-mode ' value={note.description} modules={{ toolbar: [] }} readOnly={true} />
+                <ReactQuill
+                    className='view-mode [&_*]:cursor-default'
+                    value={note.description}
+                    modules={{ toolbar: [] }}
+                    readOnly={true}
+                />
             </div>
         </XDropdown>
     )

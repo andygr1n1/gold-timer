@@ -1,6 +1,6 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
 import { APP_ROUTES_ENUM } from './helpers/enums'
-import { GoalsCms } from './modules/goals/components/goals-cms/GoalsCms'
+import { GoalsCmsIndex } from './modules/goals/components/goals-cms/GoalsCmsIndex'
 import { ProfileIndex } from './modules/profile/ProfileIndex'
 import { NotesIndex } from './modules/notes/NotesIndex'
 import { SprintsIndex } from './modules/sprints/SprintsIndex'
@@ -20,7 +20,7 @@ export const AppProtectedRoutes: React.FC = () => {
                 <Route path={`/${APP_ROUTES_ENUM.ACHIEVEMENTS}`} element={<AchievementsIndex />} />
                 <Route path={`/${APP_ROUTES_ENUM.STORIES}/*`} element={<StoriesIndex />} />
                 <Route path={`/${APP_ROUTES_ENUM.NOTES}`} element={<NotesIndex />} />
-                <Route path={`/${APP_ROUTES_ENUM.GOALS}`} element={<GoalsCms />} />
+                <Route path={`/${APP_ROUTES_ENUM.GOALS}/*`} element={<GoalsCmsIndex />} />
                 <Route path={`/${APP_ROUTES_ENUM.SPRINTS}`} element={<SprintsIndex />} />
                 <Route path={`/${APP_ROUTES_ENUM.CRYPTO}`} element={<CryptoIndex />} />
                 {/*  */}

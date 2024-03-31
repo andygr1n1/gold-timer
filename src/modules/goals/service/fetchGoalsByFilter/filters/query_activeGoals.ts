@@ -1,18 +1,17 @@
 import { setZeroTime } from '@/functions/date.helpers'
 import { getUserId } from '@/functions/getUserData'
 import { Client } from 'gold-timer-genql/lib/generated'
-import { GOAL_STATUS_ENUM } from '@/helpers/enums'
 import { filterGoalAtom } from '@/modules/goals/stores/filterGoal.store'
 import { selectedGoalAtom$ } from '@/modules/goals/stores/selectedGoal.store'
 
 export const query_activeGoals = (props: {
     client: Client
-    queryIsActive: boolean
+    queryIsActive?: boolean
     limit?: number
     offset?: number
     filterByText: boolean
 }) => {
-    const { client, queryIsActive = true, limit, offset, filterByText } = props
+    const { client, queryIsActive = false, limit, offset, filterByText } = props
 
     const searchText = selectedGoalAtom$.get(filterGoalAtom)?.search
 
@@ -30,7 +29,7 @@ export const query_activeGoals = (props: {
                             {
                                 owner_id: { _eq: getUserId() },
                                 deleted_at: { _is_null: true },
-                                status: { _eq: GOAL_STATUS_ENUM.ACTIVE },
+                                status: { _eq: 'active' },
                                 // not ritual
                                 _not: { goal_ritual: {} },
                                 // not expired

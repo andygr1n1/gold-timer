@@ -1,7 +1,7 @@
+import { XRte } from '@/components-x/x-rte/XRte'
 import { FormLabel } from '@/components/form/FormLabel'
 import { cn } from '@/functions/helpers'
 import { useEffect, useState } from 'react'
-import ReactQuill from 'react-quill'
 
 export const GoalDescriptionRichInput: React.FC<{
     value?: string
@@ -14,6 +14,7 @@ export const GoalDescriptionRichInput: React.FC<{
     /* https://github.com/zenoamaro/react-quill/issues/911 */
     /* In react-quill text editor move next line using Enter kay, need to press Enter kay two time. */
     const [val, setVal] = useState('')
+
     useEffect(() => {
         setVal(value)
     }, [hide, value])
@@ -21,10 +22,10 @@ export const GoalDescriptionRichInput: React.FC<{
     return !hide ? (
         <div>
             <FormLabel title='Description' />
-            <ReactQuill
+            <XRte
                 className={cn(view_mode && 'view-mode')}
-                value={view_mode ? val : value}
-                onChange={(content) => {
+                content={view_mode ? val : value}
+                onChangeContent={(content) => {
                     onChange?.(content)
                 }}
                 modules={view_mode ? { toolbar: [] } : undefined}

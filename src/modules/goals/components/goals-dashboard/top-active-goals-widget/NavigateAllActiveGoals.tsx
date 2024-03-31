@@ -1,5 +1,6 @@
 import { IconFocus } from '@/assets/icons'
 import { StyledButton } from '@/components/buttons/StyledButton'
+import { setGoalsFilterParam } from '@/modules/goals/helpers/goalsFilterParamLocalForage'
 import { useNavigate } from 'react-router-dom'
 
 export const NavigateAllActiveGoals: React.FC = () => {
@@ -10,9 +11,10 @@ export const NavigateAllActiveGoals: React.FC = () => {
             <StyledButton
                 onClick={() => {
                     navigate(
-                        { pathname: '/dashboard/filtered-goals', search: `?filter=active` },
+                        { pathname: '/goals/filtered-goals', search: `?filter=active` },
                         { state: { filter: 'active' } },
                     )
+                     setGoalsFilterParam('active')
                 }}
                 variant='text'
                 className='!h-24 !w-24 !rounded-full'

@@ -1,7 +1,7 @@
 import { useNotesStore } from '@/StoreProvider'
+import { XRte } from '@/components-x/x-rte/XRte'
 import { observer } from 'mobx-react-lite'
 import { useEffect } from 'react'
-import ReactQuill from 'react-quill'
 
 export const NewNoteInput: React.FC = observer(() => {
     const { widget_new_note } = useNotesStore()
@@ -12,10 +12,10 @@ export const NewNoteInput: React.FC = observer(() => {
     }, [])
 
     return (
-        <ReactQuill
+        <XRte
             preserveWhitespace
-            value={description}
-            onChange={(content) => {
+            content={description}
+            onChangeContent={(content) => {
                 onChangeField('description', content)
             }}
             placeholder='Note...'

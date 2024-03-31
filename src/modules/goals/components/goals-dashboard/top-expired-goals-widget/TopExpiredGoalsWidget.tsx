@@ -1,7 +1,7 @@
 import { useFetchGoalsByFilter } from '@/modules/goals/service'
 import { IsLoading } from '@/components/loading/IsLoading'
 import { NavigateExpiredGoals } from './NavigateExpiredGoals'
-import { TopGoalsList } from '../../shared/TopGoalsList'
+import { TopGoalsList } from '../components/TopGoalsList'
 
 import styles from '../goalsDashboard.module.scss'
 

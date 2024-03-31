@@ -1,10 +1,10 @@
-import ReactQuill from 'react-quill'
 import { debounce } from 'lodash-es'
 import { useCallback, useMemo } from 'react'
 import { KEY_FetchNotepad } from '../service/keys'
 import { useFetchLockedStatus } from '../service/useFetchLockedStatus'
 import { useFetchNotepad } from '../service/useFetchNotepad'
 import { useMutateNotepad } from '../service/useMutateNotepad'
+import { XRte } from '@/components-x/x-rte/XRte'
 
 export const NotepadInput: React.FC = () => {
     const { isLocked } = useFetchLockedStatus()
@@ -20,11 +20,11 @@ export const NotepadInput: React.FC = () => {
     }, [sendRequest])
 
     return (
-        <ReactQuill
+        <XRte
             readOnly={isLocked}
             preserveWhitespace
-            value={description}
-            onChange={(content) => {
+            content={description}
+            onChangeContent={(content) => {
                 saveDescription(content)
                 window.queryClient.setQueryData(KEY_FetchNotepad(), () => {
                     return content || ''
@@ -32,19 +32,6 @@ export const NotepadInput: React.FC = () => {
             }}
             placeholder='Note...'
             className='[&_.ql-editor]:!max-h-[calc(100%-40px)] [&_.ql-editor]:!min-h-[calc(100%-40px)] w-full m-5'
-            formats={['bold', 'italic', 'underline', 'strike', 'color', 'link', 'image', 'clean']}
-            modules={{
-                toolbar: [
-                    'bold',
-                    'italic',
-                    'underline',
-                    'strike',
-                    { color: ['red', 'blue', 'green'] },
-                    'link',
-                    'image',
-                    'clean',
-                ],
-            }}
         />
     )
 }

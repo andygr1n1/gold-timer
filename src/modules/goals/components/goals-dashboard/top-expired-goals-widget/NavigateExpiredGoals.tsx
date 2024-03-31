@@ -1,5 +1,6 @@
 import { IconExpired } from '@/assets/icons'
 import { StyledButton } from '@/components/buttons/StyledButton'
+import { setGoalsFilterParam } from '@/modules/goals/helpers/goalsFilterParamLocalForage'
 import { useNavigate } from 'react-router-dom'
 
 export const NavigateExpiredGoals: React.FC = () => {
@@ -10,9 +11,10 @@ export const NavigateExpiredGoals: React.FC = () => {
             <StyledButton
                 onClick={() => {
                     navigate(
-                        { pathname: '/dashboard/filtered-goals', search: `?filter=expired` },
+                        { pathname: '/goals/filtered-goals', search: `?filter=expired` },
                         { state: { filter: 'expired' } },
                     )
+                     setGoalsFilterParam('expired')
                 }}
                 variant='text'
                 className='!h-24 !w-24 !rounded-full'

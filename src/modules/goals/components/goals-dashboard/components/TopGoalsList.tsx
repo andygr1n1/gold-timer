@@ -1,7 +1,7 @@
 import { IGoal } from '@/modules/goals/service'
-import { TopGoal } from '../goals-dashboard/components/TopGoal'
+import { TopGoal } from './TopGoal'
 import clsx from 'clsx'
-import { calculateIsFromFuture } from '../../helpers/optimizeActiveGoalsData'
+import { calculateIsFromFuture } from '../../../helpers/optimizeActiveGoalsData'
 
 export const TopGoalsList: React.FC<{ goals: IGoal[] }> = ({ goals }) => {
     return (
