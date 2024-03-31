@@ -52,7 +52,7 @@ const DropdownRender: React.FC<{ onClose: (filter: IGoalQueryTypeFilter) => void
                     size='small'
                     startIcon={<IconFavorite className='text-rose-500' width={24} height={24} />}
                 >
-                    <span className='flex w-[110px] justify-start capitalize text-rose-500'>Expired</span>
+                    <span className='flex w-[110px] justify-start capitalize text-rose-500'>Favorite</span>
                 </StyledButton>
             </XMenuItem>
             <XMenuItem
