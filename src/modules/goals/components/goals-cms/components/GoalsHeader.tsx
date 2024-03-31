@@ -1,6 +1,6 @@
-import { AddGoal } from './components/AddGoal'
-import { GoalsFilterSelect } from './components/GoalsFilterSelect'
-import { SearchGoalsInput } from './components/SearchGoalsInput'
+import { AddGoal } from './AddGoal'
+import { GoalsFilterSelect } from './GoalsFilterSelect'
+import { SearchGoalsInput } from './SearchGoalsInput'
 
 export const GoalsHeader: React.FC = () => {
     return (

@@ -12,12 +12,6 @@ export const useFetchGoalsByFilterInfinity = (props: {
 }): IActiveGoals & { isFetchingNextPage: boolean; fetchNextPage: () => void; hasNextPage: boolean } => {
     const { queryFilter = 'all' } = props
 
-    // const [_filterGoalAtom_search] = useAtom(filterGoalAtom_search)
-
-    // useEffect(() => {
-    //     window.queryClient.invalidateQueries({ queryKey: ['KEY_FetchGoalsByFilter', queryFilter] })
-    // }, [_filterGoalAtom_search?.length])
-
     const { data, fetchNextPage, hasNextPage, isFetching, isFetchingNextPage } = useInfiniteQuery({
         queryKey: KEY_FetchGoalsByFilter(['KEY_FetchGoalsByFilter', queryFilter]),
         queryFn: async ({ pageParam }) => {
@@ -80,11 +74,32 @@ export const useFetchGoalsByFilterInfinity = (props: {
             ['asc'],
         ) || []
 
+    const completedGoals =
+        orderBy(
+            unifiedPages?.filter((goal) => !goal.deleted_at && goal.status === 'completed'),
+            ['finished_at'],
+            ['desc'],
+        ) || []
+
+    const deletedGoals =
+        orderBy(
+            unifiedPages?.filter((goal) => goal.deleted_at),
+            ['finished_at'],
+            ['desc'],
+        ) || []
+
     return {
         isLoading: isFetching,
         fetchNextPage,
         isFetchingNextPage,
         hasNextPage,
-        data: { active: activeGoals, favorite: favoriteGoals, ritual: ritualGoals, expired: expiredGoals },
+        data: {
+            active: activeGoals,
+            favorite: favoriteGoals,
+            ritual: ritualGoals,
+            expired: expiredGoals,
+            completed: completedGoals,
+            deleted: deletedGoals,
+        },
     }
 }

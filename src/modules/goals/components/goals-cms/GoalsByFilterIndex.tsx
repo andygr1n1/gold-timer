@@ -1,9 +1,9 @@
 import { ModuleWrapper } from '@/components/ModuleWrapper'
 import { APP_ROUTES_ENUM } from '@/helpers/enums'
 import { useLocation } from 'react-router-dom'
-import { GoalsCards } from './GoalsCards'
+import { GoalsCards } from './components/GoalsCards'
 import { IGoalQueryTypeFilter } from '@/modules/goals/service/types'
-import { GoalsHeader } from './GoalsHeader'
+import { GoalsHeader } from './components/GoalsHeader'
 
 export const GoalsByFilterIndex: React.FC = () => {
     const location = useLocation()

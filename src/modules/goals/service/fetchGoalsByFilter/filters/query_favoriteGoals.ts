@@ -5,12 +5,12 @@ import { selectedGoalAtom$ } from '@/modules/goals/stores/selectedGoal.store'
 
 export const query_favoriteGoals = (props: {
     client: Client
-    queryIsActive: boolean
+    queryIsActive?: boolean
     limit?: number
     offset?: number
     filterByText: boolean
 }) => {
-    const { client, queryIsActive = true, limit, offset, filterByText } = props
+    const { client, queryIsActive = false, limit, offset, filterByText } = props
 
     const searchText = selectedGoalAtom$.get(filterGoalAtom)?.search
 

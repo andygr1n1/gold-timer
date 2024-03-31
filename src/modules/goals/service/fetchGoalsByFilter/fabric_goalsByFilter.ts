@@ -12,7 +12,7 @@ export const fabric_goalsByFilter = async (props: {
     const { limit, queryFilter, pageParam, filterByText } = props
 
     let getGoals: () => Promise<IGoal[] | null> = async () => null
-
+    
     if (queryFilter === 'all') {
         getGoals = () =>
             query_fetchGoalsByFilter({
@@ -28,7 +28,7 @@ export const fabric_goalsByFilter = async (props: {
             query_fetchGoalsByFilter({
                 offset: pageParam,
                 limit,
-                filter: { active: true, expired: false, ritual: false, favorite: false },
+                filter: { active: true },
                 filterByText,
             })
     }
@@ -38,7 +38,7 @@ export const fabric_goalsByFilter = async (props: {
             query_fetchGoalsByFilter({
                 offset: pageParam,
                 limit,
-                filter: { active: false, expired: true, ritual: false, favorite: false },
+                filter: { expired: true },
                 filterByText,
             })
     }
@@ -48,7 +48,7 @@ export const fabric_goalsByFilter = async (props: {
             query_fetchGoalsByFilter({
                 offset: pageParam,
                 limit,
-                filter: { active: false, expired: false, ritual: true, favorite: false },
+                filter: { ritual: true },
                 filterByText,
             })
     }
@@ -57,7 +57,29 @@ export const fabric_goalsByFilter = async (props: {
             query_fetchGoalsByFilter({
                 offset: pageParam,
                 limit,
-                filter: { active: false, expired: false, ritual: false, favorite: true },
+                filter: { favorite: true },
+                filterByText,
+            })
+    }
+
+    if (queryFilter === 'completed') {
+        getGoals = () =>
+            query_fetchGoalsByFilter({
+                offset: pageParam,
+                limit,
+                filter: {
+                    completed: true,
+                },
+                filterByText,
+            })
+    }
+
+    if (queryFilter === 'deleted') {
+        getGoals = () =>
+            query_fetchGoalsByFilter({
+                offset: pageParam,
+                limit,
+                filter: { deleted: true },
                 filterByText,
             })
     }

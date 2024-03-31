@@ -3,7 +3,7 @@ import { IGoalQueryTypeFilter } from '@/modules/goals/service/types'
 import { useFetchGoalsByFilterInfinity } from '@/modules/goals/service/fetchGoalsByFilter/useFetchGoalsByFilterInfinity'
 import React, { useEffect } from 'react'
 import { useInView } from 'react-intersection-observer'
-import { TopGoal } from '../../../goals-dashboard/components/TopGoal'
+import { TopGoal } from '../../goals-dashboard/components/TopGoal'
 import { filteredGoalsFabric } from '@/modules/goals/helpers/filteredGoalsFabric'
 import { FormLabel } from '@/components/form/FormLabel'
 import { getMonthNumber } from '@/functions/getMonthNumber.helper'
@@ -12,6 +12,8 @@ export const GoalsCards: React.FC<{ state: IGoalQueryTypeFilter }> = ({ state })
     const { ref, inView } = useInView()
 
     const { isLoading, data, fetchNextPage, hasNextPage } = useFetchGoalsByFilterInfinity({ queryFilter: state })
+
+    console.log('->', data.deleted)
 
     useEffect(() => {
         inView && hasNextPage && fetchNextPage()
