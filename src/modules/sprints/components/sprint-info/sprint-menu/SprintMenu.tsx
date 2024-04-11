@@ -3,7 +3,7 @@ import { observer } from 'mobx-react-lite'
 import { useState } from 'react'
 import { PopoverItem } from '@/components/popover-settings/PopoverItem'
 import { Dispatch, SetStateAction } from 'react'
-import { useSprintsStore } from '@/StoreProvider'
+import { useSprintsStore } from '@/app/StoreProvider'
 import { ISprint$ } from '@/modules/sprints/mst/types'
 import { IconMenu } from '@/assets/icons'
 export const SprintMenu: React.FC<{ sprint: ISprint$ }> = observer(({ sprint }) => {

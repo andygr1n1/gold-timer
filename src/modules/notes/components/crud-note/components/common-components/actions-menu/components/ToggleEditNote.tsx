@@ -1,4 +1,4 @@
-import { useNotesStore } from '@/StoreProvider'
+import { useNotesStore } from '@/app/StoreProvider'
 import { IconEdit } from '@/assets/icons'
 import { XTooltip } from '@/components-x/x-tooltip/XTooltip'
 import { StyledButton } from '@/components/buttons/StyledButton'

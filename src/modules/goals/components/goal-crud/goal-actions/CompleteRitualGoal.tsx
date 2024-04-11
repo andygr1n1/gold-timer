@@ -4,9 +4,10 @@ import { useAtom } from 'jotai'
 import { cancelViewMode } from '@/modules/goals/stores/selectedGoal.store'
 import { useMutateGoalStatus } from '@/modules/goals/service'
 import { IconCompletedFilled } from '@/assets/icons'
+import { isCompleted } from '@/modules/goals/helpers/goalsGuards'
 
 export const CompleteRitualGoal: React.FC<{ goal: IGoal }> = ({ goal }) => {
-    if (!goal) return null
+    if (!goal || isCompleted(goal.status)) return null
     const [, _cancelViewMode] = useAtom(cancelViewMode)
     const _useMutateGoalStatus = useMutateGoalStatus()
 

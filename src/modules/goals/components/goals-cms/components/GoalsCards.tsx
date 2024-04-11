@@ -13,8 +13,6 @@ export const GoalsCards: React.FC<{ state: IGoalQueryTypeFilter }> = ({ state })
 
     const { isLoading, data, fetchNextPage, hasNextPage } = useFetchGoalsByFilterInfinity({ queryFilter: state })
 
-    console.log('->', data.deleted)
-
     useEffect(() => {
         inView && hasNextPage && fetchNextPage()
     }, [inView, hasNextPage])

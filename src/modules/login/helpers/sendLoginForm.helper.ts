@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { ILoginRes } from './login.interface'
 
-export const sendLoginData = async (loginData: {
+export const sendLoginFormHelper = async (loginData: {
     email: string
     password: string
     remember: boolean

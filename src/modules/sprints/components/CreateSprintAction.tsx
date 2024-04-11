@@ -1,4 +1,4 @@
-import { useSprintsStore } from '@/StoreProvider'
+import { useSprintsStore } from '@/app/StoreProvider'
 import { IconNew } from '@/assets/icons'
 import { StyledButton } from '@/components/buttons/StyledButton'
 import { observer } from 'mobx-react-lite'

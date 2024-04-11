@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react-lite'
 import { NotesActionsMenu } from '../common-components/actions-menu/NotesActionsMenu'
-import { useNotesStore } from '@/StoreProvider'
+import { useNotesStore } from '@/app/StoreProvider'
 import { FormFooter } from '@/components/form/FormFooter'
 import { INote$ } from '@/modules/notes/mst/types'
 import { NoteTagsList } from '../../../NoteTagsList'

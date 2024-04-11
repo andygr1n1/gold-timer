@@ -1,4 +1,4 @@
-import { useSprintsStore } from '@/StoreProvider'
+import { useSprintsStore } from '@/app/StoreProvider'
 import { FormLabel } from '@/components/form/FormLabel'
 import { Form, Input } from 'antd'
 import { observer } from 'mobx-react-lite'

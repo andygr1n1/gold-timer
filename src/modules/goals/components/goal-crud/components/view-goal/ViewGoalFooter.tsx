@@ -26,6 +26,7 @@ export const ViewGoalFooter: React.FC<{ goal: IGoal }> = ({ goal }) => {
                     !!goal_ritual
                         ? _useMutateGoalRitualize.mutate({ goal })
                         : _useMutateGoalStatus.mutate({ goal, status: _isCompleted ? 'active' : 'completed' })
+
                     !_isCompleted && _cancelViewMode()
                 }}
                 cancelTitle='Cancel'
@@ -38,7 +39,9 @@ export const ViewGoalFooter: React.FC<{ goal: IGoal }> = ({ goal }) => {
                         ) : (
                             <IconCompletedFilled className='text-white' width={16} height={16} />
                         )}
-                        <div>{goal_ritual ? 'Ritualize' : _isCompleted ? 'Reactivate' : 'Complete'}</div>
+                        <div>
+                            {goal_ritual && !_isCompleted ? 'Ritualize' : _isCompleted ? 'Reactivate' : 'Complete'}
+                        </div>
                     </div>
                 }
                 onCancel={() => _cancelViewMode()}

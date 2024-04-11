@@ -1,4 +1,4 @@
-import { useNotesStore } from '@/StoreProvider'
+import { useNotesStore } from '@/app/StoreProvider'
 import { observer } from 'mobx-react-lite'
 
 export const ActiveTagsList: React.FC = observer(() => {

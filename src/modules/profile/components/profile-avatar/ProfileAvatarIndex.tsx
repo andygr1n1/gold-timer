@@ -1,4 +1,4 @@
-import { rootStore$ } from '@/StoreProvider'
+import { rootStore$ } from '@/app/StoreProvider'
 import { useSelectUploadFile } from '@/functions/useSelectUploadFile'
 import { ProfileAvatar } from '@/modules/profile/components/profile-avatar/components/ProfileAvatar'
 import { ProfileImageCropDialog } from './ProfileImageCropDialog'

@@ -1,19 +1,19 @@
-import { useRootStore } from '@/StoreProvider'
-import { useAtom } from 'jotai'
+import { useRootStore } from '@/app/StoreProvider'
 import { observer } from 'mobx-react-lite'
-import { loginAtom } from '@/modules/login/stores/login.store'
 import { IconLogout } from '@/assets/icons/IconLogout'
 import { removeUserCookie } from '@/functions/universalCookie'
+import { KEY_VerifyUserId } from '@/app/service/keys'
 
 export const Logout: React.FC = observer(() => {
     const { clearStore } = useRootStore()
-    const [, setLogin] = useAtom(loginAtom)
 
     const onLogout = () => {
         removeUserCookie()
+        window.queryClient.setQueryData(KEY_VerifyUserId(), () => {
+            return ''
+        })
         window.queryClient.clear()
         clearStore()
-        setLogin((prev) => ({ ...prev, user_id: '' }))
     }
 
     return (

@@ -23,7 +23,7 @@ export const GoalDescriptionRichInput: React.FC<{
         <div>
             <FormLabel title='Description' />
             <XRte
-                className={cn(view_mode && 'view-mode')}
+                className={cn(view_mode && 'view-mode', '[&_.ql-editor]:!min-h-fit [&_.ql-editor]:!max-h-fit')}
                 content={view_mode ? val : value}
                 onChangeContent={(content) => {
                     onChange?.(content)

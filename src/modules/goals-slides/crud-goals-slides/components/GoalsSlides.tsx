@@ -1,4 +1,4 @@
-import { useRootStore } from '@/StoreProvider'
+import { useRootStore } from '@/app/StoreProvider'
 import { observer } from 'mobx-react-lite'
 import { GoalSlide } from './GoalSlide'
 

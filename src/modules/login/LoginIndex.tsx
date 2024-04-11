@@ -1,7 +1,5 @@
 import { Form } from 'antd'
 import { observer } from 'mobx-react-lite'
-import { IValues } from './helpers/login.interface'
-import { sendLoginData } from './helpers/sendLoginData.helper'
 import { useWindowMatchMedia } from '@/hooks/useMatchMedia.hook'
 import { LoginContainer } from './components/LoginContainer'
 import { LoginLogo } from './components/LoginLogo'
@@ -14,34 +12,11 @@ import { LoginFooter } from './components/login/LoginFooter'
 import styles from './LoginIndex.module.scss'
 import clsx from 'clsx'
 import { processError } from '@/functions/processMessage'
-import { useAtom } from 'jotai'
-import { resolveData } from '@/functions/resolveData'
-import { loginAtom } from './stores/login.store'
-import { setRememberUserCookie } from '@/functions/universalCookie'
+
+import { sendLoginForm } from './helpers/sendLoginForm'
 
 export const LoginIndex: React.FC = observer(() => {
     const { isDesktop } = useWindowMatchMedia(['isDesktop'])
-    const [, setLogin] = useAtom(loginAtom)
-
-    const onFinish = async (values: IValues) => {
-        const errorString = 'Please try again. Your credentials are wrong'
-        await resolveData<void, void>(
-            () =>
-                sendLoginData(values).then((res) => {
-                    if (!res) throw new Error(errorString)
-                    setLogin(() => ({
-                        user_id: res.user_id,
-                        remember: res.remember,
-                    }))
-
-                    setRememberUserCookie(res.user_id, res.remember)
-                }),
-            () => {
-                processError(errorString)
-                return []
-            },
-        )
-    }
 
     const onFinishFailed = () => {
         processError('Login error, please provide your credentials')
@@ -54,7 +29,7 @@ export const LoginIndex: React.FC = observer(() => {
                 <Form
                     name='kzen-login'
                     initialValues={{ remember: true }}
-                    onFinish={onFinish}
+                    onFinish={sendLoginForm}
                     onFinishFailed={onFinishFailed}
                     autoComplete='on'
                     size={isDesktop ? 'large' : 'middle'}

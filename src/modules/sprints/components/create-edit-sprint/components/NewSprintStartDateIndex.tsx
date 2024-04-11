@@ -1,4 +1,4 @@
-import { useSprintsStore } from '@/StoreProvider'
+import { useSprintsStore } from '@/app/StoreProvider'
 import { XDatePicker } from '@/components-x/x-date-picker/XDatePicker'
 import { FormLabel } from '@/components/form/FormLabel'
 import { getYear, sub } from 'date-fns'

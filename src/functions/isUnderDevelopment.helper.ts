@@ -1,4 +1,4 @@
-import { rootStore$ } from '@/StoreProvider'
+import { rootStore$ } from '@/app/StoreProvider'
 
 export const isProd = () => import.meta.env.VITE_NODE_ENV === 'production'
 export const isDev = () => import.meta.env.VITE_NODE_ENV !== 'production'

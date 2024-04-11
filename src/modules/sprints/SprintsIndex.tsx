@@ -4,7 +4,7 @@ import { SprintsFilters } from './components/filters/SprintsFilters'
 
 import { useWindowMatchMedia } from '@/hooks/useMatchMedia.hook'
 import { SprintMenuDialogConfirm } from './components/sprint-info/SprintMenuDialogConfirm'
-import { useSprintsStore } from '@/StoreProvider'
+import { useSprintsStore } from '@/app/StoreProvider'
 import { APP_ROUTES_ENUM } from '@/helpers/enums'
 import { SearchSprintsInput } from '@/modules/sprints/components/SearchSprintsInput'
 import { observer } from 'mobx-react-lite'
