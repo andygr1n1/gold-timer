@@ -1,5 +1,5 @@
 import { XDatePicker } from '@/components-x/x-date-picker/XDatePicker'
-import { format, getYear } from 'date-fns'
+import { format, getYear, parseISO } from 'date-fns'
 import { FormLabel } from '@/components/form/FormLabel'
 import { convertStringToDate } from '@/functions/date.helpers'
 
@@ -23,7 +23,7 @@ export const GoalFinishCalendarInput: React.FC<{
             <XDatePicker
                 numberOfMonths={1}
                 mode='single'
-                selected={convertStringToDate(value) || undefined}
+                selected={(view_mode ? convertStringToDate(value) : parseISO(value)) || undefined}
                 onSelect={onDatePickerChange}
                 dateFormat={'do MMMM yyyy'}
                 captionLayout='dropdown-buttons'
