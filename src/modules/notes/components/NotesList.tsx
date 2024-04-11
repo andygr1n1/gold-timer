@@ -1,4 +1,4 @@
-import { useNotesStore } from '@/StoreProvider'
+import { useNotesStore } from '@/app/StoreProvider'
 import { observer } from 'mobx-react-lite'
 import { Note } from './note/Note'
 import { useEffect } from 'react'

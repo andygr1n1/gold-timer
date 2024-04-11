@@ -1,4 +1,4 @@
-import { useNotesStore } from '@/StoreProvider'
+import { useNotesStore } from '@/app/StoreProvider'
 import { XInput } from '@/components-x/x-input/XInput'
 import { observer } from 'mobx-react-lite'
 

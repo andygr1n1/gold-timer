@@ -17,12 +17,11 @@ import clsx from 'clsx'
 import styles from './LoginIndex.module.scss'
 import { processError } from '@/functions/processMessage'
 import { useAtom } from 'jotai'
-import { loginAtom } from '@/modules/login/stores/login.store'
 import { validateUser } from './stores/register.store'
 import { setRememberUserCookie } from '@/functions/universalCookie'
+import { KEY_VerifyUserId } from '@/app/service/keys'
 
 export const RegisterIndex: React.FC = observer(() => {
-    const [, setLogin] = useAtom(loginAtom)
     const [, validate] = useAtom(validateUser)
     const { isDesktop } = useWindowMatchMedia(['isDesktop'])
     const [password, setPassword] = useState('')
@@ -43,7 +42,9 @@ export const RegisterIndex: React.FC = observer(() => {
         if (registerUserRes) {
             // set cookie
             setRememberUserCookie(registerUserRes.user_id, true)
-            setLogin({ user_id: registerUserRes.user_id })
+            window.queryClient.setQueryData(KEY_VerifyUserId(), () => {
+                return registerUserRes.user_id
+            })
         }
 
         if (!registerUserRes) {

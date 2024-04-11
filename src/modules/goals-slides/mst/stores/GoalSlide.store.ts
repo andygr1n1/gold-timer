@@ -5,7 +5,7 @@ import { deleteImageFromServer } from '@/services/image.service'
 import { SERVER_ROUTES } from '@/helpers/enums'
 import { mutation_deleteGoalSlide } from '../../graphql/mutation_deleteGoalSlide'
 import { GoalsSlides$ } from './GoalsSlides.store'
-import { rootStore$ } from '@/StoreProvider'
+import { rootStore$ } from '@/app/StoreProvider'
 
 export const GoalSlide$ = types
     .model('GoalSlide$', {

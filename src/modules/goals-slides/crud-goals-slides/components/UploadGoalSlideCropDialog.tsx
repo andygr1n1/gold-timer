@@ -1,4 +1,4 @@
-import { useGoalsSlidesStore } from '@/StoreProvider'
+import { useGoalsSlidesStore } from '@/app/StoreProvider'
 import { XInput } from '@/components-x/x-input/XInput'
 import { XModal } from '@/components-x/x-modal/XModal'
 import { FormFooter } from '@/components/form/FormFooter'

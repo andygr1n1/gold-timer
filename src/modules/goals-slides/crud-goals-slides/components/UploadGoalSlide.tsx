@@ -1,5 +1,5 @@
 import { observer } from 'mobx-react-lite'
-import { useGoalsSlidesStore } from '@/StoreProvider'
+import { useGoalsSlidesStore } from '@/app/StoreProvider'
 import { useSelectUploadFile } from '@/functions/useSelectUploadFile'
 import { UploadGoalSlideCropDialog } from './UploadGoalSlideCropDialog'
 import { IconUpload } from '@/assets/icons/IconUpload'

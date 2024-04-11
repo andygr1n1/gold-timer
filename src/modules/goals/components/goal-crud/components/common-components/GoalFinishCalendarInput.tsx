@@ -1,6 +1,7 @@
 import { XDatePicker } from '@/components-x/x-date-picker/XDatePicker'
-import { format, getYear, parseISO, sub } from 'date-fns'
+import { format, getYear } from 'date-fns'
 import { FormLabel } from '@/components/form/FormLabel'
+import { convertStringToDate } from '@/functions/date.helpers'
 
 export const GoalFinishCalendarInput: React.FC<{
     value: string
@@ -15,8 +16,6 @@ export const GoalFinishCalendarInput: React.FC<{
         onChange?.('')
     }
 
-    const disabledDays = [{ from: new Date(2022, 1, 1), to: sub(new Date(Date.now()), { days: 1 }) }]
-
     return !hide ? (
         <div>
             <FormLabel title='Finish Estimation' />
@@ -24,11 +23,11 @@ export const GoalFinishCalendarInput: React.FC<{
             <XDatePicker
                 numberOfMonths={1}
                 mode='single'
-                selected={parseISO(value) || undefined}
+                selected={convertStringToDate(value) || undefined}
                 onSelect={onDatePickerChange}
                 dateFormat={'do MMMM yyyy'}
                 captionLayout='dropdown-buttons'
-                fromYear={getYear(new Date(Date.now()))}
+                fromYear={getYear(new Date(Date.now())) - 25}
                 toYear={getYear(new Date(Date.now())) + 100}
                 fixedWeeks
                 showOutsideDays
@@ -36,7 +35,6 @@ export const GoalFinishCalendarInput: React.FC<{
                 ISOWeek
                 onClear={onClear}
                 placeholder='Set birthday'
-                disabled={disabledDays}
                 readOnly={view_mode}
                 showToday
             />

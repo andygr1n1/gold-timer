@@ -6,7 +6,7 @@ import { query_fetchGoalsSlides } from '../../graphql/query_fetchGoalsSlides'
 import { SERVER_ROUTES } from '@/helpers/enums'
 import { uploadNewImageToServer } from '@/services/image.service'
 import { mutation_insertGoalSlide } from '../../graphql/mutation_insertGoalSlide'
-import { rootStore$ } from '@/StoreProvider'
+import { rootStore$ } from '@/app/StoreProvider'
 
 export const GoalsSlides$ = types
     .model('GoalsSlides$', {

@@ -56,7 +56,7 @@ const GoalDaysUntilDeadline: React.FC<{ goal: IGoal }> = observer(({ goal }) => 
     const { status } = goal
 
     const _totalRemainingDays = calculateTotalRemainingDays(goal)
-
+    
     if (isCompleted(status)) return null
 
     return (

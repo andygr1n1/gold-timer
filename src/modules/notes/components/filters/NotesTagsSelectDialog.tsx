@@ -1,4 +1,4 @@
-import { rootStore$, useNotesStore } from '@/StoreProvider'
+import { rootStore$, useNotesStore } from '@/app/StoreProvider'
 import { observer } from 'mobx-react-lite'
 import { IDisposer, cast, onSnapshot } from 'mobx-state-tree'
 import { useEffect, useState } from 'react'
@@ -27,7 +27,7 @@ export const NotesTagsSelectDialog: React.FC = observer(() => {
             onChangeField: onChangeNotesFilter$,
         },
     } = useNotesStore()
-    
+
     const [loadingLocalForage, setLoadingLocalForage] = useState(true)
     useSelectedTagValidation()
 

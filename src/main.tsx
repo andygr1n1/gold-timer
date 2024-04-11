@@ -1,5 +1,7 @@
 import ReactDOM from 'react-dom/client'
-import { App } from './App'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { App } from './app/App'
+
 import './styles/index.scss'
 
 const handler = () => undefined
@@ -12,8 +14,6 @@ document.addEventListener('wheel', handler, { passive: true })
 
 console.info('environment', import.meta.env.VITE_NODE_ENV)
 
-import { QueryClient } from '@tanstack/react-query'
-
 // *
 //
 // important to inject query into window
@@ -23,6 +23,8 @@ window.queryClient = new QueryClient()
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     <>
         {/* <SnowfallAnimation /> */}
-        <App />
+        <QueryClientProvider client={window.queryClient}>
+            <App />
+        </QueryClientProvider>
     </>,
 )

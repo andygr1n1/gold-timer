@@ -1,5 +1,5 @@
 import { observer } from 'mobx-react-lite'
-import { useRootStore } from '@/StoreProvider'
+import { useRootStore } from '@/app/StoreProvider'
 import { XInput } from '@/components-x/x-input/XInput'
 import { IconSearch } from '@/assets/icons/IconSearch'
 

@@ -17,7 +17,11 @@ export const mutation_goalGoalRitualize = async (
                     update_goals_by_pk: {
                         __args: {
                             pk_columns: { id: updateFields.id },
-                            _set: { created_at: updateFields.created_at, finished_at: updateFields.finished_at },
+                            _set: {
+                                created_at: updateFields.created_at,
+                                finished_at: updateFields.finished_at,
+                                status: 'active',
+                            },
                         },
                         id: true,
                         created_at: true,

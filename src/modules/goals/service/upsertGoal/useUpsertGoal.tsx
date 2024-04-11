@@ -31,7 +31,6 @@ export const useUpsertGoal = () =>
             return mutation_upsertGoal(goalData, ritualData)
         },
         onSuccess: (res) => {
-            console.log('res', res)
             const resGoal = res?.[0]
             if (!resGoal) return
 
@@ -64,7 +63,6 @@ export const useUpsertGoal = () =>
         },
         onSettled: (data) => {
             if (!data?.[0]) return
-            console.log('->', data[0].id)
             window.queryClient.invalidateQueries({ queryKey: KEY_FetchGoalById(data[0].id) })
             isDashboard() && window.queryClient.invalidateQueries({ queryKey: goalsQueryKeys.DASHBOARD })
             isDashboard() && window.queryClient.invalidateQueries({ queryKey: KEY_FetchArtifactsCount() })

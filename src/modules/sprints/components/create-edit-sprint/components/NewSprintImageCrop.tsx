@@ -1,4 +1,4 @@
-import { useSprintsStore } from '@/StoreProvider'
+import { useSprintsStore } from '@/app/StoreProvider'
 import getCroppedImg from '@/functions/cropImage'
 import { Button, Slider } from 'antd'
 import { observer } from 'mobx-react-lite'

@@ -3,7 +3,7 @@ import { processError } from '@/functions/processMessage'
 import { deleteImageFromServer, uploadNewImageToServer } from '@/services/image.service'
 import { SERVER_ROUTES } from '@/helpers/enums'
 import { updateUserProfileImage } from '@/modules/profile/service/update-avatar/updateUserProfileImage.m'
-import { rootStore$ } from '@/StoreProvider'
+import { rootStore$ } from '@/app/StoreProvider'
 import { KEY_FetchAvatar } from '@/modules/profile/service'
 
 export const User$ = types

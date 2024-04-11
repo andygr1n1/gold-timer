@@ -1,5 +1,5 @@
 import { Form } from 'antd'
-import { useSprintsStore } from '@/StoreProvider'
+import { useSprintsStore } from '@/app/StoreProvider'
 import { XModal } from '@/components-x/x-modal/XModal'
 import { observer } from 'mobx-react-lite'
 import { NewSprintTitle } from './components/NewSprintTitle'
