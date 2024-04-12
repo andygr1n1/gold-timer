@@ -1,5 +1,5 @@
 import { XSelect } from '@/components-x/x-select/XSelect'
-import { DaysOfTheWeek, convertDateToString, convertStringToDate, setMidnightTime } from '@/functions/date.helpers'
+import { DaysOfTheWeek, convertDateToString, convertStringDate, setMidnightTime } from '@/functions/date.helpers'
 import { generateNewRitualCircle } from '@/functions/generateNewRitualCircle'
 import { editGoalAtom, getImmutableFinishedAt } from '@/modules/goals/stores/editGoal.store'
 import { useAtom } from 'jotai'
@@ -28,7 +28,7 @@ export const SelectDayOfWeek = () => {
 
         const immutableFinishedAt = getImmutableFinishedAt(_editGoalAtom.id)
         const goal_finished_at = setMidnightTime(
-            immutableFinishedAt ? convertStringToDate(immutableFinishedAt) : new Date(Date.now()),
+            immutableFinishedAt ? convertStringDate(immutableFinishedAt) : new Date(Date.now()),
         )
 
         const { ritual_goal_finished_at } = generateNewRitualCircle({

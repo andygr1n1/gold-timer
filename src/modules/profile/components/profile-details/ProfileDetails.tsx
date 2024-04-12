@@ -2,7 +2,7 @@ import { ProfileAvatarIndex } from '../profile-avatar/ProfileAvatarIndex'
 import { FormLabel } from '@/components/form/FormLabel'
 import { format } from 'date-fns'
 import { useProfileData } from '../../service'
-import { convertStringToDate } from '@/functions/date.helpers'
+import { convertStringDate } from '@/functions/date.helpers'
 import { IsLoading } from '@/components/loading/IsLoading'
 import { OpenProfileAction } from './components/OpenProfileAction'
 import { EditProfileDialog } from '../profile-edit/EditProfileDialog'
@@ -47,7 +47,7 @@ export const ProfileDetails: React.FC = () => {
                         <div>
                             <FormLabel title='Birthday:' />
                             <ProfileDetail
-                                data={birthday ? format(convertStringToDate(birthday), 'do MMMM yyyy') : '-'}
+                                data={birthday ? format(convertStringDate(birthday), 'do MMMM yyyy') : '-'}
                             />
                         </div>
                         <div>

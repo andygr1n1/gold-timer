@@ -5,7 +5,6 @@ import { GoalCRUDActions } from './GoalCRUDActions'
 
 export const GoalCRUDBody: React.FC<{ selectedGoalId: string }> = ({ selectedGoalId }) => {
     const { isLoading, goal, isEdit } = useFetchGoal(selectedGoalId)
-    console.log('GoalCRUDBody', goal)
     return !isLoading && goal ? (
         <>
             <GoalCRUDActions goal={goal} />

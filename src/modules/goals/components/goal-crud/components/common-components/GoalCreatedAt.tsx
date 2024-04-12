@@ -4,7 +4,7 @@ import { FormLabel } from '@/components/form/FormLabel'
 import { IGoal } from '@/modules/goals/service/types'
 import { format } from 'date-fns'
 import { observer } from 'mobx-react-lite'
-import { convertStringToDate } from '@/functions/date.helpers'
+import { convertStringDate } from '@/functions/date.helpers'
 
 export const GoalCreatedAt: React.FC<{ goal: IGoal }> = observer(({ goal }) => {
     const created = goal?.goal_ritual?.created_at ? goal?.goal_ritual?.created_at : goal.created_at
@@ -17,7 +17,7 @@ export const GoalCreatedAt: React.FC<{ goal: IGoal }> = observer(({ goal }) => {
                     onChange={() => undefined}
                     disabled={true}
                     readOnly={true}
-                    value={format(convertStringToDate(created), 'do MMMM yyyy')}
+                    value={format(convertStringDate(created), 'do MMMM yyyy')}
                 />
             )}
         </div>

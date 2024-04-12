@@ -1,5 +1,5 @@
 import { XDatePicker } from '@/components-x/x-date-picker/XDatePicker'
-import { convertDateToString, convertStringToDate } from '@/functions/date.helpers'
+import { convertDateToString, convertStringDate } from '@/functions/date.helpers'
 import { editProfile$_Birthday } from '@/modules/profile/stores/editProfile.store'
 import { getYear } from 'date-fns'
 import { useAtom } from 'jotai'
@@ -18,7 +18,7 @@ export const EditBirthday: React.FC = () => {
         <XDatePicker
             numberOfMonths={1}
             mode='single'
-            selected={birthday ? convertStringToDate(birthday) : undefined}
+            selected={birthday ? convertStringDate(birthday) : undefined}
             onSelect={onDatePickerChange}
             dateFormat={'dd.MM.yyyy'}
             label='Birthday'

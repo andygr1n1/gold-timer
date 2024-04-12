@@ -1,5 +1,4 @@
 import { format, set } from 'date-fns'
-import { toZonedTime } from 'date-fns-tz'
 export const setMidnightTime = (date: Date): Date => {
     return set(date, {
         hours: 23,
@@ -21,8 +20,9 @@ export const convertDateToString = (date: Date): string => {
     return format(date, 'yyyy-MM-dd HH:mm:ss')
 }
 
-export const convertStringToDate = (date: string): Date => {
-    return toZonedTime(date, 'UTC')
+export const convertStringDate = (date: string): Date => {
+    /* removing UTC */
+    return new Date(date.replace(/Z|[\+\-]\d\d:\d\d$/gi, ''))
 }
 
 export const DaysOfTheWeek = [
