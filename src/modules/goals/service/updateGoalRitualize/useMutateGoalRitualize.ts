@@ -10,6 +10,7 @@ import { proxyConvert } from '@/functions/proxyConvert'
 import { getSelectedGoalFromCache } from '../../helpers/goalsCache'
 import { replaceObjectValues } from '../../../../functions/replaceObjectValues'
 import { isDashboard } from '@/helpers/guards'
+import { KEY_FetchTopRitualGoals } from '../../components/goals-dashboard/top-ritual-goals-widget/service/keys'
 
 export const useMutateGoalRitualize = () => {
     const mutation = useMutation({
@@ -52,6 +53,7 @@ export const useMutateGoalRitualize = () => {
         },
         onSettled: () => {
             isDashboard() && window.queryClient.invalidateQueries({ queryKey: goalsQueryKeys.DASHBOARD })
+            isDashboard() && window.queryClient.invalidateQueries({ queryKey: KEY_FetchTopRitualGoals() })
         },
     })
 

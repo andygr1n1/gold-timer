@@ -9,15 +9,7 @@ import { GoToDashboard } from './components/GoToDashboard'
 import { XMenuDivider } from '@/components-x/x-dropdown/XMenuDivider'
 import { isUnderDevelopment } from '@/functions/isUnderDevelopment.helper'
 import { UserInfo } from './components/user-info/UserInfo'
-import {
-    IconAchievements,
-    IconBook,
-    IconCrypto,
-    IconFocus,
-    IconLandscape,
-    IconProfile,
-    IconSprint,
-} from '@/assets/icons'
+import { IconAchievements, IconBook, IconFocus, IconLandscape, IconProfile, IconSprint } from '@/assets/icons'
 import { cn } from '@/functions'
 
 export const SideMenu: React.FC = observer(() => {
@@ -96,13 +88,6 @@ export const SideMenu: React.FC = observer(() => {
                                         to={APP_ROUTES_ENUM.SPRINTS}
                                         title='Sprints'
                                         icon={<IconSprint width={24} height={24} />}
-                                    />
-                                )}
-                                {isUnderDevelopment() && (
-                                    <SideMenuLink
-                                        to={APP_ROUTES_ENUM.CRYPTO}
-                                        title='Crypto'
-                                        icon={<IconCrypto width={24} height={24} />}
                                     />
                                 )}
                             </div>

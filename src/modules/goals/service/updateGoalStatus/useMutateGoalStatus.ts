@@ -11,6 +11,7 @@ import { KEY_FetchGoalById, KEY_FetchGoalsByFilter, goalsQueryKeys, goalsQueryKe
 import { proxyConvert } from '@/functions/proxyConvert'
 import { getSelectedGoalFromCache } from '../../helpers/goalsCache'
 import { isDashboard } from '@/helpers/guards'
+import { KEY_FetchTopRitualGoals } from '../../components/goals-dashboard/top-ritual-goals-widget/service/keys'
 
 export const useMutateGoalStatus = () => {
     const mutation = useMutation({
@@ -47,6 +48,7 @@ export const useMutateGoalStatus = () => {
         },
         onSettled: (res) => {
             isDashboard() && window.queryClient.invalidateQueries({ queryKey: goalsQueryKeys.DASHBOARD })
+            isDashboard() && window.queryClient.invalidateQueries({ queryKey: KEY_FetchTopRitualGoals() })
             res?.status?.id &&
                 isActive(res.status.status) &&
                 window.queryClient.invalidateQueries({ queryKey: KEY_FetchGoalById(res.status.id) })
