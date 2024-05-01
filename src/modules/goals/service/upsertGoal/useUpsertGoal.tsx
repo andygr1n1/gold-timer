@@ -10,6 +10,7 @@ import { replaceObjectValues } from '../../../../functions/replaceObjectValues'
 import { getSelectedGoalFromCache, pushGoalInCache } from '../../helpers/goalsCache'
 import { isDashboard } from '@/helpers/guards'
 import { KEY_FetchArtifactsCount } from '@/modules/dashboard/components/artifacts-counter/service/keys'
+import { KEY_FetchTopRitualGoals } from '../../components/goals-dashboard/top-ritual-goals-widget/service/keys'
 
 export const useUpsertGoal = () =>
     useMutation({
@@ -66,5 +67,6 @@ export const useUpsertGoal = () =>
             window.queryClient.invalidateQueries({ queryKey: KEY_FetchGoalById(data[0].id) })
             isDashboard() && window.queryClient.invalidateQueries({ queryKey: goalsQueryKeys.DASHBOARD })
             isDashboard() && window.queryClient.invalidateQueries({ queryKey: KEY_FetchArtifactsCount() })
+            isDashboard() && window.queryClient.invalidateQueries({ queryKey: KEY_FetchTopRitualGoals() })
         },
     })

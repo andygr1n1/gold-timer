@@ -10,7 +10,6 @@ import { FocusGoalOfWeek } from '../components/components-modal-windows/focus-go
 import { AchievementsIndex } from '../modules/achievements/AchievementsIndex'
 import { StoriesIndex } from '../modules/stories/StoriesIndex'
 import { LoadingDialogGlobal } from '../components/loading/LoadingDialogConstructor'
-import { CryptoIndex } from '../modules/crypto/CryptoIndex'
 import { ProtectedStoreProvider } from './StoreProvider'
 import { SideMenu } from '../components/side-menu/SideMenu'
 import { useUserId } from './service/useUserId'
@@ -31,7 +30,6 @@ export const ProtectedRoutes = () => {
                             <Route path={`/${APP_ROUTES_ENUM.NOTES}`} element={<NotesIndex />} />
                             <Route path={`/${APP_ROUTES_ENUM.GOALS}/*`} element={<GoalsCmsIndex />} />
                             <Route path={`/${APP_ROUTES_ENUM.SPRINTS}`} element={<SprintsIndex />} />
-                            <Route path={`/${APP_ROUTES_ENUM.CRYPTO}`} element={<CryptoIndex />} />
                             {/*  */}
                             <Route path={`/${APP_ROUTES_ENUM.DASHBOARD}/*`} element={<DashboardIndex />} />
                             <Route path={'/'} element={<Navigate to={`/${APP_ROUTES_ENUM.DASHBOARD}`} />} />

@@ -10,6 +10,7 @@ import { proxyConvert } from '@/functions/proxyConvert'
 import { getSelectedGoalFromCache } from '../../helpers/goalsCache'
 import { isDashboard } from '@/helpers/guards'
 import { KEY_FetchArtifactsCount } from '@/modules/dashboard/components/artifacts-counter/service/keys'
+import { KEY_FetchTopRitualGoals } from '../../components/goals-dashboard/top-ritual-goals-widget/service/keys'
 
 export const useMutateGoalDeletedAt = () => {
     const [selectedGoal] = useAtom(selectedGoalAtom)
@@ -43,6 +44,7 @@ export const useMutateGoalDeletedAt = () => {
         onSettled: () => {
             isDashboard() && window.queryClient.invalidateQueries({ queryKey: goalsQueryKeys.DASHBOARD })
             isDashboard() && window.queryClient.invalidateQueries({ queryKey: KEY_FetchArtifactsCount() })
+            isDashboard() && window.queryClient.invalidateQueries({ queryKey: KEY_FetchTopRitualGoals() })
         },
     })
 
