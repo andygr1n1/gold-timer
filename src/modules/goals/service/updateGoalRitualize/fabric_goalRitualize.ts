@@ -11,7 +11,6 @@ export const fabric_goalRitualize = async (goal: IGoal): Promise<IFabricGoalRitu
     const client = generateTSClient({ batch: true })
 
     if (!goal.goal_ritual) return
-
     const { ritual_goal_created_at, ritual_goal_finished_at } = generateNewRitualCircle({
         ritual_type: goal.goal_ritual?.ritual_type,
         new_ritual_interval: goal.goal_ritual?.ritual_interval,

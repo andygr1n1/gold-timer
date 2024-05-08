@@ -1,11 +1,14 @@
 import { format, set } from 'date-fns'
 export const setMidnightTime = (date: Date): Date => {
-    return set(date, {
+    const dateWithDefaultUTC = new Date(date.getTime() + date.getTimezoneOffset() * 60000)
+    const newDate = set(dateWithDefaultUTC, {
         hours: 23,
         minutes: 59,
         seconds: 59,
         milliseconds: 59,
     })
+
+    return newDate
 }
 
 export const setZeroTime = (date: Date): Date => {
@@ -34,3 +37,25 @@ export const DaysOfTheWeek = [
     { value: '6', label: 'Saturday' },
     { value: '0', label: 'Sunday' },
 ]
+
+export const dateAtZeroTime = (date?: Date | string): string => {
+    if (!date) date = new Date()
+
+    if (typeof date === 'string') {
+        date = new Date(date)
+    }
+
+    return (
+        date.getFullYear() +
+        '-' +
+        ('0' + (date.getMonth() + 1)).slice(-2) +
+        '-' +
+        ('0' + date.getDate()).slice(-2) +
+        ' ' +
+        '00' +
+        ':' +
+        '00' +
+        ':' +
+        '00'
+    )
+}

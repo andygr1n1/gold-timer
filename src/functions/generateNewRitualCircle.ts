@@ -17,7 +17,11 @@ export const generateNewRitualCircle = (
 ): { ritual_goal_created_at: Date; ritual_goal_finished_at: Date } => {
     const { new_ritual_interval, goal_finished_at, ritual_type, edit } = options
 
-    const today = setZeroTime(new Date(Date.now()))
+    // *
+    // today with default UTC
+    const date = new Date()
+    const today = new Date(date.getTime() + date.getTimezoneOffset() * 60000)
+
     const isRitualDaysInterval = ritual_type === RITUAL_TYPE_ENUM.INTERVAL_IN_DAYS
     const isRitualDaysOfWeek = ritual_type === RITUAL_TYPE_ENUM.DAYS_OF_WEEK
 

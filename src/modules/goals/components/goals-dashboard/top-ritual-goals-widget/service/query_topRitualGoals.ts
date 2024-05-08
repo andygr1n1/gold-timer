@@ -1,4 +1,4 @@
-import { setZeroTime } from '@/functions/date.helpers'
+import { dateAtZeroTime } from '@/functions/date.helpers'
 import { getUserId } from '@/functions/getUserData'
 import { processError } from '@/functions/processMessage'
 import { resolveData } from '@/functions/resolveData'
@@ -25,7 +25,7 @@ export const query_topRitualGoals = async () => {
                                         deleted_at: { _is_null: true },
                                         status: { _eq: 'active' },
                                         goal_ritual: { ritual_power: { _gt: 0 } },
-                                        finished_at: { _gte: setZeroTime(new Date(Date.now())) },
+                                        finished_at: { _gte: dateAtZeroTime() },
                                     },
                                 ],
                             },
