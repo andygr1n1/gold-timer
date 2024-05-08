@@ -10,8 +10,9 @@ import { StyledButton } from '@/components/buttons/StyledButton'
 import { IconArchive } from '@/assets/icons/IconArchive'
 import { IconDeleteTemp } from '@/assets/icons'
 import { cn } from '@/functions'
+import { MEDIA_QUERY_VALUES_ENUM } from '@/hooks/useMatchMedia.hook'
 
-export const Note: React.FC<{ note: INote$ }> = observer(({ note }) => {
+export const Note: React.FC<{ note: INote$; isMobile: MEDIA_QUERY_VALUES_ENUM }> = observer(({ note, isMobile }) => {
     const { popoverState, setPopoverState } = useTogglePopoverState()
 
     return (
@@ -20,7 +21,7 @@ export const Note: React.FC<{ note: INote$ }> = observer(({ note }) => {
             onOpenChange={() => {
                 setPopoverState(!popoverState)
             }}
-            trigger={['contextMenu']}
+            trigger={['contextMenu', isMobile && 'click']}
             dropdownRender={() => <NoteContextMenu onClose={() => setPopoverState(false)} note={note} />}
         >
             <div

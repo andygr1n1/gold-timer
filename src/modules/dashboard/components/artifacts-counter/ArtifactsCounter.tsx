@@ -4,7 +4,7 @@ import { GoalsCounterDropdown } from './components/GoalsCounterDropdown'
 import { NotesCounterDropdown } from './components/NotesCounterDropdown'
 import { SprintsCounterDropdown } from './components/SprintsCounterDropdown'
 import { useFetchArtifactsCount } from './service/useFetchArtifactsCount'
-import { CRUD_NoteDialog } from '@/modules/notes/components/crud-note/CRUD_NoteDialog'
+import { NoteCRUD } from '@/modules/notes/components/crud-note/NoteCRUD'
 import { IconBook, IconFocus, IconSprint } from '@/assets/icons'
 import { CreateEditSprintDialog } from '@/modules/sprints/components/create-edit-sprint/CreateEditSprintDialog'
 import { isUnderDevelopment } from '@/functions/isUnderDevelopment.helper'
@@ -44,7 +44,7 @@ export const ArtifactsCounter: React.FC = observer(() => {
                         />
                     }
                 />
-                <CRUD_NoteDialog />
+                <NoteCRUD />
             </>
 
             {isUnderDevelopment() && (

@@ -67,7 +67,7 @@ export const useFetchGoalsByFilterInfinity = (props: {
                 (goal) =>
                     !goal.deleted_at &&
                     // !!!goal.goal_ritual?.ritual_power &&
-                    isPast(setMidnightTime(new Date(goal.finished_at))) &&
+                    isPast(goal.finished_at) &&
                     goal.status !== 'completed',
             ),
             ['finished_at'],

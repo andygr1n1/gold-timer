@@ -3,7 +3,7 @@ import { APP_ROUTES_ENUM } from '@/helpers/enums'
 import { observer } from 'mobx-react-lite'
 import { NotesList } from './components/NotesList'
 import { NotesHeader } from './components/NotesHeader'
-import { CRUD_NoteDialog } from './components/crud-note/CRUD_NoteDialog'
+import { NoteCRUD } from './components/crud-note/NoteCRUD'
 
 export const NotesIndex: React.FC = observer(function NotesIndex() {
     return (
@@ -12,7 +12,7 @@ export const NotesIndex: React.FC = observer(function NotesIndex() {
                 <NotesHeader />
                 <NotesList />
             </div>
-            <CRUD_NoteDialog />
+            <NoteCRUD />
         </ModuleWrapper>
     )
 })

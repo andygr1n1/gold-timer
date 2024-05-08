@@ -62,13 +62,7 @@ export const useFetchGoalsByFilter = (props: { queryFilter?: IGoalQueryTypeFilte
 
     const expiredGoals =
         orderBy(
-            data?.filter(
-                (goal) =>
-                    !goal.deleted_at &&
-                    // !!!goal.goal_ritual?.ritual_power &&
-                    isPast(setMidnightTime(new Date(goal.finished_at))) &&
-                    goal.status !== 'completed',
-            ),
+            data?.filter((goal) => !goal.deleted_at && isPast(goal.finished_at) && goal.status !== 'completed'),
             ['finished_at', 'title'],
             ['asc', 'asc'],
         ) || []
