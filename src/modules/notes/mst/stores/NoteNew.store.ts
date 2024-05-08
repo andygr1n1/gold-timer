@@ -6,6 +6,7 @@ import { compact } from 'lodash-es'
 
 import { processError } from '@/functions/processMessage'
 import { getUserId } from '@/functions/getUserData'
+import { rootStore$ } from '@/app/StoreProvider'
 
 export const NoteNew$ = Note$.named('NoteNew$').actions((self) => ({
     onChangeField<Key extends keyof typeof self>(key: Key, value: (typeof self)[Key]) {
@@ -17,6 +18,7 @@ export const NoteNew$ = Note$.named('NoteNew$').actions((self) => ({
                 self.onChangeField('tag', self.new_tag)
             }
 
+            rootStore$.onChangeField('loading', true)
             const res: INote$SnapshotIn[] = yield upsertNote({
                 description: self.description,
                 tag: compact(self.tag.split(','))
@@ -24,6 +26,7 @@ export const NoteNew$ = Note$.named('NoteNew$').actions((self) => ({
                     .toString(),
                 owner_id: getUserId(),
             })
+            rootStore$.onChangeField('loading', false)
 
             return res
         } catch (e) {

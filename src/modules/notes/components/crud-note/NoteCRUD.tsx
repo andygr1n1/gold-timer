@@ -8,7 +8,7 @@ import { ViewNoteDialogBody } from './components/view-note/ViewNoteDialogBody'
 import { NewNoteDialogBody } from './components/new-note/NewNoteDialogBody'
 import { EditNoteDialogBody } from './components/edit-note/EditNoteDialogBody'
 
-export const CRUD_NoteDialog: React.FC = observer(function CRUD_GoalDialog() {
+export const NoteCRUD: React.FC = observer(function CRUD_GoalDialog() {
     const { onChangeField, selected_note, new_note, edit_note } = useNotesStore()
 
     const isOpen = !!new_note || !!edit_note || !!selected_note

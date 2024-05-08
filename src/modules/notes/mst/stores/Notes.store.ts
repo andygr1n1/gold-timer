@@ -6,6 +6,7 @@ import { NotesFilter$ } from './NotesFilter.store'
 import { cloneDeep } from 'lodash-es'
 import { NoteEdit$ } from './NoteEdit.store'
 import { NoteNew$ } from './NoteNew.store'
+import { rootStore$ } from '@/app/StoreProvider'
 
 export const Notes$ = types
     .model({
@@ -84,8 +85,10 @@ export const Notes$ = types
             const { updateNote, redirected, id } = self.edit_note
 
             try {
+                rootStore$.onChangeField('loading', true)
                 yield updateNote()
                 redirected && self.openNoteViewMode(id)
+                rootStore$.onChangeField('loading', false)
                 self.edit_note = undefined
             } catch (e) {
                 processError(e, 'updateNote error')
