@@ -8,7 +8,7 @@ import { KEY_FetchGoalById, KEY_FetchGoalsByFilter, goalsQueryKeys, goalsQueryKe
 import { proxyConvert } from '@/functions/proxyConvert'
 import { replaceObjectValues } from '../../../../functions/replaceObjectValues'
 import { getSelectedGoalFromCache, pushGoalInCache } from '../../helpers/goalsCache'
-import { isDashboard } from '@/helpers/guards'
+import { isDashboard, isGoalFilterActive } from '@/helpers/guards'
 import { KEY_FetchArtifactsCount } from '@/modules/dashboard/components/artifacts-counter/service/keys'
 import { KEY_FetchTopRitualGoals } from '../../components/goals-dashboard/top-ritual-goals-widget/service/keys'
 
@@ -55,18 +55,26 @@ export const useUpsertGoal = () =>
                     },
                 )
             })
-
-            window.queryClient.setQueryData(KEY_FetchGoalById(resGoal.id), (oldData: IGoal) => {
-                const selected = oldData ? proxyConvert(oldData) : undefined
-                replaceObjectValues(selected, resGoal)
-                return selected
-            })
         },
         onSettled: (data) => {
             if (!data?.[0]) return
+            window.queryClient.setQueryData(KEY_FetchGoalById(data[0].id), (oldData: IGoal) => {
+                const selected = oldData ? proxyConvert(oldData) : undefined
+                replaceObjectValues(selected, data[0])
+                return selected
+            })
             window.queryClient.invalidateQueries({ queryKey: KEY_FetchGoalById(data[0].id) })
             isDashboard() && window.queryClient.invalidateQueries({ queryKey: goalsQueryKeys.DASHBOARD })
             isDashboard() && window.queryClient.invalidateQueries({ queryKey: KEY_FetchArtifactsCount() })
             isDashboard() && window.queryClient.invalidateQueries({ queryKey: KEY_FetchTopRitualGoals() })
+
+            /* To remove ritual goal, when it is ritualized in active goals mode */
+            isGoalFilterActive() &&
+                window.queryClient.setQueryData(
+                    KEY_FetchGoalsByFilter(['KEY_FetchGoalsByFilter', 'active']),
+                    (oldData: IGoal[]) => {
+                        return data[0].goal_ritual ? oldData.filter((g) => g.id === data[0].id) : oldData
+                    },
+                )
         },
     })
