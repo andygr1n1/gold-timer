@@ -16,58 +16,63 @@ export const Note: React.FC<{ note: INote$; isMobile: MEDIA_QUERY_VALUES_ENUM }>
     const { popoverState, setPopoverState } = useTogglePopoverState()
 
     return (
-        <XDropdown
-            open={popoverState}
-            onOpenChange={() => {
-                setPopoverState(!popoverState)
-            }}
-            trigger={['contextMenu', isMobile && 'click']}
-            dropdownRender={() => <NoteContextMenu onClose={() => setPopoverState(false)} note={note} />}
-        >
-            <div
-                className={cn(
-                    `bg-global-2-bg flex w-[calc(100%-40px)] max-w-[600px] flex-col gap-5
-                    overflow-auto rounded-lg p-5 hover:scale-105 duration-300`,
-                )}
-                onContextMenu={() => {
+        <div className='relative hover:scale-105 duration-300 '>
+            {' '}
+            <XDropdown
+                open={popoverState}
+                onOpenChange={() => {
                     setPopoverState(!popoverState)
                 }}
-                key={note.id}
+                trigger={['contextMenu', isMobile && 'click']}
+                dropdownRender={() => <NoteContextMenu onClose={() => setPopoverState(false)} note={note} />}
             >
-                {note.created_at && (
-                    <div className='flex justify-between items-center'>
-                        <div className='text-sm font-semibold cursor-default underline'>
-                            {format(note.created_at, 'dd MMM, yyyy')}
+                <div
+                    className={cn(
+                        `bg-global-2-bg flex w-[calc(100%-40px)] max-w-[600px] flex-col
+                    overflow-auto rounded-lg p-5  `,
+                    )}
+                    onContextMenu={() => {
+                        setPopoverState(!popoverState)
+                    }}
+                    key={note.id}
+                >
+                    {note.created_at && (
+                        <div className='flex justify-between items-center '>
+                            <div className='text-xs cursor-default flex justify-between w-full items-start'>
+                                <span className='opacity-70 text-slate-500 mt-1 min-w-[100px]'>
+                                    {format(note.created_at, 'dd MMM, yyyy')}
+                                </span>
+                                <NoteTagsList note={note} />
+                            </div>
+                            <div className='flex gap items-center absolute top-[-15px] right-4'>
+                                {note.archived && (
+                                    <StyledButton
+                                        className='!pointer-events-none'
+                                        size='small'
+                                        variant='text'
+                                        startIcon={<IconArchive width={24} height={24} className='text-amber-500' />}
+                                    />
+                                )}
+                                {note.deleted_at && (
+                                    <StyledButton
+                                        className='!pointer-events-none'
+                                        size='small'
+                                        variant='text'
+                                        startIcon={<IconDeleteTemp width={24} height={24} className='text-rose-700 ' />}
+                                    />
+                                )}
+                            </div>
                         </div>
-                        <div className='flex gap items-center'>
-                            {note.archived && (
-                                <StyledButton
-                                    className='!pointer-events-none'
-                                    size='small'
-                                    variant='text'
-                                    startIcon={<IconArchive width={24} height={24} className='text-amber-500' />}
-                                />
-                            )}
-                            {note.deleted_at && (
-                                <StyledButton
-                                    className='!pointer-events-none'
-                                    size='small'
-                                    variant='text'
-                                    startIcon={<IconDeleteTemp width={24} height={24} className='text-rose-700 ' />}
-                                />
-                            )}
-                        </div>
-                    </div>
-                )}
-                <NoteTagsList note={note} />
+                    )}
 
-                <ReactQuill
-                    className='view-mode [&_*]:cursor-default'
-                    value={note.description}
-                    modules={{ toolbar: [] }}
-                    readOnly={true}
-                />
-            </div>
-        </XDropdown>
+                    <ReactQuill
+                        className='view-mode [&_*]:cursor-default'
+                        value={note.description}
+                        modules={{ toolbar: [] }}
+                        readOnly={true}
+                    />
+                </div>
+            </XDropdown>
+        </div>
     )
 })

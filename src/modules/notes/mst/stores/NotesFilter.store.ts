@@ -1,4 +1,4 @@
-import { getParentOfType, types } from 'mobx-state-tree'
+import { applySnapshot, getParentOfType, types } from 'mobx-state-tree'
 import { Notes$ } from './Notes.store'
 import { capitalize, sortBy, uniq, compact, intersection, orderBy } from 'lodash-es'
 import { filterWordsOptimizer } from '@/functions/filterWordsOptimizer'
@@ -51,12 +51,19 @@ export const NotesFilter$ = types
         tagIsSelected(tag: string): boolean {
             return self.selected_tags.includes(tag)
         },
+        get someChecked(): boolean {
+            return !!self.selected_tags.length && self.selected_tags.length !== this.tags.length
+        },
+        get allChecked(): boolean {
+            return !!self.selected_tags.length && self.selected_tags.length === this.tags.length
+        },
+
         get filteredNotes(): INote$[] {
             const notes = this.isShowDeletedMode
                 ? this.deletedNotes
                 : this.isShowArchivedMode
-                ? this.archivedNotes
-                : this.notes
+                  ? this.archivedNotes
+                  : this.notes
 
             return orderBy(
                 notes.filter((note) => {
@@ -77,6 +84,13 @@ export const NotesFilter$ = types
     .actions((self) => ({
         onChangeField<Key extends keyof typeof self>(key: Key, value: (typeof self)[Key]) {
             self[key] = value
+        },
+        toggleAllCheck(): void {
+            if (self.selected_tags.length) {
+                applySnapshot(self.selected_tags, [])
+            } else {
+                applySnapshot(self.selected_tags, self.tags)
+            }
         },
         toggleSelectTag(tag: string): void {
             if (self.selected_tags.includes(tag)) {

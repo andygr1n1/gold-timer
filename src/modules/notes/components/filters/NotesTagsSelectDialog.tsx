@@ -25,6 +25,9 @@ export const NotesTagsSelectDialog: React.FC = observer(() => {
             tagIsSelected,
             notes_tag_filter,
             onChangeField: onChangeNotesFilter$,
+            toggleAllCheck,
+            someChecked,
+            allChecked,
         },
     } = useNotesStore()
 
@@ -58,9 +61,16 @@ export const NotesTagsSelectDialog: React.FC = observer(() => {
                 onChangeField('tags_list_view', false)
             }}
         >
-            <div className='mt-4 h-[calc(77vh-80px)]'>
+            <div className='mt-4 h-[calc(77vh-80px)] flex flex-col w-full gap-5'>
                 <FormLabel title='Filter by tag:' />
                 <div className='flex gap-5'>
+                    <XCheckbox
+                        checked={!!allChecked}
+                        indeterminate={someChecked}
+                        onChange={() => {
+                            toggleAllCheck()
+                        }}
+                    />
                     <XInput
                         autoFocus={false}
                         value={notes_tag_filter}
@@ -69,17 +79,20 @@ export const NotesTagsSelectDialog: React.FC = observer(() => {
                         placeholder='Find me...'
                     />
                     <StyledButton
-                        disabled={!selected_tags.length}
+                        disabled={!selected_tags.length && !notes_tag_filter.length}
                         startIcon={<IconEraser width={24} height={24} />}
-                        onClick={() => onChangeNotesFilter$('selected_tags', cast([]))}
+                        onClick={() => {
+                            onChangeNotesFilter$('selected_tags', cast([]))
+                            onChangeNotesFilter$('notes_tag_filter', '')
+                        }}
                     />
                 </div>
-                <div tabIndex={0} className=' py-4 flex h-[calc(77vh-160px)] flex-col gap-4  overflow-auto sexy-scroll'>
+                <div tabIndex={0} className='flex h-[calc(77vh-160px)] w-full flex-col gap-4 sexy-scroll'>
                     {filteredTags.map((tag) => (
                         <div
                             key={tag}
                             className={clsx(
-                                'flex cursor-pointer gap-2 p-2 duration-300 hover:text-blue-600',
+                                'flex cursor-pointer gap-8 duration-300 hover:text-blue-600',
                                 tagIsSelected(tag) && 'text-blue-700',
                             )}
                             onClick={() => toggleSelectTag(tag)}
