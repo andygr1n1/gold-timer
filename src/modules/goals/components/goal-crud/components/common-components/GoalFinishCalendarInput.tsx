@@ -1,7 +1,6 @@
 import { XDatePicker } from '@/components-x/x-date-picker/XDatePicker'
-import { format, getYear } from 'date-fns'
+import { format, getYear, set } from 'date-fns'
 import { FormLabel } from '@/components/form/FormLabel'
-import { setMidnightTime } from '@/functions/date.helpers'
 
 export const GoalFinishCalendarInput: React.FC<{
     value: string
@@ -15,6 +14,7 @@ export const GoalFinishCalendarInput: React.FC<{
     function onClear() {
         onChange?.('')
     }
+
     return !hide ? (
         <div>
             <FormLabel title='Finish Estimation' />
@@ -22,7 +22,8 @@ export const GoalFinishCalendarInput: React.FC<{
             <XDatePicker
                 numberOfMonths={1}
                 mode='single'
-                selected={setMidnightTime(new Date(value))}
+                /* picker is converting date automatically by UTC */
+                selected={set(value.replace(/Z|[\+\-]\d\d:\d\d$/gi, ''), { hours: 23, minutes: 59, seconds: 59 })}
                 onSelect={onDatePickerChange}
                 dateFormat={'do MMMM yyyy'}
                 captionLayout='dropdown-buttons'
@@ -31,7 +32,7 @@ export const GoalFinishCalendarInput: React.FC<{
                 fixedWeeks
                 showOutsideDays
                 showWeekNumber
-                ISOWeek
+                // ISOWeek
                 onClear={onClear}
                 placeholder='Set birthday'
                 readOnly={view_mode}

@@ -1,14 +1,25 @@
-import { format, set } from 'date-fns'
-export const setMidnightTime = (date: Date): Date => {
-    const dateWithDefaultUTC = new Date(date.getTime() + date.getTimezoneOffset() * 60000)
-    const newDate = set(dateWithDefaultUTC, {
+import { add, set, sub, format } from 'date-fns'
+
+export const setMidnightTime = (date: Date | string): Date => {
+    const newDate = set(date, {
         hours: 23,
         minutes: 59,
         seconds: 59,
         milliseconds: 59,
     })
 
-    return newDate
+    const timeZoneOffsetInHours = new Date().getTimezoneOffset() / 60
+
+    const stabilizeDateByTimeZone =
+        timeZoneOffsetInHours < 0
+            ? add(newDate, {
+                  hours: Math.abs(timeZoneOffsetInHours),
+              })
+            : sub(newDate, {
+                  hours: Math.abs(timeZoneOffsetInHours),
+              })
+
+    return stabilizeDateByTimeZone
 }
 
 export const setZeroTime = (date: Date): Date => {

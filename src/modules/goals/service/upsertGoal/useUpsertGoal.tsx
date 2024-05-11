@@ -22,7 +22,7 @@ export const useUpsertGoal = () =>
                 title,
                 slogan,
                 description,
-                finished_at: setMidnightTime(new Date(finished_at)),
+                finished_at: setMidnightTime(finished_at),
                 status: editGoal.status || 'active',
                 difficulty: setGoalDifficulty(convertStringDate(editGoal.finished_at)),
                 parent_goal_id: editGoal.parent_goal_id ?? null,
