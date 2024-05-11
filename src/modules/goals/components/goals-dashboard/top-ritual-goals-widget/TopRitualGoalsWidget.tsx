@@ -11,8 +11,6 @@ export const TopRitualGoalsWidget: React.FC = () => {
     if (isLoading) return <IsLoading isLoading={isLoading} />
     if (!goals?.length) return null
 
-    console.log('goals', goals)
-
     return (
         <div key={goals?.length} className={styles['dashboardWidgetWrapper']}>
             <div>
