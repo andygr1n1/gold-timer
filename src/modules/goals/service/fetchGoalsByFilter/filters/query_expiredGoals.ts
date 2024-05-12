@@ -1,8 +1,8 @@
-import { dateAtZeroTime } from '@/functions/date.helpers'
 import { getUserId } from '@/functions/getUserData'
 import { Client } from 'gold-timer-genql/lib/generated'
 import { filterGoalAtom } from '@/modules/goals/stores/filterGoal.store'
 import { selectedGoalAtom$ } from '@/modules/goals/stores/selectedGoal.store'
+import { setZeroTime } from '@/functions/date.helpers'
 
 export const query_expiredGoals = (props: {
     client: Client
@@ -33,7 +33,7 @@ export const query_expiredGoals = (props: {
                                 // not ritual
                                 // _not: { goal_ritual: {} },
                                 // not expired
-                                finished_at: { _lt: dateAtZeroTime() },
+                                finished_at: { _lt: setZeroTime(new Date()) },
                             },
                             {
                                 _or: filterByText

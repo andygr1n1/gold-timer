@@ -1,4 +1,4 @@
-import { add, set, sub, format } from 'date-fns'
+import { set, format, add, sub } from 'date-fns'
 
 export const setMidnightTime = (date: Date | string): Date => {
     const newDate = set(date, {
@@ -23,15 +23,25 @@ export const setMidnightTime = (date: Date | string): Date => {
 }
 
 export const setZeroTime = (date: Date): Date => {
-    return set(date, {
+    const newDate = set(date, {
         hours: 0,
         minutes: 0,
         seconds: 0,
         milliseconds: 0,
     })
-}
-export const convertDateToString = (date: Date): string => {
-    return format(date, 'yyyy-MM-dd HH:mm:ss')
+
+    const timeZoneOffsetInHours = new Date().getTimezoneOffset() / 60
+
+    const stabilizeDateByTimeZone =
+        timeZoneOffsetInHours < 0
+            ? add(newDate, {
+                  hours: Math.abs(timeZoneOffsetInHours),
+              })
+            : sub(newDate, {
+                  hours: Math.abs(timeZoneOffsetInHours),
+              })
+
+    return stabilizeDateByTimeZone
 }
 
 export const convertStringDate = (date: string): Date => {
@@ -49,24 +59,23 @@ export const DaysOfTheWeek = [
     { value: '0', label: 'Sunday' },
 ]
 
-export const dateAtZeroTime = (date?: Date | string): string => {
-    if (!date) date = new Date()
+export const prepareFinishedAtForInsert = (date: Date | string): string => {
+    const updated = set(date, { hours: 23, minutes: 59, seconds: 59, milliseconds: 59 })
+    return formatDateWithTimezone(updated)
+}
 
-    if (typeof date === 'string') {
-        date = new Date(date)
-    }
+// Helper function to get timezone offset in HH:mm format
+function getTimezoneOffset(date: Date): string {
+    const offset = date.getTimezoneOffset()
+    const absOffset = Math.abs(offset)
+    const hours = Math.floor(absOffset / 60)
+    const minutes = absOffset % 60
+    return (offset <= 0 ? '+' : '-') + String(hours).padStart(2, '0') + ':' + String(minutes).padStart(2, '0')
+}
 
-    return (
-        date.getFullYear() +
-        '-' +
-        ('0' + (date.getMonth() + 1)).slice(-2) +
-        '-' +
-        ('0' + date.getDate()).slice(-2) +
-        ' ' +
-        '00' +
-        ':' +
-        '00' +
-        ':' +
-        '00'
-    )
+// Function to format a date with timezone offset
+export function formatDateWithTimezone(date: Date): string {
+    const formattedDate = format(date, "yyyy-MM-dd'T'HH:mm:ss")
+    const timezoneOffset = getTimezoneOffset(date)
+    return `${formattedDate}${timezoneOffset}`
 }

@@ -51,7 +51,9 @@ export const useMutateGoalRitualize = () => {
 
             res && processSuccess('Goal successfully ritualized')
         },
-        onSettled: () => {
+        onSettled: (data) => {
+            if (!data) return
+
             isDashboard() && window.queryClient.invalidateQueries({ queryKey: goalsQueryKeys.DASHBOARD })
             isDashboard() && window.queryClient.invalidateQueries({ queryKey: KEY_FetchTopRitualGoals() })
         },

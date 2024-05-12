@@ -1,7 +1,7 @@
 import { useMutation } from '@tanstack/react-query'
 import { IGoal, IInsertNewGoal } from '../types'
 import { getUserId } from '@/functions/getUserData'
-import { convertStringDate, setMidnightTime } from '@/functions/date.helpers'
+import { convertStringDate, prepareFinishedAtForInsert } from '@/functions/date.helpers'
 import { setGoalDifficulty } from '@/functions/setGoalDifficulty'
 import { mutation_upsertGoal } from './mutation_upsertGoal'
 import { KEY_FetchGoalById, KEY_FetchGoalsByFilter, goalsQueryKeys, goalsQueryKeysValues } from '../keys'
@@ -22,12 +22,13 @@ export const useUpsertGoal = () =>
                 title,
                 slogan,
                 description,
-                finished_at: setMidnightTime(finished_at),
+                finished_at: prepareFinishedAtForInsert(finished_at),
                 status: editGoal.status || 'active',
                 difficulty: setGoalDifficulty(convertStringDate(editGoal.finished_at)),
                 parent_goal_id: editGoal.parent_goal_id ?? null,
                 is_favorite: !!editGoal.is_favorite,
             }
+
             const ritualData = editGoal.goal_ritual ? { ...editGoal.goal_ritual, goal_id: editGoal.id } : undefined
             return mutation_upsertGoal(goalData, ritualData)
         },

@@ -1,7 +1,5 @@
-import { setZeroTime } from '@/functions/date.helpers'
-import { add, getDay } from 'date-fns'
+import { add, getDay, set } from 'date-fns'
 import { RITUAL_TYPE_ENUM } from '../helpers/enums'
-import { setMidnightTime } from './date.helpers'
 import { ritual_type_enum_enum } from 'gold-timer-genql/lib/generated'
 
 interface INewRitualCircleProps {
@@ -19,8 +17,7 @@ export const generateNewRitualCircle = (
 
     // *
     // today with default UTC
-    const date = new Date()
-    const today = new Date(date.getTime() + date.getTimezoneOffset() * 60000)
+    const today = new Date()
 
     const isRitualDaysInterval = ritual_type === RITUAL_TYPE_ENUM.INTERVAL_IN_DAYS
     const isRitualDaysOfWeek = ritual_type === RITUAL_TYPE_ENUM.DAYS_OF_WEEK
@@ -48,9 +45,21 @@ export const generateNewRitualCircle = (
             }))
     }
 
+    console.log('ritual_goal_finished_at', ritual_goal_finished_at)
+
     return {
-        ritual_goal_created_at: setZeroTime(ritual_goal_finished_at),
-        ritual_goal_finished_at: setMidnightTime(ritual_goal_finished_at),
+        ritual_goal_created_at: set(ritual_goal_finished_at, {
+            hours: 0,
+            minutes: 0,
+            seconds: 0,
+            milliseconds: 0,
+        }),
+        ritual_goal_finished_at: set(ritual_goal_finished_at, {
+            hours: 23,
+            minutes: 59,
+            seconds: 59,
+            milliseconds: 59,
+        }),
     }
 }
 

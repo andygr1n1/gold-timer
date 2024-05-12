@@ -1,5 +1,5 @@
-import { convertStringDate, setMidnightTime, setZeroTime } from '@/functions/date.helpers'
-import { differenceInCalendarDays } from 'date-fns'
+import { convertStringDate, setMidnightTime } from '@/functions/date.helpers'
+import { differenceInCalendarDays, isFuture, set } from 'date-fns'
 import { isArray } from 'lodash-es'
 import { IGoal } from '../service/types'
 
@@ -20,12 +20,10 @@ export const calculateIsRitual = (goal: IGoal): boolean => {
 
 export const calculateIsFromFuture = (goal: IGoal): boolean => {
     if (!goal.created_at) return false
+
     return (
-        !!(convertStringDate(goal.created_at) > new Date(Date.now())) ||
-        !!(
-            setMidnightTime(convertStringDate(goal.finished_at)).getTime() >
-            setMidnightTime(new Date(Date.now())).getTime()
-        )
+        !!(new Date(goal.created_at) > new Date()) ||
+        !!isFuture(set(goal.finished_at, { hours: 0, minutes: 0, seconds: 0 }))
     )
 }
 
@@ -37,12 +35,8 @@ export const calculateCreatedDaysAgo = (goal: IGoal): number => {
     const diff = new Date(today - createdAt)
     return Math.floor(diff.getTime() / (1000 * 3600 * 24))
 }
-
 export const calculateTotalRemainingDays = (goal: IGoal): number => {
-    const result = differenceInCalendarDays(
-        setMidnightTime(convertStringDate(goal.finished_at)),
-        setZeroTime(new Date(Date.now())),
-    )
+    const result = differenceInCalendarDays(goal.finished_at, set(new Date(), { hours: 0, minutes: 0, seconds: 0 }))
     return result
 }
 

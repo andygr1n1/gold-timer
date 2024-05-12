@@ -1,11 +1,10 @@
-import { setMidnightTime } from '@/functions/date.helpers'
 import { useInfiniteQuery } from '@tanstack/react-query'
 import { IGoalQueryTypeFilter } from '@/modules/goals/service/types'
-import { isPast } from 'date-fns'
 import { compact, flatten, last, orderBy } from 'lodash-es'
 import { KEY_FetchGoalsByFilter } from '../keys'
 import { IActiveGoals } from '../types'
 import { fabric_goalsByFilter } from './fabric_goalsByFilter'
+import { isPast } from 'date-fns'
 
 export const useFetchGoalsByFilterInfinity = (props: {
     queryFilter?: IGoalQueryTypeFilter
@@ -38,7 +37,7 @@ export const useFetchGoalsByFilterInfinity = (props: {
                 (goal) =>
                     !goal.deleted_at &&
                     !!!goal.goal_ritual?.ritual_power &&
-                    !isPast(setMidnightTime(new Date(goal.finished_at))) &&
+                    !isPast(goal.finished_at) &&
                     goal.status !== 'completed',
             ),
             ['finished_at'],

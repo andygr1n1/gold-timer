@@ -8,7 +8,7 @@ import { EditGoalSlogan } from './components/EditGoalSlogan'
 import { EditGoalDescription } from './components/EditGoalDescription'
 import { EditGoalFinishedAt } from './components/EditGoalFinishedAt'
 import { EditGoalRitualIntervalInput } from './components/edit-goal-ritual/EditGoalRitualIntervalInput'
-import { convertDateToString } from '@/functions/date.helpers'
+import { formatDateWithTimezone } from '@/functions/date.helpers'
 import { EditModeGoalDetails } from './components/EditModeGoalDetails'
 
 export const EditGoalDialogBody: React.FC<{ goal: IGoal }> = ({ goal }) => {
@@ -29,7 +29,7 @@ export const EditGoalDialogBody: React.FC<{ goal: IGoal }> = ({ goal }) => {
                               ritual_type: 'interval_in_days',
                               ritual_interval: 1,
                               ritual_id: crypto.randomUUID(),
-                              created_at: convertDateToString(new Date(Date.now())),
+                              created_at: formatDateWithTimezone(new Date()),
                           },
                       }
                     : goal,
