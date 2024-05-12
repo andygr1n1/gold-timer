@@ -41,7 +41,7 @@ export interface IInsertNewGoal {
     owner_id: string
     privacy?: privacy_enum_enum
     status?: goal_status_enum_enum
-    finished_at: Date
+    finished_at: string | Date
     difficulty?: goal_difficulty_enum_enum
     parent_goal_id?: string | null
     is_favorite?: boolean

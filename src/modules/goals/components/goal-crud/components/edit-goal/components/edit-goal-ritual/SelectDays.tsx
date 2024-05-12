@@ -3,7 +3,7 @@ import { XInput } from '@/components-x/x-input/XInput'
 import { generateNewRitualCircle } from '@/functions/generateNewRitualCircle'
 import { useAtom } from 'jotai'
 import { editGoalAtom } from '@/modules/goals/stores/editGoal.store'
-import { convertDateToString, convertStringDate, setMidnightTime } from '@/functions/date.helpers'
+import { formatDateWithTimezone, convertStringDate, setMidnightTime } from '@/functions/date.helpers'
 
 export const SelectDays = () => {
     const [_editGoalAtom, _setEditGoalAtom] = useAtom(editGoalAtom)
@@ -40,7 +40,7 @@ export const SelectDays = () => {
         })
         _setEditGoalAtom((prev) => ({
             ...prev,
-            finished_at: convertDateToString(ritual_goal_finished_at),
+            finished_at: formatDateWithTimezone(ritual_goal_finished_at),
             goal_ritual: { ...prev?.goal_ritual, ritual_interval: +value },
         }))
         return e

@@ -1,6 +1,7 @@
 import { XDatePicker } from '@/components-x/x-date-picker/XDatePicker'
-import { format, getYear, set } from 'date-fns'
+import { getYear } from 'date-fns'
 import { FormLabel } from '@/components/form/FormLabel'
+import { prepareFinishedAtForInsert } from '@/functions/date.helpers'
 
 export const GoalFinishCalendarInput: React.FC<{
     value: string
@@ -9,7 +10,7 @@ export const GoalFinishCalendarInput: React.FC<{
     onChange?: (value: string) => void
 }> = ({ value, view_mode, hide = false, onChange }) => {
     function onDatePickerChange(day: Date | undefined) {
-        day && onChange?.(format(day, 'yyyy-MM-dd') || '')
+        day && onChange?.(prepareFinishedAtForInsert(new Date(day)))
     }
     function onClear() {
         onChange?.('')
@@ -23,7 +24,7 @@ export const GoalFinishCalendarInput: React.FC<{
                 numberOfMonths={1}
                 mode='single'
                 /* picker is converting date automatically by UTC */
-                selected={set(value.replace(/Z|[\+\-]\d\d:\d\d$/gi, ''), { hours: 23, minutes: 59, seconds: 59 })}
+                selected={new Date(value)}
                 onSelect={onDatePickerChange}
                 dateFormat={'do MMMM yyyy'}
                 captionLayout='dropdown-buttons'
