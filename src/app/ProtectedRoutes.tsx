@@ -1,4 +1,4 @@
-import { Navigate, Route, Routes } from 'react-router-dom'
+import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
 import { APP_ROUTES_ENUM } from '../helpers/enums'
 import { GoalsCmsIndex } from '../modules/goals/components/goals-cms/GoalsCmsIndex'
 import { ProfileIndex } from '../modules/profile/ProfileIndex'
@@ -13,11 +13,24 @@ import { LoadingDialogGlobal } from '../components/loading/LoadingDialogConstruc
 import { ProtectedStoreProvider } from './StoreProvider'
 import { SideMenu } from '../components/side-menu/SideMenu'
 import { useUserId } from './service/useUserId'
+import { AndreiGriniIndex } from '@/modules/andreigrini/AndreiGriniIndex'
 
 export const ProtectedRoutes = () => {
     const { userId } = useUserId()
+    const location = useLocation()
 
-    return (
+    const isPortfolioPage =
+        location.pathname.trim().toLowerCase().includes('grini') ||
+        location.pathname.trim().toLowerCase().includes('andrei')
+
+    return isPortfolioPage ? (
+        <Routes>
+            <Route path={`/${APP_ROUTES_ENUM.ANDREI_GRINI}`} element={<AndreiGriniIndex />} />
+            {/*  */}
+            <Route path={'/'} element={<Navigate to={`/${APP_ROUTES_ENUM.ANDREI_GRINI}`} />} />
+            <Route path={'*'} element={<Navigate to={`/${APP_ROUTES_ENUM.ANDREI_GRINI}`} />} />
+        </Routes>
+    ) : (
         <ProtectedStoreProvider userId={userId}>
             <div className='bg-global-bg flex w-full'>
                 <SideMenu />

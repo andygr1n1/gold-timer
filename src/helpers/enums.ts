@@ -21,7 +21,7 @@ export enum APP_ROUTES_ENUM {
     GOALS = 'goals',
     SPRINTS = 'sprints',
     DASHBOARD = 'dashboard',
-    CRYPTO = 'crypto',
+    ANDREI_GRINI = 'andreigrini',
 }
 
 export enum RITUAL_TYPE_ENUM {

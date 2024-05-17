@@ -4,6 +4,7 @@ import { LoginIndex } from '../modules/login/LoginIndex'
 import { RegisterIndex } from '../modules/login/RegisterIndex'
 import { RestoreAccountIndex } from '../modules/login/RestoreAccountIndex'
 import { NewPasswordIndex } from '../modules/login/NewPasswordIndex'
+import { AndreiGriniIndex } from '@/modules/andreigrini/AndreiGriniIndex'
 
 export const AnonymousRoutes: React.FC = () => {
     return (
@@ -13,6 +14,7 @@ export const AnonymousRoutes: React.FC = () => {
             <Route path={`/${APP_ROUTES_ENUM.RESTORE_ACCOUNT}`} element={<RestoreAccountIndex />} />
             <Route path={`/${APP_ROUTES_ENUM.NEW_PASSWORD}`} element={<NewPasswordIndex />} />
             <Route path={'*'} element={<Navigate to={`/${APP_ROUTES_ENUM.LOGIN}`} />} />
+            <Route path={`/${APP_ROUTES_ENUM.ANDREI_GRINI}`} element={<AndreiGriniIndex />} />
         </Routes>
     )
 }
