@@ -13,6 +13,8 @@ module.exports = {
         fontFamily: {
             kzen: ['Roboto Slab', defaultConfig.theme.fontFamily.sans],
             allura: ['Allura', defaultConfig.theme.fontFamily.sans],
+            inter: ['Inter', defaultConfig.theme.fontFamily.sans],
+            atkinson: ['Atkinson Regular', defaultConfig.theme.fontFamily.sans],
         },
         extend: {
             colors,

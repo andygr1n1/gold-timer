@@ -11,6 +11,17 @@
     src: url(./fonts/RobotoSlab-VariableFont_wght.ttf);
 }
 
+@font-face {
+    font-family: 'Inter';
+    src: url(./fonts/Inter-VariableFont_slnt\,wght.ttf);
+}
+
+
+@font-face {
+    font-family: 'Atkinson Regular';
+    src: url(./fonts/atkinson/AtkinsonHyperlegible-Regular.ttf);
+}
+
 .login-bg-4g {
     background-image: url('./img/kzen-login-background.jpg');
     background-size: cover;
