@@ -45,7 +45,6 @@ export const generateNewRitualCircle = (
             }))
     }
 
-    console.log('ritual_goal_finished_at', ritual_goal_finished_at)
 
     return {
         ritual_goal_created_at: set(ritual_goal_finished_at, {

@@ -10,7 +10,6 @@ export const TopActiveGoalsWidget: React.FC = () => {
         isLoading,
         data: { active: goals },
     } = useFetchGoalsByFilter({ queryFilter: 'all', limit: 4 })
-    console.log('goals', goals)
     return (
         <div key={goals?.length} className={styles['dashboardWidgetWrapper']}>
             <div>

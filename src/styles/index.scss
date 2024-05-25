@@ -45,6 +45,9 @@ input:-webkit-autofill:active {
 @import './antd-redesign/input.scss';
 @import '../components/buttons/StyledButtonLightVariables.scss';
 @import 'react-tooltip/dist/react-tooltip.css';
+@import "slick-carousel/slick/slick.css";
+@import "slick-carousel/slick/slick-theme.css";
+
 
 @layer base {
     html,
