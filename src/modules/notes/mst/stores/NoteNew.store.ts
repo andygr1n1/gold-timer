@@ -6,7 +6,7 @@ import { compact } from 'lodash-es'
 
 import { processError } from '@/functions/processMessage'
 import { getUserId } from '@/functions/getUserData'
-import { rootStore$ } from '@/app/StoreProvider'
+import { rootStore$ } from '@/modules/app/mst/StoreProvider'
 
 export const NoteNew$ = Note$.named('NoteNew$').actions((self) => ({
     onChangeField<Key extends keyof typeof self>(key: Key, value: (typeof self)[Key]) {

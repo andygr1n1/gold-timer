@@ -1,9 +1,8 @@
 import { add, getDay, set } from 'date-fns'
-import { RITUAL_TYPE_ENUM } from '../helpers/enums'
-import { ritual_type_enum_enum } from 'gold-timer-genql/lib/generated'
+import { RITUAL_TYPE_ENUM } from '../helpers/globalEnums'
 
 interface INewRitualCircleProps {
-    ritual_type: ritual_type_enum_enum
+    ritual_type: RITUAL_TYPE_ENUM
     new_ritual_interval: number
     // goal_created_at: Date
     goal_finished_at: Date
@@ -44,7 +43,6 @@ export const generateNewRitualCircle = (
                 days: generateEstimationForRitualDaysOfWeek(ritual_goal_created_at, new_ritual_interval),
             }))
     }
-
 
     return {
         ritual_goal_created_at: set(ritual_goal_finished_at, {

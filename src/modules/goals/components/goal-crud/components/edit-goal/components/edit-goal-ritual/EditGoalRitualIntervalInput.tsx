@@ -1,5 +1,5 @@
 import { FormLabel } from '@/components/form/FormLabel'
-import { RITUAL_TYPE_ENUM } from '@/helpers/enums'
+import { RITUAL_TYPE_ENUM } from '@/helpers/globalEnums'
 import { SelectDayOfWeek } from './SelectDayOfWeek'
 import { SelectDays } from './SelectDays'
 import { RitualTypeSwitch } from './RitualTypeSwitch'

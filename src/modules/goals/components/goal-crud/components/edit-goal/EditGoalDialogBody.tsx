@@ -10,6 +10,7 @@ import { EditGoalFinishedAt } from './components/EditGoalFinishedAt'
 import { EditGoalRitualIntervalInput } from './components/edit-goal-ritual/EditGoalRitualIntervalInput'
 import { formatDateWithTimezone } from '@/functions/date.helpers'
 import { EditModeGoalDetails } from './components/EditModeGoalDetails'
+import { RITUAL_TYPE_ENUM } from '@/helpers'
 
 export const EditGoalDialogBody: React.FC<{ goal: IGoal }> = ({ goal }) => {
     const isNewRitual = selectedGoalAtom$.get(selectedGoalAtom)?.is_new_ritual
@@ -26,7 +27,7 @@ export const EditGoalDialogBody: React.FC<{ goal: IGoal }> = ({ goal }) => {
                           goal_ritual: {
                               ritual_power: 1,
                               goal_id: goal.id,
-                              ritual_type: 'interval_in_days',
+                              ritual_type: RITUAL_TYPE_ENUM.INTERVAL_IN_DAYS,
                               ritual_interval: 1,
                               ritual_id: crypto.randomUUID(),
                               created_at: formatDateWithTimezone(new Date()),

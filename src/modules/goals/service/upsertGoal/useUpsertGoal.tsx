@@ -8,7 +8,7 @@ import { KEY_FetchGoalById, KEY_FetchGoalsByFilter, goalsQueryKeys, goalsQueryKe
 import { proxyConvert } from '@/functions/proxyConvert'
 import { replaceObjectValues } from '../../../../functions/replaceObjectValues'
 import { getSelectedGoalFromCache, pushGoalInCache } from '../../helpers/goalsCache'
-import { isDashboard, isGoalFilterActive } from '@/helpers/guards'
+import { isDashboard, isGoalFilterActive } from '@/helpers/globalGuards'
 import { KEY_FetchArtifactsCount } from '@/modules/dashboard/components/artifacts-counter/service/keys'
 import { KEY_FetchTopRitualGoals } from '../../components/goals-dashboard/top-ritual-goals-widget/service/keys'
 

@@ -1,7 +1,7 @@
 import { processError } from '../../../functions/processMessage'
 import { INote$SnapshotIn } from '@/modules/notes/mst/types'
 
-import { resolveData } from '@/functions/resolveData'
+import { resolveData } from '@/functions/tryCatchRequest'
 import { generateTSClient } from '@/graphql/client'
 import { getUserId } from '@/functions/getUserData'
 

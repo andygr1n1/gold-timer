@@ -1,8 +1,8 @@
-import { goal_status_enum_enum } from 'gold-timer-genql/lib/generated'
+import { IGoalQueryTypeFilter } from "../types"
 
 export interface IGoalStatus {
     id?: string
-    status: goal_status_enum_enum
+    status: IGoalQueryTypeFilter
 }
 export interface IFabricGoalStatus {
     status: IGoalStatus | null

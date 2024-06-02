@@ -1,4 +1,4 @@
-import { useUserStore } from '@/app/StoreProvider'
+import { useUserStore } from '@/modules/app/mst/StoreProvider'
 import { XModal } from '@/components-x/x-modal/XModal'
 import { FormFooter } from '@/components/form/FormFooter'
 import getCroppedImg from '@/functions/cropImage'

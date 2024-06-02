@@ -35,7 +35,10 @@ export const query_fetchGoalsByFilter = async (props: {
         ]),
     )
 
-    const data: IGoal[] = res.reduce((acc, r) => [...acc, ...optimizeActiveGoalsData(r.goals)], [] as IGoal[])
+    const data: IGoal[] = res.reduce(
+        (acc, r) => [...acc, ...optimizeActiveGoalsData(r.goals as IGoal[])],
+        [] as IGoal[],
+    )
 
     return uniqWith(data, (a, b) => a.id === b.id)
 }

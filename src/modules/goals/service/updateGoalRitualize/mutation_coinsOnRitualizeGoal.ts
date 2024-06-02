@@ -1,4 +1,4 @@
-import { resolveData } from '@/functions/resolveData'
+import { resolveData } from '@/functions/tryCatchRequest'
 import { processError } from '@/functions/processMessage'
 import { Client } from 'gold-timer-genql/lib/generated'
 import { getUserCoins, getUserId } from '@/functions/getUserData'

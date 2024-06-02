@@ -2,7 +2,7 @@ import { observer } from 'mobx-react-lite'
 
 import { Carousel } from 'react-responsive-carousel'
 import { useEffect } from 'react'
-import { useRootStore } from '@/app/StoreProvider'
+import { useRootStore } from '@/modules/app/mst/StoreProvider'
 import { useWindowMatchMedia } from '@/hooks/useMatchMedia.hook'
 
 import 'react-responsive-carousel/lib/styles/carousel.min.css' // requires a loader

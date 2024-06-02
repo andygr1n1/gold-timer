@@ -6,7 +6,7 @@ import { NotesFilter$ } from './NotesFilter.store'
 import { cloneDeep } from 'lodash-es'
 import { NoteEdit$ } from './NoteEdit.store'
 import { NoteNew$ } from './NoteNew.store'
-import { rootStore$ } from '@/app/StoreProvider'
+import { rootStore$ } from '@/modules/app/mst/StoreProvider'
 
 export const Notes$ = types
     .model({

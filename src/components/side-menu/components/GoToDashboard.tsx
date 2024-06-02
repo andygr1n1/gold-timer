@@ -1,4 +1,4 @@
-import { APP_ROUTES_ENUM } from '@/helpers/enums'
+import { APP_ROUTES_ENUM } from '@/helpers/globalEnums'
 import { useLocation } from 'react-router-dom'
 import { SideMenuLink } from './SideMenuLink'
 import { GithubLink } from './GithubLink'

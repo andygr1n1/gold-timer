@@ -1,4 +1,4 @@
-import { resolveData } from '@/functions/resolveData'
+import { resolveData } from '@/functions/tryCatchRequest'
 import { generateTSClient } from '@/graphql/client'
 import { processError } from '@/functions/processMessage'
 

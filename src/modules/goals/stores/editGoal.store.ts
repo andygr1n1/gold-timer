@@ -5,9 +5,9 @@ import { isDev } from '@/functions/isUnderDevelopment.helper'
 import { IGoal } from '@/modules/goals/service/types'
 import { focusAtom } from 'jotai-optics'
 
-import { RITUAL_TYPE_ENUM } from '@/helpers/enums'
+import { RITUAL_TYPE_ENUM } from '@/helpers/globalEnums'
 import { formatISO } from 'date-fns'
-import { goal_status_enum_enum } from 'gold-timer-genql/lib/generated'
+
 import { KEY_FetchGoalById } from '../service/keys'
 
 export const editGoalAtom = atomWithImmer<IGoal | undefined>(undefined)
@@ -75,5 +75,5 @@ export const newGoalTemplate = (id: string, parent_goal_id?: string) => ({
     parent_goal_id,
     finished_at: formatISO(new Date(Date.now())),
     created_at: formatISO(new Date(Date.now())),
-    status: 'active' as goal_status_enum_enum,
+    status: 'active',
 })

@@ -16,13 +16,17 @@
     src: url(./fonts/Inter-VariableFont_slnt\,wght.ttf);
 }
 
-
 @font-face {
     font-family: 'Atkinson Regular';
     src: url(./fonts/atkinson/AtkinsonHyperlegible-Regular.ttf);
 }
 
-.login-bg-4g {
+.authorization-page {
+    display: flex;
+    height: 100%;
+    justify-content: flex-end;
+    width: 100%;
+    flex-direction: column;
     background-image: url('./img/kzen-login-background.jpg');
     background-size: cover;
 }

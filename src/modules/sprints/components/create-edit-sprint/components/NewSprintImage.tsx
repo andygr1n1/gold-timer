@@ -1,6 +1,6 @@
 import { Buffer } from 'buffer'
 import { processError } from '@/functions/processMessage'
-import { useSprintsStore } from '@/app/StoreProvider'
+import { useSprintsStore } from '@/modules/app/mst/StoreProvider'
 import clsx from 'clsx'
 import { IconUpload } from '@/assets/icons'
 import { observer } from 'mobx-react-lite'

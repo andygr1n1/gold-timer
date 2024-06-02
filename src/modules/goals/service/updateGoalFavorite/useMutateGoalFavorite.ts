@@ -8,7 +8,7 @@ import { ISelectedGoal } from '../../stores/types'
 import { KEY_FetchGoalById, KEY_FetchGoalsByFilter, goalsQueryKeys, goalsQueryKeysValues } from '../keys'
 import { proxyConvert } from '@/functions/proxyConvert'
 import { getSelectedGoalFromCache } from '../../helpers/goalsCache'
-import { isDashboard } from '@/helpers/guards'
+import { isDashboard } from '@/helpers/globalGuards'
 import { KEY_FetchTopRitualGoals } from '../../components/goals-dashboard/top-ritual-goals-widget/service/keys'
 
 export const useMutateGoalFavorite = () => {

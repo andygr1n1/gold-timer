@@ -3,7 +3,7 @@ import { StyledButton } from '@/components/buttons/StyledButton'
 import { XTooltip } from '@/components-x/x-tooltip/XTooltip'
 import { NewNoteInput } from './components/NewNoteInput'
 import { TagInput } from './components/TagInput'
-import { useNotesStore } from '@/app/StoreProvider'
+import { useNotesStore } from '@/modules/app/mst/StoreProvider'
 
 export const CreateNewNote: React.FC = observer(() => {
     const { createWidgetNewNote, widget_new_note } = useNotesStore()

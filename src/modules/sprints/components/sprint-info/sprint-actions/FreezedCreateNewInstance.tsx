@@ -1,6 +1,6 @@
 import { Button } from 'antd'
 import { observer } from 'mobx-react-lite'
-import { useSprintsStore } from '../../../../../app/StoreProvider'
+import { useSprintsStore } from '../../../../app/mst/StoreProvider'
 import styles from './SprintActions.module.scss'
 import { ISprint$ } from '@/modules/sprints/mst/types'
 

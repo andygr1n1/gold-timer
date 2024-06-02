@@ -2,10 +2,10 @@ import { processError } from '@/functions/processMessage'
 import { cast, flow, getParentOfType, toGenerator, types } from 'mobx-state-tree'
 import { mutation_toggleActiveGoalSlide } from '../../graphql/mutation_toggleActiveGoalSlide'
 import { deleteImageFromServer } from '@/services/image.service'
-import { SERVER_ROUTES } from '@/helpers/enums'
+import { SERVER_ROUTES } from '@/helpers/globalEnums'
 import { mutation_deleteGoalSlide } from '../../graphql/mutation_deleteGoalSlide'
 import { GoalsSlides$ } from './GoalsSlides.store'
-import { rootStore$ } from '@/app/StoreProvider'
+import { rootStore$ } from '@/modules/app/mst/StoreProvider'
 
 export const GoalSlide$ = types
     .model('GoalSlide$', {

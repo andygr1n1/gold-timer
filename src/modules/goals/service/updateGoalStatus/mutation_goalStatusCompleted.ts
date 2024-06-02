@@ -1,7 +1,8 @@
-import { resolveData } from '@/functions/resolveData'
+import { resolveData } from '@/functions/tryCatchRequest'
 import { processError } from '@/functions/processMessage'
 import { Client } from 'gold-timer-genql/lib/generated'
 import { IGoalStatus } from './types'
+import { IGoal } from '../types'
 
 export const mutation_goalStatusCompleted = async (client: Client, id: string): Promise<IGoalStatus | null> => {
     return await resolveData<null, IGoalStatus | null>(
@@ -19,7 +20,7 @@ export const mutation_goalStatusCompleted = async (client: Client, id: string): 
                     },
                 })
                 .then((res) => {
-                    return res.update_goals_by_pk
+                    return res.update_goals_by_pk as IGoal
                 }),
         (e) => {
             processError(`mutation_goalStatus: ${e}`)

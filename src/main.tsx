@@ -1,18 +1,16 @@
 import ReactDOM from 'react-dom/client'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { App } from './app/App'
-
+import { App } from './modules/app/App'
+import { GoogleOAuthProvider } from '@react-oauth/google'
 import './styles/index.scss'
 
-const handler = () => undefined
-document.addEventListener('touchstart', handler, { passive: true })
-document.addEventListener('touchend', handler, { passive: true })
-document.addEventListener('wheel', handler, { passive: true })
-document.addEventListener('touchstart', handler, { passive: true })
-document.addEventListener('touchend', handler, { passive: true })
-document.addEventListener('wheel', handler, { passive: true })
-
-console.info('environment', import.meta.env.VITE_NODE_ENV)
+// const handler = () => undefined
+// document.addEventListener('touchstart', handler, { passive: true })
+// document.addEventListener('touchend', handler, { passive: true })
+// document.addEventListener('wheel', handler, { passive: true })
+// document.addEventListener('touchstart', handler, { passive: true })
+// document.addEventListener('touchend', handler, { passive: true })
+// document.addEventListener('wheel', handler, { passive: true })
 
 // *
 //
@@ -21,10 +19,10 @@ console.info('environment', import.meta.env.VITE_NODE_ENV)
 window.queryClient = new QueryClient()
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-    <>
-        {/* <SnowfallAnimation /> */}
-        <QueryClientProvider client={window.queryClient}>
+    <QueryClientProvider client={window.queryClient}>
+        <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
+            {/* <SnowfallAnimation /> */}
             <App />
-        </QueryClientProvider>
-    </>,
+        </GoogleOAuthProvider>
+    </QueryClientProvider>,
 )

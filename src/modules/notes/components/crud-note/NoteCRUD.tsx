@@ -1,4 +1,4 @@
-import { useNotesStore } from '@/app/StoreProvider'
+import { useNotesStore } from '@/modules/app/mst/StoreProvider'
 import { XModal } from '@/components-x/x-modal/XModal'
 import { observer } from 'mobx-react-lite'
 import { NewNoteDialogTitle } from './components/new-note/NewNoteDialogTitle'

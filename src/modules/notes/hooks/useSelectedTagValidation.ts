@@ -1,4 +1,4 @@
-import { rootStore$ } from '@/app/StoreProvider'
+import { rootStore$ } from '@/modules/app/mst/StoreProvider'
 import { cast } from 'mobx-state-tree'
 import { useEffect } from 'react'
 

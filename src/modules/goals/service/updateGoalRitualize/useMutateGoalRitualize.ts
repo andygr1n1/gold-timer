@@ -9,7 +9,7 @@ import { KEY_FetchGoalById, KEY_FetchGoalsByFilter, goalsQueryKeys, goalsQueryKe
 import { proxyConvert } from '@/functions/proxyConvert'
 import { getSelectedGoalFromCache } from '../../helpers/goalsCache'
 import { replaceObjectValues } from '../../../../functions/replaceObjectValues'
-import { isDashboard } from '@/helpers/guards'
+import { isDashboard } from '@/helpers/globalGuards'
 import { KEY_FetchTopRitualGoals } from '../../components/goals-dashboard/top-ritual-goals-widget/service/keys'
 
 export const useMutateGoalRitualize = () => {

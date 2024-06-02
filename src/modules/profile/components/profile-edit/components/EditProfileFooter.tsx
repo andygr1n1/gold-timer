@@ -24,7 +24,7 @@ export const EditProfileFooter: React.FC = () => {
                 _useMutateProfile.mutate({ data: buildProfileDataUpdate(_editProfile$) })
                 onClose()
             }}
-            className='z-10 !min-w-[112px] self-end'
+            className='z-10 !min-w-[112px] my-5 self-end'
         >
             Save
         </StyledButton>

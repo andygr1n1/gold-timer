@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react-lite'
 import { XModal } from '@/components-x/x-modal/XModal'
-import { useGoalsSlidesStore } from '@/app/StoreProvider'
+import { useGoalsSlidesStore } from '@/modules/app/mst/StoreProvider'
 import { GoalsSlides } from './components/GoalsSlides'
 import { UploadGoalSlide } from './components/UploadGoalSlide'
 

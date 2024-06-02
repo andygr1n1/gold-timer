@@ -1,7 +1,8 @@
-export const getCodeFromUrlParams = (): string => {
-    const url = new URL(globalThis.location.href)
+/* window url */
+const wurl = (searchParam: string) => new URL(globalThis.location.href).searchParams.get(searchParam)
 
-    const code = url.searchParams.get('code')
+export const getParam_Code = () => wurl('email')
 
-    return code || ''
-}
+export const getParam_Email = () => wurl('email')
+
+export const getParam_Activation = () => wurl('activation')

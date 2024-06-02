@@ -1,5 +1,5 @@
 import { optimizeActiveGoalsData } from '@/modules/goals/helpers/optimizeActiveGoalsData'
-import { resolveData } from '@/functions/resolveData'
+import { resolveData } from '@/functions/tryCatchRequest'
 import { processError } from '@/functions/processMessage'
 import { Client } from 'gold-timer-genql/lib/generated'
 import { IGoal } from '../types'
@@ -50,7 +50,7 @@ export const mutation_goalGoalRitualize = async (
                     },
                 })
                 .then((res) => {
-                    return optimizeActiveGoalsData(res.update_goals_by_pk)[0]
+                    return optimizeActiveGoalsData(res.update_goals_by_pk as IGoal)[0]
                 }),
         (e) => {
             processError(`mutation_goalGoalRitualize: ${e}`)

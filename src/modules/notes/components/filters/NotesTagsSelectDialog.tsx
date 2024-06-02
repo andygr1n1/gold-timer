@@ -1,4 +1,4 @@
-import { rootStore$, useNotesStore } from '@/app/StoreProvider'
+import { rootStore$, useNotesStore } from '@/modules/app/mst/StoreProvider'
 import { observer } from 'mobx-react-lite'
 import { IDisposer, cast, onSnapshot } from 'mobx-state-tree'
 import { useEffect, useState } from 'react'

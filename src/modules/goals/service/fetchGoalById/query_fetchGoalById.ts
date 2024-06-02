@@ -1,6 +1,6 @@
 import { optimizeActiveGoalsData } from '../../helpers/optimizeActiveGoalsData'
 import { processError } from '../../../../functions/processMessage'
-import { resolveData } from '@/functions/resolveData'
+import { resolveData } from '@/functions/tryCatchRequest'
 import { generateTSClient } from '@/graphql/client'
 import { IGoal } from '../types'
 import { newGoalTemplate } from '../../stores/editGoal.store'
@@ -11,7 +11,7 @@ export const query_fetchGoalById = async (goal_id: string): Promise<IGoal | null
     const selectedGoal = selectedGoalAtom$.get(selectedGoalAtom)
 
     if (selectedGoal?.is_new)
-        return optimizeActiveGoalsData(newGoalTemplate(selectedGoal.id, selectedGoal.parent_goal_id))[0]
+        return optimizeActiveGoalsData(newGoalTemplate(selectedGoal.id, selectedGoal.parent_goal_id) as IGoal)[0]
 
     return await resolveData<null, IGoal | null>(
         () =>
@@ -40,7 +40,7 @@ export const query_fetchGoalById = async (goal_id: string): Promise<IGoal | null
                     },
                 })
                 .then((res) => {
-                    return optimizeActiveGoalsData(res.goals_by_pk)?.[0] || null
+                    return optimizeActiveGoalsData(res.goals_by_pk as IGoal)?.[0] || null
                 }),
         (e) => {
             processError(`query_fetchGoalById: ${e}`)

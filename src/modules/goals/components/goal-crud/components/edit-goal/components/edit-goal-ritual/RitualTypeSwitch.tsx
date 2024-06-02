@@ -1,5 +1,5 @@
 import { XSwitch } from '@/components-x/x-switch/XSwitch'
-import { RITUAL_TYPE_ENUM } from '@/helpers/enums'
+import { RITUAL_TYPE_ENUM } from '@/helpers/globalEnums'
 import { editGoalAtom_goal_ritual___ritual_type } from '@/modules/goals/stores/editGoal.store'
 import { useAtom } from 'jotai'
 

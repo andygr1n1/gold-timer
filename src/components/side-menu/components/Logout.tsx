@@ -1,8 +1,8 @@
-import { useRootStore } from '@/app/StoreProvider'
+import { useRootStore } from '@/modules/app/mst/StoreProvider'
 import { observer } from 'mobx-react-lite'
 import { IconLogout } from '@/assets/icons/IconLogout'
 import { removeUserCookie } from '@/functions/universalCookie'
-import { KEY_VerifyUserId } from '@/app/service/keys'
+import { KEY_VerifyUserId } from '@/modules/app/service/keys'
 
 export const Logout: React.FC = observer(() => {
     const { clearStore } = useRootStore()

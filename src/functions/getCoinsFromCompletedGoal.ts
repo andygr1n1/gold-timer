@@ -1,5 +1,5 @@
 import { IGoal } from '@/modules/goals/service/types'
-import { DIFFICULTY_ENUM } from '../helpers/enums'
+import { DIFFICULTY_ENUM } from '../helpers/globalEnums'
 
 export const getCoinsFromCompletedGoal = (goal: IGoal, currentCoins: number): number => {
     const { difficulty, goal_ritual } = goal

@@ -1,5 +1,5 @@
 import { processError } from '../../../../functions/processMessage'
-import { resolveData } from '@/functions/resolveData'
+import { resolveData } from '@/functions/tryCatchRequest'
 import { generateTSClient } from '@/graphql/client'
 import { IHero } from '../types'
 import { getUserId } from '@/functions/getUserData'

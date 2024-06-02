@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react-lite'
 
-import { useNotesStore } from '@/app/StoreProvider'
+import { useNotesStore } from '@/modules/app/mst/StoreProvider'
 import { XDropdown } from '@/components-x/x-dropdown/XDropdown'
 import { XMenuDropdown } from '@/components-x/x-dropdown/XMenuDropdown'
 import { XMenuItem } from '@/components-x/x-dropdown/XMenuItem'

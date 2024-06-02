@@ -1,4 +1,4 @@
-import { resolveData } from '@/functions/resolveData'
+import { resolveData } from '@/functions/tryCatchRequest'
 import { processError } from '@/functions/processMessage'
 import { IGoal, IGoalQueryTypeFilter } from '@/modules/goals/service/types'
 import { query_fetchGoalsByFilter } from './query_fetchGoalsByFilter'
@@ -12,7 +12,7 @@ export const fabric_goalsByFilter = async (props: {
     const { limit, queryFilter, pageParam, filterByText } = props
 
     let getGoals: () => Promise<IGoal[] | null> = async () => null
-    
+
     if (queryFilter === 'all') {
         getGoals = () =>
             query_fetchGoalsByFilter({

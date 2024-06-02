@@ -2,7 +2,7 @@ import { optimizeActiveGoalsData } from '../../helpers/optimizeActiveGoalsData'
 import { IInsertRitual, IInsertNewGoal } from '@/modules/goals/service/types'
 import { processError } from '@/functions/processMessage'
 import { generateTSClient } from '@/graphql/client'
-import { resolveData } from '@/functions/resolveData'
+import { resolveData } from '@/functions/tryCatchRequest'
 import { IGoal } from '@/modules/goals/service/types'
 
 export const mutation_upsertGoal = async (newGoal: IInsertNewGoal, newRitual?: IInsertRitual) => {
@@ -60,7 +60,7 @@ export const mutation_upsertGoal = async (newGoal: IInsertNewGoal, newRitual?: I
                     },
                 })
                 .then((res) => {
-                    return res.insert_goals_one ? optimizeActiveGoalsData(res.insert_goals_one) : null
+                    return res.insert_goals_one ? optimizeActiveGoalsData(res.insert_goals_one as IGoal) : null
                 }),
         (e) => {
             processError(`mutation_upsertGoal: ${e}`)

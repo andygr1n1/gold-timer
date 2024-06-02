@@ -17,15 +17,13 @@ export const EditProfileDialog: React.FC = () => {
     return (
         <XModal title={'Edit profile'} open={!!_editProfile$} onCancel={onClose}>
             {!!_editProfile$ ? (
-                <>
                     <div className='flex h-full w-full flex-auto flex-col gap-5'>
                         <EditName />
                         <EditPhone />
                         <EditBirthday />
                         <EditPassword />
+                        <EditProfileFooter />
                     </div>
-                    <EditProfileFooter />
-                </>
             ) : null}
         </XModal>
     )

@@ -1,5 +1,5 @@
 import { ModuleWrapper } from '@/components/ModuleWrapper'
-import { APP_ROUTES_ENUM } from '@/helpers/enums'
+import { APP_ROUTES_ENUM } from '@/helpers/globalEnums'
 import { useLocation } from 'react-router-dom'
 import { GoalsCards } from './components/GoalsCards'
 import { IGoalQueryTypeFilter } from '@/modules/goals/service/types'
