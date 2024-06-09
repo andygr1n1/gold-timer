@@ -14,7 +14,7 @@ import { deleteRestoreCode } from '@/graphql/mutations/deleteRestoreCode.mutatio
 import { processError, processSuccess } from '@/functions/processMessage'
 import bcrypt from 'bcryptjs'
 
-export const NewPasswordIndex: React.FC = observer(() => {
+const NewPasswordIndex: React.FC = observer(() => {
     const { isDesktop } = useWindowMatchMedia(['isDesktop'])
     const [password, setPassword] = useState('')
     const [userStatus, setUserStatus] = useState<'login' | 'restore' | null>(null)
@@ -110,3 +110,5 @@ const BackToRestore = () => {
         </div>
     )
 }
+
+export default NewPasswordIndex

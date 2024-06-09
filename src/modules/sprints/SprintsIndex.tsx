@@ -10,7 +10,7 @@ import { SearchSprintsInput } from '@/modules/sprints/components/SearchSprintsIn
 import { observer } from 'mobx-react-lite'
 import { ArtifactsCounter } from '../dashboard/components/artifacts-counter/ArtifactsCounter'
 
-export const SprintsIndex: React.FC = observer(() => {
+const SprintsIndex: React.FC = observer(() => {
     const { isMobile } = useWindowMatchMedia(['isMobile'])
     const { sprints } = useSprintsStore()
 
@@ -36,3 +36,5 @@ export const SprintsIndex: React.FC = observer(() => {
         </ModuleWrapper>
     )
 })
+
+export default SprintsIndex

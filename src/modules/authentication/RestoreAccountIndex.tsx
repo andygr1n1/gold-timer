@@ -8,7 +8,7 @@ import { LoginEmail } from './components/login/LoginEmail'
 import { restoreAccount } from './helpers/restoreAccount.helper'
 import { processError, processSuccess } from '@/functions/processMessage'
 
-export const RestoreAccountIndex: React.FC = observer(() => {
+const RestoreAccountIndex: React.FC = observer(() => {
     const [form] = Form.useForm()
 
     const { isDesktop } = useWindowMatchMedia(['isDesktop'])
@@ -43,3 +43,5 @@ export const RestoreAccountIndex: React.FC = observer(() => {
         </Form>
     )
 })
+
+export default RestoreAccountIndex

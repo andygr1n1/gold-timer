@@ -3,7 +3,7 @@ import { ProfileDetails } from './components/profile-details/ProfileDetails'
 import { APP_ROUTES_ENUM } from '@/helpers/globalEnums'
 import { getUserId } from '@/functions/getUserData'
 
-export const ProfileIndex = () => {
+const ProfileIndex = () => {
     console.info('hero ID:', getUserId())
     return (
         <ModuleWrapper context={APP_ROUTES_ENUM.PROFILE}>
@@ -11,3 +11,5 @@ export const ProfileIndex = () => {
         </ModuleWrapper>
     )
 }
+
+export default ProfileIndex

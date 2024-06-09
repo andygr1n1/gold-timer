@@ -1,19 +1,22 @@
+import { lazy } from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
 import { APP_ROUTES_ENUM } from '../../../helpers/globalEnums'
-import { GoalsCmsIndex } from '../../goals/components/goals-cms/GoalsCmsIndex'
-import { ProfileIndex } from '../../profile/ProfileIndex'
-import { NotesIndex } from '../../notes/NotesIndex'
-import { SprintsIndex } from '../../sprints/SprintsIndex'
-import { DashboardIndex } from '../../dashboard/DashboardIndex'
 
-import { FocusGoalOfWeek } from '../../../components/components-modal-windows/focus-goal-of-week/FocusGoalOfWeek'
-import { AchievementsIndex } from '../../achievements/AchievementsIndex'
-import { StoriesIndex } from '../../stories/StoriesIndex'
+const GoalsCmsIndex = lazy(() => import('../../goals/components/goals-cms/GoalsCmsIndex'))
+const ProfileIndex = lazy(() => import('../../profile/ProfileIndex'))
+const NotesIndex = lazy(() => import('../../notes/NotesIndex'))
+const SprintsIndex = lazy(() => import('../../sprints/SprintsIndex'))
+const DashboardIndex = lazy(() => import('../../dashboard/DashboardIndex'))
+const AchievementsIndex = lazy(() => import('../../achievements/AchievementsIndex'))
+const StoriesIndex = lazy(() => import('../../stories/StoriesIndex'))
+const GriniRoutes = lazy(() => import('./GriniRoutes'))
+const SideMenu = lazy(() => import('../../../components/side-menu/SideMenu'))
+
+// import { FocusGoalOfWeek } from '../../../components/components-modal-windows/focus-goal-of-week/FocusGoalOfWeek'
 import { LoadingDialogGlobal } from '../../../components/loading/LoadingDialogConstructor'
 import { ProtectedStoreProvider } from '../mst/StoreProvider'
-import { SideMenu } from '../../../components/side-menu/SideMenu'
+import { useIsPortfolioPage } from '../hooks/useIsPortfolioPage'
 // import { useUserId } from './service/useUserId'
-import { GriniRoutes, useIsPortfolioPage } from './GriniRoutes'
 
 export const ProtectedRoutes = () => {
     // const { userId } = useUserId()
@@ -43,7 +46,7 @@ export const ProtectedRoutes = () => {
                         {/*  */}
                         {/* D I A L O G */}
                         {/*  */}
-                        <FocusGoalOfWeek />
+                        {/* <FocusGoalOfWeek /> */}
 
                         <LoadingDialogGlobal />
                     </div>

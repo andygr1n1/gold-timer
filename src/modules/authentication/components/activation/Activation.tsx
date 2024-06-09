@@ -1,7 +1,7 @@
 import { IconInfiniteLoading } from '@/assets/icons'
 import { useActivation } from './hooks/useActivation.hook'
 
-export const Activation: React.FC = () => {
+const Activation: React.FC = () => {
     useActivation()
 
     return (
@@ -10,3 +10,5 @@ export const Activation: React.FC = () => {
         </div>
     )
 }
+
+export default Activation

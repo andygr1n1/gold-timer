@@ -12,7 +12,7 @@ import { UserInfo } from './components/user-info/UserInfo'
 import { IconAchievements, IconBook, IconFocus, IconLandscape, IconProfile, IconSprint } from '@/assets/icons'
 import { cn } from '@/functions'
 
-export const SideMenu: React.FC = observer(() => {
+const SideMenu: React.FC = observer(() => {
     const wrapperRef = useRef<HTMLDivElement | null>(null)
     const { isDesktop } = useWindowMatchMedia(['isDesktop'])
 
@@ -100,3 +100,5 @@ export const SideMenu: React.FC = observer(() => {
         </>
     )
 })
+
+export default SideMenu

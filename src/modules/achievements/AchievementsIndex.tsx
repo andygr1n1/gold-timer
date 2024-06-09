@@ -4,7 +4,7 @@ import { observer } from 'mobx-react-lite'
 import { AchievementsList } from './AchievementsList'
 import { useWindowMatchMedia } from '@/hooks/useMatchMedia.hook'
 
-export const AchievementsIndex: React.FC = observer(() => {
+const AchievementsIndex: React.FC = observer(() => {
     const { isLargeDesktop } = useWindowMatchMedia(['isLargeDesktop'])
 
     return (
@@ -13,3 +13,5 @@ export const AchievementsIndex: React.FC = observer(() => {
         </ModuleWrapper>
     )
 })
+
+export default AchievementsIndex

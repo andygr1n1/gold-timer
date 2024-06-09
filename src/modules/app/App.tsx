@@ -1,10 +1,12 @@
 import { BrowserRouter } from 'react-router-dom'
 import { AnonymousRoutes } from './components/AnonymousRoutes'
 import { ProtectedRoutes } from './components/ProtectedRoutes'
-import { useUserId } from './service/useUserId'
+import { useTheming } from '@/hooks/useTheming.hook'
+import { useJwtAuth } from './hooks/useJwtAuth.hook'
 
 export const App = () => {
-    const { userId } = useUserId()
+    useTheming()
+    const { userId } = useJwtAuth()
 
     return (
         <>

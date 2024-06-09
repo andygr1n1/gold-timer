@@ -1,6 +1,7 @@
 import { observer } from 'mobx-react-lite'
 import styles from './AnonymousFooter.module.scss'
-export const AnonymousFooter: React.FC = observer(() => {
+
+const AnonymousFooter: React.FC = observer(() => {
     return (
         <div className='relative flex h-20 items-center justify-between bg-transparent'>
             <div className={styles['triangle-left']} />
@@ -9,3 +10,5 @@ export const AnonymousFooter: React.FC = observer(() => {
         </div>
     )
 })
+
+export default AnonymousFooter

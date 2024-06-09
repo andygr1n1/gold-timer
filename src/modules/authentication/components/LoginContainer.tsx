@@ -2,7 +2,7 @@ import { observer } from 'mobx-react-lite'
 import { PropsWithChildren } from 'react'
 import { LoginLogo } from './LoginLogo'
 
-export const LoginContainer: React.FC<PropsWithChildren> = observer(({ children }) => {
+const LoginContainer: React.FC<PropsWithChildren> = observer(({ children }) => {
     return (
         <div
             className='absolute-center relative flex-auto mx-auto w-full h-[calc(100vh-10%)] md:max-h-[calc(100vh-40%)]
@@ -15,3 +15,5 @@ export const LoginContainer: React.FC<PropsWithChildren> = observer(({ children 
         </div>
     )
 })
+
+export default LoginContainer

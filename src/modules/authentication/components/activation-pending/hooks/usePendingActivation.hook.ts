@@ -15,15 +15,16 @@ export const usePendingActivation = (): IUserDataService => {
 
     /* *** */
     useEffect(() => {
+        const isHero = user?.role !== 'guest'
         if (!user && !isLoading && !error) {
             navigate(`/${APP_ROUTES_ENUM.REGISTER}`, { replace: true })
             processError(`Your activation link is expired. Please restart the registration process. Thank you!`)
         }
 
-        if (user?.activated && !isLoading) {
+        if (isHero && !isLoading) {
             navigate(`/${APP_ROUTES_ENUM.LOGIN}`, { replace: true })
         }
-    }, [user?.activated])
+    }, [user?.role])
 
     if (error) {
         processError(`Please try again later`)

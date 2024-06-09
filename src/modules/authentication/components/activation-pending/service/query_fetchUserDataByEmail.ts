@@ -14,7 +14,7 @@ export const query_fetchUserDataByEmail = async (email?: string | null): Promise
                     __args: { where: { email: { _eq: email } } },
                     email: true,
                     name: true,
-                    activated: true,
+                    role: true,
                 },
             })
             .then((res) => {

@@ -2,7 +2,7 @@ import { GoalCRUDProvider } from '../goals/components/goal-crud/GoalCRUD'
 import { Dashboard } from './components/Dashboard'
 import { Route, Routes } from 'react-router-dom'
 
-export const DashboardIndex: React.FC = () => {
+const DashboardIndex: React.FC = () => {
     return (
         <GoalCRUDProvider>
             <Routes>
@@ -11,3 +11,5 @@ export const DashboardIndex: React.FC = () => {
         </GoalCRUDProvider>
     )
 }
+
+export default DashboardIndex

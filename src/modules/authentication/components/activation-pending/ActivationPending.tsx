@@ -1,6 +1,6 @@
 import { usePendingActivation } from './hooks/usePendingActivation.hook'
 
-export const ActivationPending: React.FC = () => {
+const ActivationPending: React.FC = () => {
     const { user, resendActivationLink } = usePendingActivation()
 
     return (
@@ -29,3 +29,5 @@ export const ActivationPending: React.FC = () => {
         </div>
     )
 }
+
+export default ActivationPending

@@ -1,8 +1,8 @@
 import { APP_ROUTES_ENUM } from '@/helpers/globalEnums'
 import { AndreiGriniIndex } from '@/modules/andreigrini/AndreiGriniIndex'
-import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
+import { Navigate, Route, Routes } from 'react-router-dom'
 
-export const GriniRoutes: React.FC = () => {
+const GriniRoutes: React.FC = () => {
     return (
         <Routes>
             <Route path={`/${APP_ROUTES_ENUM.ANDREI_GRINI}`} element={<AndreiGriniIndex />} />
@@ -13,11 +13,4 @@ export const GriniRoutes: React.FC = () => {
     )
 }
 
-export const useIsPortfolioPage = (): boolean => {
-    const location = useLocation()
-
-    return (
-        location.pathname.trim().toLowerCase().includes('grini') ||
-        location.pathname.trim().toLowerCase().includes('andrei')
-    )
-}
+export default GriniRoutes

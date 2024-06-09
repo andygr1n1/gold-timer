@@ -2,7 +2,7 @@ import { QueryErrorSchema } from '@/helpers'
 import { z } from 'zod'
 
 const userDataSchema = z.object({
-    activated: z.boolean(),
+    role: z.string().nullable(),
     name: z.string(),
     email: z.string().email(),
 })
