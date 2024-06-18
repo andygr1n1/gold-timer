@@ -2,7 +2,7 @@ import { useGoogleLogin } from '@react-oauth/google'
 import { StyledButton } from './buttons/StyledButton'
 import { IconGoogle } from '@/assets/icons/IconGoogle'
 import { processError } from '@/functions/processMessage'
-import { checkGoogleCredentials } from '@/modules/authentication/helpers/checkGoogleCredentials'
+import { checkGoogleCredentials } from '@/modules/auth/shared-helpers/checkGoogleCredentials'
 
 export const CustomGoogleLoginButton = () => {
     const login = useGoogleLogin({

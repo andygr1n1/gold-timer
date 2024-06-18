@@ -63,6 +63,7 @@ export const StyledButton = ({
                 }
             }}
             className={cn(
+                'relative flex w-fit cursor-pointer items-center justify-center rounded-md border border-solid text-base font-semibold transition duration-300 ease-in-out',
                 'button',
                 isLarge ? 'px-2' : 'px-1.5',
                 size,

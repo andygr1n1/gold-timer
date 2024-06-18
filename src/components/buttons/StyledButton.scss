@@ -1,9 +1,4 @@
 @mixin button($type, $color) {
-    @apply relative flex w-fit cursor-pointer
-    items-center justify-center 
-    rounded-md border border-solid 
-    text-base font-semibold transition duration-300 ease-in-out;
-
     &.#{$type}.#{$color} {
         color: var(--colors-button-#{$type}-#{$color}-text-color);
         background-color: var(--colors-button-#{$type}-#{$color}-bg-color);

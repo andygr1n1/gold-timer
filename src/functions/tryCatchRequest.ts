@@ -3,19 +3,17 @@ import { pipe, LazyArg } from 'fp-ts/lib/function'
 import { fold } from 'fp-ts/lib/Either'
 import { HTTPError } from 'ky'
 
+// Create a TaskEither from the request and onError function
+const createTaskEither = <A, B>(request: () => Promise<B>, onError: (e: unknown) => A): TaskEither<A, B> =>
+    tryCatch(request, onError)
+
 // Utility function to handle async operations with fp-ts
-export async function tryCatchRequest<A, B>(request: () => Promise<B>, errorMessage?: string): Promise<A | B> {
-    // Create an error handling function that throws a new Error with the provided error message
-
-    /* TODO to return to function not string */
-    const onError = (e: unknown): A => {
-        console.log('e', e)
-        console.error('TRY_CATCH_ERROR:', e)
-        throw new Error(errorMessage || String(e))
-    }
-
-    // Create a TaskEither from the request and onError function
-    const taskEither: TaskEither<A, B> = tryCatch(request, onError)
+export async function tryCatchRequest<A, B>(
+    request: () => Promise<B>,
+    onError: (reason: unknown) => A,
+): Promise<A | B> {
+    // Create the TaskEither
+    const taskEither: TaskEither<A, B> = createTaskEither(request, onError)
 
     // Run the TaskEither and handle the result
     const result = await taskEither()
@@ -40,7 +38,7 @@ export async function resolveData<A, B>(success: LazyArg<Promise<B>>, error: (re
     return data._tag === 'Right' ? data['right'] : data['left']
 }
 
-export const resolveError = async (error: unknown) => {
+export const resolveError = async (error?: unknown) => {
     let errorMessage = `unknown error${error}`
     if (error instanceof HTTPError && error.response) {
         const errorJson = await error.response.json()

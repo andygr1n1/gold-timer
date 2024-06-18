@@ -1,15 +1,20 @@
 import { useUserStore } from '@/services/user-store/useUserStore'
 import { useEffect } from 'react'
+import { getSessionCredentials } from '../service/server_getSessionCredentials'
 
 export const useJwtAuth = () => {
-    const { store } = useUserStore()
+    const { store, selectUser } = useUserStore()
 
     useEffect(() => {
-        console.log('--useJwtAuth--')
-
-        // get access token from cookies
-        // send access token on server - validate it.
-        // If refresh token is valid, return fresh accessToken and set user id into store
+        ;(async () => {
+            const user = await getSessionCredentials()
+            user &&
+                selectUser({
+                    storeId: store?.storeId ? store?.storeId : crypto.randomUUID(),
+                    role: user.role,
+                    userId: user.userId,
+                })
+        })()
     }, [store?.storeId])
 
     return { userId: store?.userId }

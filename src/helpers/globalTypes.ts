@@ -7,3 +7,5 @@ export const QueryErrorSchema = z.object({
 })
 
 export type QueryError = z.infer<typeof QueryErrorSchema>
+
+/*  */

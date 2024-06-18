@@ -1,4 +1,5 @@
-import { IconConfirmCircle, IconExpired } from '@/assets/icons'
+import { IconConfirmCircle } from '@/assets/icons/IconConfirmCircle'
+import { IconExpired } from '@/assets/icons/IconExpired'
 import { message } from 'antd'
 import { truncate, upperCase } from 'lodash-es'
 

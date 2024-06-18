@@ -1,4 +1,4 @@
-import { IconExpired } from '@/assets/icons'
+import { IconExpired } from '@/assets/icons/IconExpired'
 import { cn } from '@/functions'
 
 export const Focus: React.FC<{ text: React.ReactNode; className?: string }> = ({ text, className: color }) => {
