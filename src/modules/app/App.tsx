@@ -5,15 +5,14 @@ import { useTheming } from '@/hooks/useTheming.hook'
 import { useJwtAuth } from './hooks/useJwtAuth.hook'
 
 export const App = () => {
+    const { userId, isLoading } = useJwtAuth()
     useTheming()
-    const { userId } = useJwtAuth()
+
+    if (isLoading) return null
 
     return (
-        <>
-            <BrowserRouter basename='/' future={{ v7_startTransition: true }}>
-                {userId ? <ProtectedRoutes /> : <AnonymousRoutes />}
-            </BrowserRouter>
-            {/* <ReactQueryDevtools initialIsOpen={false} /> */}
-        </>
+        <BrowserRouter basename='/' future={{ v7_startTransition: true }}>
+            {userId ? <ProtectedRoutes /> : <AnonymousRoutes />}
+        </BrowserRouter>
     )
 }

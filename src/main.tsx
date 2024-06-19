@@ -8,6 +8,7 @@ window.queryClient = new QueryClient()
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     <QueryClientProvider client={window.queryClient}>
         {/* <SnowfallAnimation /> */}
+        {/* <ReactQueryDevtools initialIsOpen={false} /> */}
         <App />
     </QueryClientProvider>,
 )

@@ -1,8 +1,8 @@
 import ky from 'ky'
 import { resolveError } from '@/functions/tryCatchRequest'
-import { IUserSchema } from '@/services/user-store/useUserStore'
+import { ISessionCredentials } from '@/modules/auth/login/services/types'
 
-export const getSessionCredentials = async (): Promise<IUserSchema | null> => {
+export const getSessionCredentials = async (): Promise<string | null> => {
     const endpoint = import.meta.env.VITE_NODE_HEROKU_ORIGIN
     const xapikey = import.meta.env.VITE_X_API_KEY
 
@@ -17,9 +17,9 @@ export const getSessionCredentials = async (): Promise<IUserSchema | null> => {
                 },
                 body: JSON.stringify({ status: 'autoLogin' }),
             })
-            .json<{ message: string; user: IUserSchema } | null>()
+            .json<ISessionCredentials | null>()
 
-        return res?.user || null
+        return res?.accessId || null
     } catch (error) {
         await resolveError(error)
         return null

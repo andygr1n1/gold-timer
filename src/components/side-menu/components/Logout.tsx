@@ -2,16 +2,13 @@ import { useRootStore } from '@/modules/app/mst/StoreProvider'
 import { observer } from 'mobx-react-lite'
 import { IconLogout } from '@/assets/icons/IconLogout'
 import { removeUserCookie } from '@/functions/universalCookie'
-import { KEY_VerifyUserId } from '@/modules/app/service/keys'
 
 export const Logout: React.FC = observer(() => {
     const { clearStore } = useRootStore()
 
     const onLogout = () => {
         removeUserCookie()
-        window.queryClient.setQueryData(KEY_VerifyUserId(), () => {
-            return ''
-        })
+
         window.queryClient.clear()
         clearStore()
     }

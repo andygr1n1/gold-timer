@@ -1,21 +1,12 @@
-import { useUserStore } from '@/services/user-store/useUserStore'
+import { useUserStore } from '@/services/user-store/useUserStore.service'
 import { useEffect } from 'react'
-import { getSessionCredentials } from '../service/server_getSessionCredentials'
 
 export const useJwtAuth = () => {
-    const { store, selectUser } = useUserStore()
+    const { store, autoLogin } = useUserStore()
 
     useEffect(() => {
-        ;(async () => {
-            const user = await getSessionCredentials()
-            user &&
-                selectUser({
-                    storeId: store?.storeId ? store?.storeId : crypto.randomUUID(),
-                    role: user.role,
-                    userId: user.userId,
-                })
-        })()
+        autoLogin()
     }, [store?.storeId])
 
-    return { userId: store?.userId }
+    return { userId: store?.userId, isLoading: store?.isLoading }
 }
