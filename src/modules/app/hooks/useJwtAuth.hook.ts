@@ -6,7 +6,7 @@ export const useJwtAuth = () => {
 
     useEffect(() => {
         autoLogin()
-    }, [store?.storeId])
+    }, [])
 
     return { userId: store?.userId, isLoading: store?.isLoading }
 }

@@ -3,11 +3,13 @@ import { getSessionCredentials } from '@/modules/app/service/server_getSessionCr
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { IUserSchema } from './types'
 import { KEY_useUserStore } from './keys'
+import { setAccessIdInCookie } from '@/functions/universalCookie'
 
 export const useUserStore = (): {
     store?: IUserSchema | null
     selectUser: (props: { user: Partial<IUserSchema>; rerender: boolean }) => void
     autoLogin: () => Promise<void>
+    logout: () => void
 } => {
     const queryClient = useQueryClient()
 
@@ -16,25 +18,28 @@ export const useUserStore = (): {
         staleTime: Infinity,
         refetchOnWindowFocus: false,
         refetchOnMount: false,
-        initialData: { storeId: crypto.randomUUID(), isLoading: true },
+        initialData: { isLoading: true },
     })
 
-    const selectUser = (props: { user: Partial<IUserSchema>; rerender: boolean }) => {
-        queryClient.setQueryData(
-            KEY_useUserStore(),
-            props.rerender ? { storeId: crypto.randomUUID(), ...props.user } : { ...store, ...props.user },
-        )
+    const selectUser = (props: { user: Partial<IUserSchema> }) => {
+        queryClient.setQueryData(KEY_useUserStore(), { ...store, ...props.user })
+    }
+
+    const logout = () => {
+        /* double KEY_useUserStore for reactivity  */
+        queryClient.setQueryData(KEY_useUserStore(), { userId: null, role: null, isLoading: false })
+        window.queryClient.clear()
+        queryClient.setQueryData(KEY_useUserStore(), { userId: null, role: null, isLoading: false })
     }
 
     const autoLogin = async () => {
         const jwtToken = await getSessionCredentials()
+        jwtToken && setAccessIdInCookie(jwtToken)
         const data = parseJwt(jwtToken)
-
         selectUser({
             user: { userId: data?.id, role: data?.role, isLoading: false },
-            rerender: false,
         })
     }
 
-    return { store, selectUser, autoLogin }
+    return { store, selectUser, autoLogin, logout }
 }

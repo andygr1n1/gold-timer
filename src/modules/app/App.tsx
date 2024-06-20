@@ -5,8 +5,8 @@ import { useTheming } from '@/hooks/useTheming.hook'
 import { useJwtAuth } from './hooks/useJwtAuth.hook'
 
 export const App = () => {
-    const { userId, isLoading } = useJwtAuth()
     useTheming()
+    const { userId, isLoading } = useJwtAuth()
 
     if (isLoading) return null
 

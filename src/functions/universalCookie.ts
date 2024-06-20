@@ -10,12 +10,8 @@ export const setRememberUserCookie = (userId: string, remember_me: boolean) => {
     })
 }
 
-export const removeUserCookie = () => {
-    const cookies = new Cookies()
-    return cookies.remove('user')
-}
 
-export const setAccessIdInCookie = (id?: string) => {
+export const setAccessIdInCookie = (id?: string | null) => {
     if (!id) return
 
     const cookies = new Cookies()
