@@ -7,7 +7,7 @@ import { setAccessIdInCookie } from '@/functions/universalCookie'
 
 export const useUserStore = (): {
     store?: IUserSchema | null
-    selectUser: (props: { user: Partial<IUserSchema>; rerender: boolean }) => void
+    selectUser: (props: { user: Partial<IUserSchema> }) => void
     autoLogin: () => Promise<void>
     logout: () => void
 } => {

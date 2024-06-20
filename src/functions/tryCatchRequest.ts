@@ -2,6 +2,7 @@ import { TaskEither, tryCatch } from 'fp-ts/lib/TaskEither'
 import { pipe, LazyArg } from 'fp-ts/lib/function'
 import { fold } from 'fp-ts/lib/Either'
 import { HTTPError } from 'ky'
+import { processError } from './processMessage'
 
 // Create a TaskEither from the request and onError function
 const createTaskEither = <A, B>(request: () => Promise<B>, onError: (e: unknown) => A): TaskEither<A, B> =>
@@ -46,5 +47,6 @@ export const resolveError = async (error?: unknown) => {
     } else if (error instanceof Error) {
         errorMessage = error.message
     }
+    processError(errorMessage)
     throw new Error(errorMessage)
 }

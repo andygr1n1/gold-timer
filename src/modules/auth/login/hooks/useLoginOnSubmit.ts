@@ -28,7 +28,6 @@ export const useLoginOnSubmit = () => {
 
                     selectUser({
                         user: { userId: data?.id, role: data?.role },
-                        rerender: false,
                     })
                 },
                 onSettled: () => {

@@ -1,7 +1,7 @@
 import { Form, Formik } from 'formik'
 import { AuthPasswordInput } from '../shared-components/AuthPasswordInput'
 import { LoginFooter } from './components/LoginFooter'
-import { CustomGoogleLoginButton } from '@/components/CustomGoogleLoginButton'
+import { GoogleLogin } from '@/components/google-login/GoogleLogin'
 import { StyledButton } from '@/components/buttons/StyledButton'
 import { useLoginOnSubmit } from './hooks/useLoginOnSubmit'
 import { useLoginOnValidate } from './hooks/useLoginOnValidate'
@@ -26,7 +26,7 @@ const Login = () => {
                     <LoginFooter />
                 </Form>
             </Formik>
-            <CustomGoogleLoginButton />
+            <GoogleLogin />
         </div>
     )
 }
