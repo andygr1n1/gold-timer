@@ -1,6 +1,6 @@
-import { resolveData } from '@/functions/tryCatchRequest'
+import { resolveData } from '@/helpers/tryCatchRequest'
 import { generateTSClient } from '@/graphql/client'
-import { processError } from '@/functions/processMessage'
+import { processError } from '@/helpers/processMessage'
 
 interface IGoalStatus {
     id: string

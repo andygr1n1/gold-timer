@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react-lite'
 import { useGoalsSlidesStore } from '@/modules/app/mst/StoreProvider'
-import { useSelectUploadFile } from '@/functions/useSelectUploadFile'
+import { useSelectUploadFile } from '@/helpers/useSelectUploadFile'
 import { UploadGoalSlideCropDialog } from './UploadGoalSlideCropDialog'
 import { IconUpload } from '@/assets/icons/IconUpload'
 import { UploadInput } from '@/components/UploadInput'

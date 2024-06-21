@@ -1,7 +1,7 @@
 import { useUserStore } from '@/modules/app/mst/StoreProvider'
 import { XModal } from '@/components-x/x-modal/XModal'
 import { FormFooter } from '@/components/form/FormFooter'
-import getCroppedImg from '@/functions/cropImage'
+import getCroppedImg from '@/helpers/cropImage'
 import { Form, Slider } from 'antd'
 import { observer } from 'mobx-react-lite'
 import { useCallback, useState } from 'react'

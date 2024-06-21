@@ -1,6 +1,6 @@
 import { optimizeActiveGoalsData } from '../../helpers/optimizeActiveGoalsData'
-import { processError } from '../../../../functions/processMessage'
-import { resolveData } from '@/functions/tryCatchRequest'
+import { processError } from '../../../../helpers/processMessage'
+import { resolveData } from '@/helpers/tryCatchRequest'
 import { generateTSClient } from '@/graphql/client'
 import { IGoal } from '../types'
 import { newGoalTemplate } from '../../stores/editGoal.store'

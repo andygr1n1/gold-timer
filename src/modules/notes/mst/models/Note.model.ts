@@ -1,4 +1,4 @@
-import { extractTextFromHtml } from '@/functions/extractTextFromHtml'
+import { extractTextFromHtml } from '@/helpers/extractTextFromHtml'
 import { compact } from 'lodash-es'
 import { types } from 'mobx-state-tree'
 

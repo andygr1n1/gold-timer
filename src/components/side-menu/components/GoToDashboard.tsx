@@ -1,4 +1,4 @@
-import { APP_ROUTES_ENUM } from '@/helpers/globalEnums'
+import { APP_ROUTES_ENUM } from '@/services/enums'
 import { useLocation } from 'react-router-dom'
 import { SideMenuLink } from './SideMenuLink'
 import { GithubLink } from './GithubLink'
@@ -7,7 +7,7 @@ import { Logout } from '@/components/logout/Logout'
 import { ThemeSwitcher } from '@/components/side-menu/components/ThemeSwitcher'
 import { StyledButton } from '@/components/buttons/StyledButton'
 import { XMenuDivider } from '@/components-x/x-dropdown/XMenuDivider'
-import { isUnderDevelopment } from '@/functions/isUnderDevelopment.helper'
+import { isUnderDevelopment } from '@/helpers/isUnderDevelopment.helper'
 
 export const GoToDashboard = () => {
     const location = useLocation()

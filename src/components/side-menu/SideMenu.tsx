@@ -1,4 +1,4 @@
-import { APP_ROUTES_ENUM } from '@/helpers/globalEnums'
+import { APP_ROUTES_ENUM } from '@/services/enums'
 import { useSideMenu } from '@/hooks/useSideMenu.hook'
 import { observer } from 'mobx-react-lite'
 import { SideMenuLink } from './components/SideMenuLink'
@@ -7,10 +7,10 @@ import { useEffect, useRef } from 'react'
 import { useWindowMatchMedia } from '@/hooks/useMatchMedia.hook'
 import { GoToDashboard } from './components/GoToDashboard'
 import { XMenuDivider } from '@/components-x/x-dropdown/XMenuDivider'
-import { isUnderDevelopment } from '@/functions/isUnderDevelopment.helper'
+import { isUnderDevelopment } from '@/helpers/isUnderDevelopment.helper'
 import { UserInfo } from './components/user-info/UserInfo'
 import { IconAchievements, IconBook, IconFocus, IconLandscape, IconProfile, IconSprint } from '@/assets/icons'
-import { cn } from '@/functions'
+import { cn } from '@/helpers/cn'
 
 const SideMenu: React.FC = observer(() => {
     const wrapperRef = useRef<HTMLDivElement | null>(null)

@@ -1,4 +1,4 @@
-import { processError } from '@/functions/processMessage'
+import { processError } from '@/helpers/processMessage'
 import { Area } from 'react-easy-crop'
 
 const createImage = (url: string): Promise<HTMLImageElement> =>

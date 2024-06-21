@@ -1,4 +1,4 @@
-import { APP_ROUTES_ENUM } from '@/helpers/globalEnums'
+import { APP_ROUTES_ENUM } from '@/services/enums'
 import { observer } from 'mobx-react-lite'
 import { NavLink } from 'react-router-dom'
 

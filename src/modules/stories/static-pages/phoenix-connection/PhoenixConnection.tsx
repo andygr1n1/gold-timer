@@ -1,5 +1,5 @@
 import { ModuleWrapper } from '@/components/ModuleWrapper'
-import { APP_ROUTES_ENUM } from '@/helpers/globalEnums'
+import { APP_ROUTES_ENUM } from '@/services/enums'
 import { Focus, GoldenFocus, ShadowFocus, Statement } from '../components/Focus'
 import { Paragraph } from '../components/Paragraph'
 import { IconPhoenix } from '@/assets/icons/IconPhoenix'

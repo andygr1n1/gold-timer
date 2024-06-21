@@ -1,6 +1,6 @@
 import { Suspense, lazy } from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
-import { APP_ROUTES_ENUM } from '../../../helpers/globalEnums'
+import { APP_ROUTES_ENUM } from '../../../services/enums'
 
 const GoalsCmsIndex = lazy(() => import('../../goals/components/goals-cms/GoalsCmsIndex'))
 const ProfileIndex = lazy(() => import('../../profile/ProfileIndex'))

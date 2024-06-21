@@ -1,5 +1,5 @@
-import { resolveData } from '@/functions/tryCatchRequest'
-import { processError } from '@/functions/processMessage'
+import { resolveData } from '@/helpers/tryCatchRequest'
+import { processError } from '@/helpers/processMessage'
 import { Client } from 'gold-timer-genql/lib/generated'
 import { IGoalStatus } from './types'
 import { IGoal } from '../types'

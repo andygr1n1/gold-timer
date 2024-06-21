@@ -1,6 +1,6 @@
 import { useMutation } from '@tanstack/react-query'
 
-import { processError, processSuccess } from '@/functions/processMessage'
+import { processError, processSuccess } from '@/helpers/processMessage'
 import { server_resendActivationLink } from './server_resendActivationLink'
 import { useDebouncedEmailSender } from '../hooks/useDebouncedEmailSender.hook'
 

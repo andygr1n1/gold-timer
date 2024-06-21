@@ -1,4 +1,4 @@
-import { APP_ROUTES_ENUM } from './globalEnums'
+import { APP_ROUTES_ENUM } from './enums'
 
 export const isDashboard = () => window.location.pathname === `/${APP_ROUTES_ENUM.DASHBOARD}`
 

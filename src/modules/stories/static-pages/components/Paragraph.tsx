@@ -1,4 +1,4 @@
-import { cn } from '@/functions'
+import { cn } from '@/helpers/cn'
 import { PropsWithChildren } from 'react'
 
 export const Paragraph: React.FC<PropsWithChildren & { className?: string }> = ({ children, className }) => {

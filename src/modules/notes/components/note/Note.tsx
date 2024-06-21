@@ -9,7 +9,7 @@ import ReactQuill from 'react-quill'
 import { StyledButton } from '@/components/buttons/StyledButton'
 import { IconArchive } from '@/assets/icons/IconArchive'
 import { IconDeleteTemp } from '@/assets/icons'
-import { cn } from '@/functions'
+import { cn } from '@/helpers/cn'
 import { MEDIA_QUERY_VALUES_ENUM } from '@/hooks/useMatchMedia.hook'
 
 export const Note: React.FC<{ note: INote$; isMobile: MEDIA_QUERY_VALUES_ENUM }> = observer(({ note, isMobile }) => {

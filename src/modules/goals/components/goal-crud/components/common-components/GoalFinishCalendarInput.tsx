@@ -1,7 +1,7 @@
 import { XDatePicker } from '@/components-x/x-date-picker/XDatePicker'
 import { getYear } from 'date-fns'
 import { FormLabel } from '@/components/form/FormLabel'
-import { prepareFinishedAtForInsert } from '@/functions/date.helpers'
+import { prepareFinishedAtForInsert } from '@/helpers/date.helpers'
 
 export const GoalFinishCalendarInput: React.FC<{
     value: string

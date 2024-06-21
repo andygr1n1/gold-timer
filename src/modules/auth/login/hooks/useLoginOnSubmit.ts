@@ -2,7 +2,6 @@ import { FormikHelpers } from 'formik'
 import { server_loginUser } from '../services/server_loginUser'
 import { IUserLoginSchema } from '../services/types'
 import { useMutation } from '@tanstack/react-query'
-import { processError } from '@/functions/processMessage'
 import { useUserStore } from '@/services/user-store/useUserStore.service'
 import { parseJwt } from '@/helpers/parseJwt'
 
@@ -18,8 +17,8 @@ export const useLoginOnSubmit = () => {
         mutation.mutate(
             { formData: values },
             {
-                onError: (error) => {
-                    processError(error.message)
+                onError: (/* error */) => {
+                    // processError(error.message)
                 },
                 onSuccess: (res) => {
                     resetForm()

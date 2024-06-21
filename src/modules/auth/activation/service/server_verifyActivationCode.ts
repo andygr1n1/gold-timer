@@ -1,6 +1,6 @@
 import ky from 'ky'
 import { IVerifyActivationCode } from './types'
-import { resolveError } from '@/functions/tryCatchRequest'
+import { resolveError } from '@/helpers/tryCatchRequest'
 
 export const server_verifyActivationCode = async (props: {
     activationCode?: string | null

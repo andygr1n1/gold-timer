@@ -1,10 +1,10 @@
 import { FormikHelpers } from 'formik'
 import { IUserNewPasswordSchema } from '../services/types'
 import { useNavigate } from 'react-router-dom'
-import { APP_ROUTES_ENUM } from '@/helpers'
 import { useMutation } from '@tanstack/react-query'
-import { processError, processSuccess } from '@/functions/processMessage'
+import { processError, processSuccess } from '@/helpers/processMessage'
 import { server_newPassword } from '../services/server_newPassword'
+import { APP_ROUTES_ENUM } from '@/services/enums'
 
 export const useNewPasswordOnSubmit = () => {
     const navigate = useNavigate()
@@ -15,9 +15,7 @@ export const useNewPasswordOnSubmit = () => {
 
     const onSubmit = (values: IUserNewPasswordSchema, formikHelpers: FormikHelpers<IUserNewPasswordSchema>) => {
         if (!values.restoreCode) {
-            processError(
-                `We don't recognize you. May be your link is broken. Please restart the process. Thank you!`,
-            )
+            processError(`We don't recognize you. May be your link is broken. Please restart the process. Thank you!`)
             formikHelpers.resetForm()
             formikHelpers.setSubmitting(false)
             return

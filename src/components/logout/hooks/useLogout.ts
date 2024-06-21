@@ -1,5 +1,5 @@
 import { useMutation } from '@tanstack/react-query'
-import { processError } from '@/functions/processMessage'
+import { processError } from '@/helpers/processMessage'
 import { server_logoutUser } from '../services/server_logoutUser'
 import { useUserStore } from '@/services/user-store/useUserStore.service'
 

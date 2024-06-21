@@ -3,7 +3,7 @@ import { IGoal } from '../types'
 import { mutation_coinsOnRitualizeGoal } from './mutation_coinsOnRitualizeGoal'
 import { mutation_goalGoalRitualize } from './mutation_goalGoalRitualize'
 import { IFabricGoalRitualize, IRitualizeUpdateFields } from './types'
-import { generateNewRitualCircle } from '@/functions/generateNewRitualCircle'
+import { generateNewRitualCircle } from '@/helpers/generateNewRitualCircle'
 
 export const fabric_goalRitualize = async (goal: IGoal): Promise<IFabricGoalRitualize | undefined> => {
     const client = generateTSClient({ batch: true })

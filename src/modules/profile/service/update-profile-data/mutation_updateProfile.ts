@@ -1,8 +1,8 @@
-import { resolveData } from '@/functions/tryCatchRequest'
-import { processError } from '@/functions/processMessage'
+import { resolveData } from '@/helpers/tryCatchRequest'
+import { processError } from '@/helpers/processMessage'
 import { IHero } from '../types'
 import { generateTSClient } from '@/graphql/client'
-import { getUserId } from '@/functions/getUserData'
+import { getUserId } from '@/helpers/getUserData'
 import { optimizeProfileData } from '../../helpers/optimizeProfileData'
 
 export const mutation_updateProfile = async (data: IHero): Promise<IHero | null> => {

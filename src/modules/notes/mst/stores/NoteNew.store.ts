@@ -4,8 +4,8 @@ import { INote$SnapshotIn } from '../types'
 import { upsertNote } from '@/modules/notes/graphql/mutation_insertNote'
 import { compact } from 'lodash-es'
 
-import { processError } from '@/functions/processMessage'
-import { getUserId } from '@/functions/getUserData'
+import { processError } from '@/helpers/processMessage'
+import { getUserId } from '@/helpers/getUserData'
 import { rootStore$ } from '@/modules/app/mst/StoreProvider'
 
 export const NoteNew$ = Note$.named('NoteNew$').actions((self) => ({

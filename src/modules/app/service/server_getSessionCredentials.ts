@@ -1,5 +1,5 @@
 import ky from 'ky'
-import { resolveError } from '@/functions/tryCatchRequest'
+import { resolveError } from '@/helpers/tryCatchRequest'
 import { ISessionCredentials } from '@/modules/auth/login/services/types'
 
 export const getSessionCredentials = async (): Promise<string | null> => {

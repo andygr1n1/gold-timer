@@ -3,9 +3,9 @@ import { Note$ } from './Note.store'
 import { INote$ } from '../types'
 import { upsertNote } from '@/modules/notes/graphql/mutation_insertNote'
 import { compact } from 'lodash-es'
-import { processError } from '@/functions/processMessage'
+import { processError } from '@/helpers/processMessage'
 import { Notes$ } from './Notes.store'
-import { getUserId } from '@/functions/getUserData'
+import { getUserId } from '@/helpers/getUserData'
 
 export const NoteEdit$ = types
     .compose(

@@ -1,4 +1,4 @@
-import { APP_ROUTES_ENUM } from '@/helpers/globalEnums'
+import { APP_ROUTES_ENUM } from '@/services/enums'
 import { NavLink } from 'react-router-dom'
 
 export const LoginFooter = () => {

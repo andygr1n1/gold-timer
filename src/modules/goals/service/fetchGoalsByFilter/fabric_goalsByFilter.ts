@@ -1,5 +1,5 @@
-import { resolveData } from '@/functions/tryCatchRequest'
-import { processError } from '@/functions/processMessage'
+import { resolveData } from '@/helpers/tryCatchRequest'
+import { processError } from '@/helpers/processMessage'
 import { IGoal, IGoalQueryTypeFilter } from '@/modules/goals/service/types'
 import { query_fetchGoalsByFilter } from './query_fetchGoalsByFilter'
 

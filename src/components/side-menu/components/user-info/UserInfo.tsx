@@ -2,7 +2,7 @@ import { ProfileAvatar } from '../../../../modules/profile/components/profile-av
 import { UserName } from './UserName'
 import { useFetchAvatar } from '../../../../modules/profile/service/fetch-avatar/useFetchAvatar'
 import { NavLink } from 'react-router-dom'
-import { APP_ROUTES_ENUM } from '@/helpers/globalEnums'
+import { APP_ROUTES_ENUM } from '@/services/enums'
 import { useSideMenu } from '@/hooks/useSideMenu.hook'
 
 export const UserInfo: React.FC = () => {

@@ -9,7 +9,7 @@ import { NotesViewStatus } from '../../helpers/enums'
 import { useState } from 'react'
 import clsx from 'clsx'
 import { IconBackInTime, IconFolder } from '@/assets/icons'
-import { cn } from '@/functions'
+import { cn } from '@/helpers/cn'
 
 export const NotesStatusSelect: React.FC = observer(() => {
     const [open, setOpen] = useState(false)

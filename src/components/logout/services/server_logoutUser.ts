@@ -1,4 +1,4 @@
-import { resolveError, tryCatchRequest } from '@/functions/tryCatchRequest'
+import { resolveError, tryCatchRequest } from '@/helpers/tryCatchRequest'
 import ky from 'ky'
 import { ISessionLogout } from './types'
 
@@ -23,4 +23,3 @@ export const server_logoutUser = async () => {
         async (e) => await resolveError(e),
     )
 }
-

@@ -1,7 +1,7 @@
 import { IconArchive } from '@/assets/icons/IconArchive'
 import { XTooltip } from '@/components-x/x-tooltip/XTooltip'
 import { StyledButton } from '@/components/buttons/StyledButton'
-import { cn } from '@/functions'
+import { cn } from '@/helpers/cn'
 import { INote$ } from '@/modules/notes/mst/types'
 import { observer } from 'mobx-react-lite'
 

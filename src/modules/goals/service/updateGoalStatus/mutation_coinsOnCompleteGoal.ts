@@ -1,9 +1,9 @@
-import { resolveData } from '@/functions/tryCatchRequest'
-import { processError } from '@/functions/processMessage'
+import { resolveData } from '@/helpers/tryCatchRequest'
+import { processError } from '@/helpers/processMessage'
 import { Client } from 'gold-timer-genql/lib/generated'
-import { getUserCoins, getUserId } from '@/functions/getUserData'
+import { getUserCoins, getUserId } from '@/helpers/getUserData'
 import { IGoal, IGoalQueryTypeFilter } from '../types'
-import { getCoinsFromCompletedGoal } from '@/functions/getCoinsFromCompletedGoal'
+import { getCoinsFromCompletedGoal } from '@/helpers/getCoinsFromCompletedGoal'
 
 export const mutation_coinsOnCompleteGoal = async (
     client: Client,

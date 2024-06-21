@@ -1,4 +1,4 @@
-import { processError } from '@/functions/processMessage'
+import { processError } from '@/helpers/processMessage'
 // import { Buffer } from 'buffer'
 import Compressor from 'compressorjs'
 

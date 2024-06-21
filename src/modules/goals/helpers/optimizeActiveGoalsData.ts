@@ -1,4 +1,4 @@
-import { convertStringDate, setMidnightTime } from '@/functions/date.helpers'
+import { convertStringDate, setMidnightTime } from '@/helpers/date.helpers'
 import { differenceInCalendarDays, isFuture, set } from 'date-fns'
 import { isArray } from 'lodash-es'
 import { IGoal } from '../service/types'

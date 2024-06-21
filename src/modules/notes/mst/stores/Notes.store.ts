@@ -1,7 +1,7 @@
 import { query_fetchNotes } from '@/modules/notes/graphql/query_fetchNotes'
 import { applySnapshot, cast, destroy, detach, flow, toGenerator, types } from 'mobx-state-tree'
 import { Note$ } from './Note.store'
-import { processError } from '@/functions/processMessage'
+import { processError } from '@/helpers/processMessage'
 import { NotesFilter$ } from './NotesFilter.store'
 import { cloneDeep } from 'lodash-es'
 import { NoteEdit$ } from './NoteEdit.store'

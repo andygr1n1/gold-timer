@@ -1,9 +1,9 @@
-import { processError } from '../../../functions/processMessage'
+import { processError } from '../../../helpers/processMessage'
 import { INote$SnapshotIn } from '@/modules/notes/mst/types'
 
-import { resolveData } from '@/functions/tryCatchRequest'
+import { resolveData } from '@/helpers/tryCatchRequest'
 import { generateTSClient } from '@/graphql/client'
-import { getUserId } from '@/functions/getUserData'
+import { getUserId } from '@/helpers/getUserData'
 
 export const query_fetchNotes = async (): Promise<INote$SnapshotIn[]> => {
     const client = generateTSClient()

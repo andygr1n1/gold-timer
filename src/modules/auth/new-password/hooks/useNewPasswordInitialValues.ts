@@ -1,4 +1,4 @@
-import { getParam_Code } from '@/functions/urlSearchParams'
+import { getParam_Code } from '@/helpers/urlSearchParams'
 import { IUserNewPasswordSchema } from '../services/types'
 
 export const useNewPasswordInitialValues = (): { initialValues: IUserNewPasswordSchema } => {

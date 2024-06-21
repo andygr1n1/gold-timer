@@ -7,7 +7,7 @@ import { useFetchArtifactsCount } from './service/useFetchArtifactsCount'
 import { NoteCRUD } from '@/modules/notes/components/crud-note/NoteCRUD'
 import { IconBook, IconFocus, IconSprint } from '@/assets/icons'
 import { CreateEditSprintDialog } from '@/modules/sprints/components/create-edit-sprint/CreateEditSprintDialog'
-import { isUnderDevelopment } from '@/functions/isUnderDevelopment.helper'
+import { isUnderDevelopment } from '@/helpers/isUnderDevelopment.helper'
 
 export const ArtifactsCounter: React.FC = observer(() => {
     const { activeGoalsCount, activeNotesCount, activeSprintsCount } = useFetchArtifactsCount()

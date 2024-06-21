@@ -1,5 +1,5 @@
-import { processError } from '@/functions/processMessage'
-import { resolveData } from '@/functions/tryCatchRequest'
+import { processError } from '@/helpers/processMessage'
+import { resolveData } from '@/helpers/tryCatchRequest'
 import { generateTSClient } from '@/graphql/client'
 
 export const query_verifyUserId = async (userId: string): Promise<string> => {

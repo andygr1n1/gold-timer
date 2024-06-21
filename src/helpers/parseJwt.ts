@@ -1,4 +1,4 @@
-import { processError } from '@/functions/processMessage'
+import { processError } from '@/helpers/processMessage'
 import { jwtDecode } from 'jwt-decode'
 import { z } from 'zod'
 

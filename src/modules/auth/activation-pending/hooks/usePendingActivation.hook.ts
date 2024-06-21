@@ -1,10 +1,10 @@
 import { useEffect } from 'react'
 import { useUserData } from '../service/useUserData.service'
-import { getParam_Email } from '@/functions/urlSearchParams'
+import { getParam_Email } from '@/helpers/urlSearchParams'
 import { IUserDataService } from '../service/types'
 import { useNavigate } from 'react-router-dom'
-import { APP_ROUTES_ENUM } from '@/helpers/globalEnums'
-import { processError } from '@/functions/processMessage'
+import { APP_ROUTES_ENUM } from '@/services/enums'
+import { processError } from '@/helpers/processMessage'
 import { useResendActivationLink } from '../service/useResendActivationLink.service'
 
 export const usePendingActivation = (): IUserDataService => {

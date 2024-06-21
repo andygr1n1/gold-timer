@@ -1,9 +1,9 @@
 import { FormikHelpers } from 'formik'
 import { IUserRestoreSchema } from '../services/types'
 import { useNavigate } from 'react-router-dom'
-import { APP_ROUTES_ENUM } from '@/helpers'
+import { APP_ROUTES_ENUM } from '@/services/enums'
 import { useMutation } from '@tanstack/react-query'
-import { processError, processSuccess } from '@/functions/processMessage'
+import { processSuccess } from '@/helpers/processMessage'
 import { server_restoreUser } from '../services/server_restoreUser'
 
 export const useRestoreOnSubmit = () => {
@@ -17,8 +17,8 @@ export const useRestoreOnSubmit = () => {
         mutation.mutate(
             { formData: values },
             {
-                onError: (error) => {
-                    processError(error.message)
+                onError: (/* error */) => {
+                    // processError(error.message)
                 },
                 onSuccess: () => {
                     formikHelpers.resetForm()

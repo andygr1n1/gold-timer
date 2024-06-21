@@ -1,6 +1,6 @@
 import { goal_difficulty_enum, goals, goals_rituals, Scalars } from 'gold-timer-genql/lib/generated'
 
-import { DIFFICULTY_ENUM, RITUAL_TYPE_ENUM } from '@/helpers/globalEnums'
+import { DIFFICULTY_ENUM, RITUAL_TYPE_ENUM } from '@/services/enums'
 
 export type IGoalQueryTypeFilter = 'active' | 'ritual' | 'expired' | 'favorite' | 'completed' | 'deleted' | 'all'
 

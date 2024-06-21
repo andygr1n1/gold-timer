@@ -6,9 +6,9 @@ import { selectedGoalAtom } from '@/modules/goals/stores/selectedGoal.store'
 import { IGoal } from '../types'
 import { ISelectedGoal } from '../../stores/types'
 import { KEY_FetchGoalById, KEY_FetchGoalsByFilter, goalsQueryKeys, goalsQueryKeysValues } from '../keys'
-import { proxyConvert } from '@/functions/proxyConvert'
+import { proxyConvert } from '@/helpers/proxyConvert'
 import { getSelectedGoalFromCache } from '../../helpers/goalsCache'
-import { isDashboard } from '@/helpers/globalGuards'
+import { isDashboard } from '@/services/guards'
 import { KEY_FetchTopRitualGoals } from '../../components/goals-dashboard/top-ritual-goals-widget/service/keys'
 
 export const useMutateGoalFavorite = () => {

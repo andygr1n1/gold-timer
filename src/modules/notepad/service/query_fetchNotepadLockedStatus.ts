@@ -1,7 +1,7 @@
-import { resolveData } from '@/functions/tryCatchRequest'
+import { resolveData } from '@/helpers/tryCatchRequest'
 import { generateTSClient } from '@/graphql/client'
-import { processError } from '@/functions/processMessage'
-import { getUserId } from '@/functions/getUserData'
+import { processError } from '@/helpers/processMessage'
+import { getUserId } from '@/helpers/getUserData'
 
 export const query_fetchNotepadLockedStatus = async (): Promise<boolean> => {
     const client = generateTSClient()

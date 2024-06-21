@@ -1,9 +1,9 @@
-import { processError } from '../../../functions/processMessage'
+import { processError } from '../../../helpers/processMessage'
 import { generateClient } from '@/graphql/client'
 import { gql } from 'graphql-request'
 import { ISprint$SnIn } from '../mst/types'
 import { sprints } from 'gold-timer-genql/lib/generated'
-import { getUserId } from '@/functions/getUserData'
+import { getUserId } from '@/helpers/getUserData'
 
 export const query_fetchSprints = async (): Promise<ISprint$SnIn[] | undefined> => {
     const client = generateClient()

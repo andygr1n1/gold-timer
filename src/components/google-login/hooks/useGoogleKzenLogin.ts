@@ -1,9 +1,9 @@
 import { useUserStore } from '@/services/user-store/useUserStore.service'
 import { useGoogleLogin } from '@react-oauth/google'
 import { server_googleLogin } from '../service/server_googleLogin'
-import { setAccessIdInCookie } from '@/functions/universalCookie'
+import { setAccessIdInCookie } from '@/helpers/universalCookie'
 import { parseJwt } from '@/helpers/parseJwt'
-import { processError } from '@/functions/processMessage'
+import { processError } from '@/helpers/processMessage'
 
 export const useGoogleKzenLogin = () => {
     const { selectUser } = useUserStore()

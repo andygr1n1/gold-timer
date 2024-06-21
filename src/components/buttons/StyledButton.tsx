@@ -1,6 +1,6 @@
 import React, { useRef, type ReactNode } from 'react'
 
-import { cn } from '@/functions/helpers'
+import { cn } from '@/helpers/cn'
 import './StyledButton.scss'
 
 type StyledButtonType = 'contained' | 'outlined' | 'text'

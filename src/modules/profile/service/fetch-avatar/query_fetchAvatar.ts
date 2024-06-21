@@ -1,8 +1,8 @@
-import { resolveData } from '@/functions/tryCatchRequest'
+import { resolveData } from '@/helpers/tryCatchRequest'
 import { generateTSClient } from '@/graphql/client'
-import { processError } from '@/functions/processMessage'
+import { processError } from '@/helpers/processMessage'
 import { heroes } from 'gold-timer-genql/lib/generated'
-import { getUserId } from '@/functions/getUserData'
+import { getUserId } from '@/helpers/getUserData'
 
 type IHero = Pick<heroes, 'name' | 'avatar'>
 

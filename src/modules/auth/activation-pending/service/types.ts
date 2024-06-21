@@ -1,4 +1,4 @@
-import { QueryErrorSchema } from '@/helpers'
+import { QueryErrorSchema } from '@/services/types'
 import { z } from 'zod'
 
 const userDataSchema = z.object({

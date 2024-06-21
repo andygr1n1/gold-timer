@@ -1,6 +1,6 @@
 import { flow, getParentOfType, toGenerator, types } from 'mobx-state-tree'
 import { Sprint$ } from './Sprint.store'
-import { processError } from '@/functions/processMessage'
+import { processError } from '@/helpers/processMessage'
 import { add } from 'date-fns'
 import { Sprints$ } from './Sprints.store'
 import { IEditSprintReq, IInsertNewSprint } from '@/modules/sprints/graphql/helpers/interface'
@@ -8,9 +8,9 @@ import { compact, last } from 'lodash-es'
 import { mutation_insertNewSprint } from '@/modules/sprints/graphql/mutation_insertNewSprint'
 import { mutation_updateSprint } from '@/modules/sprints/graphql/mutation_updateSprint'
 import { deleteImageFromServer, uploadNewImageToServer } from '@/services/image.service'
-import { SERVER_ROUTES } from '@/helpers/globalEnums'
-import { setZeroTime } from '../../../../functions/date.helpers'
-import { getUserId } from '@/functions/getUserData'
+import { SERVER_ROUTES } from '@/services/enums'
+import { setZeroTime } from '../../../../helpers/date.helpers'
+import { getUserId } from '@/helpers/getUserData'
 
 export const SprintNew$ = types
     .compose(

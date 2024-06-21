@@ -2,7 +2,7 @@ import { flow, getParentOfType, types } from 'mobx-state-tree'
 import { Note } from '../models/Note.model'
 import { compact } from 'lodash-es'
 import { Notes$ } from './Notes.store'
-import { processError } from '@/functions/processMessage'
+import { processError } from '@/helpers/processMessage'
 import { mutation_deleteNote } from '@/modules/notes/graphql/mutation_deleteNote'
 import { mutation_archiveNote } from '../../graphql/mutation_archiveNote'
 

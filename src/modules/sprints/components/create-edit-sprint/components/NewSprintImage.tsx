@@ -1,5 +1,5 @@
 import { Buffer } from 'buffer'
-import { processError } from '@/functions/processMessage'
+import { processError } from '@/helpers/processMessage'
 import { useSprintsStore } from '@/modules/app/mst/StoreProvider'
 import clsx from 'clsx'
 import { IconUpload } from '@/assets/icons'

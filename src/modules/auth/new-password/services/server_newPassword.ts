@@ -1,4 +1,4 @@
-import { resolveError, tryCatchRequest } from '@/functions/tryCatchRequest'
+import { resolveError, tryCatchRequest } from '@/helpers/tryCatchRequest'
 import ky from 'ky'
 import { IUserNewPasswordSchema } from './types'
 

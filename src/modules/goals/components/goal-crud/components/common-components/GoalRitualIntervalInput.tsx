@@ -1,10 +1,10 @@
-import { RITUAL_TYPE_ENUM } from '@/helpers/globalEnums'
+import { RITUAL_TYPE_ENUM } from '@/services/enums'
 import { FormLabel } from '@/components/form/FormLabel'
 import { IGoal } from '@/modules/goals/service/types'
 import { XSelect } from '@/components-x/x-select/XSelect'
 import { XInput } from '@/components-x/x-input/XInput'
 import { IconInfinity } from '@/assets/icons/IconInfinity'
-import { DaysOfTheWeek } from '@/functions/date.helpers'
+import { DaysOfTheWeek } from '@/helpers/date.helpers'
 
 export const GoalRitualIntervalInput: React.FC<{
     goal: IGoal

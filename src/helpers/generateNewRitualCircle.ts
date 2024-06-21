@@ -1,5 +1,5 @@
 import { add, getDay, set } from 'date-fns'
-import { RITUAL_TYPE_ENUM } from '../helpers/globalEnums'
+import { RITUAL_TYPE_ENUM } from '../services/enums'
 
 interface INewRitualCircleProps {
     ritual_type: RITUAL_TYPE_ENUM

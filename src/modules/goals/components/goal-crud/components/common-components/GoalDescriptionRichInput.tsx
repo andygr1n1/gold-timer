@@ -1,6 +1,6 @@
 import { XRte } from '@/components-x/x-rte/XRte'
 import { FormLabel } from '@/components/form/FormLabel'
-import { cn } from '@/functions/helpers'
+import { cn } from '@/helpers/cn'
 import { useEffect, useState } from 'react'
 
 export const GoalDescriptionRichInput: React.FC<{

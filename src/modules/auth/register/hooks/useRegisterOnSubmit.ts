@@ -2,9 +2,8 @@ import { FormikHelpers } from 'formik'
 import { server_registerUser } from '../services/server_registerUser'
 import { IUserRegisterSchema } from '../services/types'
 import { useNavigate } from 'react-router-dom'
-import { APP_ROUTES_ENUM } from '@/helpers'
 import { useMutation } from '@tanstack/react-query'
-import { processError } from '@/functions/processMessage'
+import { APP_ROUTES_ENUM } from '@/services/enums'
 
 export const useRegisterOnSubmit = () => {
     const navigate = useNavigate()
@@ -17,8 +16,8 @@ export const useRegisterOnSubmit = () => {
         mutation.mutate(
             { formData: values },
             {
-                onError: (error) => {
-                    processError(error.message)
+                onError: (/* error */) => {
+                    // processError(error.message)
                 },
                 onSuccess: () => {
                     formikHelpers.resetForm()

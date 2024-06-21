@@ -1,6 +1,6 @@
 import { optimizeActiveGoalsData } from '@/modules/goals/helpers/optimizeActiveGoalsData'
-import { resolveData } from '@/functions/tryCatchRequest'
-import { processError } from '@/functions/processMessage'
+import { resolveData } from '@/helpers/tryCatchRequest'
+import { processError } from '@/helpers/processMessage'
 import { Client } from 'gold-timer-genql/lib/generated'
 import { IGoal } from '../types'
 import { IRitualizeUpdateFields } from './types'

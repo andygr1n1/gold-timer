@@ -1,11 +1,11 @@
 import { atom } from 'jotai'
 import { atomWithImmer } from 'jotai-immer'
 
-import { isDev } from '@/functions/isUnderDevelopment.helper'
+import { isDev } from '@/helpers/isUnderDevelopment.helper'
 import { IGoal } from '@/modules/goals/service/types'
 import { focusAtom } from 'jotai-optics'
 
-import { RITUAL_TYPE_ENUM } from '@/helpers/globalEnums'
+import { RITUAL_TYPE_ENUM } from '@/services/enums'
 import { formatISO } from 'date-fns'
 
 import { KEY_FetchGoalById } from '../service/keys'

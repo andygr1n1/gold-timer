@@ -3,7 +3,7 @@ import { getSessionCredentials } from '@/modules/app/service/server_getSessionCr
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { IUserSchema } from './types'
 import { KEY_useUserStore } from './keys'
-import { setAccessIdInCookie } from '@/functions/universalCookie'
+import { setAccessIdInCookie } from '@/helpers/universalCookie'
 
 export const useUserStore = (): {
     store?: IUserSchema | null
