@@ -7,7 +7,7 @@ import { IEditSprintReq, IInsertNewSprint } from '@/modules/sprints/graphql/help
 import { compact, last } from 'lodash-es'
 import { mutation_insertNewSprint } from '@/modules/sprints/graphql/mutation_insertNewSprint'
 import { mutation_updateSprint } from '@/modules/sprints/graphql/mutation_updateSprint'
-import { deleteImageFromServer, uploadNewImageToServer } from '@/services/image.service'
+import { deleteImageFromServer, uploadNewImageToServer } from '@/services/image/image.service'
 import { SERVER_ROUTES } from '@/services/enums'
 import { setZeroTime } from '../../../../helpers/date.helpers'
 import { getUserId } from '@/helpers/getUserData'

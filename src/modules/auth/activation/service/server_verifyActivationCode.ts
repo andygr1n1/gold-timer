@@ -10,7 +10,7 @@ export const server_verifyActivationCode = async (props: {
     try {
         const res = await ky
             .post(`${endpoint}register/validate-activation-code`, {
-                credentials: 'include', //
+                credentials: 'include',
                 json: { activationCode: props.activationCode },
                 method: 'POST',
                 headers: {

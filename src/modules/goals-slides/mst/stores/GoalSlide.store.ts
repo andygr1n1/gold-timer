@@ -1,7 +1,7 @@
 import { processError } from '@/helpers/processMessage'
 import { cast, flow, getParentOfType, toGenerator, types } from 'mobx-state-tree'
 import { mutation_toggleActiveGoalSlide } from '../../graphql/mutation_toggleActiveGoalSlide'
-import { deleteImageFromServer } from '@/services/image.service'
+import { deleteImageFromServer } from '@/services/image/image.service'
 import { SERVER_ROUTES } from '@/services/enums'
 import { mutation_deleteGoalSlide } from '../../graphql/mutation_deleteGoalSlide'
 import { GoalsSlides$ } from './GoalsSlides.store'

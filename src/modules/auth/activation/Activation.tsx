@@ -1,5 +1,5 @@
 import { IconInfiniteLoading } from '@/assets/icons'
-import { useActivation } from './hooks/useActivation.hook'
+import { useActivation } from './hooks/useActivation'
 
 const Activation: React.FC = () => {
     useActivation()
