@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react-lite'
 
-import { useNotesStore } from '@/app/StoreProvider'
+import { useNotesStore } from '@/modules/app/mst/StoreProvider'
 import { XDropdown } from '@/components-x/x-dropdown/XDropdown'
 import { XMenuDropdown } from '@/components-x/x-dropdown/XMenuDropdown'
 import { XMenuItem } from '@/components-x/x-dropdown/XMenuItem'
@@ -9,7 +9,7 @@ import { NotesViewStatus } from '../../helpers/enums'
 import { useState } from 'react'
 import clsx from 'clsx'
 import { IconBackInTime, IconFolder } from '@/assets/icons'
-import { cn } from '@/functions'
+import { cn } from '@/helpers/cn'
 
 export const NotesStatusSelect: React.FC = observer(() => {
     const [open, setOpen] = useState(false)

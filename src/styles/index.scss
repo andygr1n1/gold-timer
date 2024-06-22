@@ -45,14 +45,13 @@ input:-webkit-autofill:active {
 @import './antd-redesign/input.scss';
 @import '../components/buttons/StyledButtonLightVariables.scss';
 @import 'react-tooltip/dist/react-tooltip.css';
-@import "slick-carousel/slick/slick.css";
-@import "slick-carousel/slick/slick-theme.css";
-
+@import 'slick-carousel/slick/slick.css';
+@import 'slick-carousel/slick/slick-theme.css';
 
 @layer base {
     html,
     body {
-        @apply scrollbar-thumb-blue-500  scrollbar-track-global-bg scrollbar-thin bg-global-bg font-kzen text-cText flex h-full w-full flex-col overflow-hidden text-base;
+        @apply scrollbar-thumb-blue-500  scrollbar-track-global-bg scrollbar-thin bg-global-bg font-inter text-cText flex h-full w-full flex-col overflow-hidden text-base;
     }
 
     #root {
@@ -69,7 +68,7 @@ input:-webkit-autofill:active {
     h4,
     h5,
     h6 {
-        @apply font-kzen text-cText m-0 p-0 tracking-wider opacity-70 duration-300;
+        @apply font-inter text-cText m-0 p-0 tracking-wider opacity-70 duration-300;
     }
 
     a,

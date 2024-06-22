@@ -1,6 +1,6 @@
 import { gql } from 'graphql-request'
 import { generateClient } from '@/graphql/client'
-import { processError } from '@/functions/processMessage'
+import { processError } from '@/helpers/processMessage'
 import { IInsertNewSprint } from './helpers/interface'
 import { ISprint$SnIn } from '../mst/types'
 

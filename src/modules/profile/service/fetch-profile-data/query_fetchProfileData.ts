@@ -1,8 +1,8 @@
-import { processError } from '../../../../functions/processMessage'
-import { resolveData } from '@/functions/resolveData'
+import { processError } from '../../../../helpers/processMessage'
+import { resolveData } from '@/helpers/tryCatchRequest'
 import { generateTSClient } from '@/graphql/client'
 import { IHero } from '../types'
-import { getUserId } from '@/functions/getUserData'
+import { getUserId } from '@/helpers/getUserData'
 import { optimizeProfileData } from '../../helpers/optimizeProfileData'
 
 export const query_fetchProfileData = async (): Promise<IHero> => {

@@ -1,6 +1,6 @@
 import { gql } from 'graphql-request'
 import { generateClient } from '../client'
-import { processError } from '@/functions/processMessage'
+import { processError } from '@/helpers/processMessage'
 import { heroes } from 'gold-timer-genql/lib/generated'
 
 export const fetchUserSecret = async (user_id: string): Promise<string | undefined | null> => {

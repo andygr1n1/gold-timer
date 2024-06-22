@@ -3,7 +3,7 @@ import { Navigate, Route, Routes } from 'react-router-dom'
 import { GoalsByFilterIndex } from './GoalsByFilterIndex'
 import { useSetGoalsParamsFilter } from '../../hooks/useSetGoalsParamsFilter'
 
-export const GoalsCmsIndex: React.FC = () => {
+const GoalsCmsIndex: React.FC = () => {
     const { filter } = useSetGoalsParamsFilter()
     if (!filter) return null
 
@@ -19,3 +19,5 @@ export const GoalsCmsIndex: React.FC = () => {
         </GoalCRUDProvider>
     )
 }
+
+export default GoalsCmsIndex

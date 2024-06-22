@@ -1,4 +1,4 @@
-import { useNotesStore } from '@/app/StoreProvider'
+import { useNotesStore } from '@/modules/app/mst/StoreProvider'
 import { observer } from 'mobx-react-lite'
 
 export const NotesFiltersTextHelper: React.FC = observer(() => {

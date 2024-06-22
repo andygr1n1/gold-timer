@@ -1,5 +1,5 @@
 import { ModuleWrapper } from '@/components/ModuleWrapper'
-import { APP_ROUTES_ENUM } from '@/helpers/enums'
+import { APP_ROUTES_ENUM } from '@/services/enums'
 import { Focus, GoldenFocus, ShadowFocus, Statement } from '../components/Focus'
 import { Paragraph } from '../components/Paragraph'
 import { BookPage } from '../components/BookPage'

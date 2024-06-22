@@ -1,5 +1,5 @@
-import { IconExpired } from '@/assets/icons'
-import { cn } from '@/functions'
+import { IconExpired } from '@/assets/icons/IconExpired'
+import { cn } from '@/helpers/cn'
 
 export const Focus: React.FC<{ text: React.ReactNode; className?: string }> = ({ text, className: color }) => {
     return <span className={cn('mx-1 text-2xl font-bold text-green-500', color)}>{text}</span>

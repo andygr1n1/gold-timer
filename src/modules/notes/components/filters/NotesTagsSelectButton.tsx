@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react-lite'
 import { NotesTagsSelectDialog } from './NotesTagsSelectDialog'
 import { StyledButton } from '@/components/buttons/StyledButton'
-import { useNotesStore } from '@/app/StoreProvider'
+import { useNotesStore } from '@/modules/app/mst/StoreProvider'
 import { IconFilterBolt } from '@/assets/icons'
 
 export const NotesTagsSelectButton: React.FC = observer(() => {

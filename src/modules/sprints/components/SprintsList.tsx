@@ -1,4 +1,4 @@
-import { useSprintsStore } from '@/app/StoreProvider'
+import { useSprintsStore } from '@/modules/app/mst/StoreProvider'
 import { observer } from 'mobx-react-lite'
 import { SprintInfo } from './sprint-info/SprintInfo'
 import { useEffect } from 'react'

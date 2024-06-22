@@ -1,11 +1,11 @@
 import { ModuleWrapper } from '@/components/ModuleWrapper'
-import { APP_ROUTES_ENUM } from '@/helpers/enums'
+import { APP_ROUTES_ENUM } from '@/services/enums'
 import { observer } from 'mobx-react-lite'
 import { NotesList } from './components/NotesList'
 import { NotesHeader } from './components/NotesHeader'
 import { NoteCRUD } from './components/crud-note/NoteCRUD'
 
-export const NotesIndex: React.FC = observer(function NotesIndex() {
+const NotesIndex: React.FC = observer(function NotesIndex() {
     return (
         <ModuleWrapper context={APP_ROUTES_ENUM.NOTES}>
             <div className='flex flex-col gap-10 w-full max-w-[600px] mx-auto'>
@@ -16,3 +16,5 @@ export const NotesIndex: React.FC = observer(function NotesIndex() {
         </ModuleWrapper>
     )
 })
+
+export default NotesIndex

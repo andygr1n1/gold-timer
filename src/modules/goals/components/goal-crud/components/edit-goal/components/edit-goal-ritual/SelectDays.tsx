@@ -1,9 +1,9 @@
 import { useEffect } from 'react'
 import { XInput } from '@/components-x/x-input/XInput'
-import { generateNewRitualCircle } from '@/functions/generateNewRitualCircle'
+import { generateNewRitualCircle } from '@/helpers/generateNewRitualCircle'
 import { useAtom } from 'jotai'
 import { editGoalAtom } from '@/modules/goals/stores/editGoal.store'
-import { formatDateWithTimezone, convertStringDate, setMidnightTime } from '@/functions/date.helpers'
+import { formatDateWithTimezone, convertStringDate, setMidnightTime } from '@/helpers/date.helpers'
 
 export const SelectDays = () => {
     const [_editGoalAtom, _setEditGoalAtom] = useAtom(editGoalAtom)

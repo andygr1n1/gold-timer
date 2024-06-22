@@ -1,7 +1,7 @@
-import { getUserId } from '@/functions/getUserData'
+import { getUserId } from '@/helpers/getUserData'
 import { generateTSClient } from '../../../graphql/client'
-import { processError } from '@/functions/processMessage'
-import { resolveData } from '@/functions/resolveData'
+import { processError } from '@/helpers/processMessage'
+import { resolveData } from '@/helpers/tryCatchRequest'
 import type { achievements } from 'gold-timer-genql/lib/generated'
 
 export const query_fetchAchievements = async (): Promise<Partial<achievements>[] | undefined> => {

@@ -1,5 +1,5 @@
 import { gql } from 'graphql-request'
-import { processError } from '@/functions/processMessage'
+import { processError } from '@/helpers/processMessage'
 import { generateClient } from '@/graphql/client'
 
 export const mutation_updateSprintDayStatus = async (id: string, status: boolean): Promise<boolean | undefined> => {

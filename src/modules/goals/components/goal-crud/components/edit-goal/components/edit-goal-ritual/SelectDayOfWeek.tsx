@@ -1,6 +1,6 @@
 import { XSelect } from '@/components-x/x-select/XSelect'
-import { DaysOfTheWeek, formatDateWithTimezone, convertStringDate, setMidnightTime } from '@/functions/date.helpers'
-import { generateNewRitualCircle } from '@/functions/generateNewRitualCircle'
+import { DaysOfTheWeek, formatDateWithTimezone, convertStringDate, setMidnightTime } from '@/helpers/date.helpers'
+import { generateNewRitualCircle } from '@/helpers/generateNewRitualCircle'
 import { editGoalAtom, getImmutableFinishedAt } from '@/modules/goals/stores/editGoal.store'
 import { useAtom } from 'jotai'
 import { useEffect } from 'react'

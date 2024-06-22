@@ -4,13 +4,13 @@ import { SprintsFilters } from './components/filters/SprintsFilters'
 
 import { useWindowMatchMedia } from '@/hooks/useMatchMedia.hook'
 import { SprintMenuDialogConfirm } from './components/sprint-info/SprintMenuDialogConfirm'
-import { useSprintsStore } from '@/app/StoreProvider'
-import { APP_ROUTES_ENUM } from '@/helpers/enums'
+import { useSprintsStore } from '@/modules/app/mst/StoreProvider'
+import { APP_ROUTES_ENUM } from '@/services/enums'
 import { SearchSprintsInput } from '@/modules/sprints/components/SearchSprintsInput'
 import { observer } from 'mobx-react-lite'
 import { ArtifactsCounter } from '../dashboard/components/artifacts-counter/ArtifactsCounter'
 
-export const SprintsIndex: React.FC = observer(() => {
+const SprintsIndex: React.FC = observer(() => {
     const { isMobile } = useWindowMatchMedia(['isMobile'])
     const { sprints } = useSprintsStore()
 
@@ -36,3 +36,5 @@ export const SprintsIndex: React.FC = observer(() => {
         </ModuleWrapper>
     )
 })
+
+export default SprintsIndex

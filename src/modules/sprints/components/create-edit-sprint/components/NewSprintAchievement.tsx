@@ -1,4 +1,4 @@
-import { useSprintsStore } from '@/app/StoreProvider'
+import { useSprintsStore } from '@/modules/app/mst/StoreProvider'
 import { Input } from 'antd'
 import { observer } from 'mobx-react-lite'
 

@@ -1,12 +1,12 @@
 import { applySnapshot, destroy, detach, flow, toGenerator, types } from 'mobx-state-tree'
 import { GoalSlide$ } from './GoalSlide.store'
-import { processError, processSuccess } from '@/functions/processMessage'
+import { processError, processSuccess } from '@/helpers/processMessage'
 import { IGoalSlide$ } from '../types'
 import { query_fetchGoalsSlides } from '../../graphql/query_fetchGoalsSlides'
-import { SERVER_ROUTES } from '@/helpers/enums'
-import { uploadNewImageToServer } from '@/services/image.service'
+import { SERVER_ROUTES } from '@/services/enums'
+import { uploadNewImageToServer } from '@/services/image/image.service'
 import { mutation_insertGoalSlide } from '../../graphql/mutation_insertGoalSlide'
-import { rootStore$ } from '@/app/StoreProvider'
+import { rootStore$ } from '@/modules/app/mst/StoreProvider'
 
 export const GoalsSlides$ = types
     .model('GoalsSlides$', {

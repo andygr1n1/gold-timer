@@ -1,4 +1,4 @@
-import { cn } from '@/functions'
+import { cn } from '@/helpers/cn'
 import { IXModal } from '../types'
 import { CloseIcon } from './CloseIcon'
 import { Header } from './Header'

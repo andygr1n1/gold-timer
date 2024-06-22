@@ -1,4 +1,4 @@
-import { useSprintsStore } from '@/app/StoreProvider'
+import { useSprintsStore } from '@/modules/app/mst/StoreProvider'
 import { DialogConfirm } from '@/components/dialog-confirm/DialogConfirm'
 import { observer } from 'mobx-react-lite'
 import { ReactNode } from 'react'

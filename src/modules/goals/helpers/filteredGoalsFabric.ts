@@ -1,7 +1,7 @@
 import { compact, uniq } from 'lodash-es'
 import { IGoal } from '../service/types'
 import { format } from 'date-fns'
-import { convertStringDate } from '@/functions/date.helpers'
+import { convertStringDate } from '@/helpers/date.helpers'
 
 export const filteredGoalsFabric = (
     goals: IGoal[] = [],

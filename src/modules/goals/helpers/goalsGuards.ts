@@ -1,10 +1,9 @@
-import { goal_status_enum_enum } from 'gold-timer-genql/lib/generated'
 import { IGoalQueryTypeFilter } from '../service/types'
 
-export const isCompleted = (status: goal_status_enum_enum) => {
+export const isCompleted = (status: IGoalQueryTypeFilter) => {
     return status === 'completed'
 }
-export const isActive = (status: goal_status_enum_enum) => {
+export const isActive = (status: IGoalQueryTypeFilter) => {
     return status === 'active'
 }
 

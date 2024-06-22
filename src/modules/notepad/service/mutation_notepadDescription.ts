@@ -1,7 +1,7 @@
-import { resolveData } from '@/functions/resolveData'
-import { processError } from '@/functions/processMessage'
+import { resolveData } from '@/helpers/tryCatchRequest'
+import { processError } from '@/helpers/processMessage'
 import { generateTSClient } from '@/graphql/client'
-import { getUserId } from '@/functions/getUserData'
+import { getUserId } from '@/helpers/getUserData'
 
 export const mutation_notepadDescription = async (description: string): Promise<string> => {
     const client = generateTSClient()

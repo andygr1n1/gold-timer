@@ -1,21 +1,20 @@
 import { useMutation } from '@tanstack/react-query'
 import { fabric_goalStatus } from './fabric_goalStatus'
 
-import { goal_status_enum_enum } from 'gold-timer-genql/lib/generated'
-import { IGoal } from '@/modules/goals/service/types'
+import { IGoal, IGoalQueryTypeFilter } from '@/modules/goals/service/types'
 import { cloneDeep } from 'lodash-es'
 import { IUserCoinsInfo } from '@/components/top-bar/service/query_userCoinsInfo'
-import { processSuccess } from '@/functions/processMessage'
+import { processSuccess } from '@/helpers/processMessage'
 import { isActive, isCompleted } from '../../helpers/goalsGuards'
 import { KEY_FetchGoalById, KEY_FetchGoalsByFilter, goalsQueryKeys, goalsQueryKeysValues } from '../keys'
-import { proxyConvert } from '@/functions/proxyConvert'
+import { proxyConvert } from '@/helpers/proxyConvert'
 import { getSelectedGoalFromCache } from '../../helpers/goalsCache'
-import { isDashboard } from '@/helpers/guards'
+import { isDashboard } from '@/services/guards'
 import { KEY_FetchTopRitualGoals } from '../../components/goals-dashboard/top-ritual-goals-widget/service/keys'
 
 export const useMutateGoalStatus = () => {
     const mutation = useMutation({
-        mutationFn: ({ goal, status }: { status: goal_status_enum_enum; goal: IGoal }) =>
+        mutationFn: ({ goal, status }: { status: IGoalQueryTypeFilter; goal: IGoal }) =>
             fabric_goalStatus(goal, status),
         onSuccess: (res) => {
             const resStatus = res.status?.status

@@ -1,7 +1,7 @@
 import { XMenuDropdown } from '@/components-x/x-dropdown/XMenuDropdown'
 import { observer } from 'mobx-react-lite'
 import { INote$ } from '../../mst/types'
-import { useNotesStore } from '@/app/StoreProvider'
+import { useNotesStore } from '@/modules/app/mst/StoreProvider'
 import { XMenuItem } from '@/components-x/x-dropdown/XMenuItem'
 import { IconDeleteTemp, IconEdit, IconEye } from '@/assets/icons'
 import { IconArchive } from '@/assets/icons/IconArchive'

@@ -1,7 +1,7 @@
-import { setZeroTime } from '@/functions/date.helpers'
-import { getUserId } from '@/functions/getUserData'
-import { processError } from '@/functions/processMessage'
-import { resolveData } from '@/functions/resolveData'
+import { setZeroTime } from '@/helpers/date.helpers'
+import { getUserId } from '@/helpers/getUserData'
+import { processError } from '@/helpers/processMessage'
+import { resolveData } from '@/helpers/tryCatchRequest'
 import { generateTSClient } from '@/graphql/client'
 import { optimizeActiveGoalsData } from '@/modules/goals/helpers/optimizeActiveGoalsData'
 import { IGoal } from '@/modules/goals/service'
@@ -50,7 +50,7 @@ export const query_topRitualGoals = async () => {
                     },
                 })
                 .then((res) => {
-                    return optimizeActiveGoalsData(res?.goals || null) || null
+                    return optimizeActiveGoalsData((res?.goals as IGoal[]) || null) || null
                 }),
         (e) => {
             processError(`query_topRitualGoals: ${e}`)

@@ -1,6 +1,6 @@
 import { gql } from 'graphql-request'
 import { generateClient } from '../client'
-import { processError } from '@/functions/processMessage'
+import { processError } from '@/helpers/processMessage'
 import { heroes_mutation_response } from 'gold-timer-genql/lib/generated'
 
 export const updatePasswordByEmail = async (email: string, password: string): Promise<number | undefined> => {

@@ -1,5 +1,5 @@
 import { ModuleWrapper } from '@/components/ModuleWrapper'
-import { APP_ROUTES_ENUM } from '@/helpers/enums'
+import { APP_ROUTES_ENUM } from '@/services/enums'
 import { BookPage } from './components/BookPage'
 
 export const LoveStory: React.FC = () => {

@@ -1,5 +1,5 @@
 import { generateClient } from '@/graphql/client'
-import { processError } from '@/functions/processMessage'
+import { processError } from '@/helpers/processMessage'
 import { INote$, INoteSnapshotIn } from '@/modules/notes/mst/types'
 import { gql } from 'graphql-request'
 

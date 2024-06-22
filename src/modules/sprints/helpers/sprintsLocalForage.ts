@@ -1,4 +1,4 @@
-import { rootStore$ } from '@/app/StoreProvider'
+import { rootStore$ } from '@/modules/app/mst/StoreProvider'
 import { ISprintsFilter$ } from '@/modules/sprints/mst/types'
 import localForage from 'localforage'
 

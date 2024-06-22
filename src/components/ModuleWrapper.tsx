@@ -1,5 +1,5 @@
 import { TopBar } from '@/components/top-bar/TopBar'
-import { APP_ROUTES_ENUM } from '@/helpers/enums'
+import { APP_ROUTES_ENUM } from '@/services/enums'
 import { observer } from 'mobx-react-lite'
 
 export const ModuleWrapper: React.FC<{

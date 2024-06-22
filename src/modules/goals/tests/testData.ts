@@ -1,4 +1,4 @@
-import { formatDateWithTimezone } from '@/functions/date.helpers'
+import { formatDateWithTimezone } from '@/helpers/date.helpers'
 import { IGoal } from '../service'
 import { add, set, sub } from 'date-fns'
 

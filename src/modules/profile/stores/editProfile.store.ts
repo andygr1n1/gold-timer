@@ -1,6 +1,6 @@
 import { atom } from 'jotai'
 
-import { isDev } from '@/functions/isUnderDevelopment.helper'
+import { isDev } from '@/helpers/isUnderDevelopment.helper'
 import { IHero, KEY_FetchProfileData } from '../service'
 import { focusAtom } from 'jotai-optics'
 import { IEditProfile$ } from './types'

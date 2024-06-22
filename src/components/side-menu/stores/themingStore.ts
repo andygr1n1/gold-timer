@@ -1,4 +1,4 @@
-import { isDev } from '@/functions/isUnderDevelopment.helper'
+import { isDev } from '@/helpers/isUnderDevelopment.helper'
 import { atomWithStorage } from 'jotai/utils'
 
 export const darkModeAtom = atomWithStorage(

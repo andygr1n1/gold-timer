@@ -1,8 +1,8 @@
-import { getUserId } from '@/functions/getUserData'
+import { getUserId } from '@/helpers/getUserData'
 import { Client } from 'gold-timer-genql/lib/generated'
 import { filterGoalAtom } from '@/modules/goals/stores/filterGoal.store'
 import { selectedGoalAtom$ } from '@/modules/goals/stores/selectedGoal.store'
-import { setZeroTime } from '@/functions/date.helpers'
+import { setZeroTime } from '@/helpers/date.helpers'
 
 export const query_expiredGoals = (props: {
     client: Client

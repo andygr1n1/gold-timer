@@ -1,4 +1,4 @@
-import { isDev } from '@/functions/isUnderDevelopment.helper'
+import { isDev } from '@/helpers/isUnderDevelopment.helper'
 import { Atom, atom, createStore } from 'jotai'
 import { atomWithImmer } from 'jotai-immer'
 import { ISelectedGoal, ISelectedGoalState } from './types'

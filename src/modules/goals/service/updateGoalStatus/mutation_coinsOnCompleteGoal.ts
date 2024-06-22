@@ -1,14 +1,14 @@
-import { resolveData } from '@/functions/resolveData'
-import { processError } from '@/functions/processMessage'
-import { Client, goal_status_enum_enum } from 'gold-timer-genql/lib/generated'
-import { getUserCoins, getUserId } from '@/functions/getUserData'
-import { IGoal } from '../types'
-import { getCoinsFromCompletedGoal } from '@/functions/getCoinsFromCompletedGoal'
+import { resolveData } from '@/helpers/tryCatchRequest'
+import { processError } from '@/helpers/processMessage'
+import { Client } from 'gold-timer-genql/lib/generated'
+import { getUserCoins, getUserId } from '@/helpers/getUserData'
+import { IGoal, IGoalQueryTypeFilter } from '../types'
+import { getCoinsFromCompletedGoal } from '@/helpers/getCoinsFromCompletedGoal'
 
 export const mutation_coinsOnCompleteGoal = async (
     client: Client,
     goal: IGoal,
-    status: goal_status_enum_enum,
+    status: IGoalQueryTypeFilter,
 ): Promise<number | null> => {
     if (status === 'active') return null
 

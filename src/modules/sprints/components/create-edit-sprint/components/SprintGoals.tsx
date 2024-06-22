@@ -1,6 +1,6 @@
 import { Button, Form, Input, Space } from 'antd'
 import { observer } from 'mobx-react-lite'
-import { useSprintsStore } from '@/app/StoreProvider'
+import { useSprintsStore } from '@/modules/app/mst/StoreProvider'
 import { FormLabel } from '@/components/form/FormLabel'
 import { SprintGoalsList } from './SprintGoalsList'
 

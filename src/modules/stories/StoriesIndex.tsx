@@ -4,7 +4,7 @@ import { PhoenixConnection } from './static-pages/phoenix-connection/PhoenixConn
 import { LoveStory } from './static-pages/LoveStory'
 import { HealingEye } from './static-pages/healing-eye/HealingEye'
 
-export const StoriesIndex: React.FC = () => {
+const StoriesIndex: React.FC = () => {
     return (
         <Routes>
             <Route index element={<Stories />} />
@@ -14,3 +14,5 @@ export const StoriesIndex: React.FC = () => {
         </Routes>
     )
 }
+
+export default StoriesIndex

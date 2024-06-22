@@ -1,4 +1,4 @@
-import { cn } from '@/functions'
+import { cn } from '@/helpers/cn'
 
 export const Name: React.FC = () => {
     return (

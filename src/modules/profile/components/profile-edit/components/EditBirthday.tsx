@@ -1,5 +1,5 @@
 import { XDatePicker } from '@/components-x/x-date-picker/XDatePicker'
-import { formatDateWithTimezone, convertStringDate } from '@/functions/date.helpers'
+import { formatDateWithTimezone, convertStringDate } from '@/helpers/date.helpers'
 import { editProfile$_Birthday } from '@/modules/profile/stores/editProfile.store'
 import { getYear } from 'date-fns'
 import { useAtom } from 'jotai'

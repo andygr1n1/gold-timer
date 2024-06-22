@@ -1,4 +1,4 @@
-import { cn } from '@/functions'
+import { cn } from '@/helpers/cn'
 import { useEffect } from 'react'
 import ReactQuill, { ReactQuillProps } from 'react-quill'
 

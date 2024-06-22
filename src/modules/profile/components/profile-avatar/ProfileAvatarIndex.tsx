@@ -1,5 +1,5 @@
-import { rootStore$ } from '@/app/StoreProvider'
-import { useSelectUploadFile } from '@/functions/useSelectUploadFile'
+import { rootStore$ } from '@/modules/app/mst/StoreProvider'
+import { useSelectUploadFile } from '@/helpers/useSelectUploadFile'
 import { ProfileAvatar } from '@/modules/profile/components/profile-avatar/components/ProfileAvatar'
 import { ProfileImageCropDialog } from './ProfileImageCropDialog'
 import { UploadInput } from '@/components/UploadInput'

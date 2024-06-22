@@ -1,4 +1,4 @@
-import { useRootStore } from '@/app/StoreProvider'
+import { useRootStore } from '@/modules/app/mst/StoreProvider'
 import { observer } from 'mobx-react-lite'
 import { IconInfiniteLoading } from '@/assets/icons'
 import { XModal } from '@/components-x/x-modal/XModal'
