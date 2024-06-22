@@ -1,4 +1,4 @@
-import { IconFocus } from '@/assets/icons'
+import { IconFocus } from '@/assets/icons/IconFocus'
 import { StyledButton } from '@/components/buttons/StyledButton'
 import { setGoalsFilterParam } from '@/modules/goals/helpers/goalsFilterParamLocalForage'
 import { useNavigate } from 'react-router-dom'

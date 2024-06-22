@@ -8,6 +8,7 @@ import { useLoginOnValidate } from './hooks/useLoginOnValidate'
 import { IUserLoginSchema } from './services/types'
 import { useLoginInitialValues } from './hooks/useLoginInitialValues'
 import { AuthEmailInput } from '../shared-components/AuthEmailInput'
+import { GoogleOAuthProvider } from '@react-oauth/google'
 
 const Login = () => {
     const { onSubmit } = useLoginOnSubmit()
@@ -26,7 +27,9 @@ const Login = () => {
                     <LoginFooter />
                 </Form>
             </Formik>
-            <GoogleLogin />
+            <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
+                <GoogleLogin />
+            </GoogleOAuthProvider>
         </div>
     )
 }

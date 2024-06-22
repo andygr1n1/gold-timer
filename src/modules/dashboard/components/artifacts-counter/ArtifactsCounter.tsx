@@ -1,17 +1,10 @@
-import { observer } from 'mobx-react-lite'
+import { IconFocus } from '@/assets/icons/IconFocus'
 import { ArtifactsCounterItem } from './ArtifactsCounterItem'
 import { GoalsCounterDropdown } from './components/GoalsCounterDropdown'
-import { NotesCounterDropdown } from './components/NotesCounterDropdown'
-import { SprintsCounterDropdown } from './components/SprintsCounterDropdown'
 import { useFetchArtifactsCount } from './service/useFetchArtifactsCount'
-import { NoteCRUD } from '@/modules/notes/components/crud-note/NoteCRUD'
-import { IconBook, IconFocus, IconSprint } from '@/assets/icons'
-import { CreateEditSprintDialog } from '@/modules/sprints/components/create-edit-sprint/CreateEditSprintDialog'
-import { isUnderDevelopment } from '@/helpers/isUnderDevelopment.helper'
 
-export const ArtifactsCounter: React.FC = observer(() => {
-    const { activeGoalsCount, activeNotesCount, activeSprintsCount } = useFetchArtifactsCount()
-
+export const ArtifactsCounter: React.FC = () => {
+    const { activeGoalsCount } = useFetchArtifactsCount()
     return (
         <div className='xl:flex hidden w-fit items-center justify-center gap-5 '>
             <GoalsCounterDropdown
@@ -28,7 +21,7 @@ export const ArtifactsCounter: React.FC = observer(() => {
                     />
                 }
             />
-            <>
+            {/* <>
                 <NotesCounterDropdown
                     button={
                         <ArtifactsCounterItem
@@ -45,9 +38,9 @@ export const ArtifactsCounter: React.FC = observer(() => {
                     }
                 />
                 <NoteCRUD />
-            </>
+            </> */}
 
-            {isUnderDevelopment() && (
+            {/* {isUnderDevelopment() && (
                 <>
                     <SprintsCounterDropdown
                         button={
@@ -67,7 +60,7 @@ export const ArtifactsCounter: React.FC = observer(() => {
                     />
                     <CreateEditSprintDialog />
                 </>
-            )}
+            )} */}
         </div>
     )
-})
+}

@@ -2,7 +2,7 @@ import ky from 'ky'
 import { resolveError } from '@/helpers/tryCatchRequest'
 import { ISessionCredentials } from '@/modules/auth/login/services/types'
 
-export const getSessionCredentials = async (): Promise<string | null> => {
+export const server_getSessionCredentials = async (): Promise<string | null> => {
     const endpoint = import.meta.env.VITE_NODE_HEROKU_ORIGIN
     const xapikey = import.meta.env.VITE_X_API_KEY
 

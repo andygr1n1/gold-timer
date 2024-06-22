@@ -8,8 +8,9 @@ import { CompleteRitualGoal } from '../../goal-actions/CompleteRitualGoal'
 import { useMutateGoalStatus } from '@/modules/goals/service'
 import { useMutateGoalRitualize } from '@/modules/goals/service/updateGoalRitualize/useMutateGoalRitualize'
 import { isCompleted } from '@/modules/goals/helpers/goalsGuards'
-import { IconCompletedFilled, IconFocus } from '@/assets/icons'
 import { calculateIsFromFuture } from '@/modules/goals/helpers/optimizeActiveGoalsData'
+import { IconFocus } from '@/assets/icons/IconFocus'
+import { IconCompletedFilled } from '@/assets/icons/IconCompleted'
 
 export const ViewGoalFooter: React.FC<{ goal: IGoal }> = ({ goal }) => {
     const { deleted_at, goal_ritual, id } = goal

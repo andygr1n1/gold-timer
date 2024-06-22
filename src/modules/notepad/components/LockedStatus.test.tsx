@@ -10,8 +10,8 @@ vi.mock('../service/useFetchLockedStatus', () => {
 vi.mock('../service/useMutateLockedStatus', () => {
     return {
         useMutateLockedStatus: () => ({
-            mutate: (variables: { locked: boolean }) => {
-                console.info('mutate->', variables.locked)
+            mutate: (/* variables: { locked: boolean } */) => {
+                // console._('mutate->', variables.locked)
             },
         }),
     }

@@ -5,7 +5,7 @@ import { processError } from '@/helpers/processMessage'
 export type IUserCoinsInfo = { coins?: number; totalRitualPower?: number; activeGoalsCount: number }
 
 export const query_userCoinsInfo = async (id: string): Promise<IUserCoinsInfo | null> => {
-    const client = generateTSClient()
+    const client = await generateTSClient()
 
     return await resolveData<null, IUserCoinsInfo | null>(
         () =>

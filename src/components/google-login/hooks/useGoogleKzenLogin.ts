@@ -10,7 +10,6 @@ export const useGoogleKzenLogin = () => {
     const googleLogin = useGoogleLogin({
         onSuccess: async (credentialResponse) => {
             const res = await server_googleLogin({ formData: { accessId: credentialResponse.access_token } })
-            console.log('res', res)
             const jwtToken = res?.accessId
             jwtToken && setAccessIdInCookie(jwtToken)
             const data = parseJwt(jwtToken)

@@ -6,7 +6,7 @@ import { getUserId } from '@/helpers/getUserData'
 import { optimizeProfileData } from '../../helpers/optimizeProfileData'
 
 export const query_fetchProfileData = async (): Promise<IHero> => {
-    const client = generateTSClient()
+    const client = await generateTSClient()
 
     return await resolveData<IHero, IHero | IHero>(
         () =>

@@ -6,7 +6,7 @@ import { generateTSClient } from '@/graphql/client'
 import { getUserId } from '@/helpers/getUserData'
 
 export const query_fetchNotes = async (): Promise<INote$SnapshotIn[]> => {
-    const client = generateTSClient()
+    const client = await generateTSClient()
 
     return await resolveData<INote$SnapshotIn[], INote$SnapshotIn[]>(
         () =>

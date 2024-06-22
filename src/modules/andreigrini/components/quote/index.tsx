@@ -1,4 +1,4 @@
-import { IconQuotes } from "@/assets/icons"
+import { IconQuotes } from "@/assets/icons/IconQuotes"
 
 export const Quote: React.FC = () => {
     return (

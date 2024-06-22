@@ -2,7 +2,7 @@ import { APP_ROUTES_ENUM } from '@/services/enums'
 import { AndreiGriniIndex } from '@/modules/andreigrini/AndreiGriniIndex'
 import { Navigate, Route, Routes } from 'react-router-dom'
 
-const GriniRoutes: React.FC = () => {
+const PortfolioRoutes: React.FC = () => {
     return (
         <Routes>
             <Route path={`/${APP_ROUTES_ENUM.ANDREI_GRINI}`} element={<AndreiGriniIndex />} />
@@ -13,4 +13,4 @@ const GriniRoutes: React.FC = () => {
     )
 }
 
-export default GriniRoutes
+export default PortfolioRoutes

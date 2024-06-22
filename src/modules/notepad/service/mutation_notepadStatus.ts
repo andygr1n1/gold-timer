@@ -4,7 +4,7 @@ import { generateTSClient } from '@/graphql/client'
 import { getUserId } from '@/helpers/getUserData'
 
 export const mutation_notepadStatus = async (locked: boolean): Promise<boolean> => {
-    const client = generateTSClient()
+    const client = await generateTSClient()
 
     return await resolveData<boolean, boolean>(
         () =>

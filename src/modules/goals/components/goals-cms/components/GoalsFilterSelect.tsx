@@ -4,13 +4,15 @@ import { XDropdown } from '@/components-x/x-dropdown/XDropdown'
 import { XMenuDropdown } from '@/components-x/x-dropdown/XMenuDropdown'
 import { XMenuItem } from '@/components-x/x-dropdown/XMenuItem'
 import { useState } from 'react'
-import { IconCompleted, IconDeleteTemp, IconFavorite, IconFocus, IconRitual } from '@/assets/icons'
+import {  IconDeleteTemp, IconFavorite, IconRitual } from '@/assets/icons'
 import { GoalsFiltersSelectButton } from './GoalsFiltersSelectButton'
 import { StyledButton } from '@/components/buttons/StyledButton'
 import { useNavigate } from 'react-router-dom'
 import { IGoalQueryTypeFilter } from '@/modules/goals/service'
 import { setGoalsFilterParam } from '@/modules/goals/helpers/goalsFilterParamLocalForage'
 import { IconExpired } from '@/assets/icons/IconExpired'
+import { IconFocus } from '@/assets/icons/IconFocus'
+import { IconCompleted } from '@/assets/icons/IconCompleted'
 
 export const GoalsFilterSelect: React.FC = observer(() => {
     const [open, setOpen] = useState(false)

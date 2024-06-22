@@ -5,7 +5,7 @@ import { resolveData } from '@/helpers/tryCatchRequest'
 import type { achievements } from 'gold-timer-genql/lib/generated'
 
 export const query_fetchAchievements = async (): Promise<Partial<achievements>[] | undefined> => {
-    const client = generateTSClient()
+    const client = await generateTSClient()
 
     return await resolveData<Partial<achievements>[], Partial<achievements>[]>(
         () =>

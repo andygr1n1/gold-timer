@@ -1,7 +1,8 @@
 import { useAtom } from 'jotai'
 import { selectedGoalState } from '../../stores/selectedGoal.store'
 import { capitalize } from 'lodash-es'
-import { IconEdit, IconEye, IconInfinity, IconNew } from '@/assets/icons'
+import { IconEdit, IconEye, IconNew } from '@/assets/icons'
+import { IconInfinity } from '@/assets/icons/IconInfinity'
 
 export const GoalCRUDTitle = () => {
     const [state] = useAtom(selectedGoalState)

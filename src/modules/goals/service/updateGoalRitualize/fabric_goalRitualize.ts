@@ -6,7 +6,7 @@ import { IFabricGoalRitualize, IRitualizeUpdateFields } from './types'
 import { generateNewRitualCircle } from '@/helpers/generateNewRitualCircle'
 
 export const fabric_goalRitualize = async (goal: IGoal): Promise<IFabricGoalRitualize | undefined> => {
-    const client = generateTSClient({ batch: true })
+    const client = await generateTSClient({ batch: true })
 
     if (!goal.goal_ritual) return
 

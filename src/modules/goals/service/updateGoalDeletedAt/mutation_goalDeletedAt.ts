@@ -8,7 +8,7 @@ interface IGoalStatus {
 }
 
 export const mutation_goalDeletedAt = async (goal_id: string, deleted_at: boolean): Promise<IGoalStatus | null> => {
-    const client = generateTSClient()
+    const client = await generateTSClient()
 
     return await resolveData<null, IGoalStatus | null>(
         () =>

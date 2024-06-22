@@ -6,7 +6,7 @@ import { getUserId } from '@/helpers/getUserData'
 import { optimizeProfileData } from '../../helpers/optimizeProfileData'
 
 export const mutation_updateProfile = async (data: IHero): Promise<IHero | null> => {
-    const client = generateTSClient()
+    const client = await generateTSClient()
     return await resolveData<null, IHero | null>(
         () =>
             client

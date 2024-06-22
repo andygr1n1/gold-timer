@@ -7,7 +7,7 @@ import { optimizeActiveGoalsData } from '@/modules/goals/helpers/optimizeActiveG
 import { IGoal } from '@/modules/goals/service'
 
 export const query_topRitualGoals = async () => {
-    const client = generateTSClient()
+    const client = await generateTSClient()
 
     return await resolveData<null, IGoal[] | null>(
         () =>

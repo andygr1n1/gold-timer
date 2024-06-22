@@ -1,5 +1,5 @@
 import { parseJwt } from '@/helpers/parseJwt'
-import { getSessionCredentials } from '@/modules/app/service/server_getSessionCredentials'
+import { server_getSessionCredentials } from '@/services/server_getSessionCredentials'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { IUserSchema } from './types'
 import { KEY_useUserStore } from './keys'
@@ -33,7 +33,7 @@ export const useUserStore = (): {
     }
 
     const autoLogin = async () => {
-        const jwtToken = await getSessionCredentials()
+        const jwtToken = await server_getSessionCredentials()
         jwtToken && setAccessIdInCookie(jwtToken)
         const data = parseJwt(jwtToken)
         selectUser({

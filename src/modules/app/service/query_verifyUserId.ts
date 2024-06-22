@@ -3,8 +3,7 @@ import { resolveData } from '@/helpers/tryCatchRequest'
 import { generateTSClient } from '@/graphql/client'
 
 export const query_verifyUserId = async (userId: string): Promise<string> => {
-    const client = generateTSClient()
-    console.log('hey there->>>', userId)
+    const client = await generateTSClient()
     return await resolveData<string, string>(
         () =>
             client

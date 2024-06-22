@@ -6,7 +6,7 @@ import { resolveData } from '@/helpers/tryCatchRequest'
 import { IGoal } from '@/modules/goals/service/types'
 
 export const mutation_upsertGoal = async (newGoal: IInsertNewGoal, newRitual?: IInsertRitual) => {
-    const client = generateTSClient()
+    const client = await generateTSClient()
 
     return await resolveData<null, IGoal[] | null>(
         () =>

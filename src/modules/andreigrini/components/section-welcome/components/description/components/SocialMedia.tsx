@@ -1,4 +1,9 @@
-import { IconGithubStar, IconLeetCode, IconLinkedIn, IconMail, IconTelegram, IconX } from '@/assets/icons'
+import { IconGithubStar } from '@/assets/icons/IconGithub'
+import { IconLeetCode } from '@/assets/icons/IconLeetCode'
+import { IconLinkedIn } from '@/assets/icons/IconLinkedIn'
+import { IconMail } from '@/assets/icons/IconMail'
+import { IconTelegram } from '@/assets/icons/IconTelegram'
+import { IconX } from '@/assets/icons/IconX'
 import { XTooltip } from '@/components-x/x-tooltip/XTooltip'
 import { observer } from 'mobx-react-lite'
 

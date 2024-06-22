@@ -7,7 +7,7 @@ import { getUserId } from '@/helpers/getUserData'
 type IHero = Pick<heroes, 'name' | 'avatar'>
 
 export const query_fetchAvatar = async (): Promise<IHero | null> => {
-    const client = generateTSClient()
+    const client = await generateTSClient()
 
     return await resolveData<null, IHero | null>(
         () =>
@@ -20,7 +20,9 @@ export const query_fetchAvatar = async (): Promise<IHero | null> => {
                         avatar: true,
                     },
                 })
-                .then((res) => res.heroes_by_pk),
+                .then((res) => {
+                    return res.heroes_by_pk
+                }),
         (e) => {
             processError(`useFetchAvatar: ${e}`)
             return null

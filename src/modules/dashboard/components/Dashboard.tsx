@@ -1,6 +1,5 @@
 import { ModuleWrapper } from '@/components/ModuleWrapper'
 import { APP_ROUTES_ENUM } from '@/services/enums'
-import { GoalsSlidesCarouselWidget } from '@/modules/goals-slides/GoalsSlidesCarouselWidget'
 import { TopActiveGoalsWidget } from '@/modules/goals/components/goals-dashboard/top-active-goals-widget/TopActiveGoalsWidget'
 import { TopExpiredGoalsWidget } from '@/modules/goals/components/goals-dashboard/top-expired-goals-widget/TopExpiredGoalsWidget'
 import { TopFavoriteGoalsWidget } from '@/modules/goals/components/goals-dashboard/top-favorite-goals-widget/TopFavoriteGoalsWidget'
@@ -12,7 +11,7 @@ export const Dashboard: React.FC = () => {
     return (
         <ModuleWrapper context={APP_ROUTES_ENUM.DASHBOARD} topBarNodes={<ArtifactsCounter />}>
             <NotepadIndex />
-            <GoalsSlidesCarouselWidget />
+            {/* <GoalsSlidesCarouselWidget /> */}
             <TopActiveGoalsWidget />
             <TopExpiredGoalsWidget />
             <TopRitualGoalsWidget />

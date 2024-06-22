@@ -4,7 +4,7 @@ import { processError } from '@/helpers/processMessage'
 import { getUserId } from '@/helpers/getUserData'
 
 export const query_fetchNotepad = async (): Promise<string> => {
-    const client = generateTSClient()
+    const client = await generateTSClient()
 
     return await resolveData<string, string>(
         () =>

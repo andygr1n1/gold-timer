@@ -7,7 +7,7 @@ import { newGoalTemplate } from '../../stores/editGoal.store'
 import { selectedGoalAtom, selectedGoalAtom$ } from '../../stores/selectedGoal.store'
 
 export const query_fetchGoalById = async (goal_id: string): Promise<IGoal | null> => {
-    const client = generateTSClient()
+    const client = await generateTSClient()
     const selectedGoal = selectedGoalAtom$.get(selectedGoalAtom)
 
     if (selectedGoal?.is_new)

@@ -8,7 +8,7 @@ interface IFavoriteGoal {
 }
 
 export const mutation_favoriteGoal = async (goal_id: string, is_favorite: boolean): Promise<IFavoriteGoal | null> => {
-    const client = generateTSClient()
+    const client = await generateTSClient()
 
     return await resolveData<null, IFavoriteGoal | null>(
         () =>

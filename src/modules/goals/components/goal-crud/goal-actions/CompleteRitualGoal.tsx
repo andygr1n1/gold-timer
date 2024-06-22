@@ -3,8 +3,8 @@ import { IGoal } from '@/modules/goals/service/types'
 import { useAtom } from 'jotai'
 import { cancelViewMode } from '@/modules/goals/stores/selectedGoal.store'
 import { useMutateGoalStatus } from '@/modules/goals/service'
-import { IconCompletedFilled } from '@/assets/icons'
 import { isCompleted } from '@/modules/goals/helpers/goalsGuards'
+import { IconCompletedFilled } from '@/assets/icons/IconCompleted'
 
 export const CompleteRitualGoal: React.FC<{ goal: IGoal }> = ({ goal }) => {
     if (!goal || isCompleted(goal.status)) return null

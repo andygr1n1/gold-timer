@@ -1,13 +1,15 @@
 import { observer } from 'mobx-react-lite'
 import { IGoal } from '@/modules/goals/service/types'
 import { isCompleted } from '@/modules/goals/helpers/goalsGuards'
-import { IconCompleted, IconFocus, IconInfinity } from '@/assets/icons'
 import {
     calculateIsExpired,
     calculateIsRitual,
     calculateTotalRemainingDays,
 } from '@/modules/goals/helpers/optimizeActiveGoalsData'
 import { IconExpired } from '@/assets/icons/IconExpired'
+import { IconFocus } from '@/assets/icons/IconFocus'
+import { IconInfinity } from '@/assets/icons/IconInfinity'
+import { IconCompleted } from '@/assets/icons/IconCompleted'
 
 export const GoalDetails: React.FC<{ goal: IGoal }> = observer(({ goal }) => {
     return (

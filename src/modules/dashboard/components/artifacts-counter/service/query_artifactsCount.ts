@@ -5,7 +5,7 @@ import { processError } from '@/helpers/processMessage'
 export type IArtifactsCount = { activeNotesCount?: number; activeSprintsCount?: number; activeGoalsCount?: number }
 
 export const query_artifactsCount = async (id: string): Promise<IArtifactsCount | null> => {
-    const client = generateTSClient()
+    const client = await generateTSClient()
 
     return await resolveData<null, IArtifactsCount | null>(
         () =>

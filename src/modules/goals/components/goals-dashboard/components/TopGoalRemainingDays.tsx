@@ -1,4 +1,5 @@
-import { IconBellUrgent, IconFocus, IconRitual } from '@/assets/icons'
+import { IconBellUrgent, IconRitual } from '@/assets/icons'
+import { IconFocus } from '@/assets/icons/IconFocus'
 import {
     calculateIsExpired,
     calculateGoalDeadline,
