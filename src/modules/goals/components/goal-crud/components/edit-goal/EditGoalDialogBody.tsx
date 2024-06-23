@@ -1,5 +1,5 @@
 import { editGoalAtom } from '../../../../stores/editGoal.store'
-import { IGoal } from '@/modules/goals/service/types'
+import { IGoalSchema } from '@/modules/goals/service/types'
 import { EditGoalTitle } from './components/EditGoalTitle'
 import { EditGoalFooter } from './EditGoalFooter'
 import { selectedGoalAtom, selectedGoalAtom$ } from '@/modules/goals/stores/selectedGoal.store'
@@ -12,7 +12,7 @@ import { formatDateWithTimezone } from '@/helpers/date.helpers'
 import { EditModeGoalDetails } from './components/EditModeGoalDetails'
 import { RITUAL_TYPE_ENUM } from '@/services/enums'
 
-export const EditGoalDialogBody: React.FC<{ goal: IGoal }> = ({ goal }) => {
+export const EditGoalDialogBody: React.FC<{ goal: IGoalSchema }> = ({ goal }) => {
     const isNewRitual = selectedGoalAtom$.get(selectedGoalAtom)?.is_new_ritual
 
     // useMemo helps to prevent updating EditStore, example can be toggle favorite goal

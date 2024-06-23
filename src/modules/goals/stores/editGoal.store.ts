@@ -2,7 +2,7 @@ import { atom } from 'jotai'
 import { atomWithImmer } from 'jotai-immer'
 
 import { isDev } from '@/helpers/isUnderDevelopment.helper'
-import { IGoal } from '@/modules/goals/service/types'
+import { IGoalSchema } from '@/modules/goals/service/types'
 import { focusAtom } from 'jotai-optics'
 
 import { RITUAL_TYPE_ENUM } from '@/services/enums'
@@ -10,7 +10,7 @@ import { formatISO } from 'date-fns'
 
 import { KEY_FetchGoalById } from '../service/keys'
 
-export const editGoalAtom = atomWithImmer<IGoal | undefined>(undefined)
+export const editGoalAtom = atomWithImmer<IGoalSchema | undefined>(undefined)
 isDev() && (editGoalAtom.debugLabel = 'editGoalAtom')
 
 // *
@@ -34,7 +34,7 @@ export const editGoalAtom_is_favorite = focusAtom(editGoalAtom, (optic) => {
     return optic.optional().prop('is_favorite') || ''
 })
 
-export const editGoalAtom_goal_ritual___ritual_type = focusAtom<IGoal | undefined, RITUAL_TYPE_ENUM, void>(
+export const editGoalAtom_goal_ritual___ritual_type = focusAtom<IGoalSchema | undefined, RITUAL_TYPE_ENUM, void>(
     editGoalAtom,
     (optic) => {
         const goal_ritual = optic

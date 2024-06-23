@@ -1,5 +1,5 @@
 import { useLocation } from 'react-router-dom'
-import { IGoalQueryTypeFilter } from '@/modules/goals/service'
+import { IGoalStatus } from '@/modules/goals/service'
 import {
     isFilterStateActive,
     isFilterStateCompleted,
@@ -11,7 +11,7 @@ import {
 
 export const useGetGoalsParamsFilter = () => {
     const location = useLocation()
-    const paramFilter: IGoalQueryTypeFilter = location.state?.filter
+    const paramFilter: IGoalStatus = location.state?.filter
 
     const isActive = isFilterStateActive(paramFilter)
     const isExpired = isFilterStateExpired(paramFilter)

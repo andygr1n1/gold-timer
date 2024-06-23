@@ -1,15 +1,15 @@
 import { StyledButton } from '@/components/buttons/StyledButton'
-import { IGoal } from '@/modules/goals/service/types'
+import { IGoalSchema } from '@/modules/goals/service/types'
 import { useAtom } from 'jotai'
 import { cancelViewMode } from '@/modules/goals/stores/selectedGoal.store'
-import { useMutateGoalStatus } from '@/modules/goals/service'
+// import { useMutateGoalStatus } from '@/modules/goals/service'
 import { isCompleted } from '@/modules/goals/helpers/goalsGuards'
 import { IconCompletedFilled } from '@/assets/icons/IconCompleted'
 
-export const CompleteRitualGoal: React.FC<{ goal: IGoal }> = ({ goal }) => {
+export const CompleteRitualGoal: React.FC<{ goal: IGoalSchema }> = ({ goal }) => {
     if (!goal || isCompleted(goal.status)) return null
     const [, _cancelViewMode] = useAtom(cancelViewMode)
-    const _useMutateGoalStatus = useMutateGoalStatus()
+    // const _useMutateGoalStatus = useMutateGoalStatus()
 
     return (
         <>
@@ -30,7 +30,7 @@ export const CompleteRitualGoal: React.FC<{ goal: IGoal }> = ({ goal }) => {
                     </div>
                 }
                 onClick={() => {
-                    _useMutateGoalStatus.mutate({ goal, status: 'completed' })
+                    // _useMutateGoalStatus.mutate({ goal, status: 'completed' })
                     _cancelViewMode()
                 }}
             />

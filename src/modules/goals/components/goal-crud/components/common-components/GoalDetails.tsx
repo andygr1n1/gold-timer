@@ -1,5 +1,5 @@
 import { observer } from 'mobx-react-lite'
-import { IGoal } from '@/modules/goals/service/types'
+import { IGoalSchema } from '@/modules/goals/service/types'
 import { isCompleted } from '@/modules/goals/helpers/goalsGuards'
 import {
     calculateIsExpired,
@@ -11,7 +11,7 @@ import { IconFocus } from '@/assets/icons/IconFocus'
 import { IconInfinity } from '@/assets/icons/IconInfinity'
 import { IconCompleted } from '@/assets/icons/IconCompleted'
 
-export const GoalDetails: React.FC<{ goal: IGoal }> = observer(({ goal }) => {
+export const GoalDetails: React.FC<{ goal: IGoalSchema }> = observer(({ goal }) => {
     return (
         <div className='animate-opacity-5 my-10 flex w-full items-center justify-center  gap-5 rounded-md'>
             <GoalDaysUntilDeadline goal={goal} />
@@ -21,7 +21,7 @@ export const GoalDetails: React.FC<{ goal: IGoal }> = observer(({ goal }) => {
     )
 })
 
-const ImageByGoalType: React.FC<{ goal: IGoal }> = observer(({ goal }) => {
+const ImageByGoalType: React.FC<{ goal: IGoalSchema }> = observer(({ goal }) => {
     const isRitual = calculateIsRitual(goal)
     const isExpired = calculateIsExpired(goal)
     const _isCompleted = isCompleted(goal.status)
@@ -41,7 +41,7 @@ const ImageByGoalType: React.FC<{ goal: IGoal }> = observer(({ goal }) => {
     return <div className='flex items-center justify-center gap-5'>{goalIcon}</div>
 })
 
-const GoalRitualCount: React.FC<{ goal: IGoal }> = observer(({ goal }) => {
+const GoalRitualCount: React.FC<{ goal: IGoalSchema }> = observer(({ goal }) => {
     const isRitual = calculateIsRitual(goal)
 
     if (!isRitual) return null
@@ -55,7 +55,7 @@ const GoalRitualCount: React.FC<{ goal: IGoal }> = observer(({ goal }) => {
     )
 })
 
-const GoalDaysUntilDeadline: React.FC<{ goal: IGoal }> = observer(({ goal }) => {
+const GoalDaysUntilDeadline: React.FC<{ goal: IGoalSchema }> = observer(({ goal }) => {
     const { status } = goal
 
     const _totalRemainingDays = calculateTotalRemainingDays(goal)

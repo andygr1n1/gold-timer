@@ -53,6 +53,7 @@ export const query_deletedGoals = async (props: {
                             ritual_type: true,
                             ritual_power: true,
                             ritual_interval: true,
+                            created_at: true,
                         },
                     },
                 })

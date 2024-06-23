@@ -1,22 +1,22 @@
 import { IconInfinity } from '@/assets/icons/IconInfinity'
 import { FormFooter } from '@/components/form/FormFooter'
-import { IGoal } from '@/modules/goals/service/types'
+import { IGoalSchema } from '@/modules/goals/service/types'
 import { cancelViewMode } from '@/modules/goals/stores/selectedGoal.store'
 import { useAtom } from 'jotai'
 import { NewRitualGoal } from '../../goal-actions/NewRitualGoal'
 import { CompleteRitualGoal } from '../../goal-actions/CompleteRitualGoal'
-import { useMutateGoalStatus } from '@/modules/goals/service'
-import { useMutateGoalRitualize } from '@/modules/goals/service/updateGoalRitualize/useMutateGoalRitualize'
+// import { useMutateGoalStatus } from '@/modules/goals/service'
+// import { useMutateGoalRitualize } from '@/modules/goals/service/updateGoalRitualize/useMutateGoalRitualize'
 import { isCompleted } from '@/modules/goals/helpers/goalsGuards'
 import { calculateIsFromFuture } from '@/modules/goals/helpers/optimizeActiveGoalsData'
 import { IconFocus } from '@/assets/icons/IconFocus'
 import { IconCompletedFilled } from '@/assets/icons/IconCompleted'
 
-export const ViewGoalFooter: React.FC<{ goal: IGoal }> = ({ goal }) => {
+export const ViewGoalFooter: React.FC<{ goal: IGoalSchema }> = ({ goal }) => {
     const { deleted_at, goal_ritual, id } = goal
     const [, _cancelViewMode] = useAtom(cancelViewMode)
-    const _useMutateGoalStatus = useMutateGoalStatus()
-    const _useMutateGoalRitualize = useMutateGoalRitualize()
+    // const _useMutateGoalStatus = useMutateGoalStatus()
+    // const _useMutateGoalRitualize = useMutateGoalRitualize()
     const _isCompleted = isCompleted(goal.status)
     const isFromFuture = calculateIsFromFuture(goal)
 
@@ -24,9 +24,9 @@ export const ViewGoalFooter: React.FC<{ goal: IGoal }> = ({ goal }) => {
         <div className='relative'>
             <FormFooter
                 onOk={() => {
-                    !!goal_ritual
-                        ? _useMutateGoalRitualize.mutate({ goal })
-                        : _useMutateGoalStatus.mutate({ goal, status: _isCompleted ? 'active' : 'completed' })
+                    // !!goal_ritual
+                    //     ? _useMutateGoalRitualize.mutate({ goal })
+                    //     : _useMutateGoalStatus.mutate({ goal, status: _isCompleted ? 'active' : 'completed' })
 
                     !_isCompleted && _cancelViewMode()
                 }}

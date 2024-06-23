@@ -57,6 +57,7 @@ export const query_activeGoals = async (props: {
                             ritual_type: true,
                             ritual_power: true,
                             ritual_interval: true,
+                            created_at: true,
                         },
                     },
                 })

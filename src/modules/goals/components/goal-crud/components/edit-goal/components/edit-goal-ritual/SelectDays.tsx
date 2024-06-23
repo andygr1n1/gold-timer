@@ -4,6 +4,7 @@ import { generateNewRitualCircle } from '@/helpers/generateNewRitualCircle'
 import { useAtom } from 'jotai'
 import { editGoalAtom } from '@/modules/goals/stores/editGoal.store'
 import { formatDateWithTimezone, convertStringDate, setMidnightTime } from '@/helpers/date.helpers'
+import { RITUAL_TYPE_ENUM } from '@/services/enums'
 
 export const SelectDays = () => {
     const [_editGoalAtom, _setEditGoalAtom] = useAtom(editGoalAtom)
@@ -25,7 +26,7 @@ export const SelectDays = () => {
             value = 31
         }
 
-        const ritual_type = _editGoalAtom.goal_ritual?.ritual_type
+        const ritual_type = _editGoalAtom.goal_ritual?.ritual_type as RITUAL_TYPE_ENUM
         const goal_finished_at = _editGoalAtom.finished_at
             ? setMidnightTime(convertStringDate(_editGoalAtom.finished_at))
             : setMidnightTime(new Date(Date.now()))

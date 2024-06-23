@@ -1,7 +1,7 @@
-import { IGoal } from '../types'
+import { IGoalSchema } from '../types'
 
 export interface IFabricGoalRitualize {
-    goal?: IGoal | null
+    goal?: IGoalSchema | null
     coins: number | null
 }
 

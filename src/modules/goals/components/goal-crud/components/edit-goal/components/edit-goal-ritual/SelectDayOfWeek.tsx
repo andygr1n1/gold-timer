@@ -2,6 +2,7 @@ import { XSelect } from '@/components-x/x-select/XSelect'
 import { DaysOfTheWeek, formatDateWithTimezone, convertStringDate, setMidnightTime } from '@/helpers/date.helpers'
 import { generateNewRitualCircle } from '@/helpers/generateNewRitualCircle'
 import { editGoalAtom, getImmutableFinishedAt } from '@/modules/goals/stores/editGoal.store'
+import { RITUAL_TYPE_ENUM } from '@/services/enums'
 import { useAtom } from 'jotai'
 import { useEffect } from 'react'
 
@@ -24,7 +25,7 @@ export const SelectDayOfWeek = () => {
         if (!_editGoalAtom.goal_ritual) return
 
         const new_ritual_interval = +value
-        const ritual_type = _editGoalAtom.goal_ritual.ritual_type
+        const ritual_type = _editGoalAtom.goal_ritual.ritual_type as RITUAL_TYPE_ENUM
 
         const immutableFinishedAt = getImmutableFinishedAt(_editGoalAtom.id)
         const goal_finished_at = setMidnightTime(

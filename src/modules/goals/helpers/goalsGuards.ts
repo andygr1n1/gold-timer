@@ -1,31 +1,31 @@
-import { IGoalQueryTypeFilter } from '../service/types'
+import { IGoalStatus, goalStatus } from "../service"
 
-export const isCompleted = (status: IGoalQueryTypeFilter) => {
+export const isCompleted = (status: IGoalStatus) => {
     return status === 'completed'
 }
-export const isActive = (status: IGoalQueryTypeFilter) => {
+export const isActive = (status: IGoalStatus) => {
     return status === 'active'
 }
 
-export const isFilterStateExpired = (status: IGoalQueryTypeFilter) => {
+export const isFilterStateExpired = (status: IGoalStatus) => {
     return status === 'expired'
 }
 
-export const isFilterStateRitualized = (status: IGoalQueryTypeFilter) => {
-    return status === 'ritual'
+export const isFilterStateRitualized = (status: IGoalStatus) => {
+    return status === goalStatus.ritual || status === goalStatus.ritualActive
 }
-export const isFilterStateActive = (status: IGoalQueryTypeFilter) => {
+export const isFilterStateActive = (status: IGoalStatus) => {
     return status === 'active'
 }
 
-export const isFilterStateCompleted = (status: IGoalQueryTypeFilter) => {
+export const isFilterStateCompleted = (status: IGoalStatus) => {
     return status === 'completed'
 }
 
-export const isFilterStateDeleted = (status: IGoalQueryTypeFilter) => {
+export const isFilterStateDeleted = (status: IGoalStatus) => {
     return status === 'deleted'
 }
 
-export const isFilterStateFavorite = (status: IGoalQueryTypeFilter) => {
+export const isFilterStateFavorite = (status: IGoalStatus) => {
     return status === 'favorite'
 }

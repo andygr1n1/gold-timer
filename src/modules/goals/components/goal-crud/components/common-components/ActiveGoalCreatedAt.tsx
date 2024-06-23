@@ -1,8 +1,8 @@
 import { calculateCreatedDaysAgo } from '@/modules/goals/helpers/optimizeActiveGoalsData'
-import { IGoal } from '@/modules/goals/service/types'
+import { IGoalSchema } from '@/modules/goals/service/types'
 import { observer } from 'mobx-react-lite'
 
-export const ActiveGoalCreatedAt: React.FC<{ goal: IGoal }> = observer(({ goal }) => {
+export const ActiveGoalCreatedAt: React.FC<{ goal: IGoalSchema }> = observer(({ goal }) => {
     const { created_at } = goal
     const createdDaysAgo = calculateCreatedDaysAgo(goal)
 
