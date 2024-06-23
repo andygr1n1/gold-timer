@@ -3,28 +3,45 @@ import { generateTSClient } from '@/graphql/client'
 import { IGoalSchema, goalStatus, goalsResponseSchema } from '../types'
 import { setZeroTime } from '@/helpers/date.helpers'
 
-export const query_fetchActiveGoals = async (props: {
-    limit: number
+export const query_ritualGoals = async (props: {
+    expiredGoals: boolean
     userId: string
+    serverSearchInput: string
+    limit: number
+    offset?: number
 }): Promise<IGoalSchema[] | undefined> => {
-    const { limit, userId } = props
+    const { limit, offset, serverSearchInput, userId, expiredGoals } = props
     return await tryCatchRequest<Promise<undefined>, IGoalSchema[] | undefined>(
         async () => {
             const client = await generateTSClient()
             return await client
                 .query({
-                    __name: 'query_fetchActiveGoals',
+                    __name: 'query_ritualGoals',
                     goals: {
                         __args: {
+                            limit,
+                            offset,
                             order_by: [{ finished_at: 'asc' }],
                             where: {
-                                owner_id: { _eq: userId },
-                                status: { _eq: goalStatus.active },
-                                deleted_at: { _is_null: true },
-                                _not: { goal_ritual: {} },
-                                finished_at: { _gte: setZeroTime(new Date()) },
+                                _and: [
+                                    {
+                                        owner_id: { _eq: userId },
+                                        deleted_at: { _is_null: true },
+                                        status: { _eq: goalStatus.active },
+                                        goal_ritual: { ritual_power: { _gt: 0 } },
+                                        finished_at: expiredGoals ? undefined : { _gte: setZeroTime(new Date()) },
+                                    },
+                                    {
+                                        _or: serverSearchInput.length
+                                            ? [
+                                                  { title: { _ilike: `%${serverSearchInput}%` } },
+                                                  { slogan: { _ilike: `%${serverSearchInput}%` } },
+                                                  { description: { _ilike: `%${serverSearchInput}%` } },
+                                              ]
+                                            : undefined,
+                                    },
+                                ],
                             },
-                            limit,
                         },
                         id: true,
                         created_at: true,

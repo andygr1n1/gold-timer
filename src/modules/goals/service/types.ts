@@ -85,8 +85,17 @@ export const goalsResponseSchema = z.object({
 })
 
 /*  */
-
-export const goalStatusSchema = z.enum(['active', 'completed'])
+// ritualActive - ritual goals, excluding expired rituals
+export const goalStatusSchema = z.enum([
+    'active',
+    'completed',
+    'ritual',
+    'ritualActive',
+    'expired',
+    'favorite',
+    'completed',
+    'deleted',
+])
 export const goalStatus = goalStatusSchema.Values
 export type IGoalStatus = z.infer<typeof goalStatusSchema>
 

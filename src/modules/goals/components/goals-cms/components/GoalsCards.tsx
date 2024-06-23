@@ -1,23 +1,29 @@
 import { IconInfiniteLoading } from '@/assets/icons/IconInfiniteLoading'
-import { IGoalQueryTypeFilter } from '@/modules/goals/service/types'
-import { useFetchGoalsByFilterInfinity } from '@/modules/goals/service/fetchGoalsByFilter/useFetchGoalsByFilterInfinity'
+import { IGoalStatus } from '@/modules/goals/service/types'
+import { useFetchGoals } from '@/modules/goals/service/fetch-goals/useFetchGoals'
 import React, { useEffect } from 'react'
 import { useInView } from 'react-intersection-observer'
 import { TopGoal } from '../../goals-dashboard/components/TopGoal'
 import { filteredGoalsFabric } from '@/modules/goals/helpers/filteredGoalsFabric'
 import { FormLabel } from '@/components/form/FormLabel'
 import { getMonthNumber } from '@/helpers/getMonthNumber.helper'
+import { useGoalsFilters } from '../stores/useGoalsFilters.store'
 
-export const GoalsCards: React.FC<{ state: IGoalQueryTypeFilter }> = ({ state }) => {
+export const GoalsCards: React.FC<{ queryFilter: IGoalStatus }> = ({ queryFilter }) => {
+    const { serverSearchInput } = useGoalsFilters()
+    const { isLoading, goals, fetchNextPage, hasNextPage } = useFetchGoals({
+        queryFilter,
+        limit: 20,
+        serverSearchInput,
+    })
+
     const { ref, inView } = useInView()
-
-    const { isLoading, data, fetchNextPage, hasNextPage } = useFetchGoalsByFilterInfinity({ queryFilter: state })
 
     useEffect(() => {
         inView && hasNextPage && fetchNextPage()
     }, [inView, hasNextPage])
 
-    const { filteredGoals, timeFrame } = filteredGoalsFabric(data[state])
+    const { filteredGoals, timeFrame } = filteredGoalsFabric(goals)
 
     return (
         <div className='animate-opacity-3 mx-auto flex w-full flex-col gap-5'>

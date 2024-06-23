@@ -3,19 +3,25 @@ import { IsLoading } from '@/components/loading/IsLoading'
 import { TopGoalsList } from '../components/TopGoalsList'
 
 import styles from '../goalsDashboard.module.scss'
-import { useFetchRitualGoals } from '@/modules/goals/service/fetch-ritual-goals/useFetchRitualGoals'
+import { useFetchGoals } from '@/modules/goals/service/fetch-goals/useFetchGoals'
+import { goalStatus } from '@/modules/goals/service'
 
 export const TopRitualGoalsWidget: React.FC = () => {
-    const { isLoading, ritualGoals } = useFetchRitualGoals({ limit: 4, expiredGoals: false })
+       const { isLoading, goals } = useFetchGoals({
+           limit: 4,
+           serverSearchInput: '',
+           queryFilter: goalStatus.ritualActive,
+       })
+
 
     if (isLoading) return <IsLoading isLoading={isLoading} />
-    if (!ritualGoals?.length) return null
+    if (!goals?.length) return null
 
     return (
-        <div key={ritualGoals?.length} className={styles['dashboardWidgetWrapper']}>
+        <div key={goals?.length} className={styles['dashboardWidgetWrapper']}>
             <div>
                 <NavigateRitualGoals />
-                <TopGoalsList goals={ritualGoals} />
+                <TopGoalsList goals={goals} />
             </div>
         </div>
     )
