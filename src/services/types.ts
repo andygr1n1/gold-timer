@@ -10,10 +10,10 @@ export const QueryErrorSchema = z.object({
 
 /*  */
 
-export const UserRoleSchema = z.enum(['hero', 'guest', 'super_hero', 'admin'])
-export const UserRole = UserRoleSchema.Values
-export type IUserRole = z.infer<typeof UserRoleSchema>
+export const userRoleSchema = z.enum(['hero', 'guest', 'super_hero', 'admin'])
+export const userRole = userRoleSchema.Values
+export type IUserRole = z.infer<typeof userRoleSchema>
 
-export const ALLOWED_ROLES: IUserRole[] = [UserRole.admin, UserRole.guest, UserRole.hero, UserRole.super_hero]
+export const ALLOWED_ROLES: IUserRole[] = [userRole.admin, userRole.guest, userRole.hero, userRole.super_hero]
 
 /*  */

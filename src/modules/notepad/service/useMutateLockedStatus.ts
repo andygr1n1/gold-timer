@@ -8,7 +8,7 @@ export const useMutateLockedStatus = () => {
         mutationFn: ({ locked }: { locked: boolean }) => mutation_notepadStatus(locked),
 
         onSettled: () => {
-            window.queryClient.invalidateQueries({ queryKey: KEY_FetchNotepadLockedStatus() })
+            window.queryClient?.invalidateQueries({ queryKey: KEY_FetchNotepadLockedStatus() })
         },
     })
 }

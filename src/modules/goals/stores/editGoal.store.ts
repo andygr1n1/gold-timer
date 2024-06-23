@@ -65,7 +65,7 @@ export const onChangeGoalTitle = atom<null, [update: string], void>(null, (get, 
 // *
 // helpers
 export const getImmutableFinishedAt = (goalId: string): string | undefined =>
-    window.queryClient.getQueryData<unknown, string[], { finished_at: string }>(KEY_FetchGoalById(goalId))?.finished_at
+    window.queryClient?.getQueryData<unknown, string[], { finished_at: string }>(KEY_FetchGoalById(goalId))?.finished_at
 
 export const newGoalTemplate = (id: string, parent_goal_id?: string) => ({
     id: id,

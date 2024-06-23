@@ -6,7 +6,7 @@ import { mutation_coinsOnCompleteGoal } from './mutation_coinsOnCompleteGoal'
 import { mutation_goalStatusCompleted } from './mutation_goalStatusCompleted'
 
 export const fabric_goalStatus = async (goal: IGoal, status: IGoalQueryTypeFilter): Promise<IFabricGoalStatus> => {
-    const client = await generateTSClient({ batch: true })
+    const client = await generateTSClient()
     const statusMutation = () =>
         status === 'completed'
             ? mutation_goalStatusCompleted(client, goal.id)

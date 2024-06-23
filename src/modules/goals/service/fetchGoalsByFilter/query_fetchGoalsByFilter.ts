@@ -23,7 +23,7 @@ export const query_fetchGoalsByFilter = async (props: {
     filterByText: boolean
 }): Promise<IGoal[] | null> => {
     const { limit, filter, offset, filterByText } = props
-    const client = await generateTSClient({ batch: true })
+    const client = await generateTSClient()
     const res = await Promise.all(
         compact([
             query_activeGoals({ client, queryIsActive: filter.active, limit, offset, filterByText }),

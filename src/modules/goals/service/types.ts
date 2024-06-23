@@ -1,5 +1,5 @@
-import { goal_difficulty_enum, goals, goals_rituals, Scalars } from 'gold-timer-genql/lib/generated'
-
+import { goals, goals_rituals, Scalars } from 'gold-timer-genql/lib/generated'
+import { z } from 'zod'
 import { DIFFICULTY_ENUM, RITUAL_TYPE_ENUM } from '@/services/enums'
 
 export type IGoalQueryTypeFilter = 'active' | 'ritual' | 'expired' | 'favorite' | 'completed' | 'deleted' | 'all'
@@ -54,3 +54,42 @@ export type IActiveGoals = {
         [key in IGoalQueryTypeFilter]: IGoal[]
     }>
 }
+
+// Define the schema for goal_ritual
+const goalRitualSchema = z.object({
+    ritual_id: z.string().uuid(),
+    ritual_type: z.string(),
+    ritual_power: z.number(),
+    ritual_interval: z.number(),
+})
+
+// Define the schema for the goals
+const goalSchema = z.object({
+    id: z.string().uuid(),
+    created_at: z.string(),
+    deleted_at: z.string().nullable(),
+    finished_at: z.string().nullable(),
+    is_favorite: z.boolean(),
+    title: z.string(),
+    slogan: z.string(),
+    description: z.string(),
+    status: z.string(),
+    difficulty: z.string(),
+    goal_ritual: goalRitualSchema.nullable(),
+})
+
+export type IGoalSchema = z.infer<typeof goalSchema>
+
+export const goalsResponseSchema = z.object({
+    goals: z.array(goalSchema),
+})
+
+/*  */
+
+export const goalStatusSchema = z.enum(['active', 'completed'])
+export const goalStatus = goalStatusSchema.Values
+export type IGoalStatus = z.infer<typeof goalStatusSchema>
+
+export const GOAL_STATUSES: IGoalStatus[] = [goalStatus.active, goalStatus.completed]
+
+/*  */

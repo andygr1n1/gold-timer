@@ -1,7 +1,7 @@
 import { convertStringDate, setMidnightTime } from '@/helpers/date.helpers'
 import { differenceInCalendarDays, isFuture, set } from 'date-fns'
 import { isArray } from 'lodash-es'
-import { IGoal } from '../service/types'
+import { IGoal, IGoalSchema } from '../service/types'
 
 export const optimizeActiveGoalsData = (data: IGoal[] | IGoal | null): IGoal[] => {
     if (!data) return []
@@ -18,8 +18,8 @@ export const calculateIsRitual = (goal: IGoal): boolean => {
     return !!goal.goal_ritual?.ritual_power
 }
 
-export const calculateIsFromFuture = (goal: IGoal): boolean => {
-    if (!goal.created_at) return false
+export const calculateIsFromFuture = (goal: IGoalSchema): boolean => {
+    if (!goal.created_at || !goal.finished_at) return false
 
     return (
         !!(new Date(goal.created_at) > new Date()) ||

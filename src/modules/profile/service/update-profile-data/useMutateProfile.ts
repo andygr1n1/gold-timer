@@ -11,11 +11,11 @@ export const useMutateProfile = () => {
         },
         onSuccess: (res) => {
             if (!res) return
-            window.queryClient.invalidateQueries({ queryKey: KEY_FetchProfileData() })
+            window.queryClient?.invalidateQueries({ queryKey: KEY_FetchProfileData() })
             // *
             // to update the name is Sidebar
             //
-            window.queryClient.invalidateQueries({ queryKey: KEY_FetchAvatar() })
+            window.queryClient?.invalidateQueries({ queryKey: KEY_FetchAvatar() })
         },
     })
 

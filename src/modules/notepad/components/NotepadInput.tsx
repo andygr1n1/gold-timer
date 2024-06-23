@@ -26,7 +26,7 @@ export const NotepadInput: React.FC = () => {
             content={description}
             onChangeContent={(content) => {
                 saveDescription(content)
-                window.queryClient.setQueryData(KEY_FetchNotepad(), () => {
+                window.queryClient?.setQueryData(KEY_FetchNotepad(), () => {
                     return content || ''
                 })
             }}

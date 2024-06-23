@@ -20,7 +20,7 @@ export const useMutateGoalRitualize = () => {
             if (!goalId) return
 
             goalsQueryKeysValues.forEach((filter) => {
-                window.queryClient.setQueryData(
+                window.queryClient?.setQueryData(
                     KEY_FetchGoalsByFilter(filter),
                     (oldData: IGoal[] | { pages: { data: IGoal[] }[] }) => {
                         const newData = oldData ? proxyConvert(oldData) : undefined
@@ -34,14 +34,14 @@ export const useMutateGoalRitualize = () => {
                 )
             })
 
-            window.queryClient.setQueryData(KEY_FetchGoalById(goalId), (oldData: IGoal) => {
+            window.queryClient?.setQueryData(KEY_FetchGoalById(goalId), (oldData: IGoal) => {
                 const selected = oldData ? proxyConvert(oldData) : undefined
                 replaceObjectValues(selected, res.goal)
                 return selected
             })
 
             res.coins &&
-                window.queryClient.setQueryData(['useFetchUserCoinsInfo'], (oldData: IUserCoinsInfo) => {
+                window.queryClient?.setQueryData(['useFetchUserCoinsInfo'], (oldData: IUserCoinsInfo) => {
                     return cloneDeep({
                         ...oldData,
                         coins: res.coins,
@@ -54,8 +54,8 @@ export const useMutateGoalRitualize = () => {
         onSettled: (data) => {
             if (!data) return
 
-            isDashboard() && window.queryClient.invalidateQueries({ queryKey: goalsQueryKeys.DASHBOARD })
-            isDashboard() && window.queryClient.invalidateQueries({ queryKey: KEY_FetchTopRitualGoals() })
+            isDashboard() && window.queryClient?.invalidateQueries({ queryKey: goalsQueryKeys.DASHBOARD })
+            isDashboard() && window.queryClient?.invalidateQueries({ queryKey: KEY_FetchTopRitualGoals() })
         },
     })
 

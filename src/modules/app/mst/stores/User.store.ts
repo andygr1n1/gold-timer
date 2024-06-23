@@ -36,7 +36,7 @@ export const User$ = types
                 yield updateUserProfileImage(newAvatar)
                 avatarToDelete && (yield deleteImageFromServer(avatarToDelete, SERVER_ROUTES.PROFILE_IMAGE_DELETE))
                 rootStore$.onChangeField('loading', false)
-                window.queryClient.invalidateQueries({ queryKey: KEY_FetchAvatar() })
+                window.queryClient?.invalidateQueries({ queryKey: KEY_FetchAvatar() })
             } catch (e) {
                 processError(e, 'saveNewProfileImage error')
                 rootStore$.onChangeField('loading', false)

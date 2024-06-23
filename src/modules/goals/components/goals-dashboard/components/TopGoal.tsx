@@ -4,9 +4,9 @@ import { selectedGoalAtom, selectedGoalAtom$ } from '@/modules/goals/stores/sele
 import { GoalContextMenu } from './GoalContextMenu'
 import { TopGoalBody } from './TopGoalBody'
 
-import { type IGoal } from '@/modules/goals/service/types'
+import { IGoalSchema, type IGoal } from '@/modules/goals/service/types'
 
-export const TopGoal: React.FC<{ goal: IGoal; className?: string; zIndex?: number }> = ({
+export const TopGoal: React.FC<{ goal: IGoalSchema; className?: string; zIndex?: number }> = ({
     goal,
     className = '',
     zIndex,

@@ -20,7 +20,7 @@ export const useMutateGoalFavorite = () => {
             if (!res) return
 
             goalsQueryKeysValues.forEach((filter) => {
-                window.queryClient.setQueryData(
+                window.queryClient?.setQueryData(
                     KEY_FetchGoalsByFilter(filter),
                     (oldData: IGoal[] | { pages: { data: IGoal[] }[] }) => {
                         const newData = oldData ? proxyConvert(oldData) : undefined
@@ -35,13 +35,13 @@ export const useMutateGoalFavorite = () => {
             })
 
             selectedGoal?.id &&
-                window.queryClient.setQueryData(KEY_FetchGoalById(selectedGoal.id), (oldData: ISelectedGoal) => {
+                window.queryClient?.setQueryData(KEY_FetchGoalById(selectedGoal.id), (oldData: ISelectedGoal) => {
                     return { ...oldData, is_favorite: res?.is_favorite }
                 })
         },
         onSettled: () => {
-            isDashboard() && window.queryClient.invalidateQueries({ queryKey: goalsQueryKeys.DASHBOARD })
-            isDashboard() && window.queryClient.invalidateQueries({ queryKey: KEY_FetchTopRitualGoals() })
+            isDashboard() && window.queryClient?.invalidateQueries({ queryKey: goalsQueryKeys.DASHBOARD })
+            isDashboard() && window.queryClient?.invalidateQueries({ queryKey: KEY_FetchTopRitualGoals() })
         },
     })
     return mutation

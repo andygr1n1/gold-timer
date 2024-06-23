@@ -11,7 +11,7 @@ isDev() && (editProfile$.debugLabel = 'editProfile$')
 // *
 // actions
 export const openProfileEdit = atom(null, (get, set) => {
-    set(editProfile$, () => window.queryClient.getQueryData<unknown, string[], IHero>(KEY_FetchProfileData()))
+    set(editProfile$, () => window.queryClient?.getQueryData<unknown, string[], IHero>(KEY_FetchProfileData()))
 })
 
 // *

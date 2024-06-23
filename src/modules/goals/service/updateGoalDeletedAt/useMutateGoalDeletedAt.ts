@@ -22,7 +22,7 @@ export const useMutateGoalDeletedAt = () => {
             if (!res) return
 
             goalsQueryKeysValues.forEach((filter) => {
-                window.queryClient.setQueryData(
+                window.queryClient?.setQueryData(
                     KEY_FetchGoalsByFilter(filter),
                     (oldData: IGoal[] | { pages: { data: IGoal[] }[] }) => {
                         const newData = oldData ? proxyConvert(oldData) : undefined
@@ -37,14 +37,14 @@ export const useMutateGoalDeletedAt = () => {
                 )
             })
             selectedGoal?.id &&
-                window.queryClient.setQueryData(KEY_FetchGoalById(selectedGoal.id), (oldData: IGoal) => {
+                window.queryClient?.setQueryData(KEY_FetchGoalById(selectedGoal.id), (oldData: IGoal) => {
                     return optimizeActiveGoalsData({ ...oldData, deleted_at: res?.deleted_at })?.[0]
                 })
         },
         onSettled: () => {
-            isDashboard() && window.queryClient.invalidateQueries({ queryKey: goalsQueryKeys.DASHBOARD })
-            isDashboard() && window.queryClient.invalidateQueries({ queryKey: KEY_FetchArtifactsCount() })
-            isDashboard() && window.queryClient.invalidateQueries({ queryKey: KEY_FetchTopRitualGoals() })
+            isDashboard() && window.queryClient?.invalidateQueries({ queryKey: goalsQueryKeys.DASHBOARD })
+            isDashboard() && window.queryClient?.invalidateQueries({ queryKey: KEY_FetchArtifactsCount() })
+            isDashboard() && window.queryClient?.invalidateQueries({ queryKey: KEY_FetchTopRitualGoals() })
         },
     })
 

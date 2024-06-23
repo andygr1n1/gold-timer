@@ -12,7 +12,7 @@ export const useFetchAchievements = (): {
         queryKey: ['achievements'],
         queryFn: async () => await query_fetchAchievements(),
         initialData: () => {
-            return window.queryClient.getQueryData<achievements[]>(['achievements'])
+            return window.queryClient?.getQueryData<achievements[]>(['achievements'])
         },
         staleTime: Infinity,
         refetchOnWindowFocus: false,

@@ -12,16 +12,21 @@ export const generateClient = (): GraphQLClient => {
     return client
 }
 
-export const generateTSClient = async (options: { batch: boolean } = { batch: false }) => {
+export const generateTSClient = async () => {
     const { accessJwt } = await getAccessJwt()
     const Authorization = `Bearer ${accessJwt}`
-    return createClient({
-        url: import.meta.env.VITE_CLIENT_ENDPOINT,
-        // headers: { 'x-hasura-admin-secret': import.meta.env.VITE_X_HASURA_ADMIN_SECRET },
-        headers: { Authorization },
 
-        ...options,
-    })
+    let client = window.genqlClient
+    if (!client) {
+        client = createClient({
+            url: import.meta.env.VITE_CLIENT_ENDPOINT,
+            headers: { Authorization },
+            batch: true,
+        })
+        window.genqlClient = client
+    }
+
+    return client
 }
 
 const getAccessJwt = async () => {
@@ -29,6 +34,7 @@ const getAccessJwt = async () => {
 
     const verify = jwtVerify(accessJwt)
     if (!verify || !accessJwt) {
+        window.genqlClient = null
         accessJwt = await server_getSessionCredentials()
         accessJwt && setAccessIdInCookie(accessJwt)
     }

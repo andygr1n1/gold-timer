@@ -10,6 +10,7 @@ export const useUserStore = (): {
     selectUser: (props: { user: Partial<IUserSchema> }) => void
     autoLogin: () => Promise<void>
     logout: () => void
+    userId: string
 } => {
     const queryClient = useQueryClient()
 
@@ -18,7 +19,7 @@ export const useUserStore = (): {
         staleTime: Infinity,
         refetchOnWindowFocus: false,
         refetchOnMount: false,
-        initialData: { isLoading: true },
+        initialData: { isLoading: true, role: 'guest' },
     })
 
     const selectUser = (props: { user: Partial<IUserSchema> }) => {
@@ -28,7 +29,7 @@ export const useUserStore = (): {
     const logout = () => {
         /* double KEY_useUserStore for reactivity  */
         queryClient.setQueryData(KEY_useUserStore(), { userId: null, role: null, isLoading: false })
-        window.queryClient.clear()
+        window.queryClient?.clear()
         queryClient.setQueryData(KEY_useUserStore(), { userId: null, role: null, isLoading: false })
     }
 
@@ -41,5 +42,7 @@ export const useUserStore = (): {
         })
     }
 
-    return { store, selectUser, autoLogin, logout }
+    const userId = store.userId || ''
+
+    return { store, selectUser, autoLogin, logout, userId }
 }
