@@ -6,7 +6,7 @@ import {
     calculateTotalRemainingDays,
     calculateIsRitual,
 } from '@/modules/goals/helpers/optimizeActiveGoalsData'
-import {  IGoalSchema } from '@/modules/goals/service'
+import { IGoalSchema } from '@/modules/goals/shared-service'
 
 export const TopGoalRemainingDays: React.FC<{ goal: IGoalSchema }> = ({ goal }) => {
     const isExpired = calculateIsExpired(goal)
@@ -18,7 +18,7 @@ export const TopGoalRemainingDays: React.FC<{ goal: IGoalSchema }> = ({ goal }) 
             {isExpired ? (
                 <div className='opacity-40'>
                     {calculateIsRitual(goal) ? (
-                        <IconRitual width={24} height={24}  />
+                        <IconRitual width={24} height={24} />
                     ) : (
                         <IconFocus width={24} height={24} />
                     )}

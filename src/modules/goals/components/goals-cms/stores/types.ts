@@ -1,4 +1,4 @@
-import { goalStatusSchema } from '@/modules/goals/service'
+import { goalStatusSchema } from '@/modules/goals/shared-service'
 import { z } from 'zod'
 
 export const KEY_useGoalsFiltersStore = () => ['KEY_useGoalsFiltersStore']

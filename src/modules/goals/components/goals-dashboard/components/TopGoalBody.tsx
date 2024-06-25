@@ -1,5 +1,5 @@
 import { getTopGoalColor } from '../../../helpers/getTopGoalColor'
-import {  IGoalSchema } from '@/modules/goals/service/types'
+import { IGoalSchema } from '@/modules/goals/shared-service/types'
 import { TopGoalRemainingDays } from './TopGoalRemainingDays'
 import { TopGoalTitle } from './TopGoalTitle'
 

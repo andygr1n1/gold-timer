@@ -5,8 +5,10 @@ import { useFetchLockedStatus } from '../service/useFetchLockedStatus'
 import { useFetchNotepad } from '../service/useFetchNotepad'
 import { useMutateNotepad } from '../service/useMutateNotepad'
 import { XRte } from '@/components-x/x-rte/XRte'
+import { useQueryClient } from '@tanstack/react-query'
 
 export const NotepadInput: React.FC = () => {
+    const queryClient = useQueryClient()
     const { isLocked } = useFetchLockedStatus()
     const { description } = useFetchNotepad()
     const _useMutateNotepad = useMutateNotepad()
@@ -26,7 +28,7 @@ export const NotepadInput: React.FC = () => {
             content={description}
             onChangeContent={(content) => {
                 saveDescription(content)
-                window.queryClient?.setQueryData(KEY_FetchNotepad(), () => {
+                queryClient.setQueryData(KEY_FetchNotepad(), () => {
                     return content || ''
                 })
             }}

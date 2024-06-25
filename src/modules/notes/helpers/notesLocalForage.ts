@@ -1,6 +1,6 @@
 import localForage from 'localforage'
 import { INotesFilter$ } from '../mst/types'
-import { getUserId } from '@/helpers/getUserData'
+import { getUserId } from '@/helpers/getUserId'
 
 const notesFilterStore = localForage.createInstance({
     name: `notes_filters_store__${getUserId()}`,

@@ -2,7 +2,7 @@ import { gql } from 'graphql-request'
 import { generateClient } from '../../../graphql/client'
 import { processError } from '@/helpers/processMessage'
 import { IGoalSlide$SnIn } from '../mst/types'
-import { getUserId } from '@/helpers/getUserData'
+import { getUserId } from '@/helpers/getUserId'
 
 export const query_fetchGoalsSlides = async (): Promise<IGoalSlide$SnIn[] | undefined> => {
     const client = generateClient()

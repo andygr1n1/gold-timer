@@ -5,7 +5,7 @@ import { upsertNote } from '@/modules/notes/graphql/mutation_insertNote'
 import { compact } from 'lodash-es'
 
 import { processError } from '@/helpers/processMessage'
-import { getUserId } from '@/helpers/getUserData'
+import { getUserId } from '@/helpers/getUserId'
 import { rootStore$ } from '@/modules/app/mst/StoreProvider'
 
 export const NoteNew$ = Note$.named('NoteNew$').actions((self) => ({

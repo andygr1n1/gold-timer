@@ -1,7 +1,7 @@
 import { resolveData } from '@/helpers/tryCatchRequest'
 import { processError } from '@/helpers/processMessage'
 import { generateTSClient } from '@/graphql/client'
-import { getUserId } from '@/helpers/getUserData'
+import { getUserId } from '@/helpers/getUserId'
 
 export const mutation_notepadStatus = async (locked: boolean): Promise<boolean> => {
     const client = await generateTSClient()

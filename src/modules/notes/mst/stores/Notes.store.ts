@@ -58,7 +58,7 @@ export const Notes$ = types
                 res && self.notes.push(res)
 
                 self.new_note = undefined
-                window.queryClient?.invalidateQueries({ queryKey: ['useFetchArtifactsCount'] })
+                // window.queryClient?.invalidateQueries({ queryKey: ['useFetchArtifactsCount'] })
             } catch (e) {
                 processError(e, 'createNewNote error')
             }
@@ -75,7 +75,7 @@ export const Notes$ = types
                     destroy(destroyNote)
                     clearTimeout(timeoutId)
                 }, 500)
-                window.queryClient?.invalidateQueries({ queryKey: ['useFetchArtifactsCount'] })
+                // window.queryClient?.invalidateQueries({ queryKey: ['useFetchArtifactsCount'] })
             } catch (e) {
                 processError(e, 'createWidgetNewNote error')
             }

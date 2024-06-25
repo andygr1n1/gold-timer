@@ -2,13 +2,11 @@ import { atom } from 'jotai'
 import { atomWithImmer } from 'jotai-immer'
 
 import { isDev } from '@/helpers/isUnderDevelopment.helper'
-import { IGoalSchema } from '@/modules/goals/service/types'
+import { IGoalSchema } from '@/modules/goals/shared-service/types'
 import { focusAtom } from 'jotai-optics'
 
 import { RITUAL_TYPE_ENUM } from '@/services/enums'
 import { formatISO } from 'date-fns'
-
-import { KEY_FetchGoalById } from '../service/keys'
 
 export const editGoalAtom = atomWithImmer<IGoalSchema | undefined>(undefined)
 isDev() && (editGoalAtom.debugLabel = 'editGoalAtom')
@@ -64,8 +62,8 @@ export const onChangeGoalTitle = atom<null, [update: string], void>(null, (get, 
 
 // *
 // helpers
-export const getImmutableFinishedAt = (goalId: string): string | undefined =>
-    window.queryClient?.getQueryData<unknown, string[], { finished_at: string }>(KEY_FetchGoalById(goalId))?.finished_at
+// export const getImmutableFinishedAt = (goalId: string): string | undefined =>
+//     window.queryClient?.getQueryData<unknown, string[], { finished_at: string }>(KEY_FetchGoalById(goalId))?.finished_at
 
 export const newGoalTemplate = (id: string, parent_goal_id?: string) => ({
     id: id,

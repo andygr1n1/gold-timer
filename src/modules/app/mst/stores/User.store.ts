@@ -4,7 +4,6 @@ import { deleteImageFromServer, uploadNewImageToServer } from '@/services/image/
 import { SERVER_ROUTES } from '@/services/enums'
 import { updateUserProfileImage } from '@/modules/profile/service/update-avatar/updateUserProfileImage.m'
 import { rootStore$ } from '@/modules/app/mst/StoreProvider'
-import { KEY_FetchAvatar } from '@/modules/profile/service'
 
 export const User$ = types
     .model('User$', {
@@ -36,7 +35,7 @@ export const User$ = types
                 yield updateUserProfileImage(newAvatar)
                 avatarToDelete && (yield deleteImageFromServer(avatarToDelete, SERVER_ROUTES.PROFILE_IMAGE_DELETE))
                 rootStore$.onChangeField('loading', false)
-                window.queryClient?.invalidateQueries({ queryKey: KEY_FetchAvatar() })
+                // window.queryClient?.invalidateQueries({ queryKey: KEY_FetchAvatar() })
             } catch (e) {
                 processError(e, 'saveNewProfileImage error')
                 rootStore$.onChangeField('loading', false)

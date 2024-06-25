@@ -3,12 +3,12 @@ import { XMenuDropdown } from '@/components-x/x-dropdown/XMenuDropdown'
 import { XMenuItem } from '@/components-x/x-dropdown/XMenuItem'
 import { selectedGoalAtom, selectedGoalAtom$ } from '@/modules/goals/stores/selectedGoal.store'
 import { IconEye } from '@/assets/icons/IconEye'
-import {  IGoalSchema } from '@/modules/goals/service/types'
-import { ToggleFavorite } from '../../goal-crud/goal-actions/ToggleFavoriteGoal'
-import { DeleteGoal } from '../../goal-crud/goal-actions/DeleteGoal'
+import { IGoalSchema } from '@/modules/goals/shared-service/types'
+import { GoalIsFavorite } from '../../../shared-components/goal-is-favorite/GoalIsFavorite'
+import { GoalDeletedAt } from '../../../shared-components/goal-deleted-at/GoalDeletedAt'
 import { StyledButton } from '@/components/buttons/StyledButton'
-import { ToggleEditGoal } from '../../goal-crud/goal-actions/ToggleEditGoal'
-import { CreateChildGoal } from '../../goal-crud/goal-actions/CreateChildGoal'
+import { ToggleEditGoal } from '../../goal-editor/components/common-components/goal-actions/ToggleEditGoal'
+import { CreateChildGoal } from '../../goal-editor/components/common-components/goal-actions/CreateChildGoal'
 
 export const GoalContextMenu: React.FC<{ goal: IGoalSchema; action: () => void; forceMode?: boolean }> = ({
     goal,
@@ -17,7 +17,7 @@ export const GoalContextMenu: React.FC<{ goal: IGoalSchema; action: () => void; 
     return (
         <XMenuDropdown>
             <XMenuItem>
-                <ToggleFavorite
+                <GoalIsFavorite
                     goalId={goal.id}
                     isFavorite={!!goal.is_favorite}
                     label={
@@ -45,7 +45,7 @@ export const GoalContextMenu: React.FC<{ goal: IGoalSchema; action: () => void; 
             </XMenuItem>
 
             <XMenuItem onClick={onClose}>
-                <DeleteGoal
+                <GoalDeletedAt
                     goalId={goal.id}
                     deletedAt={!!goal.deleted_at}
                     label={

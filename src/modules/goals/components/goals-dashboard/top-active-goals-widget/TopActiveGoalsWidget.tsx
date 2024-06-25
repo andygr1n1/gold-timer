@@ -2,8 +2,8 @@ import { IsLoading } from '@/components/loading/IsLoading'
 import { NavigateAllActiveGoals } from './NavigateAllActiveGoals'
 import { CreateGoalAction } from '../components/CreateGoalAction'
 import { TopGoalsList } from '../components/TopGoalsList'
-import { useFetchGoals } from '../../../service/fetch-goals/useFetchGoals'
-import { goalStatus } from '@/modules/goals/service'
+import { useFetchGoals } from '../../../shared-service/fetch-goals/useFetchGoals'
+import { goalStatus } from '@/modules/goals/shared-service'
 import styles from '../goalsDashboard.module.scss'
 
 export const TopActiveGoalsWidget: React.FC = () => {
@@ -16,11 +16,10 @@ export const TopActiveGoalsWidget: React.FC = () => {
     return (
         <div key={goals?.length} className={styles['dashboardWidgetWrapper']}>
             <div>
-                {isLoading ? (
-                    <IsLoading isLoading={isLoading} />
-                ) : goals?.length ? (
+                <NavigateAllActiveGoals />
+                <IsLoading isLoading={isLoading} />
+                {goals?.length ? (
                     <>
-                        <NavigateAllActiveGoals />
                         <TopGoalsList goals={goals} />
                     </>
                 ) : (

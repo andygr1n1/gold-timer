@@ -1,16 +1,17 @@
 import { useTogglePopoverState } from '@/hooks/useTogglePopoverState.hook'
 import { XDropdown } from '@/components-x/x-dropdown/XDropdown'
-import { selectedGoalAtom, selectedGoalAtom$ } from '@/modules/goals/stores/selectedGoal.store'
 import { GoalContextMenu } from './GoalContextMenu'
 import { TopGoalBody } from './TopGoalBody'
 
-import { IGoalSchema } from '@/modules/goals/service/types'
+import { IGoalSchema } from '@/modules/goals/shared-service/types'
+import { useGoalEditor$ } from '../../goal-editor/stores/useGoalEditor.store'
 
 export const TopGoal: React.FC<{ goal: IGoalSchema; className?: string; zIndex?: number }> = ({
     goal,
     className = '',
     zIndex,
 }) => {
+    const { setState } = useGoalEditor$()
     const { popoverState, setPopoverState } = useTogglePopoverState()
 
     return (
@@ -28,7 +29,8 @@ export const TopGoal: React.FC<{ goal: IGoalSchema; className?: string; zIndex?:
                 <TopGoalBody
                     goal={goal}
                     selectGoal={() => {
-                        selectedGoalAtom$.set(selectedGoalAtom, { id: goal.id, is_edit: false, is_new: false })
+                        // selectedGoalAtom$.set(selectedGoalAtom, { id: goal.id, is_edit: false, is_new: false })
+                        setState({ edit: false, goalId: goal.id, open: true })
                         setPopoverState(false)
                     }}
                     onRightClick={() => {

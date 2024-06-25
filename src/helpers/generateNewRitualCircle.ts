@@ -1,8 +1,9 @@
 import { add, getDay, set } from 'date-fns'
 import { RITUAL_TYPE_ENUM } from '../services/enums'
+import { IGoalRitualType } from '@/modules/goals/shared-service'
 
 interface INewRitualCircleProps {
-    ritual_type: RITUAL_TYPE_ENUM
+    ritual_type: IGoalRitualType
     new_ritual_interval: number
     // goal_created_at: Date
     goal_finished_at: Date

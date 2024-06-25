@@ -1,7 +1,7 @@
-import { GoalCRUDProvider } from '../goal-crud/GoalCRUD'
+import { GoalCRUDProvider } from '../goal-editor/GoalEditor'
 import { Navigate, Route, Routes } from 'react-router-dom'
 import { GoalsByFilterIndex } from './GoalsByFilterIndex'
-import { useSetGoalsParamsFilter } from '../../hooks/useSetGoalsParamsFilter'
+import { useSetGoalsParamsFilter } from '../../shared-hooks/useSetGoalsParamsFilter.hook'
 
 const GoalsCmsIndex: React.FC = () => {
     const { filter } = useSetGoalsParamsFilter()

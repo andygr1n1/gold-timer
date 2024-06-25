@@ -1,5 +1,5 @@
 import { compact, uniq } from 'lodash-es'
-import { IGoalSchema } from '../service/types'
+import { IGoalSchema } from '../shared-service/types'
 import { format } from 'date-fns'
 import { convertStringDate } from '@/helpers/date.helpers'
 

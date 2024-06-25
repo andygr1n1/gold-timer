@@ -49,7 +49,7 @@ export const Note$ = types
                 const selected = notes?.find((note) => note.id === self.id)
                 selected?.onChangeField('deleted_at', result)
                 self.deleted_at = result
-                window.queryClient?.invalidateQueries({ queryKey: ['useFetchArtifactsCount'] })
+                // window.queryClient?.invalidateQueries({ queryKey: ['useFetchArtifactsCount'] })
             } catch (e) {
                 processError(e)
             }
@@ -63,7 +63,7 @@ export const Note$ = types
                 const selected = notes?.find((note) => note.id === self.id)
                 selected?.onChangeField('archived', result)
                 self.archived = result
-                window.queryClient?.invalidateQueries({ queryKey: ['useFetchArtifactsCount'] })
+                // window.queryClient?.invalidateQueries({ queryKey: ['useFetchArtifactsCount'] })
             } catch (e) {
                 processError(e)
             }

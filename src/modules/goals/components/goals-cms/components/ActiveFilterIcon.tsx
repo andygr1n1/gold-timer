@@ -1,5 +1,5 @@
 import { IconDeleteTemp, IconFavorite, IconRitual } from '@/assets/icons'
-import { useGetGoalsParamsFilter } from '../../../hooks/useGetGoalsParamsFilter'
+import { useGetGoalsParamsFilter } from '../../../shared-hooks/useGetGoalsParamsFilter.hook'
 import { IconExpired } from '@/assets/icons/IconExpired'
 import { IconFocus } from '@/assets/icons/IconFocus'
 import { IconCompleted } from '@/assets/icons/IconCompleted'

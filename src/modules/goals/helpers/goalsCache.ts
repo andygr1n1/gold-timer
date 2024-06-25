@@ -1,5 +1,5 @@
 import { flatten } from 'lodash-es'
-import { IGoalSchema } from '../service/types'
+import { IGoalSchema } from '../shared-service/types'
 
 export const getSelectedGoalFromCache = (
     data: IGoalSchema[] | { pages: { data: IGoalSchema[] }[] },

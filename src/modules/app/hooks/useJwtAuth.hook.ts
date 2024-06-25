@@ -1,8 +1,8 @@
-import { useUserStore } from '@/services/user-store/useUserStore.service'
+import { useUserStore$ } from '@/services/user-store/useUserStore.service'
 import { useEffect } from 'react'
 
 export const useJwtAuth = () => {
-    const { store, autoLogin } = useUserStore()
+    const { store, autoLogin } = useUserStore$()
 
     useEffect(() => {
         autoLogin()

@@ -3,7 +3,7 @@ import { INote$SnapshotIn } from '@/modules/notes/mst/types'
 
 import { resolveData } from '@/helpers/tryCatchRequest'
 import { generateTSClient } from '@/graphql/client'
-import { getUserId } from '@/helpers/getUserData'
+import { getUserId } from '@/helpers/getUserId'
 
 export const query_fetchNotes = async (): Promise<INote$SnapshotIn[]> => {
     const client = await generateTSClient()

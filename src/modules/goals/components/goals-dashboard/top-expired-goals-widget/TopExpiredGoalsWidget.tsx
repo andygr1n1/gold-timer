@@ -3,8 +3,8 @@ import { NavigateExpiredGoals } from './NavigateExpiredGoals'
 import { TopGoalsList } from '../components/TopGoalsList'
 
 import styles from '../goalsDashboard.module.scss'
-import { useFetchGoals } from '@/modules/goals/service/fetch-goals/useFetchGoals'
-import { goalStatus } from '@/modules/goals/service'
+import { useFetchGoals } from '@/modules/goals/shared-service/fetch-goals/useFetchGoals'
+import { goalStatus } from '@/modules/goals/shared-service'
 
 export const TopExpiredGoalsWidget: React.FC = () => {
     const { isLoading, goals } = useFetchGoals({

@@ -1,4 +1,4 @@
-import { IGoalSchema } from '@/modules/goals/service'
+import { IGoalSchema } from '@/modules/goals/shared-service'
 import { TopGoal } from './TopGoal'
 import clsx from 'clsx'
 import { calculateIsFromFuture } from '../../../helpers/optimizeActiveGoalsData'

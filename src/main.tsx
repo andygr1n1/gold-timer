@@ -1,15 +1,20 @@
+import { useMemo } from 'react'
 import ReactDOM from 'react-dom/client'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { App } from './modules/app/App'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import './styles/index.scss'
 
-window.queryClient = new QueryClient()
+const Main = () => {
+    const queryClient = useMemo(() => new QueryClient(), [])
 
-ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-    <QueryClientProvider client={window.queryClient}>
-        {/* <SnowfallAnimation /> */}
-        <ReactQueryDevtools initialIsOpen={false} />
-        <App />
-    </QueryClientProvider>,
-)
+    return (
+        <QueryClientProvider client={queryClient}>
+            {/* <SnowfallAnimation /> */}
+            <ReactQueryDevtools initialIsOpen={false} />
+            <App />
+        </QueryClientProvider>
+    )
+}
+
+ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(<Main />)

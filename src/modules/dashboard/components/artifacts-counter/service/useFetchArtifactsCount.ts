@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 import { query_artifactsCount } from './query_artifactsCount'
-import { getUserId } from '@/helpers/getUserData'
+import { getUserId } from '@/helpers/getUserId'
 import { KEY_FetchArtifactsCount } from './keys'
 
 type IArtifactsCount = { activeNotesCount: number; activeSprintsCount: number; activeGoalsCount: number }

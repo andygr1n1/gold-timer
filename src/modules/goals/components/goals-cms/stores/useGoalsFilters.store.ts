@@ -1,4 +1,4 @@
-import { goalStatus } from '@/modules/goals/service'
+import { goalStatus } from '@/modules/goals/shared-service'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { IGoalsFiltersSchema, KEY_useGoalsFiltersStore } from './types'
 import { ChangeEvent, useMemo } from 'react'

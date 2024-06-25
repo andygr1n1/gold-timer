@@ -1,7 +1,6 @@
 import { atom } from 'jotai'
 
 import { isDev } from '@/helpers/isUnderDevelopment.helper'
-import { IHero, KEY_FetchProfileData } from '../service'
 import { focusAtom } from 'jotai-optics'
 import { IEditProfile$ } from './types'
 
@@ -10,8 +9,8 @@ isDev() && (editProfile$.debugLabel = 'editProfile$')
 
 // *
 // actions
-export const openProfileEdit = atom(null, (get, set) => {
-    set(editProfile$, () => window.queryClient?.getQueryData<unknown, string[], IHero>(KEY_FetchProfileData()))
+export const openProfileEdit = atom(null, (/* get, set */) => {
+    // set(editProfile$, () => window.queryClient?.getQueryData<unknown, string[], IHero>(KEY_FetchProfileData()))
 })
 
 // *

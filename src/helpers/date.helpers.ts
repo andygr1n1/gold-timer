@@ -74,7 +74,7 @@ function getTimezoneOffset(date: Date): string {
 }
 
 // Function to format a date with timezone offset
-export function formatDateWithTimezone(date: Date): string {
+export function formatDateWithTimezone(date = new Date()): string {
     const formattedDate = format(date, "yyyy-MM-dd'T'HH:mm:ss")
     const timezoneOffset = getTimezoneOffset(date)
     return `${formattedDate}${timezoneOffset}`

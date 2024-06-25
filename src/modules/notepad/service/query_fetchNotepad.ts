@@ -1,7 +1,7 @@
 import { resolveData } from '@/helpers/tryCatchRequest'
 import { generateTSClient } from '@/graphql/client'
 import { processError } from '@/helpers/processMessage'
-import { getUserId } from '@/helpers/getUserData'
+import { getUserId } from '@/helpers/getUserId'
 
 export const query_fetchNotepad = async (): Promise<string> => {
     const client = await generateTSClient()

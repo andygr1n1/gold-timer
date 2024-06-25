@@ -5,7 +5,7 @@ import { IUserSchema } from './types'
 import { KEY_useUserStore } from './keys'
 import { setAccessIdInCookie } from '@/helpers/universalCookie'
 
-export const useUserStore = (): {
+export const useUserStore$ = (): {
     store?: IUserSchema | null
     selectUser: (props: { user: Partial<IUserSchema> }) => void
     autoLogin: () => Promise<void>
@@ -29,7 +29,7 @@ export const useUserStore = (): {
     const logout = () => {
         /* double KEY_useUserStore for reactivity  */
         queryClient.setQueryData(KEY_useUserStore(), { userId: null, role: null, isLoading: false })
-        window.queryClient?.clear()
+        queryClient.clear()
         queryClient.setQueryData(KEY_useUserStore(), { userId: null, role: null, isLoading: false })
     }
 

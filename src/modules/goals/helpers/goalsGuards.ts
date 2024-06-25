@@ -1,6 +1,6 @@
-import { IGoalStatus, goalStatus } from "../service"
+import { IGoalStatus, goalStatus } from '../shared-service'
 
-export const isCompleted = (status: IGoalStatus) => {
+export const calculateIsCompleted = (status: IGoalStatus) => {
     return status === 'completed'
 }
 export const isActive = (status: IGoalStatus) => {

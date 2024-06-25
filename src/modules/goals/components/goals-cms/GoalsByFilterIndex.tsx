@@ -2,7 +2,7 @@ import { ModuleWrapper } from '@/components/ModuleWrapper'
 import { APP_ROUTES_ENUM } from '@/services/enums'
 import { useLocation } from 'react-router-dom'
 import { GoalsCards } from './components/GoalsCards'
-import { IGoalStatus } from '@/modules/goals/service/types'
+import { IGoalStatus } from '@/modules/goals/shared-service/types'
 import { GoalsHeader } from './components/GoalsHeader'
 
 export const GoalsByFilterIndex: React.FC = () => {

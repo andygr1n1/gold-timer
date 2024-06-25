@@ -2,11 +2,11 @@ import { FormikHelpers } from 'formik'
 import { server_loginUser } from '../services/server_loginUser'
 import { IUserLoginSchema } from '../services/types'
 import { useMutation } from '@tanstack/react-query'
-import { useUserStore } from '@/services/user-store/useUserStore.service'
+import { useUserStore$ } from '@/services/user-store/useUserStore.service'
 import { parseJwt } from '@/helpers/parseJwt'
 
 export const useLoginOnSubmit = () => {
-    const { selectUser } = useUserStore()
+    const { selectUser } = useUserStore$()
     const mutation = useMutation({
         mutationFn: ({ formData }: { formData: IUserLoginSchema }) => server_loginUser({ formData }),
     })

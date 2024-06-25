@@ -1,7 +1,7 @@
 import { gql } from 'graphql-request'
 import { processError } from '@/helpers/processMessage'
 import { generateClient } from '@/graphql/client'
-import { getUserId } from '@/helpers/getUserData'
+import { getUserId } from '@/helpers/getUserId'
 
 export const updateUserProfileImage = async (avatar: string): Promise<string | undefined> => {
     const client = generateClient()
