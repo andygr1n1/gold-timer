@@ -1,29 +1,7 @@
 import { z } from 'zod'
-import { DIFFICULTY_ENUM, RITUAL_TYPE_ENUM } from '@/services/enums'
 
-// IInsertNewGoal
-export interface IInsertNewGoal {
-    id?: string
-    title: string
-    slogan?: string
-    description?: string
-    owner_id: string
-    status?: IGoalStatus
-    finished_at: string | Date
-    difficulty?: DIFFICULTY_ENUM
-    parent_goal_id?: string | null
-    is_favorite?: boolean
-    deleted_at?: Date | null
-}
-
-export interface IInsertRitual {
-    goal_id?: string
-    ritual_power?: number
-    ritual_interval?: number
-    ritual_typ?: RITUAL_TYPE_ENUM
-    ritual_id?: string
-}
-
+/*  */
+/*  */
 /*  */
 // ritualActive - ritual goals, excluding expired rituals
 export const goalStatusSchema = z.enum([
@@ -36,16 +14,24 @@ export const goalStatusSchema = z.enum([
     'completed',
     'deleted',
 ])
+
 export const goalStatus = goalStatusSchema.Values
+
 export type IGoalStatus = z.infer<typeof goalStatusSchema>
 
 export const GOAL_STATUSES: IGoalStatus[] = [goalStatus.active, goalStatus.completed]
 
 /*  */
+/*  */
+/*  */
 export const goalRitualTypeSchema = z.enum(['interval_in_days', 'days_of_week'])
+
 export const goalRitualType = goalRitualTypeSchema.Values
+
 export type IGoalRitualType = z.infer<typeof goalRitualTypeSchema>
 
+/*  */
+/*  */
 /*  */
 
 const goalRitualSchema = z.object({
@@ -57,6 +43,10 @@ const goalRitualSchema = z.object({
 })
 
 export type IGoalRitualSchema = z.infer<typeof goalRitualSchema>
+
+/*  */
+/*  */
+/*  */
 
 export const goalSchema = z.object({
     id: z.string().uuid(),

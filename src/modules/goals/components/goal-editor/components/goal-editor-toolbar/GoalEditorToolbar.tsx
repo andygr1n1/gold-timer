@@ -13,14 +13,14 @@ export const GoalEditorToolbar = () => {
 
     return (
         <div className='relative flex w-full flex-wrap items-center justify-center gap-5'>
-            {state.goalId && <ToggleEditGoal />}
+            {state.goalId && <ToggleEditGoal goalId={state.goalId} />}
             {!state.goalId ? (
                 <ToggleFavoriteNewGoal />
             ) : (
                 <GoalIsFavorite goalId={state.goalId} isFavorite={!!formikContext.values.is_favorite} />
             )}
             {state.goalId && <GoalDeletedAt goalId={state.goalId} deletedAt={!!formikContext.values.deleted_at} />}
-            {state.goalId && <CreateChildGoal parentGoalId={state.goalId} />}
+            {<CreateChildGoal parentGoalId={state.goalId} />}
         </div>
     )
 }

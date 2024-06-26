@@ -2,7 +2,7 @@ import { z } from 'zod'
 
 export const KEY_FetchGoal = (goalId: string | null) => ['KEY_FetchGoal', goalId]
 
-const goalRitualSchema = z.object({
+const updateGoalRitualSchema = z.object({
     goal_id: z.string().uuid(),
     ritual_id: z.string().uuid(),
     ritual_power: z.number(),
@@ -10,4 +10,4 @@ const goalRitualSchema = z.object({
     finished_at: z.string().nullable(),
 })
 
-export type IUpdateGoalRitualSchema = z.infer<typeof goalRitualSchema>
+export type IUpdateGoalRitualSchema = z.infer<typeof updateGoalRitualSchema>

@@ -1,36 +1,37 @@
 import { IconNew } from '@/assets/icons'
 import { XTooltip } from '@/components-x/x-tooltip/XTooltip'
 import { StyledButton } from '@/components/buttons/StyledButton'
-import { selectedGoalAtom, selectedGoalAtom$ } from '@/modules/goals/stores/selectedGoal.store'
-import { useAtom } from 'jotai'
-import { ReactNode } from 'react'
+import { useGoalEditor$ } from '../../../stores/useGoalEditor.store'
+import { goalEditorMode } from '../../../stores/types'
 
-export const CreateChildGoal: React.FC<{ label?: ReactNode; parentGoalId: string }> = ({ label, parentGoalId }) => {
-    const [_selectedGoal, setGoal] = useAtom(selectedGoalAtom)
+export const CreateChildGoal: React.FC<{ label?: React.ReactNode; parentGoalId: string | null }> = ({
+    label,
+    parentGoalId,
+}) => {
+    const { setState, state } = useGoalEditor$()
+
+    const metadataParentGoalId = state.metadata?.parentGoalId
+    const metadataParentGoalEditorMode = state.metadata?.parentGoalEditorMode
 
     return (
         <>
             <StyledButton
                 id='createChildGoal'
                 size={'custom'}
-                variant={'text'}
+                variant={metadataParentGoalId ? 'contained' : 'text'}
                 onClick={() => {
-                    if (!_selectedGoal) {
-                        selectedGoalAtom$.set(selectedGoalAtom, {
-                            id: crypto.randomUUID(),
-                            is_edit: true,
-                            is_new: true,
-                            parent_goal_id: parentGoalId,
-                        })
-                    } else {
-                        setGoal((goal) => ({
-                            id: crypto.randomUUID(),
-                            is_edit: true,
-                            is_new: true,
-                            parent_goal_id: parentGoalId,
-                            is_redirect_from_view_mode: !goal?.is_edit,
-                        }))
-                    }
+                    metadataParentGoalId
+                        ? setState({
+                              goalEditorMode: metadataParentGoalEditorMode || goalEditorMode.view,
+                              open: true,
+                              goalId: metadataParentGoalId,
+                          })
+                        : setState({
+                              goalEditorMode: goalEditorMode.new,
+                              open: true,
+                              goalId: null,
+                              metadata: { parentGoalId, parentGoalEditorMode: state.goalEditorMode },
+                          })
                 }}
                 startIcon={<IconNew className='h-6 w-6 opacity-70 hover:opacity-100' />}
             >

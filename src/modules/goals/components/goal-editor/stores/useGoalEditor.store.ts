@@ -1,5 +1,5 @@
 import { useQuery, useQueryClient } from '@tanstack/react-query'
-import { IGoalEditorStoreSchema, KEY_GoalEditorStore } from './types'
+import { IGoalEditorStoreSchema, KEY_GoalEditorStore, goalEditorMode } from './types'
 
 export const useGoalEditor$ = () => {
     const queryClient = useQueryClient()
@@ -9,18 +9,24 @@ export const useGoalEditor$ = () => {
         staleTime: Infinity,
         refetchOnWindowFocus: false,
         refetchOnMount: false,
-        initialData: { open: false, edit: false, goalId: null },
+        initialData: { open: false, goalId: null, goalEditorMode: null },
     })
 
     const setState = (state: IGoalEditorStoreSchema) => {
-        queryClient.setQueryData(KEY_GoalEditorStore(), state)
+        queryClient.setQueryData<IGoalEditorStoreSchema>(KEY_GoalEditorStore(), state)
     }
 
     const onCancel = () => {
-        queryClient.setQueryData(KEY_GoalEditorStore(), { open: false, goalId: null, edit: false })
+        queryClient.setQueryData<IGoalEditorStoreSchema>(KEY_GoalEditorStore(), {
+            open: false,
+            goalId: null,
+            goalEditorMode: null,
+        })
     }
 
-    const viewMode = !state.edit
+    const viewMode = state.goalEditorMode === goalEditorMode.view
+    const newMode = state.goalEditorMode === goalEditorMode.new
+    const editMode = state.goalEditorMode === goalEditorMode.edit
 
-    return { state, viewMode, setState, onCancel }
+    return { state, viewMode, newMode, editMode, setState, onCancel }
 }

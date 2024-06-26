@@ -5,6 +5,7 @@ import { TopGoalBody } from './TopGoalBody'
 
 import { IGoalSchema } from '@/modules/goals/shared-service/types'
 import { useGoalEditor$ } from '../../goal-editor/stores/useGoalEditor.store'
+import { goalEditorMode } from '../../goal-editor/stores/types'
 
 export const TopGoal: React.FC<{ goal: IGoalSchema; className?: string; zIndex?: number }> = ({
     goal,
@@ -29,8 +30,7 @@ export const TopGoal: React.FC<{ goal: IGoalSchema; className?: string; zIndex?:
                 <TopGoalBody
                     goal={goal}
                     selectGoal={() => {
-                        // selectedGoalAtom$.set(selectedGoalAtom, { id: goal.id, is_edit: false, is_new: false })
-                        setState({ edit: false, goalId: goal.id, open: true })
+                        setState({ goalEditorMode: goalEditorMode.view, goalId: goal.id, open: true })
                         setPopoverState(false)
                     }}
                     onRightClick={() => {

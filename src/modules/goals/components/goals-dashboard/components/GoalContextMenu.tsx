@@ -1,7 +1,6 @@
 import { XMenuDivider } from '@/components-x/x-dropdown/XMenuDivider'
 import { XMenuDropdown } from '@/components-x/x-dropdown/XMenuDropdown'
 import { XMenuItem } from '@/components-x/x-dropdown/XMenuItem'
-import { selectedGoalAtom, selectedGoalAtom$ } from '@/modules/goals/stores/selectedGoal.store'
 import { IconEye } from '@/assets/icons/IconEye'
 import { IGoalSchema } from '@/modules/goals/shared-service/types'
 import { GoalIsFavorite } from '../../../shared-components/goal-is-favorite/GoalIsFavorite'
@@ -9,11 +8,15 @@ import { GoalDeletedAt } from '../../../shared-components/goal-deleted-at/GoalDe
 import { StyledButton } from '@/components/buttons/StyledButton'
 import { ToggleEditGoal } from '../../goal-editor/components/common-components/goal-actions/ToggleEditGoal'
 import { CreateChildGoal } from '../../goal-editor/components/common-components/goal-actions/CreateChildGoal'
+import { useGoalEditor$ } from '../../goal-editor/stores/useGoalEditor.store'
+import { goalEditorMode } from '../../goal-editor/stores/types'
 
 export const GoalContextMenu: React.FC<{ goal: IGoalSchema; action: () => void; forceMode?: boolean }> = ({
     goal,
     action: onClose,
 }) => {
+    const { setState } = useGoalEditor$()
+
     return (
         <XMenuDropdown>
             <XMenuItem>
@@ -29,7 +32,7 @@ export const GoalContextMenu: React.FC<{ goal: IGoalSchema; action: () => void; 
             </XMenuItem>
             <XMenuItem
                 onClick={() => {
-                    selectedGoalAtom$.set(selectedGoalAtom, { id: goal.id, is_edit: false, is_new: false })
+                    setState({ goalEditorMode: goalEditorMode.view, goalId: goal.id, open: true })
                     onClose()
                 }}
             >
@@ -37,7 +40,12 @@ export const GoalContextMenu: React.FC<{ goal: IGoalSchema; action: () => void; 
                     <span className='flex w-[110px] justify-start capitalize'>open</span>
                 </StyledButton>
             </XMenuItem>
-            <XMenuItem onClick={onClose}>
+            <XMenuItem
+                onClick={() => {
+                    setState({ goalEditorMode: goalEditorMode.edit, goalId: goal.id, open: true })
+                    onClose()
+                }}
+            >
                 <ToggleEditGoal
                     goalId={goal.id}
                     label={<span className='flex w-[110px] justify-start capitalize'>edit</span>}
@@ -56,7 +64,17 @@ export const GoalContextMenu: React.FC<{ goal: IGoalSchema; action: () => void; 
                 />
             </XMenuItem>
             <XMenuDivider />
-            <XMenuItem onClick={onClose}>
+            <XMenuItem
+                onClick={() => {
+                    setState({
+                        goalEditorMode: goalEditorMode.new,
+                        metadata: { parentGoalId: goal.id },
+                        open: true,
+                        goalId: null,
+                    })
+                    onClose()
+                }}
+            >
                 <CreateChildGoal
                     parentGoalId={goal.id}
                     label={<span className='flex w-[110px] justify-start capitalize'>New child goal</span>}

@@ -6,7 +6,6 @@ import { formatDateWithTimezone } from '@/helpers/date.helpers'
 export const useGoalEditorFormInitialValues = () => {
     const { state } = useGoalEditor$()
     const { isLoading, data } = useFetchGoal({ goalId: state.goalId })
-    console.log('data', data)
     const initialValues: IGoalSchema = initialGoal()
 
     return { initialValues: data || initialValues, isLoading }
