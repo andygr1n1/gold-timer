@@ -9,4 +9,3 @@ export type ISelectedGoal = {
     parent_goal_id?: string
     is_new_ritual?: boolean
 }
-export type ISelectedGoalState = 'view' | 'edit' | 'create' | 'create child' | 'ritualize'

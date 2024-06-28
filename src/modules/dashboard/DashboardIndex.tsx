@@ -1,4 +1,4 @@
-import { GoalCRUDProvider } from '../goals/components/goal-editor/GoalEditor'
+import { GoalCRUDProvider } from '../goals/components/goal-editor-dialog/GoalEditorDialog'
 import { Dashboard } from './components/Dashboard'
 import { Route, Routes } from 'react-router-dom'
 

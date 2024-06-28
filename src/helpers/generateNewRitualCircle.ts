@@ -1,6 +1,5 @@
 import { add, getDay, set } from 'date-fns'
-import { RITUAL_TYPE_ENUM } from '../services/enums'
-import { IGoalRitualType } from '@/modules/goals/shared-service'
+import { IGoalRitualType, goalRitualType } from '@/modules/goals/shared-service'
 
 interface INewRitualCircleProps {
     ritual_type: IGoalRitualType
@@ -19,8 +18,8 @@ export const generateNewRitualCircle = (
     // today with default UTC
     const today = new Date()
 
-    const isRitualDaysInterval = ritual_type === RITUAL_TYPE_ENUM.INTERVAL_IN_DAYS
-    const isRitualDaysOfWeek = ritual_type === RITUAL_TYPE_ENUM.DAYS_OF_WEEK
+    const isRitualDaysInterval = ritual_type === goalRitualType.interval_in_days
+    const isRitualDaysOfWeek = ritual_type === goalRitualType.days_of_week
 
     let ritual_goal_created_at = today
     let ritual_goal_finished_at = today

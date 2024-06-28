@@ -6,10 +6,10 @@ import { IGoalSchema } from '@/modules/goals/shared-service/types'
 import { GoalIsFavorite } from '../../../shared-components/goal-is-favorite/GoalIsFavorite'
 import { GoalDeletedAt } from '../../../shared-components/goal-deleted-at/GoalDeletedAt'
 import { StyledButton } from '@/components/buttons/StyledButton'
-import { ToggleEditGoal } from '../../goal-editor/components/common-components/goal-actions/ToggleEditGoal'
-import { CreateChildGoal } from '../../goal-editor/components/common-components/goal-actions/CreateChildGoal'
-import { useGoalEditor$ } from '../../goal-editor/stores/useGoalEditor.store'
-import { goalEditorMode } from '../../goal-editor/stores/types'
+import { ToggleEditGoal } from '../../../shared-components/ToggleEditGoal'
+import { CreateChildGoal } from '../../../shared-components/CreateChildGoal'
+import { useGoalEditor$ } from '../../goal-editor-dialog/stores/goal-editor-store/useGoalEditor.store'
+import { goalEditorMode } from '../../goal-editor-dialog/stores/goal-editor-store/types'
 
 export const GoalContextMenu: React.FC<{ goal: IGoalSchema; action: () => void; forceMode?: boolean }> = ({
     goal,

@@ -60,6 +60,7 @@ export const goalSchema = z.object({
     status: goalStatusSchema,
     difficulty: z.string(),
     goal_ritual: goalRitualSchema.nullable(),
+    parent_goal_id: z.string().uuid().nullable().optional(),
 })
 
 export type IGoalSchema = z.infer<typeof goalSchema>

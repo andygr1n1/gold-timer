@@ -1,4 +1,4 @@
-import { GoalCRUDProvider } from '../goal-editor/GoalEditor'
+import { GoalCRUDProvider } from '../goal-editor-dialog/GoalEditorDialog'
 import { Navigate, Route, Routes } from 'react-router-dom'
 import { GoalsByFilterIndex } from './GoalsByFilterIndex'
 import { useSetGoalsParamsFilter } from '../../shared-hooks/useSetGoalsParamsFilter.hook'

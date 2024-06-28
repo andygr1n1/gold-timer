@@ -4,8 +4,8 @@ import { GoalContextMenu } from './GoalContextMenu'
 import { TopGoalBody } from './TopGoalBody'
 
 import { IGoalSchema } from '@/modules/goals/shared-service/types'
-import { useGoalEditor$ } from '../../goal-editor/stores/useGoalEditor.store'
-import { goalEditorMode } from '../../goal-editor/stores/types'
+import { useGoalEditor$ } from '../../goal-editor-dialog/stores/goal-editor-store/useGoalEditor.store'
+import { goalEditorMode } from '../../goal-editor-dialog/stores/goal-editor-store/types'
 
 export const TopGoal: React.FC<{ goal: IGoalSchema; className?: string; zIndex?: number }> = ({
     goal,
