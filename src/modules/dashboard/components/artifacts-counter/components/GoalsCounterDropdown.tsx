@@ -3,9 +3,10 @@ import { XDropdown } from '@/components-x/x-dropdown/XDropdown'
 import { XMenuDropdown } from '@/components-x/x-dropdown/XMenuDropdown'
 import { XMenuItem } from '@/components-x/x-dropdown/XMenuItem'
 import { ReactNode } from 'react'
-import { selectedGoalAtom, selectedGoalAtom$ } from '@/modules/goals/stores/selectedGoal.store'
 import { IconNew } from '@/assets/icons'
 import { StyledButton } from '@/components/buttons/StyledButton'
+import { useGoalEditor$ } from '@/modules/goals/components/goal-editor-dialog/stores/goal-editor-store/useGoalEditor.store'
+import { goalEditorMode } from '@/modules/goals/components/goal-editor-dialog/stores/goal-editor-store/types'
 
 export const GoalsCounterDropdown: React.FC<{ button: ReactNode }> = observer(({ button }) => {
     return (
@@ -21,17 +22,14 @@ export const GoalsCounterDropdown: React.FC<{ button: ReactNode }> = observer(({
 })
 
 const DropdownRender = () => {
+    const { setState } = useGoalEditor$()
+    const addGoal = () => {
+        setState({ goalEditorMode: goalEditorMode.new, goalId: null, open: true })
+    }
+
     return (
         <XMenuDropdown>
-            <XMenuItem
-                onClick={() =>
-                    selectedGoalAtom$.set(selectedGoalAtom, {
-                        id: crypto.randomUUID(),
-                        is_edit: true,
-                        is_new: true,
-                    })
-                }
-            >
+            <XMenuItem onClick={addGoal}>
                 <StyledButton variant='text' size='small' startIcon={<IconNew width={24} height={24} />}>
                     <span className='flex w-[110px] justify-start capitalize'>Add goal</span>
                 </StyledButton>

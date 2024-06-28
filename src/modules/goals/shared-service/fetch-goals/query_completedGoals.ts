@@ -19,7 +19,7 @@ export const query_completedGoals = async (props: {
                         __args: {
                             limit,
                             offset,
-                            order_by: [{ finished_at: 'asc' }, { title: 'asc' }],
+                            order_by: [{ finished_at: 'desc' }, { title: 'asc' }],
                             where: {
                                 _and: [
                                     {

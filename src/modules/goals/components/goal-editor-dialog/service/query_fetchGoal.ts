@@ -12,7 +12,7 @@ export const query_fetchGoal = async (props: { goalId: string | null }): Promise
             const client = await generateTSClient()
             return await client
                 .query({
-                    __name: 'query_activeGoals',
+                    __name: 'query_fetchGoal',
                     goals_by_pk: {
                         __args: {
                             id: goalId,

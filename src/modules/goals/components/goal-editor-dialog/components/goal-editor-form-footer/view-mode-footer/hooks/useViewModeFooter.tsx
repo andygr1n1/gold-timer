@@ -17,7 +17,7 @@ export const useViewModeFooter = () => {
     const isRitual = !!formikContext.values.goal_ritual
     const futureRitual = !!isRitual && isFromFuture
 
-    const disabled = deletedAt || futureRitual
+    const disabled = deletedAt || (!isCompleted && futureRitual)
 
     let tooltipText = ''
     let OkText = (
