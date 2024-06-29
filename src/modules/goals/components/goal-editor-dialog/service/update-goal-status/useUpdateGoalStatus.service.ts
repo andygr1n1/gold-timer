@@ -1,4 +1,4 @@
-import { IGoalSchema } from '@/modules/goals/shared-service'
+import { IGoalSchema, IGoalStatus, goalStatus } from '@/modules/goals/shared-service'
 import { useMutation } from '@tanstack/react-query'
 import { mutation_goalStatus } from './mutation_goalStatus'
 import { mutation_userCoins } from '../mutation_userCoins'
@@ -11,7 +11,8 @@ export const useUpdateGoalStatus = () => {
     const { onSuccess: onUserMutationSuccess } = useInvalidateUser()
     const { onSuccess: onGoalMutationSuccess } = useInvalidateGoals()
     const goalStatusMutation = useMutation({
-        mutationFn: ({ goal }: { goal: IGoalSchema }) => mutation_goalStatus({ goal }),
+        mutationFn: ({ goal, status }: { goal: IGoalSchema; status: IGoalStatus }) =>
+            mutation_goalStatus({ goal, status }),
         onSuccess: onGoalMutationSuccess,
     })
 
@@ -20,13 +21,19 @@ export const useUpdateGoalStatus = () => {
         onSuccess: onUserMutationSuccess,
     })
 
-    const updateGoalStatus = (props: { goal: IGoalSchema; onSuccess?: () => void; onSettled?: () => void }) => {
-        goalStatusMutation.mutate({ goal: props.goal })
+    const updateGoalStatus = (props: {
+        goal: IGoalSchema
+        status: IGoalStatus
+        onSuccess?: () => void
+        onSettled?: () => void
+    }) => {
+        goalStatusMutation.mutate({ goal: props.goal, status: props.status })
 
-        userCoinsMutation.mutate(
-            { coins: recalculateUserCoins({ goal: props.goal }) },
-            { onSuccess: props.onSuccess, onSettled: props.onSettled },
-        )
+        if (goalStatus.completed)
+            userCoinsMutation.mutate(
+                { coins: recalculateUserCoins({ goal: props.goal }) },
+                { onSuccess: props.onSuccess, onSettled: props.onSettled },
+            )
     }
     return { updateGoalStatus }
 }

@@ -4,7 +4,7 @@ import {
     isFilterStateActive,
     isFilterStateCompleted,
     isFilterStateDeleted,
-    isFilterStateExpired,
+    isExpiredGoalStatus,
     isFilterStateFavorite,
     isFilterStateRitualized,
 } from '@/modules/goals/helpers/goalsGuards'
@@ -14,7 +14,7 @@ export const useGetGoalsParamsFilter = () => {
     const paramFilter: IGoalStatus = location.state?.filter
 
     const isActive = isFilterStateActive(paramFilter)
-    const isExpired = isFilterStateExpired(paramFilter)
+    const isExpired = isExpiredGoalStatus(paramFilter)
     const isRitualized = isFilterStateRitualized(paramFilter)
     const isFavorite = isFilterStateFavorite(paramFilter)
     const isCompleted = isFilterStateCompleted(paramFilter)

@@ -1,7 +1,7 @@
 import { IconCompletedFilled } from '@/assets/icons/IconCompleted'
 import { IconFocus } from '@/assets/icons/IconFocus'
 import { IconInfinity } from '@/assets/icons/IconInfinity'
-import { calculateIsCompleted } from '@/modules/goals/helpers/goalsGuards'
+import { isCompletedGoalStatus } from '@/modules/goals/helpers/goalsGuards'
 import { calculateIsFromFuture } from '@/modules/goals/helpers/optimizeActiveGoalsData'
 import { IGoalSchema } from '@/modules/goals/shared-service'
 import { useFormikContext } from 'formik'
@@ -10,7 +10,7 @@ export const useViewModeFooter = () => {
     const formikContext = useFormikContext<IGoalSchema>()
 
     const isFromFuture = calculateIsFromFuture(formikContext.values)
-    const isCompleted = calculateIsCompleted(formikContext.values.status)
+    const isCompleted = isCompletedGoalStatus(formikContext.values.status)
 
     const deletedAt = !!formikContext.values.deleted_at
 

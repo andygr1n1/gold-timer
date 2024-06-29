@@ -1,14 +1,20 @@
-import { IGoalStatus, goalStatus } from '../shared-service'
+import { IGoalSchema, IGoalStatus, goalStatus } from '../shared-service'
 
-export const calculateIsCompleted = (status: IGoalStatus) => {
-    return status === 'completed'
+/* */
+
+export const isCompletedGoalStatus = (status: IGoalStatus) => {
+    return status === goalStatus.completed
 }
-export const isActive = (status: IGoalStatus) => {
-    return status === 'active'
+export const isActiveGoalStatus = (status: IGoalStatus) => {
+    return status === goalStatus.active
 }
 
-export const isFilterStateExpired = (status: IGoalStatus) => {
-    return status === 'expired'
+export const isExpiredGoalStatus = (status: IGoalStatus) => {
+    return status === goalStatus.expired
+}
+
+export const isActiveRitualStatus = (goal: IGoalSchema) => {
+    return isActiveGoalStatus(goal.status) && !!goal.goal_ritual?.ritual_power
 }
 
 export const isFilterStateRitualized = (status: IGoalStatus) => {

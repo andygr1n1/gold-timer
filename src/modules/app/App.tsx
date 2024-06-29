@@ -8,7 +8,7 @@ export const App = () => {
     const { isLoading } = useJwtAuth()
 
     if (isLoading) return <div className='authorization-page' />
-
+    
     return (
         <BrowserRouter basename='/' future={{ v7_startTransition: true }}>
             <AppRoutes />

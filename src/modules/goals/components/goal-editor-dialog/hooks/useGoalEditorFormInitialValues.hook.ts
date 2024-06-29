@@ -15,7 +15,7 @@ const initialGoal = (props: { parentGoalId?: string | null }) => ({
     id: crypto.randomUUID(),
     created_at: formatDateWithTimezone(),
     deleted_at: null,
-    finished_at: null,
+    finished_at: formatDateWithTimezone(),
     is_favorite: false,
     title: '',
     slogan: '',

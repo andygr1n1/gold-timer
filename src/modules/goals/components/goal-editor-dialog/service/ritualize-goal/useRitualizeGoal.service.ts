@@ -43,7 +43,6 @@ export const useRitualizeGoal = () => {
         }
 
         userCoinsMutation.mutate({ coins: recalculateUserCoins({ goal, status: goalStatus.ritual }) })
-        console.log('hey there')
         goalMutation.mutate({ goalRitual }, { onSuccess: props.onSuccess, onSettled: props.onSettled })
     }
     return { ritualizeGoal }

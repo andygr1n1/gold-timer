@@ -34,6 +34,8 @@ export const useUserStore$ = (): {
     }
 
     const autoLogin = async () => {
+        if (!store.isLoading) return
+        
         const jwtToken = await server_getSessionCredentials()
         jwtToken && setAccessIdInCookie(jwtToken)
         const data = parseJwt(jwtToken)

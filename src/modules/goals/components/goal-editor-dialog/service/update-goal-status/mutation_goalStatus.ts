@@ -1,13 +1,12 @@
 import { resolveError, tryCatchRequest } from '@/helpers/tryCatchRequest'
 import { generateTSClient } from '@/graphql/client'
-import { IGoalSchema, goalSchema, goalStatus } from '@/modules/goals/shared-service'
+import { IGoalSchema, IGoalStatus, goalSchema } from '@/modules/goals/shared-service'
 
-export const mutation_goalStatus = async (props: { goal: IGoalSchema }): Promise<IGoalSchema | undefined> => {
-    const { goal } = props
-
-    const isACtive = goal.status === goalStatus.active
-
-    const status = isACtive ? goalStatus.completed : goalStatus.active
+export const mutation_goalStatus = async (props: {
+    goal: IGoalSchema
+    status: IGoalStatus
+}): Promise<IGoalSchema | undefined> => {
+    const { goal, status } = props
 
     return await tryCatchRequest<Promise<undefined>, IGoalSchema | undefined>(
         async () => {

@@ -1,4 +1,4 @@
-import { calculateIsCompleted } from '@/modules/goals/helpers/goalsGuards'
+import { isCompletedGoalStatus } from '@/modules/goals/helpers/goalsGuards'
 import {
     calculateIsExpired,
     calculateIsRitual,
@@ -25,7 +25,7 @@ const ImageByGoalType = () => {
     const formikContext = useFormikContext<IGoalSchema>()
     const isRitual = calculateIsRitual(formikContext.values)
     const isExpired = calculateIsExpired(formikContext.values)
-    const _isCompleted = calculateIsCompleted(formikContext.values.status)
+    const _isCompleted = isCompletedGoalStatus(formikContext.values.status)
 
     let goalIcon = <IconFocus className='h-[60px] w-[60px] text-blue-600' />
     if (isExpired) {
@@ -63,7 +63,7 @@ const GoalDaysUntilDeadline = () => {
 
     const _totalRemainingDays = calculateTotalRemainingDays(formikContext.values)
 
-    if (calculateIsCompleted(status)) return null
+    if (isCompletedGoalStatus(status)) return null
 
     return (
         <div className='flex flex-col items-center justify-center gap-2 min-w-[100px] '>

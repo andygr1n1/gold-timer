@@ -1,6 +1,6 @@
 import { IconBellUrgent, IconRitual } from '@/assets/icons'
 import { IconFocus } from '@/assets/icons/IconFocus'
-import { calculateIsCompleted } from '@/modules/goals/helpers/goalsGuards'
+import { isCompletedGoalStatus } from '@/modules/goals/helpers/goalsGuards'
 import {
     calculateIsExpired,
     calculateGoalDeadline,
@@ -12,7 +12,7 @@ import { IGoalSchema } from '@/modules/goals/shared-service'
 export const TopGoalRemainingDays: React.FC<{ goal: IGoalSchema }> = ({ goal }) => {
     const isExpired = calculateIsExpired(goal)
     const isDeadline = calculateGoalDeadline(goal)
-    const isCompleted = calculateIsCompleted(goal.status)
+    const isCompleted = isCompletedGoalStatus(goal.status)
     const totalRemainingDays = calculateTotalRemainingDays(goal)
 
     return (

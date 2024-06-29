@@ -31,7 +31,6 @@ export const generateTSClient = async () => {
 
 const getAccessJwt = async () => {
     let accessJwt = getAccessIdFromCookie()
-
     const verify = jwtVerify(accessJwt)
     if (!verify || !accessJwt) {
         window.genqlClient = null
