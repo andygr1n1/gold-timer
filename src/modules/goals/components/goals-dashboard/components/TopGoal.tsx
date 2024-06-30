@@ -1,6 +1,6 @@
 import { useTogglePopoverState } from '@/hooks/useTogglePopoverState.hook'
 import { XDropdown } from '@/components-x/x-dropdown/XDropdown'
-import { GoalContextMenu } from './GoalContextMenu'
+import { GoalContextMenu } from './goal-context-menu/GoalContextMenu'
 import { TopGoalBody } from './TopGoalBody'
 
 import { IGoalSchema } from '@/modules/goals/shared-service/types'

@@ -3,14 +3,14 @@ import { IGoalSchema, goalStatus } from '@/modules/goals/shared-service/types'
 import { isCompletedGoalStatus } from '@/modules/goals/helpers/goalsGuards'
 import { useUpdateGoalStatus } from '../../../service/update-goal-status/useUpdateGoalStatus.service'
 import { useGoalEditor$ } from '../../../stores/goal-editor-store/useGoalEditor.store'
-import { calculateIsRitual } from '@/modules/goals/helpers/optimizeActiveGoalsData'
+import { calculateIsRitualWithPower } from '@/modules/goals/helpers/optimizeActiveGoalsData'
 import { IconCompletedFilled } from '@/assets/icons/IconCompleted'
 import { XTooltip } from '@/components-x/x-tooltip/XTooltip'
 
 export const CompleteRitualGoal: React.FC<{ goal: IGoalSchema }> = ({ goal }) => {
     const { updateGoalStatus } = useUpdateGoalStatus()
     const { onCancel, newMode } = useGoalEditor$()
-    if (newMode || isCompletedGoalStatus(goal.status) || !calculateIsRitual(goal)) return null
+    if (newMode || isCompletedGoalStatus(goal.status) || !calculateIsRitualWithPower(goal)) return null
 
     return (
         <>
@@ -30,7 +30,7 @@ export const CompleteRitualGoal: React.FC<{ goal: IGoalSchema }> = ({ goal }) =>
                     })
                 }}
             />
-            {<XTooltip anchorSelect='#completeRitualGoal'></XTooltip>}
+            {<XTooltip anchorSelect='#completeRitualGoal'>Finish ritual</XTooltip>}
         </>
     )
 }

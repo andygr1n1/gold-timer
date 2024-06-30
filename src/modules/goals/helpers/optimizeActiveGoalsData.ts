@@ -6,6 +6,10 @@ export const calculateIsExpired = (goal: IGoalSchema): boolean => {
     return !!goal.finished_at && !!(setMidnightTime(convertStringDate(goal.finished_at)) < new Date(Date.now()))
 }
 export const calculateIsRitual = (goal: IGoalSchema): boolean => {
+    return !!goal.goal_ritual
+}
+
+export const calculateIsRitualWithPower = (goal: IGoalSchema): boolean => {
     return !!goal.goal_ritual?.ritual_power
 }
 
@@ -17,7 +21,6 @@ export const calculateIsFromFuture = (goal: IGoalSchema): boolean => {
         !!isFuture(set(goal.finished_at, { hours: 0, minutes: 0, seconds: 0 }))
     )
 }
-
 
 export const calculateCreatedDaysAgo = (goal: IGoalSchema): number => {
     if (!goal.created_at) return 0

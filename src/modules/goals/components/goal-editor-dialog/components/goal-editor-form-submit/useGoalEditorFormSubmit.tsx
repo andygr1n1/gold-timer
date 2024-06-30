@@ -1,13 +1,14 @@
-import { IconCompletedFilled } from '@/assets/icons/IconCompleted'
-import { IconFocus } from '@/assets/icons/IconFocus'
-import { IconInfinity } from '@/assets/icons/IconInfinity'
 import { isCompletedGoalStatus } from '@/modules/goals/helpers/goalsGuards'
 import { calculateIsFromFuture } from '@/modules/goals/helpers/optimizeActiveGoalsData'
 import { IGoalSchema } from '@/modules/goals/shared-service'
 import { useFormikContext } from 'formik'
+import { useGoalEditor$ } from '../../stores/goal-editor-store/useGoalEditor.store'
 
-export const useViewModeFooter = () => {
+export const useGoalEditorFormSubmit = () => {
+    const { viewMode } = useGoalEditor$()
     const formikContext = useFormikContext<IGoalSchema>()
+
+    if (!viewMode) return { OkText: 'Save', tooltipText: '', disabled: false, isSubmitting: formikContext.isSubmitting }
 
     const isFromFuture = calculateIsFromFuture(formikContext.values)
     const isCompleted = isCompletedGoalStatus(formikContext.values.status)
@@ -20,18 +21,10 @@ export const useViewModeFooter = () => {
     const disabled = deletedAt || (!isCompleted && futureRitual)
 
     let tooltipText = ''
-    let OkText = (
-        <>
-            <IconCompletedFilled className='text-white' width={16} height={16} /> <div>Complete</div>
-        </>
-    )
+    let OkText = <>Complete</>
 
     if (isRitual) {
-        OkText = (
-            <>
-                <IconInfinity className='text-transparent' /> <div>Ritualize</div>
-            </>
-        )
+        OkText = <>Ritualize</>
         tooltipText = 'Wait for estimation day'
     }
 
@@ -40,14 +33,10 @@ export const useViewModeFooter = () => {
     }
 
     if (isCompleted) {
-        OkText = (
-            <>
-                <IconFocus className='text-white' width={16} height={16} /> <div>Reactivate</div>
-            </>
-        )
+        OkText = <>Reactivate</>
     }
 
     const OkComponent = <div className='flex items-center justify-center gap-2'>{OkText}</div>
 
-    return { OkText: OkComponent, tooltipText, disabled }
+    return { OkText: OkComponent, tooltipText, disabled, isSubmitting: formikContext.isSubmitting }
 }

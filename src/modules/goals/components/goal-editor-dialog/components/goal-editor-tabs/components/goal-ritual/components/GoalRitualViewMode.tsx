@@ -1,11 +1,10 @@
 import { FormLabel } from '@/components/form/FormLabel'
 import { XSelect } from '@/components-x/x-select/XSelect'
 import { XInput } from '@/components-x/x-input/XInput'
-import { IconInfinity } from '@/assets/icons/IconInfinity'
 import { DaysOfTheWeek } from '@/helpers/date.helpers'
 import { useFormikContext } from 'formik'
 import { IGoalSchema, goalRitualType } from '@/modules/goals/shared-service'
-import { useGoalEditor$ } from '../../../stores/goal-editor-store/useGoalEditor.store'
+import { useGoalEditor$ } from '../../../../../stores/goal-editor-store/useGoalEditor.store'
 
 export const GoalRitualViewMode = () => {
     const { viewMode } = useGoalEditor$()
@@ -20,13 +19,6 @@ export const GoalRitualViewMode = () => {
 
     return (
         <>
-            <span
-                className='text-cText mb-8 mt-4 flex items-center justify-center gap-5 bg-transparent text-xl font-bold focus-visible:outline-none '
-                tabIndex={0}
-            >
-                <IconInfinity width={24} height={24} className='text-teal-600' />
-                <span className='capitalize text-teal-600'>{'Ritual'}</span>
-            </span>
             <div>
                 <FormLabel title='Ritual power' />
                 <XInput readOnly={true} type='number' value={ritual_power} onChange={() => {}} />

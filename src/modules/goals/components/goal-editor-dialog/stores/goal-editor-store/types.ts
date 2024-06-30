@@ -23,6 +23,8 @@ const goalEditorStoreSchema = z.object({
         .object({
             parentGoalId: z.string().nullable().optional(),
             parentGoalEditorMode: goalEditorModeSchema.nullable().optional(),
+            viewModeRedirect: goalEditorModeSchema.nullable().optional(),
+            preventRerender: z.boolean().default(false).optional(),
         })
         .optional(),
 })

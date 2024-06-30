@@ -28,5 +28,5 @@ export const useGoalEditor$ = () => {
     const newMode = state.goalEditorMode === goalEditorMode.new
     const editMode = state.goalEditorMode === goalEditorMode.edit
 
-    return { state, viewMode, newMode, editMode, setState, onCancel }
+    return { state, viewMode, newMode, editMode, setState, onCancel, goalEditorMode: state.goalEditorMode }
 }

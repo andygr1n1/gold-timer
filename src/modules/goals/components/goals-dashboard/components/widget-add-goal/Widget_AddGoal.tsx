@@ -1,9 +1,9 @@
 import { StyledButton } from '@/components/buttons/StyledButton'
 import { IconNew } from '@/assets/icons'
-import { useGoalEditor$ } from '../../goal-editor-dialog/stores/goal-editor-store/useGoalEditor.store'
-import { goalEditorMode } from '../../goal-editor-dialog/stores/goal-editor-store/types'
+import { useGoalEditor$ } from '../../../goal-editor-dialog/stores/goal-editor-store/useGoalEditor.store'
+import { goalEditorMode } from '../../../goal-editor-dialog/stores/goal-editor-store/types'
 
-export const CreateGoalAction: React.FC = () => {
+export const Widget_AddGoal: React.FC = () => {
     const { setState } = useGoalEditor$()
     const addGoal = () => {
         setState({ goalEditorMode: goalEditorMode.new, goalId: null, open: true })

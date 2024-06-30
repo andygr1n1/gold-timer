@@ -6,7 +6,7 @@ import { useGoalEditor$ } from '../components/goal-editor-dialog/stores/goal-edi
 import { goalEditorMode } from '../components/goal-editor-dialog/stores/goal-editor-store/types'
 
 export const ToggleEditGoal: React.FC<{ label?: ReactNode; goalId: string }> = ({ label, goalId }) => {
-    const { setState, editMode } = useGoalEditor$()
+    const { setState, editMode, state } = useGoalEditor$()
 
     return (
         <>
@@ -20,6 +20,10 @@ export const ToggleEditGoal: React.FC<{ label?: ReactNode; goalId: string }> = (
                         goalEditorMode: editMode ? goalEditorMode.view : goalEditorMode.edit,
                         open: true,
                         goalId,
+                        metadata: {
+                            viewModeRedirect:
+                                state.goalEditorMode === goalEditorMode.view ? state.goalEditorMode : undefined,
+                        },
                     })
                 }}
             >

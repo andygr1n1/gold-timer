@@ -1,16 +1,10 @@
 import { Form } from 'formik'
-import { GoalEditorFormFooter } from './goal-editor-form-footer/GoalEditorFormFooter'
 import { GoalEditorToolbar } from './goal-editor-toolbar/GoalEditorToolbar'
 import { GoalEditorDetails } from './goal-editor-details/GoalEditorDetails'
-import { GoalTitleInput } from './goal-editor-form-items/GoalTitleInput'
-import { GoalSloganInput } from './goal-editor-form-items/GoalSloganInput'
-import { GoalDescriptionRichInput } from './goal-editor-form-items/GoalDescriptionRichInput'
-import { GoalCreatedAt } from './goal-editor-form-items/GoalCreatedAt'
-import { GoalFinishCalendarInput } from './goal-editor-form-items/GoalFinishCalendarInput'
-import { GoalEditorRitual } from './goal-editor-ritual/GoalEditorRitual'
 import { useInitGoalEditorForm } from '../hooks/useInitGoalEditorForm.hook'
 import { useGoalEditorFormInitialValues } from '../hooks/useGoalEditorFormInitialValues.hook'
 import { IconInfiniteLoading } from '@/assets/icons'
+import { GoalEditorTabs } from './goal-editor-tabs/GoalEditorTabs'
 
 export const GoalEditorForm = () => {
     const { isLoading } = useGoalEditorFormInitialValues()
@@ -25,16 +19,7 @@ export const GoalEditorForm = () => {
             )}
             <GoalEditorToolbar />
             <GoalEditorDetails />
-            <div className='flex flex-col gap-4 py-2'>
-                <GoalTitleInput />
-                <GoalSloganInput />
-                <GoalDescriptionRichInput />
-                <GoalCreatedAt />
-                <GoalFinishCalendarInput />
-                {/*  */}
-                <GoalEditorRitual />
-            </div>
-            <GoalEditorFormFooter />
+            <GoalEditorTabs />
         </Form>
     )
 }

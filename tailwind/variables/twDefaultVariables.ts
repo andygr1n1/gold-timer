@@ -6,7 +6,7 @@ export default {
     'global-bg-plasma': '#dbeafeed',
     //
     'global-2-bg': '#dbeafe',
-    'global-2-bg-plasma': '#dbeafec7',
+    'global-2-bg-plasma': 'rgba(255, 255, 255, 0.9)',
     //
     'global-3-bg': 'white',
     'global-bg-regal': 'rgba(255, 255, 255, 0.9)',

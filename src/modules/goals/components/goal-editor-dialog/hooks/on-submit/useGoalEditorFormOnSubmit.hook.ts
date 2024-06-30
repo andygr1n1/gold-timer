@@ -26,6 +26,12 @@ export const useGoalEditorFormOnSubmit = () => {
                             goalEditorMode: state.metadata?.parentGoalEditorMode || goalEditorMode.view,
                             open: true,
                         })
+                    } else if (state.metadata?.viewModeRedirect) {
+                        setState({
+                            goalId: values.id,
+                            goalEditorMode: goalEditorMode.view,
+                            open: true,
+                        })
                     } else {
                         onCancel()
                     }

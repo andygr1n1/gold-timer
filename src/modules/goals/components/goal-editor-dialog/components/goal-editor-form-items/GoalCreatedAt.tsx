@@ -1,6 +1,4 @@
-import { XInput } from '@/components-x/x-input/XInput'
 import { ActiveGoalCreatedAt } from '@/modules/goals/components/goal-editor-dialog/components/goal-editor-form-items/ActiveGoalCreatedAt'
-import { FormLabel } from '@/components/form/FormLabel'
 import { format } from 'date-fns'
 import { convertStringDate } from '@/helpers/date.helpers'
 import { useFormikContext } from 'formik'
@@ -14,17 +12,12 @@ export const GoalCreatedAt = () => {
         : formikContext.values.created_at
 
     return created ? (
-        <div>
-            <FormLabel title='Created' />
+        <div className='flex items-center gap-2 mb-5 opacity-80'>
+            <div className='font-extralight text-xs min-w-fit'>created</div>
             <ActiveGoalCreatedAt />
-            {created && (
-                <XInput
-                    onChange={() => undefined}
-                    disabled={true}
-                    readOnly={true}
-                    value={format(convertStringDate(created), 'do MMMM yyyy')}
-                />
-            )}
+            <div className='font-extralight text-xs min-w-fit'>
+                on {format(convertStringDate(created), 'do MMMM yyyy, EEEE')}
+            </div>
         </div>
     ) : null
 }

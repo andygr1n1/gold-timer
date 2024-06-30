@@ -13,7 +13,7 @@ export const ActiveGoalCreatedAt = () => {
     return (
         <>
             {created_at && (
-                <div className='flex items-center gap-2 font-extralight  opacity-70 '>
+                <div className='flex items-center gap-2 font-extralight text-xs min-w-fit'>
                     {/* <span>created </span> */}
                     {createString}
                 </div>

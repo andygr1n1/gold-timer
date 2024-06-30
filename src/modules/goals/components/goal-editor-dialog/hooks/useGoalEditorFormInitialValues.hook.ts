@@ -8,7 +8,7 @@ export const useGoalEditorFormInitialValues = () => {
     const { isLoading, data } = useFetchGoal({ goalId: state.goalId })
     const initialValues: IGoalSchema = initialGoal({ parentGoalId: state.metadata?.parentGoalId })
 
-    return { initialValues: data || initialValues, isLoading, goalEditorMode: state.goalEditorMode }
+    return {state, initialValues: data || initialValues, isLoading, goalEditorMode: state.goalEditorMode }
 }
 
 const initialGoal = (props: { parentGoalId?: string | null }) => ({

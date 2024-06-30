@@ -1,6 +1,6 @@
 import { IsLoading } from '@/components/loading/IsLoading'
 import { NavigateAllActiveGoals } from './NavigateAllActiveGoals'
-import { CreateGoalAction } from '../components/CreateGoalAction'
+import { Widget_AddGoal } from '../components/widget-add-goal/Widget_AddGoal'
 import { TopGoalsList } from '../components/TopGoalsList'
 import { useFetchGoals } from '../../../shared-service/fetch-goals/useFetchGoals'
 import { goalStatus } from '@/modules/goals/shared-service'
@@ -23,7 +23,7 @@ export const TopActiveGoalsWidget: React.FC = () => {
                         <TopGoalsList goals={goals} />
                     </>
                 ) : (
-                    <CreateGoalAction />
+                    <Widget_AddGoal />
                 )}
             </div>
         </div>
