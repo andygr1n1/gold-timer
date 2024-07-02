@@ -38,7 +38,6 @@ input:-webkit-autofill:active {
 @tailwind components;
 @tailwind utilities;
 @import './react-menu-theme-overwrite.scss';
-@import './quill.css';
 @import './date-picker.css';
 @import './antdRedesign.css';
 @import './antd-redesign/select.scss';
@@ -47,6 +46,7 @@ input:-webkit-autofill:active {
 @import 'react-tooltip/dist/react-tooltip.css';
 @import 'slick-carousel/slick/slick.css';
 @import 'slick-carousel/slick/slick-theme.css';
+@import './draft.css';
 
 @layer base {
     html,

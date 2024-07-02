@@ -7,19 +7,21 @@ import { TopRitualGoalsWidget } from '@/modules/goals/components/goals-dashboard
 import { ArtifactsCounter } from './artifacts-counter/ArtifactsCounter'
 import { NotepadIndex } from '@/modules/notepad/NotepadIndex'
 import { GoalEditorDialog } from '@/modules/goals/components/goal-editor-dialog/GoalEditorDialog'
+import { GoalsSlidesCarouselWidget } from '@/modules/goals-slides/GoalsSlidesCarouselWidget'
 
 export const Dashboard: React.FC = () => {
     return (
         <ModuleWrapper context={APP_ROUTES_ENUM.DASHBOARD} topBarNodes={<ArtifactsCounter />}>
-            <GoalEditorDialog />
             <NotepadIndex />
-            {/* <GoalsSlidesCarouselWidget /> */}
+            <GoalsSlidesCarouselWidget />
             <TopActiveGoalsWidget />
             <TopExpiredGoalsWidget />
             <TopRitualGoalsWidget />
             <TopFavoriteGoalsWidget />
             {/* stabilized */}
             <div className='flex max-h-[1px] flex-[100%] 2lg:flex-[45%]' />
+            {/* dialog */}
+            <GoalEditorDialog />
         </ModuleWrapper>
     )
 }

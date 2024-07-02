@@ -4,7 +4,6 @@ import { useNotesStore } from '@/modules/app/mst/StoreProvider'
 import { FormFooter } from '@/components/form/FormFooter'
 import { INote$ } from '@/modules/notes/mst/types'
 import { NoteTagsList } from '../../../NoteTagsList'
-import ReactQuill from 'react-quill'
 import { useEffect, useState } from 'react'
 
 export const ViewNoteDialogBody: React.FC = observer(() => {

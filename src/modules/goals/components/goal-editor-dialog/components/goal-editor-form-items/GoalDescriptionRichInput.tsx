@@ -12,8 +12,6 @@ export const GoalDescriptionRichInput = () => {
     if (viewMode && !formikContext.values.description.length) return null
 
     /* Fixing ReactQuill  */
-    /* https://github.com/zenoamaro/react-quill/issues/911 */
-    /* In react-quill text editor move next line using Enter kay, need to press Enter kay two time. */
     // const [val, setVal] = useState('')
 
     // useEffect(() => {

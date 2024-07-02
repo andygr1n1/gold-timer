@@ -6,6 +6,7 @@ import macrosPlugin from 'vite-plugin-babel-macros'
 import { outputPluginStats } from './vite.outputPluginStats.plugin'
 import { requestAnalytics } from './vite.requestAnalytics.plugin'
 import { hotUpdateReport } from './vite.hotUpdateReport.plugin'
+import { NodeGlobalsPolyfillPlugin } from '@esbuild-plugins/node-globals-polyfill'
 
 // https://vitejs.dev/config/
 export default ({ mode }: { mode: string }) => {
@@ -24,6 +25,10 @@ export default ({ mode }: { mode: string }) => {
                 babel: {
                     presets: ['jotai/babel/preset'],
                 },
+            }),
+            NodeGlobalsPolyfillPlugin({
+                buffer: true,
+                process: true,
             }),
             macrosPlugin(),
             requestAnalytics(),
@@ -69,5 +74,6 @@ export default ({ mode }: { mode: string }) => {
                 },
             },
         },
+        define: { global: 'window' },
     })
 }

@@ -12,9 +12,9 @@ export const useFetchAvatar = (): IRes => {
     const { data, isLoading } = useQuery({
         queryKey: KEY_FetchAvatar(),
         queryFn: async () => await query_fetchAvatar(),
-        staleTime: 1000,
-        refetchOnWindowFocus: true,
-        refetchOnMount: true,
+        staleTime: Infinity,
+        refetchOnWindowFocus: false,
+        refetchOnMount: false,
     })
 
     return { isLoading, name: data?.name || '', avatar: data?.avatar || '' }
