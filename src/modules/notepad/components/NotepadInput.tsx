@@ -21,6 +21,7 @@ export const NotepadInput: React.FC = () => {
 
     return (
         <XRte
+            showBaseToolbar={!isLocked}
             isLoading={isLoading}
             readOnly={isLocked}
             content={description}

@@ -13,13 +13,12 @@ export const NewNoteInput: React.FC = observer(() => {
 
     return (
         <XRte
-            preserveWhitespace
             content={description}
             onChangeContent={(content) => {
                 onChangeField('description', content)
             }}
             placeholder='Note...'
-            className='[&_.ql-editor]:!max-h-[160px] [&_.ql-editor]:!min-h-[160px]'
+            // className='[&_.ql-editor]:!max-h-[160px] [&_.ql-editor]:!min-h-[160px]'
         />
     )
 })

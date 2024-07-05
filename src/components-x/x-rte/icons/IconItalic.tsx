@@ -1,6 +1,6 @@
 import type { SVGProps } from 'react'
 
-export function ItalicIcon(props: SVGProps<SVGSVGElement>) {
+export function IconItalic(props: SVGProps<SVGSVGElement>) {
     return (
         <svg xmlns='http://www.w3.org/2000/svg' width='1rem' height='1rem' viewBox='0 0 1024 1024' {...props}>
             <path

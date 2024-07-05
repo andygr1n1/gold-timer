@@ -177,3 +177,7 @@
 .public-DraftStyleDefault-depth4.public-DraftStyleDefault-reset {
     counter-reset: ol4;
 }
+
+.public-DraftStyleDefault-pre {
+    @apply bg-global-bg rounded-sm p-0 m-0 px-2;
+}

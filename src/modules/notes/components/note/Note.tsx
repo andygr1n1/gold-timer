@@ -60,12 +60,12 @@ export const Note: React.FC<{ note: INote$; isMobile: MEDIA_QUERY_VALUES_ENUM }>
                 )}
                 <NoteTagsList note={note} />
 
-                <ReactQuill
+                {/* <ReactQuill
                     className='view-mode [&_*]:cursor-default'
                     value={note.description}
                     modules={{ toolbar: [] }}
                     readOnly={true}
-                />
+                /> */}
             </div>
         </XDropdown>
     )

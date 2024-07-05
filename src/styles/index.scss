@@ -54,6 +54,14 @@ input:-webkit-autofill:active {
         @apply scrollbar-thumb-blue-500  scrollbar-track-global-bg scrollbar-thin bg-global-bg font-inter text-cText flex h-full w-full flex-col overflow-hidden text-base;
     }
 
+    pre {
+        @apply m-0 p-0;
+    }
+
+    blockquote {
+        @apply italic border-l-solid border-l-blue-500/50 font-kzen;
+    }
+
     #root {
         @apply scrollbar-thumb-blue-500 scrollbar-track-global-bg scrollbar-thin flex w-full flex-auto overflow-hidden;
     }
