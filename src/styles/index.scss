@@ -76,7 +76,7 @@ input:-webkit-autofill:active {
     h4,
     h5,
     h6 {
-        @apply font-inter text-cText m-0 p-0 tracking-wider opacity-70 duration-300;
+        @apply font-inter text-cText m-0 p-0 tracking-wider leading-normal duration-300;
     }
 
     a,

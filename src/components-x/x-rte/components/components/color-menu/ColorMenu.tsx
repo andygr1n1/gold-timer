@@ -24,6 +24,7 @@ export const ColorMenu: React.FC<{
             // onOpenChange={() => {
             //     setPopoverState(!popoverState)
             // }}
+            placement='bottom'
             overlayStyle={{ zIndex: 9999 }}
             trigger={['hover']}
             dropdownRender={() => (
@@ -31,6 +32,7 @@ export const ColorMenu: React.FC<{
                     <XMenuItem className='!opacity-100 max-w-[270px] items-center my-2 justify-center gap-5 flex flex-wrap'>
                         {baseColorKeys().map((colorObj) => (
                             <button
+                                type='button'
                                 key={colorObj.color}
                                 className='w-5 h-5 rounded-md m-1 cursor-pointer'
                                 onClick={() =>
@@ -49,6 +51,7 @@ export const ColorMenu: React.FC<{
                     <XMenuItem className='!opacity-100 max-w-[270px] items-center my-2 justify-center gap-5 flex flex-wrap'>
                         {secondaryColorKeys().map((colorObj) => (
                             <button
+                                type='button'
                                 key={colorObj.color}
                                 className='w-5 h-5 rounded-md m-1 cursor-pointer'
                                 onClick={() =>
@@ -69,7 +72,9 @@ export const ColorMenu: React.FC<{
                             handleColor({ color: 'DEFAULT', editorState, setEditorState, editorRef, colorStyleMap })
                         }
                     >
-                        <button className='mx-2 text-cText cursor-pointer'>Default</button>
+                        <button type='button' className='text-cText cursor-pointer'>
+                            Default
+                        </button>
                     </XMenuItem>
                     {/* <XMenuItem>
                         <SketchPicker
@@ -102,11 +107,13 @@ export const ColorMenu: React.FC<{
                 </XMenuDropdown>
             )}
         >
-            <IconPalette
-                className={cn(
-                    'cursor-pointer text-cText opacity-80 hover:opacity-100 mb-1 px-1 hover:text-blue-500 min-h-[18px] min-w-[18px]',
-                )}
-            />
+            <button type='button'>
+                <IconPalette
+                    className={cn(
+                        'cursor-pointer text-cText opacity-80 hover:opacity-100 hover:text-blue-500 min-h-[18px] min-w-[18px]',
+                    )}
+                />
+            </button>
         </XDropdown>
     )
 }

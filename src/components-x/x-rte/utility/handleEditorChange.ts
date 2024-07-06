@@ -1,5 +1,5 @@
-import { EditorState, convertToRaw } from "draft-js"
-import { Dispatch, SetStateAction } from "react"
+import { EditorState, convertToRaw } from 'draft-js'
+import { Dispatch, SetStateAction } from 'react'
 
 export const handleEditorChange = (
     state: EditorState,

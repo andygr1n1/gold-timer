@@ -8,7 +8,7 @@ export const CreateChildGoal: React.FC<{ label?: React.ReactNode; parentGoalId: 
     label,
     parentGoalId,
 }) => {
-    const { setState, state } = useGoalEditor$()
+    const { setState, store: state } = useGoalEditor$()
 
     const metadataParentGoalId = state.metadata?.parentGoalId
     const metadataParentGoalEditorMode = state.metadata?.parentGoalEditorMode

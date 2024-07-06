@@ -6,7 +6,7 @@ import { goalEditorMode } from '@/modules/goals/components/goal-editor-dialog/st
 
 export const useUpdateGoalIsFavorite = () => {
     const { onSuccess } = useInvalidateGoals()
-    const { state, editMode, setState } = useGoalEditor$()
+    const { store: state, editMode, setState } = useGoalEditor$()
 
     const mutation = useMutation({
         mutationFn: ({ goalId, isFavorite }: { goalId: string; isFavorite: boolean }) =>

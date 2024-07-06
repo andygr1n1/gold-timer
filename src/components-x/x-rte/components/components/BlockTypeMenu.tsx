@@ -32,11 +32,13 @@ export const BlockTypeMenu: React.FC<{
                 </XMenuDropdown>
             )}
         >
-            <IconTitle
-                className={cn(
-                    'cursor-pointer text-cText opacity-80 hover:opacity-100 mb-1 px-1 hover:text-blue-500 min-h-5 min-w-5',
-                )}
-            />
+            <button type='button'>
+                <IconTitle
+                    className={cn(
+                        'cursor-pointer text-cText opacity-80 hover:opacity-100  hover:text-blue-500 min-h-5 min-w-5',
+                    )}
+                />
+            </button>
         </XDropdown>
     )
 }

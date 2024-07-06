@@ -9,7 +9,8 @@ export const Eraser: React.FC<{
 }> = ({ setEditorState, editorState }) => {
     return (
         <button
-            className='ml-4 cursor-pointer hover:text-blue-500'
+            type='button'
+            className='cursor-pointer hover:text-blue-500 '
             onClick={() => resetStyles(editorState, setEditorState)}
         >
             <IconEraser className={cn('cursor-pointer hover:text-blue-500 min-h-[20px] min-w-[20px]')} />

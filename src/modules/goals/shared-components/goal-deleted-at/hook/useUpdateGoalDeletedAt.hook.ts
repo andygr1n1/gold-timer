@@ -6,7 +6,7 @@ import { goalEditorMode } from '@/modules/goals/components/goal-editor-dialog/st
 
 export const useUpdateGoalDeletedAt = () => {
     const { onSuccess } = useInvalidateGoals()
-    const { state, editMode, setState } = useGoalEditor$()
+    const { store: state, editMode, setState } = useGoalEditor$()
 
     const mutation = useMutation({
         mutationFn: ({ goalId, deletedAt }: { goalId: string; deletedAt: null | string }) =>

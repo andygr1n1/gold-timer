@@ -1,15 +1,18 @@
 import { EditorProps } from 'draft-js'
 
-export type IXrte = Partial<EditorProps> & {
-    isLoading?: boolean
+export type IEditorCore = Partial<EditorProps> & {
     onChangeContent: (data: string) => void
-    content: string
+    content?: string
     toolbarExtend?: React.ReactNode
-    showToolbar?:boolean
-    showToolbarExtend?:boolean
-    showBaseToolbar?:boolean
+    showToolbar?: boolean
+    smallBaseToolbar?: boolean
+    showBaseToolbar?: boolean
 }
 
+export type IKzenEditor = Partial<EditorProps> &
+    IEditorCore & {
+        isLoading: boolean
+    }
 
 export type IColorStyle = {
     color: string

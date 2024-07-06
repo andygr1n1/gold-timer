@@ -1,14 +1,14 @@
 import { IGoalSchema, goalStatus } from '@/modules/goals/shared-service'
 import { useGoalEditor$ } from '../stores/goal-editor-store/useGoalEditor.store.ts'
-import { useFetchGoal } from '../service/useFetchGoal.service.ts'
 import { formatDateWithTimezone } from '@/helpers/date.helpers'
+import { useGoalData } from './useGoalData.ts'
 
 export const useGoalEditorFormInitialValues = () => {
-    const { state } = useGoalEditor$()
-    const { isLoading, data } = useFetchGoal({ goalId: state.goalId })
-    const initialValues: IGoalSchema = initialGoal({ parentGoalId: state.metadata?.parentGoalId })
+    const { store } = useGoalEditor$()
+    const { isLoading, data } = useGoalData()
+    const initialValues: IGoalSchema = initialGoal({ parentGoalId: store.metadata?.parentGoalId })
 
-    return {state, initialValues: data || initialValues, isLoading, goalEditorMode: state.goalEditorMode }
+    return { store, initialValues: data || initialValues, isLoading, goalEditorMode: store.goalEditorMode }
 }
 
 const initialGoal = (props: { parentGoalId?: string | null }) => ({

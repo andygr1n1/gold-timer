@@ -4,7 +4,7 @@ import { IGoalEditorStoreSchema, KEY_GoalEditorStore, goalEditorMode } from './t
 export const useGoalEditor$ = () => {
     const queryClient = useQueryClient()
 
-    const { data: state } = useQuery<IGoalEditorStoreSchema>({
+    const { data: store } = useQuery<IGoalEditorStoreSchema>({
         queryKey: KEY_GoalEditorStore(),
         staleTime: Infinity,
         refetchOnWindowFocus: false,
@@ -12,8 +12,8 @@ export const useGoalEditor$ = () => {
         initialData: { open: false, goalId: null, goalEditorMode: null },
     })
 
-    const setState = (state: IGoalEditorStoreSchema) => {
-        queryClient.setQueryData<IGoalEditorStoreSchema>(KEY_GoalEditorStore(), state)
+    const setState = (store: IGoalEditorStoreSchema) => {
+        queryClient.setQueryData<IGoalEditorStoreSchema>(KEY_GoalEditorStore(), store)
     }
 
     const onCancel = () => {
@@ -24,9 +24,9 @@ export const useGoalEditor$ = () => {
         })
     }
 
-    const viewMode = state.goalEditorMode === goalEditorMode.view
-    const newMode = state.goalEditorMode === goalEditorMode.new
-    const editMode = state.goalEditorMode === goalEditorMode.edit
+    const viewMode = store.goalEditorMode === goalEditorMode.view
+    const newMode = store.goalEditorMode === goalEditorMode.new
+    const editMode = store.goalEditorMode === goalEditorMode.edit
 
-    return { state, viewMode, newMode, editMode, setState, onCancel, goalEditorMode: state.goalEditorMode }
+    return { store, viewMode, newMode, editMode, setState, onCancel, goalEditorMode: store.goalEditorMode }
 }

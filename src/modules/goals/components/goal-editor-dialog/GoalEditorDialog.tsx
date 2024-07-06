@@ -4,7 +4,7 @@ import { GoalEditorTitle } from './components/goal-editor-form-title/GoalEditorT
 import { GoalEditor } from './components/GoalEditor'
 
 export const GoalEditorDialog: React.FC = () => {
-    const { state, onCancel } = useGoalEditor$()
+    const { store: state, onCancel } = useGoalEditor$()
 
     return (
         <XModal open={state.open} fullHeight onCancel={onCancel} title={<GoalEditorTitle />}>

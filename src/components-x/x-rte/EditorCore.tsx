@@ -1,35 +1,29 @@
 import React, { useRef } from 'react'
-import { Editor } from 'draft-js'
+import { Editor, convertToRaw } from 'draft-js'
 
 import { handlePastedFiles } from './utility/handlePastedFiles'
-import { decorator } from './utility/decorator'
-import { IXrte } from './types'
-import { useInitEffect } from './hooks/useUnitEffect'
+import { IEditorCore } from './types'
 import { handleKeyCommand } from './utility/handleKeyCommand'
 import { handleEditorChange } from './utility/handleEditorChange'
 import { useEditorState } from './hooks/useEditorState'
-import { handleBeforeInput } from './utility/handleBeforeInput'
 import { handlePastedText } from './utility/handlePastedText'
 import { ToolbarIndex } from './components/ToolbarIndex'
 
-export const XRte: React.FC<IXrte> = ({
+export const EditorCore: React.FC<IEditorCore> = ({
     content,
     onChangeContent,
-    isLoading = false,
     toolbarExtend,
     showBaseToolbar = true,
-    showToolbarExtend = true,
+    smallBaseToolbar = false,
     showToolbar = true,
     ...props
 }) => {
     const editorRef = useRef<Editor>(null)
-
-    const { editorState, setEditorState, customStyleMap, setCustomStyleMap } = useEditorState({ content, decorator })
-
-    useInitEffect({ setEditorState, isLoading, content, decorator })
-
+    const { editorState, setEditorState, customStyleMap, setCustomStyleMap } = useEditorState({
+        content,
+    })
     return (
-        <div className='w-full flex flex-col p-5'>
+        <div className='w-full flex flex-col'>
             {showToolbar && (
                 <ToolbarIndex
                     editorState={editorState}
@@ -37,14 +31,18 @@ export const XRte: React.FC<IXrte> = ({
                     editorRef={editorRef}
                     toolbarExtend={toolbarExtend}
                     showBaseToolbar={showBaseToolbar}
-                    showToolbarExtend={showToolbarExtend}
+                    smallBaseToolbar={smallBaseToolbar}
                     colorStyleMap={customStyleMap}
                     setCustomStyleMap={setCustomStyleMap}
                 />
             )}
             <Editor
                 editorState={editorState}
-                onChange={(state) => handleEditorChange(state, setEditorState, onChangeContent)}
+                onChange={(state) => {
+                    setEditorState(state)
+                    const contentState = state.getCurrentContent()
+                    onChangeContent(JSON.stringify(convertToRaw(contentState)))
+                }}
                 handleKeyCommand={(command, state) =>
                     handleKeyCommand(command, state, () => handleEditorChange(state, setEditorState, onChangeContent))
                 }
@@ -55,7 +53,7 @@ export const XRte: React.FC<IXrte> = ({
                         handleEditorChange: (state) => handleEditorChange(state, setEditorState, onChangeContent),
                     })
                 }
-                handleBeforeInput={(chars, editorState) => handleBeforeInput(chars, editorState, setEditorState)}
+                // handleBeforeInput={(chars, editorState) => handleBeforeInput(chars, editorState, setEditorState)}
                 handlePastedText={(text, html, editorState) =>
                     handlePastedText(text, html, editorState, setEditorState)
                 }

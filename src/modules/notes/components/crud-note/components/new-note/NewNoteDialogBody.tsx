@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react-lite'
 import { useNotesStore } from '@/modules/app/mst/StoreProvider'
 import { FormFooter } from '@/components/form/FormFooter'
-import { NoteDescriptionInput } from '../common-components/NoteDescriptionInput'
+// import { NoteDescriptionInput } from '../common-components/NoteDescriptionInput'
 import { NoteTagInput } from '../common-components/NoteTagInput'
 
 export const NewNoteDialogBody: React.FC = observer(() => {
@@ -10,7 +10,7 @@ export const NewNoteDialogBody: React.FC = observer(() => {
     return new_note ? (
         <>
             <div className='flex flex-col flex-auto gap-4 py-2'>
-                <NoteDescriptionInput note={new_note} />
+                {/* <NoteDescriptionInput note={new_note} /> */}
                 <NoteTagInput note={new_note} />
             </div>
             <Footer />

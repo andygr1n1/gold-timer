@@ -18,7 +18,7 @@ export const ToolbarSmMenu: React.FC<{
 }> = ({ setEditorState, editorState, editorRef }) => {
     return (
         <XDropdown
-            placement='bottomCenter'
+            placement='bottom'
             overlayStyle={{ zIndex: 9999 }}
             trigger={['hover']}
             dropdownRender={() => (

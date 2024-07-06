@@ -9,6 +9,10 @@ export const handleBeforeInput = (
 ): DraftHandleValue => {
     const currentContent = editorState.getCurrentContent()
     const selection = editorState.getSelection()
+    if (!selection.isCollapsed()) {
+        return 'not-handled'
+    }
+
     const newContent = Modifier.insertText(currentContent, selection, chars)
     const newEditorState = EditorState.push(editorState, newContent, 'insert-characters')
     setEditorState(newEditorState)

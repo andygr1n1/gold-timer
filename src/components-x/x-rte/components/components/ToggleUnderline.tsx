@@ -12,6 +12,7 @@ export const ToggleUnderline: React.FC<{
 }> = ({ editorRef, editorState, setEditorState }) => {
     return (
         <button
+            type='button'
             className='cursor-pointer hover:text-blue-500'
             onClick={() => toggleInlineStyle({ style: toolbarItems.UNDERLINE, editorState, editorRef, setEditorState })}
         >

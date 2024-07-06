@@ -12,6 +12,7 @@ export const ToggleItalic: React.FC<{
 }> = ({ editorRef, editorState, setEditorState }) => {
     return (
         <button
+            type='button'
             className='cursor-pointer hover:text-blue-500'
             onClick={() => toggleInlineStyle({ style: toolbarItems.ITALIC, editorState, editorRef, setEditorState })}
         >

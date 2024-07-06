@@ -33,6 +33,7 @@ export const SprintDay: React.FC<{ sprintDay: ISprintDay }> = observer(({ sprint
     return (
         sprintDay.date && (
             <button
+                type='button'
                 disabled={disabled}
                 className={clsx([
                     `flex h-16 select-none items-center justify-center rounded-md border-solid p-5 text-xl`,

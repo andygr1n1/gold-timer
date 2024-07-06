@@ -13,6 +13,7 @@ import { ToggleOl } from './components/ToggleOl'
 import { ToggleUl } from './components/ToggleUl'
 import { ToggleBlockQuote } from './components/ToggleBlockQuote'
 import { ToggleBlockCode } from './components/ToggleBlockCode'
+import { Eraser } from './components/Eraser'
 
 export const Toolbar: React.FC<{
     editorState: EditorState
@@ -36,7 +37,6 @@ export const Toolbar: React.FC<{
             <ToggleUl editorRef={editorRef} editorState={editorState} setEditorState={setEditorState} />
             <ToggleBlockQuote editorRef={editorRef} editorState={editorState} setEditorState={setEditorState} />
             <ToggleBlockCode editorRef={editorRef} editorState={editorState} setEditorState={setEditorState} />
-
             <ColorMenu
                 editorRef={editorRef}
                 editorState={editorState}
@@ -44,6 +44,7 @@ export const Toolbar: React.FC<{
                 colorStyleMap={colorStyleMap}
                 setCustomStyleMap={setCustomStyleMap}
             />
+            <Eraser editorState={editorState} setEditorState={setEditorState} />
         </>
     )
 }

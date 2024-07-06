@@ -3,8 +3,8 @@ import { useCallback, useMemo } from 'react'
 import { useFetchLockedStatus } from '../service/useFetchLockedStatus'
 import { useFetchNotepad } from '../service/useFetchNotepad'
 import { useMutateNotepad } from '../service/useMutateNotepad'
-import { XRte } from '@/components-x/x-rte/XRte'
 import { LockedStatusIndex } from './LockedStatusIndex'
+import { KzenEditor } from '@/components-x/x-rte'
 
 export const NotepadInput: React.FC = () => {
     const { isLocked } = useFetchLockedStatus()
@@ -20,7 +20,7 @@ export const NotepadInput: React.FC = () => {
     }, [sendRequest])
 
     return (
-        <XRte
+        <KzenEditor
             showBaseToolbar={!isLocked}
             isLoading={isLoading}
             readOnly={isLocked}

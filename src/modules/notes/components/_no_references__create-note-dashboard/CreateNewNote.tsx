@@ -1,7 +1,6 @@
 import { observer } from 'mobx-react-lite'
 import { StyledButton } from '@/components/buttons/StyledButton'
 import { XTooltip } from '@/components-x/x-tooltip/XTooltip'
-import { NewNoteInput } from './components/NewNoteInput'
 import { TagInput } from './components/TagInput'
 import { useNotesStore } from '@/modules/app/mst/StoreProvider'
 
@@ -13,7 +12,7 @@ export const CreateNewNote: React.FC = observer(() => {
             <div className='bg-global-bg-plasma m-auto flex h-[calc(100%-12px)] w-full flex-col gap-5 rounded-md py-2  '>
                 <div className='m-auto flex max-h-[330px] w-full max-w-[380px]  flex-col gap-5 '>
                     <div className='flex w-full flex-auto flex-col gap-5 bg-inherit '>
-                        <NewNoteInput />
+                        {/* <NewNoteInput /> */}
                         <TagInput />
                     </div>
                     <div className='relative w-full'>

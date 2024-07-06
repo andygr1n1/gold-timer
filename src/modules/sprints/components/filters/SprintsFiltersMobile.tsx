@@ -44,7 +44,6 @@
 //             {sprintsStatusRender.map((status) => (
 //                 <Fragment key={status}>
 //                     <XMenuDivider />
-//                     <button
 //                         key={status}
 //                         className={clsx(
 //                             `text-cText cursor-pointer capitalize duration-300 hover:text-blue-600`,

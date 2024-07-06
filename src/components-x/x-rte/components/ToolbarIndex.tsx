@@ -3,9 +3,6 @@ import { Dispatch, RefObject, SetStateAction } from 'react'
 
 import { IColorStyleMap } from '../types'
 import { Toolbar } from './Toolbar'
-import { ToolbarSm } from './ToolbarSm'
-import { useWindowMatchMedia } from '@/hooks/useMatchMedia.hook'
-import { Eraser } from './components/Eraser'
 
 export const ToolbarIndex: React.FC<{
     editorState: EditorState
@@ -14,22 +11,15 @@ export const ToolbarIndex: React.FC<{
     editorRef: RefObject<Editor>
     colorStyleMap: IColorStyleMap
     setCustomStyleMap: Dispatch<SetStateAction<IColorStyleMap>>
-    showToolbarExtend?: boolean
+    smallBaseToolbar?: boolean
     showBaseToolbar?: boolean
 }> = (props) => {
-    const { isMobile } = useWindowMatchMedia(['isMobile'])
-    // return isMobile ? <ToolbarSm {...props} /> : <Toolbar {...props} />
     return (
-        <div className='toolbar flex h-10 border-b-solid border-slate-600/50'>
-            {props.showBaseToolbar && (
-                <div className='flex flex-auto items-center'>
-                    {isMobile ? <ToolbarSm {...props} /> : <Toolbar {...props} />}
-                    <Eraser editorState={props.editorState} setEditorState={props.setEditorState} />
-                </div>
-            )}
-            {props.showToolbarExtend && (
-                <div className='flex min-w-fit items-center justify-end w-full'>{props.toolbarExtend}</div>
-            )}
+        <div className='flex items-start w-full h-fit  border-b-solid border-slate-600/50'>
+            <div className='flex flex-auto flex-wrap items-center  pb-2'>
+                {props.showBaseToolbar && <Toolbar {...props} />}
+            </div>
+            {props.toolbarExtend && <div className='flex min-w-fit items-top justify-end'>{props.toolbarExtend}</div>}
         </div>
     )
 }

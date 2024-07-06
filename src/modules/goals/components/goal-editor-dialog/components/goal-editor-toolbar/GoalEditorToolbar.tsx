@@ -9,7 +9,7 @@ import { useFormikContext } from 'formik'
 import { CompleteRitualGoal } from './components/CompleteRitualGoal'
 
 export const GoalEditorToolbar = () => {
-    const { state, newMode } = useGoalEditor$()
+    const { store: state, newMode } = useGoalEditor$()
     const formikContext = useFormikContext<IGoalSchema>()
 
     return (

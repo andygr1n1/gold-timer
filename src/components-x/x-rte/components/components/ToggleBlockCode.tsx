@@ -11,6 +11,7 @@ export const ToggleBlockCode: React.FC<{
 }> = ({ editorRef, editorState, setEditorState }) => {
     return (
         <button
+            type='button'
             className='cursor-pointer hover:text-blue-500'
             onClick={() => toggleBlockType({ blockType: 'code-block', editorRef, editorState, setEditorState })}
         >
