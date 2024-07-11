@@ -51,7 +51,11 @@ input:-webkit-autofill:active {
 @layer base {
     html,
     body {
-        @apply scrollbar-thumb-blue-500  scrollbar-track-global-bg scrollbar-thin bg-global-bg font-inter text-cText flex h-full w-full flex-col overflow-hidden text-base;
+        @apply scrollbar-thumb-blue-500 scrollbar-track-global-bg scrollbar-thin bg-global-bg font-inter text-cText flex h-full w-full flex-col overflow-hidden text-base;
+    }
+
+    .ant-app {
+        @apply text-cText;
     }
 
     pre {
@@ -63,7 +67,7 @@ input:-webkit-autofill:active {
     }
 
     #root {
-        @apply scrollbar-thumb-blue-500 scrollbar-track-global-bg scrollbar-thin flex w-full flex-auto overflow-hidden;
+        @apply scrollbar-thumb-blue-500 text-cText scrollbar-track-global-bg scrollbar-thin flex w-full flex-auto overflow-hidden;
     }
 
     label {
@@ -83,7 +87,7 @@ input:-webkit-autofill:active {
     a:focus,
     a:active,
     a:visited {
-        @apply text-inherit no-underline;
+        @apply text-cText no-underline;
     }
 
     ul {
