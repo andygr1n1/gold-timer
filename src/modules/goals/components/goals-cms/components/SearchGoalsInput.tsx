@@ -1,22 +1,10 @@
-import { observer } from 'mobx-react-lite'
 import { XInput } from '@/components-x/x-input/XInput'
 import { IconSearch } from '@/assets/icons/IconSearch'
 import { useEffect } from 'react'
 import { useGoalsFilters } from '../stores/useGoalsFilters.store'
 
-export const SearchGoalsInput: React.FC = observer(() => {
+export const SearchGoalsInput = () => {
     const { store, onChange, onChangeServerSearchInput } = useGoalsFilters()
-    // const [_filterGoalAtom_search, _setFilterGoalAtom_search] = useAtom(filterGoalAtom_search)
-    // const [bufferValue, setBufferValue] = useState(_filterGoalAtom_search)
-    // const location = useLocation()
-    // const state: IGoalQueryTypeFilter = location.state?.filter
-
-    // const onChangeValue = useMemo(() => {
-    //     return debounce((e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    //         _setFilterGoalAtom_search(e.target.value)
-    //         window.queryClient?.invalidateQueries({ queryKey: ['KEY_FetchGoalsByFilter', state] })
-    //     }, 1000)
-    // }, [])
 
     useEffect(() => {
         return () => {
@@ -35,4 +23,4 @@ export const SearchGoalsInput: React.FC = observer(() => {
             width='!max-w-[600px] !w-full'
         />
     )
-})
+}

@@ -22,9 +22,9 @@ export const GoalsCounterDropdown: React.FC<{ button: ReactNode }> = observer(({
 })
 
 const DropdownRender = () => {
-    const { setState } = useGoalEditor$()
+    const { setStore } = useGoalEditor$()
     const addGoal = () => {
-        setState({ goalEditorMode: goalEditorMode.new, goalId: null, open: true })
+        setStore({ goalEditorMode: goalEditorMode.new, goalId: null, open: true })
     }
 
     return (

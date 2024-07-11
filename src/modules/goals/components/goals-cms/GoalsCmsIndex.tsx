@@ -1,6 +1,6 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
 import { GoalsByFilterIndex } from './GoalsByFilterIndex'
-import { useSetGoalsParamsFilter } from '../../shared-hooks/useSetGoalsParamsFilter.hook'
+import { useSetGoalsParamsFilter } from '../../shared-hooks/useSetGoalsParamsFilter'
 
 const GoalsCmsIndex: React.FC = () => {
     const { filter } = useSetGoalsParamsFilter()

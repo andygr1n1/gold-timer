@@ -3,8 +3,8 @@ import { useMutation } from '@tanstack/react-query'
 import { mutation_goalStatus } from './mutation_goalStatus'
 import { mutation_userCoins } from '../mutation_userCoins'
 import { useRecalculateUserCoins } from '../../hooks/useRecalculateUserCoins.hook'
-import { useInvalidateGoals } from '@/modules/goals/shared-hooks/useInvalidateGoals.hook'
-import { useInvalidateUser } from '@/modules/goals/shared-hooks/useInvalidateUser.hook'
+import { useInvalidateGoals } from '@/modules/goals/shared-hooks/useInvalidateGoals'
+import { useInvalidateUser } from '@/modules/goals/shared-hooks/useInvalidateUse'
 
 export const useUpdateGoalStatus = () => {
     const { recalculateUserCoins, userId } = useRecalculateUserCoins()

@@ -25,8 +25,5 @@ export const useUserStore = () => useRootStore().user$
 
 export const useSprintsStore = () => useRootStore().sprints$
 
-
-export const useNotesStore = () => useRootStore().notes$
-
 // side menu
 export const useSideMenuStore = () => useRootStore().side_menu$

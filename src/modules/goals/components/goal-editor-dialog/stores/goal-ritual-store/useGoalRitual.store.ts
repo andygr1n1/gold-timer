@@ -9,7 +9,7 @@ import { goalEditorMode } from '../goal-editor-store/types'
 export const useGoalRitual$ = () => {
     const queryClient = useQueryClient()
     const formikContext = useFormikContext<IGoalSchema>()
-    const { setState } = useGoalEditor$()
+    const { setStore: setState } = useGoalEditor$()
     const { data: state } = useQuery<IGoalRitualSchema>({
         queryKey: KEY_GoalRitualStore(),
         staleTime: Infinity,

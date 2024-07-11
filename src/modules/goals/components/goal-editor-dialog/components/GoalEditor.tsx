@@ -8,7 +8,7 @@ import { GoalEditorForm } from './GoalEditorForm'
 /**
  * @goalId toggle between new goal and edit goal
  */
-export const GoalEditor = () => {
+const GoalEditor = () => {
     const { onSubmit } = useGoalEditorFormOnSubmit()
     const { validate } = useGoalEditorFormOnValidate()
     const { initialValues } = useGoalEditorFormInitialValues()
@@ -19,3 +19,5 @@ export const GoalEditor = () => {
         </Formik>
     )
 }
+
+export default GoalEditor

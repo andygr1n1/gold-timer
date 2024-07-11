@@ -1,7 +1,7 @@
 import { useMutation } from '@tanstack/react-query'
 import { IGoalSchema } from '../../../../shared-service/types'
 import { mutation_upsertGoal } from './mutation_upsertGoal'
-import { useInvalidateGoals } from '@/modules/goals/shared-hooks/useInvalidateGoals.hook'
+import { useInvalidateGoals } from '@/modules/goals/shared-hooks/useInvalidateGoals'
 import { goalSnapshotOut } from './goalSnapshotOut.helper'
 
 export const useUpsertGoal = () => {

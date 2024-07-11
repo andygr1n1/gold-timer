@@ -16,7 +16,7 @@ export const GoalContextMenu: React.FC<{ goal: IGoalSchema; action: () => void; 
     goal,
     action: onClose,
 }) => {
-    const { setState } = useGoalEditor$()
+    const { setStore: setState } = useGoalEditor$()
 
     return (
         <XMenuDropdown>
@@ -79,7 +79,7 @@ export const GoalContextMenu: React.FC<{ goal: IGoalSchema; action: () => void; 
             >
                 <CreateChildGoal
                     parentGoalId={goal.id}
-                    label={<span className='flex w-[110px] justify-start capitalize'>New child goal</span>}
+                    label={<span className='flex w-[120px] justify-start capitalize'>New child goal</span>}
                 />
             </XMenuItem>
         </XMenuDropdown>

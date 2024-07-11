@@ -12,7 +12,7 @@ export const TopGoal: React.FC<{ goal: IGoalSchema; className?: string; zIndex?:
     className = '',
     zIndex,
 }) => {
-    const { setState } = useGoalEditor$()
+    const { setStore: setState } = useGoalEditor$()
     const { popoverState, setPopoverState } = useTogglePopoverState()
 
     return (

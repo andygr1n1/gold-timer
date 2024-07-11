@@ -22,7 +22,7 @@ export const calculateIsFromFuture = (goal: IGoalSchema): boolean => {
     )
 }
 
-export const calculateCreatedDaysAgo = (goal: IGoalSchema): number => {
+export const calculateCreatedDaysAgo = (goal: IGoalSchema ): number => {
     if (!goal.created_at) return 0
     const created = goal?.goal_ritual?.created_at ? goal?.goal_ritual?.created_at : goal.created_at
     const today = Date.now()

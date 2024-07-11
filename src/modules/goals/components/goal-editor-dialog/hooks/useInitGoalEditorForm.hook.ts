@@ -6,12 +6,12 @@ import { KEY_GoalRitualStore } from '../stores/goal-ritual-store/types'
 import { useQueryClient } from '@tanstack/react-query'
 
 export const useInitGoalEditorForm = () => {
-    const { initialValues, goalEditorMode, store: state } = useGoalEditorFormInitialValues()
+    const { initialValues, goalEditorMode, store } = useGoalEditorFormInitialValues()
     const formikContext = useFormikContext<IGoalSchema>()
     const queryClient = useQueryClient()
 
     useEffect(() => {
-        if (!state.metadata?.preventRerender) {
+        if (!store.metadata?.preventRerender) {
             queryClient.resetQueries({ queryKey: KEY_GoalRitualStore() })
             formikContext.setFormikState((prevState) => ({
                 ...prevState,

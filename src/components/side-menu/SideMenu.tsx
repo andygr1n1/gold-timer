@@ -10,6 +10,7 @@ import { XMenuDivider } from '@/components-x/x-dropdown/XMenuDivider'
 import { UserInfo } from './components/user-info/UserInfo'
 import { cn } from '@/helpers/cn'
 import { IconFocus } from '@/assets/icons/IconFocus'
+import { IconBook } from '@/assets/icons/IconBook'
 
 const SideMenu: React.FC = observer(() => {
     const wrapperRef = useRef<HTMLDivElement | null>(null)
@@ -77,12 +78,12 @@ const SideMenu: React.FC = observer(() => {
                                     icon={<IconFocus width={24} height={24} />}
                                 />
 
-                                {/* <SideMenuLink
+                                <SideMenuLink
                                     to={APP_ROUTES_ENUM.NOTES}
                                     title='Notes'
                                     icon={<IconBook width={24} height={24} />}
                                 />
-                                {isUnderDevelopment() && (
+                                {/* {isUnderDevelopment() && (
                                     <SideMenuLink
                                         to={APP_ROUTES_ENUM.SPRINTS}
                                         title='Sprints'

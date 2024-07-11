@@ -4,7 +4,7 @@ import { useGoalEditor$ } from '../../../goal-editor-dialog/stores/goal-editor-s
 import { goalEditorMode } from '../../../goal-editor-dialog/stores/goal-editor-store/types'
 
 export const Widget_AddGoal: React.FC = () => {
-    const { setState } = useGoalEditor$()
+    const { setStore: setState } = useGoalEditor$()
     const addGoal = () => {
         setState({ goalEditorMode: goalEditorMode.new, goalId: null, open: true })
     }

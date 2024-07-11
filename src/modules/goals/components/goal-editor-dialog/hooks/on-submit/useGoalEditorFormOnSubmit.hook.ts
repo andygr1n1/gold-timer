@@ -6,7 +6,7 @@ import { useUpsertGoal } from '../../service/upsert-goal/useUpsertGoal.service'
 import { useViewModeSubmit } from './useViewModeSubmit.hook'
 
 export const useGoalEditorFormOnSubmit = () => {
-    const { viewMode, onCancel, store: state, setState } = useGoalEditor$()
+    const { viewMode, onCancel, store: state, setStore: setState } = useGoalEditor$()
     const { onViewModeSubmit } = useViewModeSubmit()
     const { upsertGoal } = useUpsertGoal()
 

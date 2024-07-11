@@ -5,7 +5,7 @@ import SideMenu from '@/components/side-menu/SideMenu'
 
 const GoalsCmsIndex = lazy(() => import('../../../goals/components/goals-cms/GoalsCmsIndex'))
 const ProfileIndex = lazy(() => import('../../../profile/ProfileIndex'))
-const NotesIndex = lazy(() => import('../../../notes/NotesIndex'))
+const NotesCmsIndex = lazy(() => import('../../../notes/components/notes-cms/NotesCmsIndex'))
 const SprintsIndex = lazy(() => import('../../../sprints/SprintsIndex'))
 const DashboardIndex = lazy(() => import('../../../dashboard/DashboardIndex'))
 const AchievementsIndex = lazy(() => import('../../../achievements/AchievementsIndex'))
@@ -22,7 +22,7 @@ const ProtectedRoutes = () => {
                             <Route path={`/${APP_ROUTES_ENUM.PROFILE}`} element={<ProfileIndex />} />
                             <Route path={`/${APP_ROUTES_ENUM.ACHIEVEMENTS}`} element={<AchievementsIndex />} />
                             <Route path={`/${APP_ROUTES_ENUM.STORIES}/*`} element={<StoriesIndex />} />
-                            <Route path={`/${APP_ROUTES_ENUM.NOTES}`} element={<NotesIndex />} />
+                            <Route path={`/${APP_ROUTES_ENUM.NOTES}/*`} element={<NotesCmsIndex />} />
                             <Route path={`/${APP_ROUTES_ENUM.GOALS}/*`} element={<GoalsCmsIndex />} />
                             <Route path={`/${APP_ROUTES_ENUM.SPRINTS}`} element={<SprintsIndex />} />
                             {/*  */}

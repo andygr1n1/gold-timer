@@ -12,7 +12,7 @@ export const useGoalEditor$ = () => {
         initialData: { open: false, goalId: null, goalEditorMode: null },
     })
 
-    const setState = (store: IGoalEditorStoreSchema) => {
+    const setStore = (store: IGoalEditorStoreSchema) => {
         queryClient.setQueryData<IGoalEditorStoreSchema>(KEY_GoalEditorStore(), store)
     }
 
@@ -28,5 +28,5 @@ export const useGoalEditor$ = () => {
     const newMode = store.goalEditorMode === goalEditorMode.new
     const editMode = store.goalEditorMode === goalEditorMode.edit
 
-    return { store, viewMode, newMode, editMode, setState, onCancel, goalEditorMode: store.goalEditorMode }
+    return { store, viewMode, newMode, editMode, setStore, onCancel, goalEditorMode: store.goalEditorMode }
 }

@@ -1,3 +1,4 @@
+import { Suspense, lazy } from 'react'
 import { ModuleWrapper } from '@/components/ModuleWrapper'
 import { APP_ROUTES_ENUM } from '@/services/enums'
 import { TopActiveGoalsWidget } from '@/modules/goals/components/goals-dashboard/top-active-goals-widget/TopActiveGoalsWidget'
@@ -6,8 +7,9 @@ import { TopFavoriteGoalsWidget } from '@/modules/goals/components/goals-dashboa
 import { TopRitualGoalsWidget } from '@/modules/goals/components/goals-dashboard/top-ritual-goals-widget/TopRitualGoalsWidget'
 import { ArtifactsCounter } from './artifacts-counter/ArtifactsCounter'
 import { NotepadIndex } from '@/modules/notepad/NotepadIndex'
-import { GoalEditorDialog } from '@/modules/goals/components/goal-editor-dialog/GoalEditorDialog'
 import { GoalsSlidesCarouselWidget } from '@/modules/goals-slides/GoalsSlidesCarouselWidget'
+import NoteEditorDialog from '@/modules/notes/components/note-editor-dialog/NoteEditorDialog'
+const GoalEditorDialog = lazy(() => import('@/modules/goals/components/goal-editor-dialog/GoalEditorDialog'))
 
 export const Dashboard: React.FC = () => {
     return (
@@ -21,7 +23,13 @@ export const Dashboard: React.FC = () => {
             {/* stabilized */}
             <div className='flex max-h-[1px] flex-[100%] 2lg:flex-[45%]' />
             {/* dialog */}
-            <GoalEditorDialog />
+            <Suspense fallback={null}>
+                <GoalEditorDialog />
+            </Suspense>
+
+            <Suspense fallback={null}>
+                <NoteEditorDialog />
+            </Suspense>
         </ModuleWrapper>
     )
 }

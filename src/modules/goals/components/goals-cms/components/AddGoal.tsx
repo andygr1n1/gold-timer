@@ -1,11 +1,10 @@
 import { IconNew } from '@/assets/icons'
 import { StyledButton } from '@/components/buttons/StyledButton'
-import { observer } from 'mobx-react-lite'
 import { useGoalEditor$ } from '../../goal-editor-dialog/stores/goal-editor-store/useGoalEditor.store'
 import { goalEditorMode } from '../../goal-editor-dialog/stores/goal-editor-store/types'
 
-export const AddGoal: React.FC = observer(() => {
-    const { setState } = useGoalEditor$()
+export const AddGoal = () => {
+    const { setStore: setState } = useGoalEditor$()
 
     const addGoal = () => {
         setState({ goalEditorMode: goalEditorMode.new, goalId: null, open: true })
@@ -18,4 +17,4 @@ export const AddGoal: React.FC = observer(() => {
             </StyledButton>
         </div>
     )
-})
+}
