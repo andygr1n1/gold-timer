@@ -7,7 +7,6 @@ import { useSideMenu } from '@/hooks/useSideMenu.hook'
 
 export const UserInfo: React.FC = () => {
     const { isLoading, name } = useFetchAvatar()
-
     return (
         <div className='min-h-[220px]'>
             {!isLoading && (

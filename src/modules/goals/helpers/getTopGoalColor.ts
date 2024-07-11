@@ -1,14 +1,14 @@
-import { IGoal } from '@/modules/goals/service/types'
+import { IGoalSchema } from '@/modules/goals/shared-service/types'
 import clsx from 'clsx'
 import { calculateIsExpired, calculateIsRitual } from './optimizeActiveGoalsData'
-import { isCompleted } from './goalsGuards'
+import { isCompletedGoalStatus } from './goalsGuards'
 
-export const getTopGoalColor = (goal: IGoal): { containerClass: string } => {
+export const getTopGoalColor = (goal: IGoalSchema): { containerClass: string } => {
     let containerClass = 'bg-blue-700 hover:bg-blue-600'
     const isRitual = calculateIsRitual(goal)
     const isExpired = calculateIsExpired(goal)
     const isFavorite = goal.is_favorite
-    const _isCompleted = isCompleted(goal.status)
+    const _isCompleted = isCompletedGoalStatus(goal.status)
     const isDeleted = !!goal.deleted_at
 
     if (isFavorite) {

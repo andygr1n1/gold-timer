@@ -2,11 +2,11 @@ import { resolveData } from '@/helpers/tryCatchRequest'
 import { processError } from '@/helpers/processMessage'
 import { IHero } from '../types'
 import { generateTSClient } from '@/graphql/client'
-import { getUserId } from '@/helpers/getUserData'
+import { getUserId } from '@/helpers/getUserId'
 import { optimizeProfileData } from '../../helpers/optimizeProfileData'
 
 export const mutation_updateProfile = async (data: IHero): Promise<IHero | null> => {
-    const client = generateTSClient()
+    const client = await generateTSClient()
     return await resolveData<null, IHero | null>(
         () =>
             client

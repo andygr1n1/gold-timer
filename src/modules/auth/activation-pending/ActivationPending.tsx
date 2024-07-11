@@ -20,6 +20,7 @@ const ActivationPending: React.FC = () => {
             <p> If you still haven’t received it, click the button below.</p>
             <p>
                 <button
+                    type='button'
                     className='underline p-0 m-0 cursor-pointer underline-offset-4 hover:text-blue-500 duration-300'
                     onClick={resendActivationLink}
                 >

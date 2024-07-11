@@ -1,4 +1,4 @@
-import { IconGithub } from '@/assets/icons'
+import { IconGithub } from '@/assets/icons/IconGithub'
 import { observer } from 'mobx-react-lite'
 
 export const GithubLink: React.FC = observer(() => {

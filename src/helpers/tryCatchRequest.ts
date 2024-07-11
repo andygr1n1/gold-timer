@@ -40,7 +40,7 @@ export async function resolveData<A, B>(success: LazyArg<Promise<B>>, error: (re
 }
 
 export const resolveError = async (error?: unknown) => {
-    let errorMessage = `unknown error${error}`
+    let errorMessage = `Unknown error ${error}`
     if (error instanceof HTTPError && error.response) {
         const errorJson = await error.response.json()
         errorMessage = errorJson.message

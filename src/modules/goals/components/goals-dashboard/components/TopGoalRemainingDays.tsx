@@ -1,23 +1,26 @@
-import { IconBellUrgent, IconFocus, IconRitual } from '@/assets/icons'
+import { IconBellUrgent, IconRitual } from '@/assets/icons'
+import { IconFocus } from '@/assets/icons/IconFocus'
+import { isCompletedGoalStatus } from '@/modules/goals/helpers/goalsGuards'
 import {
     calculateIsExpired,
     calculateGoalDeadline,
     calculateTotalRemainingDays,
     calculateIsRitual,
 } from '@/modules/goals/helpers/optimizeActiveGoalsData'
-import { IGoal } from '@/modules/goals/service'
+import { IGoalSchema } from '@/modules/goals/shared-service'
 
-export const TopGoalRemainingDays: React.FC<{ goal: IGoal }> = ({ goal }) => {
+export const TopGoalRemainingDays: React.FC<{ goal: IGoalSchema }> = ({ goal }) => {
     const isExpired = calculateIsExpired(goal)
     const isDeadline = calculateGoalDeadline(goal)
+    const isCompleted = isCompletedGoalStatus(goal.status)
     const totalRemainingDays = calculateTotalRemainingDays(goal)
 
     return (
         <span data-testid='topGoal__remainingDays' className='flex w-12 items-center justify-center px-1'>
-            {isExpired ? (
+            {isExpired || isCompleted ? (
                 <div className='opacity-40'>
                     {calculateIsRitual(goal) ? (
-                        <IconRitual width={24} height={24}  />
+                        <IconRitual width={24} height={24} />
                     ) : (
                         <IconFocus width={24} height={24} />
                     )}

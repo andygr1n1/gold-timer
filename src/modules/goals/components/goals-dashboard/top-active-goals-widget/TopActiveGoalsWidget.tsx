@@ -1,27 +1,29 @@
-import { useFetchGoalsByFilter } from '../../../service/fetchGoalsByFilter/useFetchGoalsByFilter'
 import { IsLoading } from '@/components/loading/IsLoading'
 import { NavigateAllActiveGoals } from './NavigateAllActiveGoals'
-import { CreateGoalAction } from '../components/CreateGoalAction'
+import { Widget_AddGoal } from '../components/widget-add-goal/Widget_AddGoal'
 import { TopGoalsList } from '../components/TopGoalsList'
+import { useFetchGoals } from '../../../shared-service/fetch-goals/useFetchGoals'
+import { goalStatus } from '@/modules/goals/shared-service'
 import styles from '../goalsDashboard.module.scss'
 
 export const TopActiveGoalsWidget: React.FC = () => {
-    const {
-        isLoading,
-        data: { active: goals },
-    } = useFetchGoalsByFilter({ queryFilter: 'all', limit: 4 })
+    const { isLoading, goals } = useFetchGoals({
+        limit: 4,
+        serverSearchInput: '',
+        queryFilter: goalStatus.active,
+    })
+
     return (
         <div key={goals?.length} className={styles['dashboardWidgetWrapper']}>
             <div>
-                {isLoading ? (
-                    <IsLoading isLoading={isLoading} />
-                ) : goals?.length ? (
+                <NavigateAllActiveGoals />
+                <IsLoading isLoading={isLoading} />
+                {goals?.length ? (
                     <>
-                        <NavigateAllActiveGoals />
                         <TopGoalsList goals={goals} />
                     </>
                 ) : (
-                    <CreateGoalAction />
+                    <Widget_AddGoal />
                 )}
             </div>
         </div>

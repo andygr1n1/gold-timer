@@ -53,6 +53,7 @@ export const StyledButton = ({
     return (
         <button
             {...otherProps}
+            type={otherProps.type || 'button'}
             ref={refButton || refLink}
             data-test={dataTest}
             onClick={(e) => {

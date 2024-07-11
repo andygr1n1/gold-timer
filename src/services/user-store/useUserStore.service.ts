@@ -1,15 +1,16 @@
 import { parseJwt } from '@/helpers/parseJwt'
-import { getSessionCredentials } from '@/modules/app/service/server_getSessionCredentials'
+import { server_getSessionCredentials } from '@/services/server_getSessionCredentials'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { IUserSchema } from './types'
 import { KEY_useUserStore } from './keys'
 import { setAccessIdInCookie } from '@/helpers/universalCookie'
 
-export const useUserStore = (): {
+export const useUserStore$ = (): {
     store?: IUserSchema | null
     selectUser: (props: { user: Partial<IUserSchema> }) => void
     autoLogin: () => Promise<void>
     logout: () => void
+    userId: string
 } => {
     const queryClient = useQueryClient()
 
@@ -18,7 +19,7 @@ export const useUserStore = (): {
         staleTime: Infinity,
         refetchOnWindowFocus: false,
         refetchOnMount: false,
-        initialData: { isLoading: true },
+        initialData: { isLoading: true, role: 'guest' },
     })
 
     const selectUser = (props: { user: Partial<IUserSchema> }) => {
@@ -28,12 +29,14 @@ export const useUserStore = (): {
     const logout = () => {
         /* double KEY_useUserStore for reactivity  */
         queryClient.setQueryData(KEY_useUserStore(), { userId: null, role: null, isLoading: false })
-        window.queryClient.clear()
+        queryClient.clear()
         queryClient.setQueryData(KEY_useUserStore(), { userId: null, role: null, isLoading: false })
     }
 
     const autoLogin = async () => {
-        const jwtToken = await getSessionCredentials()
+        if (!store.isLoading) return
+        
+        const jwtToken = await server_getSessionCredentials()
         jwtToken && setAccessIdInCookie(jwtToken)
         const data = parseJwt(jwtToken)
         selectUser({
@@ -41,5 +44,7 @@ export const useUserStore = (): {
         })
     }
 
-    return { store, selectUser, autoLogin, logout }
+    const userId = store.userId || ''
+
+    return { store, selectUser, autoLogin, logout, userId }
 }

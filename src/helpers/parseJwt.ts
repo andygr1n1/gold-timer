@@ -1,10 +1,11 @@
 import { processError } from '@/helpers/processMessage'
+import { userRoleSchema } from '@/services/types'
 import { jwtDecode } from 'jwt-decode'
 import { z } from 'zod'
 
 export const parseJwtSchema = z.object({
     id: z.string(),
-    role: z.enum(['hero', 'superHero']),
+    role: userRoleSchema,
     exp: z.number(),
 })
 

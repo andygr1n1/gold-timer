@@ -2,11 +2,11 @@ import { processError } from '../../../../helpers/processMessage'
 import { resolveData } from '@/helpers/tryCatchRequest'
 import { generateTSClient } from '@/graphql/client'
 import { IHero } from '../types'
-import { getUserId } from '@/helpers/getUserData'
+import { getUserId } from '@/helpers/getUserId'
 import { optimizeProfileData } from '../../helpers/optimizeProfileData'
 
 export const query_fetchProfileData = async (): Promise<IHero> => {
-    const client = generateTSClient()
+    const client = await generateTSClient()
 
     return await resolveData<IHero, IHero | IHero>(
         () =>

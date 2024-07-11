@@ -1,4 +1,4 @@
-import { getUserId } from '@/helpers/getUserData'
+import { getUserId } from '@/helpers/getUserId'
 import { processError } from '@/helpers/processMessage'
 import axios from 'axios'
 

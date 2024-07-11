@@ -1,4 +1,4 @@
-import { add } from 'date-fns'
+import { add, addMinutes, getUnixTime } from 'date-fns'
 import Cookies from 'universal-cookie'
 import { jwtDecode } from 'jwt-decode'
 
@@ -9,7 +9,6 @@ export const setRememberUserCookie = (userId: string, remember_me: boolean) => {
         expires: add(new Date(Date.now()), remember_me ? { days: 60 } : { minutes: 30 }),
     })
 }
-
 
 export const setAccessIdInCookie = (id?: string | null) => {
     if (!id) return
@@ -23,5 +22,25 @@ export const setAccessIdInCookie = (id?: string | null) => {
     const expires = new Date(exp)
 
     cookies.set('accessToken', id, { path: '/', expires })
-    console.log('Token set in cookie with expiration time:', expires)
+    console.info('Token set in cookie with expiration time:', expires)
+}
+
+export const getAccessIdFromCookie = (): string | null => {
+    const cookies = new Cookies()
+    return cookies.get('accessToken')
+}
+
+export const jwtVerify = (id?: string | null): boolean => {
+    if (!id) return false
+
+    const decodedToken = jwtDecode(id)
+    if (!decodedToken?.exp) return false
+    const currentTime = getUnixTime(new Date())
+    const bufferTime = addMinutes(new Date(currentTime * 1000), 2)
+    const expirationTime = decodedToken.exp
+    if (getUnixTime(bufferTime) >= expirationTime) {
+        return false
+    }
+
+    return true
 }

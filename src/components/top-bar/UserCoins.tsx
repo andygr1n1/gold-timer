@@ -1,9 +1,11 @@
-import { useFetchUserCoinsInfo } from './service/useFetchUserCoinsInfo'
+import { useFetchUserDetails } from '../../modules/goals/shared-service/fetch-user-details/useFetchUserDetails'
 import { IconAwardStar } from '@/assets/icons/IconAwardStar'
 import { IconCrystal } from '@/assets/icons'
+import { useUserStore$ } from '@/services/user-store/useUserStore.service'
 
 export const UserCoins: React.FC = () => {
-    const { isLoading, coins, totalRitualPower } = useFetchUserCoinsInfo()
+    const { userId } = useUserStore$()
+    const { isLoading, coins, ritualPower } = useFetchUserDetails({ userId })
     return !isLoading ? (
         <div data-testid='userCoins' className='flex items-start justify-start gap-2 '>
             <div className='pointer-events-none flex items-center justify-center gap-1  '>
@@ -12,7 +14,7 @@ export const UserCoins: React.FC = () => {
             </div>
             <div className='pointer-events-none flex cursor-pointer items-center gap-1'>
                 <IconCrystal width={24} height={24} className='text-teal-600' />
-                <div className=' font-kzen text-cText opacity-70 '>{totalRitualPower}</div>
+                <div className=' font-kzen text-cText opacity-70 '>{ritualPower}</div>
             </div>
         </div>
     ) : null

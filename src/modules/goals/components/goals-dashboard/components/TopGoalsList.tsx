@@ -1,9 +1,9 @@
-import { IGoal } from '@/modules/goals/service'
+import { IGoalSchema } from '@/modules/goals/shared-service'
 import { TopGoal } from './TopGoal'
 import clsx from 'clsx'
 import { calculateIsFromFuture } from '../../../helpers/optimizeActiveGoalsData'
 
-export const TopGoalsList: React.FC<{ goals: IGoal[] }> = ({ goals }) => {
+export const TopGoalsList: React.FC<{ goals: IGoalSchema[] }> = ({ goals }) => {
     return (
         <>
             {goals.slice(0, 4).map((goal) => (

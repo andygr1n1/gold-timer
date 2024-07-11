@@ -9,13 +9,13 @@ export const XModalBody: React.FC<IXModal> = ({ fullHeight, closeIcon = true, on
             <div
                 className={cn(
                     `x-modal-body bg-global-2-bg-plasma  flex-col relative flex w-full 
-                max-w-[550px] rounded-lg shadow-xl shadow-black/30 backdrop-blur-md  max-h-[77vh]`,
+                max-w-[600px] rounded-lg shadow-xl shadow-black/30 backdrop-blur-md  max-h-[77vh]`,
                     fullHeight && 'h-[77vh]',
                 )}
             >
                 {closeIcon && <CloseIcon onCancel={onCancel} />}
                 <div className='overflow-scroll py-4 scrollbar-thumb-blue-600 scrollbar-track-transparent scrollbar-thin'>
-                    <div className='max-w-[350px] mx-auto w-full flex flex-col'>
+                    <div className='max-w-[450px] mx-auto w-full flex flex-col'>
                         {title && <Header title={title} />}
                         <div
                             className={cn(

@@ -3,7 +3,7 @@ import { IUserData } from './types'
 import { resolveError, tryCatchRequest } from '@/helpers/tryCatchRequest'
 
 export const query_fetchUserDataByEmail = async (email?: string | null): Promise<IUserData | undefined | null> => {
-    const client = generateTSClient()
+    const client = await generateTSClient()
     const __name = 'query_fetchUserDataByEmail'
 
     return await tryCatchRequest<Promise<undefined>, IUserData | null>(

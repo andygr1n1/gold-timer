@@ -1,25 +1,20 @@
 import { convertStringDate, setMidnightTime } from '@/helpers/date.helpers'
 import { differenceInCalendarDays, isFuture, set } from 'date-fns'
-import { isArray } from 'lodash-es'
-import { IGoal } from '../service/types'
+import { IGoalSchema } from '../shared-service/types'
 
-export const optimizeActiveGoalsData = (data: IGoal[] | IGoal | null): IGoal[] => {
-    if (!data) return []
-    const isOneGoal = !isArray(data)
-    const goals = isOneGoal ? [data] : data
-
-    return goals
+export const calculateIsExpired = (goal: IGoalSchema): boolean => {
+    return !!goal.finished_at && !!(setMidnightTime(convertStringDate(goal.finished_at)) < new Date(Date.now()))
+}
+export const calculateIsRitual = (goal: IGoalSchema): boolean => {
+    return !!goal.goal_ritual
 }
 
-export const calculateIsExpired = (goal: IGoal): boolean => {
-    return !!(setMidnightTime(convertStringDate(goal.finished_at)) < new Date(Date.now()))
-}
-export const calculateIsRitual = (goal: IGoal): boolean => {
+export const calculateIsRitualWithPower = (goal: IGoalSchema): boolean => {
     return !!goal.goal_ritual?.ritual_power
 }
 
-export const calculateIsFromFuture = (goal: IGoal): boolean => {
-    if (!goal.created_at) return false
+export const calculateIsFromFuture = (goal: IGoalSchema): boolean => {
+    if (!goal.created_at || !goal.finished_at) return false
 
     return (
         !!(new Date(goal.created_at) > new Date()) ||
@@ -27,7 +22,7 @@ export const calculateIsFromFuture = (goal: IGoal): boolean => {
     )
 }
 
-export const calculateCreatedDaysAgo = (goal: IGoal): number => {
+export const calculateCreatedDaysAgo = (goal: IGoalSchema ): number => {
     if (!goal.created_at) return 0
     const created = goal?.goal_ritual?.created_at ? goal?.goal_ritual?.created_at : goal.created_at
     const today = Date.now()
@@ -35,12 +30,14 @@ export const calculateCreatedDaysAgo = (goal: IGoal): number => {
     const diff = new Date(today - createdAt)
     return Math.floor(diff.getTime() / (1000 * 3600 * 24))
 }
-export const calculateTotalRemainingDays = (goal: IGoal): number => {
+export const calculateTotalRemainingDays = (goal: IGoalSchema): number => {
+    if (!goal.finished_at) return NaN
+
     const result = differenceInCalendarDays(goal.finished_at, set(new Date(), { hours: 0, minutes: 0, seconds: 0 }))
     return result
 }
 
-export const calculateGoalDeadline = (goal: IGoal) => {
+export const calculateGoalDeadline = (goal: IGoalSchema) => {
     const isExpired = calculateIsExpired(goal)
     if (isExpired) return true
     const _totalRemainingDays = calculateTotalRemainingDays(goal)

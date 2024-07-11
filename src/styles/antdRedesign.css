@@ -108,3 +108,9 @@ td.ant-picker-cell.ant-picker-cell-disabled {
 .ant-popover-arrow {
     @apply !hidden;
 }
+
+/* tabs */
+.ant-tabs-nav-operations,
+.ant-tabs-nav-wrap {
+    @apply !border-transparent !bg-transparent !shadow-none;
+}

@@ -1,5 +1,4 @@
 import { XModal } from '@/components-x/x-modal/XModal'
-import { EditPassword } from './components/EditPassword'
 import { EditPhone } from './components/EditPhone'
 import { EditBirthday } from './components/EditBirthday'
 import { EditName } from './components/EditName'
@@ -21,7 +20,6 @@ export const EditProfileDialog: React.FC = () => {
                         <EditName />
                         <EditPhone />
                         <EditBirthday />
-                        <EditPassword />
                         <EditProfileFooter />
                     </div>
             ) : null}

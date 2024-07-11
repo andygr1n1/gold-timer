@@ -10,7 +10,7 @@ import { mutation_updateSprint } from '@/modules/sprints/graphql/mutation_update
 import { deleteImageFromServer, uploadNewImageToServer } from '@/services/image/image.service'
 import { SERVER_ROUTES } from '@/services/enums'
 import { setZeroTime } from '../../../../helpers/date.helpers'
-import { getUserId } from '@/helpers/getUserData'
+import { getUserId } from '@/helpers/getUserId'
 
 export const SprintNew$ = types
     .compose(

@@ -1,6 +1,8 @@
-import { IconCompleted, IconDeleteTemp, IconFavorite, IconFocus, IconRitual } from '@/assets/icons'
-import { useGetGoalsParamsFilter } from '../../../hooks/useGetGoalsParamsFilter'
+import { IconDeleteTemp, IconFavorite, IconRitual } from '@/assets/icons'
+import { useGetGoalsParamsFilter } from '../../../shared-hooks/useGetGoalsParamsFilter'
 import { IconExpired } from '@/assets/icons/IconExpired'
+import { IconFocus } from '@/assets/icons/IconFocus'
+import { IconCompleted } from '@/assets/icons/IconCompleted'
 
 export const ActiveFilterIcon: React.FC = () => {
     const { isExpired, isFavorite, isDeleted, isCompleted, isRitualized } = useGetGoalsParamsFilter()

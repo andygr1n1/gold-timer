@@ -1,10 +1,12 @@
 /// <reference types="vite/client" />
 
 import { QueryClient } from '@tanstack/react-query'
+import { Client } from 'gold-timer-genql/lib/generated'
 
 declare global {
     interface Window {
-        queryClient: QueryClient
+        queryClient: QueryClient | null
+        genqlClient: Client | null
     }
 }
 

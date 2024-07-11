@@ -6,14 +6,17 @@ export const LockedStatus: React.FC<{ isLocked: boolean; onClick: (status: boole
     onClick,
 }) => {
     return (
-        <div className='absolute right-5 top-6 '>
-            <button data-testid='toggle-lock' type='button' onClick={() => onClick(!isLocked)}>
-                {isLocked ? (
-                    <IconLocked className='text-cText opacity-70 cursor-pointer z-10 hover:text-blue-700 ' />
-                ) : (
-                    <IconUnlocked className='text-cText opacity-70 cursor-pointer hover:text-blue-700 z-10' />
-                )}
-            </button>
-        </div>
+        <button
+            type='button'
+            data-testid='toggle-lock'
+            className='h-[36px] flex items-start pt-1'
+            onClick={() => onClick(!isLocked)}
+        >
+            {isLocked ? (
+                <IconLocked className='text-cText opacity-90 w-[18px] h-[18px] cursor-pointer duration-300 z-10 hover:text-blue-700 ' />
+            ) : (
+                <IconUnlocked className='text-cText opacity-100 w-[18px] h-[18px] cursor-pointer duration-300 hover:text-blue-700 z-10' />
+            )}
+        </button>
     )
 }

@@ -1,10 +1,10 @@
 import { getTopGoalColor } from '../../../helpers/getTopGoalColor'
-import { IGoal } from '@/modules/goals/service/types'
+import { IGoalSchema } from '@/modules/goals/shared-service/types'
 import { TopGoalRemainingDays } from './TopGoalRemainingDays'
 import { TopGoalTitle } from './TopGoalTitle'
 
 export const TopGoalBody: React.FC<{
-    goal: IGoal
+    goal: IGoalSchema
     className?: string
     selectGoal: () => void
     onRightClick: () => void

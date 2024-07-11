@@ -3,7 +3,7 @@
 }
 
 .xinput-wrapper {
-    @apply text-cText bg-global-bg relative h-10 w-[calc(100%-2px)]  rounded-md border border-solid border-blue-900
+    @apply text-cText relative h-10 w-[calc(100%-2px)]  rounded-md border border-solid border-blue-900
     text-base  hover:border-blue-600;
 }
 

@@ -1,14 +1,14 @@
 import { debounce } from 'lodash-es'
 import { useCallback, useMemo } from 'react'
-import { KEY_FetchNotepad } from '../service/keys'
 import { useFetchLockedStatus } from '../service/useFetchLockedStatus'
 import { useFetchNotepad } from '../service/useFetchNotepad'
 import { useMutateNotepad } from '../service/useMutateNotepad'
-import { XRte } from '@/components-x/x-rte/XRte'
+import { LockedStatusIndex } from './LockedStatusIndex'
+import { KzenEditor } from '@/components-x/x-rte'
 
 export const NotepadInput: React.FC = () => {
     const { isLocked } = useFetchLockedStatus()
-    const { description } = useFetchNotepad()
+    const { description, isLoading } = useFetchNotepad()
     const _useMutateNotepad = useMutateNotepad()
 
     const sendRequest = useCallback((description: string) => {
@@ -20,56 +20,16 @@ export const NotepadInput: React.FC = () => {
     }, [sendRequest])
 
     return (
-        <XRte
+        <KzenEditor
+            showBaseToolbar={!isLocked}
+            isLoading={isLoading}
             readOnly={isLocked}
-            preserveWhitespace
             content={description}
             onChangeContent={(content) => {
                 saveDescription(content)
-                window.queryClient.setQueryData(KEY_FetchNotepad(), () => {
-                    return content || ''
-                })
             }}
             placeholder='Note...'
-            className='[&_.ql-editor]:!max-h-[calc(100%-40px)] [&_.ql-editor]:!min-h-[calc(100%-40px)] w-full m-5'
+            toolbarExtend={<LockedStatusIndex />}
         />
     )
 }
-
-// var editor = new quill('#someElemId', {
-//     modules: {
-//         toolbar: [
-//             'bold',
-//             //{ 'list': 'bullet' },
-//             { indent: '-1' },
-//             { indent: '+1' },
-//             { color: ['black', 'red', 'blue', 'green'] },
-//             'link',
-//             'clean',
-//         ],
-//     },
-//     formats: [
-//         'background',
-//         'bold',
-//         'color',
-//         'font',
-//         'code',
-//         'italic',
-//         'link',
-//         'size',
-//         'strike',
-//         'script',
-//         'underline',
-//         'blockquote',
-//         // "header",
-//         'indent',
-//         // "list", <-- commented-out to suppress auto bullets
-//         'align',
-//         'direction',
-//         'code-block',
-//         'formula',
-//         'image',
-//         'video',
-//     ],
-//     theme: 'snow', // snow   bubble
-// })

@@ -1,4 +1,4 @@
-import { IconAvatar } from '@/assets/icons'
+import { IconAvatar } from "@/assets/icons/IconAvatar"
 
 export const AvatarContainer: React.FC<{ avatar: string }> = ({ avatar }) => {
     return (

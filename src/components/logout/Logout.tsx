@@ -6,6 +6,7 @@ export const Logout: React.FC = () => {
 
     return (
         <button
+            type='button'
             onClick={logout}
             title='logout'
             className='text-cText  m-0 flex cursor-pointer items-center bg-transparent p-0 opacity-70 hover:text-blue-500 hover:opacity-100 disabled:cursor-default disabled:text-gray-700'
