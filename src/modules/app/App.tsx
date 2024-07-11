@@ -14,7 +14,6 @@ export const App = () => {
         <ConfigProvider
             theme={{
                 token: {
-                    colorPrimary: 'var(--colors-cText)',
                     colorText: 'var(--colors-cText)',
                     fontSize: 16,
                     fontFamily: 'Inter. sans-serif',
