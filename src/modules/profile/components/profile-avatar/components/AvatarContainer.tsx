@@ -1,6 +1,6 @@
 import { IconAvatar } from "@/assets/icons/IconAvatar"
 
-export const AvatarContainer: React.FC<{ avatar: string }> = ({ avatar }) => {
+export const AvatarContainer: React.FC<{ avatar?: string }> = ({ avatar }) => {
     return (
         <div
             data-testid='avatar-container'

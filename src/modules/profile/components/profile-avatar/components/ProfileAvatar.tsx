@@ -1,9 +1,9 @@
 import { CircleBreathAnimation } from './CircleBreathAnimation'
 import { AvatarContainer } from './AvatarContainer'
-import { useFetchAvatar } from '@/modules/profile/service/fetch-avatar/useFetchAvatar'
+import { useFetchProfileInfo } from '@/modules/profile/services'
 
 export const ProfileAvatar = () => {
-    const { avatar } = useFetchAvatar()
+    const { data } = useFetchProfileInfo()
 
     return (
         <div
@@ -11,7 +11,7 @@ export const ProfileAvatar = () => {
             className='relative flex h-32 w-32 items-center justify-center
             rounded-full font-bold text-gray-500 md:h-40 md:w-40'
         >
-            <AvatarContainer avatar={avatar} />
+            <AvatarContainer avatar={data?.avatar} />
             <CircleBreathAnimation />
         </div>
     )

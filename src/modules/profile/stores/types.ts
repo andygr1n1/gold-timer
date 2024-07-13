@@ -1,3 +1,8 @@
-import { IHero } from '../service'
+import { z } from 'zod'
 
-export type IEditProfile$ = IHero & { newPassword?: string; repeatPassword?: string }
+const profileStoreSchema = z.object({
+    editProfile: z.boolean(),
+    editPassword: z.boolean(),
+})
+
+export type IProfile$ = z.infer<typeof profileStoreSchema>

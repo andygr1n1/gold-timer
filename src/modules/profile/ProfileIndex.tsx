@@ -5,7 +5,11 @@ import { APP_ROUTES_ENUM } from '@/services/enums'
 const ProfileIndex = () => {
     return (
         <ModuleWrapper context={APP_ROUTES_ENUM.PROFILE}>
-            <ProfileDetails />
+            <div className='flex flex-col gap-10 w-full max-w-[600px] mx-auto relative'>
+                {/* avatar */}
+                <ProfileDetails />
+                {/* achievements - crate only through goal */}
+            </div>
         </ModuleWrapper>
     )
 }

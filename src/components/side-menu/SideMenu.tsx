@@ -11,6 +11,7 @@ import { UserInfo } from './components/user-info/UserInfo'
 import { cn } from '@/helpers/cn'
 import { IconFocus } from '@/assets/icons/IconFocus'
 import { IconBook } from '@/assets/icons/IconBook'
+import { IconProfile } from '@/assets/icons/IconProfile'
 
 const SideMenu: React.FC = observer(() => {
     const wrapperRef = useRef<HTMLDivElement | null>(null)
@@ -51,12 +52,12 @@ const SideMenu: React.FC = observer(() => {
                         <UserInfo />
                         <div className='w-[calc(100%-32px)] pl-8'>
                             <div className='mx-auto flex w-[180px] flex-auto flex-col gap-5 overflow-auto '>
-                                {/*          <SideMenuLink
+                                <SideMenuLink
                                     to={APP_ROUTES_ENUM.PROFILE}
                                     title='Profile'
                                     icon={<IconProfile width={26} height={26} className='ml-[-3px]' />}
                                 />
-                             {isUnderDevelopment() && (
+                                {/*   {isUnderDevelopment() && (
                                     <SideMenuLink
                                         to={APP_ROUTES_ENUM.ACHIEVEMENTS}
                                         title='Achievements'

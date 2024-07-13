@@ -1,8 +1,8 @@
 import { Form } from 'formik'
 import { GoalEditorToolbar } from './goal-editor-toolbar/GoalEditorToolbar'
 import { GoalEditorDetails } from './goal-editor-details/GoalEditorDetails'
-import { useInitGoalEditorForm } from '../hooks/useInitGoalEditorForm.hook'
-import { useGoalEditorFormInitialValues } from '../hooks/useGoalEditorFormInitialValues.hook'
+import { useInitGoalEditorForm } from '../hooks/useInitGoalEditorForm'
+import { useGoalEditorFormInitialValues } from '../hooks/useGoalEditorFormInitialValues'
 import { IconInfiniteLoading } from '@/assets/icons'
 import { GoalEditorTabs } from './goal-editor-tabs/GoalEditorTabs'
 

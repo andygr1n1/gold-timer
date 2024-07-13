@@ -1,8 +1,8 @@
 import { IGoalSchema } from '@/modules/goals/shared-service'
 import { Formik } from 'formik'
-import { useGoalEditorFormInitialValues } from '../hooks/useGoalEditorFormInitialValues.hook'
-import { useGoalEditorFormOnSubmit } from '../hooks/on-submit/useGoalEditorFormOnSubmit.hook'
-import { useGoalEditorFormOnValidate } from '../hooks/useGoalEditorFormOnValidate.hook'
+import { useGoalEditorFormInitialValues } from '../hooks/useGoalEditorFormInitialValues'
+import { useGoalEditorFormOnSubmit } from '../hooks/on-submit/useGoalEditorFormOnSubmit'
+import { useGoalEditorFormOnValidate } from '../hooks/useGoalEditorFormOnValidate'
 import { GoalEditorForm } from './GoalEditorForm'
 
 /**
