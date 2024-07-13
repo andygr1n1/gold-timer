@@ -12,7 +12,6 @@ const isEditorStateEmpty = (editorState: EditorState) => {
 
 export const useEditorState = (props: { content?: string }) => {
     const { content } = props
-    // console.log('content', content)
 
     // Decorator for rendering image entities
     const decorator = new CompositeDecorator([

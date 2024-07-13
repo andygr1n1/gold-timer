@@ -1,6 +1,6 @@
 import { GraphQLClient } from 'graphql-request'
 import { createClient } from 'gold-timer-genql/lib/generated'
-import { getAccessIdFromCookie, jwtVerify, setAccessIdInCookie } from '@/helpers/universalCookie'
+import { getAccessIdFromCookie, jwtVerify, setAccessIdInCookie, setSessionJWTInCookie } from '@/helpers/universalCookie'
 import { server_getSessionCredentials } from '@/services/server_getSessionCredentials'
 
 export const generateClient = (): GraphQLClient => {
@@ -30,12 +30,14 @@ export const generateTSClient = async () => {
 }
 
 const getAccessJwt = async () => {
-    let accessJwt = getAccessIdFromCookie()
+    let accessJwt: string | null | undefined = getAccessIdFromCookie()
     const verify = jwtVerify(accessJwt)
     if (!verify || !accessJwt) {
         window.genqlClient = null
-        accessJwt = await server_getSessionCredentials()
+        const res = await server_getSessionCredentials()
+        accessJwt = res?.serverCredentials?.accessJWT
         accessJwt && setAccessIdInCookie(accessJwt)
+        setSessionJWTInCookie(res?.serverCredentials?.sessionJWT)
     }
 
     return { accessJwt }

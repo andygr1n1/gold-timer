@@ -6,6 +6,7 @@ export const AuthEmailInput = () => {
     const formikContext = useFormikContext<IBaseAuthSchema>()
     return (
         <XInput
+            autoComplete='email'
             className='w-[220px]'
             placeholder='Email'
             name='email'

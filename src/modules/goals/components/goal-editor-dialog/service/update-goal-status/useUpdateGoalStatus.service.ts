@@ -2,7 +2,7 @@ import { IGoalSchema, IGoalStatus, goalStatus } from '@/modules/goals/shared-ser
 import { useMutation } from '@tanstack/react-query'
 import { mutation_goalStatus } from './mutation_goalStatus'
 import { mutation_userCoins } from '../mutation_userCoins'
-import { useRecalculateUserCoins } from '../../hooks/useRecalculateUserCoins.hook'
+import { useRecalculateUserCoins } from '../../hooks/useRecalculateUserCoins'
 import { useInvalidateGoals } from '@/modules/goals/shared-hooks/useInvalidateGoals'
 import { useInvalidateUser } from '@/modules/goals/shared-hooks/useInvalidateUse'
 

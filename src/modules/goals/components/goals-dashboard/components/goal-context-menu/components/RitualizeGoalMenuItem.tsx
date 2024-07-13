@@ -1,7 +1,7 @@
 import { IconInfinity } from '@/assets/icons/IconInfinity'
 import { XMenuItem } from '@/components-x/x-dropdown/XMenuItem'
 import { StyledButton } from '@/components/buttons/StyledButton'
-import { useRitualizeGoal } from '@/modules/goals/components/goal-editor-dialog/service/ritualize-goal/useRitualizeGoal.service'
+import { useRitualizeGoal } from '@/modules/goals/components/goal-editor-dialog/service/ritualize-goal/useRitualizeGoal'
 import { isActiveRitualStatus } from '@/modules/goals/helpers/goalsGuards'
 import { calculateIsFromFuture } from '@/modules/goals/helpers/optimizeActiveGoalsData'
 import { IGoalSchema } from '@/modules/goals/shared-service'

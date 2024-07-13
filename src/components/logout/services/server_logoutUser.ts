@@ -1,6 +1,7 @@
 import { resolveError, tryCatchRequest } from '@/helpers/tryCatchRequest'
 import ky from 'ky'
 import { ISessionLogout } from './types'
+import { getSessionJWTFromCookie } from '@/helpers/universalCookie'
 
 export const server_logoutUser = async () => {
     const endpoint = import.meta.env.VITE_NODE_HEROKU_ORIGIN
@@ -11,7 +12,7 @@ export const server_logoutUser = async () => {
             return await ky
                 .post(`${endpoint}logout`, {
                     credentials: 'include',
-                    json: { message: 'logout' },
+                    json: { message: 'logout', sessionJWT: getSessionJWTFromCookie() },
                     method: 'POST',
                     headers: {
                         'x-api-key': xapikey,

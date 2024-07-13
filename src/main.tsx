@@ -12,7 +12,7 @@ const Main = () => {
         <QueryClientProvider client={queryClient}>
             {/* <SnowfallAnimation /> */}
             <ReactQueryDevtools initialIsOpen={false} />
-            <AntdApp className='w-full h-full flex'>
+            <AntdApp className='w-full h-full flex text-cText'>
                 <App />
             </AntdApp>
         </QueryClientProvider>
