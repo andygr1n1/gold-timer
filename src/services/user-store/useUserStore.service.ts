@@ -3,7 +3,7 @@ import { server_getSessionCredentials } from '@/services/server_getSessionCreden
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { IUserSchema } from './types'
 import { KEY_useUserStore } from './keys'
-import { setAccessIdInCookie } from '@/helpers/universalCookie'
+import { removeSessionJWTFromCookie, setAccessIdInCookie, setSessionJWTInCookie } from '@/helpers/universalCookie'
 
 export const useUserStore$ = (): {
     store?: IUserSchema | null
@@ -27,6 +27,7 @@ export const useUserStore$ = (): {
     }
 
     const logout = () => {
+        removeSessionJWTFromCookie()
         /* double KEY_useUserStore for reactivity  */
         queryClient.setQueryData(KEY_useUserStore(), { userId: null, role: null, isLoading: false })
         queryClient.clear()
@@ -35,10 +36,13 @@ export const useUserStore$ = (): {
 
     const autoLogin = async () => {
         if (!store.isLoading) return
-        
-        const jwtToken = await server_getSessionCredentials()
-        jwtToken && setAccessIdInCookie(jwtToken)
-        const data = parseJwt(jwtToken)
+
+        const res = await server_getSessionCredentials()
+        const credentials = res?.serverCredentials
+        if (!credentials) return
+        setAccessIdInCookie(credentials.accessJWT)
+        setSessionJWTInCookie(credentials.sessionJWT)
+        const data = parseJwt(credentials.accessJWT)
         selectUser({
             user: { userId: data?.id, role: data?.role, isLoading: false },
         })

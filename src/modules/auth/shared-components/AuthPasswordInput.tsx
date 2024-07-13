@@ -7,6 +7,7 @@ export const AuthPasswordInput: React.FC<{ repeatType?: boolean }> = ({ repeatTy
 
     return (
         <XInput
+            autoComplete='off'
             className='w-[220px]'
             placeholder='****'
             type={'password'}

@@ -1,9 +1,9 @@
 import { add, addMinutes, getUnixTime } from 'date-fns'
 import Cookies from 'universal-cookie'
 import { jwtDecode } from 'jwt-decode'
+const cookies = new Cookies()
 
 export const setRememberUserCookie = (userId: string, remember_me: boolean) => {
-    const cookies = new Cookies()
     return cookies.set('user', userId, {
         path: '/',
         expires: add(new Date(Date.now()), remember_me ? { days: 60 } : { minutes: 30 }),
@@ -13,7 +13,6 @@ export const setRememberUserCookie = (userId: string, remember_me: boolean) => {
 export const setAccessIdInCookie = (id?: string | null) => {
     if (!id) return
 
-    const cookies = new Cookies()
     // Decode the JWT token to get the expiration time
     const decodedToken = jwtDecode(id)
     if (!decodedToken.exp) return
@@ -21,13 +20,11 @@ export const setAccessIdInCookie = (id?: string | null) => {
     const exp = decodedToken.exp * 1000
     const expires = new Date(exp)
 
-    cookies.set('accessToken', id, { path: '/', expires })
-    console.info('Token set in cookie with expiration time:', expires)
+    cookies.set('accessJWT', id, { path: '/', expires })
 }
 
 export const getAccessIdFromCookie = (): string | null => {
-    const cookies = new Cookies()
-    return cookies.get('accessToken')
+    return cookies.get('accessJWT')
 }
 
 export const jwtVerify = (id?: string | null): boolean => {
@@ -44,3 +41,24 @@ export const jwtVerify = (id?: string | null): boolean => {
 
     return true
 }
+
+export const setSessionJWTInCookie = (id?: string | null) => {
+    if (!id) return
+
+    // Decode the JWT token to get the expiration time
+    const decodedToken = jwtDecode(id)
+    if (!decodedToken.exp) return
+
+    const exp = decodedToken.exp * 1000
+    const expires = new Date(exp)
+    cookies.set('sessionJWT', id, { path: '/', expires })
+}
+export const getSessionJWTFromCookie = (): string | null => {
+    return cookies.get('sessionJWT')
+}
+
+export const removeSessionJWTFromCookie = () => {
+    cookies.remove('sessionJWT')
+    cookies.remove('accessJWT')
+}
+

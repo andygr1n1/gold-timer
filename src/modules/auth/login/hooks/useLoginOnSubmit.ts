@@ -4,6 +4,7 @@ import { IUserLoginSchema } from '../services/types'
 import { useMutation } from '@tanstack/react-query'
 import { useUserStore$ } from '@/services/user-store/useUserStore.service'
 import { parseJwt } from '@/helpers/parseJwt'
+import { setAccessIdInCookie, setSessionJWTInCookie } from '@/helpers/universalCookie'
 
 export const useLoginOnSubmit = () => {
     const { selectUser } = useUserStore$()
@@ -23,7 +24,11 @@ export const useLoginOnSubmit = () => {
                 onSuccess: (res) => {
                     resetForm()
 
-                    const data = parseJwt(res?.accessId)
+                    const data = parseJwt(res?.accessJWT)
+                    const sessionJWT = res?.sessionJWT
+
+                    setSessionJWTInCookie(sessionJWT)
+                    setAccessIdInCookie(res?.accessJWT)
 
                     selectUser({
                         user: { userId: data?.id, role: data?.role },

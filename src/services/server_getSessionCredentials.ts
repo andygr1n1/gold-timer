@@ -1,8 +1,11 @@
 import ky from 'ky'
 import { resolveError } from '@/helpers/tryCatchRequest'
 import { ISessionCredentials } from '@/modules/auth/login/services/types'
+import { getSessionJWTFromCookie } from '@/helpers/universalCookie'
 
-export const server_getSessionCredentials = async (): Promise<string | null> => {
+export const server_getSessionCredentials = async (): Promise<
+    { serverCredentials: ISessionCredentials } | undefined
+> => {
     const endpoint = import.meta.env.VITE_NODE_HEROKU_ORIGIN
     const xapikey = import.meta.env.VITE_X_API_KEY
 
@@ -15,13 +18,15 @@ export const server_getSessionCredentials = async (): Promise<string | null> => 
                     'x-api-key': xapikey,
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ status: 'autoLogin' }),
+                body: JSON.stringify({ status: 'autoLogin', sessionJWT: getSessionJWTFromCookie() }),
             })
-            .json<ISessionCredentials | null>()
+            .json<ISessionCredentials | undefined>()
 
-        return res?.accessId || null
+        if (!res) throw new Error('server_getSessionCredentials: response')
+
+        return { serverCredentials: res }
     } catch (error) {
         await resolveError(error)
-        return null
+        return
     }
 }

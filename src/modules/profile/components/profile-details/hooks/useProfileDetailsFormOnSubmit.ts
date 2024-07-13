@@ -8,7 +8,6 @@ export const useProfileDetailsFormOnSubmit = () => {
     const { updateUserProfile } = useUpdateUserProfile()
 
     const onSubmit = (values: IUserProfileSchema, formikHelpers: FormikHelpers<IUserProfileSchema>) => {
-        console.log('values', values)
         const { setSubmitting } = formikHelpers
 
         updateUserProfile({

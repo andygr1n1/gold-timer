@@ -14,7 +14,6 @@ export const useProfileDetailsFormOnValidate = () => {
         if (!values.name.length) {
             errors.name = 'Required field'
         }
-        console.log('errors', errors)
         return errors
     }
 
