@@ -10,9 +10,10 @@ export const ProfileNewPasswordInput = () => {
         <div>
             <FormLabel title='New password' />
             <XInput
+                autoComplete='new-password'
                 placeholder='****'
-                type={'password'}
-                name={'newPassword'}
+                type='password'
+                name='newPassword'
                 onChange={formikContext.handleChange}
                 value={formikContext.values.newPassword}
                 error={formikContext.touched.newPassword && Boolean(formikContext.errors.newPassword)}

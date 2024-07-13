@@ -10,7 +10,7 @@ export const NoteCreatedAt = () => {
     const created = formikContext.values.created_at
 
     return created ? (
-        <div className='flex items-center gap-2 mb-5 opacity-80'>
+        <div className='flex items-center gap-2 mb-5 opacity-80 flex-wrap'>
             <div className='font-extralight text-xs min-w-fit'>created</div>
             <NoteCreatedDaysAgo />
             <div className='font-extralight text-xs min-w-fit'>

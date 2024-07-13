@@ -10,6 +10,7 @@ export const ProfilePasswordInput = () => {
         <div>
             <FormLabel title='Password' />
             <XInput
+                autoComplete='off'
                 placeholder='****'
                 type={'password'}
                 name={'password'}

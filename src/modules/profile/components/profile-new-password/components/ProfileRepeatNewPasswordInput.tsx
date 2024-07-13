@@ -12,6 +12,7 @@ export const ProfileRepeatNewPasswordInput = () => {
             <XInput
                 placeholder='****'
                 type={'password'}
+                autoComplete='off'
                 name={'repeatNewPassword'}
                 onChange={formikContext.handleChange}
                 value={formikContext.values.repeatNewPassword}
