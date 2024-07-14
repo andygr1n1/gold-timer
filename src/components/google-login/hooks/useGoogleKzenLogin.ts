@@ -12,7 +12,6 @@ export const useGoogleKzenLogin = () => {
             const res = await server_googleLogin({ formData: { accessJWT: credentialResponse.access_token } })
             const jwtToken = res?.accessJWT
             const sessionJWT = res?.sessionJWT
-            console.log('sessionJWT', sessionJWT)
             jwtToken && setAccessIdInCookie(jwtToken)
             const data = parseJwt(jwtToken)
             setAccessIdInCookie(res?.accessJWT)
