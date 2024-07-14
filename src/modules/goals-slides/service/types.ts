@@ -1,6 +1,6 @@
 import { z } from 'zod'
 
-export const KEY_FetchGoalsSlides = () => ['KEY_FetchGoalsSlides']
+export const KEY_FetchGoalsSlides = (userId: string) => ['KEY_FetchGoalsSlides', userId]
 
 export const goalSlideSchema = z.object({
     id: z.string().uuid(),
@@ -23,4 +23,3 @@ export const goalSlideFormSchema = z.object({
     created_at: z.string(),
     active: z.boolean(),
 })
-

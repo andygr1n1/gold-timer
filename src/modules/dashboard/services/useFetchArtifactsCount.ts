@@ -1,9 +1,9 @@
 import { useQuery } from '@tanstack/react-query'
 import { dashboardService } from './dashboardService'
-import { useUserStore$ } from '@/services/user-store/useUserStore.service'
+import { useUser$ } from '@/services/user-store/userUser.store'
 
 export const useFetchArtifactsCount = () => {
-    const { userId } = useUserStore$()
+    const { userId } = useUser$()
 
     const { data } = useQuery(dashboardService.useFetchArtifactsCount({ userId }))
 

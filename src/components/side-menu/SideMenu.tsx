@@ -12,8 +12,12 @@ import { cn } from '@/helpers/cn'
 import { IconFocus } from '@/assets/icons/IconFocus'
 import { IconBook } from '@/assets/icons/IconBook'
 import { IconProfile } from '@/assets/icons/IconProfile'
+import { IconBlog } from '@/assets/icons/IconBlog'
+import { useUser$ } from '@/services/user-store/userUser.store'
+import { IconAchievements } from '@/assets/icons/IconAchievements'
 
 const SideMenu: React.FC = observer(() => {
+    const { isSuperHero } = useUser$()
     const wrapperRef = useRef<HTMLDivElement | null>(null)
     const { isDesktop } = useWindowMatchMedia(['isDesktop'])
 
@@ -47,50 +51,56 @@ const SideMenu: React.FC = observer(() => {
                lg:static  lg:m-0 lg:mr-0 lg:flex
             `}
             >
-                <div className='md:p2-10 flex w-[230px] min-w-[230px] flex-col overflow-auto py-5 '>
+                <div className='flex w-[230px] min-w-[230px] flex-col overflow-auto py-5'>
                     <div className='flex flex-auto flex-col gap-5 overflow-auto mb-10  '>
                         <UserInfo />
-                        <div className='w-[calc(100%-32px)] pl-8'>
-                            <div className='mx-auto flex w-[180px] flex-auto flex-col gap-5 overflow-auto '>
-                                <SideMenuLink
-                                    to={APP_ROUTES_ENUM.PROFILE}
-                                    title='Profile'
-                                    icon={<IconProfile width={26} height={26} className='ml-[-3px]' />}
-                                />
-                                {/*   {isUnderDevelopment() && (
+                        <div className='w-[calc(100%-32px)] h-full px-4'>
+                            <div className='mx-auto flex h-full w-[180px] flex-auto flex-col gap-5 overflow-auto '>
+                                <div className='mx-auto flex  h-full w-[180px] flex-auto flex-col gap-5 overflow-auto '>
+                                    {' '}
+                                    <SideMenuLink
+                                        to={APP_ROUTES_ENUM.PROFILE}
+                                        title='Profile'
+                                        icon={<IconProfile width={26} height={26} className='ml-[-3px]' />}
+                                    />
                                     <SideMenuLink
                                         to={APP_ROUTES_ENUM.ACHIEVEMENTS}
                                         title='Achievements'
                                         icon={<IconAchievements width={24} height={24} className='ml-[-3px]' />}
                                     />
-                                )}
-                                {isUnderDevelopment() && (
+                                    <XMenuDivider />
                                     <SideMenuLink
-                                        to={APP_ROUTES_ENUM.STORIES}
-                                        title='Stories'
-                                        icon={<IconLandscape width={24} height={24} className='ml-[-2px]' />}
+                                        to={APP_ROUTES_ENUM.GOALS}
+                                        title='Goals'
+                                        icon={<IconFocus width={24} height={24} />}
                                     />
-                                )} */}
-                                <XMenuDivider />
-
-                                <SideMenuLink
-                                    to={APP_ROUTES_ENUM.GOALS}
-                                    title='Goals'
-                                    icon={<IconFocus width={24} height={24} />}
-                                />
-
-                                <SideMenuLink
-                                    to={APP_ROUTES_ENUM.NOTES}
-                                    title='Notes'
-                                    icon={<IconBook width={24} height={24} />}
-                                />
-                                {/* {isUnderDevelopment() && (
+                                    <SideMenuLink
+                                        to={APP_ROUTES_ENUM.NOTES}
+                                        title='Notes'
+                                        icon={<IconBook width={24} height={24} />}
+                                    />
+                                    {/* {isUnderDevelopment() && (
                                     <SideMenuLink
                                         to={APP_ROUTES_ENUM.SPRINTS}
                                         title='Sprints'
                                         icon={<IconSprint width={24} height={24} />}
                                     />
                                 )} */}
+                                    <XMenuDivider />
+                                    {/* <SideMenuLink
+                                        to={APP_ROUTES_ENUM.STORIES}
+                                        title='Stories'
+                                        icon={<IconLandscape width={24} height={24} className='ml-[-2px]' />}
+                                    /> */}
+                                </div>
+                                {isSuperHero && (
+                                    <SideMenuLink
+                                        to={APP_ROUTES_ENUM.BLOG}
+                                        title='Blog'
+                                        icon={<IconBlog width={24} height={24} className='ml-[-2px]' />}
+                                    />
+                                )}
+                                {/* diary */}
                             </div>
                         </div>
                     </div>

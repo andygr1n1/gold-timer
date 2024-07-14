@@ -5,13 +5,7 @@ import { IUserSchema } from './types'
 import { KEY_useUserStore } from './keys'
 import { removeSessionJWTFromCookie, setAccessIdInCookie, setSessionJWTInCookie } from '@/helpers/universalCookie'
 
-export const useUserStore$ = (): {
-    store?: IUserSchema | null
-    selectUser: (props: { user: Partial<IUserSchema> }) => void
-    autoLogin: () => Promise<void>
-    logout: () => void
-    userId: string
-} => {
+export const useUser$ = () => {
     const queryClient = useQueryClient()
 
     const { data: store } = useQuery<IUserSchema>({
@@ -50,5 +44,7 @@ export const useUserStore$ = (): {
 
     const userId = store.userId || ''
 
-    return { store, selectUser, autoLogin, logout, userId }
+    const isSuperHero = store.role === 'admin'
+
+    return { store, selectUser, autoLogin, logout, userId, isSuperHero }
 }

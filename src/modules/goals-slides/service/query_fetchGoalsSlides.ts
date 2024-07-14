@@ -2,7 +2,11 @@ import { generateTSClient } from '../../../graphql/client'
 import { resolveError, tryCatchRequest } from '@/helpers/tryCatchRequest'
 import { IGoalSlideSchema, goalsSlidesResponseSchema } from './types'
 
-export const query_fetchGoalsSlides = async (): Promise<IGoalSlideSchema[] | undefined> => {
+export const query_fetchGoalsSlides = async ({
+    ownerId,
+}: {
+    ownerId: string
+}): Promise<IGoalSlideSchema[] | undefined> => {
     return await tryCatchRequest<Promise<undefined>, IGoalSlideSchema[] | undefined>(
         async () => {
             const client = await generateTSClient()
@@ -10,6 +14,7 @@ export const query_fetchGoalsSlides = async (): Promise<IGoalSlideSchema[] | und
                 .query({
                     __name: 'query_fetchGoalsSlides',
                     goals_slides: {
+                        __args: { where: { owner_id: { _eq: ownerId } } },
                         id: true,
                         img_path: true,
                         active: true,

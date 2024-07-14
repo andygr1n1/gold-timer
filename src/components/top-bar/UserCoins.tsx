@@ -1,10 +1,10 @@
 import { useFetchUserDetails } from '../../modules/goals/shared-service/fetch-user-details/useFetchUserDetails'
 import { IconAwardStar } from '@/assets/icons/IconAwardStar'
 import { IconCrystal } from '@/assets/icons'
-import { useUserStore$ } from '@/services/user-store/useUserStore.service'
+import { useUser$ } from '@/services/user-store/userUser.store'
 
 export const UserCoins: React.FC = () => {
-    const { userId } = useUserStore$()
+    const { userId } = useUser$()
     const { isLoading, coins, ritualPower } = useFetchUserDetails({ userId })
     return !isLoading ? (
         <div data-testid='userCoins' className='flex items-start justify-start gap-2 '>
