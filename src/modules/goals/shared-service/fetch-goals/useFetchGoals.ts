@@ -2,7 +2,7 @@ import { useInfiniteQuery } from '@tanstack/react-query'
 import { compact, flatten, last, uniqWith } from 'lodash-es'
 import { KEY_FetchGoalsInfinity } from '../keys'
 import { IGoalSchema, IGoalStatus, goalStatus } from '../types'
-import { useUserStore$ } from '@/services/user-store/useUserStore.service'
+import { useUser$ } from '@/services/user-store/userUser.store'
 import { query_activeGoals } from '@/modules/goals/shared-service/fetch-goals/query_activeGoals'
 import { query_expiredGoals } from './query_expiredGoals'
 import { query_favoriteGoals } from './query_favoriteGoals'
@@ -22,7 +22,7 @@ export const useFetchGoals = (props: {
     hasNextPage: boolean
 } => {
     const { queryFilter = goalStatus.active, limit = 20, serverSearchInput = '' } = props
-    const { userId } = useUserStore$()
+    const { userId } = useUser$()
 
     const { data, fetchNextPage, hasNextPage, isFetching, isFetchingNextPage } = useInfiniteQuery({
         queryKey: KEY_FetchGoalsInfinity(limit, queryFilter, serverSearchInput, userId),

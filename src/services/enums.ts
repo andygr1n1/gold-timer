@@ -20,6 +20,7 @@ export enum APP_ROUTES_ENUM {
     ACHIEVEMENTS = 'achievements',
     NOTES = 'notes',
     STORIES = 'stories',
+    BLOG = 'blog',
     GOALS = 'goals',
     SPRINTS = 'sprints',
     DASHBOARD = 'dashboard',

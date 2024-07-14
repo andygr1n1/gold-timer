@@ -1,9 +1,9 @@
 import { useQuery } from '@tanstack/react-query'
 import { profileService } from '../profileService'
-import { useUserStore$ } from '@/services/user-store/useUserStore.service'
+import { useUser$ } from '@/services/user-store/userUser.store'
 
 export const useFetchProfileInfo = () => {
-    const { userId } = useUserStore$()
+    const { userId } = useUser$()
     const { isLoading, data } = useQuery(profileService.useFetchProfileInfo({ id: userId }))
 
     return {

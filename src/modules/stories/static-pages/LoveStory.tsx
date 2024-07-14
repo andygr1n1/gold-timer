@@ -4,7 +4,7 @@ import { BookPage } from './components/BookPage'
 
 export const LoveStory: React.FC = () => {
     return (
-        <ModuleWrapper context={APP_ROUTES_ENUM.STORIES}>
+        <ModuleWrapper context={APP_ROUTES_ENUM.BLOG}>
             <BookPage>
                 <h1>Love Story</h1>
             </BookPage>
