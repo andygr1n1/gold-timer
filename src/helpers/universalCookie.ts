@@ -20,7 +20,7 @@ export const setAccessIdInCookie = (id?: string | null) => {
     const exp = decodedToken.exp * 1000
     const expires = new Date(exp)
 
-    cookies.set('accessJWT', id, { path: '/', expires })
+    cookies.set('accessJWT', id, { path: '/', expires, sameSite: 'lax' })
 }
 
 export const getAccessIdFromCookie = (): string | null => {
@@ -51,7 +51,7 @@ export const setSessionJWTInCookie = (id?: string | null) => {
 
     const exp = decodedToken.exp * 1000
     const expires = new Date(exp)
-    cookies.set('sessionJWT', id, { path: '/', expires })
+    cookies.set('sessionJWT', id, { path: '/', expires, sameSite: 'lax' })
 }
 export const getSessionJWTFromCookie = (): string | null => {
     return cookies.get('sessionJWT')
@@ -61,4 +61,3 @@ export const removeSessionJWTFromCookie = () => {
     cookies.remove('sessionJWT')
     cookies.remove('accessJWT')
 }
-

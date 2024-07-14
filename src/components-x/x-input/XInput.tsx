@@ -58,6 +58,8 @@ export const XInput: React.FC<XInputProps> = ({
                         )}
                         <input
                             {...otherProps}
+                            name={otherProps.name || 'xinput'}
+                            autoComplete={otherProps.autoComplete || 'off'}
                             value={otherProps.value ?? ''}
                             className={clsx(
                                 'xinput focus:group-first:border-blue-600',
