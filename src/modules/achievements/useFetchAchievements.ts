@@ -11,12 +11,9 @@ export const useFetchAchievements = (): {
     const { data, isLoading /* , isPending, isError,  error */ } = useQuery({
         queryKey: ['achievements'],
         queryFn: async () => await query_fetchAchievements(),
-        initialData: () => {
-            return []
-        },
         staleTime: Infinity,
         refetchOnWindowFocus: false,
-        refetchOnMount: false,
+        refetchOnMount: true,
     })
 
     const visibleAchievements = data?.filter((ach) => ach.visible) || []

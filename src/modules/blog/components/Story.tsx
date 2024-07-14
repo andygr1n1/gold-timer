@@ -18,9 +18,9 @@ export const Story: React.FC<{ path: string; title: ReactNode; logo: ReactNode; 
             border-solid border-transparent
             hover:border-blue-500 hover:scale-105'
             >
-                <div className='opacity-80 flex justify-between items-center font-inter'>
+                <div className='opacity-80 flex justify-between text-base items-center font-inter'>
                     <div>Author: {author}</div>
-                    <div>{format(date, 'do MMMM yyyy, EEEE')}</div>
+                    <div>{format(date, 'do MMMM yyyy')}</div>
                 </div>
                 <div className='flex gap-2 text-xl items-center font-inter'>
                     <div className='w-[24px] h-[24px]'>{logo}</div>

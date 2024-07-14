@@ -1,6 +1,6 @@
 import { z } from 'zod'
 
-export const KEY_FetchGoalsSlides = (userId: string) => ['KEY_FetchGoalsSlides', userId]
+export const KEY_FetchGoalsSlides = (userId?: string) => ['KEY_FetchGoalsSlides']
 
 export const goalSlideSchema = z.object({
     id: z.string().uuid(),
