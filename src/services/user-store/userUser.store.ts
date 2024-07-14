@@ -44,7 +44,7 @@ export const useUser$ = () => {
 
     const userId = store.userId || ''
 
-    const isSuperHero = store.role === 'admin'
+    const isSuperHero = store.role === 'super_hero'
 
     return { store, selectUser, autoLogin, logout, userId, isSuperHero }
 }
