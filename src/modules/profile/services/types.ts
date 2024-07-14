@@ -22,3 +22,10 @@ export const userProfilePasswordSchema = z.object({
 
 
 export type IUserProfilePasswordSchema = z.infer<typeof userProfilePasswordSchema>
+export const updateAvatarFormSchema = z.object({
+    imgSrc: z.string().optional(),
+})
+
+
+
+export type IUpdateAvatarFormSchema = z.infer<typeof updateAvatarFormSchema>

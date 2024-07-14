@@ -10,7 +10,7 @@ const ProfileNewPasswordForm: React.FC = observer(() => {
     return (
         <Form className='flex flex-col gap-5'>
             {/* accessibility */}
-            <input type='text' style={{ display: 'none' }} autoComplete='username' />
+            <input type='text' style={{ display: 'none' }} autoComplete='off' name='accessibility' />
             <ProfileEmailInput />
             <ProfilePasswordInput />
             <ProfileNewPasswordInput />

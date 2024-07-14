@@ -3,7 +3,7 @@ import { FormLabel } from '@/components/form/FormLabel'
 import { IGoalSlideSchema } from '@/modules/goals-slides/service/types'
 import { useFormikContext } from 'formik'
 
-export const GoalSlideTItleFormItem: React.FC = () => {
+export const GoalSlideTitleFormItem: React.FC = () => {
     const formikContext = useFormikContext<IGoalSlideSchema>()
     const { title } = formikContext.values
 

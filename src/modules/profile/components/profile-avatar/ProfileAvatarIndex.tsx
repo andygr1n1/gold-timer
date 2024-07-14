@@ -1,27 +1,22 @@
-import { rootStore$ } from '@/modules/app/mst/StoreProvider'
-import { useSelectUploadFile } from '@/helpers/useSelectUploadFile'
-import { ProfileAvatar } from '@/modules/profile/components/profile-avatar/components/ProfileAvatar'
+import { Form, Formik } from 'formik'
 import { ProfileImageCropDialog } from './ProfileImageCropDialog'
-import { UploadInput } from '@/components/UploadInput'
-import { UploadHoverAnimation } from './components/UploadHoverAnimation'
+import { ProfileImageCropDialogTrigger } from './ProfileImageCropDialogTrigger'
+import { IUpdateAvatarFormSchema } from '../../services'
+import { useProfileAvatarSubmit } from './hooks/useProfileAvatarSubmit'
 
 export const ProfileAvatarIndex = () => {
-    const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        useSelectUploadFile(e, (src: string) => {
-            rootStore$.user$.onChangeField('img_src', src)
-        })
-    }
+    const { onSubmit } = useProfileAvatarSubmit()
 
     return (
         <>
-            <div data-testid='profile-avatar-index' className='group relative mx-auto mb-10 w-fit rounded-full'>
-                <ProfileAvatar />
-                <UploadHoverAnimation />
-                <UploadInput onChange={onChange} />
-            </div>
-            {/* * */}
-            {/* D I A L O G S */}
-            <ProfileImageCropDialog />
+            <Formik<IUpdateAvatarFormSchema> enableReinitialize initialValues={{ imgSrc: '' }} onSubmit={onSubmit}>
+                <Form className='flex flex-col gap-5'>
+                    <ProfileImageCropDialogTrigger />
+                    {/* * */}
+                    {/* D I A L O G S */}
+                    <ProfileImageCropDialog />
+                </Form>
+            </Formik>
         </>
     )
 }

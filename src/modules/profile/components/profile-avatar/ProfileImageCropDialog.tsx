@@ -1,73 +1,27 @@
-import { useUserStore } from '@/modules/app/mst/StoreProvider'
 import { XModal } from '@/components-x/x-modal/XModal'
-import { FormFooter } from '@/components/form/FormFooter'
-import getCroppedImg from '@/helpers/cropImage'
-import { Form, Slider } from 'antd'
-import { observer } from 'mobx-react-lite'
-import { useCallback, useState } from 'react'
-import Cropper, { Area } from 'react-easy-crop'
+import { useFormikContext } from 'formik'
+import { IUpdateAvatarFormSchema } from '../../services'
+import { StyledButton } from '@/components/buttons/StyledButton'
+import { ImageCropper } from '@/components/image-cropper/ImageCropper'
 
-export const ProfileImageCropDialog = observer(() => {
-    const { onChangeField, saveNewProfileImage, img_src } = useUserStore()
-
-    const handleCancel = () => {
-        onChangeField('img_src', '')
-    }
-
-    const [crop, setCrop] = useState({ x: 0, y: 0 })
-    const [zoom, setZoom] = useState(2)
-    const [croppedAreaPixels, setCroppedAreaPixels] = useState<Area | null>(null)
-
-    const onCropComplete = useCallback((croppedArea: Area, croppedAreaPixels: Area) => {
-        setCroppedAreaPixels(croppedAreaPixels)
-    }, [])
-
-    const saveCroppedImage = useCallback(async () => {
-        try {
-            if (!croppedAreaPixels || !img_src) return
-
-            const croppedImage = await getCroppedImg(img_src, croppedAreaPixels)
-            croppedImage && saveNewProfileImage(croppedImage)
-            handleCancel()
-        } catch (e) {
-            console.error(e)
-        }
-    }, [croppedAreaPixels])
-
-    // if (!img_src) return null
+export const ProfileImageCropDialog = () => {
+    const formikContext = useFormikContext<IUpdateAvatarFormSchema>()
+    const { imgSrc } = formikContext.values
 
     return (
-        <XModal title={'New Image'} open={!!img_src} onCancel={() => handleCancel()}>
-            <Form>
-                <div className='bg-global-3-bg relative m-auto h-[280px] w-[280px]'>
-                    <Cropper
-                        image={img_src}
-                        crop={crop}
-                        zoom={zoom}
-                        aspect={3 / 3}
-                        onCropChange={setCrop}
-                        onCropComplete={onCropComplete}
-                        onZoomChange={setZoom}
-                    />
+        <XModal title={'Avatar'} open={!!imgSrc} onCancel={formikContext.resetForm}>
+            {imgSrc && (
+                <div className='text-cText m-auto flex  flex-col bg-transparent'>
+                    <ImageCropper imgPath={imgSrc} />
+                    <StyledButton
+                        disabled={formikContext.isSubmitting}
+                        className='w-full'
+                        onClick={() => formikContext.handleSubmit()}
+                    >
+                        Save
+                    </StyledButton>
                 </div>
-                <div className='bg-global-2-bg text-cText m-auto flex w-[280px] flex-col gap-5 p-10'>
-                    <div className='controls'>
-                        <Slider
-                            value={zoom}
-                            min={1}
-                            max={3}
-                            step={0.1}
-                            aria-labelledby='Zoom'
-                            onChange={(e) => {
-                                setZoom(e)
-                            }}
-                            className='rounded-full'
-                        />
-                    </div>
-                </div>
-                {/* Footer */}
-                <FormFooter okTitle={'Save'} onOk={saveCroppedImage} onCancel={handleCancel} />
-            </Form>
+            )}
         </XModal>
     )
-})
+}

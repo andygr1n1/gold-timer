@@ -2,7 +2,7 @@ import { XModal } from '@/components-x/x-modal/XModal'
 import { IGoalSlideSchema } from '@/modules/goals-slides/service/types'
 import { useFormikContext } from 'formik'
 import { ImageCropper } from '@/components/image-cropper/ImageCropper'
-import { GoalSlideTItleFormItem } from './GoalSlideTittleFormItem'
+import { GoalSlideTitleFormItem } from './GoalSlideTittleFormItem'
 import { StyledButton } from '@/components/buttons/StyledButton'
 
 export const InsertGoalSlideDialog = () => {
@@ -14,7 +14,7 @@ export const InsertGoalSlideDialog = () => {
             {img_path && (
                 <div className='text-cText m-auto flex  flex-col bg-transparent'>
                     <ImageCropper imgPath={img_path} />
-                    <GoalSlideTItleFormItem />
+                    <GoalSlideTitleFormItem />
                     <StyledButton
                         disabled={formikContext.isSubmitting}
                         className='w-full'

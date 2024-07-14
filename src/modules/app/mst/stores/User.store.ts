@@ -2,7 +2,6 @@ import { flow, toGenerator, types } from 'mobx-state-tree'
 import { processError } from '@/helpers/processMessage'
 import { deleteImageFromServer, uploadNewImageToServer } from '@/services/image/image.service'
 import { SERVER_ROUTES } from '@/services/enums'
-import { updateUserProfileImage } from '@/modules/profile/services/update-avatar/updateUserProfileImage.m'
 import { rootStore$ } from '@/modules/app/mst/StoreProvider'
 
 export const User$ = types
@@ -32,7 +31,7 @@ export const User$ = types
                 if (!newAvatar) return
                 const avatarToDelete = self.avatar
                 self.avatar = newAvatar
-                yield updateUserProfileImage(newAvatar)
+                // yield updateUserProfileImage(newAvatar)
                 avatarToDelete && (yield deleteImageFromServer(avatarToDelete, SERVER_ROUTES.PROFILE_IMAGE_DELETE))
                 rootStore$.onChangeField('loading', false)
                 // window.queryClient?.invalidateQueries({ queryKey: KEY_FetchAvatar() })
