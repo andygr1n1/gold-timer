@@ -28,7 +28,7 @@ export const query_ritualGoals = async (props: {
                                         owner_id: { _eq: userId },
                                         deleted_at: { _is_null: true },
                                         status: { _eq: goalStatus.active },
-                                        goal_ritual: { ritual_power: { _gt: 0 } },
+                                        goal_ritual: { ritual_power: { _gte: 0 } },
                                         finished_at: expiredGoals ? undefined : { _gte: setZeroTime(new Date()) },
                                     },
                                     {

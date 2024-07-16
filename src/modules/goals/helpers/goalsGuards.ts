@@ -14,7 +14,7 @@ export const isExpiredGoalStatus = (status: IGoalStatus) => {
 }
 
 export const isActiveRitualStatus = (goal: IGoalSchema) => {
-    return isActiveGoalStatus(goal.status) && !!goal.goal_ritual?.ritual_power
+    return isActiveGoalStatus(goal.status) && !!goal.goal_ritual
 }
 
 export const isFilterStateRitualized = (status: IGoalStatus) => {

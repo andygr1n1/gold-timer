@@ -11,7 +11,7 @@ export const AchievementsList: React.FC = observer(() => {
     if (isLoading) return <LoadingDialogLocal loading={isLoading} />
 
     return (
-        <div className='flex flex-col gap-10 w-full max-w-[600px] mx-auto relative'>
+        <div className='flex flex-col gap-5 w-full max-w-[600px] mx-auto relative'>
             {visibleAchievements.map((ach) => (
                 <div
                     key={ach.id}

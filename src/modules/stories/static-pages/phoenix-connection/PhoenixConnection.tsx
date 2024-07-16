@@ -12,7 +12,8 @@ export const PhoenixConnection: React.FC = () => {
                 <Statement
                     text={
                         <>
-                            <IconPhoenix className='xl:min-w-20 xl:min-h-20 min-h-10 min-w-10' /> Phoenix connection
+                            <IconPhoenix className='xl:min-w-20 xl:min-h-20 min-h-10 min-w-10 ' />
+                            <span className='text-orange-500'>Phoenix connection</span>
                         </>
                     }
                 />

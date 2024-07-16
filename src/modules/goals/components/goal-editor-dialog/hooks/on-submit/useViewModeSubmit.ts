@@ -12,7 +12,8 @@ export const useViewModeSubmit = () => {
 
     const onViewModeSubmit = (values: IGoalSchema, formikHelpers: FormikHelpers<IGoalSchema>) => {
         const { setSubmitting } = formikHelpers
-
+        console.log('values', values)
+        setSubmitting(false)
         const isActiveRitual = isActiveRitualStatus(values)
         const isActiveGoal = isActiveGoalStatus(values.status)
         const isCompletedGoal = isCompletedGoalStatus(values.status)

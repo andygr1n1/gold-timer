@@ -35,7 +35,7 @@ export const mutation_upsertGoal = async (props: { goal: IGoalSchema }) => {
                             object,
                             on_conflict: {
                                 constraint: 'goals_pkey',
-                                update_columns: ['title', 'description', 'slogan', 'finished_at'],
+                                update_columns: ['title', 'description', 'slogan', 'finished_at', 'is_favorite'],
                             },
                         },
                         id: true,

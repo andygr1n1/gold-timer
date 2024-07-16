@@ -9,13 +9,13 @@ import { useFormikContext } from 'formik'
 import { CompleteRitualGoal } from './components/CompleteRitualGoal'
 
 export const GoalEditorToolbar = () => {
-    const { store: state, newMode } = useGoalEditor$()
+    const { store: state, newMode,viewMode } = useGoalEditor$()
     const formikContext = useFormikContext<IGoalSchema>()
 
     return (
         <div className='relative flex w-full min-h-[32px] flex-wrap items-center justify-center gap-5'>
             {state.goalId && <ToggleEditGoal goalId={state.goalId} />}
-            {!state.goalId ? (
+            {!state.goalId || !viewMode ? (
                 <ToggleFavoriteNewGoal />
             ) : (
                 <GoalIsFavorite goalId={state.goalId} isFavorite={!!formikContext.values.is_favorite} />

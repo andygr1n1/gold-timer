@@ -1,9 +1,8 @@
 import { IconChevronRight } from '@/assets/icons'
-import { format } from 'date-fns'
 import { ReactNode } from 'react'
 import { NavLink } from 'react-router-dom'
 
-export const Story: React.FC<{ path: string; title: ReactNode; logo: ReactNode; date: Date; author: string }> = ({
+export const Story: React.FC<{ path: string; title: ReactNode; logo: ReactNode; date: string; author: string }> = ({
     path,
     title,
     logo,
@@ -18,15 +17,17 @@ export const Story: React.FC<{ path: string; title: ReactNode; logo: ReactNode; 
             border-solid border-transparent
             hover:border-blue-500 hover:scale-105'
             >
-                <div className='opacity-80 flex justify-between text-base items-center font-inter'>
+                <div className='opacity-80 flex justify-between text-sm items-center font-inter'>
                     <div>Author: {author}</div>
-                    <div>{format(date, 'do MMMM yyyy')}</div>
+                    <div>{date}</div>
                 </div>
                 <div className='flex gap-2 text-xl items-center font-inter'>
                     <div className='w-[24px] h-[24px]'>{logo}</div>
                     <div className='flex gap-2 items-center'>
-                        {title}
-                        <IconChevronRight className='w-[24px] h-[24px] hidden group-hover:flex duration-300 text-blue-500' />
+                        <div>{title}</div>
+                        <div>
+                            <IconChevronRight className='w-[24px] h-[24px] hidden group-hover:flex duration-300 text-blue-500' />
+                        </div>
                     </div>
                 </div>
             </div>

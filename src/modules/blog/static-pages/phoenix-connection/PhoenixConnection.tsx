@@ -2,7 +2,6 @@ import { ModuleWrapper } from '@/components/ModuleWrapper'
 import { APP_ROUTES_ENUM } from '@/services/enums'
 import { Focus, GoldenFocus, ShadowFocus, Statement } from '../components/Focus'
 import { Paragraph } from '../components/Paragraph'
-import { IconPhoenix } from '@/assets/icons/IconPhoenix'
 import { BookPage } from '../components/BookPage'
 
 export const PhoenixConnection: React.FC = () => {
@@ -12,66 +11,75 @@ export const PhoenixConnection: React.FC = () => {
                 <Statement
                     text={
                         <>
-                            <IconPhoenix className='xl:min-w-20 xl:min-h-20 min-h-10 min-w-10' /> Phoenix connection
+                            <span className='text-blue-500'>Phoenix connection</span>
                         </>
                     }
                 />
-                <Paragraph>
-                    <ShadowFocus
-                        text={
-                            <div>
-                                Это упражнение нужно делать везде, не зависимо от области деятельности или окружения
-                            </div>
-                        }
-                    />
+                <Paragraph className='text-blue-500 font-semibold'>
+                    Это упражнение нужно делать везде, не зависимо от области деятельности или окружения.
                 </Paragraph>
                 <Paragraph>
                     <ShadowFocus
                         text={
-                            <div>
-                                Если голова{' '}
-                                <s className='opacity-70 px-2'>
-                                    забита посторонними мыслями, все усилия будут пустой тратой времени.
-                                </s>
-                                При механическом исполнении весь труд уйдёт в никуда
-                            </div>
+                            <>
+                                <div>
+                                    Если голова
+                                    <s className='opacity-70 px-2'>
+                                        забита посторонними мыслями, все усилия будут пустой тратой времени.
+                                    </s>
+                                </div>
+                                <div>При механическом исполнении весь труд уйдёт в никуда.</div>
+                            </>
                         }
                     />
                 </Paragraph>
                 <Paragraph>
-                    Тренировка духа, направленная на пробуждение <GoldenFocus text='твоей природной силы' />, являющейся
-                    проводником <GoldenFocus text='Света' />.
+                    Я тренирую дух, направляя на пробуждение <GoldenFocus text='природной силы' />, являющейся
+                    проводником <GoldenFocus text='Света.' />
                 </Paragraph>
 
                 <Paragraph>
-                    Ты ощущаешь себя <Focus text='сильным и могущественным защитником' />
-                    своей реальности, переполняешься гордостью за то кем являешься.
+                    Я ощущаю себя <Focus text='сильным и могущественным защитником' />
+                    своей реальности,
+                    <Focus
+                        text=' переполняюсь Гордостью и
+                    Любовью'
+                    />
+                    за то кем являюсь.
                 </Paragraph>
 
                 <Paragraph>
-                    <span className='text-rose-500 font-bold'>Phoenix connection</span> - это сознательное формирование
-                    в душе уверенности, силы, могущества.
+                    Я сознательно формирую в <Focus text='Душе и Теле' />:
                 </Paragraph>
                 <Paragraph>
-                    Это утверждение, это внутреннее ощущение, что
-                    <span className='text-rose-500 font-bold px-2'>будет именно так, как ты этого хочешь.</span>
+                    <Focus text='Уверенность' />
                 </Paragraph>
                 <Paragraph>
-                    Ты добрый волшебник, уверенный в силе своего волшебства. Ты просто даёшь повеление и уходишь!
+                    <Focus text='Силу' />
                 </Paragraph>
                 <Paragraph>
-                    <GoldenFocus text='Твоё повеление такой силы, что всё задуманное сразу исполняется!' />
+                    <Focus text='Могущество' />
+                </Paragraph>
+                <Paragraph>
+                    Я внутреннее ощущаю, что
+                    <GoldenFocus text='будет именно так, как Я этого хочу.' />
+                </Paragraph>
+                <Paragraph>
+                    Я добрый волшебник, уверенный в силе своего волшебства. Я просто даю повеление и ухожу!
+                </Paragraph>
+                <Paragraph>
+                    <GoldenFocus text='Моё повеление такой силы, что всё задуманное вскоре исполняется!' />
                 </Paragraph>
                 <ShadowFocus
                     text={
-                        <span>
-                            <span className='text-rose-500 font-bold'>Phoenix connection</span> - это снисходительное
-                            спокойствие, осознанное и уверенное знание, что будет именно так, как задумано
-                        </span>
+                        <>
+                            <div>Разум находится в снисходительном спокойствии.</div>
+                            <div>Я обладаю осознанным и уверенным знанием, что будет именно так, как задумано.</div>
+                        </>
                     }
                 />
 
-                <Paragraph>Призови всю гамму чувств, постепенно добавляя интенсивность...</Paragraph>
+                <Paragraph>Призываю всю гамму чувств, постепенно добавляя интенсивность...</Paragraph>
                 <Paragraph>...еще и еще, еще и еще...</Paragraph>
                 <Paragraph>
                     ...чтобы во всем теле звучал <GoldenFocus text='Гимн созидания!!!' />
@@ -86,7 +94,7 @@ export const PhoenixConnection: React.FC = () => {
                     <ShadowFocus
                         text={
                             <span>
-                                <GoldenFocus text='Phoenix connection ' />
+                                <GoldenFocus text='Phoenix connection' />
                                 должен разнести в пух и прах всю
                                 <span className='opacity-50 text-gray-400 px-2'>неуверенность, сомнения и страхи</span>
                                 <GoldenFocus text=' - Навсегда!' />
@@ -94,7 +102,7 @@ export const PhoenixConnection: React.FC = () => {
                         }
                     />
                 </Paragraph>
-                <Paragraph>Чувствуй свою значимость, силу, мощь, красоту.</Paragraph>
+                <Paragraph>Чувствую свою значимость, силу, мощь, красоту.</Paragraph>
                 <Paragraph>
                     Утверждай это в себе и шаг за шагом,
                     <span className='text-rose-500 font-bold'> продвигайся к цели.</span>
