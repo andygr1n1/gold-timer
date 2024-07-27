@@ -2,7 +2,7 @@ import { EditorProps } from 'draft-js'
 
 export type IEditorCore = Partial<EditorProps> & {
     onChangeContent?: (data: string) => void
-    content?: string
+    content?: string | null
     toolbarExtend?: React.ReactNode
     showToolbar?: boolean
     smallBaseToolbar?: boolean

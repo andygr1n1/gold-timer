@@ -2,7 +2,7 @@ import { observer } from 'mobx-react-lite'
 import { StyledButton } from '@/components/buttons/StyledButton'
 import { ActiveFilterIcon } from './ActiveFilterIcon'
 import { cn } from '@/helpers/cn'
-import { useGetNotesParamsFilter } from '../hooks/useGetNotesParamsFilter'
+import { useGetNotesParamsFilter } from '../../hooks/useGetNotesParamsFilter'
 
 export const NotesFiltersSelectButton: React.FC = observer(() => {
     const { isFavorite, isDeleted, isArchived } = useGetNotesParamsFilter()

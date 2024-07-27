@@ -1,7 +1,7 @@
 import { XInput } from '@/components-x/x-input/XInput'
 import { IconSearch } from '@/assets/icons/IconSearch'
 import { useEffect } from 'react'
-import {  useNotesFilters$ } from '../stores/useNotesFilters.store'
+import { useNotesFilters$ } from '../../stores/useNotesFilters.store'
 
 export const SearchNotesInput = () => {
     const { store, onChange, onChangeServerSearchInput } = useNotesFilters$()

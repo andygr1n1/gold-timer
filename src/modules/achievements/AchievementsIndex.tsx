@@ -1,12 +1,17 @@
-import { ModuleWrapper } from '@/components/ModuleWrapper'
-import { APP_ROUTES_ENUM } from '@/services/enums'
-import { AchievementsList } from './AchievementsList'
+import { Navigate, Route, Routes } from 'react-router-dom'
+import { AchsByFilter } from './components/achs-by-filter/AchsByFilter'
 
 const AchievementsIndex: React.FC = () => {
     return (
-        <ModuleWrapper context={APP_ROUTES_ENUM.ACHIEVEMENTS}>
-            <AchievementsList />
-        </ModuleWrapper>
+        <Routes>
+            <Route
+                path={'/'}
+                element={
+                    <Navigate to={`/achievements/filtered-achievements?filter=active`} state={{ filter: 'active' }} />
+                }
+            />
+            <Route path='filtered-achievements' element={<AchsByFilter />} />
+        </Routes>
     )
 }
 

@@ -9,9 +9,11 @@ import { KEY_ImageCropperStore } from '@/components/image-cropper/stores/types'
 import { processSuccess } from '@/helpers/processMessage'
 import { IUpdateAvatarFormSchema } from '@/modules/profile/services'
 import { mutation_updateAvatar } from '@/modules/profile/services/update-avatar/mutation_updateAvatar'
+import { useUser$ } from '@/services/user-store/userUser.store'
 
 export const useProfileAvatarSubmit = () => {
     const queryClient = useQueryClient()
+    const { userId } = useUser$()
 
     const { getCropArea } = useImageCropper$()
 
@@ -19,8 +21,11 @@ export const useProfileAvatarSubmit = () => {
         mutationFn: async ({ values }: { values: IUpdateAvatarFormSchema }) => {
             if (!values.imgSrc) return
             const croppedImg = await getCroppedImg(values.imgSrc, cast(getCropArea()))
-            const imgPath = await uploadNewImageToServer(cast(croppedImg), SERVER_ROUTES.PROFILE_IMAGE_UPLOAD)
-            // TODO AG - DELETE CURRENT AVATAR ON BACKEND
+            const imgPath = await uploadNewImageToServer({
+                img: cast(croppedImg),
+                route: SERVER_ROUTES.PROFILE_IMAGE_UPLOAD,
+                userId,
+            })
             return mutation_updateAvatar({ imgPath: cast(imgPath) })
         },
     })

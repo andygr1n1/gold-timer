@@ -14,14 +14,14 @@ const BlogIndex = lazy(() => import('../../../blog/BlogIndex'))
 
 const ProtectedRoutes = () => {
     return (
-        <div className='bg-global-bg flex w-full'>
+        <div className='bg-transparent flex w-full'>
             <SideMenu />
-            <div className='bg-global-bg flex w-full flex-auto flex-col pb-5'>
+            <div className='bg-transparent flex w-full flex-auto flex-col pb-5'>
                 <div className='animate-opacity scrollbar-thumb-blue-500 scrollbar-track-global-bg scrollbar-thin relative flex h-full w-full flex-col overflow-auto overflow-y-scroll bg-transparent transition-all duration-300'>
                     <Suspense fallback={null}>
                         <Routes>
                             <Route path={`/${APP_ROUTES_ENUM.PROFILE}`} element={<ProfileIndex />} />
-                            <Route path={`/${APP_ROUTES_ENUM.ACHIEVEMENTS}`} element={<AchievementsIndex />} />
+                            <Route path={`/${APP_ROUTES_ENUM.ACHIEVEMENTS}/*`} element={<AchievementsIndex />} />
                             <Route path={`/${APP_ROUTES_ENUM.STORIES}/*`} element={<StoriesIndex />} />
                             <Route path={`/${APP_ROUTES_ENUM.BLOG}/*`} element={<BlogIndex />} />
                             <Route path={`/${APP_ROUTES_ENUM.NOTES}/*`} element={<NotesCmsIndex />} />

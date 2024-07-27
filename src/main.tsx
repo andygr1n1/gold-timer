@@ -4,13 +4,14 @@ import { App } from './modules/app/App'
 import { App as AntdApp } from 'antd'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import './styles/index.scss'
+import { SnowfallAnimation } from './components/SnowfallAnimation'
 
 const queryClient = new QueryClient()
 
 const Main = () => {
     return (
         <QueryClientProvider client={queryClient}>
-            {/* <SnowfallAnimation /> */}
+            <SnowfallAnimation />
             <ReactQueryDevtools initialIsOpen={false} />
             <AntdApp className='w-full h-full flex text-cText'>
                 <App />

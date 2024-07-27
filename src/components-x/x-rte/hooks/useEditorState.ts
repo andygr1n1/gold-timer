@@ -10,7 +10,7 @@ const isEditorStateEmpty = (editorState: EditorState) => {
     return blocks.every((block) => !block.getText().trim())
 }
 
-export const useEditorState = (props: { content?: string }) => {
+export const useEditorState = (props: { content?: string | null }) => {
     const { content } = props
 
     // Decorator for rendering image entities

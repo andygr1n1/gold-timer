@@ -9,7 +9,7 @@ import { SprintGoals } from './components/SprintGoals'
 import { NewSprintAchievementIndex } from './components/NewSprintAchievementIndex'
 import { NewSprintDurationIndex } from './components/NewSprintDurationIndex'
 import { NewSprintStartDateIndex } from './components/NewSprintStartDateIndex'
-import { FormFooter } from '@/components/form/FormFooter'
+// import { FormFooter } from '@/components/form/FormFooter'
 
 export const CreateEditSprintDialog: React.FC = observer(() => {
     const { onChangeField, new_sprint } = useSprintsStore()
@@ -30,7 +30,7 @@ export const CreateEditSprintDialog: React.FC = observer(() => {
                     <NewSprintDurationIndex />
                     <NewSprintStartDateIndex />
                     {/*  New Sprint Form Footer */}
-                    <FormFooter
+                    {/* <FormFooter
                         okTitle={new_sprint?.edit_mode ? 'Save' : 'Create'}
                         onOk={
                             new_sprint?.edit_mode
@@ -39,7 +39,7 @@ export const CreateEditSprintDialog: React.FC = observer(() => {
                         }
                         onCancel={onCancel}
                         disabled={!new_sprint?.title}
-                    />
+                    /> */}
                 </Form>
             </>
         </XModal>

@@ -47,6 +47,7 @@ input:-webkit-autofill:active {
 @import 'slick-carousel/slick/slick.css';
 @import 'slick-carousel/slick/slick-theme.css';
 @import './draft.css';
+@import './cropper.css';
 
 @layer base {
     html,
@@ -62,8 +63,23 @@ input:-webkit-autofill:active {
         @apply italic border-l-solid border-l-blue-500/50 font-kzen;
     }
 
+    #root::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: url('./img/kzen-login-background.jpg');
+        background-size: cover;
+        opacity: 0.05;
+        z-index: 0;
+    }
+
     #root {
-        @apply scrollbar-thumb-blue-500 text-cText scrollbar-track-global-bg scrollbar-thin flex w-full flex-auto overflow-hidden;
+        @apply scrollbar-thumb-blue-500 relative bg-global-bg text-cText scrollbar-track-global-bg  scrollbar-thin flex w-full flex-auto overflow-hidden;
+        // background-image: url('./img/kzen-login-background.jpg');
+        // background-size: cover;
     }
 
     label {
@@ -192,3 +208,4 @@ input:-webkit-autofill:active {
 .sexy-scroll {
     @apply scrollbar-thumb-blue-500  scrollbar-track-global-bg scrollbar-thin;
 }
+

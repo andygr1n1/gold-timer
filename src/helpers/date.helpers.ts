@@ -79,3 +79,11 @@ export function formatDateWithTimezone(date = new Date()): string {
     const timezoneOffset = getTimezoneOffset(date)
     return `${formattedDate}${timezoneOffset}`
 }
+
+export const calculateCreatedDaysAgo = (created?: string): number => {
+    if (!created) return 0
+    const today = Date.now()
+    const createdAt = convertStringDate(created).getTime()
+    const diff = new Date(today - createdAt)
+    return Math.floor(diff.getTime() / (1000 * 3600 * 24))
+}
