@@ -1,6 +1,6 @@
 import { StyledButton } from '@/components/buttons/StyledButton'
-import { createRef, useMemo } from 'react'
-import { debounce } from 'lodash-es'
+import { createRef /* , useMemo */ } from 'react'
+// import { debounce } from 'lodash-es'
 import Cropper, { ReactCropperElement } from 'react-cropper'
 
 const ImgCropperBody: React.FC<{
@@ -10,14 +10,14 @@ const ImgCropperBody: React.FC<{
 }> = ({ okTitle = 'Add', src, onOk }) => {
     const cropperRef = createRef<ReactCropperElement>()
 
-    const onCrop = () => {
-        const cropper = cropperRef.current?.cropper
-        console.log(cropper?.getCroppedCanvas().toDataURL())
-    }
+    // const onCrop = () => {
+    //     const cropper = cropperRef.current?.cropper
+    //     console.log(cropper?.getCroppedCanvas().toDataURL())
+    // }
 
-    const cropMe = useMemo(() => {
-        return debounce(onCrop, 500)
-    }, [onCrop])
+    // const cropMe = useMemo(() => {
+    //     return debounce(onCrop, 500)
+    // }, [onCrop])
 
     return (
         <div className='text-cText m-auto w-[350px] flex gap-10 flex-col bg-transparent'>
@@ -36,7 +36,7 @@ const ImgCropperBody: React.FC<{
                 autoCropArea={2}
                 checkOrientation={false}
                 guides={true}
-                crop={cropMe}
+                // crop={cropMe}
                 dragMode='move'
             />
             <StyledButton className='w-full' onClick={() => onOk(cropperRef.current?.cropper)}>

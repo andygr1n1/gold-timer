@@ -10,14 +10,13 @@ export const NoteDescriptionRichInput = () => {
 
     return (
         <div className='relative pb-2'>
-            <FormLabel title='Description' />
+            <FormLabel title='Description *' />
             <KzenEditor
                 wrapperClassName='min-h-52'
                 isLoading={isLoading}
                 content={data?.description}
                 onChangeContent={(content) => formikContext.setFieldValue('description', content)}
                 readOnly={false}
-                placeholder='Description'
                 error={formikContext.touched.description && Boolean(formikContext.errors.description)}
                 errorMessage={formikContext.errors.description}
             />

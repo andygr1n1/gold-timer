@@ -12,46 +12,48 @@ export const useFetchNotes = (props: { queryFilter: INoteStatus; limit: number; 
     const { queryFilter = noteStatus.active, limit = 20, serverSearchInput = '' } = props
     const { userId } = useUser$()
 
-    const { data, fetchNextPage, hasNextPage, isFetching, isFetchingNextPage } = useInfiniteQuery({
-        queryKey: notesKeys.useFetchNotes(limit, queryFilter, serverSearchInput, userId),
-        queryFn: async (props) => {
-            const offset = props.pageParam
-            const nextCursor = props.pageParam + 5
-            let data: INoteSchema[] | undefined = []
+    const { data, fetchNextPage, hasNextPage, isFetching, isFetchingNextPage, isLoading } = useInfiniteQuery(
+        {
+            queryKey: notesKeys.useFetchNotes(limit, queryFilter, serverSearchInput, userId),
+            queryFn: async (props) => {
+                const offset = props.pageParam
+                const nextCursor = props.pageParam + 5
+                let data: INoteSchema[] | undefined = []
 
-            if (queryFilter === noteStatus.favorite) {
-                data = await query_favoriteNotes({ userId, limit, offset, serverSearchInput })
-            }
-            if (queryFilter === noteStatus.active) {
-                data = await query_activeNotes({ userId, limit, offset, serverSearchInput })
-            }
+                if (queryFilter === noteStatus.favorite) {
+                    data = await query_favoriteNotes({ userId, limit, offset, serverSearchInput })
+                }
+                if (queryFilter === noteStatus.active) {
+                    data = await query_activeNotes({ userId, limit, offset, serverSearchInput })
+                }
 
-            if (queryFilter === noteStatus.archived) {
-                data = await query_archivedNotes({ userId, limit, offset, serverSearchInput })
-            }
-            if (queryFilter === noteStatus.deleted) {
-                data = await query_deletedNotes({ userId, limit, offset, serverSearchInput })
-            }
-            return { data, nextCursor }
+                if (queryFilter === noteStatus.archived) {
+                    data = await query_archivedNotes({ userId, limit, offset, serverSearchInput })
+                }
+                if (queryFilter === noteStatus.deleted) {
+                    data = await query_deletedNotes({ userId, limit, offset, serverSearchInput })
+                }
+                return { data, nextCursor }
+            },
+            initialPageParam: 0,
+            getNextPageParam: (lastPage, pages) => {
+                return last(pages)?.data?.length ? lastPage?.nextCursor : undefined
+            },
+
+            staleTime: 1000,
+            refetchOnWindowFocus: false,
+            refetchOnMount: true,
+            enabled: !!userId,
         },
-        initialPageParam: 0,
-        getNextPageParam: (lastPage, pages) => {
-            return last(pages)?.data?.length ? lastPage?.nextCursor : undefined
-        },
-
-        staleTime: 1000,
-        refetchOnWindowFocus: false,
-        refetchOnMount: true,
-        enabled: !!userId,
-    })
+    )
 
     const notes = uniqWith(compact(flatten(data?.pages.map((page) => page.data))), (a, b) => a.id === b.id)
-
     return {
-        isLoading: isFetching,
+        isFetching,
         fetchNextPage,
         isFetchingNextPage,
         hasNextPage,
+        isLoading,
         notes: notes || [],
     }
 }

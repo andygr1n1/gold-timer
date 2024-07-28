@@ -9,6 +9,7 @@ import { handleColor } from '../../../utility/handleColor'
 import { IColorStyleMap } from '../../../types'
 import { baseColorKeys, secondaryColorKeys } from './colorsStyleMap'
 import { IconPalette } from '@/components-x/x-rte/icons/IconPalette'
+import { useTogglePopoverState } from '@/hooks/useTogglePopoverState.hook'
 
 export const ColorMenu: React.FC<{
     editorState: EditorState
@@ -17,55 +18,65 @@ export const ColorMenu: React.FC<{
     colorStyleMap: IColorStyleMap
     setCustomStyleMap: Dispatch<SetStateAction<IColorStyleMap>>
 }> = ({ setEditorState, editorState, editorRef, colorStyleMap /* , setCustomStyleMap */ }) => {
-    // const [currentColor, setCurrentColor] = useState('#000')
+    // const [currentColor, setCurrentColor] = useStte('#000')
+    const { popoverState, setPopoverState } = useTogglePopoverState()
 
     return (
         <XDropdown
-            // onOpenChange={() => {
-            //     setPopoverState(!popoverState)
-            // }}
+            open={popoverState}
+            onOpenChange={(open, info) => {
+                setPopoverState(open)
+                console.log('open', open, info)
+            }}
             placement='bottom'
             overlayStyle={{ zIndex: 9999 }}
-            trigger={['hover']}
+            trigger={['hover', 'click']}
             dropdownRender={() => (
                 <XMenuDropdown>
-                    <XMenuItem className='!opacity-100 max-w-[270px] items-center my-2 justify-center gap-5 flex flex-wrap'>
-                        {baseColorKeys().map((colorObj) => (
-                            <button
-                                type='button'
-                                key={colorObj.color}
-                                className='w-5 h-5 rounded-md m-1 cursor-pointer'
-                                onClick={() =>
-                                    handleColor({
-                                        color: colorObj.color,
-                                        editorState,
-                                        setEditorState,
-                                        editorRef,
-                                        colorStyleMap,
-                                    })
-                                }
-                                style={{ background: colorObj.hex }}
-                            />
-                        ))}
+                    <XMenuItem className='!opacity-100 max-w-[270px] items-center mb-5 mx-2 '>
+                        <div className='gap-4 flex flex-wrap'>
+                            {' '}
+                            {baseColorKeys().map((colorObj) => (
+                                <button
+                                    type='button'
+                                    key={colorObj.color}
+                                    className='w-7 h-5 min-w-[28px] min-h-[20px] rounded-md cursor-pointer  hover:scale-105 hover:shadow-xl'
+                                    onClick={() => {
+                                        handleColor({
+                                            color: colorObj.color,
+                                            editorState,
+                                            setEditorState,
+                                            editorRef,
+                                            colorStyleMap,
+                                        })
+                                        setPopoverState(false)
+                                    }}
+                                    style={{ background: colorObj.hex }}
+                                />
+                            ))}
+                        </div>
                     </XMenuItem>
-                    <XMenuItem className='!opacity-100 max-w-[270px] items-center my-2 justify-center gap-5 flex flex-wrap'>
-                        {secondaryColorKeys().map((colorObj) => (
-                            <button
-                                type='button'
-                                key={colorObj.color}
-                                className='w-5 h-5 rounded-md m-1 cursor-pointer'
-                                onClick={() =>
-                                    handleColor({
-                                        color: colorObj.color,
-                                        editorState,
-                                        setEditorState,
-                                        editorRef,
-                                        colorStyleMap,
-                                    })
-                                }
-                                style={{ background: colorObj.hex }}
-                            />
-                        ))}
+                    <XMenuItem className='max-w-[220px] !opacity-100 '>
+                        <div className='gap-4 flex flex-wrap mx-2 mb-5'>
+                            {secondaryColorKeys().map((colorObj) => (
+                                <button
+                                    type='button'
+                                    key={colorObj.color}
+                                    className='w-7 h-5 min-w-[28px] min-h-[20px] rounded-md cursor-pointer hover:scale-105 hover:shadow-xl'
+                                    onClick={() => {
+                                        handleColor({
+                                            color: colorObj.color,
+                                            editorState,
+                                            setEditorState,
+                                            editorRef,
+                                            colorStyleMap,
+                                        })
+                                        setPopoverState(false)
+                                    }}
+                                    style={{ background: colorObj.hex }}
+                                />
+                            ))}
+                        </div>
                     </XMenuItem>
                     <XMenuItem
                         onClick={() =>

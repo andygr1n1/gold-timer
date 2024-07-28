@@ -1,6 +1,6 @@
 import { resolveError, tryCatchRequest } from '@/helpers/tryCatchRequest'
 import { generateTSClient } from '@/graphql/client'
-import { IGoalSchema, goalStatus, goalsResponseSchema } from '../types'
+import { IGoalSchema, goalStatusEnum, goalsResponseSchema } from '../types'
 import { setZeroTime } from '@/helpers/date.helpers'
 
 export const query_ritualGoals = async (props: {
@@ -27,7 +27,7 @@ export const query_ritualGoals = async (props: {
                                     {
                                         owner_id: { _eq: userId },
                                         deleted_at: { _is_null: true },
-                                        status: { _eq: goalStatus.active },
+                                        status: { _eq: goalStatusEnum.active },
                                         goal_ritual: { ritual_power: { _gte: 0 } },
                                         finished_at: expiredGoals ? undefined : { _gte: setZeroTime(new Date()) },
                                     },

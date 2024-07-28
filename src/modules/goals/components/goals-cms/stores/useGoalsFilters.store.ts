@@ -1,4 +1,4 @@
-import { goalStatus } from '@/modules/goals/shared-service'
+import { goalStatusEnum } from '@/modules/goals/shared-service'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { IGoalsFiltersSchema, KEY_useGoalsFiltersStore } from './types'
 import { ChangeEvent, useMemo } from 'react'
@@ -12,7 +12,7 @@ export const useGoalsFilters = () => {
         staleTime: Infinity,
         refetchOnWindowFocus: false,
         refetchOnMount: false,
-        initialData: { searchInput: '', serverSearchInput: '', status: goalStatus.active },
+        initialData: { searchInput: '', serverSearchInput: '', status: goalStatusEnum.active },
     })
 
     const onChangeServerSearchInput = useMemo(() => {

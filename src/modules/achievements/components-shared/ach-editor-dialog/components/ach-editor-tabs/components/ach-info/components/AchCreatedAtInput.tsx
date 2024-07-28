@@ -19,7 +19,7 @@ export const AchCreatedAtInput = () => {
 
     return (
         <div>
-            <FormLabel title='Date' />
+            <FormLabel title='Date *' />
 
             <XDatePicker
                 numberOfMonths={1}
@@ -35,7 +35,6 @@ export const AchCreatedAtInput = () => {
                 showOutsideDays
                 showWeekNumber
                 onClear={onClear}
-                placeholder='Set date'
                 readOnly={viewMode}
                 showToday
             />

@@ -15,11 +15,10 @@ export const useEditorFormOnValidate = () => {
             errors.title = 'Required field'
         }
 
-        // if (!values.img_path.length) {
-        //     errors.img_path = 'Required field'
-        // }
+        if (!values.img_path.length && !values.img_src?.length) {
+            errors.img_src = 'Required field'
+        }
 
-        console.log('errors', errors)
         return errors
     }
 

@@ -1,7 +1,7 @@
 import { useInfiniteQuery } from '@tanstack/react-query'
 import { compact, flatten, last, uniqWith } from 'lodash-es'
 import { KEY_FetchGoalsInfinity } from '../keys'
-import { IGoalSchema, IGoalStatus, goalStatus } from '../types'
+import { IGoalSchema, IGoalStatus, goalStatusEnum } from '../types'
 import { useUser$ } from '@/services/user-store/userUser.store'
 import { query_activeGoals } from '@/modules/goals/shared-service/fetch-goals/query_activeGoals'
 import { query_expiredGoals } from './query_expiredGoals'
@@ -21,7 +21,7 @@ export const useFetchGoals = (props: {
     fetchNextPage: () => void
     hasNextPage: boolean
 } => {
-    const { queryFilter = goalStatus.active, limit = 20, serverSearchInput = '' } = props
+    const { queryFilter = goalStatusEnum.active, limit = 20, serverSearchInput = '' } = props
     const { userId } = useUser$()
 
     const { data, fetchNextPage, hasNextPage, isFetching, isFetchingNextPage } = useInfiniteQuery({
@@ -31,19 +31,19 @@ export const useFetchGoals = (props: {
             const nextCursor = props.pageParam + 5
             let data: IGoalSchema[] | undefined = []
 
-            if (queryFilter === goalStatus.favorite) {
+            if (queryFilter === goalStatusEnum.favorite) {
                 data = await query_favoriteGoals({ userId, limit, offset, serverSearchInput })
             }
-            if (queryFilter === goalStatus.active) {
+            if (queryFilter === goalStatusEnum.active) {
                 data = await query_activeGoals({ userId, limit, offset, serverSearchInput })
             }
-            if (queryFilter === goalStatus.expired) {
+            if (queryFilter === goalStatusEnum.expired) {
                 data = await query_expiredGoals({ userId, limit, offset, serverSearchInput })
             }
-            if (queryFilter === goalStatus.ritualActive) {
+            if (queryFilter === goalStatusEnum.ritualActive) {
                 data = await query_ritualGoals({ userId, limit, offset, serverSearchInput, expiredGoals: false })
             }
-            if (queryFilter === goalStatus.ritual) {
+            if (queryFilter === goalStatusEnum.ritual) {
                 data = await query_ritualGoals({
                     userId,
                     limit,
@@ -52,10 +52,10 @@ export const useFetchGoals = (props: {
                     expiredGoals: true,
                 })
             }
-            if (queryFilter === goalStatus.completed) {
+            if (queryFilter === goalStatusEnum.completed) {
                 data = await query_completedGoals({ userId, limit, offset, serverSearchInput })
             }
-            if (queryFilter === goalStatus.deleted) {
+            if (queryFilter === goalStatusEnum.deleted) {
                 data = await query_deletedGoals({ userId, limit, offset, serverSearchInput })
             }
             return { data, nextCursor }

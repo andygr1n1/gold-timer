@@ -4,13 +4,13 @@ import { TopGoalsList } from '../components/TopGoalsList'
 
 import styles from '../goalsDashboard.module.scss'
 import { useFetchGoals } from '@/modules/goals/shared-service/fetch-goals/useFetchGoals'
-import { goalStatus } from '@/modules/goals/shared-service'
+import { goalStatusEnum } from '@/modules/goals/shared-service'
 
 export const TopExpiredGoalsWidget: React.FC = () => {
     const { isLoading, goals } = useFetchGoals({
         limit: 4,
         serverSearchInput: '',
-        queryFilter: goalStatus.expired,
+        queryFilter: goalStatusEnum.expired,
     })
 
     if (!goals?.length) return null

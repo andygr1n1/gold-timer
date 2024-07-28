@@ -3,6 +3,7 @@ import { FormLabel } from '@/components/form/FormLabel'
 import { IGoalSchema } from '@/modules/goals/shared-service'
 import { useFormikContext } from 'formik'
 import { useGoalEditor$ } from '../../stores/goal-editor-store/useGoalEditor.store'
+import { cn } from '@/helpers/cn'
 
 export const GoalTitleInput = () => {
     const { viewMode } = useGoalEditor$()
@@ -10,7 +11,7 @@ export const GoalTitleInput = () => {
 
     return (
         <div>
-            <FormLabel title='Title' />
+            <FormLabel title={cn('Title', !viewMode && ' *')} />
             <XInput
                 data-testid='goal-title-input'
                 disabled={viewMode}
@@ -18,7 +19,6 @@ export const GoalTitleInput = () => {
                 autoFocus={true}
                 value={formikContext.values.title}
                 name='title'
-                placeholder='Title'
                 onChange={formikContext.handleChange}
                 error={formikContext.touched.title && Boolean(formikContext.errors.title)}
                 errorMessage={formikContext.errors.title}

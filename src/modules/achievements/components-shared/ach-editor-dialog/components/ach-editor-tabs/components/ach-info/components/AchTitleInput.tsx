@@ -10,7 +10,7 @@ export const AchTitleInput = () => {
 
     return (
         <div>
-            <FormLabel title='Title' />
+            <FormLabel title='Title *' />
             <XInput
                 data-testid='ach-title-input'
                 disabled={viewMode}
@@ -18,7 +18,6 @@ export const AchTitleInput = () => {
                 autoFocus={true}
                 value={formikContext.values.title}
                 name='title'
-                placeholder='Title'
                 onChange={formikContext.handleChange}
                 error={formikContext.touched.title && Boolean(formikContext.errors.title)}
                 errorMessage={formikContext.errors.title}

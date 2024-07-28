@@ -1,4 +1,4 @@
-import { IGoalSchema, goalStatus } from '@/modules/goals/shared-service'
+import { IGoalSchema, goalStatusEnum } from '@/modules/goals/shared-service'
 import { useGoalEditor$ } from '../stores/goal-editor-store/useGoalEditor.store.ts'
 import { formatDateWithTimezone } from '@/helpers/date.helpers'
 import { useGoalData } from './useGoalData.ts'
@@ -20,7 +20,7 @@ const initialGoal = (props: { parentGoalId?: string | null }) => ({
     title: '',
     slogan: '',
     description: '',
-    status: goalStatus.active,
+    status: goalStatusEnum.active,
     difficulty: '',
     goal_ritual: null,
     parent_goal_id: props.parentGoalId || null,

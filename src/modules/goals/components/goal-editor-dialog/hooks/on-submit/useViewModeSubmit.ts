@@ -1,5 +1,5 @@
 import { FormikHelpers } from 'formik'
-import { IGoalSchema, goalStatus } from '@/modules/goals/shared-service'
+import { IGoalSchema, goalStatusEnum } from '@/modules/goals/shared-service'
 import { isActiveGoalStatus, isActiveRitualStatus, isCompletedGoalStatus } from '@/modules/goals/helpers/goalsGuards'
 import { useUpdateGoalStatus } from '../../service/update-goal-status/useUpdateGoalStatus.service'
 import { useGoalEditor$ } from '../../stores/goal-editor-store/useGoalEditor.store'
@@ -12,7 +12,6 @@ export const useViewModeSubmit = () => {
 
     const onViewModeSubmit = (values: IGoalSchema, formikHelpers: FormikHelpers<IGoalSchema>) => {
         const { setSubmitting } = formikHelpers
-        console.log('values', values)
         setSubmitting(false)
         const isActiveRitual = isActiveRitualStatus(values)
         const isActiveGoal = isActiveGoalStatus(values.status)
@@ -21,7 +20,7 @@ export const useViewModeSubmit = () => {
         if (isCompletedGoal) {
             updateGoalStatus({
                 goal: values,
-                status: goalStatus.active,
+                status: goalStatusEnum.active,
                 onSettled: () => {
                     setSubmitting(false)
                     onCancel()
@@ -38,7 +37,7 @@ export const useViewModeSubmit = () => {
         } else if (isActiveGoal)
             updateGoalStatus({
                 goal: values,
-                status: goalStatus.completed,
+                status: goalStatusEnum.completed,
                 onSettled: () => {
                     setSubmitting(false)
                     onCancel()

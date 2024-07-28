@@ -1,7 +1,7 @@
 import { resolveError, tryCatchRequest } from '@/helpers/tryCatchRequest'
 import { IUpdateGoalRitualSchema } from '../types'
 import { generateTSClient } from '@/graphql/client'
-import { IGoalSchema, goalSchema, goalStatus } from '@/modules/goals/shared-service'
+import { IGoalSchema, goalSchema, goalStatusEnum } from '@/modules/goals/shared-service'
 
 export const mutation_ritualizeGoal = async (props: {
     goalRitual: IUpdateGoalRitualSchema
@@ -19,7 +19,7 @@ export const mutation_ritualizeGoal = async (props: {
                             _set: {
                                 created_at: goalRitual.created_at,
                                 finished_at: goalRitual.finished_at,
-                                status: goalStatus.active,
+                                status: goalStatusEnum.active,
                             },
                         },
                         id: true,

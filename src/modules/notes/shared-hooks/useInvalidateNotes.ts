@@ -13,7 +13,7 @@ export const useInvalidateNotes = () => {
             predicate: (query) => {
                 const queryKey = query.queryKey
                 return (
-                    (queryKey[1] === 'useFetchNotes' && queryKey[2] === 20 && queryKey[3] === queryFilter) ||
+                    (queryKey[1] === 'useFetchNotes' && queryKey[2] === 5 && queryKey[3] === queryFilter) ||
                     queryKey[1] === 'useFetchNote'
                 )
             },

@@ -1,4 +1,4 @@
-import { IGoalSchema, goalStatus, goalsResponseSchema } from '../types'
+import { IGoalSchema, goalStatusEnum, goalsResponseSchema } from '../types'
 import { resolveError, tryCatchRequest } from '@/helpers/tryCatchRequest'
 import { generateTSClient } from '@/graphql/client'
 
@@ -25,7 +25,7 @@ export const query_completedGoals = async (props: {
                                     {
                                         owner_id: { _eq: userId },
                                         deleted_at: { _is_null: true },
-                                        status: { _eq: goalStatus.completed },
+                                        status: { _eq: goalStatusEnum.completed },
                                     },
                                     {
                                         _or: serverSearchInput.length

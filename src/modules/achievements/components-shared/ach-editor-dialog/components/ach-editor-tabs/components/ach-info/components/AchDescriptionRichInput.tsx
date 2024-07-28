@@ -17,7 +17,6 @@ export const AchDescriptionRichInput = () => {
                 content={data?.description}
                 onChangeContent={(content) => formikContext.setFieldValue('description', content)}
                 readOnly={false}
-                placeholder='Description'
                 error={formikContext.touched.description && Boolean(formikContext.errors.description)}
                 errorMessage={formikContext.errors.description}
             />

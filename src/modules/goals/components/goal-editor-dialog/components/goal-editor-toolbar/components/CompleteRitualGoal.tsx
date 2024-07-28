@@ -1,5 +1,5 @@
 import { StyledButton } from '@/components/buttons/StyledButton'
-import { IGoalSchema, goalStatus } from '@/modules/goals/shared-service/types'
+import { IGoalSchema, goalStatusEnum } from '@/modules/goals/shared-service/types'
 import { isCompletedGoalStatus } from '@/modules/goals/helpers/goalsGuards'
 import { useUpdateGoalStatus } from '../../../service/update-goal-status/useUpdateGoalStatus.service'
 import { useGoalEditor$ } from '../../../stores/goal-editor-store/useGoalEditor.store'
@@ -25,7 +25,7 @@ export const CompleteRitualGoal: React.FC<{ goal: IGoalSchema }> = ({ goal }) =>
                 onClick={() => {
                     updateGoalStatus({
                         goal,
-                        status: goalStatus.completed,
+                        status: goalStatusEnum.completed,
                         onSuccess: onCancel,
                     })
                 }}

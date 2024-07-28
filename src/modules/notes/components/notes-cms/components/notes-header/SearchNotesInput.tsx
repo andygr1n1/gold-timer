@@ -19,7 +19,7 @@ export const SearchNotesInput = () => {
             value={store.searchInput}
             onChange={onChange}
             startIcon={<IconSearch width={24} height={24} />}
-            placeholder='Find me...'
+            placeholder='Search'
             width='!max-w-[600px] !w-full'
         />
     )

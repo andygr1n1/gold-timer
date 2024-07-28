@@ -28,7 +28,7 @@ export const NoteTagInput = () => {
         <div>
             <FormLabel title='Tag:' />
             <div className='mb-2 flex w-full items-center gap-2 '>
-                <XInput placeholder='Tag me...' value={store.value} onChange={(e) => setStore(e.target.value)} />
+                <XInput value={store.value} onChange={(e) => setStore(e.target.value)} />
                 <StyledButton
                     disabled={!newTagIsValid(formikContext.values.tag)}
                     onClick={() => {

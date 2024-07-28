@@ -1,6 +1,6 @@
 import { formatDateWithTimezone } from '@/helpers/date.helpers'
 import { generateNewRitualCircle } from '@/helpers/generateNewRitualCircle'
-import { IGoalSchema, goalStatus } from '@/modules/goals/shared-service'
+import { IGoalSchema, goalStatusEnum } from '@/modules/goals/shared-service'
 import { useMutation } from '@tanstack/react-query'
 import { mutation_userCoins } from '../mutation_userCoins'
 import { useRecalculateUserCoins } from '../../hooks/useRecalculateUserCoins'
@@ -42,7 +42,7 @@ export const useRitualizeGoal = () => {
             finished_at: formatDateWithTimezone(ritual_goal_finished_at),
         }
 
-        userCoinsMutation.mutate({ coins: recalculateUserCoins({ goal, status: goalStatus.ritual }) })
+        userCoinsMutation.mutate({ coins: recalculateUserCoins({ goal, status: goalStatusEnum.ritual }) })
         goalMutation.mutate({ goalRitual }, { onSuccess: props.onSuccess, onSettled: props.onSettled })
     }
     return { ritualizeGoal }

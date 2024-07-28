@@ -20,7 +20,6 @@ export const GoalDescriptionRichInput = () => {
                 content={data?.description}
                 onChangeContent={(content) => formikContext.setFieldValue('description', content)}
                 readOnly={viewMode}
-                placeholder='Description'
             />
         </div>
     )
