@@ -1,0 +1,19 @@
+.bubble-menu-select {
+    .ant-select {
+        @apply border-none shadow-none hover:border-none hover:shadow-none #{!important};
+
+        &:hover {
+            .ant-select-selector {
+                @apply bg-transparent border-transparent shadow-none #{!important};
+            }
+        }
+    }
+
+    .ant-select-selector {
+        @apply bg-transparent border-none shadow-none #{!important};
+
+        .ant-select-selection-item {
+            @apply text-sm #{!important};
+        }
+    }
+}

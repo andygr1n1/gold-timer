@@ -40,7 +40,7 @@ input:-webkit-autofill:active {
 @import './react-menu-theme-overwrite.scss';
 @import './date-picker.css';
 @import './antdRedesign.css';
-@import './antd-redesign/select.scss';
+
 @import './antd-redesign/input.scss';
 @import '../components/buttons/StyledButtonLightVariables.scss';
 @import 'react-tooltip/dist/react-tooltip.css';
@@ -90,16 +90,25 @@ input:-webkit-autofill:active {
     h2,
     h3,
     h4,
-    h5,
-    h6 {
+    h5 {
         @apply font-inter text-cText m-0 p-0 tracking-wider leading-normal duration-300;
+    }
+
+    h6 {
+        @apply text-cText text-base font-inter;
     }
 
     a,
     a:focus,
     a:active,
     a:visited {
-        @apply text-cText no-underline;
+        @apply text-cText no-underline font-normal tracking-normal  duration-300;
+    }
+
+    u span {
+        text-decoration: underline;
+        text-decoration-color: currentColor; /* Ensures underline matches text color */
+        color: inherit; /* Example color for the text */
     }
 
     ul {
@@ -208,4 +217,3 @@ input:-webkit-autofill:active {
 .sexy-scroll {
     @apply scrollbar-thumb-blue-500  scrollbar-track-global-bg scrollbar-thin;
 }
-
