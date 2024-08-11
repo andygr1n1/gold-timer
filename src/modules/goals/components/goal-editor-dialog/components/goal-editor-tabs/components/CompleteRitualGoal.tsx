@@ -16,11 +16,11 @@ export const CompleteRitualGoal: React.FC<{ goal: IGoalSchema }> = ({ goal }) =>
         <>
             <StyledButton
                 id='completeRitualGoal'
-                variant={'text'}
-                size={'custom'}
-                className='group'
+                variant={'outlined'}
+                size={'small'}
+                className='group !border-blue-500/50'
                 startIcon={
-                    <IconCompletedFilled className='h-5 w-5 group-hover:text-rose-500 opacity-70 duration-300 group-hover:opacity-100' />
+                    <IconCompletedFilled className='h-5 w-5' />
                 }
                 onClick={() => {
                     updateGoalStatus({

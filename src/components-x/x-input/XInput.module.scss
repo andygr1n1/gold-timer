@@ -3,20 +3,20 @@
 }
 
 .xinput-wrapper {
-    @apply text-cText relative h-10 w-[calc(100%-2px)] font-inter  rounded-md border border-solid border-blue-900
-    text-base  hover:border-blue-600;
+    @apply text-cText relative h-10 w-[calc(100%-2px)] font-inter  rounded-md border border-solid border-blue-900/20
+    text-base  hover:border-blue-600/20;
 }
 
 .xinput-wrapper-error {
-    @apply border-red-500 hover:border-red-500 focus:border-red-500;
+    @apply border-red-500 hover:border-red-500 focus:border-red-500/20;
 }
 
 .xinput-wrapper-focused {
-    @apply border-blue-600;
+    @apply border-blue-600/20;
 }
 
 .xinput-wrapper-focused.xinput-wrapper-error {
-    @apply border-red-500 hover:border-red-500 focus:border-red-500;
+    @apply border-red-500 hover:border-red-500 focus:border-red-500/20;
 }
 
 .xinput-wrapper.xinput-wrapper-readonly {
@@ -28,7 +28,7 @@
 }
 
 .xinput {
-    @apply text-cText placeholder:text-slate-500 m-0 min-h-[40px] w-[calc(100%-24px)] rounded-md border-none px-3 py-0  disabled:bg-transparent
+    @apply text-cText placeholder:text-slate-500/50 m-0 min-h-[40px] w-[calc(100%-24px)] rounded-md border-none px-3 py-0  disabled:bg-transparent
     disabled:bg-opacity-10  disabled:opacity-70;
 }
 

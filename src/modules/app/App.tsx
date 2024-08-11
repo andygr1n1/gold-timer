@@ -18,7 +18,7 @@ export const App = () => {
                     colorTextDisabled: 'var(--colors-cText)',
                     colorTextPlaceholder: 'var(--colors-cText)',
                     colorText: 'var(--colors-cText)',
-                    colorPrimary: 'var(--colors-cText)',
+                    // colorPrimary: 'var(--colors-cText)',
                     fontSize: 16,
                     fontFamily: 'Inter. sans-serif',
                     colorBgContainer: 'var(--colors-global-2-bg)',

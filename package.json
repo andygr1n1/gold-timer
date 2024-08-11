@@ -24,6 +24,7 @@
         "@tiptap/pm": "^2.5.7",
         "@tiptap/react": "^2.5.7",
         "@tiptap/starter-kit": "^2.5.7",
+        "@types/draft-convert": "^2.1.8",
         "antd": "^5.18.3",
         "axios": "^1.4.0",
         "compressorjs": "^1.2.1",

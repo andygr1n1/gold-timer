@@ -13,9 +13,9 @@ export const LockedStatus: React.FC<{ isLocked: boolean; onClick: (status: boole
             onClick={() => onClick(!isLocked)}
         >
             {isLocked ? (
-                <IconLocked className='text-cText opacity-90 w-[18px] h-[18px] cursor-pointer duration-300 z-10 hover:text-blue-700 ' />
+                <IconLocked className='text-cText opacity-40 w-[18px] h-[18px] cursor-pointer duration-300 z-10 hover:text-blue-700 ' />
             ) : (
-                <IconUnlocked className='text-cText opacity-100 w-[18px] h-[18px] cursor-pointer duration-300 hover:text-blue-700 z-10' />
+                <IconUnlocked className='text-cText opacity-40 w-[18px] h-[18px] cursor-pointer duration-300 hover:text-blue-700 z-10' />
             )}
         </button>
     )

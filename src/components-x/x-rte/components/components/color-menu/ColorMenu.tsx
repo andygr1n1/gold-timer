@@ -24,9 +24,8 @@ export const ColorMenu: React.FC<{
     return (
         <XDropdown
             open={popoverState}
-            onOpenChange={(open, info) => {
+            onOpenChange={(open /* info */) => {
                 setPopoverState(open)
-                console.log('open', open, info)
             }}
             placement='bottom'
             overlayStyle={{ zIndex: 9999 }}

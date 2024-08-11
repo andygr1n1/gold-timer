@@ -4,7 +4,6 @@ import { useFetchLockedStatus } from '../service/useFetchLockedStatus'
 import { useFetchNotepad } from '../service/useFetchNotepad'
 import { useMutateNotepad } from '../service/useMutateNotepad'
 import { LockedStatusIndex } from './LockedStatusIndex'
-import { KzenEditor } from '@/components-x/x-rte'
 import { XTiptap } from '@/components-x/x-tiptap/XTiptap'
 
 export const NotepadInput: React.FC = () => {
@@ -21,23 +20,17 @@ export const NotepadInput: React.FC = () => {
     }, [sendRequest])
 
     return (
-        // <KzenEditor
-        //     showBaseToolbar={!isLocked}
-        //     isLoading={isLoading}
-        //     readOnly={isLocked}
-        //     content={description}
-        // onChangeContent={(content) => {
-        //     saveDescription(content)
-        // }}
-        //     placeholder='Note...'
-        //     toolbarExtend={<LockedStatusIndex />}
-        // />
         <XTiptap
             isLoading={isLoading}
             content={description}
             onChange={(content) => {
                 saveDescription(content)
             }}
-        />
+            readonly={isLocked}
+        >
+            <div className='absolute top-3 right-[-5px]'>
+                <LockedStatusIndex />
+            </div>
+        </XTiptap>
     )
 }

@@ -12,7 +12,6 @@ const ImgCropperBody: React.FC<{
 
     // const onCrop = () => {
     //     const cropper = cropperRef.current?.cropper
-    //     console.log(cropper?.getCroppedCanvas().toDataURL())
     // }
 
     // const cropMe = useMemo(() => {

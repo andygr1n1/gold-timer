@@ -30,7 +30,7 @@ export const editorColorsOptions: IColorOption[] = [
 export const getCurrentColor = (editor: Editor) => {
     const { doc, selection } = editor.state
     const { from, to } = selection
-    let currentColor = '#000000' // Default color
+    let currentColor = 'var(--colors-cText)' // Default color
 
     doc.nodesBetween(from, to, (node) => {
         if (node.marks) {

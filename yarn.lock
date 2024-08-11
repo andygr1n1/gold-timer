@@ -1633,7 +1633,15 @@
   resolved "https://registry.yarnpkg.com/@types/cookie/-/cookie-0.6.0.tgz#eac397f28bf1d6ae0ae081363eca2f425bedf0d5"
   integrity sha512-4Kh9a6B2bQciAhf7FSuMRRkUWecJgJu9nPnx3yzpsfXX/c50REIqpHY4C82bXP90qrLtXtkDxTZosYO3UpOwlA==
 
-"@types/draft-js@^0.11.18":
+"@types/draft-convert@^2.1.8":
+  version "2.1.8"
+  resolved "https://registry.yarnpkg.com/@types/draft-convert/-/draft-convert-2.1.8.tgz#da9863900ddc1f8394761de5b760ea98839f8e84"
+  integrity sha512-gzHXLnOhDqdDv3ieMCZjqbmP992MBBn1u9HrhrCQ4+sip2pFz7d+fXL4GqaBgFjM/A5+iSNRhkr4ZP4tMR3jWw==
+  dependencies:
+    "@types/draft-js" "*"
+    "@types/react" "*"
+
+"@types/draft-js@*", "@types/draft-js@^0.11.18":
   version "0.11.18"
   resolved "https://registry.yarnpkg.com/@types/draft-js/-/draft-js-0.11.18.tgz#f2cad2178987fdd444827a2f7809a653f82a70ad"
   integrity sha512-lP6yJ+EKv5tcG1dflWgDKeezdwBa8wJ7KkiNrrHqXuXhl/VGes1SKjEfKHDZqOz19KQbrAhFvNhDPWwnQXYZGQ==

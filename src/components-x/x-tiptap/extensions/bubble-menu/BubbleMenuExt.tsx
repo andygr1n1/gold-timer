@@ -12,19 +12,11 @@ import './components/BubbleMenuSelect.scss'
 import { IconChevronDown } from '@/assets/icons/IconChevronDown'
 import { isArray } from 'lodash-es'
 import { editorColorsOptions, getCurrentColor } from './components/editorColorsOptions'
-import { useEffect } from 'react'
 import { IconCircle } from '@/assets/icons/IconCircle'
 
 export const BubbleMenuExt: React.FC = () => {
     const { editor } = useCurrentEditor()
     if (!editor) return null
-
-    const currentColor = getCurrentColor(editor)
-    console.log('curr', currentColor)
-
-    useEffect(() => {
-        console.log('rerender')
-    }, [])
 
     return (
         <div className={'key-1'}>

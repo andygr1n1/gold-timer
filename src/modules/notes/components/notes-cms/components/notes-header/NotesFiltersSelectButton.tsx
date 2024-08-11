@@ -11,9 +11,10 @@ export const NotesFiltersSelectButton: React.FC = observer(() => {
             startIcon={<ActiveFilterIcon />}
             // onClick={ }
             className={cn(
-                isFavorite && '!border-rose-500 hover:!bg-rose-500/20',
-                isArchived && '!border-violet-500 hover:!bg-violet-500/20',
-                isDeleted && '!border-slate-500 hover:!bg-slate-500/20',
+                '!border-blue-600/20 hover:!bg-blue-600/20',
+                isFavorite && '!border-rose-500/20 hover:!bg-rose-500/20',
+                isArchived && '!border-violet-500/20 hover:!bg-violet-500/20',
+                isDeleted && '!border-slate-500/20 hover:!bg-slate-500/20',
             )}
             variant='outlined'
         />

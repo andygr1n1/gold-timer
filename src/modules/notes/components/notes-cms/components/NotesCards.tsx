@@ -36,9 +36,15 @@ export const NotesList: React.FC<{ queryFilter: INoteStatus }> = ({ queryFilter 
                     const renderNotes = filteredNotes(tp)
                     return renderNotes.length ? (
                         <React.Fragment key={tp}>
-                            <div>{tp && <FormLabel title={tp} />}</div>
+                            <div>
+                                {tp && (
+                                    <div className='flex gap-1'>
+                                        <FormLabel title={tp} />
+                                    </div>
+                                )}
+                            </div>
 
-                            <div className='flex flex-col gap-5'>
+                            <div className='flex flex-col gap-10'>
                                 {renderNotes.map((note) => {
                                     return <Note key={note.id} note={note} isMobile={isMobile} />
                                 })}
