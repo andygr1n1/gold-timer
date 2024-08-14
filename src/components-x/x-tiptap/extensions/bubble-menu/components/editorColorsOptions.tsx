@@ -6,6 +6,11 @@ export type IColorOption = { id: string; value: string; label: ReactNode }
 
 export const editorColorsOptions: IColorOption[] = [
     {
+        id: 'var(--colors-cText)',
+        value: 'var(--colors-cText)',
+        label: <ColorOption hex='var(--colors-cText)' title='Default' />,
+    },
+    {
         id: '#ef4444',
         value: '#ef4444',
         label: <ColorOption hex='#ef4444' title='Sexy' />,

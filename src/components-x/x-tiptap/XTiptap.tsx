@@ -8,6 +8,7 @@ import { XSkeleton } from '../x-skeleton/XSkeleton'
 import styles from './XTiptap.module.scss'
 import { BubbleMenuExt } from './extensions/bubble-menu/BubbleMenuExt'
 import Underline from '@tiptap/extension-underline'
+import { cn } from '@/helpers/cn'
 // import Heading from '@tiptap/extension-heading'
 
 type ITiptap = {
@@ -43,7 +44,7 @@ export const XTiptap: React.FC<ITiptap> = (props) => {
     if (isLoading) return <XSkeleton length={1} />
 
     return (
-        <div className={styles['xtiptap']}>
+        <div className={cn(styles['xtiptap'], readonly && styles['xtiptap-readonly'])}>
             <EditorProvider
                 onUpdate={({ editor }) => {
                     const htmlContent = editor.getHTML()
