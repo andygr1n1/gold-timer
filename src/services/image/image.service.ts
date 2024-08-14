@@ -1,19 +1,30 @@
-import { getUserId } from '@/helpers/getUserId'
 import { processError } from '@/helpers/processMessage'
 import axios from 'axios'
+import { SERVER_ROUTES } from '../enums'
 
 export interface IUploadImgRes {
     fileName: string
 }
 
-export const uploadNewImageToServer = async (imgBase64: string, route: string): Promise<string | undefined> => {
+export const uploadNewImageToServer = async ({
+    img,
+    route,
+    userId,
+    id,
+}: {
+    route: SERVER_ROUTES
+    img: string
+    userId: string
+    id?: string
+}): Promise<string | undefined> => {
     try {
         const endpoint = import.meta.env.VITE_NODE_HEROKU_ORIGIN
         const xapikey = import.meta.env.VITE_X_API_KEY
 
         const formData = new FormData()
-        formData.append('base64', imgBase64)
-        formData.append('userId', getUserId())
+        formData.append('base64', img)
+        formData.append('userId', userId)
+        id && formData.append('id', id)
 
         const { data, status } = await axios<IUploadImgRes>({
             method: 'POST',

@@ -16,7 +16,7 @@ const SprintsIndex: React.FC = observer(() => {
     // const { sprints } = useSprintsStore()
 
     // return (
-    //     <ModuleWrapper context={APP_ROUTES_ENUM.SPRINTS} topBarNodes={<ArtifactsCounter />}>
+    //     <ModuleWrapper topBarNodes={<ArtifactsCounter />}>
     //         <div className='mb-5 flex w-full flex-wrap justify-start gap-8'>
     //             <div className='flex w-full flex-col gap-8'>
     //                 {!isMobile && !!sprints.length && (

@@ -1,7 +1,7 @@
 import { resolveError, tryCatchRequest } from '@/helpers/tryCatchRequest'
 import { generateTSClient } from '@/graphql/client'
 import { userSchema } from '@/services/types'
-import { goalStatus } from '../types'
+import { goalStatusEnum } from '../types'
 import { IQueryUserDetails } from './types'
 
 export const query_userDetails = async (props: { userId: string }): Promise<IQueryUserDetails | undefined> => {
@@ -27,7 +27,7 @@ export const query_userDetails = async (props: { userId: string }): Promise<IQue
                             where: {
                                 owner_id: { _eq: userId },
                                 deleted_at: { _is_null: true },
-                                status: { _eq: goalStatus.active },
+                                status: { _eq: goalStatusEnum.active },
                                 goal_ritual: { ritual_power: { _gt: 0 } },
                             },
                         },

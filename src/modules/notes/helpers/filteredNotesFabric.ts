@@ -10,12 +10,12 @@ export const filteredNotesFabric = (
     filteredNotes: (tp: string) => INoteSchema[]
 } => {
     const timeFrame = compact(
-        uniq(notes.map((note) => note.created_at && format(convertStringDate(note.created_at), 'yyyy MMMM'))),
+        uniq(notes.map((note) => note.created_at && format(convertStringDate(note.created_at), 'yyyy'))),
     )
 
     const filteredNotes = (timeFrame: string) => {
         return notes.filter(
-            (note) => note.created_at && format(convertStringDate(note.created_at), 'yyyy MMMM') === timeFrame,
+            (note) => note.created_at && format(convertStringDate(note.created_at), 'yyyy') === timeFrame,
         )
     }
 

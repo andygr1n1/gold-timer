@@ -3,14 +3,14 @@ import { NavigateAllActiveGoals } from './NavigateAllActiveGoals'
 import { Widget_AddGoal } from '../components/widget-add-goal/Widget_AddGoal'
 import { TopGoalsList } from '../components/TopGoalsList'
 import { useFetchGoals } from '../../../shared-service/fetch-goals/useFetchGoals'
-import { goalStatus } from '@/modules/goals/shared-service'
+import { goalStatusEnum } from '@/modules/goals/shared-service'
 import styles from '../goalsDashboard.module.scss'
 
 export const TopActiveGoalsWidget: React.FC = () => {
     const { isLoading, goals } = useFetchGoals({
         limit: 4,
         serverSearchInput: '',
-        queryFilter: goalStatus.active,
+        queryFilter: goalStatusEnum.active,
     })
 
     return (

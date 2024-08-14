@@ -1,16 +1,16 @@
-import { IGoalSchema, IGoalStatus, goalStatus } from '../shared-service'
+import { IGoalSchema, IGoalStatus, goalStatusEnum } from '../shared-service'
 
 /* */
 
 export const isCompletedGoalStatus = (status: IGoalStatus) => {
-    return status === goalStatus.completed
+    return status === goalStatusEnum.completed
 }
 export const isActiveGoalStatus = (status: IGoalStatus) => {
-    return status === goalStatus.active
+    return status === goalStatusEnum.active
 }
 
 export const isExpiredGoalStatus = (status: IGoalStatus) => {
-    return status === goalStatus.expired
+    return status === goalStatusEnum.expired
 }
 
 export const isActiveRitualStatus = (goal: IGoalSchema) => {
@@ -18,7 +18,7 @@ export const isActiveRitualStatus = (goal: IGoalSchema) => {
 }
 
 export const isFilterStateRitualized = (status: IGoalStatus) => {
-    return status === goalStatus.ritual || status === goalStatus.ritualActive
+    return status === goalStatusEnum.ritual || status === goalStatusEnum.ritualActive
 }
 export const isFilterStateActive = (status: IGoalStatus) => {
     return status === 'active'

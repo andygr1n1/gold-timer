@@ -1,12 +1,11 @@
 import { ModuleWrapper } from '@/components/ModuleWrapper'
-import { APP_ROUTES_ENUM } from '@/services/enums'
 import { Focus, GoldenFocus, ShadowFocus, Statement } from '../components/Focus'
 import { Paragraph } from '../components/Paragraph'
 import { BookPage } from '../components/BookPage'
 
 export const PhoenixConnection: React.FC = () => {
     return (
-        <ModuleWrapper context={APP_ROUTES_ENUM.BLOG}>
+        <ModuleWrapper>
             <BookPage>
                 <Statement
                     text={

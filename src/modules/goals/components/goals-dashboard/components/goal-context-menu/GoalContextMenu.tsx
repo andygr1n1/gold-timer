@@ -11,6 +11,7 @@ import { CreateChildGoal } from '../../../../shared-components/CreateChildGoal'
 import { useGoalEditor$ } from '../../../goal-editor-dialog/stores/goal-editor-store/useGoalEditor.store'
 import { goalEditorMode } from '../../../goal-editor-dialog/stores/goal-editor-store/types'
 import { RitualizeGoalMenuItem } from './components/RitualizeGoalMenuItem'
+import { CompleteGoalMenuItem } from './components/CompleteGoalMenuItem'
 
 export const GoalContextMenu: React.FC<{ goal: IGoalSchema; action: () => void; forceMode?: boolean }> = ({
     goal,
@@ -20,6 +21,7 @@ export const GoalContextMenu: React.FC<{ goal: IGoalSchema; action: () => void; 
 
     return (
         <XMenuDropdown>
+            <CompleteGoalMenuItem goal={goal} onClose={onClose} />
             <RitualizeGoalMenuItem goal={goal} onClose={onClose} />
             <XMenuItem>
                 <GoalIsFavorite

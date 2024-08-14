@@ -15,11 +15,11 @@ export const goalStatusSchema = z.enum([
     'deleted',
 ])
 
-export const goalStatus = goalStatusSchema.Values
+export const goalStatusEnum = goalStatusSchema.Values
 
 export type IGoalStatus = z.infer<typeof goalStatusSchema>
 
-export const GOAL_STATUSES: IGoalStatus[] = [goalStatus.active, goalStatus.completed]
+export const GOAL_STATUSES: IGoalStatus[] = [goalStatusEnum.active, goalStatusEnum.completed]
 
 /*  */
 /*  */

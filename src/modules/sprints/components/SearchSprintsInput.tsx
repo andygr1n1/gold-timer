@@ -14,7 +14,7 @@ export const SearchSprintsInput: React.FC = observer(() => {
         <XInput
             value={sprints_input_filter}
             onChange={(e) => onChangeField('sprints_input_filter', e.target.value)}
-            startIcon={<IconSearch width={24} height={24} />}
+            startIcon={<IconSearch className='text-slate-500/50' width={20} height={20} />}
             placeholder='Find sprint...'
         />
     )

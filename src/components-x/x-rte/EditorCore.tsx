@@ -32,6 +32,7 @@ export const EditorCore: React.FC<IEditorCore> = ({
                 'text-base flex flex-col rounded-md border-solid border-[1px] border-transparent p-3 w-[calc(100%-26px)]',
                 wrapperClassName && wrapperClassName,
                 !props.readOnly && `border-blue-900 focus-within:border-blue-600 hover:border-blue-600`,
+                props.readOnly && `p-0`,
                 error && 'border-red-500 hover:border-red-500 focus:border-red-500 focus-within:border-red-500',
             )}
         >

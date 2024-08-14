@@ -29,3 +29,40 @@ export const userSchema = z.object({
 })
 
 export type IUserSchema = z.infer<typeof userSchema>
+
+export const editorModeSchema = z.enum(['edit', 'new', 'view'])
+
+export const editorModeEnum = editorModeSchema.Values
+
+/* editor$Schema  */
+
+const editor$Schema = z.object({
+    open: z.boolean(),
+    editorMode: editorModeSchema.nullable(),
+    id: z.string().nullable(),
+    metadata: z
+        .object({
+            viewModeRedirect: editorModeSchema.nullable().optional(),
+            preventRerender: z.boolean().default(false).optional(),
+        })
+        .optional(),
+})
+
+export type IEditor$Schema = z.infer<typeof editor$Schema>
+
+/* artifactStatusSchema  */
+
+export const artifactStatusSchema = z.enum(['all', 'active', 'favorite', 'archived', 'deleted'])
+
+export const artifactStatus = artifactStatusSchema.Values
+
+export type IArtifactStatus = z.infer<typeof artifactStatusSchema>
+
+/* inputFilter$Schema  */
+
+const inputFilter$Schema = z.object({
+    searchInput: z.string(),
+    serverSearchInput: z.string(),
+})
+
+export type IInputFilter$Schema = z.infer<typeof inputFilter$Schema>

@@ -52,13 +52,13 @@
     text-align: right;
 }
 .public-DraftEditorPlaceholder-root {
-    color: #9197a3;
+    @apply text-slate-500 text-base font-inter;
     position: absolute;
     width: 100%;
     z-index: 1;
 }
 .public-DraftEditorPlaceholder-hasFocus {
-    color: #bdc1c9;
+    @apply text-slate-500 text-base font-inter;
 }
 .DraftEditorPlaceholder-hidden {
     display: none;

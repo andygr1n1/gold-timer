@@ -1,5 +1,4 @@
 import { INoteSchema, noteSchema } from '@/modules/notes/shared-services/types'
-import { convertFromRaw, convertToRaw } from 'draft-js'
 
 export const useNoteEditorFormOnValidate = () => {
     const validate = (values: INoteSchema) => {
@@ -11,10 +10,8 @@ export const useNoteEditorFormOnValidate = () => {
                 errors[key] = issue.message
             }
         }
-        const rawContentState = JSON.parse(values.description)
-        const contentState = convertFromRaw(rawContentState)
 
-        if (!convertToRaw(contentState).blocks.find((block) => !!block.text.length)) {
+        if (!values.description.length) {
             errors.description = 'Required field'
         }
 

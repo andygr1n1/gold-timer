@@ -2,11 +2,14 @@
     "version": "0.2",
     "language": "en, ru",
     "words": [
+        "achs",
         "contenteditable",
         "Formik",
         "Hyperlegible",
         "slnt",
+        "Tiptap",
         "webp",
+        "xtiptap",
         "Zeplin",
         "Патронус"
     ],

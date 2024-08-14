@@ -1,4 +1,4 @@
-import { IGoalSchema, IGoalStatus, goalStatus } from '@/modules/goals/shared-service'
+import { IGoalSchema, IGoalStatus, goalStatusEnum } from '@/modules/goals/shared-service'
 import { useMutation } from '@tanstack/react-query'
 import { mutation_goalStatus } from './mutation_goalStatus'
 import { mutation_userCoins } from '../mutation_userCoins'
@@ -29,7 +29,7 @@ export const useUpdateGoalStatus = () => {
     }) => {
         goalStatusMutation.mutate({ goal: props.goal, status: props.status })
 
-        if (goalStatus.completed)
+        if (goalStatusEnum.completed)
             userCoinsMutation.mutate(
                 { coins: recalculateUserCoins({ goal: props.goal }) },
                 { onSuccess: props.onSuccess, onSettled: props.onSettled },

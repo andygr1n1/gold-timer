@@ -5,7 +5,6 @@ import { INoteSchema, noteSchema } from '@/modules/notes/shared-services/types'
 export const mutation_upsertNote = async (props: { note: INoteSchema }) => {
     const client = await generateTSClient()
     const { note: object } = props
-
     return await tryCatchRequest<Promise<undefined>, INoteSchema | undefined>(
         () =>
             client

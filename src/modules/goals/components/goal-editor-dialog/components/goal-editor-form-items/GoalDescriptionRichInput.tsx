@@ -3,7 +3,7 @@ import { useGoalEditor$ } from '../../stores/goal-editor-store/useGoalEditor.sto
 import { useFormikContext } from 'formik'
 import { IGoalSchema } from '@/modules/goals/shared-service'
 import { useGoalData } from '../../hooks/useGoalData'
-import { KzenEditor } from '@/components-x/x-rte'
+import { XTiptap } from '@/components-x/x-tiptap/XTiptap'
 
 export const GoalDescriptionRichInput = () => {
     const { viewMode } = useGoalEditor$()
@@ -14,13 +14,12 @@ export const GoalDescriptionRichInput = () => {
     return (
         <div>
             <FormLabel title='Description' />
-            <KzenEditor
-                showToolbar={!viewMode}
+            <XTiptap
+                // showToolbar={!viewMode}
                 isLoading={isLoading}
-                content={data?.description}
-                onChangeContent={(content) => formikContext.setFieldValue('description', content)}
-                readOnly={viewMode}
-                placeholder='Description'
+                content={data?.description || ''}
+                onChange={(content) => formikContext.setFieldValue('description', content)}
+                readonly={viewMode}
             />
         </div>
     )

@@ -6,10 +6,9 @@ import { ToggleFavoriteNewGoal } from './components/ToggleFavoriteNewGoal'
 import { useGoalEditor$ } from '../../stores/goal-editor-store/useGoalEditor.store'
 import { IGoalSchema } from '@/modules/goals/shared-service'
 import { useFormikContext } from 'formik'
-import { CompleteRitualGoal } from './components/CompleteRitualGoal'
 
 export const GoalEditorToolbar = () => {
-    const { store: state, newMode,viewMode } = useGoalEditor$()
+    const { store: state, newMode, viewMode } = useGoalEditor$()
     const formikContext = useFormikContext<IGoalSchema>()
 
     return (
@@ -22,7 +21,6 @@ export const GoalEditorToolbar = () => {
             )}
             {!newMode && <CreateChildGoal parentGoalId={state.goalId} />}
             {state.goalId && <GoalDeletedAt goalId={state.goalId} deletedAt={!!formikContext.values.deleted_at} />}
-            <CompleteRitualGoal goal={formikContext.values} />
         </div>
     )
 }

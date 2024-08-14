@@ -5,6 +5,7 @@ import { prepareFinishedAtForInsert } from '@/helpers/date.helpers'
 import { useGoalEditor$ } from '../../stores/goal-editor-store/useGoalEditor.store'
 import { useFormikContext } from 'formik'
 import { IGoalSchema } from '@/modules/goals/shared-service'
+import { cn } from '@/helpers/cn'
 
 export const GoalFinishCalendarInput = () => {
     const { viewMode } = useGoalEditor$()
@@ -19,7 +20,7 @@ export const GoalFinishCalendarInput = () => {
 
     return (
         <div>
-            <FormLabel title='Finish Estimation' />
+            <FormLabel title={cn('Finish Estimation', !viewMode && ' *')} />
 
             <XDatePicker
                 numberOfMonths={1}
@@ -36,7 +37,6 @@ export const GoalFinishCalendarInput = () => {
                 showWeekNumber
                 // ISOWeek
                 onClear={onClear}
-                placeholder='Set date'
                 readOnly={viewMode}
                 showToday
             />

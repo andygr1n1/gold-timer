@@ -19,7 +19,6 @@ export const GoalSloganInput = () => {
                 readOnly={viewMode}
                 value={formikContext.values.slogan}
                 name='slogan'
-                placeholder='Slogan'
                 onChange={formikContext.handleChange}
                 error={formikContext.touched.slogan && Boolean(formikContext.errors.slogan)}
                 errorMessage={formikContext.errors.slogan}

@@ -1,6 +1,5 @@
 import { Suspense, lazy } from 'react'
 import { ModuleWrapper } from '@/components/ModuleWrapper'
-import { APP_ROUTES_ENUM } from '@/services/enums'
 import { TopActiveGoalsWidget } from '@/modules/goals/components/goals-dashboard/top-active-goals-widget/TopActiveGoalsWidget'
 import { TopExpiredGoalsWidget } from '@/modules/goals/components/goals-dashboard/top-expired-goals-widget/TopExpiredGoalsWidget'
 import { TopFavoriteGoalsWidget } from '@/modules/goals/components/goals-dashboard/top-favorite-goals-widget/TopFavoriteGoalsWidget'
@@ -8,12 +7,23 @@ import { TopRitualGoalsWidget } from '@/modules/goals/components/goals-dashboard
 import { ArtifactsCounter } from './artifacts-counter/ArtifactsCounter'
 import { NotepadIndex } from '@/modules/notepad/NotepadIndex'
 import { GoalsSlidesCarouselWidget } from '@/modules/goals-slides/GoalsSlidesCarouselWidget'
-import NoteEditorDialog from '@/modules/notes/components/note-editor-dialog/NoteEditorDialog'
+import { UserCoins } from '@/components/top-bar/UserCoins'
+const NoteEditorDialog = lazy(() => import('@/modules/notes/components/note-editor-dialog/NoteEditorDialog'))
 const GoalEditorDialog = lazy(() => import('@/modules/goals/components/goal-editor-dialog/GoalEditorDialog'))
+const AchEditorDialog = lazy(() => import('@/modules/achievements/components-shared/ach-editor-dialog/AchEditorDialog'))
 
 export const Dashboard: React.FC = () => {
     return (
-        <ModuleWrapper context={APP_ROUTES_ENUM.DASHBOARD} topBarNodes={<ArtifactsCounter />}>
+        <ModuleWrapper
+            topBarNodes={
+                <div className='w-full justify-center items-center flex'>
+                    <div className='absolute left-0 top-1/2 -translate-y-1/2 '>
+                        <UserCoins />
+                    </div>
+                    <ArtifactsCounter />
+                </div>
+            }
+        >
             <NotepadIndex />
             <GoalsSlidesCarouselWidget />
             <TopActiveGoalsWidget />
@@ -29,6 +39,10 @@ export const Dashboard: React.FC = () => {
 
             <Suspense fallback={null}>
                 <NoteEditorDialog />
+            </Suspense>
+
+            <Suspense fallback={null}>
+                <AchEditorDialog />
             </Suspense>
         </ModuleWrapper>
     )

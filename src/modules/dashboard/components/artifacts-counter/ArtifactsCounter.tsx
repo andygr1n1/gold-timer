@@ -4,9 +4,11 @@ import { GoalsCounterDropdown } from './components/GoalsCounterDropdown'
 import { useFetchArtifactsCount } from '../../services/useFetchArtifactsCount'
 import { NotesCounterDropdown } from './components/NotesCounterDropdown'
 import { IconBook } from '@/assets/icons/IconBook'
+import { IconAchievements } from '@/assets/icons/IconAchievements'
+import { AchCounterDropdown } from './components/AchCounterDropdown'
 
 export const ArtifactsCounter: React.FC = () => {
-    const { activeGoalsCount, activeNotesCount } = useFetchArtifactsCount()
+    const { activeGoalsCount, activeNotesCount, activeAchCount } = useFetchArtifactsCount()
     return (
         <div className='xl:flex hidden w-fit items-center justify-center gap-5 '>
             <GoalsCounterDropdown
@@ -30,6 +32,22 @@ export const ArtifactsCounter: React.FC = () => {
                             count={activeNotesCount}
                             icon={
                                 <IconBook
+                                    width={24}
+                                    height={24}
+                                    className='cursor-pointer duration-300 group-hover:text-blue-500'
+                                />
+                            }
+                        />
+                    }
+                />
+            </>
+            <>
+                <AchCounterDropdown
+                    button={
+                        <ArtifactsCounterItem
+                            count={activeAchCount}
+                            icon={
+                                <IconAchievements
                                     width={24}
                                     height={24}
                                     className='cursor-pointer duration-300 group-hover:text-blue-500'
