@@ -9,16 +9,16 @@ import { XTiptap } from '@/components-x/x-tiptap/XTiptap'
 export const NotepadInput: React.FC = () => {
     const { isLocked } = useFetchLockedStatus()
     const { description, isLoading } = useFetchNotepad()
-    const _useMutateNotepad = useMutateNotepad()
+    const { updateDescription } = useMutateNotepad()
 
     const sendRequest = useCallback((description: string) => {
-        _useMutateNotepad.mutate({ description })
+        updateDescription({ description })
     }, [])
 
     const saveDescription = useMemo(() => {
         return debounce(sendRequest, 500)
     }, [sendRequest])
-
+    console.log('description', description)
     return (
         <XTiptap
             isLoading={isLoading}
