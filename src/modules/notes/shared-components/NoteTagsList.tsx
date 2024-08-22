@@ -9,7 +9,7 @@ export const NoteTagsList: React.FC<{ note: INoteSchema; deleteAction?: (goal: s
         const { noteTags } = getNoteTags(note.tag)
 
         return (
-            <div className='scrollbar-thumb-blue-500 scrollbar-track-global-bg scrollbar-thin flex   min-h-[34px] flex-wrap gap-2 overflow-auto'>
+            <div className='scrollbar-thumb-blue-500/50 scrollbar-track-global-bg scrollbar-thin flex   min-h-[34px] flex-wrap gap-2 overflow-auto'>
                 {noteTags.map((tag) => (
                     <div
                         key={tag}

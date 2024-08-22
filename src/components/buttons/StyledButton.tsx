@@ -75,11 +75,7 @@ export const StyledButton = ({
             )}
         >
             {startIcon && startIcon}
-            {children && (
-                <div className={`flex justify-center gap-2 truncate text-center ${isLarge ? 'px-2' : 'px-1'}`}>
-                    {children}
-                </div>
-            )}
+            {children}
             {endIcon && endIcon}
         </button>
     )

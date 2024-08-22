@@ -4,19 +4,38 @@ import { XMenuItem } from '@/components-x/x-dropdown/XMenuItem'
 import { useState } from 'react'
 import { IconDeleteTemp, IconFavorite } from '@/assets/icons'
 import { StyledButton } from '@/components/buttons/StyledButton'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { IconFocus } from '@/assets/icons/IconFocus'
 import { INoteStatus } from '@/modules/notes/shared-services/types'
 import { NotesFiltersSelectButton } from './NotesFiltersSelectButton'
 import { IconArchive } from '@/assets/icons/IconArchive'
+import { artifactStatus } from '@/services/types'
+import { IconAll } from '@/assets/icons/IconAll'
 
 export const NotesFilterSelect = () => {
     const [open, setOpen] = useState(false)
     const navigate = useNavigate()
+    const location = useLocation()
+
+    // const onSelect = (labelId: string) => {
+    //     const isSelected = labelParam === labelId
+    //     const searchParams = new URLSearchParams(location.search)
+    //     isSelected ? searchParams.delete('label') : searchParams.set('label', labelId)
+
+    //     navigate(
+    //         { pathname: '/notes/filtered-notes', search: searchParams.toString() },
+    //         { state: { ...location.state, label: isSelected ? null : labelId } },
+    //     )
+    // }
 
     const onClose = (filter: INoteStatus) => {
-        navigate({ pathname: '/notes/filtered-notes', search: `?filter=${filter}` }, { state: { filter } })
-        setOpen(false)
+        const searchParams = new URLSearchParams(location.search)
+        searchParams.set('filter', filter)
+        navigate(
+            { pathname: '/notes/filtered-notes', search: searchParams.toString() },
+            { state: { ...location.state, filter } },
+        )
+        // setOpen(false)
     }
 
     return (
@@ -40,6 +59,19 @@ export const NotesFilterSelect = () => {
 const DropdownRender: React.FC<{ onClose: (filter: INoteStatus) => void }> = ({ onClose }) => {
     return (
         <XMenuDropdown>
+            <XMenuItem
+                onClick={() => {
+                    onClose(artifactStatus.all)
+                }}
+            >
+                <StyledButton
+                    variant='text'
+                    size='small'
+                    startIcon={<IconAll className='text-sky-400' width={26} height={26} />}
+                >
+                    <span className='flex w-[110px] justify-start capitalize text-sky-400'>All</span>
+                </StyledButton>
+            </XMenuItem>
             <XMenuItem
                 onClick={() => {
                     onClose('favorite')

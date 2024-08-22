@@ -8,8 +8,9 @@ export const query_archivedNotes = async (props: {
     serverSearchInput: string
     limit: number
     offset?: number
+    label?: string
 }): Promise<INoteSchema[] | undefined> => {
-    const { limit, userId, serverSearchInput, offset } = props
+    const { limit, userId, serverSearchInput, offset, label } = props
     return await tryCatchRequest<Promise<undefined>, INoteSchema[] | undefined>(
         async () => {
             const client = await generateTSClient()
@@ -27,6 +28,7 @@ export const query_archivedNotes = async (props: {
                                         owner_id: { _eq: userId },
                                         deleted_at: { _is_null: true },
                                         archived: { _eq: true },
+                                        label_id: label ? { _eq: label } : undefined,
                                     },
                                     {
                                         _or: serverSearchInput.length

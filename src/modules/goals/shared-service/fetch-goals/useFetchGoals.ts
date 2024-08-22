@@ -9,6 +9,7 @@ import { query_favoriteGoals } from './query_favoriteGoals'
 import { query_ritualGoals } from './query_ritualGoals'
 import { query_deletedGoals } from './query_deletedGoals'
 import { query_completedGoals } from './query_completedGoals'
+import { query_allGoals } from './query_allGoals'
 
 export const useFetchGoals = (props: {
     queryFilter: IGoalStatus
@@ -30,6 +31,10 @@ export const useFetchGoals = (props: {
             const offset = props.pageParam
             const nextCursor = props.pageParam + 5
             let data: IGoalSchema[] | undefined = []
+
+            if (queryFilter === goalStatusEnum.all) {
+                data = await query_allGoals({ userId, limit, offset, serverSearchInput })
+            }
 
             if (queryFilter === goalStatusEnum.favorite) {
                 data = await query_favoriteGoals({ userId, limit, offset, serverSearchInput })

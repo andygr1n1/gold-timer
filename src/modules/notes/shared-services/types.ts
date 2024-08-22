@@ -1,6 +1,6 @@
 import { z } from 'zod'
 
-export const noteStatusSchema = z.enum(['active', 'favorite', 'archived', 'deleted'])
+export const noteStatusSchema = z.enum(['active', 'favorite', 'archived', 'deleted', 'all'])
 
 export const noteStatus = noteStatusSchema.Values
 

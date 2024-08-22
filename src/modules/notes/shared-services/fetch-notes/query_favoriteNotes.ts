@@ -8,8 +8,9 @@ export const query_favoriteNotes = async (props: {
     serverSearchInput: string
     limit: number
     offset?: number
+    label?: string
 }): Promise<INoteSchema[] | undefined> => {
-    const { limit, userId, serverSearchInput, offset } = props
+    const { limit, userId, serverSearchInput, offset, label } = props
     return await tryCatchRequest<Promise<undefined>, INoteSchema[] | undefined>(
         async () => {
             const client = await generateTSClient()
@@ -27,6 +28,7 @@ export const query_favoriteNotes = async (props: {
                                         owner_id: { _eq: userId },
                                         is_favorite: { _eq: true },
                                         deleted_at: { _is_null: true },
+                                        label_id: label ? { _eq: label } : undefined,
                                     },
                                     {
                                         _or: serverSearchInput.length

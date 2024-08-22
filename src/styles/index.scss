@@ -52,7 +52,7 @@ input:-webkit-autofill:active {
 @layer base {
     html,
     body {
-        @apply scrollbar-thumb-blue-500 scrollbar-track-global-bg scrollbar-thin bg-global-bg font-inter text-cText flex h-full w-full flex-col overflow-hidden text-base;
+        @apply scrollbar-thumb-blue-500/50 scrollbar-track-global-bg scrollbar-thin bg-global-bg font-inter text-cText flex h-full w-full flex-col overflow-hidden text-base;
     }
 
     pre {
@@ -77,7 +77,7 @@ input:-webkit-autofill:active {
     }
 
     #root {
-        @apply scrollbar-thumb-blue-500 relative bg-global-bg text-cText scrollbar-track-global-bg  scrollbar-thin flex w-full flex-auto overflow-hidden;
+        @apply scrollbar-thumb-blue-500/50 relative bg-global-bg text-cText scrollbar-track-global-bg  scrollbar-thin flex w-full flex-auto overflow-hidden;
         // background-image: url('./img/kzen-login-background.jpg');
         // background-size: cover;
     }
@@ -215,5 +215,5 @@ input:-webkit-autofill:active {
 }
 
 .sexy-scroll {
-    @apply scrollbar-thumb-blue-500  scrollbar-track-global-bg scrollbar-thin;
+    @apply scrollbar-thumb-blue-500/50  scrollbar-track-global-bg scrollbar-thin;
 }

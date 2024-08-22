@@ -17,7 +17,7 @@ const ProtectedRoutes = () => {
         <div className='bg-transparent flex w-full'>
             <SideMenu />
             <div className='bg-transparent flex w-full flex-auto flex-col pb-5'>
-                <div className='animate-opacity scrollbar-thumb-blue-500 scrollbar-track-global-bg scrollbar-thin relative flex h-full w-full flex-col overflow-auto overflow-y-scroll bg-transparent transition-all duration-300'>
+                <div className='animate-opacity scrollbar-thumb-blue-500/50 scrollbar-track-global-bg scrollbar-thin relative flex h-full w-full flex-col overflow-auto overflow-y-scroll bg-transparent transition-all duration-300'>
                     <Suspense fallback={null}>
                         <Routes>
                             <Route path={`/${APP_ROUTES_ENUM.PROFILE}`} element={<ProfileIndex />} />

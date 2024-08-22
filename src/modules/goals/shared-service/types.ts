@@ -13,6 +13,8 @@ export const goalStatusSchema = z.enum([
     'favorite',
     'completed',
     'deleted',
+    'all',
+    'frozen',
 ])
 
 export const goalStatusEnum = goalStatusSchema.Values

@@ -10,7 +10,7 @@
 .DraftEditor-root,
 .public-DraftEditor-content {
     @apply w-full !h-full flex-auto flex flex-col overflow-y-auto overflow-x-hidden text-base font-inter 
-    scrollbar-thumb-blue-500 scrollbar-track-global-3-bg scrollbar-thin;
+    scrollbar-thumb-blue-500/50 scrollbar-track-global-3-bg scrollbar-thin;
     text-align: initial;
     color: var(--colors-cText);
 }
