@@ -1,24 +1,38 @@
-import { resolveError, tryCatchRequest } from '@/helpers/tryCatchRequest'
-import { generateTSClient } from '@/graphql/client'
-import { ICreateLabelForm, notesLabelsResponseSchema } from './types'
+import { resolveError } from '@/helpers/tryCatchRequest'
+import { generateURQLClient } from '@/graphql/client'
+import { notesLabelsResponseSchema } from './types'
+import { graphql } from '@/graphql/tada'
 
 export const query_fetchNotesLabels = async () => {
-    const client = await generateTSClient()
+    const urqlClient = await generateURQLClient()
 
-    return await tryCatchRequest<Promise<never>, ICreateLabelForm[] | undefined>(
-        () =>
-            client
-                .query({
-                    __name: 'query_fetchNotesLabels',
-                    notes_labels: {
-                        __args: {},
-                        id: true,
-                        name: true,
-                    },
-                })
-                .then((res) => {
-                    return notesLabelsResponseSchema.parse(res.notes_labels)
-                }),
-        async (e) => await resolveError(e),
-    )
+    try {
+        await urqlClient.query(
+            graphql(`
+                query query_notes {
+                    notes {
+                        id
+                    }
+                }
+            `),
+            {},
+        )
+
+        return await urqlClient
+            .query(
+                graphql(`
+                    query query_notes_labels {
+                        notes_labels {
+                            id
+                            name
+                            rating
+                        }
+                    }
+                `),
+                {},
+            )
+            .then((result) => notesLabelsResponseSchema.parse(result.data?.notes_labels))
+    } catch (e) {
+        await resolveError(e)
+    }
 }
