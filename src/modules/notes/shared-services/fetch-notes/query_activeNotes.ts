@@ -29,7 +29,6 @@ export const query_activeNotes = async (props: {
                                     {
                                         owner_id: { _eq: userId },
                                         deleted_at: { _is_null: true },
-                                        archived: { _eq: false },
                                         label_id: label ? { _eq: label } : undefined,
                                     },
                                     {
