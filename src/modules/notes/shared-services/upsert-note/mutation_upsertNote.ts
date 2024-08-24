@@ -1,8 +1,8 @@
 import { generateTSClient, generateURQLClient } from '@/graphql/client'
-import { graphql } from 'gql.tada'
 import { resolveError } from '@/helpers/tryCatchRequest'
 import { INoteSchema, noteSchema } from '@/modules/notes/shared-services/types'
 import { getQueryFields } from '../getQueryFields'
+import { graphql } from '@/graphql/tada'
 
 export const mutation_upsertNote = async (props: { note: INoteSchema }) => {
     const client = await generateTSClient()

@@ -11,7 +11,8 @@
         "tsc": "tsc && yarn lint:fix",
         "test": "vitest",
         "coverage": "vitest --coverage",
-        "gen": "dotenv -- cross-var gql.tada generate schema %ENDPOINT% -o ./tada/schema/proxy.graphql --header \"x-hasura-admin-secret: %ADMIN_SECRET%\""
+        "gen": "dotenv -- cross-var gql.tada generate schema %ENDPOINT% -o schema.graphql --header \"x-hasura-admin-secret: %ADMIN_SECRET%\"",
+        "gen-output": "gql.tada generate output"
     },
     "dependencies": {
         "@esbuild-plugins/node-globals-polyfill": "^0.2.3",
@@ -74,6 +75,7 @@
         "wonka": "^6.3.4"
     },
     "devDependencies": {
+        "@0no-co/graphqlsp": "^1.12.13",
         "@emotion/react": "^11.11.3",
         "@mertasan/tailwindcss-variables": "^2.7.0",
         "@tanstack/eslint-plugin-query": "^5.20.1",

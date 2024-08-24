@@ -528,7 +528,7 @@ export type introspection_types = {
  * instead save to a .ts instead of a .d.ts file.
  */
 export type introspection = {
-  name: 'tada';
+  name: never;
   query: 'query_root';
   mutation: 'mutation_root';
   subscription: 'subscription_root';
@@ -536,3 +536,9 @@ export type introspection = {
 };
 
 import * as gqlTada from 'gql.tada';
+
+declare module 'gql.tada' {
+  interface setupSchema {
+    introspection: introspection
+  }
+}
