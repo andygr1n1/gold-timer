@@ -6,14 +6,15 @@ import { compact, uniq } from 'lodash-es'
 import { useFormikContext } from 'formik'
 import { INoteSchema } from '@/modules/notes/shared-services/types'
 import { getNoteTags } from '@/modules/notes/helpers/getNoteTags'
-import { useNoteTag$ } from '@/modules/notes/components/note-editor-dialog/stores/note-tag-store/useNoteTag.store'
+import { useNoteEditorDialog$ } from '@/modules/notes/components/note-editor-dialog/mst/provider'
+import { observer } from 'mobx-react-lite'
 
-export const NoteTagInput = () => {
+export const NoteTagInput = observer(() => {
     const formikContext = useFormikContext<INoteSchema>()
-    const { store, setStore } = useNoteTag$()
+    const { tagInput, onChangeField } = useNoteEditorDialog$()
     const newTagIsValid = (tag: string | null): boolean => {
         const tagsOptimized = compact(tag?.split(',').map((t) => t.trim().toLowerCase())).slice()
-        return !!store.value.length && !tagsOptimized.includes(store.value.trim().toLowerCase())
+        return !!tagInput.length && !tagsOptimized.includes(tagInput.trim().toLowerCase())
     }
 
     const deleteTag = (tagToDelete: string) => {
@@ -28,16 +29,16 @@ export const NoteTagInput = () => {
         <div>
             <FormLabel title='Tag:' />
             <div className='mb-2 flex w-full items-center gap-2 '>
-                <XInput value={store.value} onChange={(e) => setStore(e.target.value)} />
+                <XInput value={tagInput} onChange={(e) => onChangeField('tagInput', e.target.value)} />
                 <StyledButton
                     disabled={!newTagIsValid(formikContext.values.tag)}
                     onClick={() => {
                         const startString = formikContext.values.tag ? formikContext.values.tag + ',' : ''
                         formikContext.setFieldValue(
                             'tag',
-                            startString + uniq(store.value.split(',').map((tag) => tag.trim())).join(','),
+                            startString + uniq(tagInput.split(',').map((tag) => tag.trim())).join(','),
                         )
-                        setStore('')
+                        onChangeField('tagInput', '')
                     }}
                 >
                     Add
@@ -46,4 +47,4 @@ export const NoteTagInput = () => {
             <NoteTagsList note={formikContext.values} deleteAction={deleteTag} />
         </div>
     )
-}
+})

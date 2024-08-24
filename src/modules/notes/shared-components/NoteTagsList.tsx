@@ -9,11 +9,11 @@ export const NoteTagsList: React.FC<{ note: INoteSchema; deleteAction?: (goal: s
         const { noteTags } = getNoteTags(note.tag)
 
         return (
-            <div className='scrollbar-thumb-blue-500/50 scrollbar-track-global-bg scrollbar-thin flex   min-h-[34px] flex-wrap gap-2 overflow-auto'>
+            <div className='scrollbar-thumb-blue-500/50 scrollbar-track-global-bg scrollbar-thin flex  min-h-[34px] flex-wrap gap-2 overflow-auto'>
                 {noteTags.map((tag) => (
                     <div
                         key={tag}
-                        className='animate-opacity-5 relative flex w-fit cursor-default rounded-md font-bold text-blue-600'
+                        className='animate-opacity-5 relative flex w-fit cursor-default rounded-md font-bold  text-cText opacity-70'
                     >
                         <span className='p-1'> #{capitalize(tag.trim())}</span>
                         {deleteAction && (

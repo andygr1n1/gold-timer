@@ -2,6 +2,7 @@ import { notesResponseSchema } from '../types'
 import { resolveError, tryCatchRequest } from '@/helpers/tryCatchRequest'
 import { generateTSClient } from '@/graphql/client'
 import { INoteSchema } from '@/modules/notes/shared-services/types'
+import { getQueryFields } from '../getQueryFields'
 
 export const query_favoriteNotes = async (props: {
     userId: string
@@ -14,6 +15,7 @@ export const query_favoriteNotes = async (props: {
     return await tryCatchRequest<Promise<undefined>, INoteSchema[] | undefined>(
         async () => {
             const client = await generateTSClient()
+            const fields = getQueryFields()
             return await client
                 .query({
                     __name: 'query_favoriteNotes',
@@ -41,13 +43,7 @@ export const query_favoriteNotes = async (props: {
                                 ],
                             },
                         },
-                        id: true,
-                        description: true,
-                        tag: true,
-                        created_at: true,
-                        deleted_at: true,
-                        is_favorite: true,
-                        archived: true,
+                        ...fields,
                     },
                 })
                 .then((response) => {

@@ -48,6 +48,7 @@ input:-webkit-autofill:active {
 @import 'slick-carousel/slick/slick-theme.css';
 @import './draft.css';
 @import './cropper.css';
+@import './antd-redesign/message.scss';
 
 @layer base {
     html,
@@ -207,13 +208,10 @@ input:-webkit-autofill:active {
     @apply text-cText opacity-70;
 }
 
-.ant-message-notice-content {
-    @apply bg-global-bg-regal  #{!important};
-}
-.ant-message-custom-content {
-    @apply flex h-full items-center justify-center gap-2;
-}
-
 .sexy-scroll {
     @apply scrollbar-thumb-blue-500/50  scrollbar-track-global-bg scrollbar-thin;
+}
+
+.rc-virtual-list-scrollbar-thumb {
+    @apply bg-blue-500/50 #{!important};
 }

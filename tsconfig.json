@@ -18,7 +18,19 @@
         "noEmit": true,
         "strictNullChecks": true,
         "types": ["vite/client", "node"],
-        "plugins": [{ "name": "typescript-plugin-css-modules" }]
+        "plugins": [
+            { "name": "typescript-plugin-css-modules" },
+            {
+                "name": "gql.tada/ts-plugin",
+                "schemas": [
+                    {
+                        "name": "tada",
+                        "schema": "./tada/schema/proxy.graphql",
+                        "tadaOutputLocation": "./tada/proxy-graphql-env.d.ts"
+                    }
+                ]
+            }
+        ]
     },
     "include": ["src/**/*", "tests/**/*"],
     "exclude": ["node_modules", "/src/graphql/generated/"],

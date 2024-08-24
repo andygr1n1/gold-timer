@@ -3,7 +3,8 @@
         "baseUrl": ".",
         "paths": {
             "@/*": ["./src/*"],
-            "tests/*": ["tests/*"]
+            "tests/*": ["tests/*"],
+            "@tada": ["tada/proxy-graphql"],
         }
     }
 }

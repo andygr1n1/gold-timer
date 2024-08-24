@@ -8,11 +8,11 @@ export const mutation_insertNoteLabel = async ({ values: object }: { values: ICr
         () =>
             client
                 .mutation({
-                    __name: 'mutation_upsertAch',
+                    __name: 'mutation_insertNoteLabel',
                     insert_notes_labels_one: {
                         __args: {
                             object: {
-                                name: object.name,
+                                name: object.name.toLowerCase(),
                             },
                         },
                         id: true,

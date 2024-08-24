@@ -4,13 +4,12 @@ import { NoteTagsList } from '../../../../shared-components/NoteTagsList'
 import { XDropdown } from '@/components-x/x-dropdown/XDropdown'
 import { useTogglePopoverState } from '@/hooks/useTogglePopoverState.hook'
 import { NoteContextMenu } from './NoteContextMenu'
-import { StyledButton } from '@/components/buttons/StyledButton'
-import { IconArchive } from '@/assets/icons/IconArchive'
-import { IconDeleteTemp, IconHeart } from '@/assets/icons'
 import { cn } from '@/helpers/cn'
 import { MEDIA_QUERY_VALUES_ENUM } from '@/hooks/useMatchMedia.hook'
 import { INoteSchema } from '../../../../shared-services/types'
 import { XTiptap } from '@/components-x/x-tiptap/XTiptap'
+import { NoteLabel } from './components/NoteLabel'
+import { NoteStatus } from './components/NoteStatus'
 
 export const Note: React.FC<{ note: INoteSchema; isMobile: MEDIA_QUERY_VALUES_ENUM }> = observer(
     ({ note, isMobile }) => {
@@ -18,11 +17,6 @@ export const Note: React.FC<{ note: INoteSchema; isMobile: MEDIA_QUERY_VALUES_EN
 
         return (
             <div className='relative'>
-                {note.created_at && (
-                    <div className='text-[10px] left-0 -top-4 absolute opacity-70 font-semibold cursor-default text-cText'>
-                        {format(note.created_at, 'dd MMMM')}
-                    </div>
-                )}
                 <XDropdown
                     open={popoverState}
                     onOpenChange={() => {
@@ -41,43 +35,23 @@ export const Note: React.FC<{ note: INoteSchema; isMobile: MEDIA_QUERY_VALUES_EN
                         }}
                         key={note.id}
                     >
+                        <div className='flex justify-between items-center'>
+                            <NoteLabel note={note} />
+                            <NoteStatus note={note} />
+                        </div>
                         {note.created_at && (
                             <div className='flex justify-between items-center min-h-10'>
                                 {!!note.tag && <NoteTagsList note={note} />}
-                                <div className='flex gap items-center'>
-                                    {note.is_favorite && (
-                                        <StyledButton
-                                            className='!pointer-events-none'
-                                            size='small'
-                                            variant='text'
-                                            startIcon={<IconHeart width={24} height={24} className='text-rose-500' />}
-                                        />
-                                    )}
-                                    {note.archived && (
-                                        <StyledButton
-                                            className='!pointer-events-none'
-                                            size='small'
-                                            variant='text'
-                                            startIcon={
-                                                <IconArchive width={24} height={24} className='text-violet-600' />
-                                            }
-                                        />
-                                    )}
-                                    {note.deleted_at && (
-                                        <StyledButton
-                                            className='!pointer-events-none'
-                                            size='small'
-                                            variant='text'
-                                            startIcon={
-                                                <IconDeleteTemp width={24} height={24} className='text-gray-700 ' />
-                                            }
-                                        />
-                                    )}
-                                </div>
                             </div>
                         )}
 
-                        <XTiptap isLoading={false} content={note.description} readonly={true} />
+                        <XTiptap key={note.description} isLoading={false} content={note.description} readonly={true} />
+
+                        {note.created_at && (
+                            <div className='text-xs opacity-80 font-semibold cursor-default text-cText'>
+                                {format(note.created_at, 'dd MMMM')}
+                            </div>
+                        )}
                     </div>
                 </XDropdown>
             </div>

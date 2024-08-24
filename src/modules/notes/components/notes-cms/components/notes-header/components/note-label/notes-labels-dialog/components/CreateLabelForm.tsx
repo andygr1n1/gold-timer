@@ -1,6 +1,6 @@
-import { Form/* , useFormikContext */ } from 'formik'
+import { Form /* , useFormikContext */ } from 'formik'
 import { StyledButton } from '@/components/buttons/StyledButton'
-import { LabelName } from './LabelName'
+import { LabelName } from './label-name/LabelName'
 // import { ICreateLabelForm } from '../service/types'
 export const CreateLabelForm = () => {
     // const formikContext = useFormikContext<ICreateLabelForm>()

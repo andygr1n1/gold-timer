@@ -17,6 +17,7 @@ export const useFetchNotesLabels = () => {
     })
 
     return {
+        notesLabels: data || [],
         isLoading,
         filter,
         data:

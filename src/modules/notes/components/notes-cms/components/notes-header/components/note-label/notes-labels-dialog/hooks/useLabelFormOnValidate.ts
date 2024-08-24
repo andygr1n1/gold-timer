@@ -16,6 +16,11 @@ export const useLabelFormOnValidate = () => {
             errors.name = 'Required field'
         }
 
+         if (!values.duplicateName) {
+             errors.name = 'Label already exists'
+         }
+
+
         return errors
     }
 

@@ -8,7 +8,7 @@ export const SelectedLabel: React.FC = () => {
     const labelParam: string = location.state?.label
     const selectedNoteLabel = data.find((l) => l.id === labelParam)?.name
     return selectedNoteLabel ? (
-        <div className='flex opacity-70 text-base items-center font-bold'>
+        <div className='flex capitalize opacity-70 text-base items-center font-bold'>
             {selectedNoteLabel}
             <IconFolder className='w-5 h-5 px-3' />
         </div>
