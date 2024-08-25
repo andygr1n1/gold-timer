@@ -28,7 +28,7 @@
         ]
     },
     "include": ["src/**/*", "tests/**/*"],
-    "exclude": ["node_modules"],
+    "exclude": ["node_modules", ".gql/**/*"],
     "extends": "./tsconfig.paths.json",
     "references": [{ "path": "./tsconfig.node.json" }]
 }

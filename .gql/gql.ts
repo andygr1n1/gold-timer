@@ -18,6 +18,7 @@ const documents = {
     "\n        query restore_codes($code: uuid!) {\n            restore_codes_by_pk(id: $code) {\n                email\n            }\n        }\n    ": types.Restore_CodesDocument,
     "\n        query fetchUserByEmail($email: String) {\n            heroes(where: { email: { _eq: $email } }) {\n                id\n            }\n        }\n    ": types.FetchUserByEmailDocument,
     "\n        query UserByPk($user_id: uuid!) {\n            heroes_by_pk(id: $user_id) {\n                password\n            }\n        }\n    ": types.UserByPkDocument,
+    "\n                    query query_notes_labels {\n                        notes_labels(order_by: { created_at: desc }) {\n                            id\n                            name\n                            rating\n                        }\n                    }\n                ": types.Query_Notes_LabelsDocument,
     "\n                mutation Mutation_updateNoteLabelRating($id: uuid!) {\n                    update_notes_labels_by_pk(pk_columns: { id: $id }, _inc: { rating: 1 }) {\n                        id\n                        name\n                        owner_id\n                        rating\n                    }\n                }\n            ": types.Mutation_UpdateNoteLabelRatingDocument,
     "\n        mutation mutation_cachedSprint($id: uuid!) {\n            update_sprints_by_pk(pk_columns: { id: $id }, _set: { cached: true }) {\n                id\n            }\n        }\n    ": types.Mutation_CachedSprintDocument,
     "\n        mutation mutation_insertNewSprint($newSprint: sprints_insert_input!) {\n            insert_sprints_one(object: $newSprint) {\n                img_path\n                id\n                duration\n                description\n                created_at\n                achievement\n                started_at\n                finished_at\n                title\n                updated_at\n                parent_sprint_id\n                owner_id\n                sprint_days\n                sprint_goals\n            }\n        }\n    ": types.Mutation_InsertNewSprintDocument,
@@ -61,6 +62,10 @@ export function graphql(source: "\n        query fetchUserByEmail($email: String
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(source: "\n        query UserByPk($user_id: uuid!) {\n            heroes_by_pk(id: $user_id) {\n                password\n            }\n        }\n    "): (typeof documents)["\n        query UserByPk($user_id: uuid!) {\n            heroes_by_pk(id: $user_id) {\n                password\n            }\n        }\n    "];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n                    query query_notes_labels {\n                        notes_labels(order_by: { created_at: desc }) {\n                            id\n                            name\n                            rating\n                        }\n                    }\n                "): (typeof documents)["\n                    query query_notes_labels {\n                        notes_labels(order_by: { created_at: desc }) {\n                            id\n                            name\n                            rating\n                        }\n                    }\n                "];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

@@ -27,4 +27,4 @@ dist-ssr
 .env
 coverage
 
-src/gql/**/*.ts
+.gql/**/*.ts
