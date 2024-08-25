@@ -1,24 +1,19 @@
 import { useLocation } from 'react-router-dom'
-import { IGoalStatus } from '@/modules/goals/shared-service'
-import {
-    isFilterStateActive,
-    isFilterStateCompleted,
-    isFilterStateDeleted,
-    isExpiredGoalStatus,
-    isFilterStateFavorite,
-    isFilterStateRitualized,
-} from '@/modules/goals/helpers/goalsGuards'
+import { isExpiredGoalStatus, isFilterStateRitualized } from '@/modules/goals/helpers/goalsGuards'
+import { isStatusActive, isStatusAll, isStatusCompleted, isStatusDeleted, isStatusFavorite } from '@/services/guards'
+import { IArtifactStatus } from '@/services/types'
 
 export const useGetGoalsParamsFilter = () => {
     const location = useLocation()
-    const paramFilter: IGoalStatus = location.state?.filter
+    const paramFilter: IArtifactStatus = location.state?.filter
 
-    const isActive = isFilterStateActive(paramFilter)
+    const isActive = isStatusActive(paramFilter)
     const isExpired = isExpiredGoalStatus(paramFilter)
     const isRitualized = isFilterStateRitualized(paramFilter)
-    const isFavorite = isFilterStateFavorite(paramFilter)
-    const isCompleted = isFilterStateCompleted(paramFilter)
-    const isDeleted = isFilterStateDeleted(paramFilter)
+    const isFavorite = isStatusFavorite(paramFilter)
+    const isCompleted = isStatusCompleted(paramFilter)
+    const isDeleted = isStatusDeleted(paramFilter)
+    const isAll = isStatusAll(paramFilter)
 
-    return { paramFilter, isExpired, isActive, isRitualized, isFavorite, isCompleted, isDeleted }
+    return { paramFilter, isExpired, isActive, isRitualized, isFavorite, isCompleted, isDeleted, isAll }
 }

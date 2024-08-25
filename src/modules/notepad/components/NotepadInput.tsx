@@ -18,7 +18,7 @@ export const NotepadInput: React.FC = () => {
     const saveDescription = useMemo(() => {
         return debounce(sendRequest, 500)
     }, [sendRequest])
-    console.log('description', description)
+
     return (
         <XTiptap
             isLoading={isLoading}

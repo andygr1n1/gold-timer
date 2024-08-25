@@ -114,3 +114,19 @@ td.ant-picker-cell.ant-picker-cell-disabled {
 .ant-tabs-nav-wrap {
     @apply !border-transparent !bg-transparent !shadow-none;
 }
+
+.ant-notification-notice-wrapper {
+    @apply !bg-transparent;
+}
+
+.ant-notification-notice {
+    @apply bg-global-bg-regal text-cText [&_div>*]:text-cText rounded-md;
+}
+
+.ant-notification-notice-close-x {
+    @apply text-cText opacity-70;
+}
+
+.rc-virtual-list-scrollbar-thumb {
+    @apply !bg-blue-500/50;
+}

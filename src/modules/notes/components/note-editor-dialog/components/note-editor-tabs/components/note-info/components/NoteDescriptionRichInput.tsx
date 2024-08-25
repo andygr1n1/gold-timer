@@ -12,13 +12,12 @@ export const NoteDescriptionRichInput = () => {
         <div className='relative pb-2'>
             <FormLabel title='Description *' />
             <XTiptap
-                // wrapperClassName='min-h-52'
                 isLoading={isLoading}
                 content={data?.description || ''}
                 onChange={(content) => formikContext.setFieldValue('description', content)}
                 readonly={false}
-                // error={formikContext.touched.description && Boolean(formikContext.errors.description)}
-                // errorMessage={formikContext.errors.description}
+                error={formikContext.touched.description && Boolean(formikContext.errors.description)}
+                errorMessage={formikContext.errors.description}
             />
         </div>
     )

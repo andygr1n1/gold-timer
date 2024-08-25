@@ -18,10 +18,17 @@
         "noEmit": true,
         "strictNullChecks": true,
         "types": ["vite/client", "node"],
-        "plugins": [{ "name": "typescript-plugin-css-modules" }]
+        "plugins": [
+            { "name": "typescript-plugin-css-modules" },
+            {
+                "name": "@0no-co/graphqlsp",
+                "schema": "./schema.graphql",
+                "tadaOutputLocation": "./src/graphql-env.d.ts"
+            }
+        ]
     },
     "include": ["src/**/*", "tests/**/*"],
-    "exclude": ["node_modules", "/src/graphql/generated/"],
+    "exclude": ["node_modules", ".gql/**/*"],
     "extends": "./tsconfig.paths.json",
     "references": [{ "path": "./tsconfig.node.json" }]
 }

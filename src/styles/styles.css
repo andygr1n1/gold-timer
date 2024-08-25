@@ -1,0 +1,145 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    .noselect {
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+
+    .allselect {
+        -webkit-touch-callout: all;
+        -webkit-user-select: all;
+        -khtml-user-select: all;
+        -moz-user-select: all;
+        -ms-user-select: all;
+        user-select: all;
+    }
+
+    html,
+    body {
+        @apply scrollbar-thumb-blue-500/10 scrollbar-track-transparent scrollbar-thin bg-global-bg font-inter text-cText flex h-full w-full flex-col overflow-hidden text-base;
+    }
+
+    #root::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: url('./img/kzen-login-background.jpg');
+        background-size: cover;
+        opacity: 0.05;
+        z-index: 0;
+    }
+
+    #root {
+        @apply scrollbar-thumb-blue-500/50 relative bg-global-bg text-cText scrollbar-track-global-bg scrollbar-thin flex w-full flex-auto overflow-hidden;
+    }
+
+    button {
+        @apply animate-opacity text-cText border-none bg-transparent outline-none transition-all duration-300 focus:outline-none active:outline-none;
+    }
+
+    input {
+        @apply text-cText border-none bg-transparent focus:outline-none focus-visible:outline-none;
+    }
+
+    div {
+        @apply focus-visible:outline-none;
+    }
+
+    pre {
+        @apply m-0 p-0;
+    }
+
+    blockquote {
+        @apply italic border-l-solid border-l-blue-500/50 font-kzen;
+    }
+
+    label {
+        @apply !text-cText;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5 {
+        @apply font-inter text-cText m-0 p-0 tracking-wider leading-normal duration-300;
+    }
+
+    h6 {
+        @apply text-cText text-base font-inter;
+    }
+
+    a,
+    a:focus,
+    a:active,
+    a:visited {
+        @apply text-cText no-underline font-normal tracking-normal duration-300;
+    }
+
+    u span {
+        text-decoration: underline;
+        text-decoration-color: currentColor;
+        color: inherit;
+    }
+
+    ul {
+        @apply m-0 p-0;
+    }
+
+    li {
+        @apply list-none;
+    }
+}
+
+@layer utilities {
+    .border-solid {
+        border-style: solid;
+    }
+
+    .border-r-solid {
+        border-right-style: solid;
+    }
+
+    .border-l-solid {
+        border-left-style: solid;
+    }
+
+    .border-b-solid {
+        border-bottom-style: solid;
+    }
+
+    .border-b-dashed {
+        border-bottom-style: dashed;
+    }
+
+    .border-t-solid {
+        border-top-style: solid;
+    }
+
+    .absolute-center {
+        @apply absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2;
+    }
+
+    .overflow-wrap-anywhere {
+        word-break: break-word !important;
+        overflow-wrap: anywhere !important;
+    }
+
+    .overflow-scroll::-webkit-scrollbar {
+        display: none;
+    }
+
+    .scroll-style {
+        @apply scrollbar-thumb-blue-500/10 scrollbar-track-transparent scrollbar-thin;
+    }
+}

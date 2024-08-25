@@ -1,5 +1,5 @@
 import { format } from 'date-fns'
-import { ChangeEventHandler, useRef, useState } from 'react'
+import { ChangeEventHandler, useState } from 'react'
 import { XCalendar } from './XCalendar'
 import { XInput } from '../x-input/XInput'
 import { XModal } from '../x-modal/XModal'
@@ -30,7 +30,6 @@ export const XDatePicker: React.FC<XDatePickerProps> = ({
     ...props
 }) => {
     const [dateSelectorIsOpen, setDateSelectorIsOpen] = useState(false)
-    const inputRef = useRef<HTMLInputElement | null>(null)
     const closeDateSelector = () => {
         setDateSelectorIsOpen(false)
         document.body.click()
@@ -59,7 +58,6 @@ export const XDatePicker: React.FC<XDatePickerProps> = ({
                     placeholder={placeholder}
                     readOnly={readOnly}
                     variant='select'
-                    refLink={inputRef}
                 />
             </div>
 

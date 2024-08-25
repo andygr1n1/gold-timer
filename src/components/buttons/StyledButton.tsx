@@ -64,7 +64,7 @@ export const StyledButton = ({
                 }
             }}
             className={cn(
-                'relative flex w-fit cursor-pointer items-center justify-center rounded-md border border-solid text-base font-semibold transition duration-300 ease-in-out',
+                'relative flex w-fit gap-1 cursor-pointer items-center justify-center rounded-md border border-solid text-base font-semibold transition duration-300 ease-in-out',
                 'button',
                 isLarge ? 'px-2' : 'px-1.5',
                 size,
@@ -75,11 +75,7 @@ export const StyledButton = ({
             )}
         >
             {startIcon && startIcon}
-            {children && (
-                <div className={`flex justify-center gap-2 truncate text-center ${isLarge ? 'px-2' : 'px-1'}`}>
-                    {children}
-                </div>
-            )}
+            {children}
             {endIcon && endIcon}
         </button>
     )

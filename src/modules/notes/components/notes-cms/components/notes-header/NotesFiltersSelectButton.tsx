@@ -5,13 +5,14 @@ import { cn } from '@/helpers/cn'
 import { useGetNotesParamsFilter } from '../../hooks/useGetNotesParamsFilter'
 
 export const NotesFiltersSelectButton: React.FC = observer(() => {
-    const { isFavorite, isDeleted, isArchived } = useGetNotesParamsFilter()
+    const { isFavorite, isDeleted, isArchived, isAll } = useGetNotesParamsFilter()
     return (
         <StyledButton
             startIcon={<ActiveFilterIcon />}
             // onClick={ }
             className={cn(
                 '!border-blue-600/20 hover:!bg-blue-600/20',
+                isAll && '!border-sky-400/20 hover:!bg-sky-400/20',
                 isFavorite && '!border-rose-500/20 hover:!bg-rose-500/20',
                 isArchived && '!border-violet-500/20 hover:!bg-violet-500/20',
                 isDeleted && '!border-slate-500/20 hover:!bg-slate-500/20',

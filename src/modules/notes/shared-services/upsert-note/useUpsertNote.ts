@@ -10,7 +10,9 @@ export const useUpsertNote = () => {
         mutationFn: ({ note }: { note: INoteSchema }) => {
             return mutation_upsertNote({ note })
         },
-        onSuccess,
+        onSuccess: () => {
+            onSuccess()
+        },
     })
 
     const upsertNote = (props: { note: INoteSchema; onSuccess?: () => void; onSettled?: () => void }) => {

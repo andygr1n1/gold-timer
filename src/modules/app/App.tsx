@@ -14,6 +14,7 @@ export const App = () => {
         <ConfigProvider
             theme={{
                 token: {
+                    borderRadius: 4,
                     colorIcon: 'var(--colors-cText)',
                     colorTextDisabled: 'var(--colors-cText)',
                     colorTextPlaceholder: 'var(--colors-cText)',
@@ -22,8 +23,9 @@ export const App = () => {
                     fontSize: 16,
                     fontFamily: 'Inter. sans-serif',
                     colorBgContainer: 'var(--colors-global-2-bg)',
-                    colorBgElevated: 'var(--colors-global-bg)',
-                    colorBorder: 'var(--colors-global-bg)',
+                    colorBgElevated: 'var(--colors-bg-elevated)',
+                    colorBorder: 'rgb(30 58 138 / 0.2)',
+                    boxShadowSecondary: 'transparent',
                 },
                 components: {
                     Select: {
@@ -34,6 +36,11 @@ export const App = () => {
                         optionActiveBg: 'var(--colors-global-2-bg)',
                         optionSelectedColor: 'var(--colors-cText)',
                         optionSelectedBg: 'var(--colors-global-2-bg)',
+                    },
+                    Input: {
+                        activeBorderColor: '#1d2b51',
+                        hoverBorderColor: '#1d2b51',
+                        activeShadow: 'transparent',
                     },
                 },
             }}

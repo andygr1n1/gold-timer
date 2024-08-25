@@ -1,5 +1,5 @@
-import { defineConfig } from 'vitest/config'
-import { loadEnv } from 'vite'
+// import { defineConfig } from 'vitest/config'
+import { defineConfig, loadEnv } from 'vite'
 import * as path from 'path'
 import react from '@vitejs/plugin-react'
 import macrosPlugin from 'vite-plugin-babel-macros'
@@ -7,15 +7,15 @@ import { outputPluginStats } from './vite.outputPluginStats.plugin'
 import { requestAnalytics } from './vite.requestAnalytics.plugin'
 import { hotUpdateReport } from './vite.hotUpdateReport.plugin'
 import { NodeGlobalsPolyfillPlugin } from '@esbuild-plugins/node-globals-polyfill'
+import Inspect from 'vite-plugin-inspect'
 
-// https://vitejs.dev/config/
-export default ({ mode }: { mode: string }) => {
+export default defineConfig(({ mode }) => {
     process.env = { ...process.env, ...loadEnv(mode, process.cwd()) }
 
     // import.meta.env.VITE_NAME available here with: process.env.VITE_NAME
     // import.meta.env.VITE_PORT available here with: process.env.VITE_PORT
 
-    return defineConfig({
+    return {
         server: {
             host: '0.0.0.0',
             port: process.env.VITE_PORT ? Number(process.env.VITE_PORT) : 9999,
@@ -34,6 +34,7 @@ export default ({ mode }: { mode: string }) => {
             requestAnalytics(),
             outputPluginStats(),
             hotUpdateReport(),
+            Inspect(),
         ],
         test: {
             globals: true,
@@ -75,5 +76,5 @@ export default ({ mode }: { mode: string }) => {
             },
         },
         define: { global: 'window' },
-    })
-}
+    }
+})

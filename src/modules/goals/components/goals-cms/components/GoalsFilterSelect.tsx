@@ -13,6 +13,8 @@ import { IconExpired } from '@/assets/icons/IconExpired'
 import { IconFocus } from '@/assets/icons/IconFocus'
 import { IconCompleted } from '@/assets/icons/IconCompleted'
 import { IGoalStatus } from '@/modules/goals/shared-service'
+import { artifactStatus } from '@/services/types'
+import { IconAll } from '@/assets/icons/IconAll'
 
 export const GoalsFilterSelect: React.FC = observer(() => {
     const [open, setOpen] = useState(false)
@@ -45,6 +47,19 @@ export const GoalsFilterSelect: React.FC = observer(() => {
 const DropdownRender: React.FC<{ onClose: (filter: IGoalStatus) => void }> = observer(({ onClose }) => {
     return (
         <XMenuDropdown>
+            <XMenuItem
+                onClick={() => {
+                    onClose(artifactStatus.all)
+                }}
+            >
+                <StyledButton
+                    variant='text'
+                    size='small'
+                    startIcon={<IconAll className='text-sky-400' width={26} height={26} />}
+                >
+                    <span className='flex w-[110px] justify-start capitalize text-sky-400'>All</span>
+                </StyledButton>
+            </XMenuItem>
             <XMenuItem
                 onClick={() => {
                     onClose('favorite')

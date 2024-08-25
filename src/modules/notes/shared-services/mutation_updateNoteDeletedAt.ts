@@ -1,6 +1,7 @@
 import { generateTSClient } from '@/graphql/client'
 import { resolveError, tryCatchRequest } from '@/helpers/tryCatchRequest'
 import { INoteSchema, noteSchema } from './types'
+import { getQueryFields } from './getQueryFields'
 
 export const mutation_updateNoteDeletedAt = async ({
     id,
@@ -12,6 +13,7 @@ export const mutation_updateNoteDeletedAt = async ({
     return await tryCatchRequest<Promise<undefined>, INoteSchema | undefined>(
         async () => {
             const client = await generateTSClient()
+              const fields = getQueryFields()
             return await client
                 .mutation({
                     __name: 'mutation_updateNoteDeletedAt',
@@ -20,13 +22,7 @@ export const mutation_updateNoteDeletedAt = async ({
                             pk_columns: { id },
                             _set: { deleted_at },
                         },
-                        id: true,
-                        description: true,
-                        tag: true,
-                        created_at: true,
-                        deleted_at: true,
-                        is_favorite: true,
-                        archived: true,
+                        ...fields,
                     },
                 })
                 .then((response) => {

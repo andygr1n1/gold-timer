@@ -26,3 +26,7 @@ export const isStatusFavorite = (status: IArtifactStatus) => {
 export const isStatusDeleted = (status: IArtifactStatus) => {
     return status === artifactStatus.deleted
 }
+
+export const isStatusCompleted = (status: IArtifactStatus) => {
+    return status === artifactStatus.completed
+}

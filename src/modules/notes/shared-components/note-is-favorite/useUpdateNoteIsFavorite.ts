@@ -13,7 +13,7 @@ export const useUpdateNoteIsFavorite = () => {
             mutation_updateNoteIsFavorite({ id, isFavorite }),
         onSuccess: (res) => {
             if (store.open && editMode && res) {
-                setStore({ id: res.id, open: true, editorMode: editorMode.view })
+                setStore({ id: res.id, open: true, editorMode: editorMode.edit })
             }
 
             onSuccess()

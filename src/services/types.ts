@@ -52,7 +52,17 @@ export type IEditor$Schema = z.infer<typeof editor$Schema>
 
 /* artifactStatusSchema  */
 
-export const artifactStatusSchema = z.enum(['all', 'active', 'favorite', 'archived', 'deleted'])
+export const artifactStatusSchema = z.enum([
+    'all',
+    'active',
+    'favorite',
+    'archived',
+    'deleted',
+    'completed',
+    'expired',
+    'ritual',
+    'ritualActive',
+])
 
 export const artifactStatus = artifactStatusSchema.Values
 

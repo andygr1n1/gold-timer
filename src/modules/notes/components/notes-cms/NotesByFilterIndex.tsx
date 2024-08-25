@@ -5,6 +5,8 @@ import { Suspense } from 'react'
 import NoteEditorDialog from '../note-editor-dialog/NoteEditorDialog'
 import { NotesList } from './components/NotesCards'
 import { INoteStatus } from '../../shared-services/types'
+import { Notes$Provider, notes$ } from './mst/provider'
+import { NoteEditorDialog$Provider, noteEditorDialog$ } from '../note-editor-dialog/mst/provider'
 
 export const NotesByFilterIndex: React.FC = () => {
     const location = useLocation()
@@ -13,12 +15,16 @@ export const NotesByFilterIndex: React.FC = () => {
     return (
         <ModuleWrapper>
             <Suspense fallback={null}>
-                <NoteEditorDialog />
+                <NoteEditorDialog$Provider store={noteEditorDialog$}>
+                    <NoteEditorDialog />
+                </NoteEditorDialog$Provider>
             </Suspense>
-            <div className='flex flex-col gap-10 w-full max-w-[600px] mx-auto relative'>
-                <NotesHeader />
-                <NotesList key={queryFilter} queryFilter={queryFilter} />
-            </div>
+            <Notes$Provider store={notes$}>
+                <div className='flex flex-col gap-10 w-full max-w-[600px] mx-auto relative'>
+                    <NotesHeader />
+                    <NotesList key={queryFilter} queryFilter={queryFilter} />
+                </div>
+            </Notes$Provider>
         </ModuleWrapper>
     )
 }

@@ -1,6 +1,6 @@
 import { z } from 'zod'
 
-export const noteStatusSchema = z.enum(['active', 'favorite', 'archived', 'deleted'])
+export const noteStatusSchema = z.enum(['active', 'favorite', 'archived', 'deleted', 'all'])
 
 export const noteStatus = noteStatusSchema.Values
 
@@ -14,6 +14,12 @@ export const noteSchema = z.object({
     deleted_at: z.string().nullable(),
     is_favorite: z.boolean(),
     archived: z.boolean(),
+    label_id: z.string().uuid().nullable(),
+    label: z
+        .object({
+            name: z.string(),
+        })
+        .nullable(),
 })
 
 export type INoteSchema = z.infer<typeof noteSchema>

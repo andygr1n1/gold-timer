@@ -7,6 +7,7 @@ import {
     isFavoriteNoteStatus,
 } from '../../../helpers/guards'
 import { INoteStatus } from '@/modules/notes/shared-services/types'
+import { isStatusAll } from '@/services/guards'
 
 export const useGetNotesParamsFilter = () => {
     const location = useLocation()
@@ -16,6 +17,7 @@ export const useGetNotesParamsFilter = () => {
     const isFavorite = isFavoriteNoteStatus(paramFilter)
     const isDeleted = isDeletedNoteStatus(paramFilter)
     const isArchived = isArchivedNoteStatus(paramFilter)
+    const isAll = isStatusAll(paramFilter)
 
-    return { paramFilter, isArchived, isActive, isFavorite, isDeleted }
+    return { paramFilter, isArchived, isActive, isFavorite, isDeleted, isAll }
 }

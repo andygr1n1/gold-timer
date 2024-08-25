@@ -33,7 +33,7 @@
 }
 
 .ql-editor {
-    @apply scrollbar-thumb-blue-500 scrollbar-track-global-3-bg  scrollbar-thin max-h-[150px] min-h-[100px] overflow-auto
+    @apply scrollbar-thumb-blue-500/50 scrollbar-track-global-3-bg  scrollbar-thin max-h-[150px] min-h-[100px] overflow-auto
     rounded-md border border-solid border-blue-900 px-3 py-2 text-base outline-transparent focus-within:border
      hover:border-blue-600;
     background: var(--colors-global-bg);
@@ -49,7 +49,7 @@
 }
 
 .ql-disabled > .ql-editor {
-    @apply scrollbar-thumb-blue-500 scrollbar-track-global-3-bg scrollbar-thin min-h-min border-transparent bg-transparent px-0 hover:border-transparent;
+    @apply scrollbar-thumb-blue-500/50 scrollbar-track-global-3-bg scrollbar-thin min-h-min border-transparent bg-transparent px-0 hover:border-transparent;
 }
 
 .ql-editor > * {

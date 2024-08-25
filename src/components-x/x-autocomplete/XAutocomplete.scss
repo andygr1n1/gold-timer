@@ -1,0 +1,31 @@
+.x-autocomplete-root {
+    .ant-select-selector {
+        @apply bg-transparent #{!important};
+    }
+
+    &:hover {
+        .ant-select-selector {
+            @apply border-blue-600/20 #{!important};
+        }
+    }
+
+    &.ant-select-focused {
+        @apply border-blue-600/20 #{!important};
+
+        .ant-select-selector {
+            @apply border-blue-600/20 shadow-none #{!important};
+        }
+    }
+
+    .ant-select-clear {
+        @apply text-blue-500 top-[50%] #{!important};
+    }
+}
+
+.x-autocomplete-popup-root {
+    @apply rounded-lg text-white/50  shadow-md shadow-black/30 backdrop-blur-md #{!important};
+
+    .ant-select-item {
+        @apply hover:text-blue-500 duration-300 #{!important};
+    }
+}

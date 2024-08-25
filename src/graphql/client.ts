@@ -2,6 +2,7 @@ import { GraphQLClient } from 'graphql-request'
 import { createClient } from 'gold-timer-genql/lib/generated'
 import { getAccessIdFromCookie, jwtVerify, setAccessIdInCookie, setSessionJWTInCookie } from '@/helpers/universalCookie'
 import { server_getSessionCredentials } from '@/services/server_getSessionCredentials'
+import { Client, cacheExchange, fetchExchange } from 'urql'
 
 export const generateClient = (): GraphQLClient => {
     const endpoint = import.meta.env.VITE_CLIENT_ENDPOINT
@@ -24,6 +25,26 @@ export const generateTSClient = async () => {
             batch: true,
         })
         window.genqlClient = client
+    }
+
+    return client
+}
+
+export const generateURQLClient = async () => {
+    const { accessJwt } = await getAccessJwt()
+    const Authorization = `Bearer ${accessJwt}`
+    let client = window.urqlClient
+
+    if (!client) {
+        client = new Client({
+            url: import.meta.env.VITE_CLIENT_ENDPOINT,
+            exchanges: [cacheExchange, fetchExchange],
+            fetchOptions: {
+                headers: { Authorization },
+            },
+            requestPolicy: 'network-only',
+        })
+        window.urqlClient = client
     }
 
     return client

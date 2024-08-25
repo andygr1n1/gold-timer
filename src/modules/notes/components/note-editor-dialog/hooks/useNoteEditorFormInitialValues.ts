@@ -19,4 +19,6 @@ const initialNote = (): INoteSchema => ({
     archived: false,
     description: '',
     tag: '',
+    label_id: null,
+    label: { name: '' },
 })

@@ -1,6 +1,7 @@
 import { resolveError, tryCatchRequest } from '@/helpers/tryCatchRequest'
 import { generateTSClient } from '@/graphql/client'
 import { INoteSchema, noteSchema } from '../types'
+import { getQueryFields } from '../getQueryFields'
 
 export const query_fetchNote = async (props: { id: string | null }): Promise<INoteSchema | undefined> => {
     const { id } = props
@@ -10,6 +11,7 @@ export const query_fetchNote = async (props: { id: string | null }): Promise<INo
     return await tryCatchRequest<Promise<undefined>, INoteSchema | undefined>(
         async () => {
             const client = await generateTSClient()
+            const fields = getQueryFields()
             return await client
                 .query({
                     __name: 'query_fetchNote',
@@ -17,13 +19,7 @@ export const query_fetchNote = async (props: { id: string | null }): Promise<INo
                         __args: {
                             id,
                         },
-                        id: true,
-                        description: true,
-                        tag: true,
-                        created_at: true,
-                        deleted_at: true,
-                        is_favorite: true,
-                        archived: true,
+                        ...fields,
                     },
                 })
                 .then((response) => {

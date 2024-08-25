@@ -29,7 +29,9 @@ export const CompleteGoalMenuItem: React.FC<{ goal: IGoalSchema; onClose: () => 
                     }}
                     startIcon={<IconCheck className='mb-0.5 h-6 w-6 opacity-100 hover:opacity-100' />}
                 >
-                    <span className='w-full min-w-[110px]'>Complete</span>
+                    <span className='w-[120px] flex justify-start '>
+                        <span>Complete</span>
+                    </span>
                 </StyledButton>
             </XMenuItem>
         </>
