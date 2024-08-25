@@ -1,6 +1,8 @@
 import { Color } from '@tiptap/extension-color'
 import ListItem from '@tiptap/extension-list-item'
 import TextStyle from '@tiptap/extension-text-style'
+import Image from '@tiptap/extension-image'
+import FileHandler from '@tiptap-pro/extension-file-handler'
 import { EditorProvider, useCurrentEditor } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 import React, { PropsWithChildren, ReactNode, useEffect } from 'react'
@@ -27,6 +29,7 @@ export const XTiptap: React.FC<ITiptap> = (props) => {
         // Heading.configure({
         //     levels: [1, 2, 3],
         // }),
+        Image.configure({ allowBase64: true, inline: true }),
         Underline,
         Color.configure({ types: [TextStyle.name, ListItem.name] }),
         TextStyle,
@@ -38,6 +41,54 @@ export const XTiptap: React.FC<ITiptap> = (props) => {
             orderedList: {
                 keepMarks: true,
                 keepAttributes: false,
+            },
+        }),
+        FileHandler.configure({
+            allowedMimeTypes: ['image/png', 'image/jpeg', 'image/gif', 'image/webp'],
+            onDrop: (currentEditor, files, pos) => {
+                files.forEach((file) => {
+                    const fileReader = new FileReader()
+
+                    fileReader.readAsDataURL(file)
+                    fileReader.onload = () => {
+                        currentEditor
+                            .chain()
+                            .insertContentAt(pos, {
+                                type: 'image',
+                                attrs: {
+                                    src: fileReader.result,
+                                },
+                            })
+                            .focus()
+                            .run()
+                    }
+                })
+            },
+            onPaste: (currentEditor, files, htmlContent) => {
+                files.forEach((file) => {
+                    if (htmlContent) {
+                        // if there is htmlContent, stop manual insertion & let other extensions handle insertion via inputRule
+                        // you could extract the pasted file from this url string and upload it to a server for example
+                        console.log(htmlContent) // eslint-disable-line no-console
+                        return false
+                    }
+
+                    const fileReader = new FileReader()
+
+                    fileReader.readAsDataURL(file)
+                    fileReader.onload = () => {
+                        currentEditor
+                            .chain()
+                            .insertContentAt(currentEditor.state.selection.anchor, {
+                                type: 'image',
+                                attrs: {
+                                    src: fileReader.result,
+                                },
+                            })
+                            .focus()
+                            .run()
+                    }
+                })
             },
         }),
     ]

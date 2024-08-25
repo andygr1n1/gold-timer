@@ -34,19 +34,20 @@ export const mutation_upsertNote = async (props: { note: INoteSchema }) => {
                 return zParse
             })
 
-        await urqlClient.mutation(
-            graphql(`
-                mutation Mutation_updateNoteLabelRating($id: uuid!) {
-                    update_notes_labels_by_pk(pk_columns: { id: $id }, _inc: { rating: 1 }) {
-                        id
-                        name
-                        owner_id
-                        rating
+        rest.label_id &&
+            (await urqlClient.mutation(
+                graphql(`
+                    mutation Mutation_updateNoteLabelRating($id: uuid!) {
+                        update_notes_labels_by_pk(pk_columns: { id: $id }, _inc: { rating: 1 }) {
+                            id
+                            name
+                            owner_id
+                            rating
+                        }
                     }
-                }
-            `),
-            { id: rest.label_id },
-        )
+                `),
+                { id: rest.label_id },
+            ))
 
         return insertNote
     } catch (e) {
