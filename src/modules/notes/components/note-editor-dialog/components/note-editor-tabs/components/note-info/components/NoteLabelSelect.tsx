@@ -57,8 +57,7 @@ export const NoteLabelSelect: React.FC = () => {
                         : onChange('')
                 }}
                 onClear={handleClear}
-                optionRender={(opt, data) => {
-                    console.log('opt', opt, data)
+                optionRender={(opt) => {
                     return (
                         <div
                             className={cn(

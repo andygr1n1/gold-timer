@@ -4,6 +4,7 @@ export const createLabelFormSchema = z.object({
     id: z.string().uuid(),
     name: z.string(),
     duplicateName: z.boolean().optional().default(false),
+    rating: z.number().nullable(),
 })
 
 export type ICreateLabelForm = z.infer<typeof createLabelFormSchema>
