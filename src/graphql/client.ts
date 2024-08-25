@@ -55,6 +55,7 @@ const getAccessJwt = async () => {
     const verify = jwtVerify(accessJwt)
     if (!verify || !accessJwt) {
         window.genqlClient = null
+        window.urqlClient = null
         const res = await server_getSessionCredentials()
         accessJwt = res?.serverCredentials?.accessJWT
         accessJwt && setAccessIdInCookie(accessJwt)
