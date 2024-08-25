@@ -10,7 +10,7 @@ export const CreateLabelFormik = () => {
     return (
         <Formik<ICreateLabelForm>
             enableReinitialize
-            initialValues={{ name: '', id: crypto.randomUUID(), duplicateName: false }}
+            initialValues={{ name: '', id: crypto.randomUUID(), duplicateName: false, rating: 0 }}
             validate={validate}
             onSubmit={onSubmit}
         >
