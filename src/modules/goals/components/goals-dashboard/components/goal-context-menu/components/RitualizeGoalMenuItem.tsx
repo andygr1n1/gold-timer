@@ -35,7 +35,9 @@ export const RitualizeGoalMenuItem: React.FC<{ goal: IGoalSchema; onClose: () =>
                     startIcon={<IconInfinity className='mb-0.5 h-6 w-6 opacity-100 text-teal-500 hover:opacity-100' />}
                     className='!bg-teal-500'
                 >
-                    <span className='w-full min-w-[110px]'> Ritualize</span>
+                    <span className='w-[120px] flex justify-start'>
+                        <span>Ritualize</span>
+                    </span>
                 </StyledButton>
             </XMenuItem>
         </>

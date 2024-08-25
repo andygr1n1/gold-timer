@@ -2,11 +2,45 @@
 @tailwind components;
 @tailwind utilities;
 
-
 @layer base {
+    .noselect {
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+
+    .allselect {
+        -webkit-touch-callout: all;
+        -webkit-user-select: all;
+        -khtml-user-select: all;
+        -moz-user-select: all;
+        -ms-user-select: all;
+        user-select: all;
+    }
+
     html,
     body {
-        @apply scrollbar-thumb-blue-500/50 scrollbar-track-global-bg scrollbar-thin bg-global-bg font-inter text-cText flex h-full w-full flex-col overflow-hidden text-base;
+        @apply scrollbar-thumb-blue-500/10 scrollbar-track-transparent scrollbar-thin bg-global-bg font-inter text-cText flex h-full w-full flex-col overflow-hidden text-base;
+    }
+
+    #root::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: url('./img/kzen-login-background.jpg');
+        background-size: cover;
+        opacity: 0.05;
+        z-index: 0;
+    }
+
+    #root {
+        @apply scrollbar-thumb-blue-500/50 relative bg-global-bg text-cText scrollbar-track-global-bg scrollbar-thin flex w-full flex-auto overflow-hidden;
     }
 
     button {
@@ -31,23 +65,6 @@
 
     label {
         @apply !text-cText;
-    }
-
-    #root::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background-image: url('./img/kzen-login-background.jpg');
-        background-size: cover;
-        opacity: 0.05;
-        z-index: 0;
-    }
-
-    #root {
-        @apply scrollbar-thumb-blue-500/50 relative bg-global-bg text-cText scrollbar-track-global-bg scrollbar-thin flex w-full flex-auto overflow-hidden;
     }
 
     h1,
@@ -113,24 +130,6 @@
         @apply absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2;
     }
 
-    .noselect {
-        -webkit-touch-callout: none;
-        -webkit-user-select: none;
-        -khtml-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-    }
-
-    .allselect {
-        -webkit-touch-callout: all;
-        -webkit-user-select: all;
-        -khtml-user-select: all;
-        -moz-user-select: all;
-        -ms-user-select: all;
-        user-select: all;
-    }
-
     .overflow-wrap-anywhere {
         word-break: break-word !important;
         overflow-wrap: anywhere !important;
@@ -139,28 +138,8 @@
     .overflow-scroll::-webkit-scrollbar {
         display: none;
     }
-}
 
-.login-form {
-    @apply text-cText m-0 flex h-[400px] flex-auto flex-col items-center p-5;
-}
-
-.ant-notification-notice-wrapper {
-    @apply !bg-transparent;
-}
-
-.ant-notification-notice {
-    @apply bg-global-bg-regal text-cText [&_div>*]:text-cText rounded-md;
-}
-
-.ant-notification-notice-close-x {
-    @apply text-cText opacity-70;
-}
-
-.sexy-scroll {
-    @apply scrollbar-thumb-blue-500/50 scrollbar-track-global-bg scrollbar-thin;
-}
-
-.rc-virtual-list-scrollbar-thumb {
-    @apply !bg-blue-500/50;
+    .scroll-style {
+        @apply scrollbar-thumb-blue-500/10 scrollbar-track-transparent scrollbar-thin;
+    }
 }

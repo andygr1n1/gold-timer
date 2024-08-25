@@ -5338,6 +5338,7 @@ input notes_insert_input {
 columns and relationships of "notes_labels"
 """
 type notes_labels {
+  created_at: timestamptz
   id: uuid!
   name: String!
   owner_id: uuid!
@@ -5381,6 +5382,7 @@ input notes_labels_bool_exp {
   _and: [notes_labels_bool_exp!]
   _not: notes_labels_bool_exp
   _or: [notes_labels_bool_exp!]
+  created_at: timestamptz_comparison_exp
   id: uuid_comparison_exp
   name: String_comparison_exp
   owner_id: uuid_comparison_exp
@@ -5408,6 +5410,7 @@ input notes_labels_inc_input {
 input type for inserting data into table "notes_labels"
 """
 input notes_labels_insert_input {
+  created_at: timestamptz
   id: uuid
   name: String
   owner_id: uuid
@@ -5416,6 +5419,7 @@ input notes_labels_insert_input {
 
 """aggregate max on columns"""
 type notes_labels_max_fields {
+  created_at: timestamptz
   id: uuid
   name: String
   owner_id: uuid
@@ -5424,6 +5428,7 @@ type notes_labels_max_fields {
 
 """aggregate min on columns"""
 type notes_labels_min_fields {
+  created_at: timestamptz
   id: uuid
   name: String
   owner_id: uuid
@@ -5462,6 +5467,7 @@ input notes_labels_on_conflict {
 
 """Ordering options when selecting data from "notes_labels"."""
 input notes_labels_order_by {
+  created_at: order_by
   id: order_by
   name: order_by
   owner_id: order_by
@@ -5477,6 +5483,9 @@ input notes_labels_pk_columns_input {
 select columns of table "notes_labels"
 """
 enum notes_labels_select_column {
+  """column name"""
+  created_at
+
   """column name"""
   id
 
@@ -5494,6 +5503,7 @@ enum notes_labels_select_column {
 input type for updating data in table "notes_labels"
 """
 input notes_labels_set_input {
+  created_at: timestamptz
   id: uuid
   name: String
   owner_id: uuid
@@ -5528,6 +5538,7 @@ input notes_labels_stream_cursor_input {
 
 """Initial value of the column from where the streaming should start"""
 input notes_labels_stream_cursor_value_input {
+  created_at: timestamptz
   id: uuid
   name: String
   owner_id: uuid
@@ -5543,6 +5554,9 @@ type notes_labels_sum_fields {
 update columns of table "notes_labels"
 """
 enum notes_labels_update_column {
+  """column name"""
+  created_at
+
   """column name"""
   id
 

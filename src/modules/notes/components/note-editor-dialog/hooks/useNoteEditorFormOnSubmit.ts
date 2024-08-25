@@ -13,7 +13,6 @@ export const useNoteEditorFormOnSubmit = () => {
     const onSubmit = (values: INoteSchema, formikHelpers: FormikHelpers<INoteSchema>) => {
         const { setSubmitting } = formikHelpers
         const tagInput = noteEditorDialog$.tagInput
-        console.log('values', values)
         upsertNote({
             note: {
                 ...values,

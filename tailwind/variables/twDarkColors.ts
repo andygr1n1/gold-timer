@@ -10,4 +10,6 @@ export default {
     //
     'global-3-bg': '#202c46',
     'global-bg-regal': 'rgba(19, 19, 44, 0.9)',
+    /* antd overwrite */
+    'bg-elevated': '#141a29',
 }

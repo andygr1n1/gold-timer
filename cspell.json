@@ -3,9 +3,12 @@
     "language": "en, ru",
     "words": [
         "achs",
+        "allselect",
+        "callout",
         "contenteditable",
         "Formik",
         "Hyperlegible",
+        "noselect",
         "slnt",
         "tada",
         "Tiptap",

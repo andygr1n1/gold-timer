@@ -7,22 +7,11 @@ export const query_fetchNotesLabels = async () => {
     const urqlClient = await generateURQLClient()
 
     try {
-        await urqlClient.query(
-            graphql(`
-                query query_notes {
-                    notes {
-                        id
-                    }
-                }
-            `),
-            {},
-        )
-
         return await urqlClient
             .query(
                 graphql(`
                     query query_notes_labels {
-                        notes_labels {
+                        notes_labels(order_by: { created_at: desc }) {
                             id
                             name
                             rating
@@ -30,6 +19,7 @@ export const query_fetchNotesLabels = async () => {
                     }
                 `),
                 {},
+                // { requestPolicy: 'cache-and-network' },
             )
             .then((result) => notesLabelsResponseSchema.parse(result.data?.notes_labels))
     } catch (e) {

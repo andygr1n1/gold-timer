@@ -42,6 +42,7 @@ export const generateURQLClient = async () => {
             fetchOptions: {
                 headers: { Authorization },
             },
+            requestPolicy: 'network-only',
         })
         window.urqlClient = client
     }

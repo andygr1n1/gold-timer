@@ -11,3 +11,12 @@ export const getQueryFields = () => ({
         name: true,
     },
 })
+
+export const getNotesLabelsGqlFields = () => {
+    return `
+        id
+        name
+        owner_id
+        rating
+    `
+}

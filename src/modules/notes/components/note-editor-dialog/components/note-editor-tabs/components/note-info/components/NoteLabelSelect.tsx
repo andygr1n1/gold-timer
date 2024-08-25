@@ -4,9 +4,10 @@ import { FormLabel } from '@/components/form/FormLabel'
 import { useFetchNotesLabels } from '@/modules/notes/components/notes-cms/components/notes-header/components/note-label/notes-labels-dialog/service/useFetchNotesLabels'
 import { INoteSchema } from '@/modules/notes/shared-services/types'
 import { useFormikContext } from 'formik'
-import { capitalize, sortBy } from 'lodash-es'
+import { capitalize } from 'lodash-es'
 import { useEffect } from 'react'
 import { SelectLabelsByRating } from './SelectLabelsByRating'
+import { cn } from '@/helpers/cn'
 
 export const NoteLabelSelect: React.FC = () => {
     const { isLoading, data, onChange, filter, notesLabels } = useFetchNotesLabels()
@@ -56,7 +57,19 @@ export const NoteLabelSelect: React.FC = () => {
                         : onChange('')
                 }}
                 onClear={handleClear}
-                optionRender={(opt) => <div className='h-10 text-base flex items-center capitalize'>{opt.value}</div>}
+                optionRender={(opt, data) => {
+                    console.log('opt', opt, data)
+                    return (
+                        <div
+                            className={cn(
+                                'h-10 text-base flex items-center capitalize',
+                                opt.data.id === formikContext.values.label_id && '!text-blue-500',
+                            )}
+                        >
+                            {opt.value}
+                        </div>
+                    )
+                }}
             />
             <SelectLabelsByRating handleSelect={handleSelect} />
         </div>

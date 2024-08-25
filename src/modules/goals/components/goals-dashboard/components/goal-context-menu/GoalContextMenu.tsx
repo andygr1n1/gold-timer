@@ -28,7 +28,7 @@ export const GoalContextMenu: React.FC<{ goal: IGoalSchema; action: () => void; 
                     goalId={goal.id}
                     isFavorite={!!goal.is_favorite}
                     label={
-                        <span className='flex w-[110px] justify-start capitalize'>
+                        <span className='flex w-[120px] justify-start capitalize'>
                             {goal.is_favorite ? 'Unfavorite' : 'Favorite'}
                         </span>
                     }

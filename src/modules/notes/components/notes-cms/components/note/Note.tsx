@@ -28,7 +28,7 @@ export const Note: React.FC<{ note: INoteSchema; isMobile: MEDIA_QUERY_VALUES_EN
                     <div
                         className={cn(
                             `bg-global-2-bg flex w-[calc(100%-40px)] max-w-[600px] flex-col gap-5
-                    overflow-auto rounded-lg p-5 hover:scale-105 duration-300`,
+                    overflow-auto rounded-lg p-5 hover:scale-105 duration-300 shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px]`,
                         )}
                         onContextMenu={() => {
                             setPopoverState(!popoverState)
@@ -49,7 +49,7 @@ export const Note: React.FC<{ note: INoteSchema; isMobile: MEDIA_QUERY_VALUES_EN
 
                         {note.created_at && (
                             <div className='text-xs opacity-80 font-semibold cursor-default text-cText'>
-                                {format(note.created_at, 'dd MMMM')}
+                                {format(note.created_at, 'dd MMMM yyyy')}
                             </div>
                         )}
                     </div>

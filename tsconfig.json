@@ -28,7 +28,7 @@
         ]
     },
     "include": ["src/**/*", "tests/**/*"],
-    "exclude": ["node_modules", "/src/graphql/generated/"],
+    "exclude": ["node_modules"],
     "extends": "./tsconfig.paths.json",
     "references": [{ "path": "./tsconfig.node.json" }]
 }

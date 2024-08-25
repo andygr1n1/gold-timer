@@ -8,6 +8,10 @@ import { ArtifactsCounter } from './artifacts-counter/ArtifactsCounter'
 import { NotepadIndex } from '@/modules/notepad/NotepadIndex'
 import { GoalsSlidesCarouselWidget } from '@/modules/goals-slides/GoalsSlidesCarouselWidget'
 import { UserCoins } from '@/components/top-bar/UserCoins'
+import {
+    noteEditorDialog$,
+    NoteEditorDialog$Provider,
+} from '@/modules/notes/components/note-editor-dialog/mst/provider'
 const NoteEditorDialog = lazy(() => import('@/modules/notes/components/note-editor-dialog/NoteEditorDialog'))
 const GoalEditorDialog = lazy(() => import('@/modules/goals/components/goal-editor-dialog/GoalEditorDialog'))
 const AchEditorDialog = lazy(() => import('@/modules/achievements/components-shared/ach-editor-dialog/AchEditorDialog'))
@@ -38,7 +42,9 @@ export const Dashboard: React.FC = () => {
             </Suspense>
 
             <Suspense fallback={null}>
-                <NoteEditorDialog />
+                <NoteEditorDialog$Provider store={noteEditorDialog$}>
+                    <NoteEditorDialog />
+                </NoteEditorDialog$Provider>
             </Suspense>
 
             <Suspense fallback={null}>

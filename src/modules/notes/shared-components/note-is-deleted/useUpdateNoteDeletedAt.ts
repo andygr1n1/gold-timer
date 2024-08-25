@@ -13,7 +13,7 @@ export const useUpdateNoteDeletedAt = () => {
             mutation_updateNoteDeletedAt({ id, deletedAt }),
         onSuccess: (res) => {
             if (store.open && editMode && res) {
-                setState({ id: res.id, open: true, editorMode: goalEditorMode.view })
+                setState({ id: res.id, open: true, editorMode: goalEditorMode.edit })
             }
 
             onSuccess()

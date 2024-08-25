@@ -2,14 +2,20 @@
     @apply text-base flex flex-col w-full;
 
     & > div:nth-child(2) {
-        @apply overflow-auto flex flex-col h-full scrollbar-track-transparent scrollbar-thin scrollbar-thumb-blue-900/20
-        focus-within:border-blue-600/20 rounded-[6px] border-solid
-        border-blue-900/10 hover:border-blue-600/20 px-2;
+        @apply overflow-auto flex flex-col h-full scrollbar-thumb-blue-500/10 scrollbar-track-transparent scrollbar-thin
+        focus-within:border-blue-600/20 rounded-[6px] border-solid border-[1px]
+        border-blue-900/20 hover:border-blue-600/20 px-2;
     }
 
     &.xtiptap-readonly {
         & > div:nth-child(2) {
             @apply px-0 border-none;
+        }
+    }
+
+    &.xtiptap-error {
+        & > div:nth-child(2) {
+            @apply border-red-500;
         }
     }
 }
