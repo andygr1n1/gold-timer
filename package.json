@@ -22,6 +22,7 @@
         "@tiptap/extension-color": "^2.5.7",
         "@tiptap/extension-heading": "^2.5.7",
         "@tiptap/extension-image": "^2.6.6",
+        "@tiptap/extension-link": "^2.6.6",
         "@tiptap/extension-text-style": "^2.5.7",
         "@tiptap/extension-underline": "^2.5.7",
         "@tiptap/pm": "^2.5.7",

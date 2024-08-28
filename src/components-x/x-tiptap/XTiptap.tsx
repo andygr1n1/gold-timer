@@ -10,6 +10,7 @@ import { XSkeleton } from '../x-skeleton/XSkeleton'
 import styles from './XTiptap.module.scss'
 import { BubbleMenuExt } from './extensions/bubble-menu/BubbleMenuExt'
 import Underline from '@tiptap/extension-underline'
+import Link from '@tiptap/extension-link'
 import { cn } from '@/helpers/cn'
 
 type ITiptap = {
@@ -92,6 +93,11 @@ export const XTiptap: React.FC<ITiptap> = (props) => {
                     return
                 })
             },
+        }),
+        Link.configure({
+            openOnClick: false,
+            autolink: true,
+            defaultProtocol: 'https',
         }),
     ]
 
