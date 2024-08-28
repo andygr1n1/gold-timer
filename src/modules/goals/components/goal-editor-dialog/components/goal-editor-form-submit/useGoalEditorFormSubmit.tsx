@@ -1,6 +1,6 @@
 import { isCompletedGoalStatus } from '@/modules/goals/helpers/goalsGuards'
 import { calculateIsFromFuture } from '@/modules/goals/helpers/optimizeActiveGoalsData'
-import { IGoalSchema } from '@/modules/goals/shared-service'
+import { type IGoalSchema } from '@/modules/goals/shared-service'
 import { useFormikContext } from 'formik'
 import { useGoalEditor$ } from '../../stores/goal-editor-store/useGoalEditor.store'
 

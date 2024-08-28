@@ -1,5 +1,5 @@
 import { useFormikContext } from 'formik'
-import { IAchSchema } from '@/modules/achievements/services/types'
+import { type IAchSchema } from '@/modules/achievements/services/types'
 import { ImgCropper } from '@/components/img-cropper-dialog/ImgCropperDialog'
 
 export const AchImgCropDialog = () => {

@@ -1,7 +1,7 @@
-import { IconBold } from '@/components-x/x-rte/icons/IconBold'
-import { IconItalic } from '@/components-x/x-rte/icons/IconItalic'
-import { IconStrikeThrough } from '@/components-x/x-rte/icons/IconStrikeThrough'
-import { IconUnderline } from '@/components-x/x-rte/icons/IconUnderline'
+import { IconBold } from '@/assets/icons/IconBold'
+import { IconItalic } from '@/assets/icons/IconItalic'
+import { IconStrikeThrough } from '@/assets/icons/IconStrikeThrough'
+import { IconUnderline } from '@/assets/icons/IconUnderline'
 import { StyledButton } from '@/components/buttons/StyledButton'
 import { cn } from '@/helpers/cn'
 import { useCurrentEditor } from '@tiptap/react'
@@ -13,10 +13,32 @@ import { IconChevronDown } from '@/assets/icons/IconChevronDown'
 import { isArray } from 'lodash-es'
 import { editorColorsOptions, getCurrentColor } from './components/editorColorsOptions'
 import { IconCircle } from '@/assets/icons/IconCircle'
+import { useCallback } from 'react'
 
 export const BubbleMenuExt: React.FC = () => {
     const { editor } = useCurrentEditor()
+
     if (!editor) return null
+
+    const setLink = useCallback(() => {
+        const previousUrl = editor.getAttributes('link')['href']
+        const url = window.prompt('URL', previousUrl)
+
+        // cancelled
+        if (url === null) {
+            return
+        }
+
+        // empty
+        if (url === '') {
+            editor.chain().focus().extendMarkRange('link').unsetLink().run()
+
+            return
+        }
+
+        // update link
+        editor.chain().focus().extendMarkRange('link').setLink({ href: url }).run()
+    }, [editor])
 
     return (
         <div className={'key-1'}>
@@ -25,7 +47,7 @@ export const BubbleMenuExt: React.FC = () => {
                     <div className='bubble-menu bg-global-bg items-center rounded-md flex shadow-xl p-[1px]'>
                         <Select
                             value={getHeadingValue(editor)}
-                            onChange={(value, option) => {
+                            onChange={(_value, option) => {
                                 if (!option || isArray(option)) return
                                 option.id === 6
                                     ? editor.chain().focus().setParagraph().run()
@@ -101,6 +123,16 @@ export const BubbleMenuExt: React.FC = () => {
                             suffixIcon={<IconChevronDown className='text-cText w-4 h-4' />}
                             rootClassName='bubble-menu-select'
                         />
+                        <StyledButton
+                            variant='text'
+                            size='small'
+                            onClick={() =>
+                                editor.isActive('link') ? editor.chain().focus().unsetLink().run() : setLink()
+                            }
+                            className={cn('text-xs', editor.isActive('link') ? 'is-active !text-blue-500' : '')}
+                        >
+                            Link
+                        </StyledButton>
                     </div>
                 </BubbleMenu>
             )}

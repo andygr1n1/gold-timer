@@ -1,6 +1,6 @@
 import { XInput } from '@/components-x/x-input/XInput'
 import { useFormikContext } from 'formik'
-import { IUserProfilePasswordSchema } from '@/modules/profile/services'
+import { type IUserProfilePasswordSchema } from '@/modules/profile/services'
 import { FormLabel } from '@/components/form/FormLabel'
 
 export const ProfileNewPasswordInput = () => {

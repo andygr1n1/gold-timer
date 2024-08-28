@@ -1,6 +1,6 @@
 import { ColorOption } from './ColorOption'
 import { Editor } from '@tiptap/react'
-import { ReactNode } from 'react'
+import { type ReactNode } from 'react'
 
 export type IColorOption = { id: string; value: string; label: ReactNode }
 
@@ -40,8 +40,8 @@ export const getCurrentColor = (editor: Editor) => {
     doc.nodesBetween(from, to, (node) => {
         if (node.marks) {
             node.marks.forEach((mark) => {
-                if (mark.type.name === 'textStyle' && mark.attrs.color) {
-                    currentColor = mark.attrs.color
+                if (mark.type.name === 'textStyle' && mark.attrs['color']) {
+                    currentColor = mark.attrs['color']
                 }
             })
         }

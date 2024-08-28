@@ -1,5 +1,5 @@
-import { IArtifactStatus } from '@/services/types'
-import { IGoalSchema, IGoalStatus, goalStatusEnum } from '../shared-service'
+import { type IArtifactStatus } from '@/services/types'
+import { type IGoalSchema, type IGoalStatus, goalStatusEnum } from '../shared-service'
 
 export const isCompletedGoalStatus = (status: IGoalStatus) => {
     return status === goalStatusEnum.completed

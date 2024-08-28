@@ -1,13 +1,13 @@
-import { createContext, useContext } from 'react'
+import { createContext, type ReactNode, useContext } from 'react'
 import type { IRoot$ } from './types'
 import { Root$ } from './stores/Root.store'
 const storeContext = createContext<IRoot$ | null>(null)
 
 const generateRoot$ = () => Root$.create({})
 
-export const rootStore$ = generateRoot$()
+export const root$ = generateRoot$()
 
-export const useRootStore = (): IRoot$ => {
+export const useRoot$ = (): IRoot$ => {
     const store = useContext(storeContext)
     if (!store) {
         throw new Error('use Store shall be used within StoreProvider')
@@ -16,4 +16,8 @@ export const useRootStore = (): IRoot$ => {
     return store
 }
 
-export const useSprintsStore = () => useRootStore().sprints$
+export const Root$Provider = ({ children, store }: { children: ReactNode; store: IRoot$ }) => {
+    return <storeContext.Provider value={store}>{children}</storeContext.Provider>
+}
+
+export const useSprintsStore = () => useRoot$().sprints$

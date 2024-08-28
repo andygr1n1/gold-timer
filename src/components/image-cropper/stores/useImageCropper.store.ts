@@ -1,6 +1,6 @@
 import { useQuery, useQueryClient } from '@tanstack/react-query'
-import { Area } from 'react-easy-crop'
-import { IImageCropperSchema, KEY_ImageCropperStore } from './types'
+import { type Area } from 'react-easy-crop'
+import { type IImageCropperSchema, KEY_ImageCropperStore } from './types'
 import { useCallback } from 'react'
 
 export const useImageCropper$ = () => {

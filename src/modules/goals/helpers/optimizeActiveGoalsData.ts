@@ -1,6 +1,6 @@
 import { convertStringDate, setMidnightTime } from '@/helpers/date.helpers'
 import { differenceInCalendarDays, isFuture, set } from 'date-fns'
-import { IGoalSchema } from '../shared-service/types'
+import { type IGoalSchema } from '../shared-service/types'
 
 export const calculateIsExpired = (goal: IGoalSchema): boolean => {
     return !!goal.finished_at && !!(setMidnightTime(convertStringDate(goal.finished_at)) < new Date(Date.now()))
@@ -22,7 +22,7 @@ export const calculateIsFromFuture = (goal: IGoalSchema): boolean => {
     )
 }
 
-export const calculateCreatedDaysAgo = (goal: IGoalSchema ): number => {
+export const calculateCreatedDaysAgo = (goal: IGoalSchema): number => {
     if (!goal.created_at) return 0
     const created = goal?.goal_ritual?.created_at ? goal?.goal_ritual?.created_at : goal.created_at
     const today = Date.now()

@@ -1,6 +1,6 @@
 import { useFormikContext } from 'formik'
 import { useAchEditor$ } from '../../stores/useAchEditor.store'
-import { IAchSchema } from '@/modules/achievements/services/types'
+import { type IAchSchema } from '@/modules/achievements/services/types'
 import { ToggleFavoriteNewAch } from './components/ToggleFavoriteNewAch'
 import { AchIsFavorite } from '../../../AchIsFavorite'
 import { AchIsDeleted } from '../../../AchIsDeleted'

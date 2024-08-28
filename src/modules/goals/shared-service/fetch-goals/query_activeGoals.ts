@@ -1,6 +1,6 @@
 import { resolveError, tryCatchRequest } from '@/helpers/tryCatchRequest'
 import { generateTSClient } from '@/graphql/client'
-import { IGoalSchema, goalStatusEnum, goalsResponseSchema } from '../types'
+import { type IGoalSchema, goalStatusEnum, goalsResponseSchema } from '../types'
 import { setZeroTime } from '@/helpers/date.helpers'
 
 export const query_activeGoals = async (props: {

@@ -14,10 +14,10 @@ export const useGoogleKzenLogin = () => {
             const sessionJWT = res?.sessionJWT
             jwtToken && setAccessIdInCookie(jwtToken)
             const data = parseJwt(jwtToken)
-            setAccessIdInCookie(res?.accessJWT)
+            setAccessIdInCookie(jwtToken)
             setSessionJWTInCookie(sessionJWT)
             selectUser({
-                user: { userId: data?.id, role: data?.role, isLoading: false },
+                user: { id: data?.id, role: data?.role },
             })
         },
         onError: () => {

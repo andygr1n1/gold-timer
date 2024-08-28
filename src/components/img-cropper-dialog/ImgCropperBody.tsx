@@ -1,7 +1,7 @@
 import { StyledButton } from '@/components/buttons/StyledButton'
 import { createRef /* , useMemo */ } from 'react'
 // import { debounce } from 'lodash-es'
-import Cropper, { ReactCropperElement } from 'react-cropper'
+import Cropper, { type ReactCropperElement } from 'react-cropper'
 
 const ImgCropperBody: React.FC<{
     src?: string

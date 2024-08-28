@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { mutation_updateGoalSlideIsActive } from '../service/mutation_updateGoalSlideIsActive'
-import { IGoalSlideSchema, KEY_FetchGoalsSlides } from '../service/types'
+import { type IGoalSlideSchema, KEY_FetchGoalsSlides } from '../service/types'
 
 export const useToggleShowSlide = () => {
     const queryClient = useQueryClient()

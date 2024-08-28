@@ -1,7 +1,7 @@
 import { XTooltip } from '@/components-x/x-tooltip/XTooltip'
 import { StyledButton } from '@/components/buttons/StyledButton'
 import { IconHeart } from '@/assets/icons/IconHeart'
-import { ReactNode } from 'react'
+import { type ReactNode } from 'react'
 import { useUpdateGoalIsFavorite } from '@/modules/goals/shared-components/goal-is-favorite/hook/useUpdateGoalIsFavorite.hook'
 import { cn } from '@/helpers/cn'
 

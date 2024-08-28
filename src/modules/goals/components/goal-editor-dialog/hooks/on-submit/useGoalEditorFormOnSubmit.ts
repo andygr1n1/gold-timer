@@ -1,5 +1,5 @@
-import { FormikHelpers } from 'formik'
-import { IGoalSchema } from '@/modules/goals/shared-service'
+import { type FormikHelpers } from 'formik'
+import { type IGoalSchema } from '@/modules/goals/shared-service'
 import { useGoalEditor$ } from '../../stores/goal-editor-store/useGoalEditor.store'
 import { goalEditorMode } from '../../stores/goal-editor-store/types'
 import { useUpsertGoal } from '../../service/upsert-goal/useUpsertGoal'

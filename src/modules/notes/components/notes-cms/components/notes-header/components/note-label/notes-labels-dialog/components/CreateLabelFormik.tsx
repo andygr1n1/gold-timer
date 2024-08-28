@@ -1,5 +1,5 @@
 import { Formik } from 'formik'
-import { ICreateLabelForm } from '../service/types'
+import { type ICreateLabelForm } from '../service/types'
 import { useLabelFormOnValidate } from '../hooks/useLabelFormOnValidate'
 import { useLabelFormOnSubmit } from '../hooks/useLabelFormOnSubmit'
 import { CreateLabelForm } from './CreateLabelForm'

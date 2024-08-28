@@ -57,7 +57,7 @@ export const GoalsSlidesCarousel = () => {
                         {visibleSlides.map((gSlide) => (
                             <div key={gSlide.id} title={gSlide.title}>
                                 <img
-                                    src={`${import.meta.env.VITE_FIRE_BUNNY_STORAGE}/goals-slides/${gSlide.img_path}`}
+                                    src={`${import.meta.env['VITE_FIRE_BUNNY_STORAGE']}/goals-slides/${gSlide.img_path}`}
                                     title={gSlide.title}
                                     className='rounded-lg'
                                     loading='lazy'

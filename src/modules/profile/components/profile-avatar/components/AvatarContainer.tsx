@@ -1,6 +1,6 @@
-import { IconAvatar } from "@/assets/icons/IconAvatar"
+import { IconAvatar } from '@/assets/icons/IconAvatar'
 
-export const AvatarContainer: React.FC<{ avatar?: string }> = ({ avatar }) => {
+export const AvatarContainer: React.FC<{ avatar?: string | null }> = ({ avatar }) => {
     return (
         <div
             data-testid='avatar-container'
@@ -10,7 +10,7 @@ export const AvatarContainer: React.FC<{ avatar?: string }> = ({ avatar }) => {
                 <img
                     data-testid='image-avatar'
                     alt={'avatar'}
-                    src={`${import.meta.env.VITE_FIRE_BUNNY_STORAGE}/avatars/${avatar}`}
+                    src={`${import.meta.env['VITE_FIRE_BUNNY_STORAGE']}/avatars/${avatar}`}
                     className='w-full h-full rounded-full '
                 />
             ) : (

@@ -15,6 +15,7 @@ import { IconProfile } from '@/assets/icons/IconProfile'
 import { IconBlog } from '@/assets/icons/IconBlog'
 import { useUser$ } from '@/services/user-store/userUser.store'
 import { IconAchievements } from '@/assets/icons/IconAchievements'
+import { IconLandscape } from '@/assets/icons/IconLandscape'
 
 const SideMenu: React.FC = observer(() => {
     const { isSuperHero } = useUser$()
@@ -57,7 +58,6 @@ const SideMenu: React.FC = observer(() => {
                         <div className='w-[calc(100%-32px)] h-full px-4'>
                             <div className='mx-auto flex h-full w-[180px] flex-auto flex-col gap-5 overflow-auto '>
                                 <div className='mx-auto flex  h-full w-[180px] flex-auto flex-col gap-5 overflow-auto '>
-                                    {' '}
                                     <SideMenuLink
                                         to={APP_ROUTES_ENUM.PROFILE}
                                         title='Profile'
@@ -87,11 +87,11 @@ const SideMenu: React.FC = observer(() => {
                                     />
                                 )} */}
                                     <XMenuDivider />
-                                    {/* <SideMenuLink
+                                    <SideMenuLink
                                         to={APP_ROUTES_ENUM.STORIES}
                                         title='Stories'
                                         icon={<IconLandscape width={24} height={24} className='ml-[-2px]' />}
-                                    /> */}
+                                    />
                                 </div>
                                 {isSuperHero && (
                                     <SideMenuLink

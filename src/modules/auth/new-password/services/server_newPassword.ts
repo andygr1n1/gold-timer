@@ -1,10 +1,10 @@
 import { resolveError, tryCatchRequest } from '@/helpers/tryCatchRequest'
 import ky from 'ky'
-import { IUserNewPasswordSchema } from './types'
+import { type IUserNewPasswordSchema } from './types'
 
 export const server_newPassword = async (props: { formData: IUserNewPasswordSchema }) => {
-    const endpoint = import.meta.env.VITE_NODE_HEROKU_ORIGIN
-    const xapikey = import.meta.env.VITE_X_API_KEY
+    const endpoint = import.meta.env['VITE_NODE_HEROKU_ORIGIN']
+    const xapikey = import.meta.env['VITE_X_API_KEY']
 
     return await tryCatchRequest<Promise<unknown>, { message: string } | undefined>(
         async () => {

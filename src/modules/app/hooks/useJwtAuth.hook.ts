@@ -1,12 +1,12 @@
-import { useUser$ } from '@/services/user-store/userUser.store'
 import { useEffect } from 'react'
+import { useRoot$ } from '../mst/StoreProvider'
 
 export const useJwtAuth = () => {
-    const { store, autoLogin } = useUser$()
+    const { userId, autoLogin, initLoading } = useRoot$()
 
     useEffect(() => {
         autoLogin()
     }, [])
 
-    return { userId: store?.userId, isLoading: store?.isLoading }
+    return { userId, isLoading: initLoading }
 }

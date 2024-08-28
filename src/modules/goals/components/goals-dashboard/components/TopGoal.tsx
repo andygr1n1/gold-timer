@@ -3,7 +3,7 @@ import { XDropdown } from '@/components-x/x-dropdown/XDropdown'
 import { GoalContextMenu } from './goal-context-menu/GoalContextMenu'
 import { TopGoalBody } from './TopGoalBody'
 
-import { IGoalSchema } from '@/modules/goals/shared-service/types'
+import { type IGoalSchema } from '@/modules/goals/shared-service/types'
 import { useGoalEditor$ } from '../../goal-editor-dialog/stores/goal-editor-store/useGoalEditor.store'
 import { goalEditorMode } from '../../goal-editor-dialog/stores/goal-editor-store/types'
 

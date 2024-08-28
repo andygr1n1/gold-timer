@@ -1,4 +1,4 @@
-import { Instance, SnapshotIn } from 'mobx-state-tree'
+import type { Instance, SnapshotIn } from 'mobx-state-tree'
 import { Sprint$ } from './stores/Sprint.store'
 import { SprintNew$ } from './stores/SprintNew.store'
 import { SprintsFilter$ } from './stores/SprintsFilter.store'

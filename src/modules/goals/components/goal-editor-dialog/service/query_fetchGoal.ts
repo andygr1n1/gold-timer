@@ -1,10 +1,10 @@
 import { resolveError, tryCatchRequest } from '@/helpers/tryCatchRequest'
 import { generateTSClient } from '@/graphql/client'
-import { IGoalSchema, goalSchema } from '@/modules/goals/shared-service'
+import { type IGoalSchema, goalSchema } from '@/modules/goals/shared-service'
 
 export const query_fetchGoal = async (props: { goalId: string | null }): Promise<IGoalSchema | undefined> => {
     const { goalId } = props
-    
+
     if (!goalId) return
 
     return await tryCatchRequest<Promise<undefined>, IGoalSchema | undefined>(

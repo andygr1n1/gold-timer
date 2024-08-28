@@ -1,4 +1,4 @@
-import { IAchSchema, achSchema } from '@/modules/achievements/services/types'
+import { type IAchSchema, achSchema } from '@/modules/achievements/services/types'
 
 export const useEditorFormOnValidate = () => {
     const validate = (values: IAchSchema) => {

@@ -1,5 +1,5 @@
 import { calculateCreatedDaysAgo } from '@/modules/goals/helpers/optimizeActiveGoalsData'
-import { IGoalSchema } from '@/modules/goals/shared-service/types'
+import { type IGoalSchema } from '@/modules/goals/shared-service/types'
 import { useFormikContext } from 'formik'
 
 export const ActiveGoalCreatedAt = () => {

@@ -1,4 +1,4 @@
-import { IAchSchema } from '@/modules/achievements/services/types'
+import { type IAchSchema } from '@/modules/achievements/services/types'
 import { useFormikContext } from 'formik'
 
 export const useAchEditorFormOnSubmit = () => {

@@ -1,4 +1,4 @@
-import { IArtifactStatus } from '@/services/types'
+import { type IArtifactStatus } from '@/services/types'
 import { z } from 'zod'
 
 export const achSchema = z.object({

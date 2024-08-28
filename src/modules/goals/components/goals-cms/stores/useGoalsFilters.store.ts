@@ -1,7 +1,7 @@
 import { goalStatusEnum } from '@/modules/goals/shared-service'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
-import { IGoalsFiltersSchema, KEY_useGoalsFiltersStore } from './types'
-import { ChangeEvent, useMemo } from 'react'
+import { type IGoalsFiltersSchema, KEY_useGoalsFiltersStore } from './types'
+import { type ChangeEvent, useMemo } from 'react'
 import { debounce } from 'lodash-es'
 
 export const useGoalsFilters = () => {

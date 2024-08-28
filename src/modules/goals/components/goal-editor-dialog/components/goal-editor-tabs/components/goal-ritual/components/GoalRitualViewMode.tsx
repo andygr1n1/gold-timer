@@ -3,7 +3,7 @@ import { XSelect } from '@/components-x/x-select/XSelect'
 import { XInput } from '@/components-x/x-input/XInput'
 import { DaysOfTheWeek } from '@/helpers/date.helpers'
 import { useFormikContext } from 'formik'
-import { IGoalSchema, goalRitualType } from '@/modules/goals/shared-service'
+import { type IGoalSchema, goalRitualType } from '@/modules/goals/shared-service'
 import { useGoalEditor$ } from '../../../../../stores/goal-editor-store/useGoalEditor.store'
 
 export const GoalRitualViewMode = () => {

@@ -1,4 +1,4 @@
-import { IUserRegisterSchema, userRegisterSchema } from '../services/types'
+import { type IUserRegisterSchema, userRegisterSchema } from '../services/types'
 
 export const useRegisterOnValidate = () => {
     const validate = (values: IUserRegisterSchema) => {

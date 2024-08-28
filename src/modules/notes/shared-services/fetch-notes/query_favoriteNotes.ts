@@ -1,7 +1,7 @@
 import { notesResponseSchema } from '../types'
 import { resolveError, tryCatchRequest } from '@/helpers/tryCatchRequest'
 import { generateTSClient } from '@/graphql/client'
-import { INoteSchema } from '@/modules/notes/shared-services/types'
+import { type INoteSchema } from '@/modules/notes/shared-services/types'
 import { getQueryFields } from '../getQueryFields'
 
 export const query_favoriteNotes = async (props: {

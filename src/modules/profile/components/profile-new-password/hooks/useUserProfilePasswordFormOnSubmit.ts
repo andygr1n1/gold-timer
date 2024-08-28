@@ -1,5 +1,5 @@
-import { FormikHelpers } from 'formik'
-import { IUserProfilePasswordSchema } from '../../../services'
+import { type FormikHelpers } from 'formik'
+import { type IUserProfilePasswordSchema } from '../../../services'
 import { useProfile$ } from '../../../stores/useProfile.store'
 import { useUpdatePassword } from '@/modules/profile/services/update-password/useUpdatePassword'
 import { processSuccess } from '@/helpers/processMessage'

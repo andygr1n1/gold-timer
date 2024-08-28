@@ -1,6 +1,6 @@
 import { XTooltip } from '@/components-x/x-tooltip/XTooltip'
 import { StyledButton } from '@/components/buttons/StyledButton'
-import { ReactNode } from 'react'
+import { type ReactNode } from 'react'
 import { useUpdateNoteIsArchived } from './useUpdateNoteIsArchived'
 import { IconArchive } from '@/assets/icons/IconArchive'
 import { cn } from '@/helpers/cn'

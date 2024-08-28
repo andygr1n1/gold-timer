@@ -13,7 +13,7 @@ export enum MONTHS_ENUM {
     DECEMBER = 'December',
 }
 
-export const getMonthNumber = (month: MONTHS_ENUM | string): number => {
+export const getMonthNumber = (month: MONTHS_ENUM | string | undefined): number => {
     switch (month) {
         case MONTHS_ENUM.JANUARY:
             return 1

@@ -1,7 +1,7 @@
 import { XTooltip } from '@/components-x/x-tooltip/XTooltip'
 import { StyledButton } from '@/components/buttons/StyledButton'
 import { IconEdit } from '@/assets/icons/IconEdit'
-import { ReactNode } from 'react'
+import { type ReactNode } from 'react'
 import { useGoalEditor$ } from '../components/goal-editor-dialog/stores/goal-editor-store/useGoalEditor.store'
 import { goalEditorMode } from '../components/goal-editor-dialog/stores/goal-editor-store/types'
 

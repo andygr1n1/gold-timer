@@ -1,6 +1,6 @@
-import { Level } from '@tiptap/extension-heading'
+import { type Level } from '@tiptap/extension-heading'
 import { Editor } from '@tiptap/react'
-import { ReactNode } from 'react'
+import { type ReactNode } from 'react'
 
 export type IHeaderOption = { id: Level; value: string; label: ReactNode }
 
@@ -14,5 +14,5 @@ export const editorHeadingsOptions: IHeaderOption[] = [
 export const getHeadingValue = (editor: Editor) => {
     const isHeading = editorHeadingsOptions.find((opt) => !!editor.isActive('heading', { level: opt.id }))
 
-    return isHeading?.id ? isHeading.label : editorHeadingsOptions[0].label
+    return isHeading?.id ? isHeading.label : editorHeadingsOptions[0]?.label
 }

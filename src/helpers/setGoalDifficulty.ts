@@ -2,10 +2,12 @@ import { formatDistanceStrict } from 'date-fns'
 import { DIFFICULTY_ENUM } from '../services/enums'
 
 export const setGoalDifficulty = (finished_at: Date): DIFFICULTY_ENUM => {
-    const timeInMonths = +formatDistanceStrict(finished_at, Date.now(), {
-        unit: 'month',
-        roundingMethod: 'ceil',
-    }).split(' ')[0]
+    const timeInMonths = Number(
+        formatDistanceStrict(finished_at, Date.now(), {
+            unit: 'month',
+            roundingMethod: 'ceil',
+        }).split(' ')[0],
+    )
 
     if (timeInMonths <= 3) {
         return DIFFICULTY_ENUM.LIGHT

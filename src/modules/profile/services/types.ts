@@ -5,8 +5,8 @@ export const userProfileSchema = z.object({
     birthday: z.string().nullable(),
     email: z.string(),
     name: z.string(),
-    phone: z.string(),
-    avatar: z.string(),
+    phone: z.string().nullable(),
+    avatar: z.string().nullable(),
 })
 
 export type IUserProfileSchema = z.infer<typeof userProfileSchema>

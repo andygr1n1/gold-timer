@@ -12,7 +12,7 @@ import { setGoalsFilterParam } from '@/modules/goals/helpers/goalsFilterParamLoc
 import { IconExpired } from '@/assets/icons/IconExpired'
 import { IconFocus } from '@/assets/icons/IconFocus'
 import { IconCompleted } from '@/assets/icons/IconCompleted'
-import { IGoalStatus } from '@/modules/goals/shared-service'
+import { type IGoalStatus } from '@/modules/goals/shared-service'
 import { artifactStatus } from '@/services/types'
 import { IconAll } from '@/assets/icons/IconAll'
 

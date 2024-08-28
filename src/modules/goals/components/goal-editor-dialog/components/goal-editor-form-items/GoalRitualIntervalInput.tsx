@@ -4,7 +4,7 @@ import { XInput } from '@/components-x/x-input/XInput'
 import { IconInfinity } from '@/assets/icons/IconInfinity'
 import { DaysOfTheWeek } from '@/helpers/date.helpers'
 import { useFormikContext } from 'formik'
-import { IGoalSchema, goalRitualType } from '@/modules/goals/shared-service'
+import { type IGoalSchema, goalRitualType } from '@/modules/goals/shared-service'
 import { useGoalEditor$ } from '../../stores/goal-editor-store/useGoalEditor.store'
 import { GoalRitualEditMode } from '../goal-editor-tabs/components/goal-ritual/components/goal-ritual-edit-mode/GoalRitualEditMode'
 

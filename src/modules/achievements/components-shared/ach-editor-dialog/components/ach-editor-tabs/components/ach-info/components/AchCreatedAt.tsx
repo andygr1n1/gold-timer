@@ -1,7 +1,7 @@
 import { format } from 'date-fns'
 import { convertStringDate } from '@/helpers/date.helpers'
 import { useFormikContext } from 'formik'
-import { IAchSchema } from '@/modules/achievements/services/types'
+import { type IAchSchema } from '@/modules/achievements/services/types'
 import { AchCreatedDaysAgo } from './AchCreatedDaysAgo'
 
 export const AchCreatedAt = () => {

@@ -1,7 +1,7 @@
 import { XInput } from '@/components-x/x-input/XInput'
 import { FormLabel } from '@/components/form/FormLabel'
 import { useFormikContext } from 'formik'
-import { ICreateLabelForm } from '../../service/types'
+import { type ICreateLabelForm } from '../../service/types'
 import { useCallback, useMemo } from 'react'
 import { debounce } from 'lodash-es'
 import { useValidateNoteLabelName } from './service/useValidateNoteLabelName'

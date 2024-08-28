@@ -1,5 +1,5 @@
-import { FormikHelpers } from 'formik'
-import { IGoalSchema, goalStatusEnum } from '@/modules/goals/shared-service'
+import { type FormikHelpers } from 'formik'
+import { type IGoalSchema, goalStatusEnum } from '@/modules/goals/shared-service'
 import { isActiveGoalStatus, isActiveRitualStatus, isCompletedGoalStatus } from '@/modules/goals/helpers/goalsGuards'
 import { useUpdateGoalStatus } from '../../service/update-goal-status/useUpdateGoalStatus.service'
 import { useGoalEditor$ } from '../../stores/goal-editor-store/useGoalEditor.store'

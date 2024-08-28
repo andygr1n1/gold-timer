@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react-lite'
 import { OpenSideMenu } from './OpenSideMenu.tsx'
-import { PropsWithChildren } from 'react'
+import { type PropsWithChildren } from 'react'
 import clsx from 'clsx'
 
 export const TopBar: React.FC<PropsWithChildren> = observer(({ children }) => {

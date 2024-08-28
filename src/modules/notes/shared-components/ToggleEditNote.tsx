@@ -1,7 +1,7 @@
 import { XTooltip } from '@/components-x/x-tooltip/XTooltip'
 import { StyledButton } from '@/components/buttons/StyledButton'
 import { IconEdit } from '@/assets/icons/IconEdit'
-import { ReactNode } from 'react'
+import { type ReactNode } from 'react'
 import { useNoteEditor$ } from '../components/note-editor-dialog/stores/note-editor-store/useNoteEditor.store'
 import { editorMode } from '../components/note-editor-dialog/stores/note-editor-store/types'
 

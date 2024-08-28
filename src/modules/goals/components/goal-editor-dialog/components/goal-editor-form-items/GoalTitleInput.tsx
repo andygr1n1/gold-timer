@@ -1,6 +1,6 @@
 import { XInput } from '@/components-x/x-input/XInput'
 import { FormLabel } from '@/components/form/FormLabel'
-import { IGoalSchema } from '@/modules/goals/shared-service'
+import { type IGoalSchema } from '@/modules/goals/shared-service'
 import { useFormikContext } from 'formik'
 import { useGoalEditor$ } from '../../stores/goal-editor-store/useGoalEditor.store'
 import { cn } from '@/helpers/cn'

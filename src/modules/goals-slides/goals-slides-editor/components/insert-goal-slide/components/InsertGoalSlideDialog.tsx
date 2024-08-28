@@ -1,5 +1,5 @@
 import { XModal } from '@/components-x/x-modal/XModal'
-import { IGoalSlideSchema } from '@/modules/goals-slides/service/types'
+import { type IGoalSlideSchema } from '@/modules/goals-slides/service/types'
 import { useFormikContext } from 'formik'
 import { ImageCropper } from '@/components/image-cropper/ImageCropper'
 import { GoalSlideTitleFormItem } from './GoalSlideTittleFormItem'

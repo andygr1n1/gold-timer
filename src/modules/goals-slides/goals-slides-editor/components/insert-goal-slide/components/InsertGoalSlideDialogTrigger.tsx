@@ -3,12 +3,12 @@ import { useSelectUploadFile } from '@/helpers/useSelectUploadFile'
 import { IconUpload } from '@/assets/icons/IconUpload'
 import { UploadInput } from '@/components/UploadInput'
 import { useFormikContext } from 'formik'
-import { IGoalSlideSchema } from '@/modules/goals-slides/service/types'
+import { type IGoalSlideSchema } from '@/modules/goals-slides/service/types'
 
 export const InsertGoalSlideDialogTrigger = observer(() => {
     const formikContext = useFormikContext<IGoalSlideSchema>()
     const { img_path } = formikContext.values
-    
+
     return (
         <div
             title='upload image'

@@ -1,5 +1,5 @@
 import { noteStatusSchema } from '@/modules/notes/shared-services/types'
-import { Instance, types } from 'mobx-state-tree'
+import { type Instance, types } from 'mobx-state-tree'
 
 export const Notes$ = types
     .model('Notes$', {

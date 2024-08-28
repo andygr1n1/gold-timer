@@ -1,7 +1,7 @@
 import { Form, Formik } from 'formik'
 import { ProfileImageCropDialog } from './ProfileImageCropDialog'
 import { ProfileImageCropDialogTrigger } from './ProfileImageCropDialogTrigger'
-import { IUpdateAvatarFormSchema } from '../../services'
+import { type IUpdateAvatarFormSchema } from '../../services'
 import { useProfileAvatarSubmit } from './hooks/useProfileAvatarSubmit'
 
 export const ProfileAvatarIndex = () => {

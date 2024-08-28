@@ -1,10 +1,10 @@
 import { resolveError, tryCatchRequest } from '@/helpers/tryCatchRequest'
-import { ISessionCredentials } from '@/modules/auth/login/services/types'
+import { type ISessionCredentials } from '@/modules/auth/login/services/types'
 import ky from 'ky'
 
 export const server_googleLogin = async ({ formData: json }: { formData: { accessJWT: string } }) => {
-    const endpoint = import.meta.env.VITE_NODE_HEROKU_ORIGIN
-    const xapikey = import.meta.env.VITE_X_API_KEY
+    const endpoint = import.meta.env['VITE_NODE_HEROKU_ORIGIN']
+    const xapikey = import.meta.env['VITE_X_API_KEY']
 
     return await tryCatchRequest<Promise<undefined>, ISessionCredentials | undefined>(
         async () => {

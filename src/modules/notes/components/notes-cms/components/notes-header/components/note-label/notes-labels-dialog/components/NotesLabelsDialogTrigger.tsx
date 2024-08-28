@@ -1,4 +1,4 @@
-import { IconPencilCode } from '@/components-x/x-rte/icons/IconPencilCode'
+import { IconPencilCode } from '@/assets/icons/IconPencilCode'
 import { StyledButton } from '@/components/buttons/StyledButton'
 import { observer } from 'mobx-react-lite'
 import { useLabelDialog$ } from '../mst/provider'

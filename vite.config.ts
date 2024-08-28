@@ -8,7 +8,6 @@ import { requestAnalytics } from './vite.requestAnalytics.plugin'
 import { hotUpdateReport } from './vite.hotUpdateReport.plugin'
 import { NodeGlobalsPolyfillPlugin } from '@esbuild-plugins/node-globals-polyfill'
 import Inspect from 'vite-plugin-inspect'
-
 export default defineConfig(({ mode }) => {
     process.env = { ...process.env, ...loadEnv(mode, process.cwd()) }
 

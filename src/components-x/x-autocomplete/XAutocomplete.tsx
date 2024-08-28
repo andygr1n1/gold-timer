@@ -1,4 +1,4 @@
-import { AutoComplete, AutoCompleteProps } from 'antd'
+import { AutoComplete, type AutoCompleteProps } from 'antd'
 import './XAutocomplete.scss'
 export const XAutocomplete: React.FC<AutoCompleteProps> = (props) => {
     return (

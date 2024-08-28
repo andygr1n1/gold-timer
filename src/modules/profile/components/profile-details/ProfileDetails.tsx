@@ -1,5 +1,5 @@
 import { Formik } from 'formik'
-import { IUserProfileSchema } from '../../services'
+import { type IUserProfileSchema } from '../../services'
 import { ProfileDetailsForm } from './components/ProfileDetailsForm'
 import { useProfileDetailsFormInitialValues } from './hooks/useProfileDetailsFormInitialValues'
 import { useProfileDetailsFormOnValidate } from './hooks/useProfileDetailsFormOnValidate'

@@ -2,7 +2,7 @@ import { ActiveGoalCreatedAt } from '@/modules/goals/components/goal-editor-dial
 import { format } from 'date-fns'
 import { convertStringDate } from '@/helpers/date.helpers'
 import { useFormikContext } from 'formik'
-import { IGoalSchema } from '@/modules/goals/shared-service'
+import { type IGoalSchema } from '@/modules/goals/shared-service'
 
 export const GoalCreatedAt = () => {
     const formikContext = useFormikContext<IGoalSchema>()

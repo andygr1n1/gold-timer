@@ -5,11 +5,12 @@ import Image from '@tiptap/extension-image'
 import FileHandler from '@tiptap-pro/extension-file-handler'
 import { EditorProvider, useCurrentEditor } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
-import React, { PropsWithChildren, ReactNode, useEffect } from 'react'
+import React, { type PropsWithChildren, type ReactNode, useEffect } from 'react'
 import { XSkeleton } from '../x-skeleton/XSkeleton'
 import styles from './XTiptap.module.scss'
 import { BubbleMenuExt } from './extensions/bubble-menu/BubbleMenuExt'
 import Underline from '@tiptap/extension-underline'
+import Link from '@tiptap/extension-link'
 import { cn } from '@/helpers/cn'
 
 type ITiptap = {
@@ -88,8 +89,15 @@ export const XTiptap: React.FC<ITiptap> = (props) => {
                             .focus()
                             .run()
                     }
+
+                    return
                 })
             },
+        }),
+        Link.configure({
+            openOnClick: false,
+            autolink: true,
+            defaultProtocol: 'https',
         }),
     ]
 

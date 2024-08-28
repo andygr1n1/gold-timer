@@ -1,4 +1,4 @@
-import { ReactNode } from 'react'
+import { type ReactNode } from 'react'
 
 export const XModalHeader: React.FC<{ title: ReactNode }> = ({ title }) => {
     return (

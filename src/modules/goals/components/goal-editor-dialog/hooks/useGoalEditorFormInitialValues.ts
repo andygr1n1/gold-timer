@@ -1,4 +1,4 @@
-import { IGoalSchema, goalStatusEnum } from '@/modules/goals/shared-service'
+import { type IGoalSchema, goalStatusEnum } from '@/modules/goals/shared-service'
 import { useGoalEditor$ } from '../stores/goal-editor-store/useGoalEditor.store.ts'
 import { formatDateWithTimezone } from '@/helpers/date.helpers'
 import { useGoalData } from './useGoalData.ts'

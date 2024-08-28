@@ -1,5 +1,5 @@
 import { useMutation } from '@tanstack/react-query'
-import { IAchSchema } from '../types'
+import { type IAchSchema } from '../types'
 import { useInvalidateAchs } from '../../hooks/useInvalidateAchs'
 import { mutation_upsertAch } from './mutation_upsertAch'
 import { cast } from '@/helpers'
@@ -10,7 +10,6 @@ import { useUser$ } from '@/services/user-store/userUser.store'
 export const useUpsertAch = () => {
     const { userId } = useUser$()
     const { onSuccess } = useInvalidateAchs()
-
 
     const mutation = useMutation({
         mutationFn: async ({ values }: { values: IAchSchema }) => {

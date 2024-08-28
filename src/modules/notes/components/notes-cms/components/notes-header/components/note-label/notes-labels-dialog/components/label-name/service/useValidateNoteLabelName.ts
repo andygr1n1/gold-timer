@@ -1,6 +1,6 @@
 import { useMutation } from '@tanstack/react-query'
 import { validation_noteLabelName } from './validation_noteLabelName'
-import { ICreateLabelForm } from '../../../service/types'
+import { type ICreateLabelForm } from '../../../service/types'
 import { useFormikContext } from 'formik'
 
 export const useValidateNoteLabelName = () => {

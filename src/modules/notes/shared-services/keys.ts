@@ -1,4 +1,4 @@
-import { INoteStatus } from './types'
+import { type INoteStatus } from './types'
 export const notesKeys = {
     /*stores*/
     useNotesFilters$: () => ['useNotesFilters$'],

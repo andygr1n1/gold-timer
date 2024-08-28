@@ -1,5 +1,5 @@
-import { TaskEither, tryCatch } from 'fp-ts/lib/TaskEither'
-import { pipe, LazyArg } from 'fp-ts/lib/function'
+import { type TaskEither, tryCatch } from 'fp-ts/lib/TaskEither'
+import { pipe, type LazyArg } from 'fp-ts/lib/function'
 import { fold } from 'fp-ts/lib/Either'
 import { HTTPError } from 'ky'
 import { processError } from './processMessage'

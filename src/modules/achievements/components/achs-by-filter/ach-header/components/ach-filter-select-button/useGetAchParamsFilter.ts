@@ -1,5 +1,5 @@
 import { isStatusActive, isStatusAll, isStatusDeleted, isStatusFavorite } from '@/services/guards'
-import { IArtifactStatus } from '@/services/types'
+import { type IArtifactStatus } from '@/services/types'
 import { useLocation } from 'react-router-dom'
 
 export const useGetAchParamsFilter = () => {

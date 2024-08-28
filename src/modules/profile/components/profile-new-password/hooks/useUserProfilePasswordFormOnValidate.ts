@@ -1,4 +1,4 @@
-import { IUserProfilePasswordSchema } from '../../../services'
+import { type IUserProfilePasswordSchema } from '../../../services'
 
 export const useUserProfilePasswordFormOnValidate = () => {
     const validate = (values: IUserProfilePasswordSchema) => {

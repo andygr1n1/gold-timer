@@ -1,4 +1,4 @@
-import { IUserProfileSchema, useFetchProfileInfo } from '../../../services/index.ts'
+import { type IUserProfileSchema, useFetchProfileInfo } from '../../../services/index.ts'
 
 export const useProfileDetailsFormInitialValues = () => {
     const { data, isLoading } = useFetchProfileInfo()

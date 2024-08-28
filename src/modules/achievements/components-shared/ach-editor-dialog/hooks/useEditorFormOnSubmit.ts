@@ -1,6 +1,6 @@
-import { FormikHelpers } from 'formik'
+import { type FormikHelpers } from 'formik'
 import { useAchEditor$ } from '../stores/useAchEditor.store'
-import { IAchSchema } from '@/modules/achievements/services/types'
+import { type IAchSchema } from '@/modules/achievements/services/types'
 import { useUpsertAch } from '@/modules/achievements/services/upsert-ach/useUpsertAch'
 
 export const useEditorFormOnSubmit = () => {

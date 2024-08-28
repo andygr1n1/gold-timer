@@ -1,5 +1,5 @@
 import { useMutation } from '@tanstack/react-query'
-import { INoteSchema } from '../types'
+import { type INoteSchema } from '../types'
 import { mutation_upsertNote } from './mutation_upsertNote'
 import { useInvalidateNotes } from '@/modules/notes/shared-hooks/useInvalidateNotes'
 

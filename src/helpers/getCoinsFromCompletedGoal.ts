@@ -1,4 +1,4 @@
-import { IGoalSchema } from '@/modules/goals/shared-service/types'
+import { type IGoalSchema } from '@/modules/goals/shared-service/types'
 import { DIFFICULTY_ENUM } from '../services/enums'
 
 export const getCoinsFromCompletedGoal = (goal: IGoalSchema, currentCoins: number): number => {

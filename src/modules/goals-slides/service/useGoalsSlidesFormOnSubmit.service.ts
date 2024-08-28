@@ -1,6 +1,6 @@
-import { FormikHelpers } from 'formik'
+import { type FormikHelpers } from 'formik'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { IGoalSlideSchema, KEY_FetchGoalsSlides } from './types'
+import { type IGoalSlideSchema, KEY_FetchGoalsSlides } from './types'
 import { mutation_insertGoalSlide } from './mutation_insertGoalSlide'
 import getCroppedImg from '@/helpers/cropImage'
 import { uploadNewImageToServer } from '@/services/image/image.service'

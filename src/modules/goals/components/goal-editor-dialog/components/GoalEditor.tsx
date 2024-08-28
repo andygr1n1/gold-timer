@@ -1,4 +1,4 @@
-import { IGoalSchema } from '@/modules/goals/shared-service'
+import { type IGoalSchema } from '@/modules/goals/shared-service'
 import { Formik } from 'formik'
 import { useGoalEditorFormInitialValues } from '../hooks/useGoalEditorFormInitialValues'
 import { useGoalEditorFormOnSubmit } from '../hooks/on-submit/useGoalEditorFormOnSubmit'

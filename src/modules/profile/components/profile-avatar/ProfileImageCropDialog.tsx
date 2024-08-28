@@ -1,6 +1,6 @@
 import { XModal } from '@/components-x/x-modal/XModal'
 import { useFormikContext } from 'formik'
-import { IUpdateAvatarFormSchema } from '../../services'
+import { type IUpdateAvatarFormSchema } from '../../services'
 import { StyledButton } from '@/components/buttons/StyledButton'
 import { ImageCropper } from '@/components/image-cropper/ImageCropper'
 

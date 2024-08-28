@@ -1,5 +1,5 @@
 import { APP_ROUTES_ENUM } from './enums'
-import { IArtifactStatus, artifactStatus } from './types'
+import { type IArtifactStatus, artifactStatus } from './types'
 
 export const isDashboard = () => window.location.pathname === `/${APP_ROUTES_ENUM.DASHBOARD}`
 
@@ -25,6 +25,10 @@ export const isStatusFavorite = (status: IArtifactStatus) => {
 
 export const isStatusDeleted = (status: IArtifactStatus) => {
     return status === artifactStatus.deleted
+}
+
+export const isStatusArchived = (status: IArtifactStatus) => {
+    return status === artifactStatus.archived
 }
 
 export const isStatusCompleted = (status: IArtifactStatus) => {

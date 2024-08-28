@@ -1,5 +1,5 @@
 import { IconChevronRight } from '@/assets/icons'
-import { ReactNode } from 'react'
+import { type ReactNode } from 'react'
 import { NavLink } from 'react-router-dom'
 
 export const Story: React.FC<{ path: string; title: ReactNode; logo: ReactNode; date: string; author: string }> = ({

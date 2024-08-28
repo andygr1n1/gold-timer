@@ -1,4 +1,4 @@
-import { IUserRestoreSchema, userRestoreSchema } from '../services/types'
+import { type IUserRestoreSchema, userRestoreSchema } from '../services/types'
 
 export const useRestoreOnValidate = () => {
     const validate = (values: IUserRestoreSchema) => {

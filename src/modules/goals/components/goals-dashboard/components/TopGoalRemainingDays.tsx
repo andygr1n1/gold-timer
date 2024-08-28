@@ -7,7 +7,7 @@ import {
     calculateTotalRemainingDays,
     calculateIsRitual,
 } from '@/modules/goals/helpers/optimizeActiveGoalsData'
-import { IGoalSchema } from '@/modules/goals/shared-service'
+import { type IGoalSchema } from '@/modules/goals/shared-service'
 
 export const TopGoalRemainingDays: React.FC<{ goal: IGoalSchema }> = ({ goal }) => {
     const isExpired = calculateIsExpired(goal)

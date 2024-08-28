@@ -18,8 +18,8 @@ export const uploadNewImageToServer = async ({
     id?: string
 }): Promise<string | undefined> => {
     try {
-        const endpoint = import.meta.env.VITE_NODE_HEROKU_ORIGIN
-        const xapikey = import.meta.env.VITE_X_API_KEY
+        const endpoint = import.meta.env['VITE_NODE_HEROKU_ORIGIN']
+        const xapikey = import.meta.env['VITE_X_API_KEY']
 
         const formData = new FormData()
         formData.append('base64', img)
@@ -46,8 +46,8 @@ export const uploadNewImageToServer = async ({
 
 export const deleteImageFromServer = async (imgTitle: string, route: string): Promise<string | undefined> => {
     try {
-        const endpoint = import.meta.env.VITE_NODE_HEROKU_ORIGIN
-        const xapikey = import.meta.env.VITE_X_API_KEY
+        const endpoint = import.meta.env['VITE_NODE_HEROKU_ORIGIN']
+        const xapikey = import.meta.env['VITE_X_API_KEY']
 
         const formData = new FormData()
         formData.append('imgTitle', imgTitle)

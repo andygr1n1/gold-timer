@@ -1,5 +1,5 @@
 import { cn } from '@/helpers/cn'
-import { IXModal } from '../types'
+import { type IXModal } from '../types'
 import { XModalCloseIcon } from './XModalCloseIcon'
 import { XModalHeader } from './XModalHeader'
 

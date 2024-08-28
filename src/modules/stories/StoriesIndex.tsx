@@ -1,18 +1,17 @@
-import { Stories } from './Stories'
-import { Route, Routes } from 'react-router-dom'
-import { PhoenixConnection } from './static-pages/phoenix-connection/PhoenixConnection'
-import { LoveStory } from './static-pages/LoveStory'
-import { HealingEye } from './static-pages/healing-eye/HealingEye'
+import { observer } from 'mobx-react-lite'
+import { Navigate, Route, Routes } from 'react-router-dom'
+import { StoriesByFilterIndex } from './components/stories-cms/StoriesByFilterIndex'
 
-const StoriesIndex: React.FC = () => {
+const StoriesIndex: React.FC = observer(function StoriesIndex() {
     return (
         <Routes>
-            <Route index element={<Stories />} />
-            <Route path='phoenix-connection' element={<PhoenixConnection />} />
-            <Route path='love-story' element={<LoveStory />} />
-            <Route path='healing-eye' element={<HealingEye />} />
+            <Route
+                path={'/'}
+                element={<Navigate to={`/stories/filtered-stories?filter=active`} state={{ filter: 'active' }} />}
+            />
+            <Route path='filtered-stories' element={<StoriesByFilterIndex />} />
         </Routes>
     )
-}
+})
 
 export default StoriesIndex

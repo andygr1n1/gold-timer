@@ -2,7 +2,7 @@ import { resolveError, tryCatchRequest } from '@/helpers/tryCatchRequest'
 import { generateTSClient } from '@/graphql/client'
 import { userSchema } from '@/services/types'
 import { goalStatusEnum } from '../types'
-import { IQueryUserDetails } from './types'
+import { type IQueryUserDetails } from './types'
 
 export const query_userDetails = async (props: { userId: string }): Promise<IQueryUserDetails | undefined> => {
     const { userId } = props

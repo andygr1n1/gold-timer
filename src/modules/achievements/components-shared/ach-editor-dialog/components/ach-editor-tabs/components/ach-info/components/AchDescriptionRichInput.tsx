@@ -1,7 +1,7 @@
 import { FormLabel } from '@/components/form/FormLabel'
 import { useFormikContext } from 'formik'
 import { useAchData } from '../../../../../hooks/useAchData'
-import { IAchSchema } from '@/modules/achievements/services/types'
+import { type IAchSchema } from '@/modules/achievements/services/types'
 import { XTiptap } from '@/components-x/x-tiptap/XTiptap'
 
 export const AchDescriptionRichInput = () => {

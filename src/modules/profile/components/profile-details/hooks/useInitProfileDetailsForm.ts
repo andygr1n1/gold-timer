@@ -1,8 +1,8 @@
 import { useFormikContext } from 'formik'
 import { useEffect } from 'react'
 import { useProfileDetailsFormInitialValues } from './useProfileDetailsFormInitialValues'
-import { IUserProfileSchema } from '../../../services'
 import { useProfile$ } from '../../../stores/useProfile.store'
+import type { IUserProfileSchema } from '@/modules/profile/services'
 
 export const useInitProfileDetailsForm = () => {
     const { viewMode } = useProfile$()

@@ -1,4 +1,4 @@
-import { IGoalSchema } from '@/modules/goals/shared-service'
+import { type IGoalSchema } from '@/modules/goals/shared-service'
 import { useFormikContext } from 'formik'
 
 export const useNoteEditorFormSubmit = () => {

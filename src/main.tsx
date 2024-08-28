@@ -5,21 +5,20 @@ import { App as AntdApp } from 'antd'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import './styles/index.css'
 import { SnowfallAnimation } from './components/SnowfallAnimation'
-import { Provider } from 'urql'
-import { generateURQLClient } from './graphql/client'
+import { root$, Root$Provider } from './modules/app/mst/StoreProvider'
 const queryClient = new QueryClient()
 
 const Main = () => {
     return (
-        <Provider value={generateURQLClient()}>
-            <QueryClientProvider client={queryClient}>
-                <SnowfallAnimation />
-                <ReactQueryDevtools initialIsOpen={false} />
-                <AntdApp className='w-full h-full flex text-cText'>
+        <QueryClientProvider client={queryClient}>
+            <SnowfallAnimation />
+            <ReactQueryDevtools initialIsOpen={false} />
+            <AntdApp className='w-full h-full flex text-cText'>
+                <Root$Provider store={root$}>
                     <App />
-                </AntdApp>
-            </QueryClientProvider>
-        </Provider>
+                </Root$Provider>
+            </AntdApp>
+        </QueryClientProvider>
     )
 }
 

@@ -1,7 +1,7 @@
 import { useLocation } from 'react-router-dom'
 import { useAchFilter$ } from '../components/achs-by-filter/ach-header/components/search-ach-input/useAchFilter.store'
 import { useFetchAchs } from '../services/fetch-achs/useFetchAchs'
-import { IArtifactStatus } from '@/services/types'
+import { type IArtifactStatus } from '@/services/types'
 import { useUser$ } from '@/services/user-store/userUser.store'
 
 export const useAchsData = () => {

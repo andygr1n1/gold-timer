@@ -1,5 +1,5 @@
 import { resolveError, tryCatchRequest } from '@/helpers/tryCatchRequest'
-import { IUserProfileSchema, userProfileSchema } from '../types'
+import { type IUserProfileSchema, userProfileSchema } from '../types'
 import { generateTSClient } from '@/graphql/client'
 
 export const mutation_updateUserProfile = async ({ userProfile }: { userProfile: IUserProfileSchema }) => {

@@ -1,5 +1,5 @@
 import { StyledButton } from '@/components/buttons/StyledButton'
-import { IGoalSlideSchema } from '@/modules/goals-slides/service/types'
+import { type IGoalSlideSchema } from '@/modules/goals-slides/service/types'
 import { useFormikContext } from 'formik'
 
 export const GoalSlideFormFooter: React.FC = () => {

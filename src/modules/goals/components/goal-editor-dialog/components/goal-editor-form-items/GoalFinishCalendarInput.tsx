@@ -4,7 +4,7 @@ import { FormLabel } from '@/components/form/FormLabel'
 import { prepareFinishedAtForInsert } from '@/helpers/date.helpers'
 import { useGoalEditor$ } from '../../stores/goal-editor-store/useGoalEditor.store'
 import { useFormikContext } from 'formik'
-import { IGoalSchema } from '@/modules/goals/shared-service'
+import { type IGoalSchema } from '@/modules/goals/shared-service'
 import { cn } from '@/helpers/cn'
 
 export const GoalFinishCalendarInput = () => {

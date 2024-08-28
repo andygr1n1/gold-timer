@@ -1,7 +1,7 @@
 // import { useSprintsStore } from '@/modules/app/mst/StoreProvider'
 // import { DialogConfirm } from '@/components/dialog-confirm/DialogConfirm'
 // import { observer } from 'mobx-react-lite'
-// import { ReactNode } from 'react'
+// import { type ReactNode } from 'react'
 
 // export const SprintMenuDialogConfirm = observer(() => {
 //     const { deleteSelectedSprint, restartSelectedSprint, selected_sprint, onChangeField } = useSprintsStore()

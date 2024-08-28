@@ -1,5 +1,5 @@
-import { FormikHelpers } from 'formik'
-import { IUserNewPasswordSchema } from '../services/types'
+import { type FormikHelpers } from 'formik'
+import { type IUserNewPasswordSchema } from '../services/types'
 import { useNavigate } from 'react-router-dom'
 import { useMutation } from '@tanstack/react-query'
 import { processError, processSuccess } from '@/helpers/processMessage'

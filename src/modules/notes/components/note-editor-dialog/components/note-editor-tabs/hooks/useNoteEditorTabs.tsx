@@ -1,4 +1,4 @@
-import { TabsProps } from 'antd'
+import { type TabsProps } from 'antd'
 import { NoteInfo } from '../components/note-info/NoteInfo'
 // import { NoteAttachments } from '../components/note-attachments/NoteAttachments'
 

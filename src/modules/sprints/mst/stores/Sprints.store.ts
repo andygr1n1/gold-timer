@@ -1,12 +1,12 @@
 import { types, flow, toGenerator, applySnapshot, destroy, detach, castToSnapshot } from 'mobx-state-tree'
 import { SprintNew$ } from './SprintNew.store'
 import { Sprint$ } from './Sprint.store'
-import { ISprint$, ISprint$SnIn, ISprintNew$ } from '../types'
+import type { ISprint$, ISprint$SnIn, ISprintNew$ } from '../types'
 import { processError } from '@/helpers/processMessage'
 import { query_fetchSprints } from '@/modules/sprints/graphql/query_fetchSprints'
 import { add, set } from 'date-fns'
 import { cloneDeep, last, orderBy } from 'lodash-es'
-import { IInsertNewSprint } from '@/modules/sprints/graphql/helpers/interface'
+import type { IInsertNewSprint } from '@/modules/sprints/graphql/helpers/interface'
 import { SprintsFilter$ } from './SprintsFilter.store'
 import { filterSprintByInput } from './sprints.helper'
 import { SPRINT_FILTER_STATUS_ENUM } from '@/modules/sprints/helpers/sprints.enum'
@@ -36,7 +36,7 @@ export const Sprints$ = types
             sprint.img_path &&
                 self.new_sprint.onChangeField(
                     'img_cropped_src',
-                    `${import.meta.env.VITE_FIRE_BUNNY_STORAGE}/sprints/${convertedSprint.img_path}`,
+                    `${import.meta.env['VITE_FIRE_BUNNY_STORAGE']}/sprints/${convertedSprint.img_path}`,
                 )
         },
         selectSprintAndActivateMenuAction(sprint: ISprint$, menuAction: 'restart' | 'delete'): void {

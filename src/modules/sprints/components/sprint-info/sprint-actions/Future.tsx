@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react-lite'
 import { format } from 'date-fns'
 import styles from './SprintActions.module.scss'
-import { ISprint$ } from '@/modules/sprints/mst/types'
+import { type ISprint$ } from '@/modules/sprints/mst/types'
 
 export const Future: React.FC<{ sprint: ISprint$ }> = observer(({ sprint }) => {
     const sprintDay = sprint.focusSprintDay

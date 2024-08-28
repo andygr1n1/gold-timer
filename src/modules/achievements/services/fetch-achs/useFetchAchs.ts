@@ -2,7 +2,7 @@ import { useInfiniteQuery } from '@tanstack/react-query'
 import { compact, flatten, last, uniqWith } from 'lodash-es'
 import { artifactStatus } from '@/services/types'
 import { achService } from '../achService'
-import { IAchSchema, IUseFetchAchs } from '../types'
+import { type IAchSchema, type IUseFetchAchs } from '../types'
 import { query_allAchs } from './query_allAchs'
 import { query_favoriteAchs } from './query_favoriteAchs'
 import { query_activeAchs } from './query_activeAchs'
@@ -18,17 +18,17 @@ export const useFetchAchs = (props: IUseFetchAchs) => {
             let data: IAchSchema[] | undefined = []
 
             if (queryFilter === artifactStatus.all) {
-                data = await query_allAchs({userId, limit, offset, serverSearchInput })
+                data = await query_allAchs({ userId, limit, offset, serverSearchInput })
             }
             if (queryFilter === artifactStatus.favorite) {
-                data = await query_favoriteAchs({userId, limit, offset, serverSearchInput })
+                data = await query_favoriteAchs({ userId, limit, offset, serverSearchInput })
             }
             if (queryFilter === artifactStatus.active) {
-                data = await query_activeAchs({userId, limit, offset, serverSearchInput })
+                data = await query_activeAchs({ userId, limit, offset, serverSearchInput })
             }
 
             if (queryFilter === artifactStatus.deleted) {
-                data = await query_deletedAchs({userId, limit, offset, serverSearchInput })
+                data = await query_deletedAchs({ userId, limit, offset, serverSearchInput })
             }
             return { data, nextCursor }
         },

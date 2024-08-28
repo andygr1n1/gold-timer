@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 import { query_fetchUserDataByEmail } from './query_fetchUserDataByEmail'
-import { IUserDataService } from './types'
+import { type IUserDataService } from './types'
 
 export const useUserData = (props: { email?: string | null }): IUserDataService => {
     const { email } = props

@@ -1,6 +1,6 @@
 import { generateTSClient } from '@/graphql/client'
 import { resolveError, tryCatchRequest } from '@/helpers/tryCatchRequest'
-import { IAchSchema, achSchema } from '../types'
+import { type IAchSchema, achSchema } from '../types'
 import { getQueryFields } from '../getQueryFields'
 
 export const mutation_upsertAch = async ({ values: object }: { values: IAchSchema }) => {

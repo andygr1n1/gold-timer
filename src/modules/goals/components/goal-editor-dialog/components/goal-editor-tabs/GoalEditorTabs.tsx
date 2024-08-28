@@ -2,7 +2,7 @@ import { Tabs } from 'antd'
 import { GoalEditorFormSubmit } from '../goal-editor-form-submit/GoalEditorFormSubmit'
 import { useGoalEditorTabs } from './hooks/useGoalEditorTabs'
 import { CompleteRitualGoal } from './components/CompleteRitualGoal'
-import { IGoalSchema } from '@/modules/goals/shared-service'
+import { type IGoalSchema } from '@/modules/goals/shared-service'
 import { useFormikContext } from 'formik'
 
 export const GoalEditorTabs: React.FC = () => {

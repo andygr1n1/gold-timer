@@ -1,5 +1,5 @@
 import { convertStringDate } from '@/helpers/date.helpers'
-import { INoteSchema } from '@/modules/notes/shared-services/types'
+import { type INoteSchema } from '@/modules/notes/shared-services/types'
 import { useFormikContext } from 'formik'
 
 export const NoteCreatedDaysAgo = () => {

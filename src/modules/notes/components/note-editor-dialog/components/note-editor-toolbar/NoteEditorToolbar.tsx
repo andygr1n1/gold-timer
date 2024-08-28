@@ -1,6 +1,6 @@
 import { useFormikContext } from 'formik'
 import { useNoteEditor$ } from '../../stores/note-editor-store/useNoteEditor.store'
-import { INoteSchema } from '@/modules/notes/shared-services/types'
+import { type INoteSchema } from '@/modules/notes/shared-services/types'
 import { ToggleFavoriteNewNote } from './components/ToggleFavoriteNewNote'
 import { NoteIsFavorite } from '@/modules/notes/shared-components/note-is-favorite/NoteIsFavorite'
 import { NoteIsArchived } from '@/modules/notes/shared-components/note-is-archived/NoteIsArchived'

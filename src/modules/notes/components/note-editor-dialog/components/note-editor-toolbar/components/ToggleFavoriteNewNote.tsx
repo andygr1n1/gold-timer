@@ -1,7 +1,7 @@
 import { StyledButton } from '@/components/buttons/StyledButton'
 import { IconHeart } from '@/assets/icons/IconHeart'
 import { useFormikContext } from 'formik'
-import { INoteSchema } from '@/modules/notes/shared-services/types'
+import { type INoteSchema } from '@/modules/notes/shared-services/types'
 
 export const ToggleFavoriteNewNote = () => {
     const formikContext = useFormikContext<INoteSchema>()

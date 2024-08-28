@@ -2,7 +2,7 @@ import { XTooltip } from '@/components-x/x-tooltip/XTooltip'
 import { StyledButton } from '@/components/buttons/StyledButton'
 // import { useMutateGoalDeletedAt } from '@/modules/goals/service'
 import { IconDeleteTemp } from '@/assets/icons/IconDeleteTemp'
-import { ReactNode } from 'react'
+import { type ReactNode } from 'react'
 import { useUpdateGoalDeletedAt } from './hook/useUpdateGoalDeletedAt.hook'
 import { formatDateWithTimezone } from '@/helpers/date.helpers'
 

@@ -5,22 +5,23 @@ import { server_getSessionCredentials } from '@/services/server_getSessionCreden
 import { Client, cacheExchange, fetchExchange } from 'urql'
 
 export const generateClient = (): GraphQLClient => {
-    const endpoint = import.meta.env.VITE_CLIENT_ENDPOINT
+    const endpoint = import.meta.env['VITE_CLIENT_ENDPOINT']
     const client = new GraphQLClient(endpoint, {
-        headers: { 'x-hasura-admin-secret': import.meta.env.VITE_X_HASURA_ADMIN_SECRET },
+        headers: { 'x-hasura-admin-secret': import.meta.env['VITE_X_HASURA_ADMIN_SECRET'] },
     })
 
     return client
 }
 
-export const generateTSClient = async () => {
+export const generateTSClient = async (opts?: { new: boolean }) => {
     const { accessJwt } = await getAccessJwt()
     const Authorization = `Bearer ${accessJwt}`
 
-    let client = window.genqlClient
+    let client = opts?.new ? null : window.genqlClient
+
     if (!client) {
         client = createClient({
-            url: import.meta.env.VITE_CLIENT_ENDPOINT,
+            url: import.meta.env['VITE_CLIENT_ENDPOINT'],
             headers: { Authorization },
             batch: true,
         })
@@ -30,14 +31,14 @@ export const generateTSClient = async () => {
     return client
 }
 
-export const generateURQLClient = async () => {
+export const generateURQLClient = async (opts?: { new: boolean }) => {
     const { accessJwt } = await getAccessJwt()
     const Authorization = `Bearer ${accessJwt}`
-    let client = window.urqlClient
+    let client = opts?.new ? null : window.urqlClient
 
     if (!client) {
         client = new Client({
-            url: import.meta.env.VITE_CLIENT_ENDPOINT,
+            url: import.meta.env['VITE_CLIENT_ENDPOINT'],
             exchanges: [cacheExchange, fetchExchange],
             fetchOptions: {
                 headers: { Authorization },

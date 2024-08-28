@@ -11,9 +11,7 @@
         "tsc": "tsc && yarn lint:fix",
         "test": "vitest",
         "coverage": "vitest --coverage",
-        "gen": "dotenv -- cross-var gql.tada generate schema %ENDPOINT% -o schema.graphql --header \"x-hasura-admin-secret: %ADMIN_SECRET%\"",
-        "gen-output": "gql.tada generate output",
-        "codegen": "graphql-codegen --config codegen.ts"
+        "gen": "dotenv -- cross-var gql.tada generate schema %VITE_CLIENT_ENDPOINT% -o schema.graphql --header \"x-hasura-admin-secret: %VITE_X_HASURA_ADMIN_SECRET%\" && gql.tada generate output"
     },
     "dependencies": {
         "@esbuild-plugins/node-globals-polyfill": "^0.2.3",
@@ -24,6 +22,7 @@
         "@tiptap/extension-color": "^2.5.7",
         "@tiptap/extension-heading": "^2.5.7",
         "@tiptap/extension-image": "^2.6.6",
+        "@tiptap/extension-link": "^2.6.6",
         "@tiptap/extension-text-style": "^2.5.7",
         "@tiptap/extension-underline": "^2.5.7",
         "@tiptap/pm": "^2.5.7",
@@ -81,10 +80,6 @@
     "devDependencies": {
         "@0no-co/graphqlsp": "^1.12.13",
         "@emotion/react": "^11.11.3",
-        "@graphql-codegen/cli": "5.0.2",
-        "@graphql-codegen/client-preset": "4.3.3",
-        "@graphql-codegen/introspection": "^4.0.3",
-        "@graphql-codegen/typescript-urql": "^4.0.0",
         "@mertasan/tailwindcss-variables": "^2.7.0",
         "@tanstack/eslint-plugin-query": "^5.20.1",
         "@tanstack/react-query-devtools": "^5.17.18",

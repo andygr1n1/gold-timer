@@ -1,12 +1,12 @@
 import { formatDateWithTimezone } from '@/helpers/date.helpers'
 import { generateNewRitualCircle } from '@/helpers/generateNewRitualCircle'
-import { IGoalSchema, goalStatusEnum } from '@/modules/goals/shared-service'
+import { type IGoalSchema, goalStatusEnum } from '@/modules/goals/shared-service'
 import { useMutation } from '@tanstack/react-query'
 import { mutation_userCoins } from '../mutation_userCoins'
 import { useRecalculateUserCoins } from '../../hooks/useRecalculateUserCoins'
 import { useInvalidateGoals } from '@/modules/goals/shared-hooks/useInvalidateGoals'
 import { useInvalidateUser } from '@/modules/goals/shared-hooks/useInvalidateUse'
-import { IUpdateGoalRitualSchema } from '../types'
+import { type IUpdateGoalRitualSchema } from '../types'
 import { mutation_ritualizeGoal } from './mutation_ritualizeGoal'
 
 export const useRitualizeGoal = () => {

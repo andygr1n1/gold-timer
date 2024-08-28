@@ -1,6 +1,6 @@
 import { convertStringDate, formatDateWithTimezone, prepareFinishedAtForInsert } from '@/helpers/date.helpers'
 import { setGoalDifficulty } from '@/helpers/setGoalDifficulty'
-import { IGoalSchema } from '@/modules/goals/shared-service'
+import { type IGoalSchema } from '@/modules/goals/shared-service'
 
 export const goalSnapshotOut = (props: { goal: IGoalSchema }) => {
     const { goal } = props

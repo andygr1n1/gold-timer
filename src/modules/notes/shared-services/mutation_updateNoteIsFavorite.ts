@@ -1,6 +1,6 @@
 import { generateTSClient } from '@/graphql/client'
 import { resolveError, tryCatchRequest } from '@/helpers/tryCatchRequest'
-import { INoteSchema, noteSchema } from '@/modules/notes/shared-services/types'
+import { type INoteSchema, noteSchema } from '@/modules/notes/shared-services/types'
 import { getQueryFields } from './getQueryFields'
 
 export const mutation_updateNoteIsFavorite = async ({

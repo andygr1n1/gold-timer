@@ -1,6 +1,6 @@
 import { resolveError, tryCatchRequest } from '@/helpers/tryCatchRequest'
 import { generateTSClient } from '@/graphql/client'
-import { ICreateLabelForm, notesLabelsResponseSchema } from '../../../service/types'
+import { type ICreateLabelForm, notesLabelsResponseSchema } from '../../../service/types'
 
 export const validation_noteLabelName = async ({ value }: { value: string }) => {
     return await tryCatchRequest<Promise<undefined>, ICreateLabelForm[] | undefined>(

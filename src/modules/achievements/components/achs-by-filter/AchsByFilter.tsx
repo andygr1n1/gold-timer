@@ -1,7 +1,7 @@
 import { ModuleWrapper } from '@/components/ModuleWrapper'
 import { useLocation } from 'react-router-dom'
 import { Suspense, lazy } from 'react'
-import { IArtifactStatus } from '@/services/types'
+import { type IArtifactStatus } from '@/services/types'
 import { AchList } from './ach-list/AchList'
 import { AchHeader } from './ach-header/AchHeader'
 

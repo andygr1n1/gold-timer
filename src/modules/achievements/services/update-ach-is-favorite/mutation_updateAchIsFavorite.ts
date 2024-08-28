@@ -1,7 +1,7 @@
 import { generateTSClient } from '@/graphql/client'
 import { resolveError, tryCatchRequest } from '@/helpers/tryCatchRequest'
 import { getQueryFields } from '../getQueryFields'
-import { IAchSchema, achSchema } from '../types'
+import { type IAchSchema, achSchema } from '../types'
 
 export const mutation_updateAchIsFavorite = async ({
     id,

@@ -1,7 +1,7 @@
 import { XSelect } from '@/components-x/x-select/XSelect'
 import { DaysOfTheWeek, formatDateWithTimezone, convertStringDate, setMidnightTime } from '@/helpers/date.helpers'
 import { generateNewRitualCircle } from '@/helpers/generateNewRitualCircle'
-import { IGoalSchema } from '@/modules/goals/shared-service'
+import { type IGoalSchema } from '@/modules/goals/shared-service'
 import { useFormikContext } from 'formik'
 import { useEffect } from 'react'
 

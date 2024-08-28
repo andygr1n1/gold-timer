@@ -1,7 +1,7 @@
 import { StyledButton } from '@/components/buttons/StyledButton'
 import { IconHeart } from '@/assets/icons/IconHeart'
 import { useFormikContext } from 'formik'
-import { IAchSchema } from '@/modules/achievements/services/types'
+import { type IAchSchema } from '@/modules/achievements/services/types'
 
 export const ToggleFavoriteNewAch = () => {
     const formikContext = useFormikContext<IAchSchema>()

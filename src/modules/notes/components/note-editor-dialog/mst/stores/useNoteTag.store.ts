@@ -1,4 +1,4 @@
-import { Instance, types } from 'mobx-state-tree'
+import { type Instance, types } from 'mobx-state-tree'
 
 export const NoteEditorDialog$ = types
     .model('NoteEditorDialog$', {

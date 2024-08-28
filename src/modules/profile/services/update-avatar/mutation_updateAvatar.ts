@@ -1,6 +1,6 @@
 import { generateTSClient } from '@/graphql/client'
 import { resolveError, tryCatchRequest } from '@/helpers/tryCatchRequest'
-import { IUserProfileSchema, userProfileSchema } from '../types'
+import { type IUserProfileSchema, userProfileSchema } from '../types'
 
 export const mutation_updateAvatar = async ({ imgPath: avatar }: { imgPath: string }) => {
     const client = await generateTSClient()

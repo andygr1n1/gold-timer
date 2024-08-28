@@ -2,7 +2,7 @@ import { observer } from 'mobx-react-lite'
 import { SprintProgress } from './SprintProgress'
 import { SprintImg } from './SprintImg'
 import { SprintDay } from './SprintDay'
-import { ISprint$ } from '../../mst/types'
+import { type ISprint$ } from '../../mst/types'
 
 export const SprintInfo: React.FC<{ sprint: ISprint$ }> = observer(({ sprint }) => {
     const { sprint_days, progress } = sprint

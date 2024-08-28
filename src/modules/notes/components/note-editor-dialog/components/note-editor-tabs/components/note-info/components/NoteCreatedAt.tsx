@@ -1,7 +1,7 @@
 import { format } from 'date-fns'
 import { convertStringDate } from '@/helpers/date.helpers'
 import { useFormikContext } from 'formik'
-import { INoteSchema } from '@/modules/notes/shared-services/types'
+import { type INoteSchema } from '@/modules/notes/shared-services/types'
 import { NoteCreatedDaysAgo } from './NoteCreatedDaysAgo'
 
 export const NoteCreatedAt = () => {

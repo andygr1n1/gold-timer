@@ -2,7 +2,7 @@ import { Suspense, lazy } from 'react'
 import { ModuleWrapper } from '@/components/ModuleWrapper'
 import { useLocation } from 'react-router-dom'
 import { GoalsCards } from './components/GoalsCards'
-import { IGoalStatus } from '@/modules/goals/shared-service/types'
+import { type IGoalStatus } from '@/modules/goals/shared-service/types'
 import { GoalsHeader } from './components/GoalsHeader'
 const GoalEditorDialog = lazy(() => import('@/modules/goals/components/goal-editor-dialog/GoalEditorDialog'))
 

@@ -1,13 +1,13 @@
 import ky from 'ky'
 import { resolveError } from '@/helpers/tryCatchRequest'
-import { ISessionCredentials } from '@/modules/auth/login/services/types'
+import { type ISessionCredentials } from '@/modules/auth/login/services/types'
 import { getSessionJWTFromCookie } from '@/helpers/universalCookie'
 
 export const server_getSessionCredentials = async (): Promise<
     { serverCredentials: ISessionCredentials } | undefined
 > => {
-    const endpoint = import.meta.env.VITE_NODE_HEROKU_ORIGIN
-    const xapikey = import.meta.env.VITE_X_API_KEY
+    const endpoint = import.meta.env['VITE_NODE_HEROKU_ORIGIN']
+    const xapikey = import.meta.env['VITE_X_API_KEY']
 
     try {
         const res = await ky

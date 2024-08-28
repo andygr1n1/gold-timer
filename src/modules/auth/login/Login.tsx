@@ -5,7 +5,7 @@ import { GoogleLogin } from '@/components/google-login/GoogleLogin'
 import { StyledButton } from '@/components/buttons/StyledButton'
 import { useLoginOnSubmit } from './hooks/useLoginOnSubmit'
 import { useLoginOnValidate } from './hooks/useLoginOnValidate'
-import { IUserLoginSchema } from './services/types'
+import { type IUserLoginSchema } from './services/types'
 import { useLoginInitialValues } from './hooks/useLoginInitialValues'
 import { AuthEmailInput } from '../shared-components/AuthEmailInput'
 import { GoogleOAuthProvider } from '@react-oauth/google'
@@ -27,7 +27,7 @@ const Login = () => {
                     <LoginFooter />
                 </Form>
             </Formik>
-            <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
+            <GoogleOAuthProvider clientId={import.meta.env['VITE_GOOGLE_CLIENT_ID']}>
                 <GoogleLogin />
             </GoogleOAuthProvider>
         </div>
