@@ -1,5 +1,5 @@
 import { generateTSClient } from '@/graphql/client'
-import { IGoalSchema, goalSchema } from '../../../shared-service/types'
+import { type IGoalSchema, goalSchema } from '../../../shared-service/types'
 import { resolveError, tryCatchRequest } from '@/helpers/tryCatchRequest'
 
 export const mutation_updateGoalIsFavorite = async (props: {

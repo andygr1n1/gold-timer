@@ -1,5 +1,5 @@
 import { add, getDay, set } from 'date-fns'
-import { IGoalRitualType, goalRitualType } from '@/modules/goals/shared-service'
+import { type IGoalRitualType, goalRitualType } from '@/modules/goals/shared-service'
 
 interface INewRitualCircleProps {
     ritual_type: IGoalRitualType

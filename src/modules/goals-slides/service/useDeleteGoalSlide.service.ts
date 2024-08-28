@@ -2,7 +2,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { mutation_deleteGoalSlide } from './mutation_deleteGoalSlide'
 import { deleteImageFromServer } from '@/services/image/image.service'
 import { SERVER_ROUTES } from '@/services/enums'
-import { IGoalSlideSchema, KEY_FetchGoalsSlides } from './types'
+import { type IGoalSlideSchema, KEY_FetchGoalsSlides } from './types'
 
 export const useDeleteGoalSlide = () => {
     const queryClient = useQueryClient()

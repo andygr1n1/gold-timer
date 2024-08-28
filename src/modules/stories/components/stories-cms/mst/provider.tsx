@@ -1,18 +1,18 @@
-import { ReactNode, createContext, useContext } from 'react'
-import { INotes$, Notes$ } from './stores/Notes.store'
-const storeContext = createContext<INotes$ | null>(null)
+import { type ReactNode, createContext, useContext } from 'react'
+import { type IStories$, Stories$ } from './stores/Stories.store'
+const storeContext = createContext<IStories$ | null>(null)
 
-export const notes$ = Notes$.create({})
+export const stories$ = Stories$.create({})
 
-export const useNotes$ = (): INotes$ => {
+export const useStories$ = (): IStories$ => {
     const store = useContext(storeContext)
     if (!store) {
-        throw new Error('useLabel$ shall be used within StoreProvider')
+        throw new Error('useStories$ shall be used within StoreProvider')
     }
 
     return store
 }
 
-export const Notes$Provider = ({ children, store }: { children: ReactNode; store: INotes$ }) => {
+export const Stories$Provider = ({ children, store }: { children: ReactNode; store: IStories$ }) => {
     return <storeContext.Provider value={store}>{children}</storeContext.Provider>
 }

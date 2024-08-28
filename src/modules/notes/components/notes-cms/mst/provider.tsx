@@ -1,5 +1,5 @@
-import { ReactNode, createContext, useContext } from 'react'
-import { INotes$, Notes$ } from './stores/Notes.store'
+import { type ReactNode, createContext, useContext } from 'react'
+import { type INotes$, Notes$ } from './stores/Notes.store'
 const storeContext = createContext<INotes$ | null>(null)
 
 export const notes$ = Notes$.create({})

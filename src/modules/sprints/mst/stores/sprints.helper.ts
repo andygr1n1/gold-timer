@@ -1,5 +1,5 @@
 import { compact } from 'lodash-es'
-import { ISprint$ } from '../types'
+import type { ISprint$ } from '../types'
 
 export const filterSprintByInput = (sprint: ISprint$, filter: string): boolean => {
     if (filter.trim() === '@') return true

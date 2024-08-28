@@ -1,0 +1,3 @@
+echo $VITE_TIPTAP_PRO_TOKEN
+export VITE_TIPTAP_PRO_TOKEN=your_actual_token_value
+yarn dev

@@ -1,7 +1,7 @@
 import { XInput } from '@/components-x/x-input/XInput'
 import { FormLabel } from '@/components/form/FormLabel'
 import { useFormikContext } from 'formik'
-import { IUserProfileSchema } from '@/modules/profile/services'
+import { type IUserProfileSchema } from '@/modules/profile/services'
 
 export const ProfileEmailInput = () => {
     const formikContext = useFormikContext<IUserProfileSchema>()

@@ -4,7 +4,7 @@ import { GoalDeletedAt } from '../../../../shared-components/goal-deleted-at/Goa
 import { CreateChildGoal } from '../../../../shared-components/CreateChildGoal'
 import { ToggleFavoriteNewGoal } from './components/ToggleFavoriteNewGoal'
 import { useGoalEditor$ } from '../../stores/goal-editor-store/useGoalEditor.store'
-import { IGoalSchema } from '@/modules/goals/shared-service'
+import { type IGoalSchema } from '@/modules/goals/shared-service'
 import { useFormikContext } from 'formik'
 
 export const GoalEditorToolbar = () => {

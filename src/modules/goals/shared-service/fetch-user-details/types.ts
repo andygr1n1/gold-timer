@@ -1,4 +1,4 @@
-import { IUserSchema } from '@/services/types'
+import { type IUserSchema } from '@/services/types'
 
 export const KEY_FetchUserDetails = (userId: string) => ['KEY_FetchUserDetails', userId]
 

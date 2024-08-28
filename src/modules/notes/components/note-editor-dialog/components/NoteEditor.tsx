@@ -1,6 +1,6 @@
 import { Formik } from 'formik'
 import { NoteEditorForm } from './NoteEditorForm'
-import { INoteSchema } from '@/modules/notes/shared-services/types'
+import { type INoteSchema } from '@/modules/notes/shared-services/types'
 import { useNoteEditorFormInitialValues } from '../hooks/useNoteEditorFormInitialValues'
 import { useNoteEditorFormOnValidate } from '../hooks/useNoteEditorFormOnValidate'
 import { useNoteEditorFormOnSubmit } from '../hooks/useNoteEditorFormOnSubmit'

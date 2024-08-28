@@ -1,6 +1,6 @@
 import { generateTSClient } from '@/graphql/client'
 import { resolveError, tryCatchRequest } from '@/helpers/tryCatchRequest'
-import { IGoalSchema, goalSchema } from '@/modules/goals/shared-service'
+import { type IGoalSchema, goalSchema } from '@/modules/goals/shared-service'
 
 export const mutation_upsertGoal = async (props: { goal: IGoalSchema }) => {
     const client = await generateTSClient()

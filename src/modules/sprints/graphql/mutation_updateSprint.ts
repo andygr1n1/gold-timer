@@ -1,8 +1,8 @@
 import { gql } from 'graphql-request'
 import { generateClient } from '@/graphql/client'
 import { processError } from '@/helpers/processMessage'
-import { IEditSprintReq } from './helpers/interface'
-import { ISprint$SnIn } from '../mst/types'
+import { type IEditSprintReq } from './helpers/interface'
+import { type ISprint$SnIn } from '../mst/types'
 
 export const mutation_updateSprint = async (options: {
     sprintId: string

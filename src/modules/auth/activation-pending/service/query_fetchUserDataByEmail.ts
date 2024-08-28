@@ -1,5 +1,5 @@
 import { generateTSClient } from '@/graphql/client'
-import { IUserData } from './types'
+import type { IUserData } from './types'
 import { resolveError, tryCatchRequest } from '@/helpers/tryCatchRequest'
 
 export const query_fetchUserDataByEmail = async (email?: string | null): Promise<IUserData | undefined | null> => {

@@ -3,7 +3,7 @@ import { ProfileAvatar } from '@/modules/profile/components/profile-avatar/compo
 import { UploadInput } from '@/components/UploadInput'
 import { UploadHoverAnimation } from './components/UploadHoverAnimation'
 import { useFormikContext } from 'formik'
-import { IUpdateAvatarFormSchema } from '../../services'
+import { type IUpdateAvatarFormSchema } from '../../services'
 
 export const ProfileImageCropDialogTrigger = () => {
     const formikContext = useFormikContext<IUpdateAvatarFormSchema>()

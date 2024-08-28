@@ -1,5 +1,5 @@
 import { formatDateWithTimezone } from '@/helpers/date.helpers'
-import { IGoalSchema } from '../shared-service'
+import { type IGoalSchema } from '../shared-service'
 import { add, set, sub } from 'date-fns'
 
 export const test_data_futureGoal = (): IGoalSchema => ({

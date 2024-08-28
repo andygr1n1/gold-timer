@@ -1,4 +1,4 @@
-import { Checkbox, CheckboxProps } from 'antd'
+import { Checkbox, type CheckboxProps } from 'antd'
 import './XCheckbox.scss'
 
 export const XCheckbox: React.FC<CheckboxProps> = (props) => {

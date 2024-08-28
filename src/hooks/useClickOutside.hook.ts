@@ -1,4 +1,4 @@
-import { MutableRefObject, useEffect } from 'react'
+import { type MutableRefObject, useEffect } from 'react'
 import { MEDIA_QUERY_VALUES_ENUM } from './useMatchMedia.hook'
 
 export const useOutsideAlerter = (

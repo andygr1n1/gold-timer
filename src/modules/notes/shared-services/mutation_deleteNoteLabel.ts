@@ -30,5 +30,6 @@ export const mutation_deleteNoteLabel = async ({ id }: { id: string }) => {
         return response
     } catch (e) {
         await resolveError(e)
+        return
     }
 }

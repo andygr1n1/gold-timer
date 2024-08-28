@@ -1,5 +1,5 @@
 import { extractTextFromHtml } from '@/helpers/extractTextFromHtml'
-import { INoteSchema } from '@/modules/notes/shared-services/types'
+import { type INoteSchema } from '@/modules/notes/shared-services/types'
 
 export const useNoteEditorFormOnValidate = () => {
     const validate = (values: INoteSchema) => {

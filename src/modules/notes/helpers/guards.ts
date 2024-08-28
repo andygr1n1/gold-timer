@@ -1,6 +1,6 @@
 /* */
 
-import { INoteStatus, noteStatus } from '@/modules/notes/shared-services/types'
+import { type INoteStatus, noteStatus } from '@/modules/notes/shared-services/types'
 
 export const isActiveNoteStatus = (status: INoteStatus) => {
     return status === noteStatus.active

@@ -1,5 +1,5 @@
-import { FormikHelpers } from 'formik'
-import { ICreateLabelForm } from '../service/types'
+import { type FormikHelpers } from 'formik'
+import { type ICreateLabelForm } from '../service/types'
 import { useInsertNoteLabel } from '../service/useInsertNoteLabel'
 import { useMs } from '@/hooks/useMs'
 

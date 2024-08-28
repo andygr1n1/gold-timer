@@ -1,6 +1,6 @@
 import { generateTSClient } from '@/graphql/client'
 import { resolveError, tryCatchRequest } from '@/helpers/tryCatchRequest'
-import { ICreateLabelForm, createLabelFormSchema } from './types'
+import { type ICreateLabelForm, createLabelFormSchema } from './types'
 
 export const mutation_insertNoteLabel = async ({ values: object }: { values: ICreateLabelForm }) => {
     const client = await generateTSClient()

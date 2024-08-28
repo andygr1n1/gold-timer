@@ -1,6 +1,6 @@
 import { resolveError, tryCatchRequest } from '@/helpers/tryCatchRequest'
 import { generateTSClient } from '@/graphql/client'
-import { IGoalSchema, IGoalStatus, goalSchema } from '@/modules/goals/shared-service'
+import { type IGoalSchema, type IGoalStatus, goalSchema } from '@/modules/goals/shared-service'
 
 export const mutation_goalStatus = async (props: {
     goal: IGoalSchema

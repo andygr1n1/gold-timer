@@ -2,7 +2,7 @@ import { FormLabel } from '@/components/form/FormLabel'
 import { SelectDayOfWeek } from './SelectDayOfWeek'
 import { SelectDays } from './SelectDays'
 import { RitualTypeSwitch } from './RitualTypeSwitch'
-import { IGoalSchema, goalRitualType } from '@/modules/goals/shared-service'
+import { type IGoalSchema, goalRitualType } from '@/modules/goals/shared-service'
 import { useFormikContext } from 'formik'
 
 export const GoalRitualEditMode = () => {

@@ -1,7 +1,7 @@
 import { XTooltip } from '@/components-x/x-tooltip/XTooltip'
 import { StyledButton } from '@/components/buttons/StyledButton'
 import { IconDeleteTemp } from '@/assets/icons/IconDeleteTemp'
-import { ReactNode } from 'react'
+import { type ReactNode } from 'react'
 import { useUpdateNoteDeletedAt } from './useUpdateNoteDeletedAt'
 import { formatDateWithTimezone } from '@/helpers/date.helpers'
 

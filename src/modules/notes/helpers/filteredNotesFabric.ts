@@ -1,5 +1,5 @@
 import { compact, uniq } from 'lodash-es'
-import { INoteSchema } from '../shared-services/types'
+import { type INoteSchema } from '../shared-services/types'
 import { format } from 'date-fns'
 import { convertStringDate } from '@/helpers/date.helpers'
 

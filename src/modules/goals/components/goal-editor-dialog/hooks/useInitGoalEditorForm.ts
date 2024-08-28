@@ -1,6 +1,6 @@
 import { useFormikContext } from 'formik'
 import { useGoalEditorFormInitialValues } from './useGoalEditorFormInitialValues'
-import { IGoalSchema } from '@/modules/goals/shared-service'
+import { type IGoalSchema } from '@/modules/goals/shared-service'
 import { useEffect } from 'react'
 import { KEY_GoalRitualStore } from '../stores/goal-ritual-store/types'
 import { useQueryClient } from '@tanstack/react-query'

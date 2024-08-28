@@ -1,7 +1,7 @@
 import { AlreadyHaveAccount } from '../shared-components/AlreadyHaveAccount'
 import { IconInfiniteLoading } from '@/assets/icons'
 import { Formik, Form } from 'formik'
-import { IUserRestoreSchema } from './services/types'
+import { type IUserRestoreSchema } from './services/types'
 import { AuthEmailInput } from '../shared-components/AuthEmailInput'
 import { StyledButton } from '@/components/buttons/StyledButton'
 import { useRestoreOnSubmit } from './hooks/useRestoreOnSubmit'

@@ -1,6 +1,6 @@
 import { XInput } from '@/components-x/x-input/XInput'
 import { useFormikContext } from 'formik'
-import { IBaseAuthSchema } from '../shared-services/types'
+import { type IBaseAuthSchema } from '../shared-services/types'
 
 export const AuthNameInput = () => {
     const formikContext = useFormikContext<IBaseAuthSchema>()

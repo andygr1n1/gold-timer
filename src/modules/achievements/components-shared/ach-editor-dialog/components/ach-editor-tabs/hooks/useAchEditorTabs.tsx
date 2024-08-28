@@ -1,4 +1,4 @@
-import { TabsProps } from 'antd'
+import { type TabsProps } from 'antd'
 import { AchInfo } from '../components/ach-info/AchInfo'
 
 export const useAchEditorTabs = () => {

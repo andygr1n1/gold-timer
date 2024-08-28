@@ -1,6 +1,6 @@
 import { useNoteEditor$ } from '../stores/note-editor-store/useNoteEditor.store.ts'
 import { formatDateWithTimezone } from '@/helpers/date.helpers'
-import { INoteSchema } from '@/modules/notes/shared-services/types.ts'
+import { type INoteSchema } from '@/modules/notes/shared-services/types.ts'
 import { useNoteData } from './useNoteData.ts'
 
 export const useNoteEditorFormInitialValues = () => {

@@ -1,5 +1,5 @@
-import { ReactNode, createContext, useContext } from 'react'
-import { ILabelDialog$, LabelDialog$ } from './stores/LabelDialog.store'
+import { type ReactNode, createContext, useContext } from 'react'
+import { type ILabelDialog$, LabelDialog$ } from './stores/LabelDialog.store'
 const storeContext = createContext<ILabelDialog$ | null>(null)
 
 export const labelDialog$ = LabelDialog$.create({})

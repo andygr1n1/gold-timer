@@ -1,6 +1,6 @@
 import { useFormikContext } from 'formik'
 import { useEffect } from 'react'
-import { IUserProfileSchema } from '../../../services'
+import { type IUserProfileSchema } from '../../../services'
 import { useProfile$ } from '../../../stores/useProfile.store'
 import { useProfileDetailsFormInitialValues } from '../../profile-details/hooks/useProfileDetailsFormInitialValues'
 

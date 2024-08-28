@@ -1,4 +1,4 @@
-import { IGoalSchema, IGoalStatus, goalStatusEnum } from '@/modules/goals/shared-service'
+import { type IGoalSchema, type IGoalStatus, goalStatusEnum } from '@/modules/goals/shared-service'
 import { useMutation } from '@tanstack/react-query'
 import { mutation_goalStatus } from './mutation_goalStatus'
 import { mutation_userCoins } from '../mutation_userCoins'

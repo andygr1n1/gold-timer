@@ -3,7 +3,7 @@ import { XInput } from '@/components-x/x-input/XInput'
 import { generateNewRitualCircle } from '@/helpers/generateNewRitualCircle'
 import { formatDateWithTimezone, convertStringDate, setMidnightTime } from '@/helpers/date.helpers'
 import { useFormikContext } from 'formik'
-import { IGoalSchema } from '@/modules/goals/shared-service'
+import { type IGoalSchema } from '@/modules/goals/shared-service'
 
 export const SelectDays = () => {
     const formikContext = useFormikContext<IGoalSchema>()

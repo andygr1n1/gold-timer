@@ -1,5 +1,5 @@
-import { FormikHelpers } from 'formik'
-import { IUserProfileSchema } from '../../../services'
+import { type FormikHelpers } from 'formik'
+import { type IUserProfileSchema } from '../../../services'
 import { useProfile$ } from '../../../stores/useProfile.store'
 import { useUpdateUserProfile } from '../../../services/update-profile-data/useUpdateUserProfile'
 

@@ -1,6 +1,6 @@
 import { IconFolder } from '@/assets/icons'
 import { cn } from '@/helpers/cn'
-import { INoteSchema } from '@/modules/notes/shared-services/types'
+import { type INoteSchema } from '@/modules/notes/shared-services/types'
 
 export const NoteLabel: React.FC<{ note: INoteSchema }> = ({ note }) => {
     if (!note?.label?.name) return null

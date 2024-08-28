@@ -2,7 +2,7 @@ import { XInput } from '@/components-x/x-input/XInput'
 import { FormLabel } from '@/components/form/FormLabel'
 import { useGoalEditor$ } from '../../stores/goal-editor-store/useGoalEditor.store'
 import { useFormikContext } from 'formik'
-import { IGoalSchema } from '@/modules/goals/shared-service'
+import { type IGoalSchema } from '@/modules/goals/shared-service'
 
 export const GoalSloganInput = () => {
     const { viewMode } = useGoalEditor$()

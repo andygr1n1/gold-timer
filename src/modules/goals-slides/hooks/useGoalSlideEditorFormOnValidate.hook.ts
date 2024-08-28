@@ -1,4 +1,4 @@
-import { IGoalSlideSchema, goalSlideFormSchema } from '../service/types'
+import { type IGoalSlideSchema, goalSlideFormSchema } from '../service/types'
 
 export const useGoalSlideEditorFormOnValidate = () => {
     const validate = (values: IGoalSlideSchema) => {

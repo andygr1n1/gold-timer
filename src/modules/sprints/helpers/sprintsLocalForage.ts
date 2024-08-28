@@ -1,4 +1,4 @@
-import { ISprintsFilter$ } from '@/modules/sprints/mst/types'
+import { type ISprintsFilter$ } from '@/modules/sprints/mst/types'
 import localForage from 'localforage'
 
 const sprintsFilterStore = localForage.createInstance({

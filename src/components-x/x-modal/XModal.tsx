@@ -1,5 +1,5 @@
 import { useRef } from 'react'
-import { IXModal } from './types'
+import { type IXModal } from './types'
 import { cn } from '@/helpers/cn'
 import { XModalCustomBody } from './components/XModalCustomBody'
 import { XModalBody } from './components/XModalBody'

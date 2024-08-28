@@ -1,4 +1,4 @@
-import { IXModal } from '../types'
+import { type IXModal } from '../types'
 import { XModalCloseIcon } from './XModalCloseIcon'
 
 export const XModalCustomBody: React.FC<IXModal> = ({ closeIcon, onCancel, customBody }) => {

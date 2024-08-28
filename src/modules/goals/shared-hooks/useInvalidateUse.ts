@@ -1,5 +1,5 @@
 import { useQueryClient } from '@tanstack/react-query'
-import { IUserSchema } from '@/services/types'
+import { type IUserSchema } from '@/services/types'
 import { KEY_FetchUserDetails } from '../shared-service/fetch-user-details/types'
 
 export const useInvalidateUser = () => {

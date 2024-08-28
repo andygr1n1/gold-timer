@@ -1,5 +1,5 @@
 import { useFormikContext } from 'formik'
-import { IGoalSchema } from '@/modules/goals/shared-service'
+import { type IGoalSchema } from '@/modules/goals/shared-service'
 import { useGoalEditor$ } from '../../../../stores/goal-editor-store/useGoalEditor.store'
 import { GoalRitualViewMode } from './components/GoalRitualViewMode'
 import { GoalRitualEditMode } from './components/goal-ritual-edit-mode/GoalRitualEditMode'

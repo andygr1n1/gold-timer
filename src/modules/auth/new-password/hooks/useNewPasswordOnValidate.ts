@@ -1,4 +1,4 @@
-import { IUserNewPasswordSchema, userNewPasswordSchema } from '../services/types'
+import { type IUserNewPasswordSchema, userNewPasswordSchema } from '../services/types'
 
 export const useNewPasswordOnValidate = () => {
     const validate = (values: IUserNewPasswordSchema) => {

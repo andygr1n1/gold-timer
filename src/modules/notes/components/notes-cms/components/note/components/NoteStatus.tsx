@@ -1,7 +1,7 @@
 import { IconDeleteTemp, IconHeart } from '@/assets/icons'
 import { IconArchive } from '@/assets/icons/IconArchive'
 import { StyledButton } from '@/components/buttons/StyledButton'
-import { INoteSchema } from '@/modules/notes/shared-services/types'
+import { type INoteSchema } from '@/modules/notes/shared-services/types'
 
 export const NoteStatus: React.FC<{ note: INoteSchema }> = ({ note }) => {
     return (

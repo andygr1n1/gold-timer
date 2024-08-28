@@ -1,6 +1,6 @@
 import { useQueryClient } from '@tanstack/react-query'
 import { useLocation } from 'react-router-dom'
-import { INoteStatus } from '../shared-services/types'
+import { type INoteStatus } from '../shared-services/types'
 
 export const useInvalidateNotes = () => {
     const queryClient = useQueryClient()

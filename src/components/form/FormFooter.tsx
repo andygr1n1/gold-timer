@@ -1,4 +1,4 @@
-import { ReactNode } from 'react'
+import { type ReactNode } from 'react'
 import { StyledButton } from '../buttons/StyledButton'
 import { XTooltip } from '@/components-x/x-tooltip/XTooltip'
 

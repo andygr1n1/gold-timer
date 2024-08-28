@@ -1,5 +1,5 @@
 import { processError } from '@/helpers/processMessage'
-import { Area } from 'react-easy-crop'
+import { type Area } from 'react-easy-crop'
 
 const createImage = (url: string): Promise<HTMLImageElement> =>
     new Promise((resolve, reject) => {
@@ -61,5 +61,6 @@ export default async function getCroppedImg(imageSrc: string, pixelCrop: Area): 
         return canvas.toDataURL('image/jpeg', 'low')
     } catch (e) {
         processError('getCroppedImg error: ctx is null')
+        return
     }
 }

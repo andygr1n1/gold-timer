@@ -1,15 +1,15 @@
 import clsx from 'clsx'
-import { CSSProperties } from 'react'
+import { type CSSProperties } from 'react'
 import {
-    ChildrenType,
-    EventsType,
-    IPosition,
-    Middleware,
-    PlacesType,
-    PositionStrategy,
     Tooltip,
-    VariantType,
-    WrapperType,
+    type ChildrenType,
+    type EventsType,
+    type IPosition,
+    type Middleware,
+    type PlacesType,
+    type PositionStrategy,
+    type VariantType,
+    type WrapperType,
 } from 'react-tooltip'
 
 export const XTooltip: React.FC<ITooltipController> = (props) => {

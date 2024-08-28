@@ -1,6 +1,6 @@
 import { useQueryClient } from '@tanstack/react-query'
 import { useLocation } from 'react-router-dom'
-import { IGoalSchema, IGoalStatus } from '../shared-service'
+import { type IGoalSchema, type IGoalStatus } from '../shared-service'
 import { KEY_FetchGoal } from '../components/goal-editor-dialog/service/types'
 
 export const useInvalidateGoals = () => {

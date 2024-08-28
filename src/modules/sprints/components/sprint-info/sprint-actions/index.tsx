@@ -3,7 +3,7 @@ import { observer } from 'mobx-react-lite'
 import { CheckActiveDay } from './CheckActiveDay'
 import { Future } from './Future'
 import { Finished } from './Finished'
-import { ISprint$ } from '@/modules/sprints/mst/types'
+import { type ISprint$ } from '@/modules/sprints/mst/types'
 
 export const SprintActions: React.FC<{ sprint: ISprint$ }> = observer(({ sprint }) => {
     const { isStatusFreezed, focusSprintDay, isStatusActive, isStatusFuture } = sprint

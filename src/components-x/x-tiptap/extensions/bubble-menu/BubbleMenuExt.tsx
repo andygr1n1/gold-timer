@@ -1,7 +1,7 @@
-import { IconBold } from '@/components-x/x-rte/icons/IconBold'
-import { IconItalic } from '@/components-x/x-rte/icons/IconItalic'
-import { IconStrikeThrough } from '@/components-x/x-rte/icons/IconStrikeThrough'
-import { IconUnderline } from '@/components-x/x-rte/icons/IconUnderline'
+import { IconBold } from '@/assets/icons/IconBold'
+import { IconItalic } from '@/assets/icons/IconItalic'
+import { IconStrikeThrough } from '@/assets/icons/IconStrikeThrough'
+import { IconUnderline } from '@/assets/icons/IconUnderline'
 import { StyledButton } from '@/components/buttons/StyledButton'
 import { cn } from '@/helpers/cn'
 import { useCurrentEditor } from '@tiptap/react'
@@ -25,7 +25,7 @@ export const BubbleMenuExt: React.FC = () => {
                     <div className='bubble-menu bg-global-bg items-center rounded-md flex shadow-xl p-[1px]'>
                         <Select
                             value={getHeadingValue(editor)}
-                            onChange={(value, option) => {
+                            onChange={(_value, option) => {
                                 if (!option || isArray(option)) return
                                 option.id === 6
                                     ? editor.chain().focus().setParagraph().run()

@@ -1,4 +1,4 @@
-import { IAchSchema, IUseFetchAchsQuery, achsResponseSchema } from '../types'
+import { type IAchSchema, type IUseFetchAchsQuery, achsResponseSchema } from '../types'
 import { resolveError, tryCatchRequest } from '@/helpers/tryCatchRequest'
 import { generateTSClient } from '@/graphql/client'
 import { getQueryFields } from '../getQueryFields'

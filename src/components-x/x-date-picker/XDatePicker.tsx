@@ -1,5 +1,5 @@
 import { format } from 'date-fns'
-import { ChangeEventHandler, useState } from 'react'
+import { type ChangeEventHandler, useState } from 'react'
 import { XCalendar } from './XCalendar'
 import { XInput } from '../x-input/XInput'
 import { XModal } from '../x-modal/XModal'

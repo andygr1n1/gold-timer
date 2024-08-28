@@ -1,6 +1,6 @@
 import { flow, toGenerator, types } from 'mobx-state-tree'
 import { SprintDay } from '../models/SprintDay.model'
-import { ISprintDay } from '../types'
+import { type ISprintDay } from '../types'
 import { isFuture, isPast, isToday, set } from 'date-fns'
 import { compact, last } from 'lodash-es'
 import { SPRINT_STATUS_ENUM } from '@/modules/sprints/helpers/sprints.enum'

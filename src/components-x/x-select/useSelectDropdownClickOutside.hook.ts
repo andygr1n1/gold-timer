@@ -1,4 +1,4 @@
-import { MutableRefObject, useEffect } from 'react'
+import { type MutableRefObject, useEffect } from 'react'
 
 export const useSelectDropdownClickOutside = (options: {
     childRef: MutableRefObject<HTMLDivElement | null>

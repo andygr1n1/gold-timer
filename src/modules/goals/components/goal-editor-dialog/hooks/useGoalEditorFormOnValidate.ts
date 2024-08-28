@@ -1,4 +1,4 @@
-import { IGoalSchema, goalSchema } from '@/modules/goals/shared-service'
+import { type IGoalSchema, goalSchema } from '@/modules/goals/shared-service'
 
 export const useGoalEditorFormOnValidate = () => {
     const validate = (values: IGoalSchema) => {

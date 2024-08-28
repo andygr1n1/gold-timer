@@ -1,5 +1,5 @@
 import { formatDateWithTimezone } from '@/helpers/date.helpers'
-import { IGoalSlideSchema } from '../service/types.ts'
+import { type IGoalSlideSchema } from '../service/types.ts'
 
 export const useGoalSlideEditorFormInitialValues = (): { initialValues: IGoalSlideSchema } => {
     return { initialValues: initialValues() }

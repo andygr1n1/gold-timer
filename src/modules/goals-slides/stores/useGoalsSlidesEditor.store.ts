@@ -1,5 +1,5 @@
 import { useQuery, useQueryClient } from '@tanstack/react-query'
-import { IGoalsSlidesEditorStoreSchema, KEY_GoalsSlidesEditorStore } from './types'
+import { type IGoalsSlidesEditorStoreSchema, KEY_GoalsSlidesEditorStore } from './types'
 
 export const useGoalsSlidesEditor$ = () => {
     const queryClient = useQueryClient()

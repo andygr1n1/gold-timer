@@ -1,6 +1,6 @@
 import { StyledButton } from '@/components/buttons/StyledButton'
 import clsx from 'clsx'
-import { ReactNode } from 'react'
+import { type ReactNode } from 'react'
 
 export const ArtifactsCounterItem: React.FC<{ count: number; icon: ReactNode }> = ({ count, icon }) => {
     return (

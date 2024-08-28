@@ -1,4 +1,4 @@
-import { IUserLoginSchema, userLoginSchema } from '../services/types'
+import { type IUserLoginSchema, userLoginSchema } from '../services/types'
 
 export const useLoginOnValidate = () => {
     const validate = (values: IUserLoginSchema) => {

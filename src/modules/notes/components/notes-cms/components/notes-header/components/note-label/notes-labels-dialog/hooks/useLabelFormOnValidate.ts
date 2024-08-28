@@ -1,5 +1,5 @@
 // import { goalSchema } from '@/modules/goals/shared-service'
-import { ICreateLabelForm } from '../service/types'
+import { type ICreateLabelForm } from '../service/types'
 
 export const useLabelFormOnValidate = () => {
     const validate = (values: ICreateLabelForm) => {
@@ -16,10 +16,9 @@ export const useLabelFormOnValidate = () => {
             errors.name = 'Required field'
         }
 
-         if (!values.duplicateName) {
-             errors.name = 'Label already exists'
-         }
-
+        if (!values.duplicateName) {
+            errors.name = 'Label already exists'
+        }
 
         return errors
     }

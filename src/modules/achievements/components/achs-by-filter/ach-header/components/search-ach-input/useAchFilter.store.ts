@@ -1,7 +1,7 @@
 import { useQuery, useQueryClient } from '@tanstack/react-query'
-import { ChangeEvent, useMemo } from 'react'
+import { type ChangeEvent, useMemo } from 'react'
 import { debounce } from 'lodash-es'
-import { IInputFilter$Schema } from '@/services/types'
+import { type IInputFilter$Schema } from '@/services/types'
 
 export const useAchFilter$ = () => {
     const queryClient = useQueryClient()

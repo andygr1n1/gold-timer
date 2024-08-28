@@ -1,4 +1,4 @@
-import { ReactNode, useLayoutEffect, useRef, useState } from 'react'
+import { type ReactNode, useLayoutEffect, useRef, useState } from 'react'
 import { XInput } from '../x-input/XInput'
 import clsx from 'clsx'
 import { useSelectDropdownClickOutside } from './useSelectDropdownClickOutside.hook'

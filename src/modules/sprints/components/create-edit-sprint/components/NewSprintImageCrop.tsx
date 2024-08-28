@@ -3,7 +3,7 @@ import getCroppedImg from '@/helpers/cropImage'
 import { Button, Slider } from 'antd'
 import { observer } from 'mobx-react-lite'
 import { useCallback, useState } from 'react'
-import Cropper, { Area } from 'react-easy-crop'
+import Cropper, { type Area } from 'react-easy-crop'
 
 export const NewSprintImageCrop = observer(() => {
     const { new_sprint } = useSprintsStore()
@@ -16,7 +16,7 @@ export const NewSprintImageCrop = observer(() => {
     const [zoom, setZoom] = useState(2)
     const [croppedAreaPixels, setCroppedAreaPixels] = useState<Area | null>(null)
 
-    const onCropComplete = useCallback((croppedArea: Area, croppedAreaPixels: Area) => {
+    const onCropComplete = useCallback((_croppedArea: Area, croppedAreaPixels: Area) => {
         setCroppedAreaPixels(croppedAreaPixels)
     }, [])
 

@@ -1,4 +1,4 @@
-import { IEditor$Schema } from '@/services/types'
+import { type IEditor$Schema } from '@/services/types'
 
 export const achService = {
     instance: ['achService'],

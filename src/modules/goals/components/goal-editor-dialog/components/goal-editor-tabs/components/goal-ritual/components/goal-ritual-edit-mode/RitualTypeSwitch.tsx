@@ -1,5 +1,5 @@
 import { XSwitch } from '@/components-x/x-switch/XSwitch'
-import { IGoalSchema, goalRitualType } from '@/modules/goals/shared-service'
+import { type IGoalSchema, goalRitualType } from '@/modules/goals/shared-service'
 import { useFormikContext } from 'formik'
 
 export const RitualTypeSwitch = () => {

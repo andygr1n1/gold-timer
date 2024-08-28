@@ -1,7 +1,7 @@
 import { useLocation } from 'react-router-dom'
 import { isExpiredGoalStatus, isFilterStateRitualized } from '@/modules/goals/helpers/goalsGuards'
 import { isStatusActive, isStatusAll, isStatusCompleted, isStatusDeleted, isStatusFavorite } from '@/services/guards'
-import { IArtifactStatus } from '@/services/types'
+import { type IArtifactStatus } from '@/services/types'
 
 export const useGetGoalsParamsFilter = () => {
     const location = useLocation()

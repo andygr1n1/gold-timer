@@ -1,4 +1,4 @@
-import { IEditor$Schema, editorModeEnum } from '@/services/types'
+import { type IEditor$Schema, editorModeEnum } from '@/services/types'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { achService } from '../../../services/achService'
 import { useCallback } from 'react'

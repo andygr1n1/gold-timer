@@ -1,7 +1,7 @@
 import { gql } from 'graphql-request'
 import { generateClient } from '@/graphql/client'
 import { processError } from '@/helpers/processMessage'
-import { ISprintsDays } from './helpers/interface'
+import { type ISprintsDays } from './helpers/interface'
 
 export const mutation_updateSprintDays = async (options: { id: string; sprintDays: ISprintsDays[] }) => {
     const client = generateClient()

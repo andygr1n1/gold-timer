@@ -8,7 +8,7 @@ import { IconExpired } from '@/assets/icons/IconExpired'
 import { IconFocus } from '@/assets/icons/IconFocus'
 import { IconInfinity } from '@/assets/icons/IconInfinity'
 import { IconCompleted } from '@/assets/icons/IconCompleted'
-import { IGoalSchema } from '@/modules/goals/shared-service'
+import { type IGoalSchema } from '@/modules/goals/shared-service'
 import { useFormikContext } from 'formik'
 
 export const GoalEditorDetails = () => {

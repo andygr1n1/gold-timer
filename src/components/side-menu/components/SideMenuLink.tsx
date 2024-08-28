@@ -3,7 +3,7 @@ import { APP_ROUTES_ENUM } from '@/services/enums'
 import { useSideMenu } from '@/hooks/useSideMenu.hook'
 import clsx from 'clsx'
 import { observer } from 'mobx-react-lite'
-import { ReactNode } from 'react'
+import { type ReactNode } from 'react'
 import { NavLink } from 'react-router-dom'
 
 export const SideMenuLink: React.FC<{

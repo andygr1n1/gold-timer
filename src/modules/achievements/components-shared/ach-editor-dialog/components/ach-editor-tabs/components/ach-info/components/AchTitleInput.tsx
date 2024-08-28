@@ -1,7 +1,7 @@
 import { XInput } from '@/components-x/x-input/XInput'
 import { FormLabel } from '@/components/form/FormLabel'
 import { useFormikContext } from 'formik'
-import { IAchSchema } from '@/modules/achievements/services/types'
+import { type IAchSchema } from '@/modules/achievements/services/types'
 import { useAchEditor$ } from '@/modules/achievements/components-shared/ach-editor-dialog/stores/useAchEditor.store'
 
 export const AchTitleInput = () => {

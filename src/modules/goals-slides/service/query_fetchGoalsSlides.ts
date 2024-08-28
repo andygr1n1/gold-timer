@@ -1,6 +1,6 @@
 import { generateTSClient } from '../../../graphql/client'
 import { resolveError, tryCatchRequest } from '@/helpers/tryCatchRequest'
-import { IGoalSlideSchema, goalsSlidesResponseSchema } from './types'
+import { type IGoalSlideSchema, goalsSlidesResponseSchema } from './types'
 
 export const query_fetchGoalsSlides = async ({
     ownerId,

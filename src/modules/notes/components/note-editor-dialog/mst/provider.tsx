@@ -1,5 +1,5 @@
-import { ReactNode, createContext, useContext } from 'react'
-import { INoteEditorDialog$, NoteEditorDialog$ } from './stores/useNoteTag.store'
+import { type ReactNode, createContext, useContext } from 'react'
+import { type INoteEditorDialog$, NoteEditorDialog$ } from './stores/useNoteTag.store'
 const storeContext = createContext<INoteEditorDialog$ | null>(null)
 
 export const noteEditorDialog$ = NoteEditorDialog$.create({})

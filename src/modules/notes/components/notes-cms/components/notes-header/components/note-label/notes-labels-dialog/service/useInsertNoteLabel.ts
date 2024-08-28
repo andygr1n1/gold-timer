@@ -1,5 +1,5 @@
 import { useMutation } from '@tanstack/react-query'
-import { ICreateLabelForm } from './types'
+import { type ICreateLabelForm } from './types'
 import { mutation_insertNoteLabel } from './mutation_insertNoteLabel'
 import { useInvalidateNotesLabels } from '../hooks/useInvalidateNotesLabels'
 

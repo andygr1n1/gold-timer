@@ -1,4 +1,4 @@
-import { IGoalSchema, goalStatusEnum, goalsResponseSchema } from '../types'
+import { type IGoalSchema, goalStatusEnum, goalsResponseSchema } from '../types'
 import { resolveError, tryCatchRequest } from '@/helpers/tryCatchRequest'
 import { generateTSClient } from '@/graphql/client'
 

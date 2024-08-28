@@ -1,6 +1,6 @@
 import { generateTSClient } from '../../../graphql/client'
 import { resolveError, tryCatchRequest } from '@/helpers/tryCatchRequest'
-import { IGoalSlideSchema, goalSlideSchema } from './types'
+import { type IGoalSlideSchema, goalSlideSchema } from './types'
 
 export const mutation_updateGoalSlideIsActive = async (props: {
     id: string

@@ -1,4 +1,4 @@
-import { IGoalSchema } from '@/modules/goals/shared-service/types'
+import { type IGoalSchema } from '@/modules/goals/shared-service/types'
 import clsx from 'clsx'
 import { calculateIsExpired, calculateIsRitual } from './optimizeActiveGoalsData'
 import { isCompletedGoalStatus } from './goalsGuards'

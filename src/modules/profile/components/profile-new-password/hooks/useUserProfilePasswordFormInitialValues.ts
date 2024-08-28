@@ -1,4 +1,8 @@
-import { IUserProfilePasswordSchema, IUserProfileSchema, useFetchProfileInfo } from '../../../services/index.ts'
+import {
+    type IUserProfilePasswordSchema,
+    type IUserProfileSchema,
+    useFetchProfileInfo,
+} from '../../../services/index.ts'
 
 export const useUserProfilePasswordFormInitialValues = () => {
     const { data, isLoading } = useFetchProfileInfo()

@@ -23,5 +23,6 @@ export const mutation_updateNoteLabel = async ({ id, name }: { id: string; name:
         return response
     } catch (e) {
         await resolveError(e)
+        return
     }
 }

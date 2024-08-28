@@ -1,6 +1,6 @@
 import { resolveError, tryCatchRequest } from '@/helpers/tryCatchRequest'
 import { generateTSClient } from '@/graphql/client'
-import { INoteSchema, noteSchema } from '../types'
+import { type INoteSchema, noteSchema } from '../types'
 import { getQueryFields } from '../getQueryFields'
 
 export const query_fetchNote = async (props: { id: string | null }): Promise<INoteSchema | undefined> => {

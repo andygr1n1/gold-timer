@@ -1,6 +1,6 @@
 import { getCoinsFromCompletedGoal } from '@/helpers/getCoinsFromCompletedGoal'
 import { getCoinsFromRitual } from '@/helpers/getCoinsFromRitual'
-import { IGoalSchema, IGoalStatus, goalStatusEnum } from '@/modules/goals/shared-service'
+import { type IGoalSchema, type IGoalStatus, goalStatusEnum } from '@/modules/goals/shared-service'
 import { useFetchUserDetails } from '@/modules/goals/shared-service/fetch-user-details/useFetchUserDetails'
 import { useUser$ } from '@/services/user-store/userUser.store'
 

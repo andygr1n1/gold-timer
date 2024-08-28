@@ -1,6 +1,6 @@
-import { FormikHelpers } from 'formik'
+import { type FormikHelpers } from 'formik'
 import { server_loginUser } from '../services/server_loginUser'
-import { IUserLoginSchema } from '../services/types'
+import { type IUserLoginSchema } from '../services/types'
 import { useMutation } from '@tanstack/react-query'
 import { useUser$ } from '@/services/user-store/userUser.store'
 import { parseJwt } from '@/helpers/parseJwt'
@@ -31,7 +31,7 @@ export const useLoginOnSubmit = () => {
                     setAccessIdInCookie(res?.accessJWT)
 
                     selectUser({
-                        user: { userId: data?.id, role: data?.role },
+                        user: { id: data?.id, role: data?.role },
                     })
                 },
                 onSettled: () => {

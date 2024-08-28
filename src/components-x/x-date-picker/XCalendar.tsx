@@ -1,6 +1,6 @@
 import { DayPicker, useNavigation } from 'react-day-picker'
-import { XDatePickerProps } from './XDatePicker'
-import { Dispatch, SetStateAction, useEffect } from 'react'
+import type { XDatePickerProps } from './XDatePicker'
+import { type Dispatch, type SetStateAction, useEffect } from 'react'
 import { StyledButton } from '@/components/buttons/StyledButton'
 import { XTooltip } from '../x-tooltip/XTooltip'
 import clsx from 'clsx'

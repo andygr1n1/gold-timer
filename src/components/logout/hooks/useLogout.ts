@@ -1,9 +1,10 @@
-import { useMutation } from '@tanstack/react-query'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { processError } from '@/helpers/processMessage'
 import { server_logoutUser } from '../services/server_logoutUser'
 import { useUser$ } from '@/services/user-store/userUser.store'
 
 export const useLogout = () => {
+    const queryCLient = useQueryClient()
     const userStore = useUser$()
     const mutation = useMutation({
         mutationFn: () => server_logoutUser(),
@@ -11,7 +12,7 @@ export const useLogout = () => {
             processError(error.message)
         },
         onSuccess: () => {
-            userStore.logout()
+            userStore.logout(queryCLient)
         },
     })
 

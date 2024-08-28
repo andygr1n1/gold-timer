@@ -7,7 +7,7 @@ import { StyledButton } from '@/components/buttons/StyledButton'
 import { useNavigate } from 'react-router-dom'
 import { IconFocus } from '@/assets/icons/IconFocus'
 import { AchFilterSelectButton } from './ach-filter-select-button/AchFilterSelectButton'
-import { IArtifactStatus, artifactStatus } from '@/services/types'
+import { type IArtifactStatus, artifactStatus } from '@/services/types'
 import { IconAll } from '@/assets/icons/IconAll'
 
 export const AchFilterSelect = () => {

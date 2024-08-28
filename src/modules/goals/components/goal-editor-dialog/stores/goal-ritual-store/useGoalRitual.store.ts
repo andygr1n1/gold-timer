@@ -1,6 +1,6 @@
 import { useQuery, useQueryClient } from '@tanstack/react-query'
-import { IGoalRitualSchema, KEY_GoalRitualStore } from './types'
-import { IGoalSchema, goalRitualType } from '@/modules/goals/shared-service'
+import { type IGoalRitualSchema, KEY_GoalRitualStore } from './types'
+import { type IGoalSchema, goalRitualType } from '@/modules/goals/shared-service'
 import { useFormikContext } from 'formik'
 import { formatDateWithTimezone } from '@/helpers/date.helpers'
 import { useGoalEditor$ } from '../goal-editor-store/useGoalEditor.store'

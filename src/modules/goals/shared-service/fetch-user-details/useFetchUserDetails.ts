@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
-import { IFetchUserDetails, KEY_FetchUserDetails } from './types'
+import { type IFetchUserDetails, KEY_FetchUserDetails } from './types'
 import { query_userDetails } from './query_userDetails'
 
 export const useFetchUserDetails = (props: { userId: string }): IFetchUserDetails => {

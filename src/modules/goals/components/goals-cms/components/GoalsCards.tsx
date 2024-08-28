@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { IGoalStatus } from '@/modules/goals/shared-service/types'
+import { type IGoalStatus } from '@/modules/goals/shared-service/types'
 import { useFetchGoals } from '@/modules/goals/shared-service/fetch-goals/useFetchGoals'
 import { useInView } from 'react-intersection-observer'
 import { TopGoal } from '../../goals-dashboard/components/TopGoal'

@@ -6,7 +6,7 @@ import {
     isDeletedNoteStatus,
     isFavoriteNoteStatus,
 } from '../../../helpers/guards'
-import { INoteStatus } from '@/modules/notes/shared-services/types'
+import { type INoteStatus } from '@/modules/notes/shared-services/types'
 import { isStatusAll } from '@/services/guards'
 
 export const useGetNotesParamsFilter = () => {

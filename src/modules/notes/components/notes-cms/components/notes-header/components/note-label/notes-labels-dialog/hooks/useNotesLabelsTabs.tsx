@@ -1,4 +1,4 @@
-import { TabsProps } from 'antd'
+import { type TabsProps } from 'antd'
 import { CreateLabelFormik } from '../components/CreateLabelFormik'
 import { NotesLabelsEditor } from '../components/notes-labels-editor/NotesLabelsEditor'
 

@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 
-import { IUserProfileSchema } from '../types'
+import { type IUserProfileSchema } from '../types'
 import { mutation_updateUserProfile } from './mutation_updateUserProfile'
 
 export const useUpdateUserProfile = () => {

@@ -1,6 +1,6 @@
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { profileService } from '../services'
-import { IProfile$ } from './types'
+import { type IProfile$ } from './types'
 
 export const useProfile$ = () => {
     const queryClient = useQueryClient()

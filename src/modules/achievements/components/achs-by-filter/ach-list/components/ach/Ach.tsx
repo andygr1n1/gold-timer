@@ -1,4 +1,4 @@
-import { IAchSchema } from '@/modules/achievements/services/types'
+import { type IAchSchema } from '@/modules/achievements/services/types'
 
 export const Ach: React.FC<{ ach: IAchSchema }> = ({ ach }) => {
     return (
@@ -11,7 +11,7 @@ export const Ach: React.FC<{ ach: IAchSchema }> = ({ ach }) => {
             </div>
             <div className='flex gap-4 cursor-pointer'>
                 <img
-                    src={`${import.meta.env.VITE_FIRE_BUNNY_STORAGE}achievements/${ach.img_path}`}
+                    src={`${import.meta.env['VITE_FIRE_BUNNY_STORAGE']}achievements/${ach.img_path}`}
                     width={120}
                     height={120}
                     className='animate-opacity-3 rounded-lg'

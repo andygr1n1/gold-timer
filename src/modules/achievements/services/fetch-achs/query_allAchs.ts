@@ -1,6 +1,6 @@
 import { resolveError, tryCatchRequest } from '@/helpers/tryCatchRequest'
 import { generateTSClient } from '@/graphql/client'
-import { IAchSchema, IUseFetchAchsQuery, achsResponseSchema } from '../types'
+import { type IAchSchema, type IUseFetchAchsQuery, achsResponseSchema } from '../types'
 import { getQueryFields } from '../getQueryFields'
 
 export const query_allAchs = async ({

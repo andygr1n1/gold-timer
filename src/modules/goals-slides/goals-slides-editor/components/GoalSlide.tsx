@@ -2,7 +2,7 @@ import { XDropdown } from '@/components-x/x-dropdown/XDropdown'
 import { XMenuDropdown } from '@/components-x/x-dropdown/XMenuDropdown'
 import { XMenuItem } from '@/components-x/x-dropdown/XMenuItem'
 import { IconDeleteForever, IconHide, IconShow } from '@/assets/icons'
-import { IGoalSlideSchema } from '../../service/types'
+import { type IGoalSlideSchema } from '../../service/types'
 import { cn } from '@/helpers/cn'
 import { useDeleteGoalSlide } from '../../service/useDeleteGoalSlide.service'
 import { useToggleShowSlide } from '../../hooks/useToggleShowSlide.hook'
@@ -15,7 +15,7 @@ export const GoalSlide: React.FC<{ goalSlide: IGoalSlideSchema }> = ({ goalSlide
             <img
                 title={goalSlide.title}
                 className={cn('h-[100px] w-[100px] cursor-pointer rounded-md', !active && 'opacity-30')}
-                src={`${import.meta.env.VITE_FIRE_BUNNY_STORAGE}/goals-slides/${goalSlide.img_path}`}
+                src={`${import.meta.env['VITE_FIRE_BUNNY_STORAGE']}/goals-slides/${goalSlide.img_path}`}
             />
         </XDropdown>
     )

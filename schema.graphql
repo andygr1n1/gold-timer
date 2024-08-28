@@ -46,6 +46,26 @@ input Int_comparison_exp {
 """
 Boolean expression to compare columns of type "String". All fields are combined with logical 'AND'.
 """
+input String_array_comparison_exp {
+  """is the array contained in the given array value"""
+  _contained_in: [String!]
+
+  """does the array contain the given value"""
+  _contains: [String!]
+  _eq: [String!]
+  _gt: [String!]
+  _gte: [String!]
+  _in: [[String!]!]
+  _is_null: Boolean
+  _lt: [String!]
+  _lte: [String!]
+  _neq: [String!]
+  _nin: [[String!]!]
+}
+
+"""
+Boolean expression to compare columns of type "String". All fields are combined with logical 'AND'.
+"""
 input String_comparison_exp {
   _eq: String
   _gt: String
@@ -3980,6 +4000,45 @@ type mutation_root {
   delete_sprints_by_pk(id: uuid!): sprints
 
   """
+  delete data from the table: "stories"
+  """
+  delete_stories(
+    """filter the rows which have to be deleted"""
+    where: stories_bool_exp!
+  ): stories_mutation_response
+
+  """
+  delete single row from the table: "stories"
+  """
+  delete_stories_by_pk(id: uuid!): stories
+
+  """
+  delete data from the table: "stories_messages"
+  """
+  delete_stories_messages(
+    """filter the rows which have to be deleted"""
+    where: stories_messages_bool_exp!
+  ): stories_messages_mutation_response
+
+  """
+  delete single row from the table: "stories_messages"
+  """
+  delete_stories_messages_by_pk(id: uuid!): stories_messages
+
+  """
+  delete data from the table: "stories_users"
+  """
+  delete_stories_users(
+    """filter the rows which have to be deleted"""
+    where: stories_users_bool_exp!
+  ): stories_users_mutation_response
+
+  """
+  delete single row from the table: "stories_users"
+  """
+  delete_stories_users_by_pk(story_id: uuid!, user_id: uuid!): stories_users
+
+  """
   insert data into the table: "achievements"
   """
   insert_achievements(
@@ -4396,6 +4455,72 @@ type mutation_root {
     """upsert condition"""
     on_conflict: sprints_on_conflict
   ): sprints
+
+  """
+  insert data into the table: "stories"
+  """
+  insert_stories(
+    """the rows to be inserted"""
+    objects: [stories_insert_input!]!
+
+    """upsert condition"""
+    on_conflict: stories_on_conflict
+  ): stories_mutation_response
+
+  """
+  insert data into the table: "stories_messages"
+  """
+  insert_stories_messages(
+    """the rows to be inserted"""
+    objects: [stories_messages_insert_input!]!
+
+    """upsert condition"""
+    on_conflict: stories_messages_on_conflict
+  ): stories_messages_mutation_response
+
+  """
+  insert a single row into the table: "stories_messages"
+  """
+  insert_stories_messages_one(
+    """the row to be inserted"""
+    object: stories_messages_insert_input!
+
+    """upsert condition"""
+    on_conflict: stories_messages_on_conflict
+  ): stories_messages
+
+  """
+  insert a single row into the table: "stories"
+  """
+  insert_stories_one(
+    """the row to be inserted"""
+    object: stories_insert_input!
+
+    """upsert condition"""
+    on_conflict: stories_on_conflict
+  ): stories
+
+  """
+  insert data into the table: "stories_users"
+  """
+  insert_stories_users(
+    """the rows to be inserted"""
+    objects: [stories_users_insert_input!]!
+
+    """upsert condition"""
+    on_conflict: stories_users_on_conflict
+  ): stories_users_mutation_response
+
+  """
+  insert a single row into the table: "stories_users"
+  """
+  insert_stories_users_one(
+    """the row to be inserted"""
+    object: stories_users_insert_input!
+
+    """upsert condition"""
+    on_conflict: stories_users_on_conflict
+  ): stories_users
 
   """
   update data of the table: "achievements"
@@ -4994,6 +5119,90 @@ type mutation_root {
     """updates to execute, in order"""
     updates: [sprints_updates!]!
   ): [sprints_mutation_response]
+
+  """
+  update data of the table: "stories"
+  """
+  update_stories(
+    """sets the columns of the filtered rows to the given values"""
+    _set: stories_set_input
+
+    """filter the rows which have to be updated"""
+    where: stories_bool_exp!
+  ): stories_mutation_response
+
+  """
+  update single row of the table: "stories"
+  """
+  update_stories_by_pk(
+    """sets the columns of the filtered rows to the given values"""
+    _set: stories_set_input
+    pk_columns: stories_pk_columns_input!
+  ): stories
+
+  """
+  update multiples rows of table: "stories"
+  """
+  update_stories_many(
+    """updates to execute, in order"""
+    updates: [stories_updates!]!
+  ): [stories_mutation_response]
+
+  """
+  update data of the table: "stories_messages"
+  """
+  update_stories_messages(
+    """sets the columns of the filtered rows to the given values"""
+    _set: stories_messages_set_input
+
+    """filter the rows which have to be updated"""
+    where: stories_messages_bool_exp!
+  ): stories_messages_mutation_response
+
+  """
+  update single row of the table: "stories_messages"
+  """
+  update_stories_messages_by_pk(
+    """sets the columns of the filtered rows to the given values"""
+    _set: stories_messages_set_input
+    pk_columns: stories_messages_pk_columns_input!
+  ): stories_messages
+
+  """
+  update multiples rows of table: "stories_messages"
+  """
+  update_stories_messages_many(
+    """updates to execute, in order"""
+    updates: [stories_messages_updates!]!
+  ): [stories_messages_mutation_response]
+
+  """
+  update data of the table: "stories_users"
+  """
+  update_stories_users(
+    """sets the columns of the filtered rows to the given values"""
+    _set: stories_users_set_input
+
+    """filter the rows which have to be updated"""
+    where: stories_users_bool_exp!
+  ): stories_users_mutation_response
+
+  """
+  update single row of the table: "stories_users"
+  """
+  update_stories_users_by_pk(
+    """sets the columns of the filtered rows to the given values"""
+    _set: stories_users_set_input
+    pk_columns: stories_users_pk_columns_input!
+  ): stories_users
+
+  """
+  update multiples rows of table: "stories_users"
+  """
+  update_stories_users_many(
+    """updates to execute, in order"""
+    updates: [stories_users_updates!]!
+  ): [stories_users_mutation_response]
 }
 
 """real time info"""
@@ -6844,6 +7053,133 @@ type query_root {
 
   """fetch data from the table: "sprints" using primary key columns"""
   sprints_by_pk(id: uuid!): sprints
+
+  """
+  fetch data from the table: "stories"
+  """
+  stories(
+    """distinct select on columns"""
+    distinct_on: [stories_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [stories_order_by!]
+
+    """filter the rows returned"""
+    where: stories_bool_exp
+  ): [stories!]!
+
+  """
+  fetch aggregated fields from the table: "stories"
+  """
+  stories_aggregate(
+    """distinct select on columns"""
+    distinct_on: [stories_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [stories_order_by!]
+
+    """filter the rows returned"""
+    where: stories_bool_exp
+  ): stories_aggregate!
+
+  """fetch data from the table: "stories" using primary key columns"""
+  stories_by_pk(id: uuid!): stories
+
+  """An array relationship"""
+  stories_messages(
+    """distinct select on columns"""
+    distinct_on: [stories_messages_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [stories_messages_order_by!]
+
+    """filter the rows returned"""
+    where: stories_messages_bool_exp
+  ): [stories_messages!]!
+
+  """An aggregate relationship"""
+  stories_messages_aggregate(
+    """distinct select on columns"""
+    distinct_on: [stories_messages_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [stories_messages_order_by!]
+
+    """filter the rows returned"""
+    where: stories_messages_bool_exp
+  ): stories_messages_aggregate!
+
+  """
+  fetch data from the table: "stories_messages" using primary key columns
+  """
+  stories_messages_by_pk(id: uuid!): stories_messages
+
+  """
+  fetch data from the table: "stories_users"
+  """
+  stories_users(
+    """distinct select on columns"""
+    distinct_on: [stories_users_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [stories_users_order_by!]
+
+    """filter the rows returned"""
+    where: stories_users_bool_exp
+  ): [stories_users!]!
+
+  """
+  fetch aggregated fields from the table: "stories_users"
+  """
+  stories_users_aggregate(
+    """distinct select on columns"""
+    distinct_on: [stories_users_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [stories_users_order_by!]
+
+    """filter the rows returned"""
+    where: stories_users_bool_exp
+  ): stories_users_aggregate!
+
+  """fetch data from the table: "stories_users" using primary key columns"""
+  stories_users_by_pk(story_id: uuid!, user_id: uuid!): stories_users
 }
 
 """restore_password_codes"""
@@ -8040,6 +8376,830 @@ input sprints_variance_order_by {
   duration: order_by
 }
 
+"""
+columns and relationships of "stories"
+"""
+type stories {
+  archived: Boolean!
+  created_at: timestamptz!
+  created_by: uuid!
+  deleted_at: timestamptz
+  id: uuid!
+  img_path: String
+  is_favorite: Boolean!
+
+  """An array relationship"""
+  stories_messages(
+    """distinct select on columns"""
+    distinct_on: [stories_messages_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [stories_messages_order_by!]
+
+    """filter the rows returned"""
+    where: stories_messages_bool_exp
+  ): [stories_messages!]!
+
+  """An aggregate relationship"""
+  stories_messages_aggregate(
+    """distinct select on columns"""
+    distinct_on: [stories_messages_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [stories_messages_order_by!]
+
+    """filter the rows returned"""
+    where: stories_messages_bool_exp
+  ): stories_messages_aggregate!
+  title: String!
+  updated_at: timestamp!
+  updated_by: uuid!
+  users: [uuid!]
+}
+
+"""
+aggregated selection of "stories"
+"""
+type stories_aggregate {
+  aggregate: stories_aggregate_fields
+  nodes: [stories!]!
+}
+
+"""
+aggregate fields of "stories"
+"""
+type stories_aggregate_fields {
+  count(columns: [stories_select_column!], distinct: Boolean): Int!
+  max: stories_max_fields
+  min: stories_min_fields
+}
+
+"""
+Boolean expression to filter rows from the table "stories". All fields are combined with a logical 'AND'.
+"""
+input stories_bool_exp {
+  _and: [stories_bool_exp!]
+  _not: stories_bool_exp
+  _or: [stories_bool_exp!]
+  archived: Boolean_comparison_exp
+  created_at: timestamptz_comparison_exp
+  created_by: uuid_comparison_exp
+  deleted_at: timestamptz_comparison_exp
+  id: uuid_comparison_exp
+  img_path: String_comparison_exp
+  is_favorite: Boolean_comparison_exp
+  stories_messages: stories_messages_bool_exp
+  stories_messages_aggregate: stories_messages_aggregate_bool_exp
+  title: String_comparison_exp
+  updated_at: timestamp_comparison_exp
+  updated_by: uuid_comparison_exp
+  users: uuid_array_comparison_exp
+}
+
+"""
+unique or primary key constraints on table "stories"
+"""
+enum stories_constraint {
+  """
+  unique or primary key constraint on columns "id"
+  """
+  stories_pkey
+}
+
+"""
+input type for inserting data into table "stories"
+"""
+input stories_insert_input {
+  archived: Boolean
+  created_at: timestamptz
+  created_by: uuid
+  deleted_at: timestamptz
+  id: uuid
+  img_path: String
+  is_favorite: Boolean
+  stories_messages: stories_messages_arr_rel_insert_input
+  title: String
+  updated_at: timestamp
+  updated_by: uuid
+  users: [uuid!]
+}
+
+"""aggregate max on columns"""
+type stories_max_fields {
+  created_at: timestamptz
+  created_by: uuid
+  deleted_at: timestamptz
+  id: uuid
+  img_path: String
+  title: String
+  updated_at: timestamp
+  updated_by: uuid
+  users: [uuid!]
+}
+
+"""
+columns and relationships of "stories_messages"
+"""
+type stories_messages {
+  active_by_user: [uuid!]
+  created_at: timestamptz!
+  created_by: uuid!
+  deleted_at: timestamptz
+  description: String
+  id: uuid!
+  img_path: [String!]
+  story_id: uuid!
+  updated_at: timestamptz!
+  updated_by: uuid!
+}
+
+"""
+aggregated selection of "stories_messages"
+"""
+type stories_messages_aggregate {
+  aggregate: stories_messages_aggregate_fields
+  nodes: [stories_messages!]!
+}
+
+input stories_messages_aggregate_bool_exp {
+  count: stories_messages_aggregate_bool_exp_count
+}
+
+input stories_messages_aggregate_bool_exp_count {
+  arguments: [stories_messages_select_column!]
+  distinct: Boolean
+  filter: stories_messages_bool_exp
+  predicate: Int_comparison_exp!
+}
+
+"""
+aggregate fields of "stories_messages"
+"""
+type stories_messages_aggregate_fields {
+  count(columns: [stories_messages_select_column!], distinct: Boolean): Int!
+  max: stories_messages_max_fields
+  min: stories_messages_min_fields
+}
+
+"""
+order by aggregate values of table "stories_messages"
+"""
+input stories_messages_aggregate_order_by {
+  count: order_by
+  max: stories_messages_max_order_by
+  min: stories_messages_min_order_by
+}
+
+"""
+input type for inserting array relation for remote table "stories_messages"
+"""
+input stories_messages_arr_rel_insert_input {
+  data: [stories_messages_insert_input!]!
+
+  """upsert condition"""
+  on_conflict: stories_messages_on_conflict
+}
+
+"""
+Boolean expression to filter rows from the table "stories_messages". All fields are combined with a logical 'AND'.
+"""
+input stories_messages_bool_exp {
+  _and: [stories_messages_bool_exp!]
+  _not: stories_messages_bool_exp
+  _or: [stories_messages_bool_exp!]
+  active_by_user: uuid_array_comparison_exp
+  created_at: timestamptz_comparison_exp
+  created_by: uuid_comparison_exp
+  deleted_at: timestamptz_comparison_exp
+  description: String_comparison_exp
+  id: uuid_comparison_exp
+  img_path: String_array_comparison_exp
+  story_id: uuid_comparison_exp
+  updated_at: timestamptz_comparison_exp
+  updated_by: uuid_comparison_exp
+}
+
+"""
+unique or primary key constraints on table "stories_messages"
+"""
+enum stories_messages_constraint {
+  """
+  unique or primary key constraint on columns "id"
+  """
+  stories_messages_pkey
+}
+
+"""
+input type for inserting data into table "stories_messages"
+"""
+input stories_messages_insert_input {
+  active_by_user: [uuid!]
+  created_at: timestamptz
+  created_by: uuid
+  deleted_at: timestamptz
+  description: String
+  id: uuid
+  img_path: [String!]
+  story_id: uuid
+  updated_at: timestamptz
+  updated_by: uuid
+}
+
+"""aggregate max on columns"""
+type stories_messages_max_fields {
+  active_by_user: [uuid!]
+  created_at: timestamptz
+  created_by: uuid
+  deleted_at: timestamptz
+  description: String
+  id: uuid
+  img_path: [String!]
+  story_id: uuid
+  updated_at: timestamptz
+  updated_by: uuid
+}
+
+"""
+order by max() on columns of table "stories_messages"
+"""
+input stories_messages_max_order_by {
+  active_by_user: order_by
+  created_at: order_by
+  created_by: order_by
+  deleted_at: order_by
+  description: order_by
+  id: order_by
+  img_path: order_by
+  story_id: order_by
+  updated_at: order_by
+  updated_by: order_by
+}
+
+"""aggregate min on columns"""
+type stories_messages_min_fields {
+  active_by_user: [uuid!]
+  created_at: timestamptz
+  created_by: uuid
+  deleted_at: timestamptz
+  description: String
+  id: uuid
+  img_path: [String!]
+  story_id: uuid
+  updated_at: timestamptz
+  updated_by: uuid
+}
+
+"""
+order by min() on columns of table "stories_messages"
+"""
+input stories_messages_min_order_by {
+  active_by_user: order_by
+  created_at: order_by
+  created_by: order_by
+  deleted_at: order_by
+  description: order_by
+  id: order_by
+  img_path: order_by
+  story_id: order_by
+  updated_at: order_by
+  updated_by: order_by
+}
+
+"""
+response of any mutation on the table "stories_messages"
+"""
+type stories_messages_mutation_response {
+  """number of rows affected by the mutation"""
+  affected_rows: Int!
+
+  """data from the rows affected by the mutation"""
+  returning: [stories_messages!]!
+}
+
+"""
+on_conflict condition type for table "stories_messages"
+"""
+input stories_messages_on_conflict {
+  constraint: stories_messages_constraint!
+  update_columns: [stories_messages_update_column!]! = []
+  where: stories_messages_bool_exp
+}
+
+"""Ordering options when selecting data from "stories_messages"."""
+input stories_messages_order_by {
+  active_by_user: order_by
+  created_at: order_by
+  created_by: order_by
+  deleted_at: order_by
+  description: order_by
+  id: order_by
+  img_path: order_by
+  story_id: order_by
+  updated_at: order_by
+  updated_by: order_by
+}
+
+"""primary key columns input for table: stories_messages"""
+input stories_messages_pk_columns_input {
+  id: uuid!
+}
+
+"""
+select columns of table "stories_messages"
+"""
+enum stories_messages_select_column {
+  """column name"""
+  active_by_user
+
+  """column name"""
+  created_at
+
+  """column name"""
+  created_by
+
+  """column name"""
+  deleted_at
+
+  """column name"""
+  description
+
+  """column name"""
+  id
+
+  """column name"""
+  img_path
+
+  """column name"""
+  story_id
+
+  """column name"""
+  updated_at
+
+  """column name"""
+  updated_by
+}
+
+"""
+input type for updating data in table "stories_messages"
+"""
+input stories_messages_set_input {
+  active_by_user: [uuid!]
+  created_at: timestamptz
+  created_by: uuid
+  deleted_at: timestamptz
+  description: String
+  id: uuid
+  img_path: [String!]
+  story_id: uuid
+  updated_at: timestamptz
+  updated_by: uuid
+}
+
+"""
+Streaming cursor of the table "stories_messages"
+"""
+input stories_messages_stream_cursor_input {
+  """Stream column input with initial value"""
+  initial_value: stories_messages_stream_cursor_value_input!
+
+  """cursor ordering"""
+  ordering: cursor_ordering
+}
+
+"""Initial value of the column from where the streaming should start"""
+input stories_messages_stream_cursor_value_input {
+  active_by_user: [uuid!]
+  created_at: timestamptz
+  created_by: uuid
+  deleted_at: timestamptz
+  description: String
+  id: uuid
+  img_path: [String!]
+  story_id: uuid
+  updated_at: timestamptz
+  updated_by: uuid
+}
+
+"""
+update columns of table "stories_messages"
+"""
+enum stories_messages_update_column {
+  """column name"""
+  active_by_user
+
+  """column name"""
+  created_at
+
+  """column name"""
+  created_by
+
+  """column name"""
+  deleted_at
+
+  """column name"""
+  description
+
+  """column name"""
+  id
+
+  """column name"""
+  img_path
+
+  """column name"""
+  story_id
+
+  """column name"""
+  updated_at
+
+  """column name"""
+  updated_by
+}
+
+input stories_messages_updates {
+  """sets the columns of the filtered rows to the given values"""
+  _set: stories_messages_set_input
+
+  """filter the rows which have to be updated"""
+  where: stories_messages_bool_exp!
+}
+
+"""aggregate min on columns"""
+type stories_min_fields {
+  created_at: timestamptz
+  created_by: uuid
+  deleted_at: timestamptz
+  id: uuid
+  img_path: String
+  title: String
+  updated_at: timestamp
+  updated_by: uuid
+  users: [uuid!]
+}
+
+"""
+response of any mutation on the table "stories"
+"""
+type stories_mutation_response {
+  """number of rows affected by the mutation"""
+  affected_rows: Int!
+
+  """data from the rows affected by the mutation"""
+  returning: [stories!]!
+}
+
+"""
+input type for inserting object relation for remote table "stories"
+"""
+input stories_obj_rel_insert_input {
+  data: stories_insert_input!
+
+  """upsert condition"""
+  on_conflict: stories_on_conflict
+}
+
+"""
+on_conflict condition type for table "stories"
+"""
+input stories_on_conflict {
+  constraint: stories_constraint!
+  update_columns: [stories_update_column!]! = []
+  where: stories_bool_exp
+}
+
+"""Ordering options when selecting data from "stories"."""
+input stories_order_by {
+  archived: order_by
+  created_at: order_by
+  created_by: order_by
+  deleted_at: order_by
+  id: order_by
+  img_path: order_by
+  is_favorite: order_by
+  stories_messages_aggregate: stories_messages_aggregate_order_by
+  title: order_by
+  updated_at: order_by
+  updated_by: order_by
+  users: order_by
+}
+
+"""primary key columns input for table: stories"""
+input stories_pk_columns_input {
+  id: uuid!
+}
+
+"""
+select columns of table "stories"
+"""
+enum stories_select_column {
+  """column name"""
+  archived
+
+  """column name"""
+  created_at
+
+  """column name"""
+  created_by
+
+  """column name"""
+  deleted_at
+
+  """column name"""
+  id
+
+  """column name"""
+  img_path
+
+  """column name"""
+  is_favorite
+
+  """column name"""
+  title
+
+  """column name"""
+  updated_at
+
+  """column name"""
+  updated_by
+
+  """column name"""
+  users
+}
+
+"""
+input type for updating data in table "stories"
+"""
+input stories_set_input {
+  archived: Boolean
+  created_at: timestamptz
+  created_by: uuid
+  deleted_at: timestamptz
+  id: uuid
+  img_path: String
+  is_favorite: Boolean
+  title: String
+  updated_at: timestamp
+  updated_by: uuid
+  users: [uuid!]
+}
+
+"""
+Streaming cursor of the table "stories"
+"""
+input stories_stream_cursor_input {
+  """Stream column input with initial value"""
+  initial_value: stories_stream_cursor_value_input!
+
+  """cursor ordering"""
+  ordering: cursor_ordering
+}
+
+"""Initial value of the column from where the streaming should start"""
+input stories_stream_cursor_value_input {
+  archived: Boolean
+  created_at: timestamptz
+  created_by: uuid
+  deleted_at: timestamptz
+  id: uuid
+  img_path: String
+  is_favorite: Boolean
+  title: String
+  updated_at: timestamp
+  updated_by: uuid
+  users: [uuid!]
+}
+
+"""
+update columns of table "stories"
+"""
+enum stories_update_column {
+  """column name"""
+  archived
+
+  """column name"""
+  created_at
+
+  """column name"""
+  created_by
+
+  """column name"""
+  deleted_at
+
+  """column name"""
+  id
+
+  """column name"""
+  img_path
+
+  """column name"""
+  is_favorite
+
+  """column name"""
+  title
+
+  """column name"""
+  updated_at
+
+  """column name"""
+  updated_by
+
+  """column name"""
+  users
+}
+
+input stories_updates {
+  """sets the columns of the filtered rows to the given values"""
+  _set: stories_set_input
+
+  """filter the rows which have to be updated"""
+  where: stories_bool_exp!
+}
+
+"""
+columns and relationships of "stories_users"
+"""
+type stories_users {
+  """An object relationship"""
+  Story: stories
+
+  """An object relationship"""
+  User: heroes
+  story_id: uuid!
+  user_id: uuid!
+}
+
+"""
+aggregated selection of "stories_users"
+"""
+type stories_users_aggregate {
+  aggregate: stories_users_aggregate_fields
+  nodes: [stories_users!]!
+}
+
+"""
+aggregate fields of "stories_users"
+"""
+type stories_users_aggregate_fields {
+  count(columns: [stories_users_select_column!], distinct: Boolean): Int!
+  max: stories_users_max_fields
+  min: stories_users_min_fields
+}
+
+"""
+Boolean expression to filter rows from the table "stories_users". All fields are combined with a logical 'AND'.
+"""
+input stories_users_bool_exp {
+  Story: stories_bool_exp
+  User: heroes_bool_exp
+  _and: [stories_users_bool_exp!]
+  _not: stories_users_bool_exp
+  _or: [stories_users_bool_exp!]
+  story_id: uuid_comparison_exp
+  user_id: uuid_comparison_exp
+}
+
+"""
+unique or primary key constraints on table "stories_users"
+"""
+enum stories_users_constraint {
+  """
+  unique or primary key constraint on columns "user_id", "story_id"
+  """
+  stories_users_pkey
+
+  """
+  unique or primary key constraint on columns "story_id"
+  """
+  stories_users_story_id_key
+
+  """
+  unique or primary key constraint on columns "user_id"
+  """
+  stories_users_user_id_key
+}
+
+"""
+input type for inserting data into table "stories_users"
+"""
+input stories_users_insert_input {
+  Story: stories_obj_rel_insert_input
+  User: heroes_obj_rel_insert_input
+  story_id: uuid
+  user_id: uuid
+}
+
+"""aggregate max on columns"""
+type stories_users_max_fields {
+  story_id: uuid
+  user_id: uuid
+}
+
+"""aggregate min on columns"""
+type stories_users_min_fields {
+  story_id: uuid
+  user_id: uuid
+}
+
+"""
+response of any mutation on the table "stories_users"
+"""
+type stories_users_mutation_response {
+  """number of rows affected by the mutation"""
+  affected_rows: Int!
+
+  """data from the rows affected by the mutation"""
+  returning: [stories_users!]!
+}
+
+"""
+on_conflict condition type for table "stories_users"
+"""
+input stories_users_on_conflict {
+  constraint: stories_users_constraint!
+  update_columns: [stories_users_update_column!]! = []
+  where: stories_users_bool_exp
+}
+
+"""Ordering options when selecting data from "stories_users"."""
+input stories_users_order_by {
+  Story: stories_order_by
+  User: heroes_order_by
+  story_id: order_by
+  user_id: order_by
+}
+
+"""primary key columns input for table: stories_users"""
+input stories_users_pk_columns_input {
+  story_id: uuid!
+  user_id: uuid!
+}
+
+"""
+select columns of table "stories_users"
+"""
+enum stories_users_select_column {
+  """column name"""
+  story_id
+
+  """column name"""
+  user_id
+}
+
+"""
+input type for updating data in table "stories_users"
+"""
+input stories_users_set_input {
+  story_id: uuid
+  user_id: uuid
+}
+
+"""
+Streaming cursor of the table "stories_users"
+"""
+input stories_users_stream_cursor_input {
+  """Stream column input with initial value"""
+  initial_value: stories_users_stream_cursor_value_input!
+
+  """cursor ordering"""
+  ordering: cursor_ordering
+}
+
+"""Initial value of the column from where the streaming should start"""
+input stories_users_stream_cursor_value_input {
+  story_id: uuid
+  user_id: uuid
+}
+
+"""
+update columns of table "stories_users"
+"""
+enum stories_users_update_column {
+  """column name"""
+  story_id
+
+  """column name"""
+  user_id
+}
+
+input stories_users_updates {
+  """sets the columns of the filtered rows to the given values"""
+  _set: stories_users_set_input
+
+  """filter the rows which have to be updated"""
+  where: stories_users_bool_exp!
+}
+
 type subscription_root {
   """An array relationship"""
   achievements(
@@ -9099,6 +10259,192 @@ type subscription_root {
     """filter the rows returned"""
     where: sprints_bool_exp
   ): [sprints!]!
+
+  """
+  fetch data from the table: "stories"
+  """
+  stories(
+    """distinct select on columns"""
+    distinct_on: [stories_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [stories_order_by!]
+
+    """filter the rows returned"""
+    where: stories_bool_exp
+  ): [stories!]!
+
+  """
+  fetch aggregated fields from the table: "stories"
+  """
+  stories_aggregate(
+    """distinct select on columns"""
+    distinct_on: [stories_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [stories_order_by!]
+
+    """filter the rows returned"""
+    where: stories_bool_exp
+  ): stories_aggregate!
+
+  """fetch data from the table: "stories" using primary key columns"""
+  stories_by_pk(id: uuid!): stories
+
+  """An array relationship"""
+  stories_messages(
+    """distinct select on columns"""
+    distinct_on: [stories_messages_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [stories_messages_order_by!]
+
+    """filter the rows returned"""
+    where: stories_messages_bool_exp
+  ): [stories_messages!]!
+
+  """An aggregate relationship"""
+  stories_messages_aggregate(
+    """distinct select on columns"""
+    distinct_on: [stories_messages_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [stories_messages_order_by!]
+
+    """filter the rows returned"""
+    where: stories_messages_bool_exp
+  ): stories_messages_aggregate!
+
+  """
+  fetch data from the table: "stories_messages" using primary key columns
+  """
+  stories_messages_by_pk(id: uuid!): stories_messages
+
+  """
+  fetch data from the table in a streaming manner: "stories_messages"
+  """
+  stories_messages_stream(
+    """maximum number of rows returned in a single batch"""
+    batch_size: Int!
+
+    """cursor to stream the results returned by the query"""
+    cursor: [stories_messages_stream_cursor_input]!
+
+    """filter the rows returned"""
+    where: stories_messages_bool_exp
+  ): [stories_messages!]!
+
+  """
+  fetch data from the table in a streaming manner: "stories"
+  """
+  stories_stream(
+    """maximum number of rows returned in a single batch"""
+    batch_size: Int!
+
+    """cursor to stream the results returned by the query"""
+    cursor: [stories_stream_cursor_input]!
+
+    """filter the rows returned"""
+    where: stories_bool_exp
+  ): [stories!]!
+
+  """
+  fetch data from the table: "stories_users"
+  """
+  stories_users(
+    """distinct select on columns"""
+    distinct_on: [stories_users_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [stories_users_order_by!]
+
+    """filter the rows returned"""
+    where: stories_users_bool_exp
+  ): [stories_users!]!
+
+  """
+  fetch aggregated fields from the table: "stories_users"
+  """
+  stories_users_aggregate(
+    """distinct select on columns"""
+    distinct_on: [stories_users_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [stories_users_order_by!]
+
+    """filter the rows returned"""
+    where: stories_users_bool_exp
+  ): stories_users_aggregate!
+
+  """fetch data from the table: "stories_users" using primary key columns"""
+  stories_users_by_pk(story_id: uuid!, user_id: uuid!): stories_users
+
+  """
+  fetch data from the table in a streaming manner: "stories_users"
+  """
+  stories_users_stream(
+    """maximum number of rows returned in a single batch"""
+    batch_size: Int!
+
+    """cursor to stream the results returned by the query"""
+    cursor: [stories_users_stream_cursor_input]!
+
+    """filter the rows returned"""
+    where: stories_users_bool_exp
+  ): [stories_users!]!
+}
+
+scalar timestamp
+
+"""
+Boolean expression to compare columns of type "timestamp". All fields are combined with logical 'AND'.
+"""
+input timestamp_comparison_exp {
+  _eq: timestamp
+  _gt: timestamp
+  _gte: timestamp
+  _in: [timestamp!]
+  _is_null: Boolean
+  _lt: timestamp
+  _lte: timestamp
+  _neq: timestamp
+  _nin: [timestamp!]
 }
 
 scalar timestamptz
@@ -9119,6 +10465,26 @@ input timestamptz_comparison_exp {
 }
 
 scalar uuid
+
+"""
+Boolean expression to compare columns of type "uuid". All fields are combined with logical 'AND'.
+"""
+input uuid_array_comparison_exp {
+  """is the array contained in the given array value"""
+  _contained_in: [uuid!]
+
+  """does the array contain the given value"""
+  _contains: [uuid!]
+  _eq: [uuid!]
+  _gt: [uuid!]
+  _gte: [uuid!]
+  _in: [[uuid!]!]
+  _is_null: Boolean
+  _lt: [uuid!]
+  _lte: [uuid!]
+  _neq: [uuid!]
+  _nin: [[uuid!]!]
+}
 
 """
 Boolean expression to compare columns of type "uuid". All fields are combined with logical 'AND'.

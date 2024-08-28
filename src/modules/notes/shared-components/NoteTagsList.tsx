@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react-lite'
 import { capitalize } from 'lodash-es'
 import { IconClose } from '@/assets/icons'
-import { INoteSchema } from '../shared-services/types'
+import { type INoteSchema } from '../shared-services/types'
 import { getNoteTags } from '../helpers/getNoteTags'
 
 export const NoteTagsList: React.FC<{ note: INoteSchema; deleteAction?: (goal: string) => void }> = observer(

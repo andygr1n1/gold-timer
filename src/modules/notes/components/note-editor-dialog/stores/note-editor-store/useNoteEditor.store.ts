@@ -1,5 +1,5 @@
 import { useQuery, useQueryClient } from '@tanstack/react-query'
-import { INoteEditorStoreSchema, editorMode } from './types'
+import { type INoteEditorStoreSchema, editorMode } from './types'
 import { notesKeys } from '../../../../shared-services/keys'
 
 export const useNoteEditor$ = () => {

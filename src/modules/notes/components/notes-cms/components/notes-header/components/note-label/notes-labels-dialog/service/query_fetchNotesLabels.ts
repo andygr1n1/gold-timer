@@ -24,5 +24,6 @@ export const query_fetchNotesLabels = async () => {
             .then((result) => notesLabelsResponseSchema.parse(result.data?.notes_labels))
     } catch (e) {
         await resolveError(e)
+        return
     }
 }

@@ -4,7 +4,7 @@ import { StyledButton } from '@/components/buttons/StyledButton'
 import { useRitualizeGoal } from '@/modules/goals/components/goal-editor-dialog/service/ritualize-goal/useRitualizeGoal'
 import { isActiveRitualStatus } from '@/modules/goals/helpers/goalsGuards'
 import { calculateIsFromFuture } from '@/modules/goals/helpers/optimizeActiveGoalsData'
-import { IGoalSchema } from '@/modules/goals/shared-service'
+import { type IGoalSchema } from '@/modules/goals/shared-service'
 
 export const RitualizeGoalMenuItem: React.FC<{ goal: IGoalSchema; onClose: () => void }> = ({
     goal,

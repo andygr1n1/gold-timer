@@ -40,4 +40,5 @@ export enum SERVER_ROUTES {
     GOAL_SLIDE_IMAGE_UPLOAD = 'goal-slide-image-upload',
     GOAL_SLIDE_IMAGE_DELETE = 'goal-slide-image-delete',
     ACH_IMAGE_UPLOAD = 'ach-image-upload',
+    STORY_IMAGE_UPLOAD = 'story-image-upload',
 }

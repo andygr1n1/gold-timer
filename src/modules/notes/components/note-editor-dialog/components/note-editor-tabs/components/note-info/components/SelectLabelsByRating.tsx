@@ -1,6 +1,6 @@
 import { StyledButton } from '@/components/buttons/StyledButton'
 import { useFetchNotesLabels } from '@/modules/notes/components/notes-cms/components/notes-header/components/note-label/notes-labels-dialog/service/useFetchNotesLabels'
-import { INoteSchema } from '@/modules/notes/shared-services/types'
+import { type INoteSchema } from '@/modules/notes/shared-services/types'
 import { useFormikContext } from 'formik'
 import { sortBy } from 'lodash-es'
 

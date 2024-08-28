@@ -1,5 +1,5 @@
-import { FormikHelpers } from 'formik'
-import { IUserRestoreSchema } from '../services/types'
+import { type FormikHelpers } from 'formik'
+import { type IUserRestoreSchema } from '../services/types'
 import { useNavigate } from 'react-router-dom'
 import { APP_ROUTES_ENUM } from '@/services/enums'
 import { useMutation } from '@tanstack/react-query'

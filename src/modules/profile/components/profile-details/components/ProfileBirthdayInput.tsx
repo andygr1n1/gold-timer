@@ -4,7 +4,7 @@ import { FormLabel } from '@/components/form/FormLabel'
 import { prepareFinishedAtForInsert } from '@/helpers/date.helpers'
 import { useFormikContext } from 'formik'
 import { useProfile$ } from '@/modules/profile/stores/useProfile.store'
-import { IUserProfileSchema } from '@/modules/profile/services'
+import { type IUserProfileSchema } from '@/modules/profile/services'
 
 export const ProfileBirthdayInput = () => {
     const { viewMode } = useProfile$()

@@ -4,7 +4,7 @@ import { NotesHeader } from './components/notes-header/NotesHeader'
 import { Suspense } from 'react'
 import NoteEditorDialog from '../note-editor-dialog/NoteEditorDialog'
 import { NotesList } from './components/NotesCards'
-import { INoteStatus } from '../../shared-services/types'
+import { type INoteStatus } from '../../shared-services/types'
 import { Notes$Provider, notes$ } from './mst/provider'
 import { NoteEditorDialog$Provider, noteEditorDialog$ } from '../note-editor-dialog/mst/provider'
 

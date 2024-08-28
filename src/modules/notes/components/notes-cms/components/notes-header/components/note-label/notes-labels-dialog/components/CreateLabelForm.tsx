@@ -1,7 +1,7 @@
 import { Form /* , useFormikContext */ } from 'formik'
 import { StyledButton } from '@/components/buttons/StyledButton'
 import { LabelName } from './label-name/LabelName'
-// import { ICreateLabelForm } from '../service/types'
+// import { type ICreateLabelForm } from '../service/types'
 export const CreateLabelForm = () => {
     // const formikContext = useFormikContext<ICreateLabelForm>()
     return (

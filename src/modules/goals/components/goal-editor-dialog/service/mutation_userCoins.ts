@@ -1,6 +1,6 @@
 import { resolveError, tryCatchRequest } from '@/helpers/tryCatchRequest'
 import { generateTSClient } from '@/graphql/client'
-import { IUserSchema, userSchema } from '@/services/types'
+import { type IUserSchema, userSchema } from '@/services/types'
 
 export const mutation_userCoins = async (props: {
     coins: number

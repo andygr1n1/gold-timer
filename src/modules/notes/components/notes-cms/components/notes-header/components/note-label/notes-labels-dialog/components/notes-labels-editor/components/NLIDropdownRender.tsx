@@ -3,10 +3,10 @@ import { XMenuDropdown } from '@/components-x/x-dropdown/XMenuDropdown'
 import { XMenuItem } from '@/components-x/x-dropdown/XMenuItem'
 import { StyledButton } from '@/components/buttons/StyledButton'
 import { observer } from 'mobx-react-lite'
-import { ICreateLabelForm } from '../../../service/types'
+import { type ICreateLabelForm } from '../../../service/types'
 import { useLabelDialog$ } from '../../../mst/provider'
 import { useDeleteNoteLabel } from './useDeleteNoteLabel'
-import { InputRef } from 'antd'
+import { type InputRef } from 'antd'
 
 export const NLIDropdownRender: React.FC<{ label: ICreateLabelForm; inputEl?: InputRef | null }> = observer(
     ({ label, inputEl }) => {

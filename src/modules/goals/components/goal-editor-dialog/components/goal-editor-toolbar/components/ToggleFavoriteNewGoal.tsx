@@ -1,7 +1,7 @@
 import { StyledButton } from '@/components/buttons/StyledButton'
 import { IconHeart } from '@/assets/icons/IconHeart'
 import { useFormikContext } from 'formik'
-import { IGoalSchema } from '@/modules/goals/shared-service'
+import { type IGoalSchema } from '@/modules/goals/shared-service'
 
 export const ToggleFavoriteNewGoal = () => {
     const formikContext = useFormikContext<IGoalSchema>()

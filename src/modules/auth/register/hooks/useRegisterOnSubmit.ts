@@ -1,6 +1,6 @@
-import { FormikHelpers } from 'formik'
+import { type FormikHelpers } from 'formik'
 import { server_registerUser } from '../services/server_registerUser'
-import { IUserRegisterSchema } from '../services/types'
+import { type IUserRegisterSchema } from '../services/types'
 import { useNavigate } from 'react-router-dom'
 import { useMutation } from '@tanstack/react-query'
 import { APP_ROUTES_ENUM } from '@/services/enums'

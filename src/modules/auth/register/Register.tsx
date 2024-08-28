@@ -1,7 +1,7 @@
 import { AlreadyHaveAccount } from '../shared-components/AlreadyHaveAccount'
 import { IconInfiniteLoading } from '@/assets/icons'
 import { Formik, Form } from 'formik'
-import { IUserRegisterSchema } from './services/types'
+import { type IUserRegisterSchema } from './services/types'
 import { AuthNameInput } from '../shared-components/AuthNameInput'
 import { AuthEmailInput } from '../shared-components/AuthEmailInput'
 import { AuthPasswordInput } from '../shared-components/AuthPasswordInput'

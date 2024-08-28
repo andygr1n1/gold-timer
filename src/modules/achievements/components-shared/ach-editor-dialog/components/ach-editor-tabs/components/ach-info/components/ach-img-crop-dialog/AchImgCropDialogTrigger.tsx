@@ -1,7 +1,7 @@
 import { useSelectUploadFile } from '@/helpers/useSelectUploadFile'
 import { UploadInput } from '@/components/UploadInput'
 import { useFormikContext } from 'formik'
-import { IAchSchema } from '@/modules/achievements/services/types'
+import { type IAchSchema } from '@/modules/achievements/services/types'
 import { IconUpload } from '@/assets/icons'
 import { FormLabel } from '@/components/form/FormLabel'
 import { cn } from '@/helpers/cn'
@@ -22,7 +22,7 @@ export const AchImgCropDialogTrigger = () => {
 
     return (
         <div>
-            <FormLabel title='Logo *' />
+            <FormLabel title='Logo' />
             <div
                 data-testid='profile-avatar-index'
                 className={cn(

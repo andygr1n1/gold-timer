@@ -1,7 +1,7 @@
 import { FormLabel } from '@/components/form/FormLabel'
 import { useFormikContext } from 'formik'
 import { useNoteData } from '../../../../../hooks/useNoteData'
-import { INoteSchema } from '@/modules/notes/shared-services/types'
+import { type INoteSchema } from '@/modules/notes/shared-services/types'
 import { XTiptap } from '@/components-x/x-tiptap/XTiptap'
 
 export const NoteDescriptionRichInput = () => {

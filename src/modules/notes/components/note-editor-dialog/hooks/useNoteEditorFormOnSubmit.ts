@@ -1,5 +1,5 @@
-import { FormikHelpers } from 'formik'
-import { INoteSchema } from '@/modules/notes/shared-services/types'
+import { type FormikHelpers } from 'formik'
+import { type INoteSchema } from '@/modules/notes/shared-services/types'
 import { useNoteEditor$ } from '../stores/note-editor-store/useNoteEditor.store'
 import { useUpsertNote } from '../../../shared-services/upsert-note/useUpsertNote'
 import { noteEditorDialog$ } from '../mst/provider'
