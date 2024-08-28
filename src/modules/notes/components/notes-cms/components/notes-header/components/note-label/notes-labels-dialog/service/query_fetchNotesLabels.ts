@@ -21,7 +21,7 @@ export const query_fetchNotesLabels = async () => {
                 {},
                 // { requestPolicy: 'cache-and-network' },
             )
-            .then((result) => notesLabelsResponseSchema.parse(result.data?.notes_labels))
+            .then((result) => (result.data ? notesLabelsResponseSchema.parse(result.data?.notes_labels) : undefined))
     } catch (e) {
         await resolveError(e)
         return
