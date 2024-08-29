@@ -7,7 +7,7 @@ import { query_activeStories } from './query_activeStories'
 // import { query_deletedNotes } from './query_deletedNotes'
 // import { query_allNotes } from './query_allNotes'
 import { artifactStatus, type IArtifactStatus } from '@/services/types'
-import { type IStorySchema } from '../types'
+import { type IStory } from '../types'
 import { storiesService } from '../storiesService'
 import { query_allStories } from './query_allStories'
 import { query_favoriteStories } from './query_favoriteStories'
@@ -23,7 +23,7 @@ export const useFetchStories = (props: { queryFilter: IArtifactStatus; limit: nu
         queryFn: async (props) => {
             const offset = props.pageParam
             const nextCursor = props.pageParam + 5
-            let data: IStorySchema[] | undefined = []
+            let data: IStory[] | undefined = []
 
             if (queryFilter === artifactStatus.all) {
                 data = await query_allStories({ userId, limit, offset, serverSearchInput })

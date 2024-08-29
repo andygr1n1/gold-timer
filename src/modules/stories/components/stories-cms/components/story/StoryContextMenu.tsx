@@ -2,13 +2,13 @@ import { XMenuDropdown } from '@/components-x/x-dropdown/XMenuDropdown'
 import { XMenuItem } from '@/components-x/x-dropdown/XMenuItem'
 import { IconEdit } from '@/assets/icons'
 import { StyledButton } from '@/components/buttons/StyledButton'
-import { type IStorySchema } from '@/modules/stories/services/types'
+import { type IStory } from '@/modules/stories/services/types'
 import { useStoryEditorDialog$ } from '../../../story-editor-dialog/mst/provider'
 import { StoryIsArchived } from './components/story-is-archived/StoryIsArchived'
 import { StoryIsFavorite } from './components/story-is-favorite/StoryIsFavorite'
 import { StoryIsDeleted } from './components/story-is-deleted/StoryIsDeleted'
 
-export const StoryContextMenu: React.FC<{ onClose: () => void; story: IStorySchema }> = ({ onClose, story }) => {
+export const StoryContextMenu: React.FC<{ onClose: () => void; story: IStory }> = ({ onClose, story }) => {
     const { onChangeField } = useStoryEditorDialog$()
 
     return (

@@ -12,6 +12,7 @@ import { BubbleMenuExt } from './extensions/bubble-menu/BubbleMenuExt'
 import Underline from '@tiptap/extension-underline'
 import Link from '@tiptap/extension-link'
 import { cn } from '@/helpers/cn'
+import { SaveButton } from './extensions/bubble-menu/components/SaveButton'
 
 type ITiptap = {
     onChange?: (html: string) => void
@@ -21,10 +22,22 @@ type ITiptap = {
     children?: ReactNode
     error?: boolean
     errorMessage?: ReactNode
+    onSave?: (html: string) => void
+    customToolbar?: boolean
 }
 
 export const XTiptap: React.FC<ITiptap> = (props) => {
-    const { content, onChange, isLoading = false, readonly = false, children, error, errorMessage } = props
+    const {
+        content,
+        onChange,
+        isLoading = false,
+        readonly = false,
+        children,
+        error,
+        errorMessage,
+        onSave,
+        customToolbar,
+    } = props
 
     const extensions = [
         // Heading.configure({
@@ -122,7 +135,14 @@ export const XTiptap: React.FC<ITiptap> = (props) => {
                 content={content}
                 editorProps={{ attributes: { class: 'rounded-md bg-transparent h-full' } }}
             >
-                <EditorChildrenWrapper {...props}> {children}</EditorChildrenWrapper>
+                <EditorChildrenWrapper {...props}>
+                    {customToolbar && (
+                        <div className='w-full items-end mt-4 flex justify-end h-[30px]'>
+                            <div className='flex flex-auto w-full h-full'>{children}</div>
+                            <SaveButton onSave={onSave} />
+                        </div>
+                    )}
+                </EditorChildrenWrapper>
             </EditorProvider>
             {error && errorMessage && (
                 <div

@@ -1,7 +1,7 @@
 import { generateURQLClient } from '@/graphql/client'
 import { resolveError } from '@/helpers/tryCatchRequest'
 import { graphql } from '@/graphql/tada'
-import { storyResponseFragment } from '../storyResponseFragment'
+import { storyResponseFr } from '../fragments/storyResponseFr'
 import { storySchema } from '../types'
 
 export const mutation_updateStoryIsArchived = async ({ id, isArchived }: { id: string; isArchived: boolean }) => {
@@ -10,11 +10,11 @@ export const mutation_updateStoryIsArchived = async ({ id, isArchived }: { id: s
             mutation update_story_archived($id: uuid!, $archived: Boolean!) {
                 update_stories_by_pk(pk_columns: { id: $id }, _set: { archived: $archived }) {
                     id
-                    ...StoryFragment
+                    ...StoryResponseFr
                 }
             }
         `,
-        [storyResponseFragment],
+        [storyResponseFr],
     )
 
     const urqlClient = await generateURQLClient()
