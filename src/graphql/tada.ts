@@ -9,5 +9,6 @@ export const graphql = initGraphQLTada<{
         jsonb: never
         date: string
         timestamptz: string
+        updated_at: string | null
     }
 }>()
