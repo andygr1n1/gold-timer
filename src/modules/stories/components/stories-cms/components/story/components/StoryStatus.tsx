@@ -1,9 +1,9 @@
 import { IconDeleteTemp, IconHeart } from '@/assets/icons'
 import { IconArchive } from '@/assets/icons/IconArchive'
 import { StyledButton } from '@/components/buttons/StyledButton'
-import { type IStorySchema } from '@/modules/stories/services/types'
+import { type IStory } from '@/modules/stories/services/types'
 
-export const StoryStatus: React.FC<{ story: IStorySchema }> = ({ story }) => {
+export const StoryStatus: React.FC<{ story: IStory }> = ({ story }) => {
     return (
         <div className='flex gap items-center self-end justify-end w-full'>
             {story.is_favorite && (

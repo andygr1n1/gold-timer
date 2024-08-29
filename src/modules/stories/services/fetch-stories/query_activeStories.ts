@@ -1,9 +1,9 @@
-import { storyResponseFragment } from '../storyResponseFragment'
 import { storiesResponseSchema } from './../types'
-import { type IStorySchema } from '../types'
+import { type IStory } from '../types'
 import { resolveError } from '@/helpers/tryCatchRequest'
 import { generateURQLClient } from '@/graphql/client'
 import { graphql } from '@/graphql/tada'
+import { storyResponseFr } from '../fragments/storyResponseFr'
 
 export const query_activeStories = async (props: {
     userId: string
@@ -11,7 +11,7 @@ export const query_activeStories = async (props: {
     limit: number
     offset?: number
     label?: string
-}): Promise<IStorySchema[] | undefined> => {
+}): Promise<IStory[] | undefined> => {
     const { limit, userId, serverSearchInput, offset } = props
 
     const query = graphql(
@@ -28,12 +28,11 @@ export const query_activeStories = async (props: {
                         ]
                     }
                 ) {
-                    id
-                    ...StoryFragment
+                    ...StoryResponseFr
                 }
             }
         `,
-        [storyResponseFragment],
+        [storyResponseFr],
     )
 
     const urqlClient = await generateURQLClient()

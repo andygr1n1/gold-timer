@@ -1,4 +1,7 @@
+import type { ResultOf } from 'gql.tada'
 import { z } from 'zod'
+import type { storyMessageInsertFr } from './fragments/storyMessageInsertFr'
+import type { storyResponseFr } from './fragments/storyResponseFr'
 
 export const newStorySchema = z.object({
     id: z.string().uuid(),
@@ -16,11 +19,13 @@ export const storySchema = z.object({
     title: z.string(),
     img_path: z.string().nullable(),
     created_at: z.string(),
+    updated_at: z.string(),
     deleted_at: z.string().nullable(),
     archived: z.boolean(),
     is_favorite: z.boolean(),
 })
 
-export type IStorySchema = z.infer<typeof storySchema>
-
 export const storiesResponseSchema = z.array(storySchema)
+
+export type IStoryMessage = ResultOf<typeof storyMessageInsertFr>
+export type IStory = ResultOf<typeof storyResponseFr>

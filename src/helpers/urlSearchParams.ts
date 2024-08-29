@@ -6,3 +6,4 @@ export const getParam_Code = () => wurl('code')
 export const getParam_Email = () => wurl('email')
 
 export const getParam_Activation = () => wurl('activation')
+

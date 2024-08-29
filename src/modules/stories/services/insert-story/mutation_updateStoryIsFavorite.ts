@@ -2,7 +2,7 @@ import { generateURQLClient } from '@/graphql/client'
 import { resolveError } from '@/helpers/tryCatchRequest'
 import { storySchema } from '../types'
 import { graphql } from '@/graphql/tada'
-import { storyResponseFragment } from '../storyResponseFragment'
+import { storyResponseFr } from '../fragments/storyResponseFr'
 
 export const mutation_updateStoryIsFavorite = async ({ id, isFavorite }: { id: string; isFavorite: boolean }) => {
     const mutation = graphql(
@@ -10,11 +10,11 @@ export const mutation_updateStoryIsFavorite = async ({ id, isFavorite }: { id: s
             mutation update_story_archived($id: uuid!, $isFavorite: Boolean!) {
                 update_stories_by_pk(pk_columns: { id: $id }, _set: { is_favorite: $isFavorite }) {
                     id
-                    ...StoryFragment
+                    ...StoryResponseFr
                 }
             }
         `,
-        [storyResponseFragment],
+        [storyResponseFr],
     )
 
     const urqlClient = await generateURQLClient()
