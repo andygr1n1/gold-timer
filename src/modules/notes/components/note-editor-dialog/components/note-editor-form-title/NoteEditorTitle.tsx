@@ -25,7 +25,7 @@ const NoteEditorTitle = () => {
         )
 
     return (
-        <span className='flex items-center justify-center gap-5 focus-visible:outline-none min-w-[200px]' tabIndex={0}>
+        <span className='flex items-center justify-start gap-5 focus-visible:outline-none min-w-[200px]' tabIndex={0}>
             {stateText}
         </span>
     )

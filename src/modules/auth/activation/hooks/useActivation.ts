@@ -1,6 +1,6 @@
 import { useMutation } from '@tanstack/react-query'
 
-import { processError, processSuccess } from '@/helpers/processMessage'
+import { processError, notify } from '@/helpers/processMessage'
 import { server_verifyActivationCode } from '../service/server_verifyActivationCode'
 import { getParam_Activation } from '@/helpers/urlSearchParams'
 import { useNavigate } from 'react-router'
@@ -17,7 +17,7 @@ export const useActivation = () => {
             processError(error.message)
         },
         onSuccess: () => {
-            processSuccess(`Welcome to Kzen`)
+            notify(`Welcome to Kzen`)
         },
         onSettled: () => {
             navigate(`/${APP_ROUTES_ENUM.LOGIN}`, { replace: true })

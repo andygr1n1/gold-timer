@@ -5,10 +5,11 @@ import { useUpdateStoryIsArchived } from './useUpdateStoryIsArchived'
 import { IconArchive } from '@/assets/icons/IconArchive'
 import { cn } from '@/helpers/cn'
 
-export const StoryIsArchived: React.FC<{ id: string; isArchived: boolean; label?: ReactNode }> = ({
+export const StoryIsArchived: React.FC<{ id: string; isArchived: boolean; label?: ReactNode; onClose: () => void }> = ({
     id,
     isArchived,
     label,
+    onClose,
 }) => {
     const { toggleArchived } = useUpdateStoryIsArchived()
 
@@ -18,7 +19,10 @@ export const StoryIsArchived: React.FC<{ id: string; isArchived: boolean; label?
                 id='toggleArchiveStory'
                 variant={isArchived ? 'contained' : 'text'}
                 size={'small'}
-                onClick={() => toggleArchived({ id, isArchived: !isArchived })}
+                onClick={() => {
+                    toggleArchived({ id, isArchived: !isArchived })
+                    onClose()
+                }}
                 className={cn(isArchived && '!bg-violet-600')}
                 startIcon={<IconArchive className='mb-0.5 h-6 w-6 opacity-70 hover:opacity-100' />}
             >

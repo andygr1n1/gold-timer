@@ -3,7 +3,7 @@ import { type IUserRestoreSchema } from '../services/types'
 import { useNavigate } from 'react-router-dom'
 import { APP_ROUTES_ENUM } from '@/services/enums'
 import { useMutation } from '@tanstack/react-query'
-import { processSuccess } from '@/helpers/processMessage'
+import { notify } from '@/helpers/processMessage'
 import { server_restoreUser } from '../services/server_restoreUser'
 
 export const useRestoreOnSubmit = () => {
@@ -22,7 +22,7 @@ export const useRestoreOnSubmit = () => {
                 },
                 onSuccess: () => {
                     formikHelpers.resetForm()
-                    processSuccess(`
+                    notify(`
                         A link has been sent to your email.
                         Please check your inbox and click on the link to continue the process.
                         Thank you!`)

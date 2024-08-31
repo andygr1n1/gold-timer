@@ -11,9 +11,7 @@ export const StoriesHeader: React.FC = () => {
                 </div>
                 <div className='flex w-full items-center justify-end gap-2'>
                     <SearchStoriesInput />
-                    <div className='flex gap-2 w-[108px]'>
-                        <StoriesFilterSelect />
-                    </div>
+                    <StoriesFilterSelect />
                 </div>
             </div>
         </div>

@@ -8,7 +8,7 @@ import { cast } from '@/helpers'
 import { SERVER_ROUTES } from '@/services/enums'
 import { useImageCropper$ } from '@/components/image-cropper/stores/useImageCropper.store'
 import { KEY_ImageCropperStore } from '@/components/image-cropper/stores/types'
-import { processSuccess } from '@/helpers/processMessage'
+import { notify } from '@/helpers/processMessage'
 import { useUser$ } from '@/services/user-store/userUser.store'
 
 export const useGoalsSlidesFormOnSubmit = () => {
@@ -35,7 +35,7 @@ export const useGoalsSlidesFormOnSubmit = () => {
             {
                 onSuccess: () => {
                     formikHelpers.resetForm()
-                    processSuccess(`
+                    notify(`
                         Slide added successfully. Thank you!`)
                 },
                 onSettled: () => {

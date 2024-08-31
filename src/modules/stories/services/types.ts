@@ -25,7 +25,6 @@ export const storySchema = z.object({
     is_favorite: z.boolean(),
 })
 
-export const storiesResponseSchema = z.array(storySchema)
 
 export type IStoryMessage = ResultOf<typeof storyMessageInsertFr>
 export type IStory = ResultOf<typeof storyResponseFr>

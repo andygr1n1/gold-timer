@@ -1,4 +1,3 @@
-import { storiesResponseSchema } from './../types'
 import { type IStory } from '../types'
 import { resolveError } from '@/helpers/tryCatchRequest'
 import { generateURQLClient } from '@/graphql/client'
@@ -40,7 +39,7 @@ export const query_activeStories = async (props: {
     try {
         const result = await urqlClient
             .query(query, { limit, userId, offset, title: '%' + serverSearchInput + '%' })
-            .then((res) => storiesResponseSchema.parse(res.data?.stories))
+            .then((res) => res.data?.stories)
 
         return result
     } catch (e) {

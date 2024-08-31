@@ -5,6 +5,8 @@ import { useUuidFromPath } from '@/hooks/useUuidFromPath'
 import { cast } from '@/helpers'
 import { storyMakerService } from '../../service/storyMakerService'
 import { useQueryClient } from '@tanstack/react-query'
+import { extractTextFromHtml } from '@/helpers/extractTextFromHtml'
+import { notify } from '@/helpers/processMessage'
 
 export const StoryTipTap: React.FC = observer(() => {
     const queryClient = useQueryClient()
@@ -15,16 +17,20 @@ export const StoryTipTap: React.FC = observer(() => {
             <XTiptap
                 content=''
                 customToolbar
-                onSave={(html) => {
+                onSave={({ html, clearEditor }) => {
+                    if (!extractTextFromHtml(html).trim().length) {
+                        notify('Type something')
+                        return
+                    }
                     saveStoryMessage({
                         html,
                         imgPath: [],
                         storyId: cast(id),
                         onSuccess: () => {
-                            console.log('hey there')
                             queryClient.invalidateQueries({ queryKey: storyMakerService.useFetchStoryMessages(id) })
                         },
                     })
+                    clearEditor()
                 }}
             ></XTiptap>
         </div>

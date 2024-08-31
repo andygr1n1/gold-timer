@@ -4,10 +4,11 @@ import { IconHeart } from '@/assets/icons/IconHeart'
 import { type ReactNode } from 'react'
 import { useUpdateStoryIsFavorite } from './useUpdateStoryIsFavorite'
 
-export const StoryIsFavorite: React.FC<{ id: string; isFavorite: boolean; label?: ReactNode }> = ({
+export const StoryIsFavorite: React.FC<{ id: string; isFavorite: boolean; label?: ReactNode; onClose: () => void }> = ({
     id,
     isFavorite,
     label,
+    onClose,
 }) => {
     const { toggleFavorite } = useUpdateStoryIsFavorite()
 
@@ -18,7 +19,10 @@ export const StoryIsFavorite: React.FC<{ id: string; isFavorite: boolean; label?
                 error={!!isFavorite}
                 variant={isFavorite ? 'contained' : 'text'}
                 size={'small'}
-                onClick={() => toggleFavorite({ id, isFavorite: !isFavorite })}
+                onClick={() => {
+                    toggleFavorite({ id, isFavorite: !isFavorite })
+                    onClose()
+                }}
                 startIcon={<IconHeart className='mb-0.5 h-6 w-6 opacity-70 hover:opacity-100' />}
             >
                 {label}

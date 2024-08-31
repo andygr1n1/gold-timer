@@ -9,6 +9,7 @@ import { StoryContextMenu } from './StoryContextMenu'
 import type { IStory } from '@/modules/stories/services/types'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { NoImage } from '@/components/NoImage'
+import { formatDateWithTimezone } from '@/helpers/date.helpers'
 
 export const Story: React.FC<{ story: IStory; isMobile: MEDIA_QUERY_VALUES_ENUM }> = observer(({ story, isMobile }) => {
     const { popoverState, setPopoverState } = useTogglePopoverState()
@@ -57,9 +58,10 @@ export const Story: React.FC<{ story: IStory; isMobile: MEDIA_QUERY_VALUES_ENUM 
                             <div className='flex flex-auto h-full text-lg font-atkinson'>{story.title}</div>
                         </div>
                     </div>
-                    <div className='flex justify-between items-center h-[32px]'>
-                        <div className='text-xs mt-4 opacity-80 font-semibold font-kzen cursor-default text-cText'>
-                            {format(story.updated_at as string, 'dd MMMM yyyy HH:mm')}
+                    <div className='flex justify-between mt-2 items-center h-[32px]'>
+                        <div className='text-xs m2-4 opacity-80 font-semibold font-kzen cursor-default text-cText'>
+                            {format(formatDateWithTimezone(new Date(story.updated_at)), 'dd MMMM yyyy HH:mm')} by{' '}
+                            {story.updated_by_user?.name}
                         </div>
                         <div className='flex'>
                             <StoryStatus story={story} />

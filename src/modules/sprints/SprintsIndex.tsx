@@ -7,35 +7,31 @@
 // import { useSprintsStore } from '@/modules/app/mst/StoreProvider'
 // import { APP_ROUTES_ENUM } from '@/services/enums'
 // import { SearchSprintsInput } from '@/modules/sprints/components/SearchSprintsInput'
+import { ModuleWrapper } from '@/components/ModuleWrapper'
 import { observer } from 'mobx-react-lite'
 // import { ArtifactsCounter } from '../dashboard/components/artifacts-counter/ArtifactsCounter'
 
 const SprintsIndex: React.FC = observer(() => {
-    return null
     // const { isMobile } = useWindowMatchMedia(['isMobile'])
     // const { sprints } = useSprintsStore()
 
-    // return (
-    //     <ModuleWrapper topBarNodes={<ArtifactsCounter />}>
-    //         <div className='mb-5 flex w-full flex-wrap justify-start gap-8'>
-    //             <div className='flex w-full flex-col gap-8'>
-    //                 {!isMobile && !!sprints.length && (
-    //                     <div className='mt-5 flex justify-between'>
-    //                         <SprintsFilters />
-    //                         <div className='w-full max-w-lg'>
-    //                             <SearchSprintsInput />
-    //                         </div>
-    //                     </div>
-    //                 )}
-    //                 <SprintsList />
-    //             </div>
-    //         </div>
-    //         {/*  */}
-    //         {/* D I A L O G */}
-    //         {/*  */}
-    //         <SprintMenuDialogConfirm />
-    //     </ModuleWrapper>
-    // )
+    return (
+        <ModuleWrapper>
+            <div className='mb-5 flex w-full flex-wrap justify-start gap-8'>
+                <div className='flex flex-col gap-10 w-full max-w-[600px] mx-auto relative'>S P R I N T S</div>
+
+                {/* {!isMobile && !!sprints.length && (
+                        <div className='mt-5 flex justify-between'>
+                            <SprintsFilters />
+                            <div className='w-full max-w-lg'>
+                                <SearchSprintsInput />
+                            </div>
+                        </div>
+                    )}
+                    <SprintsList /> */}
+            </div>
+        </ModuleWrapper>
+    )
 })
 
 export default SprintsIndex

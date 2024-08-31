@@ -7,6 +7,9 @@ export const storyResponseFr = graphql(`
         img_path
         created_at
         updated_at
+        updated_by_user {
+            name
+        }
         deleted_at
         archived
         is_favorite

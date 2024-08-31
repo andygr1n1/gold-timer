@@ -12,13 +12,12 @@ import { cn } from '@/helpers/cn'
 import { IconFocus } from '@/assets/icons/IconFocus'
 import { IconBook } from '@/assets/icons/IconBook'
 import { IconProfile } from '@/assets/icons/IconProfile'
-import { IconBlog } from '@/assets/icons/IconBlog'
-import { useUser$ } from '@/services/user-store/userUser.store'
 import { IconAchievements } from '@/assets/icons/IconAchievements'
 import { IconLandscape } from '@/assets/icons/IconLandscape'
+import { IconBell } from '@/assets/icons'
+import { IconSprint } from '@/assets/icons/IconSprint'
 
 const SideMenu: React.FC = observer(() => {
-    const { isSuperHero } = useUser$()
     const wrapperRef = useRef<HTMLDivElement | null>(null)
     const { isDesktop } = useWindowMatchMedia(['isDesktop'])
 
@@ -74,33 +73,29 @@ const SideMenu: React.FC = observer(() => {
                                         title='Goals'
                                         icon={<IconFocus width={24} height={24} />}
                                     />
-                                    <SideMenuLink
-                                        to={APP_ROUTES_ENUM.NOTES}
-                                        title='Notes'
-                                        icon={<IconBook width={24} height={24} />}
-                                    />
-                                    {/* {isUnderDevelopment() && (
+
                                     <SideMenuLink
                                         to={APP_ROUTES_ENUM.SPRINTS}
                                         title='Sprints'
                                         icon={<IconSprint width={24} height={24} />}
                                     />
-                                )} */}
                                     <XMenuDivider />
+                                    <SideMenuLink
+                                        to={APP_ROUTES_ENUM.NOTES}
+                                        title='Notes'
+                                        icon={<IconBook width={24} height={24} />}
+                                    />
                                     <SideMenuLink
                                         to={APP_ROUTES_ENUM.STORIES}
                                         title='Stories'
                                         icon={<IconLandscape width={24} height={24} className='ml-[-2px]' />}
                                     />
                                 </div>
-                                {isSuperHero && (
-                                    <SideMenuLink
-                                        to={APP_ROUTES_ENUM.BLOG}
-                                        title='Blog'
-                                        icon={<IconBlog width={24} height={24} className='ml-[-2px]' />}
-                                    />
-                                )}
-                                {/* diary */}
+                                <SideMenuLink
+                                    to={APP_ROUTES_ENUM.NOTIFICATIONS}
+                                    title='Notifications'
+                                    icon={<IconBell width={24} height={24} className='ml-[-2px]' />}
+                                />
                             </div>
                         </div>
                     </div>
