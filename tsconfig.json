@@ -34,6 +34,7 @@
             { "name": "typescript-plugin-css-modules" },
             {
                 "name": "gql.tada/ts-plugin",
+                "shouldCheckForColocatedFragments": false,
                 "schemas": [
                     {
                         "name": "kzen",

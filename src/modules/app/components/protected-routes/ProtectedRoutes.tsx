@@ -23,7 +23,7 @@ const ProtectedRoutes = () => {
                             <Route path={`/${APP_ROUTES_ENUM.PROFILE}`} element={<ProfileIndex />} />
                             <Route path={`/${APP_ROUTES_ENUM.ACHIEVEMENTS}/*`} element={<AchievementsIndex />} />
                             <Route path={`/${APP_ROUTES_ENUM.STORIES}/*`} element={<StoriesIndex />} />
-                            <Route path={`/${APP_ROUTES_ENUM.BLOG}/*`} element={<BlogIndex />} />
+                            <Route path={`/${APP_ROUTES_ENUM.NOTIFICATIONS}/*`} element={<BlogIndex />} />
                             <Route path={`/${APP_ROUTES_ENUM.NOTES}/*`} element={<NotesCmsIndex />} />
                             <Route path={`/${APP_ROUTES_ENUM.GOALS}/*`} element={<GoalsCmsIndex />} />
                             <Route path={`/${APP_ROUTES_ENUM.SPRINTS}`} element={<SprintsIndex />} />

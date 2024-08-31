@@ -8424,8 +8424,11 @@ type stories {
     where: stories_messages_bool_exp
   ): stories_messages_aggregate!
   title: String!
-  updated_at: timestamp!
+  updated_at: timestamptz!
   updated_by: uuid!
+
+  """An object relationship"""
+  updated_by_user: heroes
   users: [uuid!]
 }
 
@@ -8463,8 +8466,9 @@ input stories_bool_exp {
   stories_messages: stories_messages_bool_exp
   stories_messages_aggregate: stories_messages_aggregate_bool_exp
   title: String_comparison_exp
-  updated_at: timestamp_comparison_exp
+  updated_at: timestamptz_comparison_exp
   updated_by: uuid_comparison_exp
+  updated_by_user: heroes_bool_exp
   users: uuid_array_comparison_exp
 }
 
@@ -8491,8 +8495,9 @@ input stories_insert_input {
   is_favorite: Boolean
   stories_messages: stories_messages_arr_rel_insert_input
   title: String
-  updated_at: timestamp
+  updated_at: timestamptz
   updated_by: uuid
+  updated_by_user: heroes_obj_rel_insert_input
   users: [uuid!]
 }
 
@@ -8504,7 +8509,7 @@ type stories_max_fields {
   id: uuid
   img_path: String
   title: String
-  updated_at: timestamp
+  updated_at: timestamptz
   updated_by: uuid
   users: [uuid!]
 }
@@ -8843,7 +8848,7 @@ type stories_min_fields {
   id: uuid
   img_path: String
   title: String
-  updated_at: timestamp
+  updated_at: timestamptz
   updated_by: uuid
   users: [uuid!]
 }
@@ -8891,6 +8896,7 @@ input stories_order_by {
   title: order_by
   updated_at: order_by
   updated_by: order_by
+  updated_by_user: heroes_order_by
   users: order_by
 }
 
@@ -8949,7 +8955,7 @@ input stories_set_input {
   img_path: String
   is_favorite: Boolean
   title: String
-  updated_at: timestamp
+  updated_at: timestamptz
   updated_by: uuid
   users: [uuid!]
 }
@@ -8975,7 +8981,7 @@ input stories_stream_cursor_value_input {
   img_path: String
   is_favorite: Boolean
   title: String
-  updated_at: timestamp
+  updated_at: timestamptz
   updated_by: uuid
   users: [uuid!]
 }
@@ -10428,23 +10434,6 @@ type subscription_root {
     """filter the rows returned"""
     where: stories_users_bool_exp
   ): [stories_users!]!
-}
-
-scalar timestamp
-
-"""
-Boolean expression to compare columns of type "timestamp". All fields are combined with logical 'AND'.
-"""
-input timestamp_comparison_exp {
-  _eq: timestamp
-  _gt: timestamp
-  _gte: timestamp
-  _in: [timestamp!]
-  _is_null: Boolean
-  _lt: timestamp
-  _lte: timestamp
-  _neq: timestamp
-  _nin: [timestamp!]
 }
 
 scalar timestamptz

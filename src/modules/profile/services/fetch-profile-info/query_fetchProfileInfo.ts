@@ -5,7 +5,6 @@ import { graphql } from '@/graphql/tada'
 
 export const query_fetchProfileInfo = async ({ id }: { id: string }) => {
     const client = await generateURQLClient()
-    console.log('id', id)
     try {
         const result = await client
             .query(

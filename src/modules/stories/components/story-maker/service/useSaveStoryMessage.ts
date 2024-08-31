@@ -1,10 +1,36 @@
 import { useMutation } from '@tanstack/react-query'
 import { mutation_insertStoryMessage } from './mutation_insertStoryMessage'
+import { mutation_updateStoryMessage } from './mutation_updateStoryMessage'
+import { useUser$ } from '@/services/user-store/userUser.store'
+import { formatDateWithTimezone } from '@/helpers/date.helpers'
+import { useUuidFromPath } from '@/hooks/useUuidFromPath'
+import { cast } from '@/helpers'
+import { formatISO } from 'date-fns'
 
 export const useSaveStoryMessage = () => {
-    const mutation = useMutation({
+    const { userId } = useUser$()
+    const { id: storyId } = useUuidFromPath()
+    const createMutation = useMutation({
         mutationFn: async ({ html, storyId, imgPath }: { html: string; storyId: string; imgPath: string[] }) => {
-            return mutation_insertStoryMessage({ html, storyId, imgPath })
+            return mutation_insertStoryMessage({
+                html,
+                storyId,
+                imgPath,
+                updatedBy: userId,
+                updatedAt: formatDateWithTimezone(),
+            })
+        },
+    })
+
+    const updateMutation = useMutation({
+        mutationFn: async ({ id, description }: { description: string; id: string }) => {
+            return mutation_updateStoryMessage({
+                description,
+                id,
+                storyId: cast(storyId),
+                updatedBy: userId,
+                updatedAt: formatISO(new Date()),
+            })
         },
     })
 
@@ -21,7 +47,7 @@ export const useSaveStoryMessage = () => {
         onSuccess?: () => void
         onSettled?: () => void
     }) => {
-        mutation.mutate(
+        createMutation.mutate(
             { html, storyId, imgPath },
             {
                 onSuccess: () => {
@@ -32,5 +58,27 @@ export const useSaveStoryMessage = () => {
         )
     }
 
-    return { saveStoryMessage }
+    const updateStoryMessage = ({
+        description,
+        id,
+        onSuccess,
+        onSettled,
+    }: {
+        description: string
+        id: string
+        onSuccess?: () => void
+        onSettled?: () => void
+    }) => {
+        updateMutation.mutate(
+            { description, id },
+            {
+                onSuccess: () => {
+                    onSuccess?.()
+                },
+                onSettled,
+            },
+        )
+    }
+
+    return { saveStoryMessage, updateStoryMessage }
 }

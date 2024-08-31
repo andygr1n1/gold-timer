@@ -5,10 +5,11 @@ import { type ReactNode } from 'react'
 import { formatDateWithTimezone } from '@/helpers/date.helpers'
 import { useUpdateStoryDeletedAt } from './useUpdateStoryDeletedAt'
 
-export const StoryIsDeleted: React.FC<{ id: string; deletedAt: boolean; label?: ReactNode }> = ({
+export const StoryIsDeleted: React.FC<{ id: string; deletedAt: boolean; label?: ReactNode; onClose: () => void }> = ({
     id,
     deletedAt,
     label,
+    onClose,
 }) => {
     const { updateStoryDeletedAt } = useUpdateStoryDeletedAt()
 
@@ -19,7 +20,10 @@ export const StoryIsDeleted: React.FC<{ id: string; deletedAt: boolean; label?: 
                 size={'small'}
                 error={!!deletedAt}
                 variant={'text'}
-                onClick={() => updateStoryDeletedAt({ id, deletedAt: !!deletedAt ? null : formatDateWithTimezone() })}
+                onClick={() => {
+                    updateStoryDeletedAt({ id, deletedAt: !!deletedAt ? null : formatDateWithTimezone() })
+                    onClose()
+                }}
                 startIcon={<IconDeleteTemp width={24} height={24} className='h-6 w-6 opacity-70 hover:opacity-100' />}
             >
                 {label}

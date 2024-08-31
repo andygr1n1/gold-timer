@@ -3,15 +3,15 @@ import { resolveError } from '@/helpers/tryCatchRequest'
 import { graphql } from '@/graphql/tada'
 import { storyMessageInsertFr } from '@/modules/stories/services/fragments/storyMessageInsertFr'
 
-export const mutation_insertStoryMessage = async ({
-    html,
+export const mutation_updateStoryMessage = async ({
+    id,
+    description,
     storyId,
-    imgPath,
     updatedAt,
 }: {
-    html: string
+    description: string
+    id: string
     storyId: string
-    imgPath: string[]
     updatedAt: string
     updatedBy: string
 }) => {
@@ -20,12 +20,13 @@ export const mutation_insertStoryMessage = async ({
 
         const mutation = graphql(
             `
-                mutation mutation_insertStoryMessage(
-                    $object: stories_messages_insert_input!
+                mutation mutation_updateStoryMessage(
+                    $id: uuid!
+                    $description: String
                     $storyId: uuid!
                     $updatedAt: timestamptz
                 ) {
-                    insert_stories_messages_one(object: $object) {
+                    update_stories_messages_by_pk(pk_columns: { id: $id }, _set: { description: $description }) {
                         ...StoryMessageInsertFr
                     }
                     update_stories_by_pk(pk_columns: { id: $storyId }, _set: { updated_at: $updatedAt }) {
@@ -36,17 +37,7 @@ export const mutation_insertStoryMessage = async ({
             [storyMessageInsertFr],
         )
 
-        const object = {
-            story_id: storyId,
-            description: html,
-            img_path: imgPath,
-        }
-
-        const { data, error } = await urqlClient.mutation(mutation, {
-            object,
-            storyId,
-            updatedAt,
-        })
+        const { data, error } = await urqlClient.mutation(mutation, { id, description, storyId, updatedAt })
 
         if (error) throw error
 

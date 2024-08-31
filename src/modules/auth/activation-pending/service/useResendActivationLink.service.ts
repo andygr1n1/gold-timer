@@ -1,6 +1,6 @@
 import { useMutation } from '@tanstack/react-query'
 
-import { processError, processSuccess } from '@/helpers/processMessage'
+import { processError, notify } from '@/helpers/processMessage'
 import { server_resendActivationLink } from './server_resendActivationLink'
 import { useDebouncedEmailSender } from '../hooks/useDebouncedEmailSender.hook'
 
@@ -12,7 +12,7 @@ export const useResendActivationLink = (props: { email?: string | null }) => {
             processError('Sending activation link failed')
         },
         onSuccess: () => {
-            processSuccess('Email with activation link will appear within a minute')
+            notify('Email with activation link will appear within a minute')
         },
     })
 

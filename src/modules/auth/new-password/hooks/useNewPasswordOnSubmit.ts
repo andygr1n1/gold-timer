@@ -2,7 +2,7 @@ import { type FormikHelpers } from 'formik'
 import { type IUserNewPasswordSchema } from '../services/types'
 import { useNavigate } from 'react-router-dom'
 import { useMutation } from '@tanstack/react-query'
-import { processError, processSuccess } from '@/helpers/processMessage'
+import { processError, notify } from '@/helpers/processMessage'
 import { server_newPassword } from '../services/server_newPassword'
 import { APP_ROUTES_ENUM } from '@/services/enums'
 
@@ -29,7 +29,7 @@ export const useNewPasswordOnSubmit = () => {
                 },
                 onSuccess: () => {
                     formikHelpers.resetForm()
-                    processSuccess(`
+                    notify(`
                         Account was restored successfully. Thank you!`)
                     navigate(`/${APP_ROUTES_ENUM.LOGIN}`)
                 },

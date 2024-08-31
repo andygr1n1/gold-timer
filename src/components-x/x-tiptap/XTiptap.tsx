@@ -12,7 +12,8 @@ import { BubbleMenuExt } from './extensions/bubble-menu/BubbleMenuExt'
 import Underline from '@tiptap/extension-underline'
 import Link from '@tiptap/extension-link'
 import { cn } from '@/helpers/cn'
-import { SaveButton } from './extensions/bubble-menu/components/SaveButton'
+import { SaveButton } from './extensions/SaveButton'
+import { ShiftEnterExtension } from './extensions/shift-enter-extension/ShiftEnterExtension'
 
 type ITiptap = {
     onChange?: (html: string) => void
@@ -22,7 +23,7 @@ type ITiptap = {
     children?: ReactNode
     error?: boolean
     errorMessage?: ReactNode
-    onSave?: (html: string) => void
+    onSave?: (props: { html: string; clearEditor: () => void }) => void
     customToolbar?: boolean
 }
 
@@ -57,6 +58,7 @@ export const XTiptap: React.FC<ITiptap> = (props) => {
                 keepAttributes: false,
             },
         }),
+        ShiftEnterExtension({ onSave }),
         FileHandler.configure({
             allowedMimeTypes: ['image/png', 'image/jpeg', 'image/gif', 'image/webp'],
             onDrop: (currentEditor, files, pos) => {
@@ -138,10 +140,10 @@ export const XTiptap: React.FC<ITiptap> = (props) => {
                 <EditorChildrenWrapper {...props}>
                     {customToolbar && (
                         <div className='w-full items-end mt-4 flex justify-end h-[30px]'>
-                            <div className='flex flex-auto w-full h-full'>{children}</div>
                             <SaveButton onSave={onSave} />
                         </div>
                     )}
+                    {children}
                 </EditorChildrenWrapper>
             </EditorProvider>
             {error && errorMessage && (

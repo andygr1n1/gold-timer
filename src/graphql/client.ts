@@ -3,6 +3,7 @@ import { createClient } from 'gold-timer-genql/lib/generated'
 import { getAccessIdFromCookie, jwtVerify, setAccessIdInCookie, setSessionJWTInCookie } from '@/helpers/universalCookie'
 import { server_getSessionCredentials } from '@/services/server_getSessionCredentials'
 import { Client, cacheExchange, fetchExchange } from 'urql'
+import { retryExchange } from '@urql/exchange-retry'
 
 export const generateClient = (): GraphQLClient => {
     const endpoint = import.meta.env['VITE_CLIENT_ENDPOINT']
@@ -39,7 +40,18 @@ export const generateURQLClient = async (opts?: { new: boolean }) => {
     if (!client) {
         client = new Client({
             url: import.meta.env['VITE_CLIENT_ENDPOINT'],
-            exchanges: [cacheExchange, fetchExchange],
+            exchanges: [
+                cacheExchange,
+                retryExchange({
+                    maxNumberAttempts: 1, // Set the maximum number of attempts to 1
+                    retryIf: (error) => !!error && !!error.networkError, // Retry only on network errors
+                    retryWith: (error, operation) => {
+                        console.log('Retrying operation:', error, operation)
+                        return operation // Return the operation for retry
+                    },
+                }),
+                fetchExchange,
+            ],
             fetchOptions: {
                 headers: { Authorization },
             },
