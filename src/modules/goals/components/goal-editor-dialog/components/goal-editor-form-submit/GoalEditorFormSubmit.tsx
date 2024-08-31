@@ -9,6 +9,7 @@ export const GoalEditorFormSubmit: React.FC = () => {
     return (
         <div className='relative'>
             <StyledButton
+                data-testid='submit-goal-editor-form'
                 variant='outlined'
                 type='submit'
                 disabled={disabled || isSubmitting}
