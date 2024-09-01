@@ -5,7 +5,7 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css' // requires a loa
 import { GoalsSlidesEditorDialog } from './goals-slides-editor/GoalsSlidesEditorDialog'
 import { XTooltip } from '@/components-x/x-tooltip/XTooltip'
 import { IconEdit } from '@/assets/icons'
-import { useFetchGoalsSlides } from './service/useFetchGoalsSlides.service'
+import { useFetchGoalsSlides } from './service/useFetchGoalsSlides'
 import { IsLoading } from '@/components/loading/IsLoading'
 import { useGoalsSlidesEditor$ } from './stores/useGoalsSlidesEditor.store'
 
@@ -55,10 +55,10 @@ export const GoalsSlidesCarousel = () => {
                         swipeable={false}
                     >
                         {visibleSlides.map((gSlide) => (
-                            <div key={gSlide.id} title={gSlide.title}>
+                            <div key={gSlide.id} title={gSlide.title || ''}>
                                 <img
                                     src={`${import.meta.env['VITE_FIRE_BUNNY_STORAGE']}/goals-slides/${gSlide.img_path}`}
-                                    title={gSlide.title}
+                                    title={gSlide.title || ''}
                                     className='rounded-lg'
                                     loading='lazy'
                                 />

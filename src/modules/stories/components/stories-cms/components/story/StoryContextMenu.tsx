@@ -4,6 +4,7 @@ import { type IStory } from '@/modules/stories/services/types'
 import { StoryIsArchived } from './components/story-is-archived/StoryIsArchived'
 import { StoryIsFavorite } from './components/story-is-favorite/StoryIsFavorite'
 import { StoryIsDeleted } from './components/story-is-deleted/StoryIsDeleted'
+import { EditStory } from './components/edit-story/EditStory'
 
 export const StoryContextMenu: React.FC<{ onClose: () => void; story: IStory }> = ({ onClose, story }) => {
     return (
@@ -18,6 +19,13 @@ export const StoryContextMenu: React.FC<{ onClose: () => void; story: IStory }> 
                             {story.is_favorite ? 'Unfavorite' : 'Favorite'}
                         </span>
                     }
+                />
+            </XMenuItem>
+            <XMenuItem>
+                <EditStory
+                    onClose={onClose}
+                    id={story.id}
+                    label={<span className='flex w-[110px] justify-start capitalize'>Edit</span>}
                 />
             </XMenuItem>
             <XMenuItem>

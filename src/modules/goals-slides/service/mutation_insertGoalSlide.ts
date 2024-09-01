@@ -1,14 +1,14 @@
 import { resolveError, tryCatchRequest } from '@/helpers/tryCatchRequest'
-import { type IGoalSlideSchema, goalSlideSchema } from './types'
+import { type IGoalSlide, goalSlideSchema } from './types'
 import { generateTSClient } from '@/graphql/client'
 
 export const mutation_insertGoalSlide = async (props: {
     imgPath: string
     title: string
-}): Promise<IGoalSlideSchema | undefined> => {
+}): Promise<IGoalSlide | undefined> => {
     const { title, imgPath } = props
 
-    return await tryCatchRequest<Promise<undefined>, IGoalSlideSchema | undefined>(
+    return await tryCatchRequest<Promise<undefined>, IGoalSlide | undefined>(
         async () => {
             const client = await generateTSClient()
 

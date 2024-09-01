@@ -1,14 +1,12 @@
 import { useMutation } from '@tanstack/react-query'
 import { mutation_insertStoryMessage } from './mutation_insertStoryMessage'
 import { mutation_updateStoryMessage } from './mutation_updateStoryMessage'
-import { useUser$ } from '@/services/user-store/userUser.store'
 import { formatDateWithTimezone } from '@/helpers/date.helpers'
 import { useUuidFromPath } from '@/hooks/useUuidFromPath'
 import { cast } from '@/helpers'
 import { formatISO } from 'date-fns'
 
 export const useSaveStoryMessage = () => {
-    const { userId } = useUser$()
     const { id: storyId } = useUuidFromPath()
     const createMutation = useMutation({
         mutationFn: async ({ html, storyId, imgPath }: { html: string; storyId: string; imgPath: string[] }) => {
@@ -16,7 +14,6 @@ export const useSaveStoryMessage = () => {
                 html,
                 storyId,
                 imgPath,
-                updatedBy: userId,
                 updatedAt: formatDateWithTimezone(),
             })
         },
@@ -28,7 +25,6 @@ export const useSaveStoryMessage = () => {
                 description,
                 id,
                 storyId: cast(storyId),
-                updatedBy: userId,
                 updatedAt: formatISO(new Date()),
             })
         },

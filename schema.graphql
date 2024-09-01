@@ -8525,9 +8525,15 @@ type stories_messages {
   description: String
   id: uuid!
   img_path: [String!]
+
+  """An object relationship"""
+  story: stories!
   story_id: uuid!
   updated_at: timestamptz!
   updated_by: uuid!
+
+  """An object relationship"""
+  updated_by_user: heroes
 }
 
 """
@@ -8591,9 +8597,11 @@ input stories_messages_bool_exp {
   description: String_comparison_exp
   id: uuid_comparison_exp
   img_path: String_array_comparison_exp
+  story: stories_bool_exp
   story_id: uuid_comparison_exp
   updated_at: timestamptz_comparison_exp
   updated_by: uuid_comparison_exp
+  updated_by_user: heroes_bool_exp
 }
 
 """
@@ -8617,9 +8625,11 @@ input stories_messages_insert_input {
   description: String
   id: uuid
   img_path: [String!]
+  story: stories_obj_rel_insert_input
   story_id: uuid
   updated_at: timestamptz
   updated_by: uuid
+  updated_by_user: heroes_obj_rel_insert_input
 }
 
 """aggregate max on columns"""
@@ -8711,9 +8721,11 @@ input stories_messages_order_by {
   description: order_by
   id: order_by
   img_path: order_by
+  story: stories_order_by
   story_id: order_by
   updated_at: order_by
   updated_by: order_by
+  updated_by_user: heroes_order_by
 }
 
 """primary key columns input for table: stories_messages"""

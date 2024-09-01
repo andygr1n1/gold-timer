@@ -1,12 +1,12 @@
 import { XModal } from '@/components-x/x-modal/XModal'
-import { type IGoalSlideSchema } from '@/modules/goals-slides/service/types'
+import { type IGoalSlide } from '@/modules/goals-slides/service/types'
 import { useFormikContext } from 'formik'
 import { ImageCropper } from '@/components/image-cropper/ImageCropper'
 import { GoalSlideTitleFormItem } from './GoalSlideTittleFormItem'
 import { StyledButton } from '@/components/buttons/StyledButton'
 
 export const InsertGoalSlideDialog = () => {
-    const formikContext = useFormikContext<IGoalSlideSchema>()
+    const formikContext = useFormikContext<IGoalSlide>()
     const { img_path } = formikContext.values
 
     return (

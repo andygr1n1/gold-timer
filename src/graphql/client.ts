@@ -45,8 +45,7 @@ export const generateURQLClient = async (opts?: { new: boolean }) => {
                 retryExchange({
                     maxNumberAttempts: 1, // Set the maximum number of attempts to 1
                     retryIf: (error) => !!error && !!error.networkError, // Retry only on network errors
-                    retryWith: (error, operation) => {
-                        console.log('Retrying operation:', error, operation)
+                    retryWith: (_error, operation) => {
                         return operation // Return the operation for retry
                     },
                 }),

@@ -19,7 +19,7 @@ export const query_favoriteStories = async (props: {
                 stories(
                     limit: $limit
                     offset: $offset
-                    order_by: { created_at: desc }
+                    order_by: { updated_at: desc }
                     where: {
                         _and: [
                             { is_favorite: { _eq: true }, title: { _ilike: $title } }

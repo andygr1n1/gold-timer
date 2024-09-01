@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { mutation_updateGoalSlideIsActive } from '../service/mutation_updateGoalSlideIsActive'
-import { type IGoalSlideSchema, KEY_FetchGoalsSlides } from '../service/types'
+import { type IGoalSlide, KEY_FetchGoalsSlides } from '../service/types'
 
 export const useToggleShowSlide = () => {
     const queryClient = useQueryClient()
@@ -11,7 +11,7 @@ export const useToggleShowSlide = () => {
         onSuccess: (res) => {
             if (!res) return
 
-            queryClient.setQueryData<IGoalSlideSchema[]>(KEY_FetchGoalsSlides(), (oldData) =>
+            queryClient.setQueryData<IGoalSlide[]>(KEY_FetchGoalsSlides(), (oldData) =>
                 oldData?.map((slide) => {
                     if (slide.id === res.id) {
                         return { ...slide, active: res.active }

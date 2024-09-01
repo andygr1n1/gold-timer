@@ -1,6 +1,7 @@
 import { IconInfinity } from '@/assets/icons/IconInfinity'
 import { XMenuItem } from '@/components-x/x-dropdown/XMenuItem'
 import { StyledButton } from '@/components/buttons/StyledButton'
+import { notifySuccess } from '@/helpers/processMessage'
 import { useRitualizeGoal } from '@/modules/goals/components/goal-editor-dialog/service/ritualize-goal/useRitualizeGoal'
 import { isActiveRitualStatus } from '@/modules/goals/helpers/goalsGuards'
 import { calculateIsFromFuture } from '@/modules/goals/helpers/optimizeActiveGoalsData'
@@ -29,6 +30,9 @@ export const RitualizeGoalMenuItem: React.FC<{ goal: IGoalSchema; onClose: () =>
                     onClick={() => {
                         ritualizeGoal({
                             goal,
+                            onSuccess: () => {
+                                notifySuccess('Goal ritualized')
+                            },
                             onSettled,
                         })
                     }}

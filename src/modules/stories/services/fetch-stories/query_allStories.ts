@@ -19,7 +19,7 @@ export const query_allStories = async (props: {
                 stories(
                     limit: $limit
                     offset: $offset
-                    order_by: { created_at: desc }
+                    order_by: { updated_at: desc }
                     where: {
                         _and: [
                             { title: { _ilike: $title } }

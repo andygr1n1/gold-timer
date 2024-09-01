@@ -1,11 +1,10 @@
 import { type FormikHelpers } from 'formik'
 import { type ICreateLabelForm } from '../service/types'
 import { useInsertNoteLabel } from '../service/useInsertNoteLabel'
-import { useMs } from '@/hooks/useMs'
+import { notifySuccess } from '@/helpers/processMessage'
 
 export const useLabelFormOnSubmit = () => {
     const { insertNoteLabel } = useInsertNoteLabel()
-    const { msSuccess } = useMs()
 
     const onSubmit = (values: ICreateLabelForm, formikHelpers: FormikHelpers<ICreateLabelForm>) => {
         const { setSubmitting } = formikHelpers
@@ -19,7 +18,7 @@ export const useLabelFormOnSubmit = () => {
 
             onSuccess: () => {
                 setSubmitting(false)
-                msSuccess()
+                notifySuccess('Label saved')
             },
         })
     }

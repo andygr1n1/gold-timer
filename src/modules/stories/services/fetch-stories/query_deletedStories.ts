@@ -19,7 +19,7 @@ export const query_deletedStories = async (props: {
                 stories(
                     limit: $limit
                     offset: $offset
-                    order_by: { created_at: desc }
+                    order_by: { updated_at: desc }
                     where: {
                         _and: [
                             { deleted_at: { _is_null: false }, title: { _ilike: $title } }

@@ -1,7 +1,7 @@
 import { resolveError } from '@/helpers/tryCatchRequest'
 import { generateURQLClient } from '@/graphql/client'
 import { graphql } from '@/graphql/tada'
-import { storyMessagesResponseFragment } from '@/modules/stories/services/fragments/storyMessagesResponseFragment'
+import { storyMessagesResponseFr } from '@/modules/stories/services/fragments/storyMessagesResponseFragment'
 
 export const query_fetchStoryMessages = async ({ storyId }: { storyId: string }) => {
     const urqlClient = await generateURQLClient()
@@ -9,14 +9,14 @@ export const query_fetchStoryMessages = async ({ storyId }: { storyId: string })
     const query = graphql(
         `
             query query_full_story($storyId: uuid!) {
-                stories(where: { id: { _eq: $storyId }}) {
+                stories(where: { id: { _eq: $storyId } }) {
                     id
 
-                    ...StoryMessagesFragment
+                    ...StoryMessagesResponseFr
                 }
             }
         `,
-        [storyMessagesResponseFragment],
+        [storyMessagesResponseFr],
     )
 
     try {

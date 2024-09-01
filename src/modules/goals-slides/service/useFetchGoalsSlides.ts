@@ -6,8 +6,8 @@ import { useUser$ } from '@/services/user-store/userUser.store'
 export const useFetchGoalsSlides = () => {
     const { userId } = useUser$()
     const { data: goalsSlides, isLoading } = useQuery({
-        queryKey: KEY_FetchGoalsSlides(userId),
-        queryFn: async () => await query_fetchGoalsSlides({ ownerId: userId }),
+        queryKey: KEY_FetchGoalsSlides(),
+        queryFn: async () => await query_fetchGoalsSlides(),
         staleTime: Infinity,
         refetchOnWindowFocus: false,
         refetchOnMount: true,

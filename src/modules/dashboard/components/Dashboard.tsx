@@ -21,7 +21,7 @@ export const Dashboard: React.FC = () => {
         <ModuleWrapper
             topBarNodes={
                 <div className='w-full justify-center items-center flex'>
-                    <div className='absolute left-0 top-1/2 -translate-y-1/2 '>
+                    <div className='absolute right-0 top-1/2 -translate-y-1/2 '>
                         <UserCoins />
                     </div>
                     <ArtifactsCounter />

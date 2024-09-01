@@ -22,7 +22,7 @@ export const query_archivedStories = async ({
                 stories(
                     limit: $limit
                     offset: $offset
-                    order_by: { created_at: desc }
+                    order_by: { updated_at: desc }
                     where: {
                         _and: [
                             { deleted_at: { _is_null: true }, archived: { _eq: true }, title: { _ilike: $title } }

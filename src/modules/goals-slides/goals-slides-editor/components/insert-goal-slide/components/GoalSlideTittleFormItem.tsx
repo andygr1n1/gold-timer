@@ -1,10 +1,10 @@
 import { XInput } from '@/components-x/x-input/XInput'
 import { FormLabel } from '@/components/form/FormLabel'
-import { type IGoalSlideSchema } from '@/modules/goals-slides/service/types'
+import { type IGoalSlide } from '@/modules/goals-slides/service/types'
 import { useFormikContext } from 'formik'
 
 export const GoalSlideTitleFormItem: React.FC = () => {
-    const formikContext = useFormikContext<IGoalSlideSchema>()
+    const formikContext = useFormikContext<IGoalSlide>()
     const { title } = formikContext.values
 
     return (
@@ -13,7 +13,7 @@ export const GoalSlideTitleFormItem: React.FC = () => {
             <XInput
                 name='title'
                 placeholder='Title'
-                value={title}
+                value={title || ''}
                 onChange={formikContext.handleChange}
                 error={formikContext.touched.title && Boolean(formikContext.errors.title)}
                 errorMessage={formikContext.errors.title}

@@ -1,27 +1,40 @@
 import { type FormikHelpers } from 'formik'
 import { useStoryEditorDialog$ } from '../mst/provider'
-import { useMs } from '@/hooks/useMs'
 import { type INewStorySchema } from '@/modules/stories/services/types'
 import { useInsertStory } from '@/modules/stories/services/insert-story/useInsertStory'
+import { notifySuccess } from '@/helpers/processMessage'
 
 export const useStoryEditorFormOnSubmit = () => {
-    const { onChangeField } = useStoryEditorDialog$()
-    const { insertStory } = useInsertStory()
-    const { msSuccess } = useMs()
+    const { onClose } = useStoryEditorDialog$()
+    const { insertStory, updateStory } = useInsertStory()
 
     const onSubmit = (values: INewStorySchema, formikHelpers: FormikHelpers<INewStorySchema>) => {
         const { setSubmitting } = formikHelpers
-        insertStory({
-            values,
-            onSuccess: () => {
-                onChangeField('open', false)
-                formikHelpers.resetForm()
-                msSuccess()
-            },
-            onSettled: () => {
-                setSubmitting(false)
-            },
-        })
+
+
+      values.id
+          ? updateStory({
+                values,
+                onSuccess: () => {
+                    onClose()
+                    formikHelpers.resetForm()
+                    notifySuccess('Story updated')
+                },
+                onSettled: () => {
+                    setSubmitting(false)
+                },
+            })
+          : insertStory({
+                values,
+                onSuccess: () => {
+                    onClose()
+                    formikHelpers.resetForm()
+                    notifySuccess('Story saved')
+                },
+                onSettled: () => {
+                    setSubmitting(false)
+                },
+            })
     }
 
     return { onSubmit }

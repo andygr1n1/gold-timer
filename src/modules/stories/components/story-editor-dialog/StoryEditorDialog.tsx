@@ -6,14 +6,14 @@ const StoryEditor = lazy(() => import('./components/StoryEditor'))
 const StoryEditorTitle = lazy(() => import('./components/StoryEditorTitle'))
 
 const StoryEditorDialog = observer(() => {
-    const { open, onChangeField } = useStoryEditorDialog$()
+    const { open, onClose } = useStoryEditorDialog$()
 
     return (
         <XModal
             open={open}
             fullHeight
             onCancel={() => {
-                onChangeField('open', false)
+                onClose()
             }}
             title={
                 <Suspense fallback={null}>

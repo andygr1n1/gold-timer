@@ -1,7 +1,7 @@
 import { generateURQLClient } from '@/graphql/client'
 import { resolveError } from '@/helpers/tryCatchRequest'
 import { graphql } from '@/graphql/tada'
-import { storyMessageInsertFr } from '@/modules/stories/services/fragments/storyMessageInsertFr'
+import { storyMessageResponseFr } from '@/modules/stories/services/fragments/storyMessageResponseFr'
 
 export const mutation_insertStoryMessage = async ({
     html,
@@ -13,7 +13,6 @@ export const mutation_insertStoryMessage = async ({
     storyId: string
     imgPath: string[]
     updatedAt: string
-    updatedBy: string
 }) => {
     try {
         const urqlClient = await generateURQLClient()
@@ -26,14 +25,14 @@ export const mutation_insertStoryMessage = async ({
                     $updatedAt: timestamptz
                 ) {
                     insert_stories_messages_one(object: $object) {
-                        ...StoryMessageInsertFr
+                        ...StoryMessageResponseFr
                     }
                     update_stories_by_pk(pk_columns: { id: $storyId }, _set: { updated_at: $updatedAt }) {
                         id
                     }
                 }
             `,
-            [storyMessageInsertFr],
+            [storyMessageResponseFr],
         )
 
         const object = {

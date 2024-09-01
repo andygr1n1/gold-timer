@@ -14,8 +14,9 @@ export const StoryEditorFormSubmit: React.FC = () => {
                 disabled={disabled || isSubmitting}
                 size='small'
                 className='z-10'
+                startIcon={isSubmitting && <IconInfiniteLoading className='w-6 h-6' />}
             >
-                {!isSubmitting ? OkText : <IconInfiniteLoading className='w-6 h-6' />}
+                {OkText}
             </StyledButton>
             {disabled && tooltipText && (
                 <div

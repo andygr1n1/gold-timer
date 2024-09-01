@@ -4,8 +4,9 @@ import { useStoryEditorFormOnSubmit } from '../hooks/useStoryEditorFormOnSubmit'
 import { useStoryEditorFormOnValidate } from '../hooks/useStoryEditorFormOnValidate'
 import { useStoryEditorFormInitialValues } from '../hooks/useStoryEditorFormInitialValues'
 import { StoryEditorForm } from './StoryEditorForm'
+import { observer } from 'mobx-react-lite'
 
-const StoryEditor = () => {
+const StoryEditor = observer(() => {
     const { onSubmit } = useStoryEditorFormOnSubmit()
     const { validate } = useStoryEditorFormOnValidate()
     const { initialValues } = useStoryEditorFormInitialValues()
@@ -20,6 +21,6 @@ const StoryEditor = () => {
             <StoryEditorForm />
         </Formik>
     )
-}
+})
 
 export default StoryEditor

@@ -1,32 +1,29 @@
-import { generateTSClient } from '../../../graphql/client'
-import { resolveError, tryCatchRequest } from '@/helpers/tryCatchRequest'
-import { type IGoalSlideSchema, goalsSlidesResponseSchema } from './types'
+import { generateURQLClient } from '../../../graphql/client'
+import { resolveError } from '@/helpers/tryCatchRequest'
+import { graphql } from '@/graphql/tada'
+import { goalSlidesResponseFr } from './fragments/goalSlidesResponseFr'
 
-export const query_fetchGoalsSlides = async ({
-    ownerId,
-}: {
-    ownerId: string
-}): Promise<IGoalSlideSchema[] | undefined> => {
-    return await tryCatchRequest<Promise<undefined>, IGoalSlideSchema[] | undefined>(
-        async () => {
-            const client = await generateTSClient()
-            return await client
-                .query({
-                    __name: 'query_fetchGoalsSlides',
-                    goals_slides: {
-                        __args: { where: { owner_id: { _eq: ownerId } } },
-                        id: true,
-                        img_path: true,
-                        active: true,
-                        title: true,
-                        created_at: true,
-                    },
-                })
-                .then((response) => {
-                    const zParse = goalsSlidesResponseSchema.parse(response)
-                    return zParse.goals_slides
-                })
-        },
-        async (e) => await resolveError(e),
+export const query_fetchGoalsSlides = async () => {
+    const urqlClient = await generateURQLClient()
+
+    const query = graphql(
+        `
+            query query_goal_slides {
+                goals_slides {
+                    id
+                    ...GoalSlidesResponseFr
+                }
+            }
+        `,
+        [goalSlidesResponseFr],
     )
+
+    try {
+        const result = await urqlClient.query(query, {}).then((res) => res.data?.goals_slides)
+
+        return result
+    } catch (e) {
+        await resolveError(e)
+        return
+    }
 }

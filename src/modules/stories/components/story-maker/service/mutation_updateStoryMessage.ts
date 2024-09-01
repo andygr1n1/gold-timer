@@ -1,7 +1,7 @@
 import { generateURQLClient } from '@/graphql/client'
 import { resolveError } from '@/helpers/tryCatchRequest'
 import { graphql } from '@/graphql/tada'
-import { storyMessageInsertFr } from '@/modules/stories/services/fragments/storyMessageInsertFr'
+import { storyMessageResponseFr } from '@/modules/stories/services/fragments/storyMessageResponseFr'
 
 export const mutation_updateStoryMessage = async ({
     id,
@@ -13,7 +13,6 @@ export const mutation_updateStoryMessage = async ({
     id: string
     storyId: string
     updatedAt: string
-    updatedBy: string
 }) => {
     try {
         const urqlClient = await generateURQLClient()
@@ -27,14 +26,14 @@ export const mutation_updateStoryMessage = async ({
                     $updatedAt: timestamptz
                 ) {
                     update_stories_messages_by_pk(pk_columns: { id: $id }, _set: { description: $description }) {
-                        ...StoryMessageInsertFr
+                        ...StoryMessageResponseFr
                     }
                     update_stories_by_pk(pk_columns: { id: $storyId }, _set: { updated_at: $updatedAt }) {
                         id
                     }
                 }
             `,
-            [storyMessageInsertFr],
+            [storyMessageResponseFr],
         )
 
         const { data, error } = await urqlClient.mutation(mutation, { id, description, storyId, updatedAt })

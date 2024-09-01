@@ -37,11 +37,16 @@ export const StoryImgCropDialogTrigger = () => {
             >
                 {imgSrc && (
                     <img
-                        src={imgSrc || undefined}
+                        src={img_src || `${import.meta.env['VITE_FIRE_BUNNY_STORAGE']}stories/${img_path}` || undefined}
                         className='absolute top-0 left-0 right-[120px] w-full h-full opacity-[0.04] rounded-md z-1'
                     />
                 )}
-                {imgSrc && <img src={imgSrc || undefined} className='absolute h-[300px] w-[300px] rounded-md z-10' />}
+                {imgSrc && (
+                    <img
+                        src={img_src || `${import.meta.env['VITE_FIRE_BUNNY_STORAGE']}stories/${img_path}` || undefined}
+                        className='absolute h-[300px] w-[300px] rounded-md z-10'
+                    />
+                )}
                 <IconUpload
                     width={64}
                     height={64}

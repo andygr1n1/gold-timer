@@ -1,6 +1,6 @@
 import { type FormikHelpers } from 'formik'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { type IGoalSlideSchema, KEY_FetchGoalsSlides } from './types'
+import { type IGoalSlide, KEY_FetchGoalsSlides } from './types'
 import { mutation_insertGoalSlide } from './mutation_insertGoalSlide'
 import getCroppedImg from '@/helpers/cropImage'
 import { uploadNewImageToServer } from '@/services/image/image.service'
@@ -18,18 +18,18 @@ export const useGoalsSlidesFormOnSubmit = () => {
     const { getCropArea } = useImageCropper$()
 
     const mutation = useMutation({
-        mutationFn: async ({ formData }: { formData: IGoalSlideSchema }) => {
-            const croppedImg = await getCroppedImg(formData.img_path, cast(getCropArea()))
+        mutationFn: async ({ formData }: { formData: IGoalSlide }) => {
+            const croppedImg = await getCroppedImg(cast(formData.img_path), cast(getCropArea()))
             const imgPath = await uploadNewImageToServer({
                 img: cast(croppedImg),
                 route: SERVER_ROUTES.GOAL_SLIDE_IMAGE_UPLOAD,
                 userId,
             })
-            return mutation_insertGoalSlide({ title: formData.title, imgPath: cast(imgPath) })
+            return mutation_insertGoalSlide({ title: cast(formData.title), imgPath: cast(imgPath) })
         },
     })
 
-    const onSubmit = (values: IGoalSlideSchema, formikHelpers: FormikHelpers<IGoalSlideSchema>) => {
+    const onSubmit = (values: IGoalSlide, formikHelpers: FormikHelpers<IGoalSlide>) => {
         mutation.mutate(
             { formData: values },
             {

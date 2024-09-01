@@ -9,6 +9,10 @@ export const StoryImgCropDialog = () => {
     const addCroppedImg = async (cropper?: Cropper) => {
         formikContext.setFieldValue('img_src_buffer', undefined)
         formikContext.setFieldValue('img_src', cropper?.getCroppedCanvas().toDataURL())
+        if (formikContext.values.img_path) {
+            formikContext.setFieldValue('img_path_delete', formikContext.values.img_path)
+            formikContext.setFieldValue('img_path', '')
+        }
     }
 
     const onCancel = async () => {

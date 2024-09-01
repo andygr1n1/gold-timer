@@ -1,7 +1,7 @@
 import type { ResultOf } from 'gql.tada'
 import { z } from 'zod'
-import type { storyMessageInsertFr } from './fragments/storyMessageInsertFr'
 import type { storyResponseFr } from './fragments/storyResponseFr'
+import type { storyMessageResponseFr } from './fragments/storyMessageResponseFr'
 
 export const newStorySchema = z.object({
     id: z.string().uuid(),
@@ -10,6 +10,7 @@ export const newStorySchema = z.object({
     /*  */
     img_src: z.string().optional(),
     img_src_buffer: z.string().optional(),
+    img_path_delete: z.string().optional(),
 })
 
 export type INewStorySchema = z.infer<typeof newStorySchema>
@@ -25,6 +26,5 @@ export const storySchema = z.object({
     is_favorite: z.boolean(),
 })
 
-
-export type IStoryMessage = ResultOf<typeof storyMessageInsertFr>
+export type IStoryMessage = ResultOf<typeof storyMessageResponseFr>
 export type IStory = ResultOf<typeof storyResponseFr>

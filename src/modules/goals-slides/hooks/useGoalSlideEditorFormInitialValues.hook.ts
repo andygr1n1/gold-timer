@@ -1,11 +1,11 @@
 import { formatDateWithTimezone } from '@/helpers/date.helpers'
-import { type IGoalSlideSchema } from '../service/types.ts'
+import { type IGoalSlide } from '../service/types.ts'
 
-export const useGoalSlideEditorFormInitialValues = (): { initialValues: IGoalSlideSchema } => {
+export const useGoalSlideEditorFormInitialValues = (): { initialValues: IGoalSlide } => {
     return { initialValues: initialValues() }
 }
 
-const initialValues = (): IGoalSlideSchema => ({
+const initialValues = (): IGoalSlide => ({
     id: crypto.randomUUID(),
     title: '',
     created_at: formatDateWithTimezone(),

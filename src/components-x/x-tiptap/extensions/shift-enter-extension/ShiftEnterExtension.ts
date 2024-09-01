@@ -24,7 +24,6 @@ export const ShiftEnterExtension = ({
                                 view.dispatch(transaction)
                             }
                             if (event.key === 'Enter' && event.shiftKey) {
-                                console.log('Shift + Enter detected', html)
                                 onSave?.({ html, clearEditor })
                                 event.preventDefault()
                                 return true

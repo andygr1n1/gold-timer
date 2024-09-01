@@ -13,6 +13,9 @@ import { useTogglePopoverState } from '@/hooks/useTogglePopoverState.hook'
 import type { MEDIA_QUERY_VALUES_ENUM } from '@/hooks/useMatchMedia.hook'
 import { extractTextFromHtml } from '@/helpers/extractTextFromHtml'
 import { notify } from '@/helpers/processMessage'
+import { format } from 'date-fns'
+import { formatDateWithTimezone } from '@/helpers/date.helpers'
+import { StoryMessageAvatar } from './StoryMessageAvatar'
 
 export const StoryMessage: React.FC<{ message: IStoryMessage; isMobile: MEDIA_QUERY_VALUES_ENUM }> = observer(
     ({ message, isMobile }) => {
@@ -34,10 +37,15 @@ export const StoryMessage: React.FC<{ message: IStoryMessage; isMobile: MEDIA_QU
                 onOpenChange={() => {
                     setPopoverState(!popoverState)
                 }}
-                trigger={['contextMenu', isMobile && 'click']}
+                trigger={['contextMenu']}
                 dropdownRender={() => <StoryMessageDropdownRender message={message} onClose={onClose} />}
             >
-                <div className='relative group p-2 duration-300 border-b-solid border-transparent hover:border-blue-500/10'>
+                <div className='relative group px-2 py-4 duration-300 border-b-solid border-transparent hover:border-blue-500/10'>
+                    {!isMobile && <StoryMessageAvatar message={message} />}
+                    <div className='text-xs opacity-0 duration-300 group-hover:opacity-80 top-0 absolute  font-semibold font-kzen cursor-default text-cText'>
+                        {format(formatDateWithTimezone(new Date(message.updated_at)), 'dd MMMM yyyy HH:mm')}
+                        {isMobile && message.updated_by_user?.name && ` by ${message.updated_by_user?.name}`}
+                    </div>
                     <XTiptap
                         onSave={({ html }) => {
                             if (!extractTextFromHtml(html).trim().length) {

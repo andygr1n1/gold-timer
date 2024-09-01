@@ -1,5 +1,5 @@
 import { GoalSlide } from './GoalSlide'
-import { useFetchGoalsSlides } from '../../service/useFetchGoalsSlides.service'
+import { useFetchGoalsSlides } from '../../service/useFetchGoalsSlides'
 
 export const GoalsSlides = () => {
     const { goalsSlides } = useFetchGoalsSlides()
