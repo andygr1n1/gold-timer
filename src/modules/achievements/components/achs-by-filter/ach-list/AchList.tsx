@@ -25,7 +25,7 @@ export const AchList = observer(() => {
                 return renderAch.length ? (
                     <React.Fragment key={tp}>
                         <div>{tp && <FormLabel title={tp} />}</div>
-                        <div className='flex flex-wrap gap-2'>
+                        <div className='flex flex-wrap gap-5 md:gap-2 items-center'>
                             {renderAch.map((ach) => {
                                 return <Ach key={ach.id} ach={ach} />
                             })}
