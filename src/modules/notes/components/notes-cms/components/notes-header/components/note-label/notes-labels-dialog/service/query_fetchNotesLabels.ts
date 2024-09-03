@@ -11,7 +11,7 @@ export const query_fetchNotesLabels = async () => {
             .query(
                 graphql(`
                     query query_notes_labels {
-                        notes_labels(order_by: { created_at: desc }) {
+                        notes_labels(order_by: { created_at: desc }, where: {}) {
                             id
                             name
                             rating

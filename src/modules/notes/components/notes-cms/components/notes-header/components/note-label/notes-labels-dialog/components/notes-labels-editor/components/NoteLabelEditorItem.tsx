@@ -3,13 +3,13 @@ import { useRef, useState } from 'react'
 import { StyledButton } from '@/components/buttons/StyledButton'
 import { XDropdown } from '@/components-x/x-dropdown/XDropdown'
 import { NLIDropdownRender } from './NLIDropdownRender'
-import { IconDropdown } from 'react-day-picker'
 import { observer } from 'mobx-react-lite'
 import { useLabelDialog$ } from '../../../mst/provider'
 import { Input, type InputRef } from 'antd'
 import { cn } from '@/helpers/cn'
 import { useUpdateNoteLabel } from './useUpdateNoteLabel'
 import { IconEnterButton } from '@/assets/icons/IconEnterButton'
+import { IconThreeDots } from '@/assets/icons/IconThreeDots'
 
 export const NoteLabelEditorItem: React.FC<{ label: ICreateLabelForm }> = observer(({ label }) => {
     const { selectedLabel, onChangeField } = useLabelDialog$()
@@ -42,7 +42,7 @@ export const NoteLabelEditorItem: React.FC<{ label: ICreateLabelForm }> = observ
                     }}
                     onChange={(e) => setValue(e.target.value)}
                     disabled={selectedLabel !== label.id}
-                    className={cn(readonly && '!bg-transparent !border-transparent')}
+                    className={cn(readonly && '!bg-transparent !border-transparent', 'disabled:!cursor-default')}
                 />
             </div>
             <div className='w-14 gap-2 flex items-center justify-center'>
@@ -53,7 +53,7 @@ export const NoteLabelEditorItem: React.FC<{ label: ICreateLabelForm }> = observ
                     overlayClassName='!z-[9000]'
                 >
                     <StyledButton variant='text'>
-                        <IconDropdown className='min-w-3 min-h-3 cursor-pointer' />
+                        <IconThreeDots className='min-w-3 min-h-3 cursor-pointer' />
                     </StyledButton>
                 </XDropdown>
             </div>

@@ -22,8 +22,8 @@ const Main = () => {
             <Toaster
                 toastOptions={{
                     duration: 4000,
-                    style: { boxShadow: '0 2px 9px 3px rgba(0, 0, 0, 0.25)' },
-                    className: 'bg-global-bg-plasma text-cText backdrop-blur-sm ',
+                    style: { boxShadow: '0 2px 9px 3px rgba(0, 0, 0, 0.25) !important' },
+                    className: '!bg-global-bg-plasma !text-cText !backdrop-blur-sm',
                     error: {
                         duration: 4000,
                     },
