@@ -1,25 +1,28 @@
-import { resolveData } from '@/helpers/tryCatchRequest'
-import { generateTSClient } from '@/graphql/client'
-import { processError } from '@/helpers/processMessage'
-import { getUserId } from '@/helpers/getUserId'
+import { resolveError } from '@/helpers/tryCatchRequest'
+import { generateURQLClient } from '@/graphql/client'
+import { graphql } from '@/graphql/tada'
 
-export const query_fetchNotepadLockedStatus = async (): Promise<boolean> => {
-    const client = await generateTSClient()
+export const query_fetchNotepadLockedStatus = async ({ userId }: { userId: string }) => {
+    const urqlClient = await generateURQLClient()
 
-    return await resolveData<boolean, boolean>(
-        () =>
-            client
-                .query({
-                    __name: 'query_fetchNotepadLockedStatus',
-                    notepad_by_pk: {
-                        __args: { owner_id: getUserId() },
-                        locked: true,
-                    },
-                })
-                .then((res) => res?.notepad_by_pk?.locked || false),
-        (e) => {
-            processError(`query_fetchNotepadLockedStatus: ${e}`)
-            return false
-        },
-    )
+    const query = graphql(`
+        query query_fetchNotepadLockedStatus($userId: uuid!) {
+            notepad_by_pk(owner_id: $userId) {
+                id
+                locked
+            }
+        }
+    `)
+
+    try {
+        const result = await urqlClient.query(query, { userId }).then((res) => {
+            if (res.error) throw res.error
+            return res.data?.notepad_by_pk?.locked
+        })
+
+        return result
+    } catch (e) {
+        await resolveError(e)
+        return
+    }
 }

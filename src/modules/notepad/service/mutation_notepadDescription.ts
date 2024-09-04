@@ -1,31 +1,29 @@
-import { resolveData } from '@/helpers/tryCatchRequest'
-import { processError } from '@/helpers/processMessage'
-import { generateTSClient } from '@/graphql/client'
+import { resolveError } from '@/helpers/tryCatchRequest'
+import { generateURQLClient } from '@/graphql/client'
+import { graphql } from '@/graphql/tada'
 
-export const mutation_notepadDescription = async (description: string): Promise<string> => {
-    const client = await generateTSClient()
+export const mutation_notepadDescription = async (description: string) => {
+    try {
+        const urqlClient = await generateURQLClient()
 
-    return await resolveData<string, string>(
-        () =>
-            client
-                .mutation({
-                    __name: 'mutation_notepadDescription',
-                    insert_notepad_one: {
-                        __args: {
-                            object: {
-                                description,
-                            },
-                            on_conflict: { constraint: 'notepad_pkey', update_columns: ['description'] },
-                        },
-                        description: true,
-                    },
-                })
-                .then((res) => {
-                    return res.insert_notepad_one?.description || ''
-                }),
-        (e) => {
-            processError(`mutation_notepadDescription: ${e}`)
-            return ''
-        },
-    )
+        const mutation = graphql(`
+            mutation mutation_notepadDescription($description: String) {
+                insert_notepad_one(
+                    object: { description: $description }
+                    on_conflict: { constraint: notepad_pkey, update_columns: [description] }
+                ) {
+                    description
+                }
+            }
+        `)
+
+        const { data, error } = await urqlClient.mutation(mutation, { description })
+
+        if (error) throw error
+
+        return data
+    } catch (e) {
+        await resolveError(e)
+        return
+    }
 }

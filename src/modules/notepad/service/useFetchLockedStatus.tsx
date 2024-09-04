@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
-import { KEY_FetchNotepadLockedStatus } from './keys'
 import { query_fetchNotepadLockedStatus } from './query_fetchNotepadLockedStatus'
+import { useUser$ } from '@/services/user-store/userUser.store'
+import { notepadService } from './notepadService'
 
 type IRes = {
     isLoading: boolean
@@ -8,12 +9,14 @@ type IRes = {
 }
 
 export const useFetchLockedStatus = (): IRes => {
+    const { userId } = useUser$()
     const { data: isLocked, isLoading } = useQuery({
-        queryKey: KEY_FetchNotepadLockedStatus(),
-        queryFn: async () => await query_fetchNotepadLockedStatus(),
+        queryKey: notepadService.KEY_useFetchLockedStatus(userId),
+        queryFn: async () => await query_fetchNotepadLockedStatus({ userId }),
         staleTime: Infinity,
         refetchOnWindowFocus: false,
         refetchOnMount: false,
+        enabled: !!userId,
     })
 
     return { isLoading, isLocked: isLocked || false }
