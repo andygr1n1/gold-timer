@@ -1,16 +1,16 @@
 import { Route, Routes } from 'react-router-dom'
 import { PhoenixConnection } from './static-pages/phoenix-connection/PhoenixConnection'
 import { HealingEye } from './static-pages/healing-eye/HealingEye'
-import { Blog } from './Blog'
+import { Notifications } from './Notifications'
 
-const BlogIndex: React.FC = () => {
+const NotificationsIndex: React.FC = () => {
     return (
         <Routes>
-            <Route index element={<Blog />} />
+            <Route path={'/'} element={<Notifications />} />
             <Route path='phoenix-connection' element={<PhoenixConnection />} />
             <Route path='healing-eye' element={<HealingEye />} />
         </Routes>
     )
 }
 
-export default BlogIndex
+export default NotificationsIndex

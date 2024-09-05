@@ -10,7 +10,7 @@ const SprintsIndex = lazy(() => import('../../../sprints/SprintsIndex'))
 const DashboardIndex = lazy(() => import('../../../dashboard/DashboardIndex'))
 const AchievementsIndex = lazy(() => import('../../../achievements/AchievementsIndex'))
 const StoriesIndex = lazy(() => import('../../../stories/StoriesIndex'))
-const BlogIndex = lazy(() => import('../../../blog/BlogIndex'))
+const NotificationsIndex = lazy(() => import('../../../notifications/NotificationsIndex'))
 
 const ProtectedRoutes = () => {
     return (
@@ -23,7 +23,7 @@ const ProtectedRoutes = () => {
                             <Route path={`/${APP_ROUTES_ENUM.PROFILE}`} element={<ProfileIndex />} />
                             <Route path={`/${APP_ROUTES_ENUM.ACHIEVEMENTS}/*`} element={<AchievementsIndex />} />
                             <Route path={`/${APP_ROUTES_ENUM.STORIES}/*`} element={<StoriesIndex />} />
-                            <Route path={`/${APP_ROUTES_ENUM.NOTIFICATIONS}/*`} element={<BlogIndex />} />
+                            <Route path={`/${APP_ROUTES_ENUM.NOTIFICATIONS}/*`} element={<NotificationsIndex />} />
                             <Route path={`/${APP_ROUTES_ENUM.NOTES}/*`} element={<NotesCmsIndex />} />
                             <Route path={`/${APP_ROUTES_ENUM.GOALS}/*`} element={<GoalsCmsIndex />} />
                             <Route path={`/${APP_ROUTES_ENUM.SPRINTS}`} element={<SprintsIndex />} />

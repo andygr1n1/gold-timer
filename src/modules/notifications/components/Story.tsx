@@ -1,4 +1,5 @@
 import { IconChevronRight } from '@/assets/icons'
+import { APP_ROUTES_ENUM } from '@/services/enums';
 import { type ReactNode } from 'react'
 import { NavLink } from 'react-router-dom'
 
@@ -10,7 +11,7 @@ export const Story: React.FC<{ path: string; title: ReactNode; logo: ReactNode; 
     author,
 }) => {
     return (
-        <NavLink to={`/blog/${path}`}>
+        <NavLink to={`/${APP_ROUTES_ENUM.NOTIFICATIONS}/${path}`}>
             <div
                 className='flex-col gap-5 w-[100%-40px]  duration-300 p-5 h-[100%-40px] 
             group cursor-pointer bg-global-2-bg flex rounded-md shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px]
