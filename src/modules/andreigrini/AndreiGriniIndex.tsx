@@ -7,7 +7,7 @@ import TechnicalSkillsSlider from './components/technical-skills/TechnicalSkills
 
 export const AndreiGriniIndex: React.FC = observer(() => {
     return (
-        <div className='w-full h-full bg-global-bg-plasma overflow-auto scrollbar-thumb-blue-50 scrollbar-track-global-bg scrollbar-thin'>
+        <div className='w-full h-full bg-global-bg-plasma overflow-auto '>
             <HeaderIndex />
             <SectionWelcome />
             <Quote />
