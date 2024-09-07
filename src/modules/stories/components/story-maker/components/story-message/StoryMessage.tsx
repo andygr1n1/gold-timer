@@ -37,7 +37,7 @@ export const StoryMessage: React.FC<{ message: IStoryMessage; isMobile: MEDIA_QU
                 onOpenChange={() => {
                     setPopoverState(!popoverState)
                 }}
-                trigger={['contextMenu']}
+                trigger={['contextMenu', isMobile && 'click']}
                 dropdownRender={() => <StoryMessageDropdownRender message={message} onClose={onClose} />}
             >
                 <div className='relative group px-2 py-4 duration-300 border-b-solid border-transparent hover:border-blue-500/10'>

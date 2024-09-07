@@ -18,7 +18,7 @@ const SprintsIndex: React.FC = observer(() => {
     return (
         <ModuleWrapper>
             <div className='mb-5 flex w-full flex-wrap justify-start gap-8'>
-                <div className='flex flex-col gap-10 w-full max-w-[600px] mx-auto relative'>S P R I N T S</div>
+                <div className='flex flex-col gap-10 w-full max-w-[600px] mx-auto relative'></div>
 
                 {/* {!isMobile && !!sprints.length && (
                         <div className='mt-5 flex justify-between'>
