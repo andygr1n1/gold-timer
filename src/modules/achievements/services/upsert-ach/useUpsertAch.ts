@@ -1,5 +1,5 @@
 import { useMutation } from '@tanstack/react-query'
-import { type IAchSchema } from '../types'
+import { type IAchEditor } from '../types'
 import { useInvalidateAchs } from '../../hooks/useInvalidateAchs'
 import { mutation_upsertAch } from './mutation_upsertAch'
 import { cast } from '@/helpers'
@@ -12,15 +12,18 @@ export const useUpsertAch = () => {
     const { onSuccess } = useInvalidateAchs()
 
     const mutation = useMutation({
-        mutationFn: async ({ values }: { values: IAchSchema }) => {
-            const imgPath = await uploadNewImageToServer({
-                img: cast(values.img_src),
-                route: SERVER_ROUTES.ACH_IMAGE_UPLOAD,
-                userId,
-                /* if img_path already exists, than this is not a new ach */
-                id: values.img_path ? values.id : undefined,
-            })
-            return mutation_upsertAch({ values: { ...values, img_path: cast(imgPath) } })
+        mutationFn: async ({ values }: { values: IAchEditor }) => {
+            let imgPath: string | null | undefined = values.img_path
+            console.log('values', values)
+            if (values.img_src) {
+                imgPath = await uploadNewImageToServer({
+                    img: cast(values.img_src),
+                    route: SERVER_ROUTES.ACH_IMAGE_UPLOAD,
+                    userId,
+                })
+            }
+
+            return mutation_upsertAch({ values: { ...values, img_path: imgPath || null } })
         },
         onSuccess,
     })
@@ -30,7 +33,7 @@ export const useUpsertAch = () => {
         onSuccess,
         onSettled,
     }: {
-        values: IAchSchema
+        values: IAchEditor
         onSuccess?: () => void
         onSettled?: () => void
     }) => {

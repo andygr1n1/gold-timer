@@ -10,12 +10,10 @@ export const uploadNewImageToServer = async ({
     img,
     route,
     userId,
-    id,
 }: {
     route: SERVER_ROUTES
     img: string
     userId: string
-    id?: string
 }): Promise<string | undefined> => {
     try {
         const endpoint = import.meta.env['VITE_NODE_HEROKU_ORIGIN']
@@ -24,7 +22,6 @@ export const uploadNewImageToServer = async ({
         const formData = new FormData()
         formData.append('base64', img)
         formData.append('userId', userId)
-        id && formData.append('id', id)
 
         const { data, status } = await axios<IUploadImgRes>({
             method: 'POST',

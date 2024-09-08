@@ -1,13 +1,12 @@
 import { IconNew } from '@/assets/icons'
 import { StyledButton } from '@/components/buttons/StyledButton'
-import { useAchEditor$ } from '../../../../components-shared/ach-editor-dialog/stores/useAchEditor.store'
-import { editorModeEnum } from '@/services/types'
+import { useAchEditorDialog$ } from '../../../ach-editor-dialog/mst/provider'
 
 export const AddAch: React.FC = () => {
-    const { setStore } = useAchEditor$()
+    const { onChangeField } = useAchEditorDialog$()
 
     const add = () => {
-        setStore({ editorMode: editorModeEnum.new, id: null, open: true })
+        onChangeField('open', true)
     }
 
     return (

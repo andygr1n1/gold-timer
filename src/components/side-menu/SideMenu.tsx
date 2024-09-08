@@ -14,8 +14,8 @@ import { IconBook } from '@/assets/icons/IconBook'
 import { IconProfile } from '@/assets/icons/IconProfile'
 import { IconAchievements } from '@/assets/icons/IconAchievements'
 import { IconLandscape } from '@/assets/icons/IconLandscape'
-import { IconBell } from '@/assets/icons'
-import { IconSprint } from '@/assets/icons/IconSprint'
+// import { IconBell } from '@/assets/icons'
+// import { IconEvents } from '@/assets/icons/IconEvents'
 
 const SideMenu: React.FC = observer(() => {
     const wrapperRef = useRef<HTMLDivElement | null>(null)
@@ -74,12 +74,13 @@ const SideMenu: React.FC = observer(() => {
                                         icon={<IconFocus width={24} height={24} />}
                                     />
 
-                                    <SideMenuLink
-                                        to={APP_ROUTES_ENUM.SPRINTS}
-                                        title='Sprints'
-                                        icon={<IconSprint width={24} height={24} />}
-                                    />
-                                    <XMenuDivider />
+                                    {/* <SideMenuLink
+                                        to={APP_ROUTES_ENUM.EVENTS}
+                                        disabled
+                                        title='Events'
+                                        icon={<IconEvents width={24} height={24} />}
+                                    /> */}
+                                    {/* <XMenuDivider /> */}
                                     <SideMenuLink
                                         to={APP_ROUTES_ENUM.NOTES}
                                         title='Notes'
@@ -91,11 +92,12 @@ const SideMenu: React.FC = observer(() => {
                                         icon={<IconLandscape width={24} height={24} className='ml-[-2px]' />}
                                     />
                                 </div>
-                                <SideMenuLink
+                                {/* <SideMenuLink
                                     to={APP_ROUTES_ENUM.NOTIFICATIONS}
+                                    disabled
                                     title='Notifications'
                                     icon={<IconBell width={24} height={24} className='ml-[-2px]' />}
-                                />
+                                /> */}
                             </div>
                         </div>
                     </div>

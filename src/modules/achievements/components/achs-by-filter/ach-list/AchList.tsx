@@ -3,9 +3,10 @@ import { filteredAchievementsFabric } from './filteredAchievementsFabric'
 import { IsLoading } from '@/components/loading/IsLoading'
 import React, { useEffect } from 'react'
 import { FormLabel } from '@/components/form/FormLabel'
-import { Ach } from './components/ach/Ach'
+import { Ach } from './components/Ach'
 import { useAchsData } from '../../../hooks/useAchsData'
 import { useInView } from 'react-intersection-observer'
+import { useWindowMatchMedia } from '@/hooks/useMatchMedia.hook'
 
 export const AchList = observer(() => {
     const { isLoading, achs, hasNextPage, fetchNextPage } = useAchsData()
@@ -13,6 +14,8 @@ export const AchList = observer(() => {
     const { timeFrame, filteredAchievements } = filteredAchievementsFabric(achs)
 
     const { ref, inView } = useInView()
+
+    const { isMobile } = useWindowMatchMedia(['isMobile'])
 
     useEffect(() => {
         inView && hasNextPage && fetchNextPage()
@@ -27,7 +30,7 @@ export const AchList = observer(() => {
                         <div>{tp && <FormLabel title={tp} />}</div>
                         <div className='flex flex-wrap gap-5 md:gap-2 items-center'>
                             {renderAch.map((ach) => {
-                                return <Ach key={ach.id} ach={ach} />
+                                return <Ach key={ach.id} ach={ach} isMobile={isMobile} />
                             })}
                         </div>
                     </React.Fragment>

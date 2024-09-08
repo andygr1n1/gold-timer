@@ -1,52 +1,49 @@
-import { type IAchSchema, type IUseFetchAchsQuery, achsResponseSchema } from '../types'
-import { resolveError, tryCatchRequest } from '@/helpers/tryCatchRequest'
-import { generateTSClient } from '@/graphql/client'
-import { getQueryFields } from '../getQueryFields'
+import { graphql } from '@/graphql/tada'
+import { type IAch, type IUseFetchAchsQuery } from '../types'
+import { resolveError } from '@/helpers/tryCatchRequest'
+import { achResponseFr } from '../fragments/achResponseFr'
+import { generateURQLClient } from '@/graphql/client'
 
 export const query_favoriteAchs = async ({
     limit,
-    userId,
     serverSearchInput,
     offset,
-}: IUseFetchAchsQuery): Promise<IAchSchema[] | undefined> => {
-    return await tryCatchRequest<Promise<undefined>, IAchSchema[] | undefined>(
-        async () => {
-            const client = await generateTSClient()
-            const fields = getQueryFields()
-            return await client
-                .query({
-                    __name: 'query_favoriteAchs',
-                    achievements: {
-                        __args: {
-                            limit,
-                            offset,
-                            order_by: [{ created_at: 'desc' }, { description: 'asc' }],
-                            where: {
-                                _and: [
-                                    {
-                                        owner_id: { _eq: userId },
-                                        is_favorite: { _eq: true },
-                                        deleted_at: { _is_null: true },
-                                    },
-                                    {
-                                        _or: serverSearchInput.length
-                                            ? [
-                                                  { description: { _ilike: `%${serverSearchInput}%` } },
-                                                  { title: { _ilike: `%${serverSearchInput}%` } },
-                                              ]
-                                            : undefined,
-                                    },
-                                ],
-                            },
-                        },
-                        ...fields,
-                    },
-                })
-                .then((response) => {
-                    const zParse = achsResponseSchema.parse(response)
-                    return zParse.achievements
-                })
-        },
-        async (e) => await resolveError(e),
-    )
+}: IUseFetchAchsQuery): Promise<IAch[] | undefined> => {
+    try {
+        const query = graphql(
+            `
+                query query_favoriteAchs($limit: Int, $offset: Int, $title: String) {
+                    achievements(
+                        limit: $limit
+                        offset: $offset
+                        order_by: { created_at: desc, description: asc }
+                        where: {
+                            _and: [
+                                {
+                                    _or: { title: { _ilike: $title }, description: { _ilike: $title } }
+                                    is_favorite: { _eq: true }
+                                }
+                            ]
+                        }
+                    ) {
+                        ...AchResponseFr
+                    }
+                }
+            `,
+            [achResponseFr],
+        )
+
+        const urqlClient = await generateURQLClient()
+
+        return await urqlClient
+            .query(query, { limit, offset, title: '%' + serverSearchInput + '%' })
+            .then(({ error, data }) => {
+                if (error) throw error
+
+                return data?.achievements
+            })
+    } catch (e) {
+        await resolveError(e)
+        return
+    }
 }

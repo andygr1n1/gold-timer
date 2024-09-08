@@ -1,9 +1,9 @@
 import { convertStringDate } from '@/helpers/date.helpers'
 import { format } from 'date-fns'
 import { compact, uniq } from 'lodash-es'
-import { type IAchSchema } from '../../../services/types'
+import { type IAch } from '../../../services/types'
 
-export const filteredAchievementsFabric = (achievements: IAchSchema[]) => {
+export const filteredAchievementsFabric = (achievements: IAch[]) => {
     const timeFrame = compact(
         uniq(achievements.map((item) => item.created_at && format(convertStringDate(item.created_at), 'yyyy'))),
     )

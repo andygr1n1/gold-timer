@@ -118,6 +118,7 @@ input String_comparison_exp {
 
 """user_achievements"""
 type achievements {
+  archived: Boolean!
   created_at: timestamptz
   deleted_at: timestamptz
   description: String!
@@ -202,6 +203,7 @@ input achievements_bool_exp {
   _and: [achievements_bool_exp!]
   _not: achievements_bool_exp
   _or: [achievements_bool_exp!]
+  archived: Boolean_comparison_exp
   created_at: timestamptz_comparison_exp
   deleted_at: timestamptz_comparison_exp
   description: String_comparison_exp
@@ -233,6 +235,7 @@ enum achievements_constraint {
 input type for inserting data into table "achievements"
 """
 input achievements_insert_input {
+  archived: Boolean
   created_at: timestamptz
   deleted_at: timestamptz
   description: String
@@ -319,6 +322,7 @@ input achievements_on_conflict {
 
 """Ordering options when selecting data from "achievements"."""
 input achievements_order_by {
+  archived: order_by
   created_at: order_by
   deleted_at: order_by
   description: order_by
@@ -340,6 +344,9 @@ input achievements_pk_columns_input {
 select columns of table "achievements"
 """
 enum achievements_select_column {
+  """column name"""
+  archived
+
   """column name"""
   created_at
 
@@ -373,6 +380,9 @@ select "achievements_aggregate_bool_exp_bool_and_arguments_columns" columns of t
 """
 enum achievements_select_column_achievements_aggregate_bool_exp_bool_and_arguments_columns {
   """column name"""
+  archived
+
+  """column name"""
   is_favorite
 }
 
@@ -381,6 +391,9 @@ select "achievements_aggregate_bool_exp_bool_or_arguments_columns" columns of ta
 """
 enum achievements_select_column_achievements_aggregate_bool_exp_bool_or_arguments_columns {
   """column name"""
+  archived
+
+  """column name"""
   is_favorite
 }
 
@@ -388,6 +401,7 @@ enum achievements_select_column_achievements_aggregate_bool_exp_bool_or_argument
 input type for updating data in table "achievements"
 """
 input achievements_set_input {
+  archived: Boolean
   created_at: timestamptz
   deleted_at: timestamptz
   description: String
@@ -412,6 +426,7 @@ input achievements_stream_cursor_input {
 
 """Initial value of the column from where the streaming should start"""
 input achievements_stream_cursor_value_input {
+  archived: Boolean
   created_at: timestamptz
   deleted_at: timestamptz
   description: String
@@ -427,6 +442,9 @@ input achievements_stream_cursor_value_input {
 update columns of table "achievements"
 """
 enum achievements_update_column {
+  """column name"""
+  archived
+
   """column name"""
   created_at
 

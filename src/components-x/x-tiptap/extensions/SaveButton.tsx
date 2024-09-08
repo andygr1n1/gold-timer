@@ -1,13 +1,16 @@
 import { IconEnterButton } from '@/assets/icons/IconEnterButton'
 import { IconShift } from '@/assets/icons/IconShift'
 import { StyledButton } from '@/components/buttons/StyledButton'
+import { extractTextFromHtml } from '@/helpers/extractTextFromHtml'
 import { useCurrentEditor } from '@tiptap/react'
 
 export const SaveButton: React.FC<{ onSave?: (props: { html: string; clearEditor: () => void }) => void }> = ({
     onSave,
 }) => {
     const { editor } = useCurrentEditor()
-    if (!editor) return null
+
+    const hasContent = editor && extractTextFromHtml(editor.getHTML())?.length
+    if (!hasContent) return null
 
     return (
         <div className='relative'>
