@@ -14,6 +14,7 @@ import { IconCheck } from '@/assets/icons/IconCheck'
 import { XSkeleton } from '@/components-x/x-skeleton/XSkeleton'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { cn } from '@/helpers/cn'
+import { sortBy } from 'lodash-es'
 
 export const LabelFilterSelect: React.FC = () => {
     const [open, setOpen] = useState(false)
@@ -60,6 +61,8 @@ const DropdownRender: React.FC<{ onClose: (filter: INoteStatus) => void }> = () 
         )
     }
 
+    const sortedData = sortBy(data, (noteLabel) => (labelParam === noteLabel.id ? 0 : 1))
+
     return (
         <XMenuDropdown className='max-h-[400px] min-h-[160px] overflow-auto scrollbar-thumb-blue-500/50/50 scrollbar-track-global-bg scrollbar-thin'>
             <XMenuItem>
@@ -69,7 +72,7 @@ const DropdownRender: React.FC<{ onClose: (filter: INoteStatus) => void }> = () 
             {isLoading ? (
                 <XSkeleton length={2} />
             ) : (
-                data.map((noteLabel) => {
+                sortedData.map((noteLabel) => {
                     const isSelected = labelParam === noteLabel.id
                     return (
                         <XMenuItem

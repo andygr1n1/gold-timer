@@ -6,8 +6,7 @@ import { XMenuItem } from '@/components-x/x-dropdown/XMenuItem'
 import { type ReactNode } from 'react'
 import { IconNew } from '@/assets/icons'
 import { StyledButton } from '@/components/buttons/StyledButton'
-import { editorMode } from '@/modules/notes/components/note-editor-dialog/stores/note-editor-store/types'
-import { useAchEditor$ } from '@/modules/achievements/components-shared/ach-editor-dialog/stores/useAchEditor.store'
+import { useAchEditorDialog$ } from '@/modules/achievements/components/ach-editor-dialog/mst/provider'
 
 export const AchCounterDropdown: React.FC<{ button: ReactNode }> = observer(({ button }) => {
     return (
@@ -23,9 +22,9 @@ export const AchCounterDropdown: React.FC<{ button: ReactNode }> = observer(({ b
 })
 
 const DropdownRender = observer(() => {
-    const { setStore } = useAchEditor$()
+    const { onChangeField } = useAchEditorDialog$()
     const addAchievement = () => {
-        setStore({ editorMode: editorMode.new, id: null, open: true })
+        onChangeField('open', true)
     }
 
     return (

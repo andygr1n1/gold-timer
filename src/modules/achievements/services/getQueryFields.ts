@@ -6,4 +6,5 @@ export const getQueryFields = () => ({
     created_at: true,
     deleted_at: true,
     is_favorite: true,
+    archived: true,
 })

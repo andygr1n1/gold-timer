@@ -22,7 +22,7 @@ export enum APP_ROUTES_ENUM {
     STORIES = 'stories',
     NOTIFICATIONS = 'notifications',
     GOALS = 'goals',
-    SPRINTS = 'sprints',
+    EVENTS = 'events',
     DASHBOARD = 'dashboard',
     ANDREI_GRINI = 'andreigrini',
 }

@@ -1,37 +1,44 @@
-import { generateTSClient } from '@/graphql/client'
-import { resolveError, tryCatchRequest } from '@/helpers/tryCatchRequest'
-import { type IAchSchema, achSchema } from '../types'
-import { getQueryFields } from '../getQueryFields'
+import { generateURQLClient } from '@/graphql/client'
+import { resolveError } from '@/helpers/tryCatchRequest'
+import type { IAchEditor } from '../types'
+import { graphql } from '@/graphql/tada'
+import { achResponseFr } from '../fragments/achResponseFr'
 
-export const mutation_upsertAch = async ({ values: object }: { values: IAchSchema }) => {
-    const client = await generateTSClient()
-    const fields = getQueryFields()
-    return await tryCatchRequest<Promise<undefined>, IAchSchema | undefined>(
-        () =>
-            client
-                .mutation({
-                    __name: 'mutation_upsertAch',
-                    insert_achievements_one: {
-                        __args: {
-                            object: {
-                                img_path: object.img_path,
-                                id: object.id,
-                                title: object.title,
-                                description: object.description,
-                                is_favorite: object.is_favorite,
-                            },
-                            on_conflict: {
-                                constraint: 'achievements_pkey',
-                                update_columns: ['description', 'img_path', 'title', 'is_favorite'],
-                            },
-                        },
-                        ...fields,
-                    },
-                })
-                .then((response) => {
-                    const zParse = achSchema.parse(response.insert_achievements_one)
-                    return zParse
-                }),
-        async (e) => await resolveError(e),
+export const mutation_upsertAch = async ({ values }: { values: IAchEditor }) => {
+    const object = {
+        id: values.id,
+        title: values.title,
+        description: values.description,
+        img_path: values.img_path,
+        is_favorite: values.is_favorite,
+    }
+
+    const mutation = graphql(
+        `
+            mutation mutation_upsertAch($object: achievements_insert_input!) {
+                insert_achievements_one(
+                    object: $object
+                    on_conflict: {
+                        constraint: achievements_id_key
+                        update_columns: [title, description, img_path, is_favorite]
+                    }
+                ) {
+                    ...AchResponseFr
+                }
+            }
+        `,
+        [achResponseFr],
     )
+
+    const urqlClient = await generateURQLClient()
+
+    try {
+        return await urqlClient.mutation(mutation, { object }).then(({ error, data }) => {
+            if (error) throw error
+            return data
+        })
+    } catch (e) {
+        await resolveError(e)
+        return
+    }
 }

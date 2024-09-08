@@ -26,7 +26,7 @@ const ProtectedRoutes = () => {
                             <Route path={`/${APP_ROUTES_ENUM.NOTIFICATIONS}/*`} element={<NotificationsIndex />} />
                             <Route path={`/${APP_ROUTES_ENUM.NOTES}/*`} element={<NotesCmsIndex />} />
                             <Route path={`/${APP_ROUTES_ENUM.GOALS}/*`} element={<GoalsCmsIndex />} />
-                            <Route path={`/${APP_ROUTES_ENUM.SPRINTS}`} element={<SprintsIndex />} />
+                            <Route path={`/${APP_ROUTES_ENUM.EVENTS}`} element={<SprintsIndex />} />
                             <Route path={`/${APP_ROUTES_ENUM.DASHBOARD}/*`} element={<DashboardIndex />} />
                             <Route path={'/'} element={<Navigate to={`/${APP_ROUTES_ENUM.DASHBOARD}`} />} />
                             <Route path={'*'} element={<Navigate to={`/${APP_ROUTES_ENUM.DASHBOARD}`} />} />

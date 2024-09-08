@@ -9,6 +9,7 @@ import { IconFocus } from '@/assets/icons/IconFocus'
 import { AchFilterSelectButton } from './ach-filter-select-button/AchFilterSelectButton'
 import { type IArtifactStatus, artifactStatus } from '@/services/types'
 import { IconAll } from '@/assets/icons/IconAll'
+import { IconArchive } from '@/assets/icons/IconArchive'
 
 export const AchFilterSelect = () => {
     const [open, setOpen] = useState(false)
@@ -80,6 +81,19 @@ const DropdownRender: React.FC<{ onClose: (filter: IArtifactStatus) => void }> =
                     startIcon={<IconFocus className='text-blue-500' width={24} height={24} />}
                 >
                     <span className='flex w-[110px] justify-start capitalize text-blue-500'>Active</span>
+                </StyledButton>
+            </XMenuItem>
+            <XMenuItem
+                onClick={() => {
+                    onClose('archived')
+                }}
+            >
+                <StyledButton
+                    variant='text'
+                    size='small'
+                    startIcon={<IconArchive className='text-violet-500' width={24} height={24} />}
+                >
+                    <span className='flex w-[110px] justify-start capitalize text-violet-500'>Archived</span>
                 </StyledButton>
             </XMenuItem>
             <XMenuItem
