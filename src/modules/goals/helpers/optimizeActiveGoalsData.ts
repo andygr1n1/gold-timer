@@ -17,7 +17,7 @@ export const calculateIsFromFuture = (goal: IGoalSchema): boolean => {
     if (!goal.created_at || !goal.finished_at) return false
 
     return (
-        !!(new Date(goal.created_at) > new Date()) ||
+        // !!(new Date(goal.created_at) > new Date()) ||
         !!isFuture(set(goal.finished_at, { hours: 0, minutes: 0, seconds: 0 }))
     )
 }

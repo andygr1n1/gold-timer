@@ -5,7 +5,7 @@ import { cast } from '@/helpers'
 
 export const useFetchAch = (props: { id?: string }) => {
     const { id } = props
-    const { isLoading, data } = useQuery({
+    const { isLoading, data, isFetching, isFetched } = useQuery({
         queryKey: achService.fetchAchKey(`${id}`),
         queryFn: async () => await query_fetchAch({ id: cast(id) }),
         staleTime: 1000,
@@ -13,9 +13,11 @@ export const useFetchAch = (props: { id?: string }) => {
         refetchOnMount: true,
         enabled: !!id,
     })
-
+    console.log('isL', isLoading, isFetching, isFetched)
     return {
         isLoading,
         data,
+        isFetching,
+        isFetched,
     }
 }
