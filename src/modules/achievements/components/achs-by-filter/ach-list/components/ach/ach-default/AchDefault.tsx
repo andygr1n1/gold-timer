@@ -16,10 +16,7 @@ export const AchDefault: React.FC<{ ach: IAch }> = ({ ach }) => {
     return (
         <div
             id={`ach-${ach.id}`}
-            className={cn(styles['ach'], `flex-[30%] max-w-[120px]`)}
-            onClick={() => {
-                onOpenViewMode({ edit_id: ach.id })
-            }}
+            className={cn(styles['ach'], `flex-[30%] max-w-[120px]`, ach.freezed && 'opacity-50')}
         >
             <XDropdown
                 open={popoverState}
@@ -30,7 +27,12 @@ export const AchDefault: React.FC<{ ach: IAch }> = ({ ach }) => {
                 dropdownRender={() => <AchContextMenu onClose={() => setPopoverState(false)} ach={ach} />}
                 destroyPopupOnHide
             >
-                <div className='flex cursor-pointer relative'>
+                <div
+                    onClick={() => {
+                        onOpenViewMode({ edit_id: ach.id })
+                    }}
+                    className='flex cursor-pointer relative'
+                >
                     <img
                         src={`${import.meta.env['VITE_FIRE_BUNNY_STORAGE']}achievements/${ach.img_path}`}
                         className='animate-opacity-3 w-full flex h-full rounded-lg'

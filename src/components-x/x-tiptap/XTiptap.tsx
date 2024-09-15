@@ -24,6 +24,7 @@ type ITiptap = {
     errorMessage?: ReactNode
     onSave?: (props: { html: string; clearEditor: () => void }) => void
     customToolbar?: boolean
+    showSaveButtonTooltip?: boolean
 }
 
 export const XTiptap: React.FC<ITiptap> = (props) => {
@@ -37,12 +38,13 @@ export const XTiptap: React.FC<ITiptap> = (props) => {
         errorMessage,
         onSave,
         customToolbar,
+        showSaveButtonTooltip,
     } = props
 
     const extensions = [
         StarterKit.configure({
             bulletList: {
-                keepMarks: true, 
+                keepMarks: true,
                 keepAttributes: false,
                 HTMLAttributes: {
                     class: '!ml-[36px] !list-disc [&_li]:list-disc [&_li]-pl-[6px] ',
@@ -147,7 +149,7 @@ export const XTiptap: React.FC<ITiptap> = (props) => {
                 <EditorChildrenWrapper {...props}>
                     {customToolbar && (
                         <div className='w-full items-end mt-4 flex justify-end h-[30px]'>
-                            <SaveButton onSave={onSave} />
+                            <SaveButton onSave={onSave} showSaveButtonTooltip={showSaveButtonTooltip} />
                         </div>
                     )}
                     {children}

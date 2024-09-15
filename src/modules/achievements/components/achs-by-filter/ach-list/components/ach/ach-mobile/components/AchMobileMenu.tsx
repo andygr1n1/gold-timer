@@ -1,29 +1,20 @@
+import { XMobileMenu } from '@/components-x/x-mobil-menu/XMobileMenu'
 import { AchIsArchived } from '@/modules/achievements/components-shared/ach-is-archived/AchIsArchived'
 import { AchIsDeleted } from '@/modules/achievements/components-shared/ach-is-deleted/AchIsDeleted'
 import { AchIsFavorite } from '@/modules/achievements/components-shared/ach-is-favorite/AchIsFavorite'
 import { AchToggleEdit } from '@/modules/achievements/components-shared/AchToggleEdit'
 import { AchView } from '@/modules/achievements/components-shared/AchView'
 import type { IAch } from '@/modules/achievements/services/types'
-import { Drawer } from 'antd'
 import { capitalize } from 'lodash-es'
 
-export const AchActionsDrawer: React.FC<{
+export const AchMobileMenu: React.FC<{
     ach: IAch
     openDrawer: boolean
     onClose: () => void
 }> = ({ ach, openDrawer, onClose }) => {
     return (
-        <Drawer
-            closeIcon={false}
-            title={capitalize(ach.title)}
-            placement={'bottom'}
-            width={500}
-            onClose={onClose}
-            open={openDrawer}
-            height={'450px'}
-            styles={{ header: { borderBottom: '1px solid #19273b' } }}
-        >
-            <div className='flex flex-col gap-4'>
+        <XMobileMenu title={capitalize(ach.title)} onClose={onClose} open={openDrawer} height={'450px'}>
+            <div className='flex flex-col gap-4 h-[270px] '>
                 <AchIsFavorite
                     context='drawer'
                     onClose={onClose}
@@ -65,6 +56,6 @@ export const AchActionsDrawer: React.FC<{
                     }
                 />
             </div>
-        </Drawer>
+        </XMobileMenu>
     )
 }

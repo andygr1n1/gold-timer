@@ -11,5 +11,6 @@ export const achResponseFr = graphql(`
         archived
         is_favorite
         description
+        freezed
     }
 `)

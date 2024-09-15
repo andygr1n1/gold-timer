@@ -19,4 +19,5 @@ const initialAch = (data: IAch | null | undefined): IAchEditor => ({
     description: data?.description || '',
     img_path: data?.img_path || '',
     archived: !!data?.archived,
+    freezed: !!data?.freezed,
 })

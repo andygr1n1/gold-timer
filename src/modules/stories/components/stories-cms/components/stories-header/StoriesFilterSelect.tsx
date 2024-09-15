@@ -50,15 +50,15 @@ const DropdownRender: React.FC<{ onClose: (filter: INoteStatus) => void }> = ({ 
         <XMenuDropdown>
             <XMenuItem
                 onClick={() => {
-                    onClose(artifactStatus.all)
+                    onClose('active')
                 }}
             >
                 <StyledButton
                     variant='text'
                     size='small'
-                    startIcon={<IconAll className='text-sky-400' width={26} height={26} />}
+                    startIcon={<IconFocus className='text-blue-500' width={24} height={24} />}
                 >
-                    <span className='flex w-[110px] justify-start capitalize text-sky-400'>All</span>
+                    <span className='flex w-[110px] justify-start capitalize text-blue-500'>Active</span>
                 </StyledButton>
             </XMenuItem>
             <XMenuItem
@@ -74,19 +74,7 @@ const DropdownRender: React.FC<{ onClose: (filter: INoteStatus) => void }> = ({ 
                     <span className='flex w-[110px] justify-start capitalize text-rose-500'>Favorite</span>
                 </StyledButton>
             </XMenuItem>
-            <XMenuItem
-                onClick={() => {
-                    onClose('active')
-                }}
-            >
-                <StyledButton
-                    variant='text'
-                    size='small'
-                    startIcon={<IconFocus className='text-blue-500' width={24} height={24} />}
-                >
-                    <span className='flex w-[110px] justify-start capitalize text-blue-500'>Active</span>
-                </StyledButton>
-            </XMenuItem>
+
             <XMenuItem
                 onClick={() => {
                     onClose('archived')
@@ -111,6 +99,19 @@ const DropdownRender: React.FC<{ onClose: (filter: INoteStatus) => void }> = ({ 
                     startIcon={<IconDeleteTemp className='text-slate-500' width={24} height={24} />}
                 >
                     <span className='flex w-[110px] justify-start capitalize text-slate-500'>Deleted</span>
+                </StyledButton>
+            </XMenuItem>
+            <XMenuItem
+                onClick={() => {
+                    onClose(artifactStatus.all)
+                }}
+            >
+                <StyledButton
+                    variant='text'
+                    size='small'
+                    startIcon={<IconAll className='text-sky-400' width={26} height={26} />}
+                >
+                    <span className='flex w-[110px] justify-start capitalize text-sky-400'>All</span>
                 </StyledButton>
             </XMenuItem>
         </XMenuDropdown>

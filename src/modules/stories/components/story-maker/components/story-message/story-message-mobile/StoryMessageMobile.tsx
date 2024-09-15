@@ -12,7 +12,7 @@ import { useState } from 'react'
 import { useStoryMaker$ } from '../../../mst/provider'
 import { useSaveStoryMessage } from '../../../service/useSaveStoryMessage'
 import { storyMakerService } from '../../../service/storyMakerService'
-import { StoryMessageActionsDrawer } from './components/StoryMessageActionsDrawer'
+import { StoryMessageMobileMenu } from './components/StoryMessageMobileMenu'
 import { StyledButton } from '@/components/buttons/StyledButton'
 import { IconThreeDots } from '@/assets/icons/IconThreeDots'
 
@@ -44,6 +44,7 @@ const StoryMessageMobile: React.FC<{ message: IStoryMessage }> = observer(({ mes
                     />
                 </span>
                 <XTiptap
+                    showSaveButtonTooltip={false}
                     onSave={({ html }) => {
                         if (!extractTextFromHtml(html).trim().length) {
                             notify('Type something')
@@ -65,7 +66,7 @@ const StoryMessageMobile: React.FC<{ message: IStoryMessage }> = observer(({ mes
                     customToolbar={message.id === editSelectedMessageId}
                 />
             </div>
-            <StoryMessageActionsDrawer message={message} openDrawer={openDrawer} onClose={() => setOpenDrawer(false)} />
+            <StoryMessageMobileMenu message={message} openDrawer={openDrawer} onClose={() => setOpenDrawer(false)} />
         </>
     )
 })

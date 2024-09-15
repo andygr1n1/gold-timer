@@ -18,6 +18,7 @@ export const AchEditorDialog$ = types
         },
         onOpenEditMode(props?: { edit_id?: string }) {
             self.open = true
+            self.readonly = false
             self.edit_id = props?.edit_id
         },
         onOpenViewMode(props?: { edit_id?: string }) {
