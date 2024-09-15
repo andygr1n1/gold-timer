@@ -4,6 +4,7 @@ import { AchIsArchived } from '@/modules/achievements/components-shared/ach-is-a
 import { AchIsDeleted } from '@/modules/achievements/components-shared/ach-is-deleted/AchIsDeleted'
 import { AchIsFavorite } from '@/modules/achievements/components-shared/ach-is-favorite/AchIsFavorite'
 import { AchToggleEdit } from '@/modules/achievements/components-shared/AchToggleEdit'
+import { AchView } from '@/modules/achievements/components-shared/AchView'
 import type { IAch } from '@/modules/achievements/services/types'
 
 export const AchContextMenu: React.FC<{ onClose: () => void; ach: IAch }> = ({ onClose, ach }) => {
@@ -20,6 +21,9 @@ export const AchContextMenu: React.FC<{ onClose: () => void; ach: IAch }> = ({ o
                         </span>
                     }
                 />
+            </XMenuItem>
+            <XMenuItem>
+                <AchView onClose={onClose} id={ach.id} />
             </XMenuItem>
             <XMenuItem>
                 <AchToggleEdit

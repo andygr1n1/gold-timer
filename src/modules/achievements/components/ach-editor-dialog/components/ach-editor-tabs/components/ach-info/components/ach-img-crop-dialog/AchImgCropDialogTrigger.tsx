@@ -5,8 +5,10 @@ import { type IAchEditor } from '@/modules/achievements/services/types'
 import { IconUpload } from '@/assets/icons'
 import { FormLabel } from '@/components/form/FormLabel'
 import { cn } from '@/helpers/cn'
+import { useAchEditorDialog$ } from '@/modules/achievements/components/ach-editor-dialog/mst/provider'
 
 export const AchImgCropDialogTrigger = () => {
+    const { readonly } = useAchEditorDialog$()
     const formikContext = useFormikContext<IAchEditor>()
     const { img_src, img_path } = formikContext.values
     const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -16,8 +18,6 @@ export const AchImgCropDialogTrigger = () => {
         })
     }
 
-    console.log('img_path', img_path)
-
     const error = formikContext.touched.title && Boolean(formikContext.errors.img_src)
 
     const errorMessage = formikContext.errors.img_src
@@ -25,15 +25,16 @@ export const AchImgCropDialogTrigger = () => {
     const imgSrc = img_path || img_src
 
     return (
-        <div>
+        <div className={cn(readonly && 'pointer-events-none select-none')}>
             <FormLabel title='Logo' />
             <div
                 data-testid='profile-avatar-index'
                 className={cn(
                     `group relative mx-auto flex h-[300px] w-[calc(100%-40px)] p-5
                     items-center justify-center rounded-md border border-solid
-                    border-blue-900/20 hover:border-blue-600/20 shadow-md transition-shadow duration-300`,
+                    border-blue-900 hover:border-blue-600 shadow-md transition-shadow duration-300`,
                     error && 'border-red-500 hover:border-red-500',
+                    readonly && 'border-transparent',
                 )}
             >
                 {imgSrc && (

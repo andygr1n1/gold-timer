@@ -9,7 +9,7 @@ export const StoryMessageAvatar: React.FC<{ message: IStoryMessage }> = ({ messa
         <>
             <div
                 id={`storyMessageAvatar-${message.id}`}
-                className='w-10 opacity-0 duration-300 group-hover:opacity-100 flex absolute -left-14 top-2 h-10 rounded-full shadow-xl items-center justify-center text-base'
+                className='w-10 opacity-50 duration-300 group-hover:opacity-100 flex absolute -left-14 top-2 h-10 rounded-full shadow-xl items-center justify-center text-base'
             >
                 {message.updated_by_user?.avatar ? (
                     <img

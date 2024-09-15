@@ -1,8 +1,10 @@
 import { Tabs } from 'antd'
 import { AchEditorFormSubmit } from './components/topbar-extra-content/note-editor-form-submit/AchEditorFormSubmit'
 import { useAchEditorTabs } from './hooks/useAchEditorTabs'
+import { useAchEditorDialog$ } from '../../mst/provider'
 
 export const AchEditorTabs = () => {
+    const { readonly } = useAchEditorDialog$()
     const { editorTabs } = useAchEditorTabs()
 
     return (
@@ -16,7 +18,7 @@ export const AchEditorTabs = () => {
             }}
             defaultActiveKey='1'
             items={editorTabs}
-            tabBarExtraContent={<AchEditorFormSubmit />}
+            tabBarExtraContent={!readonly && <AchEditorFormSubmit />}
             indicator={{ align: 'center' }}
         />
     )

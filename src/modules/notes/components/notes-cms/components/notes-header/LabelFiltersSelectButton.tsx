@@ -7,7 +7,7 @@ export const LabelFiltersSelectButton: React.FC = observer(() => {
     return (
         <StyledButton
             startIcon={<IconFolder className='w-5 h-5' />}
-            className={cn('!border-blue-600/20 hover:!bg-blue-600/20')}
+            className={cn('!border-blue-600 hover:!bg-blue-600/20')}
             variant='outlined'
         />
     )

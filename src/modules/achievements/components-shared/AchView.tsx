@@ -1,17 +1,14 @@
-import { XTooltip } from '@/components-x/x-tooltip/XTooltip'
 import { StyledButton } from '@/components/buttons/StyledButton'
-import { IconEdit } from '@/assets/icons/IconEdit'
-import { type ReactNode } from 'react'
 import { useAchEditorDialog$ } from '../components/ach-editor-dialog/mst/provider'
 import { cn } from '@/helpers/cn'
+import { IconEye } from '@/assets/icons'
 
-export const AchToggleEdit: React.FC<{ label?: ReactNode; id: string; onClose?: () => void; context?: 'drawer' }> = ({
-    label,
+export const AchView: React.FC<{ id: string; onClose?: () => void; context?: 'drawer' }> = ({
     id,
     onClose,
     context,
 }) => {
-    const { edit_id, onOpenEditMode } = useAchEditorDialog$()
+    const { edit_id, onOpenViewMode } = useAchEditorDialog$()
 
     return (
         <>
@@ -20,15 +17,14 @@ export const AchToggleEdit: React.FC<{ label?: ReactNode; id: string; onClose?: 
                 id='editAch'
                 variant={edit_id ? 'contained' : 'text'}
                 size={'custom'}
-                startIcon={<IconEdit className='h-6 w-6 opacity-70 hover:opacity-100' />}
+                startIcon={<IconEye className='h-6 w-6 opacity-70 hover:opacity-100' />}
                 onClick={() => {
-                    onOpenEditMode({ edit_id: id })
+                    onOpenViewMode({ edit_id: id })
                     onClose?.()
                 }}
             >
-                {label}
+                <span className='capitalize w-[110px] justify-start flex'>View</span>
             </StyledButton>
-            {!label && <XTooltip anchorSelect='#editAch'>{edit_id ? 'Cancel' : 'Edit'}</XTooltip>}
         </>
     )
 }

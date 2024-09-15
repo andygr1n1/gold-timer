@@ -4,10 +4,11 @@ import { FormLabel } from '@/components/form/FormLabel'
 import { prepareFinishedAtForInsert } from '@/helpers/date.helpers'
 import { useFormikContext } from 'formik'
 import { type IAch } from '@/modules/achievements/services/types'
+import { useAchEditorDialog$ } from '@/modules/achievements/components/ach-editor-dialog/mst/provider'
 
 export const AchCreatedAtInput = () => {
     const formikContext = useFormikContext<IAch>()
-
+    const { readonly } = useAchEditorDialog$()
     function onDatePickerChange(day: Date | undefined) {
         day && formikContext.setFieldValue('created_at', prepareFinishedAtForInsert(new Date(day)))
     }
@@ -34,6 +35,8 @@ export const AchCreatedAtInput = () => {
                 showWeekNumber
                 onClear={onClear}
                 showToday
+                disabled={readonly}
+                readOnly={readonly}
             />
         </div>
     )

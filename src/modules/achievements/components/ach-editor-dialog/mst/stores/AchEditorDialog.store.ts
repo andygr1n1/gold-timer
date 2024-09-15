@@ -3,7 +3,8 @@ import { type Instance, types } from 'mobx-state-tree'
 export const AchEditorDialog$ = types
     .model('AchEditorDialog$', {
         open: false,
-        /* storyId === edit mode */
+        readonly: false,
+        /* edit_id === edit mode */
         edit_id: types.maybe(types.string),
     })
     .actions((self) => ({
@@ -12,14 +13,16 @@ export const AchEditorDialog$ = types
         },
         onClose() {
             self.open = false
+            self.readonly = false
             self.edit_id = undefined
-        },
-        onOpen(props?: { edit_id?: string }) {
-            self.open = true
-            self.edit_id = props?.edit_id
         },
         onOpenEditMode(props?: { edit_id?: string }) {
             self.open = true
+            self.edit_id = props?.edit_id
+        },
+        onOpenViewMode(props?: { edit_id?: string }) {
+            self.open = true
+            self.readonly = true
             self.edit_id = props?.edit_id
         },
     }))

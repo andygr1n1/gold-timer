@@ -14,7 +14,6 @@ import Link from '@tiptap/extension-link'
 import { cn } from '@/helpers/cn'
 import { SaveButton } from './extensions/SaveButton'
 import { ShiftEnterExtension } from './extensions/shift-enter-extension/ShiftEnterExtension'
-
 type ITiptap = {
     onChange?: (html: string) => void
     content: string
@@ -41,6 +40,23 @@ export const XTiptap: React.FC<ITiptap> = (props) => {
     } = props
 
     const extensions = [
+        StarterKit.configure({
+            bulletList: {
+                keepMarks: true, 
+                keepAttributes: false,
+                HTMLAttributes: {
+                    class: '!ml-[36px] !list-disc [&_li]:list-disc [&_li]-pl-[6px] ',
+                },
+            },
+            orderedList: {
+                keepMarks: true,
+                keepAttributes: false,
+
+                HTMLAttributes: {
+                    class: ' list-decimal [&_li]:list-decimal',
+                },
+            },
+        }),
         // Heading.configure({
         //     levels: [1, 2, 3],
         // }),
@@ -48,16 +64,7 @@ export const XTiptap: React.FC<ITiptap> = (props) => {
         Underline,
         Color.configure({ types: [TextStyle.name, ListItem.name] }),
         TextStyle,
-        StarterKit.configure({
-            bulletList: {
-                keepMarks: true,
-                keepAttributes: false,
-            },
-            orderedList: {
-                keepMarks: true,
-                keepAttributes: false,
-            },
-        }),
+
         ShiftEnterExtension({ onSave }),
         FileHandler.configure({
             allowedMimeTypes: ['image/png', 'image/jpeg', 'image/gif', 'image/webp'],
@@ -119,6 +126,7 @@ export const XTiptap: React.FC<ITiptap> = (props) => {
 
     return (
         <div
+            onClick={(e) => !readonly && e.stopPropagation()}
             className={cn(styles['xtiptap'], readonly && styles['xtiptap-readonly'], error && styles['xtiptap-error'])}
         >
             <EditorProvider
