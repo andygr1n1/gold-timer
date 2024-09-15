@@ -2,8 +2,9 @@ import { Tabs } from 'antd'
 import { AchEditorFormSubmit } from './components/topbar-extra-content/note-editor-form-submit/AchEditorFormSubmit'
 import { useAchEditorTabs } from './hooks/useAchEditorTabs'
 import { useAchEditorDialog$ } from '../../mst/provider'
+import { observer } from 'mobx-react-lite'
 
-export const AchEditorTabs = () => {
+export const AchEditorTabs = observer(() => {
     const { readonly } = useAchEditorDialog$()
     const { editorTabs } = useAchEditorTabs()
 
@@ -22,4 +23,4 @@ export const AchEditorTabs = () => {
             indicator={{ align: 'center' }}
         />
     )
-}
+})

@@ -27,6 +27,7 @@ export const AchContextMenu: React.FC<{ onClose: () => void; ach: IAch }> = ({ o
             </XMenuItem>
             <XMenuItem>
                 <AchToggleEdit
+                    context='menu'
                     onClose={onClose}
                     id={ach.id}
                     label={<span className='flex w-[110px] justify-start capitalize'>Edit</span>}

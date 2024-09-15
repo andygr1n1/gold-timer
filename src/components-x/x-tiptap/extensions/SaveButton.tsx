@@ -4,9 +4,10 @@ import { StyledButton } from '@/components/buttons/StyledButton'
 import { extractTextFromHtml } from '@/helpers/extractTextFromHtml'
 import { useCurrentEditor } from '@tiptap/react'
 
-export const SaveButton: React.FC<{ onSave?: (props: { html: string; clearEditor: () => void }) => void }> = ({
-    onSave,
-}) => {
+export const SaveButton: React.FC<{
+    onSave?: (props: { html: string; clearEditor: () => void }) => void
+    showSaveButtonTooltip?: boolean
+}> = ({ onSave, showSaveButtonTooltip = true }) => {
     const { editor } = useCurrentEditor()
 
     const hasContent = editor && extractTextFromHtml(editor.getHTML())?.length
@@ -14,9 +15,11 @@ export const SaveButton: React.FC<{ onSave?: (props: { html: string; clearEditor
 
     return (
         <div className='relative'>
-            <div className='absolute -left-14 top-2 opacity-30'>
-                <IconShift /> + <IconEnterButton />
-            </div>
+            {showSaveButtonTooltip && (
+                <div className='absolute -left-14 top-[4px] opacity-30'>
+                    <IconShift /> + <IconEnterButton />
+                </div>
+            )}
             <StyledButton
                 className='min-w-[80px]'
                 size='small'

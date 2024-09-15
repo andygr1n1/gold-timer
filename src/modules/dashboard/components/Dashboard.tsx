@@ -13,6 +13,7 @@ import {
     NoteEditorDialog$Provider,
 } from '@/modules/notes/components/note-editor-dialog/mst/provider'
 
+const AchsDashboardSlider = lazy(() => import('@/modules/achievements/components/achs-dashboard/AchsDashboardSlider'))
 const NoteEditorDialog = lazy(() => import('@/modules/notes/components/note-editor-dialog/NoteEditorDialog'))
 const GoalEditorDialog = lazy(() => import('@/modules/goals/components/goal-editor-dialog/GoalEditorDialog'))
 
@@ -30,6 +31,7 @@ export const Dashboard: React.FC = () => {
         >
             <NotepadIndex />
             <GoalsSlidesCarouselWidget />
+            <AchsDashboardSlider />
             <TopActiveGoalsWidget />
             <TopExpiredGoalsWidget />
             <TopRitualGoalsWidget />

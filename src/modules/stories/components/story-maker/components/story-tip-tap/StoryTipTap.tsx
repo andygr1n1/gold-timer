@@ -7,14 +7,17 @@ import { storyMakerService } from '../../service/storyMakerService'
 import { useQueryClient } from '@tanstack/react-query'
 import { extractTextFromHtml } from '@/helpers/extractTextFromHtml'
 import { notify } from '@/helpers/processMessage'
+import { useWindowMatchMedia } from '@/hooks/useMatchMedia.hook'
 
 export const StoryTipTap: React.FC = observer(() => {
     const queryClient = useQueryClient()
     const { saveStoryMessage } = useSaveStoryMessage()
     const { id } = useUuidFromPath()
+    const { isMobile } = useWindowMatchMedia(['isMobile'])
     return (
         <div className='flex flex-col w-full'>
             <XTiptap
+                showSaveButtonTooltip={!isMobile}
                 content=''
                 customToolbar
                 onSave={({ html, clearEditor }) => {

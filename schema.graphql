@@ -116,12 +116,13 @@ input String_comparison_exp {
   _similar: String
 }
 
-"""user_achievements"""
+"""freezed - if achievement is created, but not completed"""
 type achievements {
   archived: Boolean!
   created_at: timestamptz
   deleted_at: timestamptz
   description: String!
+  freezed: Boolean!
 
   """An object relationship"""
   hero: heroes!
@@ -207,6 +208,7 @@ input achievements_bool_exp {
   created_at: timestamptz_comparison_exp
   deleted_at: timestamptz_comparison_exp
   description: String_comparison_exp
+  freezed: Boolean_comparison_exp
   hero: heroes_bool_exp
   id: uuid_comparison_exp
   img_path: String_comparison_exp
@@ -239,6 +241,7 @@ input achievements_insert_input {
   created_at: timestamptz
   deleted_at: timestamptz
   description: String
+  freezed: Boolean
   hero: heroes_obj_rel_insert_input
   id: uuid
   img_path: String
@@ -326,6 +329,7 @@ input achievements_order_by {
   created_at: order_by
   deleted_at: order_by
   description: order_by
+  freezed: order_by
   hero: heroes_order_by
   id: order_by
   img_path: order_by
@@ -357,6 +361,9 @@ enum achievements_select_column {
   description
 
   """column name"""
+  freezed
+
+  """column name"""
   id
 
   """column name"""
@@ -383,6 +390,9 @@ enum achievements_select_column_achievements_aggregate_bool_exp_bool_and_argumen
   archived
 
   """column name"""
+  freezed
+
+  """column name"""
   is_favorite
 }
 
@@ -392,6 +402,9 @@ select "achievements_aggregate_bool_exp_bool_or_arguments_columns" columns of ta
 enum achievements_select_column_achievements_aggregate_bool_exp_bool_or_arguments_columns {
   """column name"""
   archived
+
+  """column name"""
+  freezed
 
   """column name"""
   is_favorite
@@ -405,6 +418,7 @@ input achievements_set_input {
   created_at: timestamptz
   deleted_at: timestamptz
   description: String
+  freezed: Boolean
   id: uuid
   img_path: String
   is_favorite: Boolean
@@ -430,6 +444,7 @@ input achievements_stream_cursor_value_input {
   created_at: timestamptz
   deleted_at: timestamptz
   description: String
+  freezed: Boolean
   id: uuid
   img_path: String
   is_favorite: Boolean
@@ -453,6 +468,9 @@ enum achievements_update_column {
 
   """column name"""
   description
+
+  """column name"""
+  freezed
 
   """column name"""
   id

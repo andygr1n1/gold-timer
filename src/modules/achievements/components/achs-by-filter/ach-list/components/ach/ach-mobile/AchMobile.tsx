@@ -3,7 +3,7 @@ import { AchStatus } from '../shared-components/ach-status/AchStatus'
 import styles from '../shared-components/Ach.module.scss'
 import { cn } from '@/helpers/cn'
 import { useState } from 'react'
-import { AchActionsDrawer } from './components/AchActionsDrawer'
+import { AchMobileMenu } from './components/AchMobileMenu'
 
 const AchMobile: React.FC<{ ach: IAch }> = ({ ach }) => {
     const [openDrawer, setOpenDrawer] = useState(false)
@@ -11,7 +11,7 @@ const AchMobile: React.FC<{ ach: IAch }> = ({ ach }) => {
     return (
         <>
             <div
-                className={cn(styles['ach'], `flex-[42%] max-w-[42%] relative`)}
+                className={cn(styles['ach'], `flex-[41%] max-w-[41%] relative`)}
                 onClick={() => setOpenDrawer((prev) => !prev)}
             >
                 <img
@@ -21,7 +21,7 @@ const AchMobile: React.FC<{ ach: IAch }> = ({ ach }) => {
                 />
                 <AchStatus ach={ach} isMobile={true} />
             </div>
-            <AchActionsDrawer ach={ach} openDrawer={openDrawer} onClose={() => setOpenDrawer(false)} />
+            <AchMobileMenu ach={ach} openDrawer={openDrawer} onClose={() => setOpenDrawer(false)} />
         </>
     )
 }

@@ -17,7 +17,7 @@ export const AchView: React.FC<{ id: string; onClose?: () => void; context?: 'dr
                 id='editAch'
                 variant={edit_id ? 'contained' : 'text'}
                 size={'custom'}
-                startIcon={<IconEye className='h-6 w-6 opacity-70 hover:opacity-100' />}
+                startIcon={<IconEye className='h-6 w-6 min-h-6 min-w-6 opacity-70 hover:opacity-100' />}
                 onClick={() => {
                     onOpenViewMode({ edit_id: id })
                     onClose?.()

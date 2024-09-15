@@ -11,6 +11,7 @@ export const mutation_upsertAch = async ({ values }: { values: IAchEditor }) => 
         description: values.description,
         img_path: values.img_path,
         is_favorite: values.is_favorite,
+        freezed: values.freezed,
     }
 
     const mutation = graphql(
@@ -20,7 +21,7 @@ export const mutation_upsertAch = async ({ values }: { values: IAchEditor }) => 
                     object: $object
                     on_conflict: {
                         constraint: achievements_id_key
-                        update_columns: [title, description, img_path, is_favorite]
+                        update_columns: [title, description, img_path, is_favorite, freezed]
                     }
                 ) {
                     ...AchResponseFr

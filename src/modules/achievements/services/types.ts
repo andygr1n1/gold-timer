@@ -12,6 +12,7 @@ export const achSchema = z.object({
     is_favorite: z.boolean(),
     img_path: z.string().nullable(),
     archived: z.boolean(),
+    freezed: z.boolean(),
     /*  */
     img_src: z.string().optional(),
     img_src_buffer: z.string().optional(),

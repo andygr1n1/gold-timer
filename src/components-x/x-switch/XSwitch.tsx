@@ -1,8 +1,5 @@
-import { Switch } from 'antd'
+import { Switch, type SwitchProps } from 'antd'
 
-export const XSwitch: React.FC<{ checked: boolean; onChange: (checked: boolean) => void }> = ({
-    checked,
-    onChange,
-}) => {
-    return <Switch checked={checked} onChange={onChange} className='!bg-blue-700 ' />
+export const XSwitch: React.FC<SwitchProps> = (props) => {
+    return <Switch {...props} className='!bg-blue-700 ' />
 }
