@@ -3,7 +3,7 @@ import { filteredAchievementsFabric } from './filteredAchievementsFabric'
 import { IsLoading } from '@/components/loading/IsLoading'
 import React, { useEffect } from 'react'
 import { FormLabel } from '@/components/form/FormLabel'
-import { Ach } from './components/ach/AchIndex'
+import { AchIndex } from './components/ach/AchIndex'
 import { useAchsData } from '../../../hooks/useAchsData'
 import { useInView } from 'react-intersection-observer'
 import { useWindowMatchMedia } from '@/hooks/useMatchMedia.hook'
@@ -30,7 +30,7 @@ export const AchList = observer(() => {
                         <div>{tp && <FormLabel title={tp} />}</div>
                         <div className='flex flex-wrap gap-5 md:gap-2 items-center'>
                             {renderAch.map((ach) => {
-                                return <Ach key={ach.id} ach={ach} isMobile={isMobile} />
+                                return <AchIndex key={ach.id} ach={ach} isMobile={isMobile} />
                             })}
                         </div>
                     </React.Fragment>

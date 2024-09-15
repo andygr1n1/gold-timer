@@ -4,8 +4,8 @@ import { XMenuItem } from '@/components-x/x-dropdown/XMenuItem'
 import { StyledButton } from '@/components/buttons/StyledButton'
 import { observer } from 'mobx-react-lite'
 import type { IStoryMessage } from '@/modules/stories/services/types'
-import { useStoryMaker$ } from '../../mst/provider'
-import { useDeleteStoryMessage } from '../../service/useDeleteStoryMessage'
+import { useStoryMaker$ } from '../../../../mst/provider'
+import { useDeleteStoryMessage } from '../../../../service/useDeleteStoryMessage'
 
 export const StoryMessageDropdownRender: React.FC<{ message: IStoryMessage; onClose: () => void }> = observer(
     ({ message, onClose }) => {

@@ -8,7 +8,7 @@ export const NotesLabelsDialogTrigger: React.FC = observer(() => {
     const { onOpen: onCLick } = useLabelDialog$()
     return (
         <StyledButton
-            className={cn('!border-blue-600/20 hover:!bg-blue-600/20')}
+            className={cn('!border-blue-600 hover:!bg-blue-600/20')}
             variant='outlined'
             onClick={onCLick}
             startIcon={<IconPencilCode />}

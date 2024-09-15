@@ -5,15 +5,15 @@
 
     &:hover {
         .ant-select-selector {
-            @apply border-blue-600/20 #{!important};
+            @apply border-blue-600 #{!important};
         }
     }
 
     &.ant-select-focused {
-        @apply border-blue-600/20 #{!important};
+        @apply border-blue-600 #{!important};
 
         .ant-select-selector {
-            @apply border-blue-600/20 shadow-none #{!important};
+            @apply border-blue-600 shadow-none #{!important};
         }
     }
 

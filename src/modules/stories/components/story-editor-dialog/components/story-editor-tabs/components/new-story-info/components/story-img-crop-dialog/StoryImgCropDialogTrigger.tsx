@@ -31,7 +31,7 @@ export const StoryImgCropDialogTrigger = () => {
                 className={cn(
                     `group relative mx-auto flex h-[300px] w-[calc(100%-40px)] p-5
                     items-center justify-center rounded-md border border-solid
-                    border-blue-900/20 hover:border-blue-600/20 shadow-md transition-shadow duration-300`,
+                    border-blue-900 hover:border-blue-600 shadow-md transition-shadow duration-300`,
                     error && 'border-red-500 hover:border-red-500',
                 )}
             >

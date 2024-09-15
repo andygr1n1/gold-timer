@@ -11,7 +11,7 @@ export const GoalsFiltersSelectButton: React.FC = observer(() => {
             startIcon={<ActiveFilterIcon />}
             // onClick={ }
             className={cn(
-                '!border-blue-600/20 hover:!bg-blue-600/20',
+                '!border-blue-600 hover:!bg-blue-600/20',
                 isAll && '!border-sky-400/20 hover:!bg-sky-400/20',
                 isExpired && '!border-amber-500/20 hover:!bg-amber-500/20',
                 isFavorite && '!border-rose-500/20 hover:!bg-rose-500/20',
