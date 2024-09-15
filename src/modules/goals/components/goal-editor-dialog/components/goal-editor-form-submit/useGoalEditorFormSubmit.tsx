@@ -13,8 +13,6 @@ export const useGoalEditorFormSubmit = () => {
     const isFromFuture = calculateIsFromFuture(formikContext.values)
     const isCompleted = isCompletedGoalStatus(formikContext.values.status)
 
-    console.log('isFromFuture', isFromFuture)
-
     const deletedAt = !!formikContext.values.deleted_at
 
     const isRitual = !!formikContext.values.goal_ritual

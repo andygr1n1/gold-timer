@@ -119,6 +119,7 @@ export const XTiptap: React.FC<ITiptap> = (props) => {
 
     return (
         <div
+            onClick={(e) => !readonly && e.stopPropagation()}
             className={cn(styles['xtiptap'], readonly && styles['xtiptap-readonly'], error && styles['xtiptap-error'])}
         >
             <EditorProvider

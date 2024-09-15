@@ -3,18 +3,21 @@ import { StyledButton } from '@/components/buttons/StyledButton'
 import { IconHeart } from '@/assets/icons/IconHeart'
 import { type ReactNode } from 'react'
 import { useUpdateAchIsFavorite } from './useUpdateAchIsFavorite'
+import { cn } from '@/helpers/cn'
 
-export const AchIsFavorite: React.FC<{ id: string; isFavorite: boolean; label?: ReactNode; onClose?: () => void }> = ({
-    id,
-    isFavorite,
-    label,
-    onClose,
-}) => {
+export const AchIsFavorite: React.FC<{
+    id: string
+    isFavorite: boolean
+    label?: ReactNode
+    onClose?: () => void
+    context?: 'drawer'
+}> = ({ id, isFavorite, label, onClose, context }) => {
     const { toggleFavorite } = useUpdateAchIsFavorite()
 
     return (
         <>
             <StyledButton
+                className={cn(context === 'drawer' && '!w-full !py-5')}
                 id='toggleFavoriteAch'
                 error={!!isFavorite}
                 variant={isFavorite ? 'contained' : 'text'}

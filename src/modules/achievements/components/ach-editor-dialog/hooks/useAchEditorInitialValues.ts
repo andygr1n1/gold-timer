@@ -4,8 +4,7 @@ import { useAchData } from './useAchData.ts'
 import { type IAch, type IAchEditor } from '@/modules/achievements/services/types.ts'
 
 export const useAchEditorInitialValues = () => {
-    const { data, isLoading, isFetching, isFetched } = useAchData()
-    console.log('data', isLoading, data)
+    const { data, isFetching, isFetched } = useAchData()
     const initialValues: IAchEditor = useMemo(() => initialAch(data), [!!data, isFetching, isFetched])
 
     return { initialValues: initialValues }

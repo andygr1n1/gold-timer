@@ -16,6 +16,7 @@ import { notify } from '@/helpers/processMessage'
 import { format } from 'date-fns'
 import { formatDateWithTimezone } from '@/helpers/date.helpers'
 import { StoryMessageAvatar } from './StoryMessageAvatar'
+import { useDropdownTrigger } from '@/hooks/useDropdownTrigger'
 
 export const StoryMessage: React.FC<{ message: IStoryMessage; isMobile: MEDIA_QUERY_VALUES_ENUM }> = observer(
     ({ message, isMobile }) => {
@@ -31,13 +32,18 @@ export const StoryMessage: React.FC<{ message: IStoryMessage; isMobile: MEDIA_QU
             setPopoverState(false)
         }
 
+        const { dropdownTrigger } = useDropdownTrigger({
+            mobileTrigger: !!isMobile,
+            disabled: message.id === editSelectedMessageId,
+        })
+
         return (
             <XDropdown
                 open={popoverState}
                 onOpenChange={() => {
                     setPopoverState(!popoverState)
                 }}
-                trigger={['contextMenu', isMobile && 'click']}
+                trigger={dropdownTrigger}
                 dropdownRender={() => <StoryMessageDropdownRender message={message} onClose={onClose} />}
             >
                 <div className='relative group px-2 py-4 duration-300 border-b-solid border-transparent hover:border-blue-500/10'>

@@ -20,7 +20,8 @@ export const SaveButton: React.FC<{ onSave?: (props: { html: string; clearEditor
             <StyledButton
                 className='min-w-[80px]'
                 size='small'
-                onClick={() => {
+                onClick={(e) => {
+                    e.stopPropagation()
                     onSave?.({ html: editor.getHTML(), clearEditor: () => editor.commands.clearContent() })
                 }}
             >

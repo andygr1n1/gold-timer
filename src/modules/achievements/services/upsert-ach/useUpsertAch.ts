@@ -14,7 +14,6 @@ export const useUpsertAch = () => {
     const mutation = useMutation({
         mutationFn: async ({ values }: { values: IAchEditor }) => {
             let imgPath: string | null | undefined = values.img_path
-            console.log('values', values)
             if (values.img_src) {
                 imgPath = await uploadNewImageToServer({
                     img: cast(values.img_src),

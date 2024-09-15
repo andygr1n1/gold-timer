@@ -13,7 +13,6 @@ export const useFetchAch = (props: { id?: string }) => {
         refetchOnMount: true,
         enabled: !!id,
     })
-    console.log('isL', isLoading, isFetching, isFetched)
     return {
         isLoading,
         data,

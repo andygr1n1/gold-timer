@@ -1,7 +1,9 @@
 import { IconEdit, IconEye, IconNew } from '@/assets/icons'
 import { useAchEditorDialog$ } from '../../mst/provider'
+import { observer } from 'mobx-react-lite'
 
-const AchEditorTitle = () => {
+const AchEditorTitle = observer(() => {
+    const { readonly } = useAchEditorDialog$()
     const { edit_id } = useAchEditorDialog$()
     let stateText: React.ReactNode = (
         <>
@@ -16,7 +18,7 @@ const AchEditorTitle = () => {
                 New Achievement
             </>
         )
-    if (edit_id)
+    if (edit_id && !readonly)
         stateText = (
             <>
                 <IconEdit width={24} height={24} />
@@ -29,6 +31,6 @@ const AchEditorTitle = () => {
             {stateText}
         </span>
     )
-}
+})
 
 export default AchEditorTitle

@@ -5,12 +5,13 @@ import { IconArchive } from '@/assets/icons/IconArchive'
 import { cn } from '@/helpers/cn'
 import { useUpdateAchIsArchived } from './useUpdateAchIsArchived'
 
-export const AchIsArchived: React.FC<{ id: string; isArchived: boolean; label?: ReactNode; onClose: () => void }> = ({
-    id,
-    isArchived,
-    label,
-    onClose,
-}) => {
+export const AchIsArchived: React.FC<{
+    id: string
+    isArchived: boolean
+    label?: ReactNode
+    onClose: () => void
+    context?: 'drawer'
+}> = ({ id, isArchived, label, onClose, context }) => {
     const { toggleArchived } = useUpdateAchIsArchived()
 
     return (
@@ -23,7 +24,7 @@ export const AchIsArchived: React.FC<{ id: string; isArchived: boolean; label?: 
                     toggleArchived({ id, isArchived: !isArchived })
                     onClose()
                 }}
-                className={cn(isArchived && '!bg-violet-600')}
+                className={cn(isArchived && '!bg-violet-600', context === 'drawer' && '!w-full !py-5')}
                 startIcon={<IconArchive className='mb-0.5 h-6 w-6 opacity-70 hover:opacity-100' />}
             >
                 {label}

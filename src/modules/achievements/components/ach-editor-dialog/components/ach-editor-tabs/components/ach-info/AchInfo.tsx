@@ -7,7 +7,7 @@ import { AchTitleInput } from './components/AchTitleInput'
 
 export const AchInfo: React.FC = () => {
     return (
-        <>
+        <div className='py-2'>
             <AchCreatedAt />
             <div className='flex flex-col gap-5'>
                 <AchTitleInput />
@@ -18,6 +18,6 @@ export const AchInfo: React.FC = () => {
                 {/* D I A L O G S */}
                 <AchImgCropDialog />
             </div>
-        </>
+        </div>
     )
 }
