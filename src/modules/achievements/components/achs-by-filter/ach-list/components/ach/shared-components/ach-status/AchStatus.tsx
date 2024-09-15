@@ -6,7 +6,7 @@ import { cn } from '@/helpers/cn'
 
 export const AchStatus: React.FC<{ ach: IAch; isMobile?: boolean }> = ({ ach, isMobile }) => {
     return (
-        <div className={cn('absolute flex', isMobile ? 'bottom-4 right-3 gap-3' : 'bottom-0 right-0 gap-2')}>
+        <div className={cn('absolute flex', isMobile ? 'bottom-4 right-3 gap-3' : 'bottom-1 right-2 gap-3')}>
             <AchIsDeletedInfo ach={ach} isMobile={isMobile} />
             <AchIsArchivedInfo ach={ach} isMobile={isMobile} />
             <AchIsFavoriteInfo ach={ach} isMobile={isMobile} />
