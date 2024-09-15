@@ -25,7 +25,10 @@ export const StoryMessageActionsDrawer: React.FC<{
             }}
             open={openDrawer}
             height={'220px'}
-            styles={{ header: { borderBottom: '1px solid var(--colors-cText)' } }}
+            styles={{
+                header: { borderBottom: '1px solid transparent' },
+                footer: { borderTop: '1px solid transparent' },
+            }}
         >
             <div className='flex flex-col gap-4'>
                 <StyledButton
@@ -38,7 +41,7 @@ export const StoryMessageActionsDrawer: React.FC<{
                     size='small'
                     startIcon={<IconEdit width={24} height={24} />}
                 >
-                    <span className='flex w-[110px] justify-start capitalize'>{isSelected ? 'Save' : 'Edit'}</span>
+                    <span className='flex w-full justify-start capitalize'>{isSelected ? 'Save' : 'Edit'}</span>
                 </StyledButton>
                 <StyledButton
                     className='!w-full !py-5 !h-0'
@@ -50,7 +53,7 @@ export const StoryMessageActionsDrawer: React.FC<{
                     size='small'
                     startIcon={<IconDeleteForever width={24} height={24} />}
                 >
-                    <span className='flex w-[110px] justify-start capitalize'>Delete</span>
+                    <span className='flex w-full justify-start capitalize'>Delete</span>
                 </StyledButton>
             </div>
         </Drawer>

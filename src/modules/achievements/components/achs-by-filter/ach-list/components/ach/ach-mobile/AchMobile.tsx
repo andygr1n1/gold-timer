@@ -10,7 +10,10 @@ const AchMobile: React.FC<{ ach: IAch }> = ({ ach }) => {
 
     return (
         <>
-            <div className={cn(styles['ach'], `flex-[100%] relative`)} onClick={() => setOpenDrawer((prev) => !prev)}>
+            <div
+                className={cn(styles['ach'], `flex-[42%] max-w-[42%] relative`)}
+                onClick={() => setOpenDrawer((prev) => !prev)}
+            >
                 <img
                     src={`${import.meta.env['VITE_FIRE_BUNNY_STORAGE']}achievements/${ach.img_path}`}
                     className='animate-opacity-3 w-full flex h-full rounded-lg'

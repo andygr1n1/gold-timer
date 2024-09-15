@@ -21,7 +21,7 @@ export const AchActionsDrawer: React.FC<{
             onClose={onClose}
             open={openDrawer}
             height={'450px'}
-            styles={{ header: { borderBottom: '1px solid var(--colors-cText)' } }}
+            styles={{ header: { borderBottom: '1px solid #19273b' } }}
         >
             <div className='flex flex-col gap-4'>
                 <AchIsFavorite
@@ -30,7 +30,7 @@ export const AchActionsDrawer: React.FC<{
                     id={ach.id}
                     isFavorite={!!ach.is_favorite}
                     label={
-                        <span className='flex w-[110px] justify-start capitalize'>
+                        <span className='flex w-full justify-start capitalize'>
                             {ach.is_favorite ? 'Unfavorite' : 'Favorite'}
                         </span>
                     }
@@ -40,7 +40,7 @@ export const AchActionsDrawer: React.FC<{
                     context='drawer'
                     onClose={onClose}
                     id={ach.id}
-                    label={<span className='flex w-[110px] justify-start capitalize'>Edit</span>}
+                    label={<span className='flex  w-full justify-start capitalize'>Edit</span>}
                 />
                 <AchIsArchived
                     context='drawer'
@@ -48,7 +48,7 @@ export const AchActionsDrawer: React.FC<{
                     id={ach.id}
                     isArchived={!!ach.archived}
                     label={
-                        <span className='flex w-[110px] justify-start capitalize'>
+                        <span className='flex  w-full justify-start capitalize'>
                             {ach.archived ? 'Unarchive' : 'Archive'}
                         </span>
                     }
@@ -59,7 +59,7 @@ export const AchActionsDrawer: React.FC<{
                     id={ach.id}
                     deletedAt={!!ach.deleted_at}
                     label={
-                        <span className='flex w-[110px] justify-start capitalize'>
+                        <span className='flex  w-full justify-start capitalize'>
                             {ach.deleted_at ? 'Restore' : 'Move to bin'}
                         </span>
                     }

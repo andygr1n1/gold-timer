@@ -23,7 +23,7 @@ export const AchView: React.FC<{ id: string; onClose?: () => void; context?: 'dr
                     onClose?.()
                 }}
             >
-                <span className='capitalize w-[110px] justify-start flex'>View</span>
+                <span className='capitalize w-full justify-start flex'>View</span>
             </StyledButton>
         </>
     )

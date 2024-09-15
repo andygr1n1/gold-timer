@@ -8,11 +8,13 @@ import { extractTextFromHtml } from '@/helpers/extractTextFromHtml'
 import { notify } from '@/helpers/processMessage'
 import { format } from 'date-fns'
 import { formatDateWithTimezone } from '@/helpers/date.helpers'
-import { useRef, useState } from 'react'
+import { useState } from 'react'
 import { useStoryMaker$ } from '../../../mst/provider'
 import { useSaveStoryMessage } from '../../../service/useSaveStoryMessage'
 import { storyMakerService } from '../../../service/storyMakerService'
 import { StoryMessageActionsDrawer } from './components/StoryMessageActionsDrawer'
+import { StyledButton } from '@/components/buttons/StyledButton'
+import { IconThreeDots } from '@/assets/icons/IconThreeDots'
 
 const StoryMessageMobile: React.FC<{ message: IStoryMessage }> = observer(({ message }) => {
     const queryClient = useQueryClient()
@@ -21,44 +23,26 @@ const StoryMessageMobile: React.FC<{ message: IStoryMessage }> = observer(({ mes
     const { id } = useUuidFromPath()
     const [openDrawer, setOpenDrawer] = useState(false)
 
-    const timerRef = useRef<NodeJS.Timeout | undefined>(undefined)
-
-    const onTouchStart = () => {
-        if (editSelectedMessageId) return
-
-        timerRef.current = setTimeout(() => {
-            setOpenDrawer(true)
-        }, 1200)
-    }
-
-    const handleMouseUpOrLeave = () => {
-        if (editSelectedMessageId) return
-        if (timerRef.current) {
-            const guardTimeout = setTimeout(
-                () => {
-                    clearTimeout(timerRef.current)
-                    clearTimeout(guardTimeout)
-                    timerRef.current = undefined
-                },
-                openDrawer ? 0 : 500,
-            )
-        }
-    }
-
     if (!message.description) return null
 
     return (
         <>
             <div
-                onTouchStart={onTouchStart}
                 onContextMenu={(e) => e.preventDefault()}
-                onTouchEnd={handleMouseUpOrLeave}
                 className='relative group px-2 py-4 duration-300 border-b-solid border-transparent hover:border-blue-500/10'
             >
                 <div className='text-xs opacity-0 duration-300 group-hover:opacity-80 top-0 absolute  font-semibold font-kzen cursor-default text-cText'>
                     {format(formatDateWithTimezone(new Date(message.updated_at)), 'dd MMMM yyyy HH:mm')}
                     {message.updated_by_user?.name && ` by ${message.updated_by_user?.name}`}
                 </div>
+                <span className='absolute top-[-8px] right-0 opacity-0 group-hover:opacity-80 duration-300'>
+                    <StyledButton
+                        onClick={() => setOpenDrawer(true)}
+                        variant='text'
+                        size='small'
+                        startIcon={<IconThreeDots className='h-4 w-4' />}
+                    />
+                </span>
                 <XTiptap
                     onSave={({ html }) => {
                         if (!extractTextFromHtml(html).trim().length) {
