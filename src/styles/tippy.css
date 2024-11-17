@@ -1,0 +1,75 @@
+/* !bg-global-bg-plasma !p-2 !text-cText animate-opacity-3 z-[1000] !rounded-lg font-normal shadow-[0px_0px_0px_1px_rgba(0,0,0,0.06),0px_1px_1px_-0.5px_rgba(0,0,0,0.06),0px_3px_3px_-1.5px_rgba(0,0,0,0.06),_0px_6px_6px_-3px_rgba(0,0,0,0.06),0px_12px_12px_-6px_rgba(0,0,0,0.06),0px_24px_24px_-12px_rgba(0,0,0,0.06)]  backdrop-blur-lg */
+
+.tippy-box[data-animation='fade'][data-state='hidden'] {
+    opacity: 0;
+}
+[data-tippy-root] {
+    max-width: calc(100vw - 10px);
+}
+.tippy-box {
+    position: relative;
+    border-radius: 4px;
+    font-size: 14px;
+    line-height: 1.4;
+    white-space: normal;
+    outline: 0;
+    transition-property: transform, visibility, opacity;
+    @apply bg-global-bg-plasma p-1 min-w-fit  text-cText;
+}
+.tippy-box[data-placement^='top'] > .tippy-arrow {
+    bottom: 0;
+}
+.tippy-box[data-placement^='top'] > .tippy-arrow:before {
+    bottom: -7px;
+    left: 0;
+    border-width: 8px 8px 0;
+    border-top-color: initial;
+    transform-origin: center top;
+}
+.tippy-box[data-placement^='bottom'] > .tippy-arrow {
+    top: 0;
+}
+.tippy-box[data-placement^='bottom'] > .tippy-arrow:before {
+    top: -7px;
+    left: 0;
+    border-width: 0 8px 8px;
+    border-bottom-color: initial;
+    transform-origin: center bottom;
+}
+.tippy-box[data-placement^='left'] > .tippy-arrow {
+    right: 0;
+}
+.tippy-box[data-placement^='left'] > .tippy-arrow:before {
+    border-width: 8px 0 8px 8px;
+    border-left-color: initial;
+    right: -7px;
+    transform-origin: center left;
+}
+.tippy-box[data-placement^='right'] > .tippy-arrow {
+    left: 0;
+}
+.tippy-box[data-placement^='right'] > .tippy-arrow:before {
+    left: -7px;
+    border-width: 8px 8px 8px 0;
+    border-right-color: initial;
+    transform-origin: center right;
+}
+.tippy-box[data-inertia][data-state='visible'] {
+    transition-timing-function: cubic-bezier(0.54, 1.5, 0.38, 1.11);
+}
+.tippy-arrow {
+    width: 16px;
+    height: 16px;
+    @apply text-transparent bg-transparent;
+}
+.tippy-arrow:before {
+    content: '';
+    position: absolute;
+    border-color: transparent;
+    border-style: solid;
+}
+.tippy-content {
+    position: relative;
+    padding: 5px 9px;
+    z-index: 1;
+}

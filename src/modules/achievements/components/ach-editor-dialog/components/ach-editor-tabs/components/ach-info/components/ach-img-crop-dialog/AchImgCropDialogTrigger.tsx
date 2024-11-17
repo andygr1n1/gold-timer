@@ -57,14 +57,16 @@ export const AchImgCropDialogTrigger = () => {
                         className='absolute h-[300px] w-[300px] rounded-md z-10'
                     />
                 )}
-                <IconUpload
-                    width={64}
-                    height={64}
-                    className={cn(
-                        'duration-300 group-hover:text-blue-600 text-blue-900',
-                        error && 'text-red-900/50 group-hover:text-red-900',
-                    )}
-                />
+                {!readonly && (
+                    <IconUpload
+                        width={64}
+                        height={64}
+                        className={cn(
+                            'duration-300 z-20 group-hover:text-blue-600 text-blue-900',
+                            error && 'text-red-900/50 group-hover:text-red-900',
+                        )}
+                    />
+                )}
                 <UploadInput onChange={onChange} />
                 {error && errorMessage && (
                     <div

@@ -7,11 +7,11 @@ const AchDefault = lazy(() => import('./ach-default/AchDefault'))
 
 export const AchIndex: React.FC<{ ach: IAch; isMobile: MEDIA_QUERY_VALUES_ENUM }> = ({ ach, isMobile }) => {
     return isMobile ? (
-        <Suspense fallback={<div>null</div>}>
+        <Suspense fallback={null}>
             <AchMobile ach={ach} />
         </Suspense>
     ) : (
-        <Suspense fallback={<div>null</div>}>
+        <Suspense fallback={null}>
             <AchDefault ach={ach} />
         </Suspense>
     )
