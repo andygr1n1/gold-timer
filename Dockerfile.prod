@@ -1,0 +1,14 @@
+FROM node:20.11.0-alpine
+
+WORKDIR /kzen
+
+
+# build the project locally
+#then copy the dist folder to the image
+COPY ./dist ./dist
+
+RUN npm install -g serve
+
+EXPOSE 9008
+
+CMD ["serve", "-s", "dist", "-l", "9008"]
