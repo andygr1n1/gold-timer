@@ -1,18 +1,18 @@
 version: '3.8'
 networks:
-    gold-timer-network:
-        name: gold-timer-network
+    kzen-client:
+        name: kzen-client
 services:
     kzen:
         container_name: kzen-container
         build: .
         ports:
             - '9008:80'
-            - '446:446'
             - '443:443'
+            - '446:446'
         volumes:
             - ./nginx.conf:/etc/nginx/conf.d/default.conf
             - /etc/letsencrypt:/etc/letsencrypt:ro
         networks:
-            - gold-timer-network
+            - kzen-client
         restart: unless-stopped
