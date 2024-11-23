@@ -14,6 +14,7 @@ import { IconBook } from '@/assets/icons/IconBook'
 import { IconProfile } from '@/assets/icons/IconProfile'
 import { IconAchievements } from '@/assets/icons/IconAchievements'
 import { IconLandscape } from '@/assets/icons/IconLandscape'
+import { WeddingStoryAdminMenuLink } from './components/WeddingStoryAdminMenuLink'
 // import { IconBell } from '@/assets/icons'
 // import { IconEvents } from '@/assets/icons/IconEvents'
 
@@ -91,6 +92,7 @@ const SideMenu: React.FC = observer(() => {
                                         title='Stories'
                                         icon={<IconLandscape width={24} height={24} className='ml-[-2px]' />}
                                     />
+                                    <WeddingStoryAdminMenuLink />
                                 </div>
                                 {/* <SideMenuLink
                                     to={APP_ROUTES_ENUM.NOTIFICATIONS}

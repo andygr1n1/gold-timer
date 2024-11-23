@@ -25,6 +25,7 @@ export enum APP_ROUTES_ENUM {
     EVENTS = 'events',
     DASHBOARD = 'dashboard',
     ANDREI_GRINI = 'andreigrini',
+    WEDDING_STORY_ADMIN = 'wedding-story-admin',
 }
 
 export enum RITUAL_TYPE_ENUM {
