@@ -1,19 +1,7 @@
-FROM node:16
+FROM nginx:alpine
 
-WORKDIR /app
+COPY ./dist /usr/share/nginx/html
 
-COPY yarn.lock .
+EXPOSE 80
 
-COPY package.json .
-
-# RUN yarn install -g ts-node
-
-RUN yarn install
-
-COPY . .
-
-ENV PORT 9997
-
-EXPOSE $PORT
-
-CMD ["yarn", "dev"]
+CMD ["nginx", "-g", "daemon off;"]
