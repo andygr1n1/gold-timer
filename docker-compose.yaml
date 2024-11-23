@@ -8,6 +8,8 @@ services:
         build: .
         ports:
             - '9008:80'
+            - '446:446'
+            - '443:443'
         volumes:
             - ./nginx.conf:/etc/nginx/conf.d/default.conf
             - /etc/letsencrypt:/etc/letsencrypt:ro
