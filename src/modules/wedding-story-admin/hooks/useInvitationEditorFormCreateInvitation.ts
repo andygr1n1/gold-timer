@@ -1,7 +1,7 @@
 import type { IInvitationEditorSchema } from '../types'
 import { useMutation } from '@tanstack/react-query'
 import { processError } from '@/helpers/processMessage'
-import { mutation_createInvitation } from '../service/mutation_createInvitation'
+import { mutation_createInvitation } from '../services/mutation_createInvitation'
 
 export const useInvitationEditorFormCreateInvitation = () => {
     const mutation = useMutation({

@@ -1,3 +1,4 @@
+import { IconCopyLink } from '@/assets/icons/IconCopyLink'
 import { IconExpired } from '@/assets/icons/IconExpired'
 import { upperCase } from 'lodash-es'
 import type { ReactNode } from 'react'
@@ -24,3 +25,9 @@ export const notifySuccess = (message?: ReactNode, props?: { message: ReactNode 
             id: !!message ? String(message) : String(props?.message),
         },
     )
+
+export const notifyClipboard = (message?: ReactNode, props?: { message: ReactNode }) =>
+    toast(<div className='whitespace-normal flex w-full h-full items-center'>{props?.message || message}</div>, {
+        id: !!message ? String(message) : String(props?.message),
+        icon: <IconCopyLink className='text-amber-500 min-w-5 min-h-5 w-5 h-5' />,
+    })

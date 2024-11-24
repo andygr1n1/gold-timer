@@ -5424,6 +5424,9 @@ type mutation_root {
   update data of the table: "wedding_guests"
   """
   update_wedding_guests(
+    """increments the numeric columns with given value of the filtered values"""
+    _inc: wedding_guests_inc_input
+
     """sets the columns of the filtered rows to the given values"""
     _set: wedding_guests_set_input
 
@@ -5435,6 +5438,9 @@ type mutation_root {
   update single row of the table: "wedding_guests"
   """
   update_wedding_guests_by_pk(
+    """increments the numeric columns with given value of the filtered values"""
+    _inc: wedding_guests_inc_input
+
     """sets the columns of the filtered rows to the given values"""
     _set: wedding_guests_set_input
     pk_columns: wedding_guests_pk_columns_input!
@@ -7500,9 +7506,7 @@ type query_root {
   """fetch data from the table: "wedding_groups" using primary key columns"""
   wedding_groups_by_pk(id: uuid!): wedding_groups
 
-  """
-  fetch data from the table: "wedding_guests"
-  """
+  """An array relationship"""
   wedding_guests(
     """distinct select on columns"""
     distinct_on: [wedding_guests_select_column!]
@@ -7520,9 +7524,7 @@ type query_root {
     where: wedding_guests_bool_exp
   ): [wedding_guests!]!
 
-  """
-  fetch aggregated fields from the table: "wedding_guests"
-  """
+  """An aggregate relationship"""
   wedding_guests_aggregate(
     """distinct select on columns"""
     distinct_on: [wedding_guests_select_column!]
@@ -11087,9 +11089,7 @@ type subscription_root {
     where: wedding_groups_bool_exp
   ): [wedding_groups!]!
 
-  """
-  fetch data from the table: "wedding_guests"
-  """
+  """An array relationship"""
   wedding_guests(
     """distinct select on columns"""
     distinct_on: [wedding_guests_select_column!]
@@ -11107,9 +11107,7 @@ type subscription_root {
     where: wedding_guests_bool_exp
   ): [wedding_guests!]!
 
-  """
-  fetch aggregated fields from the table: "wedding_guests"
-  """
+  """An aggregate relationship"""
   wedding_guests_aggregate(
     """distinct select on columns"""
     distinct_on: [wedding_guests_select_column!]
@@ -11202,8 +11200,46 @@ input uuid_comparison_exp {
 """groups metadata"""
 type wedding_groups {
   booking_number: String
+  created_at: timestamptz
   id: uuid!
   name: String
+  registration: Boolean
+
+  """An array relationship"""
+  wedding_guests(
+    """distinct select on columns"""
+    distinct_on: [wedding_guests_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [wedding_guests_order_by!]
+
+    """filter the rows returned"""
+    where: wedding_guests_bool_exp
+  ): [wedding_guests!]!
+
+  """An aggregate relationship"""
+  wedding_guests_aggregate(
+    """distinct select on columns"""
+    distinct_on: [wedding_guests_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [wedding_guests_order_by!]
+
+    """filter the rows returned"""
+    where: wedding_guests_bool_exp
+  ): wedding_guests_aggregate!
 }
 
 """
@@ -11231,8 +11267,12 @@ input wedding_groups_bool_exp {
   _not: wedding_groups_bool_exp
   _or: [wedding_groups_bool_exp!]
   booking_number: String_comparison_exp
+  created_at: timestamptz_comparison_exp
   id: uuid_comparison_exp
   name: String_comparison_exp
+  registration: Boolean_comparison_exp
+  wedding_guests: wedding_guests_bool_exp
+  wedding_guests_aggregate: wedding_guests_aggregate_bool_exp
 }
 
 """
@@ -11250,13 +11290,17 @@ input type for inserting data into table "wedding_groups"
 """
 input wedding_groups_insert_input {
   booking_number: String
+  created_at: timestamptz
   id: uuid
   name: String
+  registration: Boolean
+  wedding_guests: wedding_guests_arr_rel_insert_input
 }
 
 """aggregate max on columns"""
 type wedding_groups_max_fields {
   booking_number: String
+  created_at: timestamptz
   id: uuid
   name: String
 }
@@ -11264,6 +11308,7 @@ type wedding_groups_max_fields {
 """aggregate min on columns"""
 type wedding_groups_min_fields {
   booking_number: String
+  created_at: timestamptz
   id: uuid
   name: String
 }
@@ -11280,6 +11325,16 @@ type wedding_groups_mutation_response {
 }
 
 """
+input type for inserting object relation for remote table "wedding_groups"
+"""
+input wedding_groups_obj_rel_insert_input {
+  data: wedding_groups_insert_input!
+
+  """upsert condition"""
+  on_conflict: wedding_groups_on_conflict
+}
+
+"""
 on_conflict condition type for table "wedding_groups"
 """
 input wedding_groups_on_conflict {
@@ -11291,8 +11346,11 @@ input wedding_groups_on_conflict {
 """Ordering options when selecting data from "wedding_groups"."""
 input wedding_groups_order_by {
   booking_number: order_by
+  created_at: order_by
   id: order_by
   name: order_by
+  registration: order_by
+  wedding_guests_aggregate: wedding_guests_aggregate_order_by
 }
 
 """primary key columns input for table: wedding_groups"""
@@ -11308,10 +11366,16 @@ enum wedding_groups_select_column {
   booking_number
 
   """column name"""
+  created_at
+
+  """column name"""
   id
 
   """column name"""
   name
+
+  """column name"""
+  registration
 }
 
 """
@@ -11319,8 +11383,10 @@ input type for updating data in table "wedding_groups"
 """
 input wedding_groups_set_input {
   booking_number: String
+  created_at: timestamptz
   id: uuid
   name: String
+  registration: Boolean
 }
 
 """
@@ -11337,8 +11403,10 @@ input wedding_groups_stream_cursor_input {
 """Initial value of the column from where the streaming should start"""
 input wedding_groups_stream_cursor_value_input {
   booking_number: String
+  created_at: timestamptz
   id: uuid
   name: String
+  registration: Boolean
 }
 
 """
@@ -11349,10 +11417,16 @@ enum wedding_groups_update_column {
   booking_number
 
   """column name"""
+  created_at
+
+  """column name"""
   id
 
   """column name"""
   name
+
+  """column name"""
+  registration
 }
 
 input wedding_groups_updates {
@@ -11374,7 +11448,11 @@ type wedding_guests {
   last_name: String
   more_info: String
   phone: String
+  table: Int
   updated_at: timestamptz
+
+  """An object relationship"""
+  wedding_group: wedding_groups!
 }
 
 """
@@ -11385,13 +11463,87 @@ type wedding_guests_aggregate {
   nodes: [wedding_guests!]!
 }
 
+input wedding_guests_aggregate_bool_exp {
+  bool_and: wedding_guests_aggregate_bool_exp_bool_and
+  bool_or: wedding_guests_aggregate_bool_exp_bool_or
+  count: wedding_guests_aggregate_bool_exp_count
+}
+
+input wedding_guests_aggregate_bool_exp_bool_and {
+  arguments: wedding_guests_select_column_wedding_guests_aggregate_bool_exp_bool_and_arguments_columns!
+  distinct: Boolean
+  filter: wedding_guests_bool_exp
+  predicate: Boolean_comparison_exp!
+}
+
+input wedding_guests_aggregate_bool_exp_bool_or {
+  arguments: wedding_guests_select_column_wedding_guests_aggregate_bool_exp_bool_or_arguments_columns!
+  distinct: Boolean
+  filter: wedding_guests_bool_exp
+  predicate: Boolean_comparison_exp!
+}
+
+input wedding_guests_aggregate_bool_exp_count {
+  arguments: [wedding_guests_select_column!]
+  distinct: Boolean
+  filter: wedding_guests_bool_exp
+  predicate: Int_comparison_exp!
+}
+
 """
 aggregate fields of "wedding_guests"
 """
 type wedding_guests_aggregate_fields {
+  avg: wedding_guests_avg_fields
   count(columns: [wedding_guests_select_column!], distinct: Boolean): Int!
   max: wedding_guests_max_fields
   min: wedding_guests_min_fields
+  stddev: wedding_guests_stddev_fields
+  stddev_pop: wedding_guests_stddev_pop_fields
+  stddev_samp: wedding_guests_stddev_samp_fields
+  sum: wedding_guests_sum_fields
+  var_pop: wedding_guests_var_pop_fields
+  var_samp: wedding_guests_var_samp_fields
+  variance: wedding_guests_variance_fields
+}
+
+"""
+order by aggregate values of table "wedding_guests"
+"""
+input wedding_guests_aggregate_order_by {
+  avg: wedding_guests_avg_order_by
+  count: order_by
+  max: wedding_guests_max_order_by
+  min: wedding_guests_min_order_by
+  stddev: wedding_guests_stddev_order_by
+  stddev_pop: wedding_guests_stddev_pop_order_by
+  stddev_samp: wedding_guests_stddev_samp_order_by
+  sum: wedding_guests_sum_order_by
+  var_pop: wedding_guests_var_pop_order_by
+  var_samp: wedding_guests_var_samp_order_by
+  variance: wedding_guests_variance_order_by
+}
+
+"""
+input type for inserting array relation for remote table "wedding_guests"
+"""
+input wedding_guests_arr_rel_insert_input {
+  data: [wedding_guests_insert_input!]!
+
+  """upsert condition"""
+  on_conflict: wedding_guests_on_conflict
+}
+
+"""aggregate avg on columns"""
+type wedding_guests_avg_fields {
+  table: Float
+}
+
+"""
+order by avg() on columns of table "wedding_guests"
+"""
+input wedding_guests_avg_order_by {
+  table: order_by
 }
 
 """
@@ -11410,7 +11562,9 @@ input wedding_guests_bool_exp {
   last_name: String_comparison_exp
   more_info: String_comparison_exp
   phone: String_comparison_exp
+  table: Int_comparison_exp
   updated_at: timestamptz_comparison_exp
+  wedding_group: wedding_groups_bool_exp
 }
 
 """
@@ -11434,6 +11588,13 @@ enum wedding_guests_constraint {
 }
 
 """
+input type for incrementing numeric columns in table "wedding_guests"
+"""
+input wedding_guests_inc_input {
+  table: Int
+}
+
+"""
 input type for inserting data into table "wedding_guests"
 """
 input wedding_guests_insert_input {
@@ -11446,7 +11607,9 @@ input wedding_guests_insert_input {
   last_name: String
   more_info: String
   phone: String
+  table: Int
   updated_at: timestamptz
+  wedding_group: wedding_groups_obj_rel_insert_input
 }
 
 """aggregate max on columns"""
@@ -11459,7 +11622,24 @@ type wedding_guests_max_fields {
   last_name: String
   more_info: String
   phone: String
+  table: Int
   updated_at: timestamptz
+}
+
+"""
+order by max() on columns of table "wedding_guests"
+"""
+input wedding_guests_max_order_by {
+  created_at: order_by
+  email: order_by
+  first_name: order_by
+  group_id: order_by
+  id: order_by
+  last_name: order_by
+  more_info: order_by
+  phone: order_by
+  table: order_by
+  updated_at: order_by
 }
 
 """aggregate min on columns"""
@@ -11472,7 +11652,24 @@ type wedding_guests_min_fields {
   last_name: String
   more_info: String
   phone: String
+  table: Int
   updated_at: timestamptz
+}
+
+"""
+order by min() on columns of table "wedding_guests"
+"""
+input wedding_guests_min_order_by {
+  created_at: order_by
+  email: order_by
+  first_name: order_by
+  group_id: order_by
+  id: order_by
+  last_name: order_by
+  more_info: order_by
+  phone: order_by
+  table: order_by
+  updated_at: order_by
 }
 
 """
@@ -11506,7 +11703,9 @@ input wedding_guests_order_by {
   last_name: order_by
   more_info: order_by
   phone: order_by
+  table: order_by
   updated_at: order_by
+  wedding_group: wedding_groups_order_by
 }
 
 """primary key columns input for table: wedding_guests"""
@@ -11546,7 +11745,26 @@ enum wedding_guests_select_column {
   phone
 
   """column name"""
+  table
+
+  """column name"""
   updated_at
+}
+
+"""
+select "wedding_guests_aggregate_bool_exp_bool_and_arguments_columns" columns of table "wedding_guests"
+"""
+enum wedding_guests_select_column_wedding_guests_aggregate_bool_exp_bool_and_arguments_columns {
+  """column name"""
+  accepted
+}
+
+"""
+select "wedding_guests_aggregate_bool_exp_bool_or_arguments_columns" columns of table "wedding_guests"
+"""
+enum wedding_guests_select_column_wedding_guests_aggregate_bool_exp_bool_or_arguments_columns {
+  """column name"""
+  accepted
 }
 
 """
@@ -11562,7 +11780,44 @@ input wedding_guests_set_input {
   last_name: String
   more_info: String
   phone: String
+  table: Int
   updated_at: timestamptz
+}
+
+"""aggregate stddev on columns"""
+type wedding_guests_stddev_fields {
+  table: Float
+}
+
+"""
+order by stddev() on columns of table "wedding_guests"
+"""
+input wedding_guests_stddev_order_by {
+  table: order_by
+}
+
+"""aggregate stddev_pop on columns"""
+type wedding_guests_stddev_pop_fields {
+  table: Float
+}
+
+"""
+order by stddev_pop() on columns of table "wedding_guests"
+"""
+input wedding_guests_stddev_pop_order_by {
+  table: order_by
+}
+
+"""aggregate stddev_samp on columns"""
+type wedding_guests_stddev_samp_fields {
+  table: Float
+}
+
+"""
+order by stddev_samp() on columns of table "wedding_guests"
+"""
+input wedding_guests_stddev_samp_order_by {
+  table: order_by
 }
 
 """
@@ -11587,7 +11842,20 @@ input wedding_guests_stream_cursor_value_input {
   last_name: String
   more_info: String
   phone: String
+  table: Int
   updated_at: timestamptz
+}
+
+"""aggregate sum on columns"""
+type wedding_guests_sum_fields {
+  table: Int
+}
+
+"""
+order by sum() on columns of table "wedding_guests"
+"""
+input wedding_guests_sum_order_by {
+  table: order_by
 }
 
 """
@@ -11622,13 +11890,55 @@ enum wedding_guests_update_column {
   phone
 
   """column name"""
+  table
+
+  """column name"""
   updated_at
 }
 
 input wedding_guests_updates {
+  """increments the numeric columns with given value of the filtered values"""
+  _inc: wedding_guests_inc_input
+
   """sets the columns of the filtered rows to the given values"""
   _set: wedding_guests_set_input
 
   """filter the rows which have to be updated"""
   where: wedding_guests_bool_exp!
+}
+
+"""aggregate var_pop on columns"""
+type wedding_guests_var_pop_fields {
+  table: Float
+}
+
+"""
+order by var_pop() on columns of table "wedding_guests"
+"""
+input wedding_guests_var_pop_order_by {
+  table: order_by
+}
+
+"""aggregate var_samp on columns"""
+type wedding_guests_var_samp_fields {
+  table: Float
+}
+
+"""
+order by var_samp() on columns of table "wedding_guests"
+"""
+input wedding_guests_var_samp_order_by {
+  table: order_by
+}
+
+"""aggregate variance on columns"""
+type wedding_guests_variance_fields {
+  table: Float
+}
+
+"""
+order by variance() on columns of table "wedding_guests"
+"""
+input wedding_guests_variance_order_by {
+  table: order_by
 }

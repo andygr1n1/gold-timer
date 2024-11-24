@@ -1,22 +1,29 @@
+import { useFetchGuestsList } from '../../services/fetch-guests-list/useFetchGuestsList'
+import { WeddingGroup } from './components/WeddingGroup'
+
 export const GuestsIndex: React.FC = () => {
+    const { data } = useFetchGuestsList()
+
     return (
-        <div>
-            <div>Group name (Group Id = invitation link id)</div>
-            {/*  */}
-            <div>Guest1 info</div>
-            <div>Guest2 info</div>
-            <div>info: </div>
-            <div>name</div>
-            <div>email - to view details</div>
-            <div>table number and seating</div>
-            {/*  */}
-            <div>booking number - to edit personal data</div>
-            <div>invitation status - accepted - true - false - (pending, accepted)</div>
-            <div>check in - true - false (2 weeks before the wedding)</div>
+        <div className='flex flex-col gap-4 w-full my-2 mx-auto justify-center items-center'>
+            {data.map((weddingGroup) => (
+                <WeddingGroup key={weddingGroup.id} weddingGroup={weddingGroup} />
+            ))}
         </div>
     )
 }
 
 
-/* total guests, total accepted, total checked_in */
-// filter by invitation status, check in
+// options: delete group, edit group (change name of group, set table number), registration link, booking link, hide group
+// create invitation -> possibility to create solo invitation
+// filters:
+// registered, not registered, checked_in, not checked_in, hidden
+
+// guest permission
+// when user if going to ourwedding site with a valid invitation link, a token should be generated with a guest role
+// hasura should fetch with bearer token only the guest data and check by group_id (invitation link)
+
+// after registration, invitation link is not valid anymore, only the booking will be valid to access data, and edit it
+// booking number will be sent by email to the guest
+// when guest is going to ourwedding site /index, here will be a form to fill with booking number, and email
+// to grant access to a new token with a guest role and modification permissions

@@ -3,8 +3,10 @@ import type { IInvitationEditorSchema } from '../types'
 import { useInvitationEditorFormCreateInvitation } from './useInvitationEditorFormCreateInvitation'
 import { notifySuccess } from '@/helpers/processMessage'
 import { useInvitationEditorDialog$ } from '../mst/provider'
+import { useQueryClient } from '@tanstack/react-query'
 
 export const useInvitationEditorFormOnSubmit = () => {
+    const queryClient = useQueryClient()
     const { onClose } = useInvitationEditorDialog$()
     const { createInvitation } = useInvitationEditorFormCreateInvitation()
 
@@ -16,6 +18,7 @@ export const useInvitationEditorFormOnSubmit = () => {
                 setSubmitting(false)
                 notifySuccess('Invitation created successfully')
                 onClose()
+                queryClient.invalidateQueries()
             },
         })
     }
