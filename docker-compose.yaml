@@ -1,23 +1,18 @@
 version: '3.8'
 networks:
-    gold-timer-network:
-        name: gold-timer-network
+    kzen-client:
+        name: kzen-client
 services:
-    gold-timer:
-        container_name: gold-timer-container
+    kzen:
+        container_name: kzen-container
         build: .
         ports:
-            - '9997:9997'
-        # volumes:
-        #     - .:/app
-        #     - /app/node_modules
-        environment:
-            - PORT=9997
-            # - VITE_CLIENT_ENDPOINT=http://0.0.0.0:6080/v1/graphql/
-            - VITE_CLIENT_ENDPOINT=
-            - VITE_X_HASURA_ADMIN_SECRET=
-            - VITE_PORT=9997
-            - VITE_FIRE_BUNNY_STORAGE=
+            - '9008:80'
+            - '443:443'
+            - '446:446'
+        volumes:
+            - ./nginx.conf:/etc/nginx/conf.d/default.conf
+            - /etc/letsencrypt:/etc/letsencrypt:ro
         networks:
-            - gold-timer-network
+            - kzen-client
         restart: unless-stopped
