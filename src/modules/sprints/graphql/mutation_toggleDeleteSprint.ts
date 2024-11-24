@@ -6,7 +6,7 @@ export const mutation_toggleDeleteSprint = async (
     id: string,
     deleteSprint: boolean,
 ): Promise<Date | null | undefined> => {
-    const client = generateClient()
+    const client = await generateClient()
     const deleted_at = deleteSprint ? 'now()' : null
 
     const mutation = gql`

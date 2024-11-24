@@ -5,10 +5,16 @@ import { server_getSessionCredentials } from '@/services/server_getSessionCreden
 import { Client, cacheExchange, fetchExchange } from 'urql'
 import { retryExchange } from '@urql/exchange-retry'
 
-export const generateClient = (): GraphQLClient => {
+export const generateClient = async (): Promise<GraphQLClient> => {
+
     const endpoint = import.meta.env['VITE_CLIENT_ENDPOINT']
+
+    const { accessJwt } = await getAccessJwt()
+
+    const Authorization = `Bearer ${accessJwt}`
+    
     const client = new GraphQLClient(endpoint, {
-        headers: { 'x-hasura-admin-secret': import.meta.env['VITE_X_HASURA_ADMIN_SECRET'] },
+        headers: { Authorization },
     })
 
     return client

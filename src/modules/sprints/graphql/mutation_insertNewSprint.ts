@@ -5,7 +5,7 @@ import { type IInsertNewSprint } from './helpers/interface'
 import { type ISprint$SnIn } from '../mst/types'
 
 export const mutation_insertNewSprint = async (newSprint: IInsertNewSprint): Promise<ISprint$SnIn | undefined> => {
-    const client = generateClient()
+    const client = await generateClient()
     const mutation = gql`
         mutation mutation_insertNewSprint($newSprint: sprints_insert_input!) {
             insert_sprints_one(object: $newSprint) {

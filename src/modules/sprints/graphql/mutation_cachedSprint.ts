@@ -3,7 +3,7 @@ import { processError } from '@/helpers/processMessage'
 import { generateClient } from '@/graphql/client'
 
 export const mutation_cachedSprint = async (id: string) => {
-    const client = generateClient()
+    const client = await generateClient()
 
     const mutation = gql`
         mutation mutation_cachedSprint($id: uuid!) {

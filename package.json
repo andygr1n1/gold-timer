@@ -11,7 +11,8 @@
         "tsc": "tsc && yarn lint:fix",
         "test": "vitest",
         "coverage": "vitest --coverage",
-        "gen": "dotenv -- cross-var gql.tada generate schema %VITE_CLIENT_ENDPOINT% -o schema.graphql --header \"x-hasura-admin-secret: %VITE_X_HASURA_ADMIN_SECRET%\" && gql.tada generate output"
+        "gen": "dotenv -- cross-var gql.tada generate schema %VITE_CLIENT_ENDPOINT% -o schema.graphql --header \"x-hasura-admin-secret: %VITE_X_HASURA_ADMIN_SECRET%\" && gql.tada generate output",
+        "gendev": "dotenv -- cross-var gql.tada generate schema http://localhost:7008/v1/graphql/ -o schema.graphql --header \"x-hasura-admin-secret: %VITE_X_HASURA_ADMIN_SECRET%\" && gql.tada generate output"
     },
     "dependencies": {
         "@esbuild-plugins/node-globals-polyfill": "^0.2.3",

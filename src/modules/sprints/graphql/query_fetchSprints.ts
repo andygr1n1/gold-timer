@@ -6,7 +6,7 @@ import { type sprints } from 'gold-timer-genql/lib/generated'
 import { getUserId } from '@/helpers/getUserId'
 
 export const query_fetchSprints = async (): Promise<ISprint$SnIn[] | undefined> => {
-    const client = generateClient()
+    const client = await generateClient()
     const user_id = getUserId()
 
     const query = gql`
