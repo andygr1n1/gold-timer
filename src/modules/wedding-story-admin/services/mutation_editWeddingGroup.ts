@@ -32,13 +32,37 @@ export const mutation_editWeddingGroup = async ({
         `)
 
         const guest1Id = weddingGroup.wedding_guests[0]?.id
+        const guest2Id = weddingGroup.wedding_guests[1]?.id
+        const initialGuest1Table = weddingGroup.wedding_guests[0]?.table
+        const initialGuest2Table = weddingGroup.wedding_guests[1]?.table
+
+        if (guest1Id && guest2Id && initialGuest1Table && initialGuest2Table && values.table1 && values.table2) {
+            if (
+                +initialGuest1Table !== +values.table1 &&
+                +initialGuest2Table !== +values.table2 &&
+                +initialGuest1Table === +values.table2 &&
+                +initialGuest2Table === +values.table1
+            ) {
+                const resetTablesMutation = graphql(`
+                    mutation mutation_resetWeddingGuestTables($guestsIds: [uuid!]!) {
+                        update_wedding_guests(where: { id: { _in: $guestsIds } }, _set: { table: null }) {
+                            affected_rows
+                        }
+                    }
+                `)
+
+                await client.request(resetTablesMutation, {
+                    guestsIds: [guest1Id, guest2Id],
+                })
+            }
+        }
+
         guest1Id &&
             (await client.request(guestMutation, {
                 guestId: guest1Id,
                 table: values.table1 || null,
             }))
 
-        const guest2Id = weddingGroup.wedding_guests[1]?.id
         guest2Id &&
             (await client.request(guestMutation, {
                 guestId: guest2Id,
@@ -47,6 +71,6 @@ export const mutation_editWeddingGroup = async ({
 
         return res
     } catch (e) {
-        return await resolveError(e)
+        return await resolveError(e, false)
     }
 }
