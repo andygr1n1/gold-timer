@@ -13,9 +13,6 @@ export const GuestsIndex: React.FC = () => {
     )
 }
 
-
-// options: delete group, edit group (change name of group, set table number), registration link, booking link, hide group
-// create invitation -> possibility to create solo invitation
 // filters:
 // registered, not registered, checked_in, not checked_in, hidden
 

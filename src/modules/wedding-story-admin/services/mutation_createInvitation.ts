@@ -34,11 +34,14 @@ export const mutation_createInvitation = async ({ values }: { values: IInvitatio
                 group_id,
                 first_name: values.name1,
             },
-            {
+        ]
+
+        if (values.name2) {
+            objects.push({
                 group_id,
                 first_name: values.name2,
-            },
-        ]
+            })
+        }
 
         const guestMutation = graphql(`
             mutation mutation_addWeddingGuests($objects: [wedding_guests_insert_input!]!) {

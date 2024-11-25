@@ -7,6 +7,7 @@ export const fragment_weddingGroups = graphql(
             name
             registration
             booking_number
+            hide
             wedding_guests {
                 ...Fragment_weddingGuest
             }

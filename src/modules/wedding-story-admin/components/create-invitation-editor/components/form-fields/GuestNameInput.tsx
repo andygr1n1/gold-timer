@@ -8,7 +8,7 @@ export const GuestNameInput: React.FC<{ type: 'name1' | 'name2' }> = ({ type }) 
 
     return (
         <div>
-            <FormLabel title={`${type === 'name1' ? 'First' : 'Second'} Guest Name *`} />
+            <FormLabel title={`${type === 'name1' ? 'First guest name *' : 'Second guest name'}`} />
             <XInput
                 data-testid={`guest-name-input-${type}`}
                 autoFocus={type === 'name1'}

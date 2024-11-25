@@ -12,10 +12,6 @@ export const useInvitationEditorFormOnValidate = () => {
             errors.name1 = 'Guest name is required'
         }
 
-        if (!values.name2) {
-            errors.name2 = 'Guest name is required'
-        }
-
         return errors
     }
 

@@ -11201,6 +11201,8 @@ input uuid_comparison_exp {
 type wedding_groups {
   booking_number: String
   created_at: timestamptz
+  deleted_at: timestamptz
+  hide: Boolean
   id: uuid!
   name: String
   registration: Boolean
@@ -11268,6 +11270,8 @@ input wedding_groups_bool_exp {
   _or: [wedding_groups_bool_exp!]
   booking_number: String_comparison_exp
   created_at: timestamptz_comparison_exp
+  deleted_at: timestamptz_comparison_exp
+  hide: Boolean_comparison_exp
   id: uuid_comparison_exp
   name: String_comparison_exp
   registration: Boolean_comparison_exp
@@ -11291,6 +11295,8 @@ input type for inserting data into table "wedding_groups"
 input wedding_groups_insert_input {
   booking_number: String
   created_at: timestamptz
+  deleted_at: timestamptz
+  hide: Boolean
   id: uuid
   name: String
   registration: Boolean
@@ -11301,6 +11307,7 @@ input wedding_groups_insert_input {
 type wedding_groups_max_fields {
   booking_number: String
   created_at: timestamptz
+  deleted_at: timestamptz
   id: uuid
   name: String
 }
@@ -11309,6 +11316,7 @@ type wedding_groups_max_fields {
 type wedding_groups_min_fields {
   booking_number: String
   created_at: timestamptz
+  deleted_at: timestamptz
   id: uuid
   name: String
 }
@@ -11347,6 +11355,8 @@ input wedding_groups_on_conflict {
 input wedding_groups_order_by {
   booking_number: order_by
   created_at: order_by
+  deleted_at: order_by
+  hide: order_by
   id: order_by
   name: order_by
   registration: order_by
@@ -11369,6 +11379,12 @@ enum wedding_groups_select_column {
   created_at
 
   """column name"""
+  deleted_at
+
+  """column name"""
+  hide
+
+  """column name"""
   id
 
   """column name"""
@@ -11384,6 +11400,8 @@ input type for updating data in table "wedding_groups"
 input wedding_groups_set_input {
   booking_number: String
   created_at: timestamptz
+  deleted_at: timestamptz
+  hide: Boolean
   id: uuid
   name: String
   registration: Boolean
@@ -11404,6 +11422,8 @@ input wedding_groups_stream_cursor_input {
 input wedding_groups_stream_cursor_value_input {
   booking_number: String
   created_at: timestamptz
+  deleted_at: timestamptz
+  hide: Boolean
   id: uuid
   name: String
   registration: Boolean
@@ -11418,6 +11438,12 @@ enum wedding_groups_update_column {
 
   """column name"""
   created_at
+
+  """column name"""
+  deleted_at
+
+  """column name"""
+  hide
 
   """column name"""
   id
