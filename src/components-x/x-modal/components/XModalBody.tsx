@@ -15,7 +15,7 @@ export const XModalBody: React.FC<IXModal> = ({ fullHeight, closeIcon = true, on
             >
                 {closeIcon && <XModalCloseIcon onCancel={onCancel} />}
                 {title && <XModalHeader title={title} />}
-                <div className='overflow-y-auto py-4 m-[3px] scroll-style'>
+                <div className='overflow-y-auto py-4 m-[3px] h-full scroll-style'>
                     <div className='max-w-[calc(450px)] mx-auto w-[calc(100%-32px)] h-full flex flex-col'>
                         <div
                             className={cn(

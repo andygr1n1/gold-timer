@@ -20,7 +20,7 @@ export const Root$ = types
     }))
     .views((self) => ({
         get isSuperHero() {
-            return self.role === 'super_hero'
+            return self.role === 'super_hero' || self.role === 'admin'
         },
     }))
     .actions((self) => ({

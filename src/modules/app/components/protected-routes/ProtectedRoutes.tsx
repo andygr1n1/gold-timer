@@ -2,6 +2,7 @@ import { Suspense, lazy } from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
 import { APP_ROUTES_ENUM } from '../../../../services/enums'
 import SideMenu from '@/components/side-menu/SideMenu'
+import WeddingStoryAdminIndex from '@/modules/wedding-story-admin/WeddingStoryAdminIndex'
 
 const GoalsCmsIndex = lazy(() => import('../../../goals/components/goals-cms/GoalsCmsIndex'))
 const ProfileIndex = lazy(() => import('../../../profile/ProfileIndex'))
@@ -28,6 +29,10 @@ const ProtectedRoutes = () => {
                             <Route path={`/${APP_ROUTES_ENUM.GOALS}/*`} element={<GoalsCmsIndex />} />
                             <Route path={`/${APP_ROUTES_ENUM.EVENTS}`} element={<SprintsIndex />} />
                             <Route path={`/${APP_ROUTES_ENUM.DASHBOARD}/*`} element={<DashboardIndex />} />
+                            <Route
+                                path={`/${APP_ROUTES_ENUM.WEDDING_STORY_ADMIN}/*`}
+                                element={<WeddingStoryAdminIndex />}
+                            />
                             <Route path={'/'} element={<Navigate to={`/${APP_ROUTES_ENUM.DASHBOARD}`} />} />
                             <Route path={'*'} element={<Navigate to={`/${APP_ROUTES_ENUM.DASHBOARD}`} />} />
                         </Routes>

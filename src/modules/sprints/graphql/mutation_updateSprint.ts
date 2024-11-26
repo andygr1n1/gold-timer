@@ -8,7 +8,7 @@ export const mutation_updateSprint = async (options: {
     sprintId: string
     updatedSprint: IEditSprintReq
 }): Promise<ISprint$SnIn | undefined> => {
-    const client = generateClient()
+    const client = await generateClient()
 
     const { sprintId, updatedSprint } = options
 

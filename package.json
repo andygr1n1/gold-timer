@@ -11,7 +11,8 @@
         "tsc": "tsc && yarn lint:fix",
         "test": "vitest",
         "coverage": "vitest --coverage",
-        "gen": "dotenv -- cross-var gql.tada generate schema %VITE_CLIENT_ENDPOINT% -o schema.graphql --header \"x-hasura-admin-secret: %VITE_X_HASURA_ADMIN_SECRET%\" && gql.tada generate output"
+        "gen": "dotenv -- cross-var gql.tada generate schema %VITE_CLIENT_ENDPOINT% -o schema.graphql --header \"x-hasura-admin-secret: %VITE_X_HASURA_ADMIN_SECRET%\" && gql.tada generate output",
+        "gendev": "dotenv -- cross-var gql.tada generate schema http://localhost:7008/v1/graphql/ -o schema.graphql --header \"x-hasura-admin-secret: %VITE_X_HASURA_ADMIN_SECRET%\" && gql.tada generate output"
     },
     "dependencies": {
         "@esbuild-plugins/node-globals-polyfill": "^0.2.3",
@@ -30,6 +31,7 @@
         "@tiptap/react": "^2.5.7",
         "@tiptap/starter-kit": "^2.5.7",
         "@types/draft-convert": "^2.1.8",
+        "@types/react-copy-to-clipboard": "^5.0.7",
         "@urql/core": "^5.0.6",
         "@urql/exchange-retry": "^1.3.0",
         "antd": "^5.18.3",
@@ -58,6 +60,7 @@
         "postcss-scss": "^4.0.9",
         "prosemirror-state": "^1.4.3",
         "react": "^18.2.0",
+        "react-copy-to-clipboard": "^5.1.0",
         "react-cropper": "^2.3.3",
         "react-day-picker": "^8.8.2",
         "react-dom": "^18.2.0",

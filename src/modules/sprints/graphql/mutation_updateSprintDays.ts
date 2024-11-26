@@ -4,7 +4,7 @@ import { processError } from '@/helpers/processMessage'
 import { type ISprintsDays } from './helpers/interface'
 
 export const mutation_updateSprintDays = async (options: { id: string; sprintDays: ISprintsDays[] }) => {
-    const client = generateClient()
+    const client = await generateClient()
 
     const { id, sprintDays } = options
 

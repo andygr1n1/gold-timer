@@ -1336,6 +1336,42 @@ type goals {
   """An object relationship"""
   goal_status_enum: goal_status_enum!
 
+  """An array relationship"""
+  goals_rituals(
+    """distinct select on columns"""
+    distinct_on: [goals_rituals_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [goals_rituals_order_by!]
+
+    """filter the rows returned"""
+    where: goals_rituals_bool_exp
+  ): [goals_rituals!]!
+
+  """An aggregate relationship"""
+  goals_rituals_aggregate(
+    """distinct select on columns"""
+    distinct_on: [goals_rituals_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [goals_rituals_order_by!]
+
+    """filter the rows returned"""
+    where: goals_rituals_bool_exp
+  ): goals_rituals_aggregate!
+
   """An object relationship"""
   hero: heroes!
   id: uuid!
@@ -1430,6 +1466,8 @@ input goals_bool_exp {
   goal_difficulty_enum: goal_difficulty_enum_bool_exp
   goal_ritual: goals_rituals_bool_exp
   goal_status_enum: goal_status_enum_bool_exp
+  goals_rituals: goals_rituals_bool_exp
+  goals_rituals_aggregate: goals_rituals_aggregate_bool_exp
   hero: heroes_bool_exp
   id: uuid_comparison_exp
   is_favorite: Boolean_comparison_exp
@@ -1465,6 +1503,7 @@ input goals_insert_input {
   goal_difficulty_enum: goal_difficulty_enum_obj_rel_insert_input
   goal_ritual: goals_rituals_obj_rel_insert_input
   goal_status_enum: goal_status_enum_obj_rel_insert_input
+  goals_rituals: goals_rituals_arr_rel_insert_input
   hero: heroes_obj_rel_insert_input
   id: uuid
   is_favorite: Boolean
@@ -1590,6 +1629,7 @@ input goals_order_by {
   goal_difficulty_enum: goal_difficulty_enum_order_by
   goal_ritual: goals_rituals_order_by
   goal_status_enum: goal_status_enum_order_by
+  goals_rituals_aggregate: goals_rituals_aggregate_order_by
   hero: heroes_order_by
   id: order_by
   is_favorite: order_by
@@ -2763,6 +2803,45 @@ type heroes {
   ): sprints_aggregate!
 
   """An array relationship"""
+  stories(
+    """distinct select on columns"""
+    distinct_on: [stories_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [stories_order_by!]
+
+    """filter the rows returned"""
+    where: stories_bool_exp
+  ): [stories!]!
+
+  """An aggregate relationship"""
+  stories_aggregate(
+    """distinct select on columns"""
+    distinct_on: [stories_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [stories_order_by!]
+
+    """filter the rows returned"""
+    where: stories_bool_exp
+  ): stories_aggregate!
+
+  """An object relationship"""
+  stories_user: stories_users
+
+  """An array relationship"""
   tokens(
     """distinct select on columns"""
     distinct_on: [heroes_tokens_select_column!]
@@ -2907,6 +2986,9 @@ input heroes_bool_exp {
   role: heroes_roles_enum_comparison_exp
   sprints: sprints_bool_exp
   sprints_aggregate: sprints_aggregate_bool_exp
+  stories: stories_bool_exp
+  stories_aggregate: stories_aggregate_bool_exp
+  stories_user: stories_users_bool_exp
   tokens: heroes_tokens_bool_exp
   tokens_aggregate: heroes_tokens_aggregate_bool_exp
   updated_at: timestamptz_comparison_exp
@@ -2952,6 +3034,8 @@ input heroes_insert_input {
   phone: String
   role: heroes_roles_enum
   sprints: sprints_arr_rel_insert_input
+  stories: stories_arr_rel_insert_input
+  stories_user: stories_users_obj_rel_insert_input
   tokens: heroes_tokens_arr_rel_insert_input
   updated_at: timestamptz
 }
@@ -3071,6 +3155,8 @@ input heroes_order_by {
   phone: order_by
   role: order_by
   sprints_aggregate: sprints_aggregate_order_by
+  stories_aggregate: stories_aggregate_order_by
+  stories_user: stories_users_order_by
   tokens_aggregate: heroes_tokens_aggregate_order_by
   updated_at: order_by
 }
@@ -3167,12 +3253,8 @@ enum heroes_roles_constraint {
 enum heroes_roles_enum {
   """admin"""
   admin
-
-  """not activated user"""
   guest
   hero
-
-  """admin"""
   super_hero
 }
 
@@ -4075,6 +4157,32 @@ type mutation_root {
   delete_stories_users_by_pk(story_id: uuid!, user_id: uuid!): stories_users
 
   """
+  delete data from the table: "wedding_groups"
+  """
+  delete_wedding_groups(
+    """filter the rows which have to be deleted"""
+    where: wedding_groups_bool_exp!
+  ): wedding_groups_mutation_response
+
+  """
+  delete single row from the table: "wedding_groups"
+  """
+  delete_wedding_groups_by_pk(id: uuid!): wedding_groups
+
+  """
+  delete data from the table: "wedding_guests"
+  """
+  delete_wedding_guests(
+    """filter the rows which have to be deleted"""
+    where: wedding_guests_bool_exp!
+  ): wedding_guests_mutation_response
+
+  """
+  delete single row from the table: "wedding_guests"
+  """
+  delete_wedding_guests_by_pk(id: uuid!): wedding_guests
+
+  """
   insert data into the table: "achievements"
   """
   insert_achievements(
@@ -4557,6 +4665,50 @@ type mutation_root {
     """upsert condition"""
     on_conflict: stories_users_on_conflict
   ): stories_users
+
+  """
+  insert data into the table: "wedding_groups"
+  """
+  insert_wedding_groups(
+    """the rows to be inserted"""
+    objects: [wedding_groups_insert_input!]!
+
+    """upsert condition"""
+    on_conflict: wedding_groups_on_conflict
+  ): wedding_groups_mutation_response
+
+  """
+  insert a single row into the table: "wedding_groups"
+  """
+  insert_wedding_groups_one(
+    """the row to be inserted"""
+    object: wedding_groups_insert_input!
+
+    """upsert condition"""
+    on_conflict: wedding_groups_on_conflict
+  ): wedding_groups
+
+  """
+  insert data into the table: "wedding_guests"
+  """
+  insert_wedding_guests(
+    """the rows to be inserted"""
+    objects: [wedding_guests_insert_input!]!
+
+    """upsert condition"""
+    on_conflict: wedding_guests_on_conflict
+  ): wedding_guests_mutation_response
+
+  """
+  insert a single row into the table: "wedding_guests"
+  """
+  insert_wedding_guests_one(
+    """the row to be inserted"""
+    object: wedding_guests_insert_input!
+
+    """upsert condition"""
+    on_conflict: wedding_guests_on_conflict
+  ): wedding_guests
 
   """
   update data of the table: "achievements"
@@ -5239,6 +5391,68 @@ type mutation_root {
     """updates to execute, in order"""
     updates: [stories_users_updates!]!
   ): [stories_users_mutation_response]
+
+  """
+  update data of the table: "wedding_groups"
+  """
+  update_wedding_groups(
+    """sets the columns of the filtered rows to the given values"""
+    _set: wedding_groups_set_input
+
+    """filter the rows which have to be updated"""
+    where: wedding_groups_bool_exp!
+  ): wedding_groups_mutation_response
+
+  """
+  update single row of the table: "wedding_groups"
+  """
+  update_wedding_groups_by_pk(
+    """sets the columns of the filtered rows to the given values"""
+    _set: wedding_groups_set_input
+    pk_columns: wedding_groups_pk_columns_input!
+  ): wedding_groups
+
+  """
+  update multiples rows of table: "wedding_groups"
+  """
+  update_wedding_groups_many(
+    """updates to execute, in order"""
+    updates: [wedding_groups_updates!]!
+  ): [wedding_groups_mutation_response]
+
+  """
+  update data of the table: "wedding_guests"
+  """
+  update_wedding_guests(
+    """increments the numeric columns with given value of the filtered values"""
+    _inc: wedding_guests_inc_input
+
+    """sets the columns of the filtered rows to the given values"""
+    _set: wedding_guests_set_input
+
+    """filter the rows which have to be updated"""
+    where: wedding_guests_bool_exp!
+  ): wedding_guests_mutation_response
+
+  """
+  update single row of the table: "wedding_guests"
+  """
+  update_wedding_guests_by_pk(
+    """increments the numeric columns with given value of the filtered values"""
+    _inc: wedding_guests_inc_input
+
+    """sets the columns of the filtered rows to the given values"""
+    _set: wedding_guests_set_input
+    pk_columns: wedding_guests_pk_columns_input!
+  ): wedding_guests
+
+  """
+  update multiples rows of table: "wedding_guests"
+  """
+  update_wedding_guests_many(
+    """updates to execute, in order"""
+    updates: [wedding_guests_updates!]!
+  ): [wedding_guests_mutation_response]
 }
 
 """real time info"""
@@ -5586,6 +5800,42 @@ type notes_labels {
   created_at: timestamptz
   id: uuid!
   name: String!
+
+  """An array relationship"""
+  notes(
+    """distinct select on columns"""
+    distinct_on: [notes_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [notes_order_by!]
+
+    """filter the rows returned"""
+    where: notes_bool_exp
+  ): [notes!]!
+
+  """An aggregate relationship"""
+  notes_aggregate(
+    """distinct select on columns"""
+    distinct_on: [notes_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [notes_order_by!]
+
+    """filter the rows returned"""
+    where: notes_bool_exp
+  ): notes_aggregate!
   owner_id: uuid!
   rating: Int!
 }
@@ -5630,6 +5880,8 @@ input notes_labels_bool_exp {
   created_at: timestamptz_comparison_exp
   id: uuid_comparison_exp
   name: String_comparison_exp
+  notes: notes_bool_exp
+  notes_aggregate: notes_aggregate_bool_exp
   owner_id: uuid_comparison_exp
   rating: Int_comparison_exp
 }
@@ -5658,6 +5910,7 @@ input notes_labels_insert_input {
   created_at: timestamptz
   id: uuid
   name: String
+  notes: notes_arr_rel_insert_input
   owner_id: uuid
   rating: Int
 }
@@ -5715,6 +5968,7 @@ input notes_labels_order_by {
   created_at: order_by
   id: order_by
   name: order_by
+  notes_aggregate: notes_aggregate_order_by
   owner_id: order_by
   rating: order_by
 }
@@ -6918,9 +7172,7 @@ type query_root {
   """fetch data from the table: "privacy_enum" using primary key columns"""
   privacy_enum_by_pk(privacy: String!): privacy_enum
 
-  """
-  fetch data from the table: "restore_codes"
-  """
+  """An array relationship"""
   restore_codes(
     """distinct select on columns"""
     distinct_on: [restore_codes_select_column!]
@@ -6938,9 +7190,7 @@ type query_root {
     where: restore_codes_bool_exp
   ): [restore_codes!]!
 
-  """
-  fetch aggregated fields from the table: "restore_codes"
-  """
+  """An aggregate relationship"""
   restore_codes_aggregate(
     """distinct select on columns"""
     distinct_on: [restore_codes_select_column!]
@@ -7090,9 +7340,7 @@ type query_root {
   """fetch data from the table: "sprints" using primary key columns"""
   sprints_by_pk(id: uuid!): sprints
 
-  """
-  fetch data from the table: "stories"
-  """
+  """An array relationship"""
   stories(
     """distinct select on columns"""
     distinct_on: [stories_select_column!]
@@ -7110,9 +7358,7 @@ type query_root {
     where: stories_bool_exp
   ): [stories!]!
 
-  """
-  fetch aggregated fields from the table: "stories"
-  """
+  """An aggregate relationship"""
   stories_aggregate(
     """distinct select on columns"""
     distinct_on: [stories_select_column!]
@@ -7216,6 +7462,88 @@ type query_root {
 
   """fetch data from the table: "stories_users" using primary key columns"""
   stories_users_by_pk(story_id: uuid!, user_id: uuid!): stories_users
+
+  """
+  fetch data from the table: "wedding_groups"
+  """
+  wedding_groups(
+    """distinct select on columns"""
+    distinct_on: [wedding_groups_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [wedding_groups_order_by!]
+
+    """filter the rows returned"""
+    where: wedding_groups_bool_exp
+  ): [wedding_groups!]!
+
+  """
+  fetch aggregated fields from the table: "wedding_groups"
+  """
+  wedding_groups_aggregate(
+    """distinct select on columns"""
+    distinct_on: [wedding_groups_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [wedding_groups_order_by!]
+
+    """filter the rows returned"""
+    where: wedding_groups_bool_exp
+  ): wedding_groups_aggregate!
+
+  """fetch data from the table: "wedding_groups" using primary key columns"""
+  wedding_groups_by_pk(id: uuid!): wedding_groups
+
+  """An array relationship"""
+  wedding_guests(
+    """distinct select on columns"""
+    distinct_on: [wedding_guests_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [wedding_guests_order_by!]
+
+    """filter the rows returned"""
+    where: wedding_guests_bool_exp
+  ): [wedding_guests!]!
+
+  """An aggregate relationship"""
+  wedding_guests_aggregate(
+    """distinct select on columns"""
+    distinct_on: [wedding_guests_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [wedding_guests_order_by!]
+
+    """filter the rows returned"""
+    where: wedding_guests_bool_exp
+  ): wedding_guests_aggregate!
+
+  """fetch data from the table: "wedding_guests" using primary key columns"""
+  wedding_guests_by_pk(id: uuid!): wedding_guests
 }
 
 """restore_password_codes"""
@@ -7223,6 +7551,9 @@ type restore_codes {
   created_at: timestamptz
   email: String!
   id: uuid!
+
+  """An object relationship"""
+  restore_codes_enum: restore_codes_enum
   secret: String
   type: restore_codes_enum_enum
 }
@@ -7235,6 +7566,17 @@ type restore_codes_aggregate {
   nodes: [restore_codes!]!
 }
 
+input restore_codes_aggregate_bool_exp {
+  count: restore_codes_aggregate_bool_exp_count
+}
+
+input restore_codes_aggregate_bool_exp_count {
+  arguments: [restore_codes_select_column!]
+  distinct: Boolean
+  filter: restore_codes_bool_exp
+  predicate: Int_comparison_exp!
+}
+
 """
 aggregate fields of "restore_codes"
 """
@@ -7242,6 +7584,25 @@ type restore_codes_aggregate_fields {
   count(columns: [restore_codes_select_column!], distinct: Boolean): Int!
   max: restore_codes_max_fields
   min: restore_codes_min_fields
+}
+
+"""
+order by aggregate values of table "restore_codes"
+"""
+input restore_codes_aggregate_order_by {
+  count: order_by
+  max: restore_codes_max_order_by
+  min: restore_codes_min_order_by
+}
+
+"""
+input type for inserting array relation for remote table "restore_codes"
+"""
+input restore_codes_arr_rel_insert_input {
+  data: [restore_codes_insert_input!]!
+
+  """upsert condition"""
+  on_conflict: restore_codes_on_conflict
 }
 
 """
@@ -7254,6 +7615,7 @@ input restore_codes_bool_exp {
   created_at: timestamptz_comparison_exp
   email: String_comparison_exp
   id: uuid_comparison_exp
+  restore_codes_enum: restore_codes_enum_bool_exp
   secret: String_comparison_exp
   type: restore_codes_enum_enum_comparison_exp
 }
@@ -7273,6 +7635,42 @@ columns and relationships of "restore_codes_enum"
 """
 type restore_codes_enum {
   description: String!
+
+  """An array relationship"""
+  restore_codes(
+    """distinct select on columns"""
+    distinct_on: [restore_codes_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [restore_codes_order_by!]
+
+    """filter the rows returned"""
+    where: restore_codes_bool_exp
+  ): [restore_codes!]!
+
+  """An aggregate relationship"""
+  restore_codes_aggregate(
+    """distinct select on columns"""
+    distinct_on: [restore_codes_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [restore_codes_order_by!]
+
+    """filter the rows returned"""
+    where: restore_codes_bool_exp
+  ): restore_codes_aggregate!
   type: String!
 }
 
@@ -7301,6 +7699,8 @@ input restore_codes_enum_bool_exp {
   _not: restore_codes_enum_bool_exp
   _or: [restore_codes_enum_bool_exp!]
   description: String_comparison_exp
+  restore_codes: restore_codes_bool_exp
+  restore_codes_aggregate: restore_codes_aggregate_bool_exp
   type: String_comparison_exp
 }
 
@@ -7315,6 +7715,9 @@ enum restore_codes_enum_constraint {
 }
 
 enum restore_codes_enum_enum {
+  """activation code"""
+  activation
+
   """restore code"""
   restoration
 }
@@ -7335,6 +7738,7 @@ input type for inserting data into table "restore_codes_enum"
 """
 input restore_codes_enum_insert_input {
   description: String
+  restore_codes: restore_codes_arr_rel_insert_input
   type: String
 }
 
@@ -7362,6 +7766,16 @@ type restore_codes_enum_mutation_response {
 }
 
 """
+input type for inserting object relation for remote table "restore_codes_enum"
+"""
+input restore_codes_enum_obj_rel_insert_input {
+  data: restore_codes_enum_insert_input!
+
+  """upsert condition"""
+  on_conflict: restore_codes_enum_on_conflict
+}
+
+"""
 on_conflict condition type for table "restore_codes_enum"
 """
 input restore_codes_enum_on_conflict {
@@ -7373,6 +7787,7 @@ input restore_codes_enum_on_conflict {
 """Ordering options when selecting data from "restore_codes_enum"."""
 input restore_codes_enum_order_by {
   description: order_by
+  restore_codes_aggregate: restore_codes_aggregate_order_by
   type: order_by
 }
 
@@ -7443,6 +7858,7 @@ input restore_codes_insert_input {
   created_at: timestamptz
   email: String
   id: uuid
+  restore_codes_enum: restore_codes_enum_obj_rel_insert_input
   secret: String
   type: restore_codes_enum_enum
 }
@@ -7455,12 +7871,32 @@ type restore_codes_max_fields {
   secret: String
 }
 
+"""
+order by max() on columns of table "restore_codes"
+"""
+input restore_codes_max_order_by {
+  created_at: order_by
+  email: order_by
+  id: order_by
+  secret: order_by
+}
+
 """aggregate min on columns"""
 type restore_codes_min_fields {
   created_at: timestamptz
   email: String
   id: uuid
   secret: String
+}
+
+"""
+order by min() on columns of table "restore_codes"
+"""
+input restore_codes_min_order_by {
+  created_at: order_by
+  email: order_by
+  id: order_by
+  secret: order_by
 }
 
 """
@@ -7488,6 +7924,7 @@ input restore_codes_order_by {
   created_at: order_by
   email: order_by
   id: order_by
+  restore_codes_enum: restore_codes_enum_order_by
   secret: order_by
   type: order_by
 }
@@ -8420,6 +8857,9 @@ type stories {
   created_at: timestamptz!
   created_by: uuid!
   deleted_at: timestamptz
+
+  """An object relationship"""
+  hero: heroes!
   id: uuid!
   img_path: String
   is_favorite: Boolean!
@@ -8459,6 +8899,9 @@ type stories {
     """filter the rows returned"""
     where: stories_messages_bool_exp
   ): stories_messages_aggregate!
+
+  """An object relationship"""
+  stories_user: stories_users
   title: String!
   updated_at: timestamptz!
   updated_by: uuid!
@@ -8476,6 +8919,33 @@ type stories_aggregate {
   nodes: [stories!]!
 }
 
+input stories_aggregate_bool_exp {
+  bool_and: stories_aggregate_bool_exp_bool_and
+  bool_or: stories_aggregate_bool_exp_bool_or
+  count: stories_aggregate_bool_exp_count
+}
+
+input stories_aggregate_bool_exp_bool_and {
+  arguments: stories_select_column_stories_aggregate_bool_exp_bool_and_arguments_columns!
+  distinct: Boolean
+  filter: stories_bool_exp
+  predicate: Boolean_comparison_exp!
+}
+
+input stories_aggregate_bool_exp_bool_or {
+  arguments: stories_select_column_stories_aggregate_bool_exp_bool_or_arguments_columns!
+  distinct: Boolean
+  filter: stories_bool_exp
+  predicate: Boolean_comparison_exp!
+}
+
+input stories_aggregate_bool_exp_count {
+  arguments: [stories_select_column!]
+  distinct: Boolean
+  filter: stories_bool_exp
+  predicate: Int_comparison_exp!
+}
+
 """
 aggregate fields of "stories"
 """
@@ -8483,6 +8953,25 @@ type stories_aggregate_fields {
   count(columns: [stories_select_column!], distinct: Boolean): Int!
   max: stories_max_fields
   min: stories_min_fields
+}
+
+"""
+order by aggregate values of table "stories"
+"""
+input stories_aggregate_order_by {
+  count: order_by
+  max: stories_max_order_by
+  min: stories_min_order_by
+}
+
+"""
+input type for inserting array relation for remote table "stories"
+"""
+input stories_arr_rel_insert_input {
+  data: [stories_insert_input!]!
+
+  """upsert condition"""
+  on_conflict: stories_on_conflict
 }
 
 """
@@ -8496,11 +8985,13 @@ input stories_bool_exp {
   created_at: timestamptz_comparison_exp
   created_by: uuid_comparison_exp
   deleted_at: timestamptz_comparison_exp
+  hero: heroes_bool_exp
   id: uuid_comparison_exp
   img_path: String_comparison_exp
   is_favorite: Boolean_comparison_exp
   stories_messages: stories_messages_bool_exp
   stories_messages_aggregate: stories_messages_aggregate_bool_exp
+  stories_user: stories_users_bool_exp
   title: String_comparison_exp
   updated_at: timestamptz_comparison_exp
   updated_by: uuid_comparison_exp
@@ -8526,10 +9017,12 @@ input stories_insert_input {
   created_at: timestamptz
   created_by: uuid
   deleted_at: timestamptz
+  hero: heroes_obj_rel_insert_input
   id: uuid
   img_path: String
   is_favorite: Boolean
   stories_messages: stories_messages_arr_rel_insert_input
+  stories_user: stories_users_obj_rel_insert_input
   title: String
   updated_at: timestamptz
   updated_by: uuid
@@ -8548,6 +9041,21 @@ type stories_max_fields {
   updated_at: timestamptz
   updated_by: uuid
   users: [uuid!]
+}
+
+"""
+order by max() on columns of table "stories"
+"""
+input stories_max_order_by {
+  created_at: order_by
+  created_by: order_by
+  deleted_at: order_by
+  id: order_by
+  img_path: order_by
+  title: order_by
+  updated_at: order_by
+  updated_by: order_by
+  users: order_by
 }
 
 """
@@ -8902,6 +9410,21 @@ type stories_min_fields {
 }
 
 """
+order by min() on columns of table "stories"
+"""
+input stories_min_order_by {
+  created_at: order_by
+  created_by: order_by
+  deleted_at: order_by
+  id: order_by
+  img_path: order_by
+  title: order_by
+  updated_at: order_by
+  updated_by: order_by
+  users: order_by
+}
+
+"""
 response of any mutation on the table "stories"
 """
 type stories_mutation_response {
@@ -8937,10 +9460,12 @@ input stories_order_by {
   created_at: order_by
   created_by: order_by
   deleted_at: order_by
+  hero: heroes_order_by
   id: order_by
   img_path: order_by
   is_favorite: order_by
   stories_messages_aggregate: stories_messages_aggregate_order_by
+  stories_user: stories_users_order_by
   title: order_by
   updated_at: order_by
   updated_by: order_by
@@ -8989,6 +9514,28 @@ enum stories_select_column {
 
   """column name"""
   users
+}
+
+"""
+select "stories_aggregate_bool_exp_bool_and_arguments_columns" columns of table "stories"
+"""
+enum stories_select_column_stories_aggregate_bool_exp_bool_and_arguments_columns {
+  """column name"""
+  archived
+
+  """column name"""
+  is_favorite
+}
+
+"""
+select "stories_aggregate_bool_exp_bool_or_arguments_columns" columns of table "stories"
+"""
+enum stories_select_column_stories_aggregate_bool_exp_bool_or_arguments_columns {
+  """column name"""
+  archived
+
+  """column name"""
+  is_favorite
 }
 
 """
@@ -9174,6 +9721,16 @@ type stories_users_mutation_response {
 
   """data from the rows affected by the mutation"""
   returning: [stories_users!]!
+}
+
+"""
+input type for inserting object relation for remote table "stories_users"
+"""
+input stories_users_obj_rel_insert_input {
+  data: stories_users_insert_input!
+
+  """upsert condition"""
+  on_conflict: stories_users_on_conflict
 }
 
 """
@@ -10086,9 +10643,7 @@ type subscription_root {
     where: privacy_enum_bool_exp
   ): [privacy_enum!]!
 
-  """
-  fetch data from the table: "restore_codes"
-  """
+  """An array relationship"""
   restore_codes(
     """distinct select on columns"""
     distinct_on: [restore_codes_select_column!]
@@ -10106,9 +10661,7 @@ type subscription_root {
     where: restore_codes_bool_exp
   ): [restore_codes!]!
 
-  """
-  fetch aggregated fields from the table: "restore_codes"
-  """
+  """An aggregate relationship"""
   restore_codes_aggregate(
     """distinct select on columns"""
     distinct_on: [restore_codes_select_column!]
@@ -10314,9 +10867,7 @@ type subscription_root {
     where: sprints_bool_exp
   ): [sprints!]!
 
-  """
-  fetch data from the table: "stories"
-  """
+  """An array relationship"""
   stories(
     """distinct select on columns"""
     distinct_on: [stories_select_column!]
@@ -10334,9 +10885,7 @@ type subscription_root {
     where: stories_bool_exp
   ): [stories!]!
 
-  """
-  fetch aggregated fields from the table: "stories"
-  """
+  """An aggregate relationship"""
   stories_aggregate(
     """distinct select on columns"""
     distinct_on: [stories_select_column!]
@@ -10482,6 +11031,116 @@ type subscription_root {
     """filter the rows returned"""
     where: stories_users_bool_exp
   ): [stories_users!]!
+
+  """
+  fetch data from the table: "wedding_groups"
+  """
+  wedding_groups(
+    """distinct select on columns"""
+    distinct_on: [wedding_groups_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [wedding_groups_order_by!]
+
+    """filter the rows returned"""
+    where: wedding_groups_bool_exp
+  ): [wedding_groups!]!
+
+  """
+  fetch aggregated fields from the table: "wedding_groups"
+  """
+  wedding_groups_aggregate(
+    """distinct select on columns"""
+    distinct_on: [wedding_groups_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [wedding_groups_order_by!]
+
+    """filter the rows returned"""
+    where: wedding_groups_bool_exp
+  ): wedding_groups_aggregate!
+
+  """fetch data from the table: "wedding_groups" using primary key columns"""
+  wedding_groups_by_pk(id: uuid!): wedding_groups
+
+  """
+  fetch data from the table in a streaming manner: "wedding_groups"
+  """
+  wedding_groups_stream(
+    """maximum number of rows returned in a single batch"""
+    batch_size: Int!
+
+    """cursor to stream the results returned by the query"""
+    cursor: [wedding_groups_stream_cursor_input]!
+
+    """filter the rows returned"""
+    where: wedding_groups_bool_exp
+  ): [wedding_groups!]!
+
+  """An array relationship"""
+  wedding_guests(
+    """distinct select on columns"""
+    distinct_on: [wedding_guests_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [wedding_guests_order_by!]
+
+    """filter the rows returned"""
+    where: wedding_guests_bool_exp
+  ): [wedding_guests!]!
+
+  """An aggregate relationship"""
+  wedding_guests_aggregate(
+    """distinct select on columns"""
+    distinct_on: [wedding_guests_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [wedding_guests_order_by!]
+
+    """filter the rows returned"""
+    where: wedding_guests_bool_exp
+  ): wedding_guests_aggregate!
+
+  """fetch data from the table: "wedding_guests" using primary key columns"""
+  wedding_guests_by_pk(id: uuid!): wedding_guests
+
+  """
+  fetch data from the table in a streaming manner: "wedding_guests"
+  """
+  wedding_guests_stream(
+    """maximum number of rows returned in a single batch"""
+    batch_size: Int!
+
+    """cursor to stream the results returned by the query"""
+    cursor: [wedding_guests_stream_cursor_input]!
+
+    """filter the rows returned"""
+    where: wedding_guests_bool_exp
+  ): [wedding_guests!]!
 }
 
 scalar timestamptz
@@ -10536,4 +11195,776 @@ input uuid_comparison_exp {
   _lte: uuid
   _neq: uuid
   _nin: [uuid!]
+}
+
+"""groups metadata"""
+type wedding_groups {
+  booking_number: String
+  created_at: timestamptz
+  deleted_at: timestamptz
+  hide: Boolean
+  id: uuid!
+  name: String
+  registration: Boolean
+
+  """An array relationship"""
+  wedding_guests(
+    """distinct select on columns"""
+    distinct_on: [wedding_guests_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [wedding_guests_order_by!]
+
+    """filter the rows returned"""
+    where: wedding_guests_bool_exp
+  ): [wedding_guests!]!
+
+  """An aggregate relationship"""
+  wedding_guests_aggregate(
+    """distinct select on columns"""
+    distinct_on: [wedding_guests_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [wedding_guests_order_by!]
+
+    """filter the rows returned"""
+    where: wedding_guests_bool_exp
+  ): wedding_guests_aggregate!
+}
+
+"""
+aggregated selection of "wedding_groups"
+"""
+type wedding_groups_aggregate {
+  aggregate: wedding_groups_aggregate_fields
+  nodes: [wedding_groups!]!
+}
+
+"""
+aggregate fields of "wedding_groups"
+"""
+type wedding_groups_aggregate_fields {
+  count(columns: [wedding_groups_select_column!], distinct: Boolean): Int!
+  max: wedding_groups_max_fields
+  min: wedding_groups_min_fields
+}
+
+"""
+Boolean expression to filter rows from the table "wedding_groups". All fields are combined with a logical 'AND'.
+"""
+input wedding_groups_bool_exp {
+  _and: [wedding_groups_bool_exp!]
+  _not: wedding_groups_bool_exp
+  _or: [wedding_groups_bool_exp!]
+  booking_number: String_comparison_exp
+  created_at: timestamptz_comparison_exp
+  deleted_at: timestamptz_comparison_exp
+  hide: Boolean_comparison_exp
+  id: uuid_comparison_exp
+  name: String_comparison_exp
+  registration: Boolean_comparison_exp
+  wedding_guests: wedding_guests_bool_exp
+  wedding_guests_aggregate: wedding_guests_aggregate_bool_exp
+}
+
+"""
+unique or primary key constraints on table "wedding_groups"
+"""
+enum wedding_groups_constraint {
+  """
+  unique or primary key constraint on columns "id"
+  """
+  wedding_groups_pkey
+}
+
+"""
+input type for inserting data into table "wedding_groups"
+"""
+input wedding_groups_insert_input {
+  booking_number: String
+  created_at: timestamptz
+  deleted_at: timestamptz
+  hide: Boolean
+  id: uuid
+  name: String
+  registration: Boolean
+  wedding_guests: wedding_guests_arr_rel_insert_input
+}
+
+"""aggregate max on columns"""
+type wedding_groups_max_fields {
+  booking_number: String
+  created_at: timestamptz
+  deleted_at: timestamptz
+  id: uuid
+  name: String
+}
+
+"""aggregate min on columns"""
+type wedding_groups_min_fields {
+  booking_number: String
+  created_at: timestamptz
+  deleted_at: timestamptz
+  id: uuid
+  name: String
+}
+
+"""
+response of any mutation on the table "wedding_groups"
+"""
+type wedding_groups_mutation_response {
+  """number of rows affected by the mutation"""
+  affected_rows: Int!
+
+  """data from the rows affected by the mutation"""
+  returning: [wedding_groups!]!
+}
+
+"""
+input type for inserting object relation for remote table "wedding_groups"
+"""
+input wedding_groups_obj_rel_insert_input {
+  data: wedding_groups_insert_input!
+
+  """upsert condition"""
+  on_conflict: wedding_groups_on_conflict
+}
+
+"""
+on_conflict condition type for table "wedding_groups"
+"""
+input wedding_groups_on_conflict {
+  constraint: wedding_groups_constraint!
+  update_columns: [wedding_groups_update_column!]! = []
+  where: wedding_groups_bool_exp
+}
+
+"""Ordering options when selecting data from "wedding_groups"."""
+input wedding_groups_order_by {
+  booking_number: order_by
+  created_at: order_by
+  deleted_at: order_by
+  hide: order_by
+  id: order_by
+  name: order_by
+  registration: order_by
+  wedding_guests_aggregate: wedding_guests_aggregate_order_by
+}
+
+"""primary key columns input for table: wedding_groups"""
+input wedding_groups_pk_columns_input {
+  id: uuid!
+}
+
+"""
+select columns of table "wedding_groups"
+"""
+enum wedding_groups_select_column {
+  """column name"""
+  booking_number
+
+  """column name"""
+  created_at
+
+  """column name"""
+  deleted_at
+
+  """column name"""
+  hide
+
+  """column name"""
+  id
+
+  """column name"""
+  name
+
+  """column name"""
+  registration
+}
+
+"""
+input type for updating data in table "wedding_groups"
+"""
+input wedding_groups_set_input {
+  booking_number: String
+  created_at: timestamptz
+  deleted_at: timestamptz
+  hide: Boolean
+  id: uuid
+  name: String
+  registration: Boolean
+}
+
+"""
+Streaming cursor of the table "wedding_groups"
+"""
+input wedding_groups_stream_cursor_input {
+  """Stream column input with initial value"""
+  initial_value: wedding_groups_stream_cursor_value_input!
+
+  """cursor ordering"""
+  ordering: cursor_ordering
+}
+
+"""Initial value of the column from where the streaming should start"""
+input wedding_groups_stream_cursor_value_input {
+  booking_number: String
+  created_at: timestamptz
+  deleted_at: timestamptz
+  hide: Boolean
+  id: uuid
+  name: String
+  registration: Boolean
+}
+
+"""
+update columns of table "wedding_groups"
+"""
+enum wedding_groups_update_column {
+  """column name"""
+  booking_number
+
+  """column name"""
+  created_at
+
+  """column name"""
+  deleted_at
+
+  """column name"""
+  hide
+
+  """column name"""
+  id
+
+  """column name"""
+  name
+
+  """column name"""
+  registration
+}
+
+input wedding_groups_updates {
+  """sets the columns of the filtered rows to the given values"""
+  _set: wedding_groups_set_input
+
+  """filter the rows which have to be updated"""
+  where: wedding_groups_bool_exp!
+}
+
+"""list of guests, presented on wedding (2 may, 2025)"""
+type wedding_guests {
+  accepted: Boolean!
+  created_at: timestamptz!
+  email: String
+  first_name: String!
+  group_id: uuid!
+  id: uuid!
+  last_name: String
+  more_info: String
+  phone: String
+  table: Int
+  updated_at: timestamptz
+
+  """An object relationship"""
+  wedding_group: wedding_groups!
+}
+
+"""
+aggregated selection of "wedding_guests"
+"""
+type wedding_guests_aggregate {
+  aggregate: wedding_guests_aggregate_fields
+  nodes: [wedding_guests!]!
+}
+
+input wedding_guests_aggregate_bool_exp {
+  bool_and: wedding_guests_aggregate_bool_exp_bool_and
+  bool_or: wedding_guests_aggregate_bool_exp_bool_or
+  count: wedding_guests_aggregate_bool_exp_count
+}
+
+input wedding_guests_aggregate_bool_exp_bool_and {
+  arguments: wedding_guests_select_column_wedding_guests_aggregate_bool_exp_bool_and_arguments_columns!
+  distinct: Boolean
+  filter: wedding_guests_bool_exp
+  predicate: Boolean_comparison_exp!
+}
+
+input wedding_guests_aggregate_bool_exp_bool_or {
+  arguments: wedding_guests_select_column_wedding_guests_aggregate_bool_exp_bool_or_arguments_columns!
+  distinct: Boolean
+  filter: wedding_guests_bool_exp
+  predicate: Boolean_comparison_exp!
+}
+
+input wedding_guests_aggregate_bool_exp_count {
+  arguments: [wedding_guests_select_column!]
+  distinct: Boolean
+  filter: wedding_guests_bool_exp
+  predicate: Int_comparison_exp!
+}
+
+"""
+aggregate fields of "wedding_guests"
+"""
+type wedding_guests_aggregate_fields {
+  avg: wedding_guests_avg_fields
+  count(columns: [wedding_guests_select_column!], distinct: Boolean): Int!
+  max: wedding_guests_max_fields
+  min: wedding_guests_min_fields
+  stddev: wedding_guests_stddev_fields
+  stddev_pop: wedding_guests_stddev_pop_fields
+  stddev_samp: wedding_guests_stddev_samp_fields
+  sum: wedding_guests_sum_fields
+  var_pop: wedding_guests_var_pop_fields
+  var_samp: wedding_guests_var_samp_fields
+  variance: wedding_guests_variance_fields
+}
+
+"""
+order by aggregate values of table "wedding_guests"
+"""
+input wedding_guests_aggregate_order_by {
+  avg: wedding_guests_avg_order_by
+  count: order_by
+  max: wedding_guests_max_order_by
+  min: wedding_guests_min_order_by
+  stddev: wedding_guests_stddev_order_by
+  stddev_pop: wedding_guests_stddev_pop_order_by
+  stddev_samp: wedding_guests_stddev_samp_order_by
+  sum: wedding_guests_sum_order_by
+  var_pop: wedding_guests_var_pop_order_by
+  var_samp: wedding_guests_var_samp_order_by
+  variance: wedding_guests_variance_order_by
+}
+
+"""
+input type for inserting array relation for remote table "wedding_guests"
+"""
+input wedding_guests_arr_rel_insert_input {
+  data: [wedding_guests_insert_input!]!
+
+  """upsert condition"""
+  on_conflict: wedding_guests_on_conflict
+}
+
+"""aggregate avg on columns"""
+type wedding_guests_avg_fields {
+  table: Float
+}
+
+"""
+order by avg() on columns of table "wedding_guests"
+"""
+input wedding_guests_avg_order_by {
+  table: order_by
+}
+
+"""
+Boolean expression to filter rows from the table "wedding_guests". All fields are combined with a logical 'AND'.
+"""
+input wedding_guests_bool_exp {
+  _and: [wedding_guests_bool_exp!]
+  _not: wedding_guests_bool_exp
+  _or: [wedding_guests_bool_exp!]
+  accepted: Boolean_comparison_exp
+  created_at: timestamptz_comparison_exp
+  email: String_comparison_exp
+  first_name: String_comparison_exp
+  group_id: uuid_comparison_exp
+  id: uuid_comparison_exp
+  last_name: String_comparison_exp
+  more_info: String_comparison_exp
+  phone: String_comparison_exp
+  table: Int_comparison_exp
+  updated_at: timestamptz_comparison_exp
+  wedding_group: wedding_groups_bool_exp
+}
+
+"""
+unique or primary key constraints on table "wedding_guests"
+"""
+enum wedding_guests_constraint {
+  """
+  unique or primary key constraint on columns "email"
+  """
+  wedding_guests_email_key
+
+  """
+  unique or primary key constraint on columns "phone"
+  """
+  wedding_guests_phone_key
+
+  """
+  unique or primary key constraint on columns "id"
+  """
+  wedding_guests_pkey
+}
+
+"""
+input type for incrementing numeric columns in table "wedding_guests"
+"""
+input wedding_guests_inc_input {
+  table: Int
+}
+
+"""
+input type for inserting data into table "wedding_guests"
+"""
+input wedding_guests_insert_input {
+  accepted: Boolean
+  created_at: timestamptz
+  email: String
+  first_name: String
+  group_id: uuid
+  id: uuid
+  last_name: String
+  more_info: String
+  phone: String
+  table: Int
+  updated_at: timestamptz
+  wedding_group: wedding_groups_obj_rel_insert_input
+}
+
+"""aggregate max on columns"""
+type wedding_guests_max_fields {
+  created_at: timestamptz
+  email: String
+  first_name: String
+  group_id: uuid
+  id: uuid
+  last_name: String
+  more_info: String
+  phone: String
+  table: Int
+  updated_at: timestamptz
+}
+
+"""
+order by max() on columns of table "wedding_guests"
+"""
+input wedding_guests_max_order_by {
+  created_at: order_by
+  email: order_by
+  first_name: order_by
+  group_id: order_by
+  id: order_by
+  last_name: order_by
+  more_info: order_by
+  phone: order_by
+  table: order_by
+  updated_at: order_by
+}
+
+"""aggregate min on columns"""
+type wedding_guests_min_fields {
+  created_at: timestamptz
+  email: String
+  first_name: String
+  group_id: uuid
+  id: uuid
+  last_name: String
+  more_info: String
+  phone: String
+  table: Int
+  updated_at: timestamptz
+}
+
+"""
+order by min() on columns of table "wedding_guests"
+"""
+input wedding_guests_min_order_by {
+  created_at: order_by
+  email: order_by
+  first_name: order_by
+  group_id: order_by
+  id: order_by
+  last_name: order_by
+  more_info: order_by
+  phone: order_by
+  table: order_by
+  updated_at: order_by
+}
+
+"""
+response of any mutation on the table "wedding_guests"
+"""
+type wedding_guests_mutation_response {
+  """number of rows affected by the mutation"""
+  affected_rows: Int!
+
+  """data from the rows affected by the mutation"""
+  returning: [wedding_guests!]!
+}
+
+"""
+on_conflict condition type for table "wedding_guests"
+"""
+input wedding_guests_on_conflict {
+  constraint: wedding_guests_constraint!
+  update_columns: [wedding_guests_update_column!]! = []
+  where: wedding_guests_bool_exp
+}
+
+"""Ordering options when selecting data from "wedding_guests"."""
+input wedding_guests_order_by {
+  accepted: order_by
+  created_at: order_by
+  email: order_by
+  first_name: order_by
+  group_id: order_by
+  id: order_by
+  last_name: order_by
+  more_info: order_by
+  phone: order_by
+  table: order_by
+  updated_at: order_by
+  wedding_group: wedding_groups_order_by
+}
+
+"""primary key columns input for table: wedding_guests"""
+input wedding_guests_pk_columns_input {
+  id: uuid!
+}
+
+"""
+select columns of table "wedding_guests"
+"""
+enum wedding_guests_select_column {
+  """column name"""
+  accepted
+
+  """column name"""
+  created_at
+
+  """column name"""
+  email
+
+  """column name"""
+  first_name
+
+  """column name"""
+  group_id
+
+  """column name"""
+  id
+
+  """column name"""
+  last_name
+
+  """column name"""
+  more_info
+
+  """column name"""
+  phone
+
+  """column name"""
+  table
+
+  """column name"""
+  updated_at
+}
+
+"""
+select "wedding_guests_aggregate_bool_exp_bool_and_arguments_columns" columns of table "wedding_guests"
+"""
+enum wedding_guests_select_column_wedding_guests_aggregate_bool_exp_bool_and_arguments_columns {
+  """column name"""
+  accepted
+}
+
+"""
+select "wedding_guests_aggregate_bool_exp_bool_or_arguments_columns" columns of table "wedding_guests"
+"""
+enum wedding_guests_select_column_wedding_guests_aggregate_bool_exp_bool_or_arguments_columns {
+  """column name"""
+  accepted
+}
+
+"""
+input type for updating data in table "wedding_guests"
+"""
+input wedding_guests_set_input {
+  accepted: Boolean
+  created_at: timestamptz
+  email: String
+  first_name: String
+  group_id: uuid
+  id: uuid
+  last_name: String
+  more_info: String
+  phone: String
+  table: Int
+  updated_at: timestamptz
+}
+
+"""aggregate stddev on columns"""
+type wedding_guests_stddev_fields {
+  table: Float
+}
+
+"""
+order by stddev() on columns of table "wedding_guests"
+"""
+input wedding_guests_stddev_order_by {
+  table: order_by
+}
+
+"""aggregate stddev_pop on columns"""
+type wedding_guests_stddev_pop_fields {
+  table: Float
+}
+
+"""
+order by stddev_pop() on columns of table "wedding_guests"
+"""
+input wedding_guests_stddev_pop_order_by {
+  table: order_by
+}
+
+"""aggregate stddev_samp on columns"""
+type wedding_guests_stddev_samp_fields {
+  table: Float
+}
+
+"""
+order by stddev_samp() on columns of table "wedding_guests"
+"""
+input wedding_guests_stddev_samp_order_by {
+  table: order_by
+}
+
+"""
+Streaming cursor of the table "wedding_guests"
+"""
+input wedding_guests_stream_cursor_input {
+  """Stream column input with initial value"""
+  initial_value: wedding_guests_stream_cursor_value_input!
+
+  """cursor ordering"""
+  ordering: cursor_ordering
+}
+
+"""Initial value of the column from where the streaming should start"""
+input wedding_guests_stream_cursor_value_input {
+  accepted: Boolean
+  created_at: timestamptz
+  email: String
+  first_name: String
+  group_id: uuid
+  id: uuid
+  last_name: String
+  more_info: String
+  phone: String
+  table: Int
+  updated_at: timestamptz
+}
+
+"""aggregate sum on columns"""
+type wedding_guests_sum_fields {
+  table: Int
+}
+
+"""
+order by sum() on columns of table "wedding_guests"
+"""
+input wedding_guests_sum_order_by {
+  table: order_by
+}
+
+"""
+update columns of table "wedding_guests"
+"""
+enum wedding_guests_update_column {
+  """column name"""
+  accepted
+
+  """column name"""
+  created_at
+
+  """column name"""
+  email
+
+  """column name"""
+  first_name
+
+  """column name"""
+  group_id
+
+  """column name"""
+  id
+
+  """column name"""
+  last_name
+
+  """column name"""
+  more_info
+
+  """column name"""
+  phone
+
+  """column name"""
+  table
+
+  """column name"""
+  updated_at
+}
+
+input wedding_guests_updates {
+  """increments the numeric columns with given value of the filtered values"""
+  _inc: wedding_guests_inc_input
+
+  """sets the columns of the filtered rows to the given values"""
+  _set: wedding_guests_set_input
+
+  """filter the rows which have to be updated"""
+  where: wedding_guests_bool_exp!
+}
+
+"""aggregate var_pop on columns"""
+type wedding_guests_var_pop_fields {
+  table: Float
+}
+
+"""
+order by var_pop() on columns of table "wedding_guests"
+"""
+input wedding_guests_var_pop_order_by {
+  table: order_by
+}
+
+"""aggregate var_samp on columns"""
+type wedding_guests_var_samp_fields {
+  table: Float
+}
+
+"""
+order by var_samp() on columns of table "wedding_guests"
+"""
+input wedding_guests_var_samp_order_by {
+  table: order_by
+}
+
+"""aggregate variance on columns"""
+type wedding_guests_variance_fields {
+  table: Float
+}
+
+"""
+order by variance() on columns of table "wedding_guests"
+"""
+input wedding_guests_variance_order_by {
+  table: order_by
 }

@@ -39,7 +39,7 @@ export async function resolveData<A, B>(success: LazyArg<Promise<B>>, error: (re
     return data._tag === 'Right' ? data['right'] : data['left']
 }
 
-export const resolveError = async (error?: unknown) => {
+export const resolveError = async (error?: unknown, process = true) => {
     let errorMessage = `Unknown error ${error}`
     if (error instanceof HTTPError && error.response) {
         const errorJson = await error.response.json()
@@ -47,6 +47,7 @@ export const resolveError = async (error?: unknown) => {
     } else if (error instanceof Error) {
         errorMessage = error.message
     }
-    processError(errorMessage)
+
+    process && processError(errorMessage)
     throw new Error(errorMessage)
 }

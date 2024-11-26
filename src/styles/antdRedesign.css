@@ -130,3 +130,11 @@ td.ant-picker-cell.ant-picker-cell-disabled {
 .rc-virtual-list-scrollbar-thumb {
     @apply !bg-blue-500/50;
 }
+
+.gray-checkbox .ant-checkbox-checked > .ant-checkbox-inner {
+    @apply !bg-gray-500 !border-gray-500;
+}
+
+.gray-checkbox .ant-checkbox-inner {
+    @apply !bg-gray-200/50 !border-gray-200/50;
+}
