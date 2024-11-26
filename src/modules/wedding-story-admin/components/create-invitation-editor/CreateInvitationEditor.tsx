@@ -1,6 +1,6 @@
 import { XModal } from '@/components-x/x-modal/XModal'
 import { Suspense, lazy } from 'react'
-import { useInvitationEditorDialog$ } from '../../mst/provider'
+import { useInvitationEditorDialog$ } from '../../mst/invitationEditorDialog.provider'
 import { observer } from 'mobx-react-lite'
 const InvitationEditor = lazy(() => import('./components/InvitationEditor'))
 const InvitationEditorTitle = lazy(() => import('./components/InvitationEditorTitle'))

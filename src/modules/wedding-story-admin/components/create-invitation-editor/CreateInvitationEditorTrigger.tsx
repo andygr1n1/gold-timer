@@ -1,5 +1,5 @@
 import { StyledButton } from '@/components/buttons/StyledButton'
-import { useInvitationEditorDialog$ } from '../../mst/provider'
+import { useInvitationEditorDialog$ } from '../../mst/invitationEditorDialog.provider'
 import CreateInvitationEditor from './CreateInvitationEditor'
 
 export const CreateInvitationEditorTrigger: React.FC = () => {

@@ -1,8 +1,8 @@
 import { type ReactNode, createContext, useContext } from 'react'
-import { type IInvitationEditorDialog$, InvitationEditorDialog } from './stores/InvitationEditorDialog.store'
+import { type IInvitationEditorDialog$, InvitationEditorDialog$ } from './stores/InvitationEditorDialog.store'
 const storeContext = createContext<IInvitationEditorDialog$ | null>(null)
 
-export const invitationEditorDialog$ = InvitationEditorDialog.create({})
+export const invitationEditorDialog$ = InvitationEditorDialog$.create({})
 
 export const useInvitationEditorDialog$ = (): IInvitationEditorDialog$ => {
     const store = useContext(storeContext)
@@ -22,3 +22,5 @@ export const InvitationEditorDialog$Provider = ({
 }) => {
     return <storeContext.Provider value={store}>{children}</storeContext.Provider>
 }
+
+

@@ -1,6 +1,6 @@
 import { type Instance, types } from 'mobx-state-tree'
 
-export const InvitationEditorDialog = types
+export const InvitationEditorDialog$ = types
     .model('InvitationEditorDialog$', {
         open: false,
     })
@@ -16,4 +16,4 @@ export const InvitationEditorDialog = types
         },
     }))
 
-export interface IInvitationEditorDialog$ extends Instance<typeof InvitationEditorDialog> {}
+export interface IInvitationEditorDialog$ extends Instance<typeof InvitationEditorDialog$> {}
