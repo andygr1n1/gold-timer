@@ -1,15 +1,17 @@
 import { useQuery } from '@tanstack/react-query'
 import { query_fetchGuestsList } from './query_fetchGuestsList'
 import { weddingStoryService } from '../weddingStoryService'
+import { useGuestsFilters$ } from '../../mst/guestsFilters.provider'
 
 export const useFetchGuestsList = () => {
+    const filters = useGuestsFilters$()
+
     const { isLoading, data } = useQuery({
-        queryKey: weddingStoryService.fetchGuestsList(),
-        queryFn: async () => await query_fetchGuestsList(),
+        queryKey: weddingStoryService.fetchGuestsList(`${JSON.stringify(filters)}`),
+        queryFn: async () => await query_fetchGuestsList({ filters }),
         staleTime: 1000,
         refetchOnWindowFocus: false,
         refetchOnMount: true,
-        enabled: true,
     })
 
     const guests = data?.flatMap((ws) => ws.wedding_guests)

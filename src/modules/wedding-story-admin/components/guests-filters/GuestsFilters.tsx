@@ -12,14 +12,19 @@ import { FilterNotCheckedInGuests } from './components/FilterNotCheckedInGuests'
 import { useEffect } from 'react'
 import { onSnapshot } from 'mobx-state-tree'
 import { guestsFilters$ } from '../../mst/guestsFilters.provider'
+import { useQueryClient } from '@tanstack/react-query'
+import { XMenuDivider } from '@/components-x/x-dropdown/XMenuDivider'
 
 export const GuestsFilters: React.FC = () => {
+    const queryClient = useQueryClient()
     const { popoverState, setPopoverState } = useTogglePopoverState()
 
     useEffect(() => {
         const dispose = onSnapshot(guestsFilters$, (store) => {
             localStorage.setItem('guestsFilters', JSON.stringify(store))
+            queryClient.invalidateQueries()
         })
+
         return () => dispose()
     }, [])
 
@@ -51,12 +56,14 @@ export const GuestsFilters: React.FC = () => {
 const ContextMenu = () => {
     return (
         <XMenuDropdown className='w-fit'>
-            <FilterRegisteredGuests />
-            <FilterNotRegisteredGuests />
-            <FilterCheckedInGuests />
-            <FilterNotCheckedInGuests />
             <FilterVisibleGuests />
             <FilterHiddenGuests />
+            <XMenuDivider />
+            <FilterRegisteredGuests />
+            <FilterNotRegisteredGuests />
+            <XMenuDivider />
+            <FilterCheckedInGuests />
+            <FilterNotCheckedInGuests />
         </XMenuDropdown>
     )
 }

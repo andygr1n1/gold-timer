@@ -15,7 +15,7 @@ export const useEditWeddingGroup = () => {
             await mutation_editWeddingGroup({ values, weddingGroup })
         },
         onError: (error) => {
-            console.log(error)
+            console.error(error)
             const regex = /"table":"(\d+)"/
             const match = error.message.match(regex)
             const tableValue = match && match[1] ? match[1]?.replace('"', '').replace('"', '') : null
