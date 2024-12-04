@@ -3,7 +3,7 @@ networks:
     web_clients:
         external: true
 services:
-    kzen:where
+    kzen:
         container_name: kzen-container
         build: .
         ports:
