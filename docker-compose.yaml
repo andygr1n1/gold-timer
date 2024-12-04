@@ -1,18 +1,18 @@
 version: '3.8'
 networks:
-    kzen-client:
-        name: kzen-client
+    web_clients:
+        external: true
 services:
-    kzen:
+    kzen:where
         container_name: kzen-container
         build: .
         ports:
             - '9008:80'
-            - '443:443'
+            # - '443:443'
             - '446:446'
         volumes:
             - ./nginx.conf:/etc/nginx/conf.d/default.conf
             - /etc/letsencrypt:/etc/letsencrypt:ro
         networks:
-            - kzen-client
+            - web_clients
         restart: unless-stopped
