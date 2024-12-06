@@ -2,7 +2,6 @@ import type { ResultOf } from 'gql.tada'
 import { z } from 'zod'
 import type { goalSlidesResponseFr } from './fragments/goalSlidesResponseFr'
 
-export const KEY_FetchGoalsSlides = (userId?: string) => ['KEY_FetchGoalsSlides', userId]
 
 export const goalSlideSchema = z.object({
     id: z.string().uuid(),

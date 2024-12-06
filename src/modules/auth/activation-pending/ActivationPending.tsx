@@ -1,7 +1,13 @@
+import { observer } from 'mobx-react-lite'
 import { usePendingActivation } from './hooks/usePendingActivation.hook'
+import { useRoot$ } from '@/modules/app/mst/StoreProvider'
+import { IconInfiniteLoading } from '@/assets/icons'
 
-const ActivationPending: React.FC = () => {
-    const { user, resendActivationLink } = usePendingActivation()
+const ActivationPending = observer(() => {
+    const { resendActivationLink } = usePendingActivation()
+    const { user, userIsLoading } = useRoot$()
+
+    if (userIsLoading) return <IconInfiniteLoading className='absolute-center w-10 h-10 text-blue-500 duration-300' />
 
     return (
         <div className='px-5 text-sm font-inter'>
@@ -29,6 +35,6 @@ const ActivationPending: React.FC = () => {
             </p>
         </div>
     )
-}
+})
 
 export default ActivationPending

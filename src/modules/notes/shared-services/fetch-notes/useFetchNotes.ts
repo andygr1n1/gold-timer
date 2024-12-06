@@ -1,6 +1,6 @@
 import { useInfiniteQuery } from '@tanstack/react-query'
 import { compact, flatten, last, uniqWith } from 'lodash-es'
-import { useUser$ } from '@/services/user-store/userUser.store'
+import { useUser$ } from '@/modules/app/mst/StoreProvider'
 import { type INoteSchema, type INoteStatus, noteStatus } from '@/modules/notes/shared-services/types'
 import { notesKeys } from '../keys'
 import { query_favoriteNotes } from './query_favoriteNotes'
@@ -16,7 +16,7 @@ export const useFetchNotes = (props: {
     label?: string
 }) => {
     const { queryFilter = noteStatus.active, limit = 20, serverSearchInput = '', label } = props
-    const { userId } = useUser$()
+    const { id: userId } = useUser$()
 
     const { data, fetchNextPage, hasNextPage, isFetching, isFetchingNextPage, isLoading } = useInfiniteQuery({
         queryKey: notesKeys.useFetchNotes(limit, queryFilter, serverSearchInput, userId, label),

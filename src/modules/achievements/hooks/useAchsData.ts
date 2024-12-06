@@ -2,13 +2,13 @@ import { useLocation } from 'react-router-dom'
 import { useAchFilter$ } from '../components/achs-by-filter/ach-header/components/search-ach-input/useAchFilter.store'
 import { useFetchAchs } from '../services/fetch-achs/useFetchAchs'
 import { type IArtifactStatus } from '@/services/types'
-import { useUser$ } from '@/services/user-store/userUser.store'
+import { useUser$ } from '@/modules/app/mst/StoreProvider'
 
 export const useAchsData = () => {
     const { serverSearchInput } = useAchFilter$()
     const location = useLocation()
     const queryFilter: IArtifactStatus = location.state?.filter
-    const { userId } = useUser$()
+    const { id: userId } = useUser$()
 
     const { achs, fetchNextPage, hasNextPage, isLoading, isFetchingNextPage } = useFetchAchs({
         serverSearchInput,

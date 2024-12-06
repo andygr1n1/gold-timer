@@ -1,10 +1,10 @@
 import { resolveError } from '@/helpers/tryCatchRequest'
-import { generateURQLClient } from '@/graphql/client'
+import { generateClient } from '@/graphql/client'
 import { graphql } from '@/graphql/tada'
 
 export const mutation_notepadDescription = async (description: string) => {
     try {
-        const urqlClient = await generateURQLClient()
+        const client = await generateClient()
 
         const mutation = graphql(`
             mutation mutation_notepadDescription($description: String) {
@@ -17,13 +17,10 @@ export const mutation_notepadDescription = async (description: string) => {
             }
         `)
 
-        const { data, error } = await urqlClient.mutation(mutation, { description })
-
-        if (error) throw error
+        const data = await client.request(mutation, { description })
 
         return data
     } catch (e) {
-        await resolveError(e)
-        return
+        return await resolveError(e)
     }
 }

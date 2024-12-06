@@ -1,29 +1,26 @@
-import { generateURQLClient } from '../../../graphql/client'
+import { generateClient } from '../../../graphql/client'
 import { resolveError } from '@/helpers/tryCatchRequest'
 import { graphql } from '@/graphql/tada'
 import { goalSlidesResponseFr } from './fragments/goalSlidesResponseFr'
 
 export const query_fetchGoalsSlides = async () => {
-    const urqlClient = await generateURQLClient()
-
-    const query = graphql(
-        `
-            query query_goal_slides {
-                goals_slides {
-                    id
-                    ...GoalSlidesResponseFr
-                }
-            }
-        `,
-        [goalSlidesResponseFr],
-    )
-
     try {
-        const result = await urqlClient.query(query, {}).then((res) => res.data?.goals_slides)
+        const client = await generateClient()
 
-        return result
+        const query = graphql(
+            `
+                query query_goal_slides {
+                    goals_slides {
+                        id
+                        ...GoalSlidesResponseFr
+                    }
+                }
+            `,
+            [goalSlidesResponseFr],
+        )
+
+        return await client.request(query).then((res) => res.goals_slides)
     } catch (e) {
-        await resolveError(e)
-        return
+        return await resolveError(e)
     }
 }

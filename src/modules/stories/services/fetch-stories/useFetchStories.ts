@@ -1,6 +1,6 @@
 import { useInfiniteQuery } from '@tanstack/react-query'
 import { compact, flatten, last, uniqWith } from 'lodash-es'
-import { useUser$ } from '@/services/user-store/userUser.store'
+import { useUser$ } from '@/modules/app/mst/StoreProvider'
 import { query_activeStories } from './query_activeStories'
 import { artifactStatus, type IArtifactStatus } from '@/services/types'
 import { type IStory } from '../types'
@@ -12,7 +12,7 @@ import { query_deletedStories } from './query_deletedStories'
 
 export const useFetchStories = (props: { queryFilter: IArtifactStatus; limit: number; serverSearchInput: string }) => {
     const { queryFilter = artifactStatus.active, limit = 20, serverSearchInput = '' } = props
-    const { userId } = useUser$()
+    const { id: userId } = useUser$()
 
     const { data, fetchNextPage, hasNextPage, isFetching, isFetchingNextPage, isLoading } = useInfiniteQuery({
         queryKey: storiesService.fetchStories(`${limit}${queryFilter}${serverSearchInput}${userId}`),

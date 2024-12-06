@@ -11,6 +11,7 @@ export enum DIFFICULTY_ENUM {
 export enum APP_ROUTES_ENUM {
     LOGIN = 'login',
     REGISTER = 'register',
+    USER_GET_INFORMATION = 'user-get-information',
     ACTIVATE_REGISTERED_USER = 'register/activation',
     ACTIVATE_PENDING_REGISTERED_USER = 'register/pending',
     RESTORE_ACCOUNT = 'restore',

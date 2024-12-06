@@ -21,3 +21,5 @@ export const Root$Provider = ({ children, store }: { children: ReactNode; store:
 }
 
 export const useSprintsStore = () => useRoot$().sprints$
+
+export const useUser$ = () => useRoot$().user
