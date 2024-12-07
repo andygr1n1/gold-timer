@@ -1,7 +1,7 @@
 import { GraphQLClient } from 'graphql-request'
-import { createClient } from 'gold-timer-genql/lib/generated'
 import { getAccessIdFromCookie, jwtVerify, setAccessIdInCookie, setSessionJWTInCookie } from '@/helpers/universalCookie'
 import { server_getSessionCredentials } from '@/services/server_getSessionCredentials'
+import { createClient } from 'gold-timer-genql/lib/generated'
 
 export const generateClient = async (): Promise<GraphQLClient> => {
     const endpoint = import.meta.env['VITE_CLIENT_ENDPOINT']
@@ -10,12 +10,27 @@ export const generateClient = async (): Promise<GraphQLClient> => {
 
     const Authorization = `Bearer ${accessJwt}`
 
-    const client = new GraphQLClient(endpoint, {
+    return new GraphQLClient(endpoint, {
         headers: { Authorization },
     })
-
-    return client
 }
+
+const getAccessJwt = async () => {
+    let accessJwt: string | null | undefined = getAccessIdFromCookie()
+
+    const verify = jwtVerify(accessJwt)
+
+    if (!verify || !accessJwt) {
+        window.genqlClient = null
+        const res = await server_getSessionCredentials()
+        accessJwt = res?.serverCredentials?.accessJWT
+        accessJwt && setAccessIdInCookie(accessJwt)
+        setSessionJWTInCookie(res?.serverCredentials?.sessionJWT)
+    }
+
+    return { accessJwt }
+}
+
 
 export const generateTSClient = async (opts?: { new: boolean }) => {
     const { accessJwt } = await getAccessJwt()
@@ -33,18 +48,4 @@ export const generateTSClient = async (opts?: { new: boolean }) => {
     }
 
     return client
-}
-
-const getAccessJwt = async () => {
-    let accessJwt: string | null | undefined = getAccessIdFromCookie()
-    const verify = jwtVerify(accessJwt)
-    if (!verify || !accessJwt) {
-        window.genqlClient = null
-        const res = await server_getSessionCredentials()
-        accessJwt = res?.serverCredentials?.accessJWT
-        accessJwt && setAccessIdInCookie(accessJwt)
-        setSessionJWTInCookie(res?.serverCredentials?.sessionJWT)
-    }
-
-    return { accessJwt }
 }

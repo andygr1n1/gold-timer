@@ -17,9 +17,7 @@ export const mutation_notepadDescription = async (description: string) => {
             }
         `)
 
-        const data = await client.request(mutation, { description })
-
-        return data
+        return await client.request(mutation, { description })
     } catch (e) {
         return await resolveError(e)
     }

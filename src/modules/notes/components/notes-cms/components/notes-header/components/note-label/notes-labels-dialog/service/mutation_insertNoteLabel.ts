@@ -1,28 +1,29 @@
-import { generateTSClient } from '@/graphql/client'
-import { resolveError, tryCatchRequest } from '@/helpers/tryCatchRequest'
+import { generateClient } from '@/graphql/client'
+import { resolveError } from '@/helpers/tryCatchRequest'
 import { type ICreateLabelForm, createLabelFormSchema } from './types'
+import { graphql } from '@/graphql/tada'
 
 export const mutation_insertNoteLabel = async ({ values: object }: { values: ICreateLabelForm }) => {
-    const client = await generateTSClient()
-    return await tryCatchRequest<Promise<undefined>, ICreateLabelForm | undefined>(
-        () =>
-            client
-                .mutation({
-                    __name: 'mutation_insertNoteLabel',
-                    insert_notes_labels_one: {
-                        __args: {
-                            object: {
-                                name: object.name.toLowerCase(),
-                            },
-                        },
-                        id: true,
-                        name: true,
-                    },
-                })
-                .then((response) => {
-                    const zParse = createLabelFormSchema.parse(response.insert_notes_labels_one)
-                    return zParse
-                }),
-        async (e) => await resolveError(e),
-    )
+    try {
+        const client = await generateClient()
+
+        const mutation = graphql(`
+            mutation mutation_insertNoteLabel($object: notes_labels_insert_input!) {
+                insert_notes_labels_one(object: $object) {
+                    id
+                    name
+                }
+            }
+        `)
+
+        const res = await client.request(mutation, {
+            object: {
+                name: object.name.toLowerCase(),
+            },
+        })
+
+        return createLabelFormSchema.parse(res.insert_notes_labels_one)
+    } catch (e) {
+        return await resolveError(e)
+    }
 }
