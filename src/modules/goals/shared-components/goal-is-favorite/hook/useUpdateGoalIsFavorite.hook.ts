@@ -15,7 +15,6 @@ export const useUpdateGoalIsFavorite = () => {
             if (state.open && editMode && res) {
                 setState({ goalId: res.id, open: true, goalEditorMode: goalEditorMode.view })
             }
-
             onSuccess(res)
         },
     })

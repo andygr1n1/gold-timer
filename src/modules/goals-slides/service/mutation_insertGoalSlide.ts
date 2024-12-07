@@ -1,38 +1,32 @@
-import { resolveError, tryCatchRequest } from '@/helpers/tryCatchRequest'
+import { resolveError } from '@/helpers/tryCatchRequest'
 import { type IGoalSlide, goalSlideSchema } from './types'
-import { generateTSClient } from '@/graphql/client'
+import { generateClient } from '@/graphql/client'
+import { graphql } from '@/graphql/tada'
 
 export const mutation_insertGoalSlide = async (props: {
     imgPath: string
     title: string
 }): Promise<IGoalSlide | undefined> => {
-    const { title, imgPath } = props
+    try {
+        const { title, imgPath } = props
 
-    return await tryCatchRequest<Promise<undefined>, IGoalSlide | undefined>(
-        async () => {
-            const client = await generateTSClient()
+        const client = await generateClient()
 
-            const statusRes = await client
-                .mutation({
-                    __name: 'mutation_insertGoalSlide',
-                    insert_goals_slides_one: {
-                        __args: {
-                            object: { img_path: imgPath, title },
-                        },
-                        id: true,
-                        img_path: true,
-                        active: true,
-                        title: true,
-                        created_at: true,
-                    },
-                })
-                .then((response) => {
-                    const zParse = goalSlideSchema.parse(response.insert_goals_slides_one)
-                    return zParse
-                })
+        const mutation = graphql(`
+            mutation mutation_insertGoalSlide($title: String!, $img_path: String!) {
+                insert_goals_slides_one(object: { title: $title, img_path: $img_path }) {
+                    id
+                }
+            }
+        `)
 
-            return statusRes
-        },
-        async (e) => await resolveError(e),
-    )
+        const res = await client.request(mutation, {
+            title,
+            img_path: imgPath,
+        })
+
+        return goalSlideSchema.parse(res?.insert_goals_slides_one)
+    } catch (e) {
+        return await resolveError(e)
+    }
 }

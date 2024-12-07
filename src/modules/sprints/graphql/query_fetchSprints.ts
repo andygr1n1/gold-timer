@@ -1,18 +1,14 @@
-import { processError } from '../../../helpers/processMessage'
 import { generateClient } from '@/graphql/client'
-import { gql } from 'graphql-request'
-import { type ISprint$SnIn } from '../mst/types'
-import { type sprints } from 'gold-timer-genql/lib/generated'
-import { getUserId } from '@/helpers/getUserId'
+import { graphql } from '@/graphql/tada'
+import { resolveError } from '@/helpers/tryCatchRequest'
 
-export const query_fetchSprints = async (): Promise<ISprint$SnIn[] | undefined> => {
+export const query_fetchSprints = async () => {
     const client = await generateClient()
-    const user_id = getUserId()
 
-    const query = gql`
-        query fetchSprints($user_id: uuid) {
+    const query = graphql(`
+        query fetchSprints {
             sprints(
-                where: { owner_id: { _eq: $user_id }, cached: { _is_null: true }, sprint_days: { _is_null: false } }
+                where: { cached: { _is_null: true }, sprint_days: { _is_null: false } }
                 order_by: { started_at: desc }
             ) {
                 achievement
@@ -34,14 +30,11 @@ export const query_fetchSprints = async (): Promise<ISprint$SnIn[] | undefined> 
                 deleted_at
             }
         }
-    `
+    `)
 
     try {
-        const response = await client.request<{ sprints: sprints[] }>(query, { user_id })
-
-        return response.sprints.map((sprint: ISprint$SnIn) => ({ ...sprint, sprint_days: sprint.sprint_days || [] }))
+        return await client.request(query)
     } catch (e) {
-        processError(`fetchSprints: ${e}`)
-        return
+        return await resolveError(e)
     }
 }

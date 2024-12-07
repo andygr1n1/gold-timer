@@ -33,24 +33,23 @@ export const useFetchGoals = (props: {
             let data: IGoalSchema[] | undefined = []
 
             if (queryFilter === goalStatusEnum.all) {
-                data = await query_allGoals({ userId, limit, offset, serverSearchInput })
+                data = await query_allGoals({ limit, offset, serverSearchInput })
             }
 
             if (queryFilter === goalStatusEnum.favorite) {
-                data = await query_favoriteGoals({ userId, limit, offset, serverSearchInput })
+                data = await query_favoriteGoals({ limit, offset, serverSearchInput })
             }
             if (queryFilter === goalStatusEnum.active) {
-                data = await query_activeGoals({ userId, limit, offset, serverSearchInput })
+                data = await query_activeGoals({ limit, offset, serverSearchInput })
             }
             if (queryFilter === goalStatusEnum.expired) {
-                data = await query_expiredGoals({ userId, limit, offset, serverSearchInput })
+                data = await query_expiredGoals({ limit, offset, serverSearchInput })
             }
             if (queryFilter === goalStatusEnum.ritualActive) {
-                data = await query_ritualGoals({ userId, limit, offset, serverSearchInput, expiredGoals: false })
+                data = await query_ritualGoals({ limit, offset, serverSearchInput, expiredGoals: false })
             }
             if (queryFilter === goalStatusEnum.ritual) {
                 data = await query_ritualGoals({
-                    userId,
                     limit,
                     offset,
                     serverSearchInput,
@@ -58,10 +57,10 @@ export const useFetchGoals = (props: {
                 })
             }
             if (queryFilter === goalStatusEnum.completed) {
-                data = await query_completedGoals({ userId, limit, offset, serverSearchInput })
+                data = await query_completedGoals({ limit, offset, serverSearchInput })
             }
             if (queryFilter === goalStatusEnum.deleted) {
-                data = await query_deletedGoals({ userId, limit, offset, serverSearchInput })
+                data = await query_deletedGoals({ limit, offset, serverSearchInput })
             }
             return { data, nextCursor }
         },

@@ -1,35 +1,28 @@
-import { generateTSClient } from '../../../graphql/client'
-import { resolveError, tryCatchRequest } from '@/helpers/tryCatchRequest'
-import { type IGoalSlide, goalSlideSchema } from './types'
+import { generateClient } from '../../../graphql/client'
+import { resolveError } from '@/helpers/tryCatchRequest'
+import { goalSlideSchema } from './types'
+import { graphql } from '@/graphql/tada'
 
 export const mutation_deleteGoalSlide = async (props: { id: string }) => {
-    const { id } = props
+    try {
+        const { id } = props
 
-    return await tryCatchRequest<Promise<undefined>, IGoalSlide | undefined>(
-        async () => {
-            const client = await generateTSClient()
+        const client = await generateClient()
 
-            const statusRes = await client
-                .mutation({
-                    __name: 'mutation_deleteGoalSlide',
-                    delete_goals_slides_by_pk: {
-                        __args: {
-                            id,
-                        },
-                        id: true,
-                        img_path: true,
-                        active: true,
-                        title: true,
-                        created_at: true,
-                    },
-                })
-                .then((response) => {
-                    const zParse = goalSlideSchema.parse(response.delete_goals_slides_by_pk)
-                    return zParse
-                })
+        const mutation = graphql(`
+            mutation mutation_deleteGoalSlide($id: uuid!) {
+                delete_goals_slides_by_pk(id: $id) {
+                    id
+                }
+            }
+        `)
 
-            return statusRes
-        },
-        async (e) => await resolveError(e),
-    )
+        const res = await client.request(mutation, {
+            id,
+        })
+
+        return goalSlideSchema.parse(res?.delete_goals_slides_by_pk)
+    } catch (e) {
+        return await resolveError(e)
+    }
 }

@@ -10,7 +10,6 @@ export const useFetchArtifactsCount = () => {
     return {
         activeGoalsCount: data?.activeGoalsCount || 0,
         activeNotesCount: data?.activeNotesCount || 0,
-        activeSprintsCount: data?.activeSprintsCount || 0,
         activeAchCount: data?.activeAchCount || 0,
     }
 }

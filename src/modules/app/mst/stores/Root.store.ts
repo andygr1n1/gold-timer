@@ -3,7 +3,6 @@ import { Sprints$ } from '@/modules/sprints/mst/stores/Sprints.store'
 import { server_getSessionCredentials } from '@/services/server_getSessionCredentials'
 import { removeSessionJWTFromCookie, setAccessIdInCookie, setSessionJWTInCookie } from '@/helpers/universalCookie'
 import { parseJwt } from '@/helpers/parseJwt'
-import { generateTSClient } from '@/graphql/client'
 import { getParam_Email } from '@/helpers/urlSearchParams'
 import { server_getUserDataByEmail } from '@/modules/auth/activation-pending/service/server_getUserDataByEmail'
 import { User$ } from './User.store'
@@ -38,7 +37,6 @@ export const Root$ = types
             queryClient.clear()
             self.user.id = user.id || ''
             self.user.role = user.role || 'guest'
-            window.genqlClient = yield generateTSClient({ new: true })
             self.initLoading = false
         }),
     }))

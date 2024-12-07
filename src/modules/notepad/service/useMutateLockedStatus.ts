@@ -8,7 +8,7 @@ export const useMutateLockedStatus = () => {
     const queryClient = useQueryClient()
     const { id: userId } = useUser$()
     return useMutation({
-        mutationFn: ({ locked }: { locked: boolean }) => mutation_notepadStatus(locked),
+        mutationFn: ({ locked }: { locked: boolean }) => mutation_notepadStatus({ locked, userId }),
 
         onSettled: () => {
             queryClient.invalidateQueries({ queryKey: notepadService.KEY_useFetchLockedStatus(userId) })

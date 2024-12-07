@@ -1,9 +1,8 @@
-import { types, flow, toGenerator, applySnapshot, destroy, detach, castToSnapshot } from 'mobx-state-tree'
+import { types, flow, toGenerator, destroy, detach, castToSnapshot } from 'mobx-state-tree'
 import { SprintNew$ } from './SprintNew.store'
 import { Sprint$ } from './Sprint.store'
 import type { ISprint$, ISprint$SnIn, ISprintNew$ } from '../types'
 import { processError } from '@/helpers/processMessage'
-import { query_fetchSprints } from '@/modules/sprints/graphql/query_fetchSprints'
 import { add, set } from 'date-fns'
 import { cloneDeep, last, orderBy } from 'lodash-es'
 import type { IInsertNewSprint } from '@/modules/sprints/graphql/helpers/interface'
@@ -54,8 +53,8 @@ export const Sprints$ = types
     }))
     .actions((self) => ({
         fetchSprints: flow(function* _fetchNewSprints() {
-            const res = yield* toGenerator(query_fetchSprints())
-            applySnapshot(self.sprints, res)
+            // const res = yield* toGenerator(query_fetchSprints())
+            // applySnapshot(self.sprints, res)
         }),
         restartSelectedSprint: flow(function* _createNewInstance(sprint: ISprint$) {
             try {

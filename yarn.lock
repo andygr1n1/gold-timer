@@ -4820,11 +4820,6 @@ formik@^2.4.6:
     tiny-warning "^1.0.2"
     tslib "^2.0.0"
 
-fp-ts@^2.16.2:
-  version "2.16.2"
-  resolved "https://registry.yarnpkg.com/fp-ts/-/fp-ts-2.16.2.tgz#7faa90f6fc2e8cf84c711d2c4e606afe2be9e342"
-  integrity sha512-CkqAjnIKFqvo3sCyoBTqgJvF+bHrSik584S9nhTjtBESLx26cbtVMR/T9a6ApChOcSDAaM3JydDmWDUn4EEXng==
-
 fraction.js@^4.3.7:
   version "4.3.7"
   resolved "https://registry.yarnpkg.com/fraction.js/-/fraction.js-4.3.7.tgz#06ca0085157e42fda7f9e726e79fefc4068840f7"
@@ -4991,13 +4986,6 @@ globby@^11.1.0:
     ignore "^5.2.0"
     merge2 "^1.4.1"
     slash "^3.0.0"
-
-gold-timer-genql@^1.0.11:
-  version "1.0.11"
-  resolved "https://registry.yarnpkg.com/gold-timer-genql/-/gold-timer-genql-1.0.11.tgz#213510931f523c9f6235e363ad00f2f4f8dd0d58"
-  integrity sha512-pDpdk4iqSrdd/N6v4j3Y6addFHREllUwmwQRrCvyvOLRR0wOrC3Fc4kWccObga4JovqUHq5qxBHUa4KbSDpYEg==
-  dependencies:
-    graphql "^16.6.0"
 
 goober@^2.1.10:
   version "2.1.14"

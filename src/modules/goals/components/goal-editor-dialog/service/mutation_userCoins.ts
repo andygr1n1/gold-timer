@@ -1,43 +1,34 @@
-import { resolveError, tryCatchRequest } from '@/helpers/tryCatchRequest'
-import { generateTSClient } from '@/graphql/client'
+import { resolveError } from '@/helpers/tryCatchRequest'
+import { generateClient } from '@/graphql/client'
 import { type IUserSchema, userSchema } from '@/services/types'
+import { graphql } from '@/graphql/tada'
 
 export const mutation_userCoins = async (props: {
     coins: number
     userId: string
 }): Promise<IUserSchema | undefined> => {
-    const { coins, userId } = props
+    try {
+        const { coins, userId } = props
 
-    return await tryCatchRequest<Promise<undefined>, IUserSchema | undefined>(
-        async () => {
-            const client = await generateTSClient()
+        const client = await generateClient()
 
-            const statusRes = await client
-                .mutation({
-                    __name: 'mutation_userCoins',
-                    update_heroes_by_pk: {
-                        __args: {
-                            pk_columns: {
-                                id: userId,
-                            },
-                            _set: { coins },
-                        },
-                        id: true,
-                        role: true,
-                        coins: true,
-                        avatar: true,
-                        phone: true,
-                        email: true,
-                        birthday: true,
-                    },
-                })
-                .then((response) => {
-                    const zParse = userSchema.parse(response.update_heroes_by_pk)
-                    return zParse
-                })
+        const mutation = graphql(`
+            mutation mutation_userCoins($coins: Int!, $userId: uuid!) {
+                update_heroes_by_pk(pk_columns: { id: $userId }, _set: { coins: $coins }) {
+                    id
+                    role
+                    coins
+                    avatar
+                    phone
+                    email
+                    birthday
+                }
+            }
+        `)
 
-            return statusRes
-        },
-        async (e) => await resolveError(e),
-    )
+        const res = await client.request(mutation, { coins, userId })
+        return userSchema.parse(res?.update_heroes_by_pk)
+    } catch (e) {
+        return await resolveError(e)
+    }
 }
