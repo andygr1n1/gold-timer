@@ -1,4 +1,4 @@
-import { generateURQLClient } from '@/graphql/client'
+import { generateClient } from '@/graphql/client'
 import { graphql } from '@/graphql/tada'
 import { resolveError } from '@/helpers/tryCatchRequest'
 import { achResponseFr } from './fragments/achResponseFr'
@@ -15,15 +15,11 @@ export const mutation_updateAchIsFavorite = async ({ id, isFavorite }: { id: str
         [achResponseFr],
     )
 
-    const urqlClient = await generateURQLClient()
+    const client = await generateClient()
 
     try {
-        return await urqlClient.mutation(mutation, { id, isFavorite }).then(({ error, data }) => {
-            if (error) throw error
-            return data
-        })
+        return await client.request(mutation, { id, isFavorite })
     } catch (e) {
-        await resolveError(e)
-        return
+        return await resolveError(e)
     }
 }

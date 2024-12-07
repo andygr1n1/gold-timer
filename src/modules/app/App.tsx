@@ -4,8 +4,6 @@ import { useTheming } from './hooks/useTheming.hook'
 import { AppRoutes } from './AppRoutes'
 import { ConfigProvider } from 'antd'
 import { observer } from 'mobx-react-lite'
-import { Provider } from 'urql'
-import { generateURQLClient } from '@/graphql/client'
 
 export const App = observer(() => {
     useTheming()
@@ -49,9 +47,7 @@ export const App = observer(() => {
             }}
         >
             <BrowserRouter basename='/' future={{ v7_startTransition: true }}>
-                <Provider value={generateURQLClient()}>
-                    <AppRoutes />
-                </Provider>
+                <AppRoutes />
             </BrowserRouter>
         </ConfigProvider>
     )

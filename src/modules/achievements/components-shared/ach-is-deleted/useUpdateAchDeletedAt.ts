@@ -8,9 +8,7 @@ export const useUpdateAchDeletedAt = () => {
     const mutation = useMutation({
         mutationFn: ({ id, deletedAt }: { id: string; deletedAt: null | string }) =>
             mutation_updateAchDeletedAt({ id, deletedAt }),
-        onSuccess: () => {
-            onSuccess()
-        },
+        onSuccess,
     })
 
     const updateDeletedAt = ({ id, deletedAt }: { id: string; deletedAt: null | string }) => {

@@ -1,18 +1,12 @@
-import { generateURQLClient } from '@/graphql/client'
+import { generateClient } from '@/graphql/client'
 import { resolveError } from '@/helpers/tryCatchRequest'
 import { graphql } from '@/graphql/tada'
 import { formatDateWithTimezone } from '@/helpers/date.helpers'
 import { storyMessageResponseFr } from '@/modules/stories/services/fragments/storyMessageResponseFr'
 
-export const mutation_deleteStoryMessage = async ({
-    id,
-    storyId,
-}: {
-    id: string
-    storyId: string
-}) => {
+export const mutation_deleteStoryMessage = async ({ id, storyId }: { id: string; storyId: string }) => {
     try {
-        const urqlClient = await generateURQLClient()
+        const client = await generateClient()
 
         const mutation = graphql(
             `
@@ -33,18 +27,13 @@ export const mutation_deleteStoryMessage = async ({
             [storyMessageResponseFr],
         )
 
-        const { data, error } = await urqlClient.mutation(mutation, {
+        return await client.request(mutation, {
             id,
             deletedAt: formatDateWithTimezone(),
             storyId,
             updatedAt: formatDateWithTimezone(),
         })
-
-        if (error) throw error
-
-        return data
     } catch (e) {
-        await resolveError(e)
-        return
+        return await resolveError(e)
     }
 }

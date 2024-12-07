@@ -1,4 +1,4 @@
-import { generateURQLClient } from '@/graphql/client'
+import { generateClient } from '@/graphql/client'
 import { resolveError } from '@/helpers/tryCatchRequest'
 import { graphql } from '@/graphql/tada'
 import { storyMessageResponseFr } from '@/modules/stories/services/fragments/storyMessageResponseFr'
@@ -15,7 +15,7 @@ export const mutation_insertStoryMessage = async ({
     updatedAt: string
 }) => {
     try {
-        const urqlClient = await generateURQLClient()
+        const client = await generateClient()
 
         const mutation = graphql(
             `
@@ -41,17 +41,12 @@ export const mutation_insertStoryMessage = async ({
             img_path: imgPath,
         }
 
-        const { data, error } = await urqlClient.mutation(mutation, {
+        return await client.request(mutation, {
             object,
             storyId,
             updatedAt,
         })
-
-        if (error) throw error
-
-        return data
     } catch (e) {
-        await resolveError(e)
-        return
+        return await resolveError(e)
     }
 }

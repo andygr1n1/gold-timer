@@ -1,7 +1,7 @@
 import { storyResponseFr } from '../fragments/storyResponseFr'
 import { type IStory } from '../types'
 import { resolveError } from '@/helpers/tryCatchRequest'
-import { generateURQLClient } from '@/graphql/client'
+import { generateClient } from '@/graphql/client'
 import { graphql } from '@/graphql/tada'
 
 export const query_deletedStories = async (props: {
@@ -12,6 +12,8 @@ export const query_deletedStories = async (props: {
     label?: string
 }): Promise<IStory[] | undefined> => {
     const { limit, userId, serverSearchInput, offset } = props
+
+    const client = await generateClient()
 
     const query = graphql(
         `
@@ -35,16 +37,11 @@ export const query_deletedStories = async (props: {
         [storyResponseFr],
     )
 
-    const urqlClient = await generateURQLClient()
-
     try {
-        const result = await urqlClient
-            .query(query, { limit, userId, offset, title: '%' + serverSearchInput + '%' })
-            .then((res) => res.data?.stories)
-
-        return result
+        return await client
+            .request(query, { limit, userId, offset, title: '%' + serverSearchInput + '%' })
+            .then((res) => res?.stories)
     } catch (e) {
-        await resolveError(e)
-        return
+        return await resolveError(e)
     }
 }

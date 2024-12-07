@@ -8,9 +8,7 @@ export const useUpdateAchIsFavorite = () => {
     const mutation = useMutation({
         mutationFn: ({ id, isFavorite }: { id: string; isFavorite: boolean }) =>
             mutation_updateAchIsFavorite({ id, isFavorite }),
-        onSuccess: () => {
-            onSuccess()
-        },
+        onSuccess,
     })
 
     const toggleFavorite = ({ id, isFavorite }: { id: string; isFavorite: boolean }) => {
