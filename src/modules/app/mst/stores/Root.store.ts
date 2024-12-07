@@ -48,17 +48,21 @@ export const Root$ = types
             removeSessionJWTFromCookie()
         },
         autoLogin: flow(function* _autoLogin({ queryClient }: { queryClient: QueryClient }) {
-            const res = yield server_getSessionCredentials()
-            const credentials = res?.serverCredentials
-            if (!credentials) return
+            yield server_getSessionCredentials()
+                .then((res) => {
+                    const credentials = res?.serverCredentials
+                    if (!credentials) return
 
-            setAccessIdInCookie(credentials.accessJWT)
-            setSessionJWTInCookie(credentials.sessionJWT)
-            const user = parseJwt(credentials.accessJWT)
-            if (!user) return
+                    setAccessIdInCookie(credentials.accessJWT)
+                    setSessionJWTInCookie(credentials.sessionJWT)
+                    const user = parseJwt(credentials.accessJWT)
+                    if (!user) return
 
-            self.selectUser({ user, queryClient })
-            self.initLoading = false
+                    self.selectUser({ user, queryClient })
+                })
+                .finally(() => {
+                    self.onChangeField('initLoading', false)
+                })
         }),
         fetchGuestData: flow(function* fetchGuestData({ navigate }: { navigate: NavigateFunction }) {
             try {

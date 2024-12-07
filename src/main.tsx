@@ -7,6 +7,7 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import './styles/index.css'
 import { SnowfallAnimation } from './components/SnowfallAnimation'
 import { root$, Root$Provider } from './modules/app/mst/StoreProvider'
+
 const queryClient = new QueryClient()
 
 const Main = () => {
