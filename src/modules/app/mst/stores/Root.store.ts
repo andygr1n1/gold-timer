@@ -13,6 +13,7 @@ import type { QueryClient } from '@tanstack/react-query'
 
 export const Root$ = types
     .model('Root$', {
+        darkTheme: types.optional(types.boolean, true),
         user: types.optional(User$, {}),
         sprints$: types.optional(Sprints$, {}),
     })
@@ -23,6 +24,12 @@ export const Root$ = types
     .actions((self) => ({
         onChangeField<Key extends keyof typeof self>(key: Key, value: (typeof self)[Key]) {
             self[key] = value
+        },
+        toggleTheme() {
+            const toggle = !self.darkTheme
+            self.darkTheme = toggle
+            localStorage.setItem('dark', toggle.toString())
+            document.querySelector('html')!.setAttribute('dark', toggle.toString())
         },
     }))
     .actions((self) => ({

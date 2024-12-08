@@ -20,11 +20,7 @@ export default defineConfig(({ mode }) => {
             port: process.env.VITE_PORT ? Number(process.env.VITE_PORT) : 9999,
         },
         plugins: [
-            react({
-                babel: {
-                    presets: ['jotai/babel/preset'],
-                },
-            }),
+            react(),
             NodeGlobalsPolyfillPlugin({
                 buffer: true,
                 process: true,

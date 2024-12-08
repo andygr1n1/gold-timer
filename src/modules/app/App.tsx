@@ -1,12 +1,10 @@
 import { BrowserRouter } from 'react-router-dom'
 import { useJwtAuth } from './hooks/useJwtAuth.hook'
-import { useTheming } from './hooks/useTheming.hook'
 import { AppRoutes } from './AppRoutes'
 import { ConfigProvider } from 'antd'
 import { observer } from 'mobx-react-lite'
 
 export const App = observer(() => {
-    useTheming()
     const { isLoading } = useJwtAuth()
 
     if (isLoading) return <div className='authorization-page' />
