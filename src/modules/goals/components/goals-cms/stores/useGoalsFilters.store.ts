@@ -22,7 +22,6 @@ export const useGoalsFilters = () => {
                 serverSearchInput: e.target.value,
                 searchInput: e.target.value,
             })
-            // window.queryClient?.invalidateQueries({ queryKey: ['KEY_FetchGoalsByFilter', state] })
         }, 1000)
     }, [])
 

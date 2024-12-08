@@ -1,17 +1,17 @@
 import { useQuery } from '@tanstack/react-query'
 import { query_fetchGoalsSlides } from './query_fetchGoalsSlides'
-import { KEY_FetchGoalsSlides } from './types'
-import { useUser$ } from '@/services/user-store/userUser.store'
+import { goalsSlidesService } from './goalsSlidesService'
+import { useUser$ } from '@/modules/app/mst/StoreProvider'
 
 export const useFetchGoalsSlides = () => {
-    const { userId } = useUser$()
+    const { id } = useUser$()
     const { data: goalsSlides, isLoading } = useQuery({
-        queryKey: KEY_FetchGoalsSlides(),
-        queryFn: async () => await query_fetchGoalsSlides(),
+        queryKey: goalsSlidesService.fetchGoalsSlides(id),
+        queryFn: query_fetchGoalsSlides,
         staleTime: Infinity,
         refetchOnWindowFocus: false,
         refetchOnMount: true,
-        enabled: !!userId,
+        enabled: !!id,
     })
 
     const visibleSlides = goalsSlides?.filter((slide) => slide.active)

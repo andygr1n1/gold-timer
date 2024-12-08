@@ -65,7 +65,7 @@ const DropdownRender: React.FC<{ onClose: (filter: INoteStatus) => void }> = () 
 
     return (
         <XMenuDropdown className='max-h-[400px] min-h-[160px] overflow-auto scrollbar-thumb-blue-500/50/50 scrollbar-track-global-bg scrollbar-thin'>
-            <XMenuItem>
+            <XMenuItem className='mb-4'>
                 <XInput value={filter} onChange={(e) => onChange(e.target.value)} />
                 <NotesLabelsDialogTrigger />
             </XMenuItem>

@@ -1,57 +1,56 @@
-import { generateTSClient, generateURQLClient } from '@/graphql/client'
+import { generateClient } from '@/graphql/client'
 import { resolveError } from '@/helpers/tryCatchRequest'
 import { type INoteSchema, noteSchema } from '@/modules/notes/shared-services/types'
-import { getQueryFields } from '../getQueryFields'
 import { graphql } from '@/graphql/tada'
+import { noteResponseFr } from '../fragments/noteResponseFr'
 
 export const mutation_upsertNote = async (props: { note: INoteSchema }) => {
-    const client = await generateTSClient()
-    const urqlClient = await generateURQLClient()
-    const fields = getQueryFields()
-
-    const {
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        note: { label, ...rest },
-    } = props
-
     try {
-        const insertNote = await client
-            .mutation({
-                __name: 'mutation_upsertNote',
-                insert_notes_one: {
-                    __args: {
-                        object: { ...rest },
-                        on_conflict: {
-                            constraint: 'tasks_pkey',
-                            update_columns: ['description', 'tag', 'label_id'],
-                        },
-                    },
-                    ...fields,
-                },
+        const client = await generateClient()
+
+        const {
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
+            note: { label, ...object },
+        } = props
+
+        const insertToneMutation = graphql(
+            `
+                mutation mutation_upsertNote($object: notes_insert_input!) {
+                    insert_notes_one(
+                        object: $object
+                        on_conflict: { constraint: tasks_pkey, update_columns: [description, tag, label_id] }
+                    ) {
+                        ...NoteResponseFr
+                    }
+                }
+            `,
+            [noteResponseFr],
+        )
+
+        const insertNoteRes = await client
+            .request(insertToneMutation, {
+                object,
             })
             .then((response) => {
                 const zParse = noteSchema.parse(response.insert_notes_one)
                 return zParse
             })
 
-        rest.label_id &&
-            (await urqlClient.mutation(
-                graphql(`
-                    mutation Mutation_updateNoteLabelRating($id: uuid!) {
-                        update_notes_labels_by_pk(pk_columns: { id: $id }, _inc: { rating: 1 }) {
-                            id
-                            name
-                            owner_id
-                            rating
-                        }
-                    }
-                `),
-                { id: rest.label_id },
-            ))
+        const updateNoteLabelMutation = graphql(`
+            mutation Mutation_updateNoteLabelRating($id: uuid!) {
+                update_notes_labels_by_pk(pk_columns: { id: $id }, _inc: { rating: 1 }) {
+                    id
+                    name
+                    owner_id
+                    rating
+                }
+            }
+        `)
 
-        return insertNote
+        object.label_id && (await client.request(updateNoteLabelMutation, { id: object.label_id }))
+
+        return insertNoteRes
     } catch (e) {
-        await resolveError(e)
-        return
+        return await resolveError(e)
     }
 }

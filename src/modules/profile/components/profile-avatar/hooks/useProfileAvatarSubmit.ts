@@ -9,11 +9,11 @@ import { KEY_ImageCropperStore } from '@/components/image-cropper/stores/types'
 import { notifySuccess } from '@/helpers/processMessage'
 import { type IUpdateAvatarFormSchema, useFetchProfileInfo } from '@/modules/profile/services'
 import { mutation_updateAvatar } from '@/modules/profile/services/update-avatar/mutation_updateAvatar'
-import { useUser$ } from '@/services/user-store/userUser.store'
+import { useUser$ } from '@/modules/app/mst/StoreProvider'
 
 export const useProfileAvatarSubmit = () => {
     const queryClient = useQueryClient()
-    const { userId } = useUser$()
+    const { id: userId } = useUser$()
     const { data } = useFetchProfileInfo()
 
     const { getCropArea } = useImageCropper$()

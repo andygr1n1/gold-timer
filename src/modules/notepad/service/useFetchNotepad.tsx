@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 import { query_fetchNotepad } from './query_fetchNotepad'
-import { useUser$ } from '@/services/user-store/userUser.store'
+import { useUser$ } from '@/modules/app/mst/StoreProvider'
 import { notepadService } from './notepadService'
 
 type IRes = {
@@ -9,7 +9,7 @@ type IRes = {
 }
 
 export const useFetchNotepad = (): IRes => {
-    const { userId } = useUser$()
+    const { id: userId } = useUser$()
     const { data, isLoading } = useQuery({
         queryKey: notepadService.KEY_useFetchNotepad(userId),
         queryFn: async () => await query_fetchNotepad({ userId }),

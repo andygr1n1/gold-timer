@@ -1,12 +1,14 @@
 import { useEffect } from 'react'
 import { useRoot$ } from '../mst/StoreProvider'
+import { useQueryClient } from '@tanstack/react-query'
 
 export const useJwtAuth = () => {
-    const { userId, autoLogin, initLoading } = useRoot$()
+    const queryClient = useQueryClient()
+    const { user, autoLogin, initLoading } = useRoot$()
 
     useEffect(() => {
-        autoLogin()
+        autoLogin({ queryClient })
     }, [])
 
-    return { userId, isLoading: initLoading }
+    return { userId: user.id, isLoading: initLoading }
 }

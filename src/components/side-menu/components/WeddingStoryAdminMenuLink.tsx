@@ -5,8 +5,10 @@ import { APP_ROUTES_ENUM } from '@/services/enums'
 import { IconFavorite } from '@/assets/icons'
 
 export const WeddingStoryAdminMenuLink = observer(() => {
-    const { isSuperHero } = useRoot$()
-    if (!isSuperHero) return null
+    const { user } = useRoot$()
+
+    if (!user.isSuperHero) return null
+
     return (
         <SideMenuLink
             to={APP_ROUTES_ENUM.WEDDING_STORY_ADMIN}

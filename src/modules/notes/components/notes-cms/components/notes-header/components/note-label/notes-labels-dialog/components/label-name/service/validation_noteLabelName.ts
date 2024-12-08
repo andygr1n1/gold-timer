@@ -1,22 +1,25 @@
-import { resolveError, tryCatchRequest } from '@/helpers/tryCatchRequest'
-import { generateTSClient } from '@/graphql/client'
-import { type ICreateLabelForm, notesLabelsResponseSchema } from '../../../service/types'
+import { resolveError } from '@/helpers/tryCatchRequest'
+import { generateClient } from '@/graphql/client'
+import { notesLabelsResponseSchema } from '../../../service/types'
+import { graphql } from '@/graphql/tada'
 
 export const validation_noteLabelName = async ({ value }: { value: string }) => {
-    return await tryCatchRequest<Promise<undefined>, ICreateLabelForm[] | undefined>(
-        async () => {
-            const client = await generateTSClient()
+    try {
+        const client = await generateClient()
 
-            return await client
-                .query({
-                    __name: 'validation_noteLabelName',
-                    notes_labels: { __args: { where: { name: { _eq: value.toLowerCase() } } }, id: true, name: true },
-                })
-                .then((response) => {
-                    const zParse = notesLabelsResponseSchema.parse(response.notes_labels)
-                    return zParse
-                })
-        },
-        async (e) => await resolveError(e),
-    )
+        const query = graphql(`
+            query validation_noteLabelName($where: notes_labels_bool_exp) {
+                notes_labels(where: $where, limit: 1) {
+                    id
+                    name
+                }
+            }
+        `)
+
+        const response = await client.request(query, { where: { name: { _eq: value.toLowerCase() } } })
+
+        return notesLabelsResponseSchema.parse(response.notes_labels)
+    } catch (e) {
+        return await resolveError(e)
+    }
 }

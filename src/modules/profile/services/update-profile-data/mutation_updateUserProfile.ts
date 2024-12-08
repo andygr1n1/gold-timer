@@ -1,36 +1,34 @@
-import { resolveError, tryCatchRequest } from '@/helpers/tryCatchRequest'
+import { resolveError } from '@/helpers/tryCatchRequest'
 import { type IUserProfileSchema, userProfileSchema } from '../types'
-import { generateTSClient } from '@/graphql/client'
+import { generateClient } from '@/graphql/client'
+import { graphql } from '@/graphql/tada'
 
 export const mutation_updateUserProfile = async ({ userProfile }: { userProfile: IUserProfileSchema }) => {
-    const client = await generateTSClient()
+    try {
+        const client = await generateClient()
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { id, email, ...props } = userProfile
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        const { id, email, ...props } = userProfile
 
-    return await tryCatchRequest<Promise<unknown>, IUserProfileSchema | Promise<unknown>>(
-        () =>
-            client
-                .mutation({
-                    __name: 'mutation_updateUserProfile',
-                    update_heroes: {
-                        __args: {
-                            where: {},
-                            _set: { ...props },
-                        },
-                        returning: {
-                            id: true,
-                            avatar: true,
-                            birthday: true,
-                            email: true,
-                            name: true,
-                            phone: true,
-                        },
-                    },
-                })
-                .then((res) => {
-                    return userProfileSchema.parse(res?.update_heroes?.returning?.[0])
-                }),
-        async (e) => await resolveError(e),
-    )
+        const mutation = graphql(`
+            mutation mutation_updateUserProfile($userProfile: heroes_set_input!) {
+                update_heroes(where: {}, _set: $userProfile) {
+                    returning {
+                        id
+                        avatar
+                        birthday
+                        email
+                        name
+                        phone
+                    }
+                }
+            }
+        `)
+
+        const res = await client.request(mutation, { userProfile: props })
+
+        return userProfileSchema.parse(res?.update_heroes?.returning?.[0])
+    } catch (e) {
+        return await resolveError(e)
+    }
 }

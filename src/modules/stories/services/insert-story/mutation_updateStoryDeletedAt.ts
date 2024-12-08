@@ -1,4 +1,4 @@
-import { generateURQLClient } from '@/graphql/client'
+import { generateClient } from '@/graphql/client'
 import { resolveError } from '@/helpers/tryCatchRequest'
 import { graphql } from '@/graphql/tada'
 import { storyResponseFr } from '../fragments/storyResponseFr'
@@ -17,16 +17,13 @@ export const mutation_updateStoryDeletedAt = async ({ id, deletedAt }: { id: str
         [storyResponseFr],
     )
 
-    const urqlClient = await generateURQLClient()
+    const client = await generateClient()
 
     try {
-        const result = await urqlClient
-            .mutation(mutation, { id, deletedAt })
-            .then((res) => storySchema.parse(res.data?.update_stories_by_pk))
-
-        return result
+        return await client
+            .request(mutation, { id, deletedAt })
+            .then((res) => storySchema.parse(res?.update_stories_by_pk))
     } catch (e) {
-        await resolveError(e)
-        return
+        return await resolveError(e)
     }
 }

@@ -1,5 +1,5 @@
 import { resolveError } from '@/helpers/tryCatchRequest'
-import { generateURQLClient } from '@/graphql/client'
+import { generateClient } from '@/graphql/client'
 import { type IUseFetchAchsQuery } from '../types'
 import { graphql } from '@/graphql/tada'
 import { achResponseFr } from '../fragments/achResponseFr'
@@ -30,17 +30,12 @@ export const query_activeAchs = async ({ limit, serverSearchInput, offset }: IUs
             [achResponseFr],
         )
 
-        const urqlClient = await generateURQLClient()
+        const client = await generateClient()
 
-        return await urqlClient
-            .query(query, { limit, offset, title: '%' + serverSearchInput + '%' })
-            .then(({ error, data }) => {
-                if (error) throw error
+        const data = await client.request(query, { limit, offset, title: '%' + serverSearchInput + '%' })
 
-                return data?.achievements
-            })
+        return data?.achievements
     } catch (e) {
-        await resolveError(e)
-        return
+        return await resolveError(e)
     }
 }

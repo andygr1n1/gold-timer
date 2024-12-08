@@ -8,9 +8,7 @@ export const useUpdateAchIsArchived = () => {
     const mutation = useMutation({
         mutationFn: ({ id, isArchived }: { id: string; isArchived: boolean }) =>
             mutation_updateAchIsArchived({ id, isArchived }),
-        onSuccess: () => {
-            onSuccess()
-        },
+        onSuccess,
     })
 
     const toggleArchived = ({ id, isArchived }: { id: string; isArchived: boolean }) => {

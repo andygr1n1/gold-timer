@@ -1,30 +1,33 @@
-import { resolveData } from '@/helpers/tryCatchRequest'
-import { processError } from '@/helpers/processMessage'
-import { generateTSClient } from '@/graphql/client'
-import { getUserId } from '@/helpers/getUserId'
+import { resolveError } from '@/helpers/tryCatchRequest'
+import { generateClient } from '@/graphql/client'
+import { graphql } from '@/graphql/tada'
 
-export const mutation_notepadStatus = async (locked: boolean): Promise<boolean> => {
-    const client = await generateTSClient()
+export const mutation_notepadStatus = async ({
+    locked,
+    userId,
+}: {
+    locked: boolean
+    userId: string
+}): Promise<boolean> => {
+    try {
+        const client = await generateClient()
 
-    return await resolveData<boolean, boolean>(
-        () =>
-            client
-                .mutation({
-                    __name: 'mutation_notepadStatus',
-                    update_notepad_by_pk: {
-                        __args: {
-                            pk_columns: { owner_id: getUserId() },
-                            _set: { locked },
-                        },
-                        locked: true,
-                    },
-                })
-                .then((res) => {
-                    return res.update_notepad_by_pk?.locked || false
-                }),
-        (e) => {
-            processError(`mutation_notepadStatus: ${e}`)
-            return false
-        },
-    )
+        const mutation = graphql(`
+            mutation mutation_notepadStatus($locked: Boolean!, $owner_id: uuid!) {
+                update_notepad_by_pk(pk_columns: { owner_id: $owner_id }, _set: { locked: $locked }) {
+                    locked
+                }
+            }
+        `)
+
+        const res = await client.request(mutation, {
+            locked,
+            owner_id: userId,
+        })
+
+        return res.update_notepad_by_pk?.locked || false
+    } catch (e) {
+        await resolveError(e)
+        return false
+    }
 }

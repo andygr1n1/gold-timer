@@ -2,10 +2,10 @@ import { getCoinsFromCompletedGoal } from '@/helpers/getCoinsFromCompletedGoal'
 import { getCoinsFromRitual } from '@/helpers/getCoinsFromRitual'
 import { type IGoalSchema, type IGoalStatus, goalStatusEnum } from '@/modules/goals/shared-service'
 import { useFetchUserDetails } from '@/modules/goals/shared-service/fetch-user-details/useFetchUserDetails'
-import { useUser$ } from '@/services/user-store/userUser.store'
+import { useUser$ } from '@/modules/app/mst/StoreProvider'
 
 export const useRecalculateUserCoins = () => {
-    const { userId } = useUser$()
+    const { id: userId } = useUser$()
     const { coins } = useFetchUserDetails({ userId })
 
     const recalculateUserCoins = (props: { goal: IGoalSchema; status?: IGoalStatus }): number => {

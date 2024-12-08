@@ -1,12 +1,12 @@
 import { useWindowMatchMedia } from '@/hooks/useMatchMedia.hook'
 import Slider from 'react-slick'
 import { useFetchAchs } from '../../services/fetch-achs/useFetchAchs'
-import { useUser$ } from '@/services/user-store/userUser.store'
 import { achEditorDialog$, AchEditorDialog$Provider } from '../ach-editor-dialog/mst/provider'
 import { cn } from '@/helpers/cn'
+import { useUser$ } from '@/modules/app/mst/StoreProvider'
 
 function AchsDashboardSlider() {
-    const { userId } = useUser$()
+    const { id: userId } = useUser$()
     const { achs } = useFetchAchs({
         serverSearchInput: '',
         limit: 30,

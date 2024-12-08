@@ -1,11 +1,11 @@
 import { IconCrystal } from '@/assets/icons'
 import { useFetchUserDetails } from '../../modules/goals/shared-service/fetch-user-details/useFetchUserDetails'
-import { useUser$ } from '@/services/user-store/userUser.store'
 import { IconLotus } from '@/assets/icons/IconLotus'
+import { useUser$ } from '@/modules/app/mst/StoreProvider'
 
 export const UserCoins: React.FC = () => {
-    const { userId } = useUser$()
-    const { isLoading, coins, ritualPower } = useFetchUserDetails({ userId })
+    const { id } = useUser$()
+    const { isLoading, coins, ritualPower } = useFetchUserDetails({ userId: id })
     return !isLoading ? (
         <div data-testid='userCoins' className='flex items-start justify-start gap-5'>
             <div className='pointer-events-none flex items-center justify-center gap-2'>

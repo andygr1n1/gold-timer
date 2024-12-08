@@ -1,12 +1,12 @@
 import { useQuery } from '@tanstack/react-query'
 import { query_fetchNotesLabels } from './query_fetchNotesLabels'
-import { useUser$ } from '@/services/user-store/userUser.store'
+import { useUser$ } from '@/modules/app/mst/StoreProvider'
 import { noteLabelsService } from './noteLabelsService'
 import { useState } from 'react'
 
 export const useFetchNotesLabels = () => {
     const [filter, setFilter] = useState('')
-    const { userId } = useUser$()
+    const { id: userId } = useUser$()
     const { isLoading, data } = useQuery({
         queryKey: noteLabelsService.KEY_fetchNotesLabels({ userId }),
         queryFn: () => query_fetchNotesLabels(),

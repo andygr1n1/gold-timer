@@ -1,4 +1,3 @@
-import { QueryErrorSchema } from '@/services/types'
 import { z } from 'zod'
 
 const userDataSchema = z.object({
@@ -11,7 +10,6 @@ export type IUserData = z.infer<typeof userDataSchema>
 
 const userDataServiceSchema = z.object({
     isLoading: z.boolean(),
-    error: QueryErrorSchema.nullable(),
     user: userDataSchema.optional().nullable(),
     resendActivationLink: z.function().args().returns(z.void()).optional(),
 })

@@ -3,6 +3,7 @@ import { type IFetchUserDetails, KEY_FetchUserDetails } from './types'
 import { query_userDetails } from './query_userDetails'
 
 export const useFetchUserDetails = (props: { userId: string }): IFetchUserDetails => {
+    console.log('useFetchUserDetails', props.userId)
     const { data, isLoading } = useQuery({
         queryKey: KEY_FetchUserDetails(props.userId),
         queryFn: async () => await query_userDetails({ userId: props.userId }),

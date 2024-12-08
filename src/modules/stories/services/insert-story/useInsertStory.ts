@@ -3,13 +3,13 @@ import { type INewStorySchema } from '../types'
 import { cast } from '@/helpers'
 import { SERVER_ROUTES } from '@/services/enums'
 import { deleteImageFromServer, uploadNewImageToServer } from '@/services/image/image.service'
-import { useUser$ } from '@/services/user-store/userUser.store'
+import { useUser$ } from '@/modules/app/mst/StoreProvider'
 import { useInvalidateStories } from '../../components/story-editor-dialog/hooks/useInvalidateStories'
 import { mutation_insertStory } from './mutation_insertStory'
 import { mutation_updateStory } from './mutation_updateStory'
 
 export const useInsertStory = () => {
-    const { userId } = useUser$()
+    const { id: userId } = useUser$()
     const { onSuccess } = useInvalidateStories()
 
     const mutation = useMutation({

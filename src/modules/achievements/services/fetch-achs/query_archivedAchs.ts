@@ -2,7 +2,7 @@ import { graphql } from '@/graphql/tada'
 import { type IAch, type IUseFetchAchsQuery } from '../types'
 import { resolveError } from '@/helpers/tryCatchRequest'
 import { achResponseFr } from '../fragments/achResponseFr'
-import { generateURQLClient } from '@/graphql/client'
+import { generateClient } from '@/graphql/client'
 
 export const query_archivedAchs = async ({
     limit,
@@ -34,17 +34,12 @@ export const query_archivedAchs = async ({
             [achResponseFr],
         )
 
-        const urqlClient = await generateURQLClient()
+        const client = await generateClient()
 
-        return await urqlClient
-            .query(query, { limit, offset, title: '%' + serverSearchInput + '%' })
-            .then(({ error, data }) => {
-                if (error) throw error
+        const data = await client.request(query, { limit, offset, title: '%' + serverSearchInput + '%' })
 
-                return data?.achievements
-            })
+        return data?.achievements
     } catch (e) {
-        await resolveError(e)
-        return
+        return await resolveError(e)
     }
 }

@@ -1,33 +1,31 @@
-import { generateTSClient } from '@/graphql/client'
-import { resolveError, tryCatchRequest } from '@/helpers/tryCatchRequest'
-import { type IUserProfileSchema, userProfileSchema } from '../types'
+import { generateClient } from '@/graphql/client'
+import { resolveError } from '@/helpers/tryCatchRequest'
+import { userProfileSchema } from '../types'
+import { graphql } from '@/graphql/tada'
 
 export const mutation_updateAvatar = async ({ imgPath: avatar }: { imgPath: string }) => {
-    const client = await generateTSClient()
+    try {
+        const client = await generateClient()
 
-    return await tryCatchRequest<Promise<unknown>, IUserProfileSchema | Promise<unknown>>(
-        () =>
-            client
-                .mutation({
-                    __name: 'mutation_updateAvatar',
-                    update_heroes: {
-                        __args: {
-                            where: {},
-                            _set: { avatar },
-                        },
-                        returning: {
-                            id: true,
-                            avatar: true,
-                            birthday: true,
-                            email: true,
-                            name: true,
-                            phone: true,
-                        },
-                    },
-                })
-                .then((res) => {
-                    return userProfileSchema.parse(res?.update_heroes?.returning?.[0])
-                }),
-        async (e) => await resolveError(e),
-    )
+        const mutation = graphql(`
+            mutation mutation_updateAvatar($avatar: String!) {
+                update_heroes(where: {}, _set: { avatar: $avatar }) {
+                    returning {
+                        id
+                        avatar
+                        birthday
+                        email
+                        name
+                        phone
+                    }
+                }
+            }
+        `)
+
+        const res = await client.request(mutation, { avatar })
+
+        return userProfileSchema.parse(res?.update_heroes?.returning?.[0])
+    } catch (e) {
+        return await resolveError(e)
+    }
 }

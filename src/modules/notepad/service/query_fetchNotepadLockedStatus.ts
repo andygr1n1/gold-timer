@@ -1,28 +1,26 @@
 import { resolveError } from '@/helpers/tryCatchRequest'
-import { generateURQLClient } from '@/graphql/client'
+import { generateClient } from '@/graphql/client'
 import { graphql } from '@/graphql/tada'
 
 export const query_fetchNotepadLockedStatus = async ({ userId }: { userId: string }) => {
-    const urqlClient = await generateURQLClient()
-
-    const query = graphql(`
-        query query_fetchNotepadLockedStatus($userId: uuid!) {
-            notepad_by_pk(owner_id: $userId) {
-                id
-                locked
-            }
-        }
-    `)
-
     try {
-        const result = await urqlClient.query(query, { userId }).then((res) => {
-            if (res.error) throw res.error
-            return res.data?.notepad_by_pk?.locked
+        const client = await generateClient()
+
+        const query = graphql(`
+            query query_fetchNotepadLockedStatus($userId: uuid!) {
+                notepad_by_pk(owner_id: $userId) {
+                    id
+                    locked
+                }
+            }
+        `)
+
+        const result = await client.request(query, { userId }).then((res) => {
+            return res?.notepad_by_pk?.locked
         })
 
         return result
     } catch (e) {
-        await resolveError(e)
-        return
+        return await resolveError(e)
     }
 }

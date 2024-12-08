@@ -1,7 +1,8 @@
-import { generateTSClient } from '@/graphql/client'
-import { resolveError, tryCatchRequest } from '@/helpers/tryCatchRequest'
+import { generateClient } from '@/graphql/client'
+import { resolveError } from '@/helpers/tryCatchRequest'
 import { type INoteSchema, noteSchema } from '@/modules/notes/shared-services/types'
-import { getQueryFields } from './getQueryFields'
+import { graphql } from '@/graphql/tada'
+import { noteResponseFr } from './fragments/noteResponseFr'
 
 export const mutation_updateNoteIsArchived = async ({
     id,
@@ -10,26 +11,24 @@ export const mutation_updateNoteIsArchived = async ({
     id: string
     isArchived: boolean
 }): Promise<INoteSchema | undefined> => {
-    return await tryCatchRequest<Promise<undefined>, INoteSchema | undefined>(
-        async () => {
-            const client = await generateTSClient()
-            const fields = getQueryFields()
-            return await client
-                .mutation({
-                    __name: 'mutation_updateNoteIsArchived',
-                    update_notes_by_pk: {
-                        __args: {
-                            pk_columns: { id },
-                            _set: { archived: isArchived },
-                        },
-                        ...fields,
-                    },
-                })
-                .then((response) => {
-                    const zParse = noteSchema.parse(response.update_notes_by_pk)
-                    return zParse
-                })
-        },
-        async (e) => await resolveError(e),
-    )
+    try {
+        const client = await generateClient()
+
+        const query = graphql(
+            `
+                mutation mutation_updateNoteIsArchived($id: uuid!, $isArchived: Boolean!) {
+                    update_notes_by_pk(pk_columns: { id: $id }, _set: { archived: $isArchived }) {
+                        ...NoteResponseFr
+                    }
+                }
+            `,
+            [noteResponseFr],
+        )
+
+        const data = await client.request(query, { id, isArchived })
+
+        return noteSchema.parse(data.update_notes_by_pk)
+    } catch (e) {
+        return await resolveError(e)
+    }
 }

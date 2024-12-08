@@ -1,6 +1,6 @@
 import { type FormikHelpers } from 'formik'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { type IGoalSlide, KEY_FetchGoalsSlides } from './types'
+import { type IGoalSlide } from './types'
 import { mutation_insertGoalSlide } from './mutation_insertGoalSlide'
 import getCroppedImg from '@/helpers/cropImage'
 import { uploadNewImageToServer } from '@/services/image/image.service'
@@ -9,11 +9,11 @@ import { SERVER_ROUTES } from '@/services/enums'
 import { useImageCropper$ } from '@/components/image-cropper/stores/useImageCropper.store'
 import { KEY_ImageCropperStore } from '@/components/image-cropper/stores/types'
 import { notify } from '@/helpers/processMessage'
-import { useUser$ } from '@/services/user-store/userUser.store'
+import { useUser$ } from '@/modules/app/mst/StoreProvider'
 
 export const useGoalsSlidesFormOnSubmit = () => {
-    const { userId } = useUser$()
     const queryClient = useQueryClient()
+    const { id: userId } = useUser$()
 
     const { getCropArea } = useImageCropper$()
 
@@ -41,7 +41,7 @@ export const useGoalsSlidesFormOnSubmit = () => {
                 onSettled: () => {
                     formikHelpers.setSubmitting(false)
                     queryClient.resetQueries({ queryKey: KEY_ImageCropperStore() })
-                    queryClient.invalidateQueries({ queryKey: KEY_FetchGoalsSlides() })
+                    queryClient.invalidateQueries()
                 },
             },
         )

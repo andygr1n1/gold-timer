@@ -16,7 +16,6 @@ export const AppRoutes: React.FC = observer(() => {
                 <GriniRoutes />
             </Suspense>
         )
-
     return (
         !isPortfolioPage &&
         (userId ? (
