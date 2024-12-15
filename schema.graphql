@@ -11474,6 +11474,7 @@ type wedding_guests {
   last_name: String
   more_info: String
   phone: String
+  primary: Boolean
   table: Int
   updated_at: timestamptz
 
@@ -11588,6 +11589,7 @@ input wedding_guests_bool_exp {
   last_name: String_comparison_exp
   more_info: String_comparison_exp
   phone: String_comparison_exp
+  primary: Boolean_comparison_exp
   table: Int_comparison_exp
   updated_at: timestamptz_comparison_exp
   wedding_group: wedding_groups_bool_exp
@@ -11611,6 +11613,11 @@ enum wedding_guests_constraint {
   unique or primary key constraint on columns "id"
   """
   wedding_guests_pkey
+
+  """
+  unique or primary key constraint on columns "table"
+  """
+  wedding_guests_table_key
 }
 
 """
@@ -11633,6 +11640,7 @@ input wedding_guests_insert_input {
   last_name: String
   more_info: String
   phone: String
+  primary: Boolean
   table: Int
   updated_at: timestamptz
   wedding_group: wedding_groups_obj_rel_insert_input
@@ -11729,6 +11737,7 @@ input wedding_guests_order_by {
   last_name: order_by
   more_info: order_by
   phone: order_by
+  primary: order_by
   table: order_by
   updated_at: order_by
   wedding_group: wedding_groups_order_by
@@ -11771,6 +11780,9 @@ enum wedding_guests_select_column {
   phone
 
   """column name"""
+  primary
+
+  """column name"""
   table
 
   """column name"""
@@ -11783,6 +11795,9 @@ select "wedding_guests_aggregate_bool_exp_bool_and_arguments_columns" columns of
 enum wedding_guests_select_column_wedding_guests_aggregate_bool_exp_bool_and_arguments_columns {
   """column name"""
   accepted
+
+  """column name"""
+  primary
 }
 
 """
@@ -11791,6 +11806,9 @@ select "wedding_guests_aggregate_bool_exp_bool_or_arguments_columns" columns of 
 enum wedding_guests_select_column_wedding_guests_aggregate_bool_exp_bool_or_arguments_columns {
   """column name"""
   accepted
+
+  """column name"""
+  primary
 }
 
 """
@@ -11806,6 +11824,7 @@ input wedding_guests_set_input {
   last_name: String
   more_info: String
   phone: String
+  primary: Boolean
   table: Int
   updated_at: timestamptz
 }
@@ -11868,6 +11887,7 @@ input wedding_guests_stream_cursor_value_input {
   last_name: String
   more_info: String
   phone: String
+  primary: Boolean
   table: Int
   updated_at: timestamptz
 }
@@ -11914,6 +11934,9 @@ enum wedding_guests_update_column {
 
   """column name"""
   phone
+
+  """column name"""
+  primary
 
   """column name"""
   table
