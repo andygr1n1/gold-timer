@@ -2,8 +2,9 @@ import { useQuery } from '@tanstack/react-query'
 import { query_fetchGuestsList } from './query_fetchGuestsList'
 import { weddingStoryService } from '../weddingStoryService'
 import { useGuestsFilters$ } from '../../mst/guestsFilters.provider'
+import { filterWordsOptimizer } from '@/helpers/filterWordsOptimizer'
 
-export const useFetchGuestsList = () => {
+export const useFetchGuestsList = ({ textFilter }: { textFilter?: string }) => {
     const filters = useGuestsFilters$()
 
     const { isLoading, data } = useQuery({
@@ -13,6 +14,19 @@ export const useFetchGuestsList = () => {
         refetchOnWindowFocus: false,
         refetchOnMount: true,
     })
+
+    const filteredData = data?.filter(
+        (group) =>
+            filterWordsOptimizer(group.booking_number, textFilter) ||
+            filterWordsOptimizer(group.name, textFilter) ||
+            group.wedding_guests.find(
+                (guest) =>
+                    filterWordsOptimizer(guest.first_name, textFilter) ||
+                    filterWordsOptimizer(guest.last_name, textFilter) ||
+                    filterWordsOptimizer(guest.email, textFilter) ||
+                    filterWordsOptimizer(guest.phone, textFilter),
+            ),
+    )
 
     const guests = data?.flatMap((ws) => ws.wedding_guests)
 
@@ -27,6 +41,7 @@ export const useFetchGuestsList = () => {
 
     return {
         isLoading,
+        filteredData: filteredData || [],
         data: data || [],
         totalGuests,
         totalRegisteredGuests,

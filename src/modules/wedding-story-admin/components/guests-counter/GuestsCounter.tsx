@@ -6,7 +6,7 @@ import Tippy from '@tippyjs/react'
 import clsx from 'clsx'
 
 export const GuestsCounter: React.FC = () => {
-    const { totalGuests, totalRegisteredGuests, totalCheckedInGuests } = useFetchGuestsList()
+    const { totalGuests, totalRegisteredGuests, totalCheckedInGuests } = useFetchGuestsList({ textFilter: '' })
     return (
         <div className='flex items-center gap-2'>
             <Tippy content='Total guests' interactive={true} className=''>

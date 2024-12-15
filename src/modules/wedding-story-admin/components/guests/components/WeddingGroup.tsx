@@ -33,7 +33,17 @@ export const WeddingGroup: React.FC<{ weddingGroup: IWeddingGroup }> = ({ weddin
                         <Checkbox rootClassName='gray-checkbox' checked={!!weddingGroup.registration} />
                     </div>
                     <div>
-                        <FormLabel title='Group' />
+                        <div className='flex gap-2'>
+                            <FormLabel title='Group' />
+                            <FormLabel
+                                uppercase
+                                title={
+                                    !!weddingGroup.registration && weddingGroup.booking_number
+                                        ? weddingGroup.booking_number
+                                        : ''
+                                }
+                            />
+                        </div>
                         <span>{weddingGroup.name}</span>
                     </div>
                 </div>

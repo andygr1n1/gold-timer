@@ -14,6 +14,7 @@ import { onSnapshot } from 'mobx-state-tree'
 import { guestsFilters$ } from '../../mst/guestsFilters.provider'
 import { useQueryClient } from '@tanstack/react-query'
 import { XMenuDivider } from '@/components-x/x-dropdown/XMenuDivider'
+import { FilterByText } from './components/FilterByText'
 
 export const GuestsFilters: React.FC = () => {
     const queryClient = useQueryClient()
@@ -29,7 +30,7 @@ export const GuestsFilters: React.FC = () => {
     }, [])
 
     return (
-        <div>
+        <div className='flex gap-2'>
             <XDropdown
                 destroyPopupOnHide
                 open={popoverState}
@@ -42,13 +43,13 @@ export const GuestsFilters: React.FC = () => {
                 {/* div is important for context menu positioning */}
                 <div className='w-fit'>
                     <StyledButton
-                        size='small'
                         variant='outlined'
                         startIcon={<IconFilterBolt className='w-5 h-5' />}
                         title='Filters'
                     />
                 </div>
             </XDropdown>
+            <FilterByText />
         </div>
     )
 }

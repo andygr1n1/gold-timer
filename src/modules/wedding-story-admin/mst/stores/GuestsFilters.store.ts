@@ -2,6 +2,7 @@ import { type Instance, types } from 'mobx-state-tree'
 
 export const GuestsFilters$ = types
     .model('GuestsFilters$', {
+        textValue: '',
         registered: false,
         notRegistered: false,
         checkedIn: false,
