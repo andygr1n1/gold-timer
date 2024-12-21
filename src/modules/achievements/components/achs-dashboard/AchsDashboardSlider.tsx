@@ -1,9 +1,8 @@
-import { useWindowMatchMedia } from '@/hooks/useMatchMedia.hook'
-import Slider from 'react-slick'
 import { useFetchAchs } from '../../services/fetch-achs/useFetchAchs'
 import { achEditorDialog$, AchEditorDialog$Provider } from '../ach-editor-dialog/mst/provider'
-import { cn } from '@/helpers/cn'
 import { useUser$ } from '@/modules/app/mst/StoreProvider'
+import Slider from 'react-infinite-logo-slider'
+import { cn } from '@/helpers/cn'
 
 function AchsDashboardSlider() {
     const { id: userId } = useUser$()
@@ -14,44 +13,58 @@ function AchsDashboardSlider() {
         queryFilter: 'favorite',
     })
 
-    const { isDesktop, isLargeDesktop } = useWindowMatchMedia(['isDesktop', 'isLargeDesktop'])
-    const settings = {
-        dots: false,
-        infinite: true,
-        speed: 50000,
-        slidesToShow: isLargeDesktop ? 6 : isDesktop ? 5 : 2,
-        slidesToScroll: 1,
-        autoplay: true,
-        autoplaySpeed: 5,
-        arrows: false, // Remove arrows
-        cssEase: 'linear', // Use linear easing for continuous effect
-        swipeToSlide: true,
-        focusOnSelect: true,
-    }
-
-    if (achs.length < 6) return null
-
     return (
         <AchEditorDialog$Provider store={achEditorDialog$}>
-            <div className='slider-container w-full animate-opacity-3 '>
-                <Slider {...settings}>
+            <div
+                id='ag-slider-wrapper'
+                className='slider-container flex mx-auto animate-opacity-3
+                overflow-hidden  flex-wrap min-h-[150px]  w-full
+             lg:max-w-[800px] xl:max-w-[1000px] 2xl:max-w-[1200px] 3xl:max-w-full'
+            >
+                {/* <XSlider<IAch>
+                    dataSource={achs}
+                    onClick={(ach) => {
+                        achEditorDialog$.onOpenViewMode({ edit_id: ach.id })
+                    }}
+                /> */}
+
+                <Slider
+                    width='200px'
+                    duration={600}
+                    pauseOnHover={true}
+                    blurBorders={false}
+                    blurBorderColor={'#fff'}
+                    // toRight={true}
+                    // pauseOnHover={false}
+                >
+                    {/* <Slider.Slide>
+                        <img src='/slider/any.png' alt='any' className='w-36' />
+                    </Slider.Slide>
+                    <Slider.Slide>
+                        <img src='/slider/any2.png' alt='any2' className='w-36' />
+                    </Slider.Slide>
+                    <Slider.Slide>
+                        <img src='/slider/any3.png' alt='any3' className='w-36' />
+                    </Slider.Slide>
+                    <Slider.Slide>
+                        <div>Other component...</div>
+                    </Slider.Slide> */}
                     {achs.map((ach) => (
-                        <div
-                            key={ach.id}
-                            onClick={() => {
-                                achEditorDialog$.onOpenViewMode({ edit_id: ach.id })
-                            }}
-                            className='flex cursor-pointer relative max-w-[150px] max-h-[150px] '
-                        >
-                            <img
-                                src={`${import.meta.env['VITE_FIRE_BUNNY_STORAGE']}achievements/${ach.img_path}`}
-                                className={cn(
-                                    'animate-opacity-3  flex max-w-[150px] rounded-lg',
-                                    ach.freezed ? 'opacity-50' : 'opacity-100',
-                                )}
-                                alt={ach.title}
-                            />
-                        </div>
+                        <Slider.Slide key={ach.id}>
+                            <li
+                                onClick={() => achEditorDialog$.onOpenViewMode({ edit_id: ach.id })}
+                                className={cn('ag-slider-item  flex cursor-pointer  max-w-[150px] max-h-[150px]')}
+                            >
+                                <img
+                                    src={`${import.meta.env['VITE_FIRE_BUNNY_STORAGE']}achievements/${ach.img_path}`}
+                                    className={cn(
+                                        'animate-opacity-3  flex max-w-[150px] rounded-lg',
+                                        ach.freezed ? 'opacity-50' : 'opacity-100',
+                                    )}
+                                    alt={ach.title}
+                                />
+                            </li>
+                        </Slider.Slide>
                     ))}
                 </Slider>
             </div>
