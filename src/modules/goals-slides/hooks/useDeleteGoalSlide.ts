@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { mutation_deleteGoalSlide } from './mutation_deleteGoalSlide'
+import { mutation_deleteGoalSlide } from '../service/graphql/mutation_deleteGoalSlide'
 
 export const useDeleteGoalSlide = () => {
     const queryClient = useQueryClient()

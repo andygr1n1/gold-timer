@@ -2,12 +2,12 @@ import { Carousel } from 'react-responsive-carousel'
 import { useWindowMatchMedia } from '@/hooks/useMatchMedia.hook'
 
 import 'react-responsive-carousel/lib/styles/carousel.min.css' // requires a loader
-import { GoalsSlidesEditorDialog } from './goals-slides-editor/GoalsSlidesEditorDialog'
 import { XTooltip } from '@/components-x/x-tooltip/XTooltip'
 import { IconEdit } from '@/assets/icons'
-import { useFetchGoalsSlides } from './service/useFetchGoalsSlides'
+import { useFetchGoalsSlides } from '../hooks/useFetchGoalsSlides'
 import { IsLoading } from '@/components/loading/IsLoading'
-import { useGoalsSlidesEditor$ } from './stores/useGoalsSlidesEditor.store'
+import { useGoalsSlidesEditor$ } from '../stores/useGoalsSlidesEditor.store'
+import { GoalsSlidesEditorDialog } from './goals-slides-editor/GoalsSlidesEditorDialog'
 
 export const GoalsSlidesCarousel = () => {
     const { visibleSlides, isLoading } = useFetchGoalsSlides()

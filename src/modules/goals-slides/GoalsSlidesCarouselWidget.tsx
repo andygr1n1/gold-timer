@@ -1,4 +1,4 @@
-import { GoalsSlidesCarousel } from './GoalsSlidesCarousel'
+import { GoalsSlidesCarousel } from './components/GoalsSlidesCarousel'
 
 export const GoalsSlidesCarouselWidget = () => {
     return (

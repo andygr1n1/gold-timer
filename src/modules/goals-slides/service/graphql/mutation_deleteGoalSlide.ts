@@ -1,8 +1,8 @@
-import { generateClient } from '../../../graphql/client'
 import { resolveError } from '@/helpers/tryCatchRequest'
 import { graphql } from '@/graphql/tada'
-import { goalSlidesResponseFr } from './fragments/goalSlidesResponseFr'
-import { goalSlideSchema } from './types'
+import { fragment_goalSlidesResponse } from './fragment_goalSlidesResponse'
+import { goalSlideSchema } from '../types'
+import { generateClient } from '@/graphql/client'
 
 export const mutation_deleteGoalSlide = async (props: { id: string }) => {
     try {
@@ -10,18 +10,20 @@ export const mutation_deleteGoalSlide = async (props: { id: string }) => {
 
         const client = await generateClient()
 
-        const mutation = graphql(`
-            mutation mutation_deleteGoalSlide($id: uuid!) {
-                delete_goals_slides_by_pk(id: $id) {
-                    ...GoalSlidesResponseFr
+        const mutation = graphql(
+            `
+                mutation mutation_deleteGoalSlide($id: uuid!) {
+                    delete_goals_slides_by_pk(id: $id) {
+                        ...GoalSlidesResponseFr
+                    }
                 }
-            }
-        `, [goalSlidesResponseFr])
+            `,
+            [fragment_goalSlidesResponse],
+        )
 
         const res = await client.request(mutation, {
             id,
         })
-
 
         return goalSlideSchema.parse(res?.delete_goals_slides_by_pk)
     } catch (e) {

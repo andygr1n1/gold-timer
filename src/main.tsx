@@ -7,6 +7,8 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import './styles/index.css'
 import { SnowfallAnimation } from './components/SnowfallAnimation'
 import { root$, Root$Provider } from './modules/app/mst/StoreProvider'
+import { Provider } from 'react-redux'
+import { root$ as reduxStore$ } from './store/root.store'
 
 const queryClient = new QueryClient()
 
@@ -17,7 +19,9 @@ const Main = () => {
             <ReactQueryDevtools initialIsOpen={false} />
             <AntdApp className='w-full h-full flex text-cText'>
                 <Root$Provider store={root$}>
-                    <App />
+                    <Provider store={reduxStore$}>
+                        <App />
+                    </Provider>
                 </Root$Provider>
             </AntdApp>
             <Toaster

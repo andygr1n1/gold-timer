@@ -2,10 +2,10 @@ import { XDropdown } from '@/components-x/x-dropdown/XDropdown'
 import { XMenuDropdown } from '@/components-x/x-dropdown/XMenuDropdown'
 import { XMenuItem } from '@/components-x/x-dropdown/XMenuItem'
 import { IconDeleteForever, IconHide, IconShow } from '@/assets/icons'
-import { type IGoalSlide } from '../../service/types'
+import { type IGoalSlide } from '../../../service/types'
 import { cn } from '@/helpers/cn'
-import { useDeleteGoalSlide } from '../../service/useDeleteGoalSlide.service'
-import { useToggleShowSlide } from '../../hooks/useToggleShowSlide.hook'
+import { useDeleteGoalSlide } from '@/modules/goals-slides/hooks/useDeleteGoalSlide'
+import { useToggleGoalSlideVisibility } from '@/modules/goals-slides/hooks/useToggleGoalSlideVisibility'
 
 export const GoalSlide: React.FC<{ goalSlide: IGoalSlide }> = ({ goalSlide }) => {
     const { active } = goalSlide
@@ -21,19 +21,17 @@ export const GoalSlide: React.FC<{ goalSlide: IGoalSlide }> = ({ goalSlide }) =>
     )
 }
 
-const DropdownRender: React.FC<{ goalSlide: IGoalSlide }> = ({ goalSlide }) => {
-    const { id, active } = goalSlide
-
+const DropdownRender: React.FC<{ goalSlide: IGoalSlide }> = ({ goalSlide: { id, active } }) => {
     const { deleteGoalSlide } = useDeleteGoalSlide()
-    const { toggleShowSlide } = useToggleShowSlide()
+    const { toggleVisibility } = useToggleGoalSlideVisibility()
 
     return (
         <XMenuDropdown>
-            <XMenuItem onClick={() => toggleShowSlide({ id, active: !active })}>
+            <XMenuItem onClick={() => toggleVisibility({ id, active: !active })}>
                 {active ? <IconShow width={24} height={24} /> : <IconHide width={24} height={24} />}
                 <span className='text-lg'>{active ? 'Hide' : 'Show'}</span>
             </XMenuItem>
-            <XMenuItem onClick={() => deleteGoalSlide({ id: goalSlide.id })}>
+            <XMenuItem onClick={() => deleteGoalSlide({ id })}>
                 <IconDeleteForever width={24} height={24} />
                 <span className='text-lg'>Delete</span>
             </XMenuItem>

@@ -6,6 +6,6 @@
 - run `yarn build`
 - run `docker compose up -d --build`
 
-<!-- todo for future -->
+## Libs
 
-- add a ssh script to deploy to production
+- https://redux-toolkit.js.org/

@@ -5,7 +5,7 @@ import { type IGoalSlide } from '@/modules/goals-slides/service/types'
 import { useGoalSlideEditorFormOnValidate } from '@/modules/goals-slides/hooks/useGoalSlideEditorFormOnValidate.hook'
 import { useGoalSlideEditorFormInitialValues } from '@/modules/goals-slides/hooks/useGoalSlideEditorFormInitialValues.hook'
 import { InsertGoalSlideDialog } from './components/InsertGoalSlideDialog'
-import { useGoalsSlidesFormOnSubmit } from '@/modules/goals-slides/service/useGoalsSlidesFormOnSubmit.service'
+import { useGoalsSlidesFormOnSubmit } from '@/modules/goals-slides/hooks/useGoalsSlidesFormOnSubmit'
 
 export const InsertGoalSlide: React.FC = () => {
     const { onSubmit } = useGoalsSlidesFormOnSubmit()

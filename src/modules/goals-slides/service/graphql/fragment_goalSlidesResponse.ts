@@ -1,6 +1,6 @@
 import { graphql } from '@/graphql/tada'
 
-export const goalSlidesResponseFr = graphql(`
+export const fragment_goalSlidesResponse = graphql(`
     fragment GoalSlidesResponseFr on goals_slides @_unmask {
         id
         img_path

@@ -1,7 +1,6 @@
 import { type FormikHelpers } from 'formik'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { type IGoalSlide } from './types'
-import { mutation_insertGoalSlide } from './mutation_insertGoalSlide'
+import { type IGoalSlide } from '@/modules/goals-slides/service/types'
 import getCroppedImg from '@/helpers/cropImage'
 import { uploadNewImageToServer } from '@/services/image/image.service'
 import { cast } from '@/helpers'
@@ -10,6 +9,7 @@ import { useImageCropper$ } from '@/components/image-cropper/stores/useImageCrop
 import { KEY_ImageCropperStore } from '@/components/image-cropper/stores/types'
 import { notify } from '@/helpers/processMessage'
 import { useUser$ } from '@/modules/app/mst/StoreProvider'
+import { mutation_insertGoalSlide } from '../service/graphql/mutation_insertGoalSlide'
 
 export const useGoalsSlidesFormOnSubmit = () => {
     const queryClient = useQueryClient()
