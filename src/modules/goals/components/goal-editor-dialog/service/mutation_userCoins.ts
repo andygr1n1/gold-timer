@@ -1,7 +1,7 @@
 import { resolveError } from '@/helpers/tryCatchRequest'
-import { generateClient } from '@/graphql/client'
+import { generateClient } from '@/api/client'
 import { type IUserSchema, userSchema } from '@/services/types'
-import { graphql } from '@/graphql/tada'
+import { graphql } from '@/api/tada'
 
 export const mutation_userCoins = async (props: {
     coins: number

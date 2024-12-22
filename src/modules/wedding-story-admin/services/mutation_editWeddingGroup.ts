@@ -1,6 +1,6 @@
-import { generateClient } from '@/graphql/client'
+import { generateClient } from '@/api/client'
 import { resolveError } from '@/helpers/tryCatchRequest'
-import { graphql } from '@/graphql/tada'
+import { graphql } from '@/api/tada'
 import type { IInvitationEditorSchema, IWeddingGroup } from '../types'
 
 export const mutation_editWeddingGroup = async ({

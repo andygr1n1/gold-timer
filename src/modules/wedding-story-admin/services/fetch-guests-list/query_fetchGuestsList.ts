@@ -1,6 +1,6 @@
 import { resolveError } from '@/helpers/tryCatchRequest'
-import { generateClient } from '@/graphql/client'
-import { graphql } from '@/graphql/tada'
+import { generateClient } from '@/api/client'
+import { graphql } from '@/api/tada'
 import { fragment_weddingGroups } from './fragment_weddingGroups'
 import type { IGuestsFilters$ } from '../../mst/stores/GuestsFilters.store'
 

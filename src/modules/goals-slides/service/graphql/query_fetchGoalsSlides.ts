@@ -1,6 +1,6 @@
-import { generateClient } from '@/graphql/client'
+import { generateClient } from '@/api/client'
 import { resolveError } from '@/helpers/tryCatchRequest'
-import { graphql } from '@/graphql/tada'
+import { graphql } from '@/api/tada'
 import { fragment_goalSlidesResponse } from './fragment_goalSlidesResponse'
 
 export const queryGoalsSlides = () => {

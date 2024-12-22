@@ -1,7 +1,7 @@
 import { resolveError } from '@/helpers/tryCatchRequest'
 import { type IGoalSlide, goalSlideSchema } from '../types'
-import { generateClient } from '@/graphql/client'
-import { graphql } from '@/graphql/tada'
+import { generateClient } from '@/api/client'
+import { graphql } from '@/api/tada'
 import { fragment_goalSlidesResponse } from './fragment_goalSlidesResponse'
 
 export const mutation_insertGoalSlide = async (props: {

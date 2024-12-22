@@ -1,4 +1,4 @@
-import { graphql } from '@/graphql/tada'
+import { graphql } from '@/api/tada'
 
 export const achResponseFr = graphql(`
     fragment AchResponseFr on achievements @_unmask {

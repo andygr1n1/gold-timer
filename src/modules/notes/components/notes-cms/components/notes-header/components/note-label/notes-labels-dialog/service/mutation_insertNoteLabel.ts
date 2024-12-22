@@ -1,7 +1,7 @@
-import { generateClient } from '@/graphql/client'
+import { generateClient } from '@/api/client'
 import { resolveError } from '@/helpers/tryCatchRequest'
 import { type ICreateLabelForm, createLabelFormSchema } from './types'
-import { graphql } from '@/graphql/tada'
+import { graphql } from '@/api/tada'
 
 export const mutation_insertNoteLabel = async ({ values: object }: { values: ICreateLabelForm }) => {
     try {

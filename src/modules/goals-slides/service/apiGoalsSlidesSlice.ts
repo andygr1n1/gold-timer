@@ -1,7 +1,7 @@
 import { createApi } from '@reduxjs/toolkit/query/react'
 
 import type { IGoalSlide } from '@/modules/goals-slides/service/types'
-import { graphqlBaseQuery as baseQuery } from '../../../api/graphqlBaseQuery'
+import { graphqlBaseQuery as baseQuery } from '@/api/graphqlBaseQuery'
 import type { Variables } from 'graphql-request'
 import { queryGoalsSlides } from './graphql/query_fetchGoalsSlides'
 import { mutationToggleGoalSlideVisibility } from './graphql/mutation_updateGoalSlideIsActive'

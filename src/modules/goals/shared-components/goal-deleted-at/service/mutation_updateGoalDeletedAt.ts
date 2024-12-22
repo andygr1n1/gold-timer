@@ -1,7 +1,7 @@
-import { generateClient } from '@/graphql/client'
+import { generateClient } from '@/api/client'
 import { type IGoalSchema, goalSchema } from '../../../shared-service/types'
 import { resolveError } from '@/helpers/tryCatchRequest'
-import { graphql } from '@/graphql/tada'
+import { graphql } from '@/api/tada'
 import { goalResponseFr } from '@/modules/goals/shared-service/fragments/goalResponseFr'
 
 export const mutation_updateGoalDeletedAt = async (props: {

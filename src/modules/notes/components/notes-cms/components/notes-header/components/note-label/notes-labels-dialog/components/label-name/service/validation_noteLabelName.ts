@@ -1,7 +1,7 @@
 import { resolveError } from '@/helpers/tryCatchRequest'
-import { generateClient } from '@/graphql/client'
+import { generateClient } from '@/api/client'
 import { notesLabelsResponseSchema } from '../../../service/types'
-import { graphql } from '@/graphql/tada'
+import { graphql } from '@/api/tada'
 
 export const validation_noteLabelName = async ({ value }: { value: string }) => {
     try {

@@ -1,6 +1,6 @@
 import { resolveError } from '@/helpers/tryCatchRequest'
-import { generateClient } from '@/graphql/client'
-import { graphql } from '@/graphql/tada'
+import { generateClient } from '@/api/client'
+import { graphql } from '@/api/tada'
 import { achResponseFr } from '../fragments/achResponseFr'
 
 export const query_fetchAch = async ({ id }: { id: string }) => {

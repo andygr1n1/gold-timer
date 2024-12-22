@@ -1,8 +1,8 @@
 import { resolveError } from '@/helpers/tryCatchRequest'
-import { generateClient } from '@/graphql/client'
+import { generateClient } from '@/api/client'
 import { userSchema } from '@/services/types'
 import { type IQueryUserDetails } from './types'
-import { graphql } from '@/graphql/tada'
+import { graphql } from '@/api/tada'
 
 export const query_userDetails = async (props: { userId: string }): Promise<IQueryUserDetails | undefined> => {
     try {

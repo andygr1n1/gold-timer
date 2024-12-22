@@ -1,6 +1,6 @@
-import { generateClient } from '@/graphql/client'
+import { generateClient } from '@/api/client'
 import { resolveError } from '@/helpers/tryCatchRequest'
-import { graphql } from '@/graphql/tada'
+import { graphql } from '@/api/tada'
 import { formatDateWithTimezone } from '@/helpers/date.helpers'
 import { storyMessageResponseFr } from '@/modules/stories/services/fragments/storyMessageResponseFr'
 

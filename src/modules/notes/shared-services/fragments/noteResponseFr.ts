@@ -1,4 +1,4 @@
-import { graphql } from '@/graphql/tada'
+import { graphql } from '@/api/tada'
 
 export const noteResponseFr = graphql(`
     fragment NoteResponseFr on notes @_unmask {

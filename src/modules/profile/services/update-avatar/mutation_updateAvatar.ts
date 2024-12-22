@@ -1,7 +1,7 @@
-import { generateClient } from '@/graphql/client'
+import { generateClient } from '@/api/client'
 import { resolveError } from '@/helpers/tryCatchRequest'
 import { userProfileSchema } from '../types'
-import { graphql } from '@/graphql/tada'
+import { graphql } from '@/api/tada'
 
 export const mutation_updateAvatar = async ({ imgPath: avatar }: { imgPath: string }) => {
     try {

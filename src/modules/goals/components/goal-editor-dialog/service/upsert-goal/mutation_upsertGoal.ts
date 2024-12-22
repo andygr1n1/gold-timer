@@ -1,5 +1,5 @@
-import { generateClient } from '@/graphql/client'
-import { graphql } from '@/graphql/tada'
+import { generateClient } from '@/api/client'
+import { graphql } from '@/api/tada'
 import { resolveError } from '@/helpers/tryCatchRequest'
 import { type IGoalSchema, goalSchema } from '@/modules/goals/shared-service'
 import { goalResponseFr } from '@/modules/goals/shared-service/fragments/goalResponseFr'

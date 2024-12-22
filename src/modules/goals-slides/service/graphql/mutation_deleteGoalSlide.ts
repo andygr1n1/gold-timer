@@ -1,8 +1,8 @@
 import { resolveError } from '@/helpers/tryCatchRequest'
-import { graphql } from '@/graphql/tada'
+import { graphql } from '@/api/tada'
 import { fragment_goalSlidesResponse } from './fragment_goalSlidesResponse'
 import { goalSlideSchema } from '../types'
-import { generateClient } from '@/graphql/client'
+import { generateClient } from '@/api/client'
 
 export const mutation_deleteGoalSlide = async (props: { id: string }) => {
     try {

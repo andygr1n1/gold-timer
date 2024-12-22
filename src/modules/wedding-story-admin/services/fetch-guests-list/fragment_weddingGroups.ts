@@ -1,4 +1,4 @@
-import { graphql } from '@/graphql/tada'
+import { graphql } from '@/api/tada'
 import { fragment_weddingGuest } from './fragment_weddingGuest'
 export const fragment_weddingGroups = graphql(
     `

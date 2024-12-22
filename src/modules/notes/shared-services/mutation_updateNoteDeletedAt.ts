@@ -1,7 +1,7 @@
-import { generateClient } from '@/graphql/client'
+import { generateClient } from '@/api/client'
 import { resolveError } from '@/helpers/tryCatchRequest'
 import { type INoteSchema, noteSchema } from '@/modules/notes/shared-services/types'
-import { graphql } from '@/graphql/tada'
+import { graphql } from '@/api/tada'
 import { noteResponseFr } from './fragments/noteResponseFr'
 
 export const mutation_updateNoteDeletedAt = async ({

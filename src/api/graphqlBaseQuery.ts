@@ -1,4 +1,4 @@
-import { generateClient } from '@/graphql/client'
+import { generateClient } from '@/api/client'
 import { resolveError } from '@/helpers/tryCatchRequest'
 import type { TadaDocumentNode } from 'gql.tada'
 import type { Variables } from 'graphql-request'

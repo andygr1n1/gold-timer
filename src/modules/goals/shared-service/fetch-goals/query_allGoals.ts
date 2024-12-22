@@ -1,7 +1,7 @@
 import { resolveError } from '@/helpers/tryCatchRequest'
-import { generateClient } from '@/graphql/client'
+import { generateClient } from '@/api/client'
 import { type IGoalSchema, goalsResponseSchema } from '../types'
-import { graphql } from '@/graphql/tada'
+import { graphql } from '@/api/tada'
 import { goalResponseFr } from '../fragments/goalResponseFr'
 
 export const query_allGoals = async (props: {
