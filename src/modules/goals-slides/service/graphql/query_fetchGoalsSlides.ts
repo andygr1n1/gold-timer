@@ -1,5 +1,3 @@
-import { generateClient } from '@/api/client'
-import { resolveError } from '@/helpers/tryCatchRequest'
 import { graphql } from '@/api/tada'
 import { fragment_goalSlidesResponse } from './fragment_goalSlidesResponse'
 
@@ -15,16 +13,4 @@ export const queryGoalsSlides = () => {
         [fragment_goalSlidesResponse],
     )
     return query
-}
-
-export const query_fetchGoalsSlides = async () => {
-    try {
-        const client = await generateClient()
-
-        const query = queryGoalsSlides()
-
-        return await client.request(query).then((res) => res.goals_slides)
-    } catch (e) {
-        return await resolveError(e)
-    }
 }

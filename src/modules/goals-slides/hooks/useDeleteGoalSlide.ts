@@ -1,20 +1,27 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { mutation_deleteGoalSlide } from '../service/graphql/mutation_deleteGoalSlide'
+import { useDispatch } from 'react-redux'
+import { apiGoalsSlidesSlice, useDeleteGoalSlideMutation } from '../service/apiGoalsSlidesSlice'
+import type { IRootDispatch } from '@/store/types'
+import type { IGoalSlide } from '../service/types'
+import { useUser$ } from '@/modules/app/mst/StoreProvider'
+import { notifySuccess } from '@/helpers/processMessage'
 
 export const useDeleteGoalSlide = () => {
-    const queryClient = useQueryClient()
+    const { id: userId } = useUser$()
+    const dispatch = useDispatch<IRootDispatch>()
+    const [action] = useDeleteGoalSlideMutation()
 
-    const mutation = useMutation({
-        mutationFn: ({ id }: { id: string }) => mutation_deleteGoalSlide({ id }),
-        onSuccess: (res) => {
-            if (!res) return
-            queryClient.invalidateQueries()
-        },
-    })
+    const deleteGoalSlide = ({ id }: { id: string }) => {
+        action({ id })
+            .unwrap()
+            .then(() => {
+                dispatch(
+                    apiGoalsSlidesSlice.util.updateQueryData('getGoalsSlides', userId, (draft: IGoalSlide[]) => {
+                        return draft.filter((slide) => slide.id !== id)
+                    }),
+                )
 
-    const deleteGoalSlide = (props: { id: string }) => {
-        const { id } = props
-        mutation.mutate({ id })
+                notifySuccess('Goal slide deleted successfully')
+            })
     }
 
     return { deleteGoalSlide }

@@ -1,4 +1,4 @@
-import { apiSlice, useToggleGoalSlideVisibilityMutation } from '../service/apiGoalsSlidesSlice'
+import { apiGoalsSlidesSlice, useToggleGoalSlideVisibilityMutation } from '../service/apiGoalsSlidesSlice'
 import type { IGoalSlide } from '../service/types'
 import { useDispatch } from 'react-redux'
 import { useUser$ } from '@/modules/app/mst/StoreProvider'
@@ -14,7 +14,7 @@ export const useToggleGoalSlideVisibility = () => {
             .unwrap()
             .then((data) => {
                 dispatch(
-                    apiSlice.util.updateQueryData('getGoalsSlides', userId, (draft: IGoalSlide[]) => {
+                    apiGoalsSlidesSlice.util.updateQueryData('getGoalsSlides', userId, (draft: IGoalSlide[]) => {
                         const selected = draft.find((slide) => slide.id === data.id)
                         if (selected) {
                             selected.active = data.active
