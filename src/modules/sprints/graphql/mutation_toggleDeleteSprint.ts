@@ -1,6 +1,6 @@
 import { gql } from 'graphql-request'
 import { processError } from '@/helpers/processMessage'
-import { generateClient } from '@/graphql/client'
+import { generateClient } from '@/api/client'
 
 export const mutation_toggleDeleteSprint = async (
     id: string,

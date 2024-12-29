@@ -1,9 +1,9 @@
 import { resolveError } from '@/helpers/tryCatchRequest'
 import { type IUpdateGoalRitualSchema } from '../types'
-import { generateClient } from '@/graphql/client'
+import { generateClient } from '@/api/client'
 import { type IGoalSchema, goalSchema, goalStatusEnum } from '@/modules/goals/shared-service'
 import { goalResponseFr } from '@/modules/goals/shared-service/fragments/goalResponseFr'
-import { graphql } from '@/graphql/tada'
+import { graphql } from '@/api/tada'
 
 export const mutation_ritualizeGoal = async ({
     goalRitual,

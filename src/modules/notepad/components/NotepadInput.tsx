@@ -1,18 +1,17 @@
 import { debounce } from 'lodash-es'
 import { useCallback, useMemo } from 'react'
-import { useFetchLockedStatus } from '../service/useFetchLockedStatus'
-import { useFetchNotepad } from '../service/useFetchNotepad'
-import { useMutateNotepad } from '../service/useMutateNotepad'
-import { LockedStatusIndex } from './LockedStatusIndex'
+import { useFetchNotepad } from '../hooks/useFetchNotepad'
+import { useUpdateNotepad } from '../hooks/useUpdateNotepad'
 import { XTiptap } from '@/components-x/x-tiptap/XTiptap'
+import type { INotepad } from '../service/types'
+import { LockedStatus } from './LockedStatus'
 
 export const NotepadInput: React.FC = () => {
-    const { isLocked } = useFetchLockedStatus()
-    const { description, isLoading } = useFetchNotepad()
-    const { updateDescription } = useMutateNotepad()
+    const { notepad, isLoading } = useFetchNotepad()
+    const { updateNotepad } = useUpdateNotepad()
 
-    const sendRequest = useCallback((description: string) => {
-        updateDescription({ description })
+    const sendRequest = useCallback(({ object }: { object: INotepad }) => {
+        updateNotepad({ object })
     }, [])
 
     const saveDescription = useMemo(() => {
@@ -22,14 +21,20 @@ export const NotepadInput: React.FC = () => {
     return (
         <XTiptap
             isLoading={isLoading}
-            content={description}
+            content={notepad?.description || ''}
             onChange={(content) => {
-                saveDescription(content)
+                if (content === notepad?.description) return
+                notepad && saveDescription({ object: { ...notepad, description: content } })
             }}
-            readonly={isLocked}
+            readonly={!!notepad?.locked}
         >
-            <div className='absolute top-3 right-[-5px]'>
-                <LockedStatusIndex />
+            <div className='w-fit items-end flex justify-end absolute top-1 -right-4 md:-right-1'>
+                <LockedStatus
+                    isLocked={!!notepad?.locked}
+                    onClick={() => {
+                        notepad && updateNotepad({ object: { ...notepad, locked: !notepad.locked } })
+                    }}
+                />
             </div>
         </XTiptap>
     )

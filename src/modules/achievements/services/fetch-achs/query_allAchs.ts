@@ -1,8 +1,8 @@
-import { graphql } from '@/graphql/tada'
+import { graphql } from '@/api/tada'
 import { type IAch, type IUseFetchAchsQuery } from '../types'
 import { resolveError } from '@/helpers/tryCatchRequest'
 import { achResponseFr } from '../fragments/achResponseFr'
-import { generateClient } from '@/graphql/client'
+import { generateClient } from '@/api/client'
 
 export const query_allAchs = async ({
     limit,

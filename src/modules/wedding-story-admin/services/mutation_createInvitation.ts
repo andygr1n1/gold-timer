@@ -1,7 +1,7 @@
-import { generateClient } from '@/graphql/client'
+import { generateClient } from '@/api/client'
 import { resolveError } from '@/helpers/tryCatchRequest'
 import type { IInvitationEditorSchema } from '../types'
-import { graphql } from '@/graphql/tada'
+import { graphql } from '@/api/tada'
 import { generateBookingNumber } from '../helpers/generateBookingNumber'
 
 export const mutation_createInvitation = async ({ values }: { values: IInvitationEditorSchema }) => {

@@ -1,7 +1,7 @@
 import { resolveError } from '@/helpers/tryCatchRequest'
-import { generateClient } from '@/graphql/client'
+import { generateClient } from '@/api/client'
 import { type INoteSchema, noteSchema } from '../types'
-import { graphql } from '@/graphql/tada'
+import { graphql } from '@/api/tada'
 import { noteResponseFr } from '../fragments/noteResponseFr'
 
 export const query_fetchNote = async (props: { id: string | null }): Promise<INoteSchema | undefined> => {

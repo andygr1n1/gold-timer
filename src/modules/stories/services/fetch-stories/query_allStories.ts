@@ -1,7 +1,7 @@
 import { storyResponseFr } from '../fragments/storyResponseFr'
 import { resolveError } from '@/helpers/tryCatchRequest'
-import { generateClient } from '@/graphql/client'
-import { graphql } from '@/graphql/tada'
+import { generateClient } from '@/api/client'
+import { graphql } from '@/api/tada'
 import type { IStory } from '../types'
 
 export const query_allStories = async (props: {

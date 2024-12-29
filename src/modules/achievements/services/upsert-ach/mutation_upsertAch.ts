@@ -1,7 +1,7 @@
-import { generateClient } from '@/graphql/client'
+import { generateClient } from '@/api/client'
 import { resolveError } from '@/helpers/tryCatchRequest'
 import type { IAchEditor } from '../types'
-import { graphql } from '@/graphql/tada'
+import { graphql } from '@/api/tada'
 import { achResponseFr } from '../fragments/achResponseFr'
 
 export const mutation_upsertAch = async ({ values }: { values: IAchEditor }) => {

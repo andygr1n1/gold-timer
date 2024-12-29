@@ -1,6 +1,6 @@
 import { resolveError } from '@/helpers/tryCatchRequest'
-import { generateClient } from '@/graphql/client'
-import { graphql } from '@/graphql/tada'
+import { generateClient } from '@/api/client'
+import { graphql } from '@/api/tada'
 import { storyResponseFr } from '@/modules/stories/services/fragments/storyResponseFr'
 
 export const query_fetchStoryInfo = async ({ storyId }: { storyId: string }) => {

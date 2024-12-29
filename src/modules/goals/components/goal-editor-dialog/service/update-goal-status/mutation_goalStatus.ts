@@ -1,8 +1,8 @@
 import { resolveError } from '@/helpers/tryCatchRequest'
-import { generateClient } from '@/graphql/client'
+import { generateClient } from '@/api/client'
 import { type IGoalSchema, type IGoalStatus, goalSchema } from '@/modules/goals/shared-service'
 import { goalResponseFr } from '@/modules/goals/shared-service/fragments/goalResponseFr'
-import { graphql } from '@/graphql/tada'
+import { graphql } from '@/api/tada'
 
 export const mutation_goalStatus = async (props: {
     goal: IGoalSchema

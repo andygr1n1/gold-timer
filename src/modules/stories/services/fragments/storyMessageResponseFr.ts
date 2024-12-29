@@ -1,4 +1,4 @@
-import { graphql } from '@/graphql/tada'
+import { graphql } from '@/api/tada'
 
 export const storyMessageResponseFr = graphql(`
     fragment StoryMessageResponseFr on stories_messages @_unmask {

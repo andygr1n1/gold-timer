@@ -1,7 +1,7 @@
 import { resolveError } from '@/helpers/tryCatchRequest'
-import { generateClient } from '@/graphql/client'
+import { generateClient } from '@/api/client'
 import { userProfileSchema } from '../types'
-import { graphql } from '@/graphql/tada'
+import { graphql } from '@/api/tada'
 
 export const query_fetchProfileInfo = async ({ id }: { id: string }) => {
     try {

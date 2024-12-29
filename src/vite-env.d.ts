@@ -1,12 +1,5 @@
 /// <reference types="vite/client" />
 
-import { QueryClient } from '@tanstack/react-query'
-declare global {
-    interface Window {
-        queryClient: QueryClient | null
-    }
-}
-
 interface ImportMetaEnv {
     readonly PORT: number
     readonly VITE_CLIENT_ENDPOINT: string

@@ -1,5 +1,5 @@
-import { generateClient } from '@/graphql/client'
-import { graphql } from '@/graphql/tada'
+import { generateClient } from '@/api/client'
+import { graphql } from '@/api/tada'
 import { resolveError } from '@/helpers/tryCatchRequest'
 
 export const query_fetchSprints = async () => {

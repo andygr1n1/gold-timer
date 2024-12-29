@@ -1,6 +1,6 @@
-import { generateClient } from '@/graphql/client'
+import { generateClient } from '@/api/client'
 import { resolveError } from '@/helpers/tryCatchRequest'
-import { graphql } from '@/graphql/tada'
+import { graphql } from '@/api/tada'
 import { getNotesLabelsGqlFields } from './getQueryFields'
 
 export const mutation_updateNoteLabel = async ({ id, name }: { id: string; name: string }) => {

@@ -1,7 +1,7 @@
 import { resolveError } from '@/helpers/tryCatchRequest'
-import { generateClient } from '@/graphql/client'
+import { generateClient } from '@/api/client'
 import { type IUseFetchAchsQuery } from '../types'
-import { graphql } from '@/graphql/tada'
+import { graphql } from '@/api/tada'
 import { achResponseFr } from '../fragments/achResponseFr'
 
 export const query_activeAchs = async ({ limit, serverSearchInput, offset }: IUseFetchAchsQuery) => {
