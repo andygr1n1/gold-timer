@@ -33,6 +33,7 @@ export const mutation_createInvitation = async ({ values }: { values: IInvitatio
             {
                 group_id,
                 first_name: values.name1,
+                last_name: values.surname1,
                 primary: true,
             },
         ]
@@ -41,6 +42,7 @@ export const mutation_createInvitation = async ({ values }: { values: IInvitatio
             objects.push({
                 group_id,
                 first_name: values.name2,
+                last_name: values.surname2,
                 primary: false,
             })
         }

@@ -5,7 +5,7 @@ import { observer } from 'mobx-react-lite'
 export const FilterByText = observer(() => {
     const { textValue: value, onChangeField } = useGuestsFilters$()
     return (
-        <div className='max-w-xs'>
+        <div className='w-full md:max-w-xs'>
             <XInput value={value} onChange={(e) => onChangeField('textValue', e.target.value)} placeholder='Search' />
         </div>
     )

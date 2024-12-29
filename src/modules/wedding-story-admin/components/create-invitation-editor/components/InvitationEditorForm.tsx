@@ -4,6 +4,7 @@ import { GroupNameInput } from './form-fields/GroupNameInput'
 import { IconAwardStar } from '@/assets/icons'
 import { StyledButton } from '@/components/buttons/StyledButton'
 import { Form } from 'formik'
+import { GuestSurnameInput } from './form-fields/GuestSurnameInput'
 
 export const InvitationEditorForm = () => {
     return (
@@ -17,7 +18,12 @@ export const InvitationEditorForm = () => {
                     <IconAwardStar className='w-5 h-5 justify-center text-cText opacity-70' />
                 </div>
                 <GuestNameInput type='name1' />
+                <GuestSurnameInput type='surname1' />
+                <div className='flex gap-2 my-2 justify-center'>
+                    <IconAwardStar className='w-5 h-5 justify-center text-cText opacity-70' />
+                </div>
                 <GuestNameInput type='name2' />
+                <GuestSurnameInput type='surname2' />
             </div>
             <StyledButton type='submit' className='w-full' size='large'>
                 Create Invitation

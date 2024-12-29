@@ -8,6 +8,8 @@ export type IInvitationEditorSchema = {
     groupName: string
     name1: string
     name2: string
+    surname1?: string
+    surname2?: string
     table1?: number
     table2?: number
 }

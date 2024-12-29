@@ -7,8 +7,8 @@ export const CreateInvitationEditorTrigger: React.FC = () => {
 
     return (
         <>
-            <div className='w-full justify-center flex'>
-                <StyledButton className='w-[250px] md:w-auto' variant='outlined' onClick={() => onOpen()}>
+            <div className='w-full justify-center flex md:w-auto'>
+                <StyledButton className='w-full md:w-auto' variant='outlined' onClick={() => onOpen()}>
                     New invitation
                 </StyledButton>
             </div>
