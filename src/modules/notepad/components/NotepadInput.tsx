@@ -28,7 +28,7 @@ export const NotepadInput: React.FC = () => {
             }}
             readonly={!!notepad?.locked}
         >
-            <div className='w-fit items-end flex justify-end absolute top-1 -right-1'>
+            <div className='w-fit items-end flex justify-end absolute top-1 -right-4 md:-right-1'>
                 <LockedStatus
                     isLocked={!!notepad?.locked}
                     onClick={() => {
