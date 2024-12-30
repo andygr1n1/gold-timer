@@ -29,10 +29,7 @@ export const useInsertNoteLabel = () => {
                     onSuccess?.()
                 },
                 onSettled,
-                onError: (data) => {
-                    console.log(data)
-                    console.log('error!!!')
-                },
+                onError: () => {},
             },
         )
     }

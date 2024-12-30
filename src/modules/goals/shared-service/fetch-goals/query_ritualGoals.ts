@@ -57,7 +57,6 @@ export const query_ritualGoals = async (props: {
             offset,
             finished_at: expiredGoals ? {} : { _gte: setZeroTime(new Date()).toISOString() },
         })
-        console.log(res)
         return goalsResponseSchema.parse(res).goals
     } catch (e) {
         return await resolveError(e)

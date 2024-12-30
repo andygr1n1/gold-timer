@@ -10,7 +10,7 @@ export const WsTopbar: React.FC = () => {
                 <GuestsFilters />
             </div>
 
-            <div className='w-[calc(100%-8px)] px-1 gap-1 md:flex-[30%] flex md:justify-center'>
+            <div className='w-[calc(100%-8px)] px-1 gap-2 md:flex-[30%] flex md:justify-center'>
                 <TablesViewTrigger />
                 <CreateInvitationEditorTrigger />
             </div>

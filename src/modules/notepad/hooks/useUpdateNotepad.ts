@@ -10,7 +10,6 @@ export const useUpdateNotepad = () => {
     const { id: userId } = useUser$()
 
     const updateNotepad = ({ object }: { object: INotepad }) => {
-        console.log('useUpdateNotepad:object', object)
         action({ object })
             .unwrap()
             .then(() => {

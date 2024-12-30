@@ -1,26 +1,19 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { useQueryClient } from '@tanstack/react-query'
 import type { IWeddingGroup } from '../types'
-import { mutation_hideWeddingGroup } from '../services/mutation_hideWeddingGroup'
 import { notifySuccess } from '@/helpers/processMessage'
+import { useHideWeddingGroupMutation } from '../services/apiWeddingStorySlice'
 
 export const useHideWeddingGroup = () => {
+    const [actionHideGroup] = useHideWeddingGroupMutation()
     const queryClient = useQueryClient()
-    const mutation = useMutation({
-        mutationFn: async ({ weddingGroup }: { weddingGroup: IWeddingGroup }) => {
-            await mutation_hideWeddingGroup({ values: weddingGroup })
-        },
-    })
 
     const toggleHideGroup = async ({ weddingGroup }: { weddingGroup: IWeddingGroup }) => {
-        mutation.mutate(
-            { weddingGroup },
-            {
-                onSuccess: () => {
-                    queryClient.invalidateQueries()
-                    notifySuccess('Group status changed successfully')
-                },
-            },
-        )
+        await actionHideGroup({ groupId: weddingGroup.id, hide: !weddingGroup.hide })
+            .unwrap()
+            .then(() => {
+                notifySuccess('Group status changed successfully')
+                queryClient.invalidateQueries()
+            })
     }
 
     return { toggleHideGroup }

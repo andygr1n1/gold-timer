@@ -1,29 +1,9 @@
-import { useMutation } from '@tanstack/react-query'
 import type { IInvitationEditorSchema, IWeddingGroup } from '../types'
-import { mutation_editWeddingGroup } from '../services/mutation_editWeddingGroup'
-import { processError } from '@/helpers/processMessage'
+import { useEditWeddingGroupMutation, useEditWeddingGuestMutation } from '../services/apiWeddingStorySlice'
 
 export const useEditWeddingGroup = () => {
-    const mutation = useMutation({
-        mutationFn: async ({
-            values,
-            weddingGroup,
-        }: {
-            values: IInvitationEditorSchema
-            weddingGroup: IWeddingGroup
-        }) => {
-            await mutation_editWeddingGroup({ values, weddingGroup })
-        },
-        onError: (error) => {
-            console.error(error)
-            const regex = /"table":"(\d+)"/
-            const match = error.message.match(regex)
-            const tableValue = match && match[1] ? match[1]?.replace('"', '').replace('"', '') : null
-            if (tableValue) {
-                processError(`table already taken: ${tableValue}`)
-            }
-        },
-    })
+    const [actionEditWeddingGroup] = useEditWeddingGroupMutation()
+    const [actionEditWeddingGuest] = useEditWeddingGuestMutation()
 
     const editWeddingGroup = async ({
         values,
@@ -34,12 +14,26 @@ export const useEditWeddingGroup = () => {
         weddingGroup: IWeddingGroup
         onSuccess: () => void
     }) => {
-        mutation.mutate(
-            { values, weddingGroup },
-            {
-                onSuccess,
-            },
-        )
+        const guest1Id = weddingGroup.wedding_guests[0]?.id
+        const guest2Id = weddingGroup.wedding_guests[1]?.id
+
+        guest1Id &&
+            (await actionEditWeddingGuest({
+                guestId: guest1Id,
+                table: values.table1 || null,
+            }))
+
+        guest2Id &&
+            (await actionEditWeddingGuest({
+                guestId: guest2Id,
+                table: values.table2 || null,
+            }))
+
+        await actionEditWeddingGroup({ groupId: weddingGroup.id, name: values.groupName })
+            .unwrap()
+            .then(() => {
+                onSuccess()
+            })
     }
 
     return { editWeddingGroup }

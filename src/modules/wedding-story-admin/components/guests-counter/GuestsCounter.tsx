@@ -1,12 +1,12 @@
 import { IconPeople } from '@/assets/icons/IconPeople'
-import { useFetchGuestsList } from '../../services/fetch-guests-list/useFetchGuestsList'
 import { IconPeopleRegistered } from '@/assets/icons/IconPeopleRegistered'
 import { IconPeopleAccepted } from '@/assets/icons/IconPeopleAccepted'
 import Tippy from '@tippyjs/react'
 import clsx from 'clsx'
+import { useFetchAllGuests } from '../../hooks/useFetchAllGuests'
 
 export const GuestsCounter: React.FC = () => {
-    const { totalGuests, totalRegisteredGuests, totalCheckedInGuests } = useFetchGuestsList({ textFilter: '' })
+    const { totalGuests, totalRegisteredGuests, totalCheckedInGuests } = useFetchAllGuests()
     return (
         <div className='flex items-center gap-2'>
             <Tippy content='Total guests' interactive={true} className=''>

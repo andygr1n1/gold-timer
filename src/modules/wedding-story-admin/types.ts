@@ -1,6 +1,6 @@
 import type { ResultOf } from 'gql.tada'
-import type { fragment_weddingGroups } from './services/fetch-guests-list/fragment_weddingGroups'
-import type { fragment_weddingGuest } from './services/fetch-guests-list/fragment_weddingGuest'
+import type { fragment_weddingGroups } from './services/graphql/fragment_weddingGroups'
+import type { fragment_weddingGuest } from './services/graphql/fragment_weddingGuest'
 
 export type IInvitationEditorSchema = {
     /* id is for editing purpose */
@@ -14,5 +14,7 @@ export type IInvitationEditorSchema = {
     table2?: number
 }
 
-export type IWeddingGroup = ResultOf<typeof fragment_weddingGroups>
+export type IWeddingGroup = ResultOf<typeof fragment_weddingGroups> & {
+    wedding_guests: ResultOf<typeof fragment_weddingGuest>[]
+}
 export type IWeddingGuest = ResultOf<typeof fragment_weddingGuest>
