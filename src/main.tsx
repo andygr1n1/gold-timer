@@ -2,14 +2,12 @@ import ReactDOM from 'react-dom/client'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { Toaster } from 'react-hot-toast'
 import { App } from './modules/app/App'
-import { App as AntdApp } from 'antd'
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
-import './styles/index.css'
 import { SnowfallAnimation } from './components/SnowfallAnimation'
 import { root$, Root$Provider } from './modules/app/mst/StoreProvider'
 import { Provider } from 'react-redux'
 import { root$ as reduxStore$ } from './store/root.store'
-
+import { App as AntdApp } from 'antd'
+import './styles/index.css'
 
 /* for testing on mobile */
 if (typeof crypto.randomUUID !== 'function') {
@@ -29,7 +27,6 @@ const Main = () => {
     return (
         <QueryClientProvider client={queryClient}>
             <SnowfallAnimation />
-            <ReactQueryDevtools initialIsOpen={false} />
             <AntdApp className='w-full h-full flex text-cText'>
                 <Root$Provider store={root$}>
                     <Provider store={reduxStore$}>

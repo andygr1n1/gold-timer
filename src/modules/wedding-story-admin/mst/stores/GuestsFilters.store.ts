@@ -9,6 +9,7 @@ export const GuestsFilters$ = types
         notCheckedIn: false,
         hidden: false,
         visible: false,
+        tablesView: false,
     })
     .actions((self) => ({
         onChangeField<Key extends keyof typeof self>(field: Key, value: (typeof self)[Key]) {

@@ -11,7 +11,6 @@ export const useLabelFormOnSubmit = () => {
         const { setSubmitting } = formikHelpers
 
         await validation_noteLabelName({ value: values.name }).then((res) => {
-            console.log(res)
             if (res.length) {
                 formikHelpers.setFieldValue('duplicateName', true)
             } else {
