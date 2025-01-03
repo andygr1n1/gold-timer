@@ -3,9 +3,8 @@ import { StyledButton } from '@/components/buttons/StyledButton'
 import { selectNotCheckedIn, updateField } from '@/modules/wedding-story-admin/services/weddingStoryFiltersSlice'
 import { useAppDispatch, useAppSelector } from '@/store/useRootStore'
 import { Checkbox } from 'antd'
-import { observer } from 'mobx-react-lite'
 
-export const FilterNotCheckedInGuests = observer(() => {
+export const FilterNotCheckedInGuests = () => {
     const notCheckedIn = useAppSelector(selectNotCheckedIn)
     const dispatch = useAppDispatch()
 
@@ -20,4 +19,4 @@ export const FilterNotCheckedInGuests = observer(() => {
             </StyledButton>
         </XMenuItem>
     )
-})
+}

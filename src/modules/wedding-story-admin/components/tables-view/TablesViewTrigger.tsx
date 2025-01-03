@@ -1,11 +1,10 @@
 import { IconTableView } from '@/assets/icons/IconTableView'
 import { StyledButton } from '@/components/buttons/StyledButton'
 import Tippy from '@tippyjs/react'
-import { observer } from 'mobx-react-lite'
 import { selectTablesView, updateField } from '../../services/weddingStoryFiltersSlice'
 import { useAppDispatch, useAppSelector } from '@/store/useRootStore'
 
-export const TablesViewTrigger = observer(() => {
+export const TablesViewTrigger = () => {
     const tablesView = useAppSelector(selectTablesView)
     const dispatch = useAppDispatch()
 
@@ -24,4 +23,4 @@ export const TablesViewTrigger = observer(() => {
             </div>
         </Tippy>
     )
-})
+}

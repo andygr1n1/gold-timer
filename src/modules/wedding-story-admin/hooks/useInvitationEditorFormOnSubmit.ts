@@ -1,12 +1,16 @@
 import { type FormikHelpers } from 'formik'
 import type { IInvitationEditorSchema } from '../services/types'
 import { useInvitationEditorFormCreateInvitation } from './useInvitationEditorFormCreateInvitation'
-// import { notifySuccess } from '@/helpers/processMessage'
-import { useInvitationEditorDialog$ } from '../mst/invitationEditorDialog.provider'
+import { useDispatch } from 'react-redux'
+import { updateField } from '../services/weddingStoryEditorSlice'
 
 export const useInvitationEditorFormOnSubmit = () => {
-    const { onClose } = useInvitationEditorDialog$()
+    const dispatch = useDispatch()
     const { createInvitation } = useInvitationEditorFormCreateInvitation()
+
+    const onClose = () => {
+        dispatch(updateField({ field: 'open', value: false }))
+    }
 
     const onSubmit = (values: IInvitationEditorSchema, formikHelpers: FormikHelpers<IInvitationEditorSchema>) => {
         const { setSubmitting } = formikHelpers

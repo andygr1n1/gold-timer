@@ -13,6 +13,10 @@ export type IGuestsFilters$ = {
     tablesView: boolean
 }
 
+export type IWeddingStoryEditor$ = {
+    open: boolean
+}
+
 export type IInvitationEditorSchema = {
     /* id is for editing purpose */
     id?: string

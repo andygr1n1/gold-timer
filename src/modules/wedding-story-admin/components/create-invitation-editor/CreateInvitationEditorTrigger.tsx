@@ -1,9 +1,13 @@
 import { StyledButton } from '@/components/buttons/StyledButton'
-import { useInvitationEditorDialog$ } from '../../mst/invitationEditorDialog.provider'
 import CreateInvitationEditor from './CreateInvitationEditor'
+import { useDispatch } from 'react-redux'
+import { updateField } from '../../services/weddingStoryEditorSlice'
 
-export const CreateInvitationEditorTrigger: React.FC = () => {
-    const { onOpen } = useInvitationEditorDialog$()
+export const CreateInvitationEditorTrigger = () => {
+    const dispatch = useDispatch()
+    const onOpen = () => {
+        dispatch(updateField({ field: 'open', value: true }))
+    }
 
     return (
         <>

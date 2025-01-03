@@ -3,9 +3,8 @@ import { StyledButton } from '@/components/buttons/StyledButton'
 import { selectVisible, updateField } from '@/modules/wedding-story-admin/services/weddingStoryFiltersSlice'
 import { useAppDispatch, useAppSelector } from '@/store/useRootStore'
 import { Checkbox } from 'antd'
-import { observer } from 'mobx-react-lite'
 
-export const FilterVisibleGuests = observer(() => {
+export const FilterVisibleGuests = () => {
     const visible = useAppSelector(selectVisible)
     const dispatch = useAppDispatch()
 
@@ -19,4 +18,4 @@ export const FilterVisibleGuests = observer(() => {
             </StyledButton>
         </XMenuItem>
     )
-})
+}

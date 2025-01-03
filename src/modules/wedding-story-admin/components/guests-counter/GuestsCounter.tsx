@@ -5,7 +5,7 @@ import Tippy from '@tippyjs/react'
 import clsx from 'clsx'
 import { useFetchAllGuests } from '../../hooks/useFetchAllGuests'
 
-export const GuestsCounter: React.FC = () => {
+export const GuestsCounter = () => {
     const { totalGuests, totalRegisteredGuests, totalCheckedInGuests } = useFetchAllGuests()
     return (
         <div className='flex items-center gap-2'>

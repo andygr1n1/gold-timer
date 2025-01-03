@@ -5,6 +5,7 @@ import { setupListeners } from '@reduxjs/toolkit/query'
 import { apiNotepadSlice } from '@/modules/notepad/service/apiNotepadSlice'
 import { apiWeddingStorySlice } from '@/modules/wedding-story-admin/services/apiWeddingStorySlice'
 import { weddingStoryFiltersReducer } from '@/modules/wedding-story-admin/services/weddingStoryFiltersSlice'
+import { weddingStoryEditorReducer } from '@/modules/wedding-story-admin/services/weddingStoryEditorSlice'
 
 export const root$ = configureStore({
     reducer: {
@@ -13,6 +14,8 @@ export const root$ = configureStore({
         /*  */
         [apiWeddingStorySlice.reducerPath]: apiWeddingStorySlice.reducer,
         weddingStoryFilters: weddingStoryFiltersReducer,
+        weddingStoryEditor: weddingStoryEditorReducer,
+        /*  */
     },
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware()

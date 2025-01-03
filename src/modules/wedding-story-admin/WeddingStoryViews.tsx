@@ -1,10 +1,9 @@
-import { observer } from 'mobx-react-lite'
 import { GuestsIndex } from './components/guests/GuestsIndex'
 import { TablesViewIndex } from './components/tables-view/TablesViewIndex'
 import { useAppSelector } from '@/store/useRootStore'
 import { selectTablesView } from './services/weddingStoryFiltersSlice'
 
-export const WeddingStoryViews = observer(() => {
+export const WeddingStoryViews = () => {
     const tablesView = useAppSelector(selectTablesView)
 
     if (tablesView) {
@@ -12,4 +11,4 @@ export const WeddingStoryViews = observer(() => {
     }
 
     return <GuestsIndex />
-})
+}

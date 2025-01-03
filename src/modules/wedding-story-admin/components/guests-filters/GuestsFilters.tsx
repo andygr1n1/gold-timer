@@ -1,4 +1,3 @@
-import { observer } from 'mobx-react-lite'
 import { XDropdown } from '@/components-x/x-dropdown/XDropdown'
 import { XMenuDropdown } from '@/components-x/x-dropdown/XMenuDropdown'
 import { StyledButton } from '@/components/buttons/StyledButton'
@@ -15,7 +14,7 @@ import { FilterByText } from './components/FilterByText'
 import { selectTablesView } from '../../services/weddingStoryFiltersSlice'
 import { useAppSelector } from '@/store/useRootStore'
 
-export const GuestsFilters: React.FC = observer(() => {
+export const GuestsFilters = () => {
     const tablesView = useAppSelector(selectTablesView)
     const { popoverState, setPopoverState } = useTogglePopoverState()
 
@@ -42,7 +41,7 @@ export const GuestsFilters: React.FC = observer(() => {
             <FilterByText />
         </div>
     )
-})
+}
 
 const ContextMenu = () => {
     return (

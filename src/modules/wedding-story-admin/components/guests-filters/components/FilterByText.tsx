@@ -1,9 +1,8 @@
 import { XInput } from '@/components-x/x-input/XInput'
 import { selectTextValue, updateField } from '@/modules/wedding-story-admin/services/weddingStoryFiltersSlice'
 import { useAppDispatch, useAppSelector } from '@/store/useRootStore'
-import { observer } from 'mobx-react-lite'
 
-export const FilterByText = observer(() => {
+export const FilterByText = () => {
     const value = useAppSelector(selectTextValue)
     const dispatch = useAppDispatch()
 
@@ -16,4 +15,4 @@ export const FilterByText = observer(() => {
             <XInput value={value} onChange={onChange} placeholder='Search' />
         </div>
     )
-})
+}
