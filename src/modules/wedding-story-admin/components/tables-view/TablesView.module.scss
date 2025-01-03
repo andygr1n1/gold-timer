@@ -1,3 +1,3 @@
 .dashboardWidgetWrapper {
-    @apply bg-global-2-bg flex flex-col min-h-[100px] w-full flex-[100%] rounded-md shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] 2lg:flex-[45%];
+    @apply bg-global-2-bg flex flex-col min-h-[100px] w-full flex-[100%] rounded-md shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] lg:max-w-[45%] 2lg:flex-[45%];
 }

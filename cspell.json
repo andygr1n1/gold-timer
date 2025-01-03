@@ -20,7 +20,8 @@
         "webp",
         "xtiptap",
         "Zeplin",
-        "Патронус"
+        "Патронус",
+        "gendev",
     ],
     "ignorePaths": [],
     "ignoreRegExpList": [

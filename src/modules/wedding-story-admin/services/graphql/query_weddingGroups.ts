@@ -6,7 +6,7 @@ export const queryWeddingGroups = () => {
     const query = graphql(
         `
             query wedding_groups {
-                wedding_groups(order_by: { created_at: desc }) {
+                wedding_groups(where: { deleted_at: { _is_null: true } }, order_by: { created_at: desc }) {
                     ...Fragment_weddingGroups
                 }
             }

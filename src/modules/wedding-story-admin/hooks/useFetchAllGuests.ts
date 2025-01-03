@@ -1,4 +1,4 @@
-import { compact, sortBy, uniq } from 'lodash-es'
+import { sortBy, uniq } from 'lodash-es'
 import { useGetAllWeddingGroupsQuery } from '../services/apiWeddingStorySlice'
 
 export const useFetchAllGuests = () => {
@@ -14,7 +14,7 @@ export const useFetchAllGuests = () => {
 
     const totalCheckedInGuests = guests?.filter((guest) => !!guest.accepted).length
 
-    const tables = compact(sortBy(uniq(guests?.map((guest) => guest.table))))
+    const tables = sortBy(uniq(guests?.map((guest) => guest.table)))
 
     return {
         isLoading,

@@ -13,7 +13,11 @@ export const GuestTableInput: React.FC<{ type: 'name1' | 'name2'; guest: IWeddin
         <div>
             <FormLabel title={`${isFirstGuest ? 'First guest' : 'Second guest'}`} />
             <div className='flex items-center gap-2'>
-                <XInput readOnly data-testid={`guest-name-input-${type}`} value={guest.first_name + ' ' + guest.last_name} />
+                <XInput
+                    readOnly
+                    data-testid={`guest-name-input-${type}`}
+                    value={(guest.first_name || '') + ' ' + (guest.last_name || '')}
+                />
                 <div className='max-w-[100px]'>
                     <XInput
                         startIcon={<IconPlaceSetting />}
