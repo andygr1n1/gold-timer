@@ -1,5 +1,5 @@
 import { useQueryClient } from '@tanstack/react-query'
-import type { IWeddingGroup } from '../types'
+import type { IWeddingGroup } from '../services/types'
 import { notifySuccess } from '@/helpers/processMessage'
 import { useHideWeddingGroupMutation } from '../services/apiWeddingStorySlice'
 

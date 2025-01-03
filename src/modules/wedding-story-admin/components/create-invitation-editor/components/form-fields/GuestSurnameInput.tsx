@@ -1,7 +1,7 @@
 import { XInput } from '@/components-x/x-input/XInput'
 import { FormLabel } from '@/components/form/FormLabel'
 import { useFormikContext } from 'formik'
-import type { IInvitationEditorSchema } from '@/modules/wedding-story-admin/types'
+import type { IInvitationEditorSchema } from '@/modules/wedding-story-admin/services/types'
 
 export const GuestSurnameInput: React.FC<{ type: 'surname1' | 'surname2' }> = ({ type }) => {
     const formikContext = useFormikContext<IInvitationEditorSchema>()

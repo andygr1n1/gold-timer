@@ -1,11 +1,17 @@
 import { IconTableView } from '@/assets/icons/IconTableView'
 import { StyledButton } from '@/components/buttons/StyledButton'
 import Tippy from '@tippyjs/react'
-import { useGuestsFilters$ } from '../../mst/guestsFilters.provider'
 import { observer } from 'mobx-react-lite'
+import { selectTablesView, updateField } from '../../services/weddingStoryFiltersSlice'
+import { useAppDispatch, useAppSelector } from '@/store/useRootStore'
 
 export const TablesViewTrigger = observer(() => {
-    const { tablesView, onChangeField } = useGuestsFilters$()
+    const tablesView = useAppSelector(selectTablesView)
+    const dispatch = useAppDispatch()
+
+    const onClick = () => {
+        dispatch(updateField({ field: 'tablesView', value: !tablesView }))
+    }
 
     return (
         <Tippy content='Tables view' interactive={true} className=''>
@@ -13,9 +19,7 @@ export const TablesViewTrigger = observer(() => {
                 <StyledButton
                     variant={tablesView ? 'contained' : 'outlined'}
                     startIcon={<IconTableView className='w-5 h-5' />}
-                    onClick={() => {
-                        onChangeField('tablesView', !tablesView)
-                    }}
+                    onClick={onClick}
                 ></StyledButton>
             </div>
         </Tippy>

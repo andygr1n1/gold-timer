@@ -1,7 +1,7 @@
 import { XMenuItem } from '@/components-x/x-dropdown/XMenuItem'
 import { StyledButton } from '@/components/buttons/StyledButton'
 import CopyToClipboard from 'react-copy-to-clipboard'
-import type { IWeddingGroup } from '@/modules/wedding-story-admin/types'
+import type { IWeddingGroup } from '@/modules/wedding-story-admin/services/types'
 import { IconCopyLink } from '@/assets/icons/IconCopyLink'
 import { notifyClipboard } from '@/helpers/processMessage'
 

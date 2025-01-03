@@ -1,5 +1,5 @@
 import { type FormikHelpers } from 'formik'
-import type { IInvitationEditorSchema, IWeddingGroup } from '../types'
+import type { IInvitationEditorSchema, IWeddingGroup } from '../services/types'
 // import { notifySuccess } from '@/helpers/processMessage'
 import { useEditWeddingGroup } from './useEditWeddingGroup'
 

@@ -1,6 +1,6 @@
 import { Formik } from 'formik'
 import { InvitationEditorForm } from './InvitationEditorForm'
-import type { IInvitationEditorSchema } from '@/modules/wedding-story-admin/types'
+import type { IInvitationEditorSchema } from '@/modules/wedding-story-admin/services/types'
 import { useInvitationEditorFormOnSubmit } from '@/modules/wedding-story-admin/hooks/useInvitationEditorFormOnSubmit'
 import { useInvitationEditorFormOnValidate } from '@/modules/wedding-story-admin/hooks/useInvitationEditorFormOnValidate'
 import { useInvitationEditorFormInitialValues } from '@/modules/wedding-story-admin/hooks/useInvitationEditorFormInitialValues'

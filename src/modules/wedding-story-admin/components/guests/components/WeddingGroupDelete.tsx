@@ -2,7 +2,7 @@ import { IconDeleteForever } from '@/assets/icons'
 import { XMenuItem } from '@/components-x/x-dropdown/XMenuItem'
 import { StyledButton } from '@/components/buttons/StyledButton'
 import { useDeleteWeddingGroup } from '@/modules/wedding-story-admin/hooks/useDeleteWeddingGroup'
-import type { IWeddingGroup } from '@/modules/wedding-story-admin/types'
+import type { IWeddingGroup } from '@/modules/wedding-story-admin/services/types'
 import { useEffect, useState } from 'react'
 
 export const WeddingGroupDelete: React.FC<{ weddingGroup: IWeddingGroup; action: () => void }> = ({

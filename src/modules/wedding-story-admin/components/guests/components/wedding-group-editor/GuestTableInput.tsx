@@ -1,7 +1,7 @@
 import { IconPlaceSetting } from '@/assets/icons/IconPlaceSetting'
 import { XInput } from '@/components-x/x-input/XInput'
 import { FormLabel } from '@/components/form/FormLabel'
-import type { IInvitationEditorSchema, IWeddingGuest } from '@/modules/wedding-story-admin/types'
+import type { IInvitationEditorSchema, IWeddingGuest } from '@/modules/wedding-story-admin/services/types'
 import { useFormikContext } from 'formik'
 
 export const GuestTableInput: React.FC<{ type: 'name1' | 'name2'; guest: IWeddingGuest }> = ({ type, guest }) => {

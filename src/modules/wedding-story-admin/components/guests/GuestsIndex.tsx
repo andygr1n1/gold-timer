@@ -1,10 +1,11 @@
 import { observer } from 'mobx-react-lite'
 import { WeddingGroup } from './components/WeddingGroup'
-import { useGuestsFilters$ } from '../../mst/guestsFilters.provider'
 import { useFetchFilteredGuests } from '../../hooks/useFetchFilteredGuests'
+import { useAppSelector } from '@/store/useRootStore'
+import { selectTextValue } from '../../services/weddingStoryFiltersSlice'
 
 export const GuestsIndex: React.FC = observer(() => {
-    const { textValue } = useGuestsFilters$()
+    const textValue = useAppSelector(selectTextValue)
     const { filteredData } = useFetchFilteredGuests({ textFilter: textValue })
 
     return (

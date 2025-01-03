@@ -1,5 +1,5 @@
 import { type FormikHelpers } from 'formik'
-import type { IInvitationEditorSchema } from '../types'
+import type { IInvitationEditorSchema } from '../services/types'
 import { useInvitationEditorFormCreateInvitation } from './useInvitationEditorFormCreateInvitation'
 // import { notifySuccess } from '@/helpers/processMessage'
 import { useInvitationEditorDialog$ } from '../mst/invitationEditorDialog.provider'

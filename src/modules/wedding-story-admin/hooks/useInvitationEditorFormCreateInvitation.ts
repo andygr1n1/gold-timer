@@ -1,4 +1,4 @@
-import type { IInvitationEditorSchema } from '../types'
+import type { IInvitationEditorSchema } from '../services/types'
 import { useInsertWeddingGroupMutation, useInsertWeddingGuestsMutation } from '../services/apiWeddingStorySlice'
 import { generateBookingNumber } from '../helpers/generateBookingNumber'
 

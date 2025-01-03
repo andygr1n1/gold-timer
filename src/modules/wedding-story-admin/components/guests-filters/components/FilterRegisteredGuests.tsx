@@ -1,21 +1,20 @@
 import { XMenuItem } from '@/components-x/x-dropdown/XMenuItem'
 import { StyledButton } from '@/components/buttons/StyledButton'
-import { useGuestsFilters$ } from '@/modules/wedding-story-admin/mst/guestsFilters.provider'
+import { selectRegistered, updateField } from '@/modules/wedding-story-admin/services/weddingStoryFiltersSlice'
+import { useAppDispatch, useAppSelector } from '@/store/useRootStore'
 import { Checkbox } from 'antd'
 import { observer } from 'mobx-react-lite'
 
 export const FilterRegisteredGuests = observer(() => {
-    const { registered, onChangeField } = useGuestsFilters$()
+    const registered = useAppSelector(selectRegistered)
+    const dispatch = useAppDispatch()
+
+    const onClick = () => {
+        dispatch(updateField({ field: 'registered', value: !registered }))
+    }
     return (
         <XMenuItem className='w-fit'>
-            <StyledButton
-                className='w-fit'
-                variant='text'
-                size='small'
-                onClick={() => {
-                    onChangeField('registered', !registered)
-                }}
-            >
+            <StyledButton className='w-fit' variant='text' size='small' onClick={onClick}>
                 <Checkbox checked={registered}>Registered</Checkbox>
             </StyledButton>
         </XMenuItem>

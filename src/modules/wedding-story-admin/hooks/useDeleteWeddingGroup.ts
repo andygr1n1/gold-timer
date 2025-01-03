@@ -1,4 +1,4 @@
-import type { IWeddingGroup } from '../types'
+import type { IWeddingGroup } from '../services/types'
 import { notifySuccess } from '@/helpers/processMessage'
 import { useDeleteWeddingGroupMutation } from '../services/apiWeddingStorySlice'
 

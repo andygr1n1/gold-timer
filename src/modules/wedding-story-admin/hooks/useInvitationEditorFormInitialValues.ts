@@ -1,5 +1,5 @@
-import type { IInvitationEditorSchema } from '../types.ts'
-import type { IWeddingGroup } from '../types.ts'
+import type { IInvitationEditorSchema } from '../services/types.ts'
+import type { IWeddingGroup } from '../services/types.ts'
 
 export const useInvitationEditorFormInitialValues = (props?: { weddingGroup?: IWeddingGroup }) => {
     const initialValues: IInvitationEditorSchema = initialInvitation({ weddingGroup: props?.weddingGroup })

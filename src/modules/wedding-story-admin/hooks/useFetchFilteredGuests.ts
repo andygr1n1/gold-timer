@@ -1,10 +1,11 @@
 import { getAcceptedFilter, getHideFilter, getRegisteredFilter } from '../services/graphql/query_weddingGroups'
 import { filterWordsOptimizer } from '@/helpers/filterWordsOptimizer'
-import { useGuestsFilters$ } from '../mst/guestsFilters.provider'
 import { useGetWeddingGroupsByFilterQuery } from '../services/apiWeddingStorySlice'
+import { useAppSelector } from '@/store/useRootStore'
+import { selectGuestsFilters } from '../services/weddingStoryFiltersSlice'
 
 export const useFetchFilteredGuests = ({ textFilter }: { textFilter?: string }) => {
-    const filters = useGuestsFilters$()
+    const filters = useAppSelector(selectGuestsFilters)
 
     const hide = getHideFilter(filters)
     const registration = getRegisteredFilter(filters)
