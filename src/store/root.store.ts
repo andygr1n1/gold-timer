@@ -4,17 +4,27 @@ import { listenerMiddleware } from './middleware/listenerMiddleware'
 import { setupListeners } from '@reduxjs/toolkit/query'
 import { apiNotepadSlice } from '@/modules/notepad/service/apiNotepadSlice'
 import { apiWeddingStorySlice } from '@/modules/wedding-story-admin/services/apiWeddingStorySlice'
-// import counterReducer from '@/modules/counter/store/counterSlice'
+import { weddingStoryFiltersReducer } from '@/modules/wedding-story-admin/services/weddingStoryFiltersSlice'
+import { weddingStoryEditorReducer } from '@/modules/wedding-story-admin/services/weddingStoryEditorSlice'
 
 export const root$ = configureStore({
     reducer: {
-        // appInventoryList: appInventoryListReducer,
         [apiGoalsSlidesSlice.reducerPath]: apiGoalsSlidesSlice.reducer,
         [apiNotepadSlice.reducerPath]: apiNotepadSlice.reducer,
+        /*  */
         [apiWeddingStorySlice.reducerPath]: apiWeddingStorySlice.reducer,
+        weddingStoryFilters: weddingStoryFiltersReducer,
+        weddingStoryEditor: weddingStoryEditorReducer,
+        /*  */
     },
     middleware: (getDefaultMiddleware) =>
-        getDefaultMiddleware().prepend(listenerMiddleware.middleware).concat(apiGoalsSlidesSlice.middleware, apiNotepadSlice.middleware, apiWeddingStorySlice.middleware),
+        getDefaultMiddleware()
+            .prepend(listenerMiddleware.middleware)
+            .concat(apiGoalsSlidesSlice.middleware, apiNotepadSlice.middleware, apiWeddingStorySlice.middleware),
 })
 
 setupListeners(root$.dispatch)
+
+root$.subscribe(() => {
+    localStorage.setItem('weddingStoryFilters', JSON.stringify(root$.getState().weddingStoryFilters))
+})

@@ -2,7 +2,7 @@ import { cn } from '@/helpers/cn'
 import { useFetchAllGuests } from '../../hooks/useFetchAllGuests'
 import { TableList } from './components/TableList'
 import styles from './TablesView.module.scss'
-export const TablesViewIndex: React.FC = () => {
+export const TablesViewIndex = () => {
     const { tables } = useFetchAllGuests()
 
     return (

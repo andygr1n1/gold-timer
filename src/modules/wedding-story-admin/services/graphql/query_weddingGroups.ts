@@ -1,5 +1,5 @@
+import type { IGuestsFilters$ } from '../types'
 import { fragment_weddingGroups } from './fragment_weddingGroups'
-import type { IGuestsFilters$ } from '../../mst/stores/GuestsFilters.store'
 import { graphql } from '@/api/tada'
 
 export const queryWeddingGroups = () => {

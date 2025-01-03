@@ -1,4 +1,4 @@
-import type { IWeddingGroup, IWeddingGuest } from '@/modules/wedding-story-admin/types'
+import type { IWeddingGroup, IWeddingGuest } from '@/modules/wedding-story-admin/services/types'
 import { useState } from 'react'
 import { WeddingGroupEditor } from '../../guests/components/wedding-group-editor/WeddingGroupEditor'
 

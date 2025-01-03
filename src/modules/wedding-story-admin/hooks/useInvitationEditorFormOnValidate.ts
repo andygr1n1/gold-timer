@@ -1,4 +1,4 @@
-import type { IInvitationEditorSchema } from '../types'
+import type { IInvitationEditorSchema } from '../services/types'
 
 export const useInvitationEditorFormOnValidate = () => {
     const validate = (values: IInvitationEditorSchema) => {

@@ -1,7 +1,7 @@
 import { createApi } from '@reduxjs/toolkit/query/react'
 
 import { graphqlBaseQuery as baseQuery } from '@/api/graphqlBaseQuery'
-import type { IWeddingGroup, IWeddingGuest } from '../types'
+import type { IWeddingGroup, IWeddingGuest } from './types'
 import { queryWeddingGroups, queryWeddingGroupsByFilter } from './graphql/query_weddingGroups'
 import type { Variables } from 'graphql-request'
 import { mutationInsertWeddingGroup, mutationInsertWeddingGuests } from './graphql/mutation_createInvitation'

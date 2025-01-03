@@ -1,4 +1,4 @@
-import type { IInvitationEditorSchema, IWeddingGroup } from '../types'
+import type { IInvitationEditorSchema, IWeddingGroup } from '../services/types'
 import { useEditWeddingGroupMutation, useEditWeddingGuestMutation } from '../services/apiWeddingStorySlice'
 
 export const useEditWeddingGroup = () => {

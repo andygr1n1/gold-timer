@@ -1,7 +1,7 @@
 import { Route, Routes } from 'react-router-dom'
 import { WeddingStoryAdmin } from './WeddingStoryAdmin'
 
-const WeddingStoryAdminIndex: React.FC = () => {
+const WeddingStoryAdminIndex = () => {
     return (
         <Routes>
             <Route path='/' element={<WeddingStoryAdmin />} />

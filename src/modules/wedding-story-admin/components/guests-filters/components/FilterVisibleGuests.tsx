@@ -1,23 +1,21 @@
 import { XMenuItem } from '@/components-x/x-dropdown/XMenuItem'
 import { StyledButton } from '@/components/buttons/StyledButton'
-import { useGuestsFilters$ } from '@/modules/wedding-story-admin/mst/guestsFilters.provider'
+import { selectVisible, updateField } from '@/modules/wedding-story-admin/services/weddingStoryFiltersSlice'
+import { useAppDispatch, useAppSelector } from '@/store/useRootStore'
 import { Checkbox } from 'antd'
-import { observer } from 'mobx-react-lite'
 
-export const FilterVisibleGuests = observer(() => {
-    const { visible, onChangeField } = useGuestsFilters$()
+export const FilterVisibleGuests = () => {
+    const visible = useAppSelector(selectVisible)
+    const dispatch = useAppDispatch()
+
+    const onClick = () => {
+        dispatch(updateField({ field: 'visible', value: !visible }))
+    }
     return (
         <XMenuItem className='w-fit'>
-            <StyledButton
-                className='w-fit'
-                variant='text'
-                size='small'
-                onClick={() => {
-                    onChangeField('visible', !visible)
-                }}
-            >
+            <StyledButton className='w-fit' variant='text' size='small' onClick={onClick}>
                 <Checkbox checked={visible}>Visible</Checkbox>
             </StyledButton>
         </XMenuItem>
     )
-})
+}

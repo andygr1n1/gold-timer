@@ -6,7 +6,7 @@ import { IconPlaceSetting } from '@/assets/icons/IconPlaceSetting'
 import { FormLabel } from '@/components/form/FormLabel'
 import { cn } from '@/helpers/cn'
 import { notifyClipboard } from '@/helpers/processMessage'
-import type { IWeddingGuest } from '@/modules/wedding-story-admin/types'
+import type { IWeddingGuest } from '@/modules/wedding-story-admin/services/types'
 import { isWithinInterval, subWeeks } from 'date-fns'
 import CopyToClipboard from 'react-copy-to-clipboard'
 

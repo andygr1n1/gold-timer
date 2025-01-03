@@ -1,12 +1,18 @@
 import { XModal } from '@/components-x/x-modal/XModal'
 import { Suspense, lazy } from 'react'
-import { useInvitationEditorDialog$ } from '../../mst/invitationEditorDialog.provider'
-import { observer } from 'mobx-react-lite'
+import { useDispatch, useSelector } from 'react-redux'
+import { selectOpen, updateField } from '../../services/weddingStoryEditorSlice'
 const InvitationEditor = lazy(() => import('./components/InvitationEditor'))
 const InvitationEditorTitle = lazy(() => import('./components/InvitationEditorTitle'))
 
-const CreateInvitationEditor = observer(() => {
-    const { open, onClose } = useInvitationEditorDialog$()
+const CreateInvitationEditor = () => {
+    const open = useSelector(selectOpen)
+
+    const dispatch = useDispatch()
+
+    const onClose = () => {
+        dispatch(updateField({ field: 'open', value: false }))
+    }
 
     return (
         <XModal
@@ -26,5 +32,5 @@ const CreateInvitationEditor = observer(() => {
             )}
         </XModal>
     )
-})
+}
 export default CreateInvitationEditor
