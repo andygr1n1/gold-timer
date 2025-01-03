@@ -4,7 +4,7 @@ import Tippy from '@tippyjs/react'
 import { useGuestsFilters$ } from '../../mst/guestsFilters.provider'
 import { observer } from 'mobx-react-lite'
 
-export const TablesViewTrigger: React.FC = observer(() => {
+export const TablesViewTrigger = observer(() => {
     const { tablesView, onChangeField } = useGuestsFilters$()
 
     return (

@@ -1,6 +1,6 @@
 import { type FormikHelpers } from 'formik'
 import type { IInvitationEditorSchema, IWeddingGroup } from '../types'
-import { notifySuccess } from '@/helpers/processMessage'
+// import { notifySuccess } from '@/helpers/processMessage'
 import { useEditWeddingGroup } from './useEditWeddingGroup'
 
 export const useEditWeddingGroupEditorFormOnSubmit = () => {
@@ -18,7 +18,7 @@ export const useEditWeddingGroupEditorFormOnSubmit = () => {
             weddingGroup,
             onSuccess: () => {
                 setSubmitting(false)
-                notifySuccess('Wedding group updated successfully')
+                // notifySuccess('Wedding group updated successfully')
                 editGroup(false)
             },
         })

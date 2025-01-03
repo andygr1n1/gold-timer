@@ -1,3 +1,6 @@
+import { observer } from 'mobx-react-lite'
+import { useEffect } from 'react'
+import { onSnapshot } from 'mobx-state-tree'
 import { XDropdown } from '@/components-x/x-dropdown/XDropdown'
 import { XMenuDropdown } from '@/components-x/x-dropdown/XMenuDropdown'
 import { StyledButton } from '@/components/buttons/StyledButton'
@@ -9,27 +12,23 @@ import { FilterVisibleGuests } from './components/FilterVisibleGuests'
 import { FilterHiddenGuests } from './components/FilterHiddenGuests'
 import { FilterCheckedInGuests } from './components/FilterCheckedInGuests'
 import { FilterNotCheckedInGuests } from './components/FilterNotCheckedInGuests'
-import { useEffect } from 'react'
-import { onSnapshot } from 'mobx-state-tree'
-import { guestsFilters$ } from '../../mst/guestsFilters.provider'
-import { useQueryClient } from '@tanstack/react-query'
+import { guestsFilters$, useGuestsFilters$ } from '../../mst/guestsFilters.provider'
 import { XMenuDivider } from '@/components-x/x-dropdown/XMenuDivider'
 import { FilterByText } from './components/FilterByText'
 
-export const GuestsFilters: React.FC = () => {
-    const queryClient = useQueryClient()
+export const GuestsFilters: React.FC = observer(() => {
+    const { tablesView } = useGuestsFilters$()
     const { popoverState, setPopoverState } = useTogglePopoverState()
 
     useEffect(() => {
         const dispose = onSnapshot(guestsFilters$, (store) => {
             localStorage.setItem('guestsFilters', JSON.stringify(store))
-            queryClient.invalidateQueries()
         })
 
         return () => dispose()
     }, [])
 
-    return (
+    return tablesView ? null : (
         <div className='flex gap-2'>
             <XDropdown
                 destroyPopupOnHide
@@ -52,7 +51,7 @@ export const GuestsFilters: React.FC = () => {
             <FilterByText />
         </div>
     )
-}
+})
 
 const ContextMenu = () => {
     return (

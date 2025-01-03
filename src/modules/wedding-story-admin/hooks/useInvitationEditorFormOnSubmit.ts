@@ -1,7 +1,7 @@
 import { type FormikHelpers } from 'formik'
 import type { IInvitationEditorSchema } from '../types'
 import { useInvitationEditorFormCreateInvitation } from './useInvitationEditorFormCreateInvitation'
-import { notifySuccess } from '@/helpers/processMessage'
+// import { notifySuccess } from '@/helpers/processMessage'
 import { useInvitationEditorDialog$ } from '../mst/invitationEditorDialog.provider'
 
 export const useInvitationEditorFormOnSubmit = () => {
@@ -14,7 +14,7 @@ export const useInvitationEditorFormOnSubmit = () => {
             values,
             onSuccess: () => {
                 setSubmitting(false)
-                notifySuccess('Invitation created successfully')
+                // notifySuccess('Invitation created successfully')
                 onClose()
             },
         })

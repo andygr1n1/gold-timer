@@ -15,6 +15,9 @@ export const GuestsFilters$ = types
         onChangeField<Key extends keyof typeof self>(field: Key, value: (typeof self)[Key]) {
             self[field] = value
         },
+        toggleTablesView() {
+            self.tablesView = !self.tablesView
+        },
     }))
 
 export interface IGuestsFilters$ extends Instance<typeof GuestsFilters$> {}
