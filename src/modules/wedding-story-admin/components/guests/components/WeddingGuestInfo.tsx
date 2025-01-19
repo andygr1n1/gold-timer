@@ -71,7 +71,7 @@ export const WeddingGuestInfo: React.FC<{ weddingGuest: IWeddingGuest; registere
                             notifyClipboard(weddingGuest.more_info)
                         }}
                     >
-                        <IconExpired className='w-5 h-5 text-cText opacity-70' />
+                        <IconExpired className='w-5 h-5 min-w-5 min-h-5 text-cText opacity-70' />
                         <span>{weddingGuest.more_info}</span>
                     </div>
                 </CopyToClipboard>

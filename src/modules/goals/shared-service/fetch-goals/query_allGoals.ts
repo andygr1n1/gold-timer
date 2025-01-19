@@ -20,8 +20,9 @@ export const query_allGoals = async (props: {
                     goals(
                         limit: $limit
                         offset: $offset
-                        order_by: [{ finished_at: asc }, { title: asc }]
+                        order_by: [{ finished_at: desc }, { title: asc }]
                         where: {
+                            deleted_at: { _is_null: true }
                             _or: [
                                 { title: { _ilike: $serverSearchInput } }
                                 { slogan: { _ilike: $serverSearchInput } }

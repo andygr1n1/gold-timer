@@ -19,7 +19,7 @@ export const StoriesByFilterIndex = () => {
                     <StoryEditorDialog />
                 </Suspense>
                 <Stories$Provider store={stories$}>
-                    <div className='flex flex-col gap-10 w-full max-w-[600px] mx-auto relative'>
+                    <div className='flex flex-col gap-10 w-full max-w-[1600px] mx-auto relative'>
                         <StoriesHeader />
                         <StoriesList key={queryFilter} queryFilter={queryFilter} />
                     </div>

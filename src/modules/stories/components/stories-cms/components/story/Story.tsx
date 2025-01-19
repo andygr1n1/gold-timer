@@ -16,8 +16,10 @@ export const Story: React.FC<{ story: IStory; isMobile: MEDIA_QUERY_VALUES_ENUM 
     const navigate = useNavigate()
     const location = useLocation()
 
+    const isFavorite = story.is_favorite
+
     return (
-        <div className='relative'>
+        <div className='relative flex w-full xl:max-w-[40%] xl:flex-[40%]'>
             <XDropdown
                 open={popoverState}
                 onOpenChange={() => {
@@ -28,9 +30,12 @@ export const Story: React.FC<{ story: IStory; isMobile: MEDIA_QUERY_VALUES_ENUM 
             >
                 <div
                     className={cn(
-                        `bg-global-2-bg flex w-[calc(100%-40px)] max-w-[600px] flex-col 
-                    overflow-auto rounded-lg p-5 hover:scale-105 duration-300 shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px]
-                    relative border-solid border-transparent hover:border-blue-500 cursor-pointer`,
+                        `relative bg-global-2-bg flex w-full flex-col overflow-auto rounded-lg p-5
+                        hover:scale-105 duration-300 shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px]
+                        border-solid border-transparent hover:border-blue-500 cursor-pointer`,
+                        isFavorite &&
+                            `bg-gradient-to-r from-violet-600  to-indigo-500 border-none
+                        outline outline-offset-[-2px] outline-transparent hover:outline-indigo-500 shadow-xl shadow-indigo-500/50`,
                     )}
                     onContextMenu={() => {
                         setPopoverState(!popoverState)
@@ -40,13 +45,13 @@ export const Story: React.FC<{ story: IStory; isMobile: MEDIA_QUERY_VALUES_ENUM 
                     }}
                     key={story.id}
                 >
-                    <div className='flex gap-2 h-full relative items-center justify-between min-h-[120px] '>
-                        <div className='h-full flex min-w-[120px]'>
+                    <div className='flex gap-2 h-full relative items-center justify-between min-h-[80px] '>
+                        <div className='h-full flex min-w-[80px]'>
                             {story.img_path ? (
                                 <img
                                     src={`${import.meta.env['VITE_FIRE_BUNNY_STORAGE']}stories/${story.img_path}`}
-                                    width={120}
-                                    height={120}
+                                    width={80}
+                                    height={80}
                                     className='animate-opacity-3 rounded-lg'
                                     // title={ach.title}
                                 />
@@ -54,17 +59,17 @@ export const Story: React.FC<{ story: IStory; isMobile: MEDIA_QUERY_VALUES_ENUM 
                                 <NoImage className='opacity-20' />
                             )}
                         </div>
-                        <div className='flex justify-between flex-col min-h-[120px] h-full w-full'>
-                            <div className='flex flex-auto h-full text-lg font-atkinson'>{story.title}</div>
-                        </div>
-                    </div>
-                    <div className='flex justify-between mt-2 items-center h-[32px]'>
-                        <div className='text-xs m2-4 opacity-80 font-semibold font-kzen cursor-default text-cText'>
-                            {format(formatDateWithTimezone(new Date(story.updated_at)), 'dd MMMM yyyy HH:mm')} by{' '}
-                            {story.updated_by_user?.name}
-                        </div>
-                        <div className='flex'>
-                            <StoryStatus story={story} />
+                        <div className='flex justify-between flex-col h-full w-full'>
+                            <div className='flex flex-auto font-atkinson text-base'>{story.title}</div>
+                            <div className='flex justify-between mt-2 items-center h-[32px]'>
+                                <div className='text-xs font-atkinson m2-4 opacity-80 font-semibold cursor-default text-cText'>
+                                    {format(formatDateWithTimezone(new Date(story.updated_at)), 'dd MMMM yyyy HH:mm')}{' '}
+                                    by {story.updated_by_user?.name}
+                                </div>
+                                <div className='flex'>
+                                    <StoryStatus story={story} />
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -8,7 +8,7 @@ export const NoImage: React.FC<{ className?: string; iconClassName?: string }> =
     return (
         <div
             className={cn(
-                'h-32 w-32 items-center justify-center flex border-solid rounded-md border-[0.5px] border-global-bg-regal bg-global-bg-plasma',
+                'h-[80px] w-[80px] items-center justify-center flex border-solid rounded-md border-[0.5px] border-global-bg-regal bg-global-bg-plasma',
                 className,
             )}
         >
