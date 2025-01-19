@@ -20,7 +20,7 @@ export const query_deletedGoals = async (props: {
                     goals(
                         limit: $limit
                         offset: $offset
-                        order_by: [{ finished_at: asc }, { title: asc }]
+                        order_by: [{ finished_at: desc }, { title: asc }]
                         where: {
                             _and: [
                                 { deleted_at: { _is_null: false } }

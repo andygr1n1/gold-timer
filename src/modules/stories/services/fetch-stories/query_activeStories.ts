@@ -21,7 +21,7 @@ export const query_activeStories = async (props: {
                     stories(
                         limit: $limit
                         offset: $offset
-                        order_by: { updated_at: desc }
+                        order_by: [{ is_favorite: desc }, { updated_at: desc }]
                         where: {
                             _and: [
                                 { deleted_at: { _is_null: true }, archived: { _eq: false }, title: { _ilike: $title } }
