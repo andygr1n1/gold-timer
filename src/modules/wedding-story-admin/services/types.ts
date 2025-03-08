@@ -21,6 +21,7 @@ export type IInvitationEditorSchema = {
     /* id is for editing purpose */
     id?: string
     groupName: string
+    solo?: boolean
     name1: string
     name2: string
     surname1?: string
