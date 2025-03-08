@@ -13,4 +13,5 @@ const initialInvitation = ({ weddingGroup }: { weddingGroup?: IWeddingGroup }): 
     name2: weddingGroup?.wedding_guests[1]?.first_name || '',
     table1: weddingGroup?.wedding_guests[0]?.table || undefined,
     table2: weddingGroup?.wedding_guests[1]?.table || undefined,
+    solo: weddingGroup?.solo || false,
 })

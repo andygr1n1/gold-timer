@@ -20,6 +20,7 @@ export const useInvitationEditorFormCreateInvitation = () => {
             id: group_id,
             name: values.groupName,
             booking_number,
+            solo: values.solo,
         }
 
         await actionInsertGroup({ object })

@@ -7,6 +7,7 @@ export const mutationInsertWeddingGroup = () => {
                 id
                 name
                 booking_number
+                solo
             }
         }
     `)

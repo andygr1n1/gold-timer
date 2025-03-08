@@ -11207,6 +11207,9 @@ type wedding_groups {
   name: String
   registration: Boolean
 
+  """if group is only for one person"""
+  solo: Boolean
+
   """An array relationship"""
   wedding_guests(
     """distinct select on columns"""
@@ -11275,6 +11278,7 @@ input wedding_groups_bool_exp {
   id: uuid_comparison_exp
   name: String_comparison_exp
   registration: Boolean_comparison_exp
+  solo: Boolean_comparison_exp
   wedding_guests: wedding_guests_bool_exp
   wedding_guests_aggregate: wedding_guests_aggregate_bool_exp
 }
@@ -11300,6 +11304,9 @@ input wedding_groups_insert_input {
   id: uuid
   name: String
   registration: Boolean
+
+  """if group is only for one person"""
+  solo: Boolean
   wedding_guests: wedding_guests_arr_rel_insert_input
 }
 
@@ -11360,6 +11367,7 @@ input wedding_groups_order_by {
   id: order_by
   name: order_by
   registration: order_by
+  solo: order_by
   wedding_guests_aggregate: wedding_guests_aggregate_order_by
 }
 
@@ -11392,6 +11400,9 @@ enum wedding_groups_select_column {
 
   """column name"""
   registration
+
+  """column name"""
+  solo
 }
 
 """
@@ -11405,6 +11416,9 @@ input wedding_groups_set_input {
   id: uuid
   name: String
   registration: Boolean
+
+  """if group is only for one person"""
+  solo: Boolean
 }
 
 """
@@ -11427,6 +11441,9 @@ input wedding_groups_stream_cursor_value_input {
   id: uuid
   name: String
   registration: Boolean
+
+  """if group is only for one person"""
+  solo: Boolean
 }
 
 """
@@ -11453,6 +11470,9 @@ enum wedding_groups_update_column {
 
   """column name"""
   registration
+
+  """column name"""
+  solo
 }
 
 input wedding_groups_updates {
@@ -11476,7 +11496,6 @@ type wedding_guests {
   phone: String
   primary: Boolean
   table: Int
-  updated_at: timestamptz
 
   """An object relationship"""
   wedding_group: wedding_groups!
@@ -11591,7 +11610,6 @@ input wedding_guests_bool_exp {
   phone: String_comparison_exp
   primary: Boolean_comparison_exp
   table: Int_comparison_exp
-  updated_at: timestamptz_comparison_exp
   wedding_group: wedding_groups_bool_exp
 }
 
@@ -11613,11 +11631,6 @@ enum wedding_guests_constraint {
   unique or primary key constraint on columns "id"
   """
   wedding_guests_pkey
-
-  """
-  unique or primary key constraint on columns "table"
-  """
-  wedding_guests_table_key
 }
 
 """
@@ -11642,7 +11655,6 @@ input wedding_guests_insert_input {
   phone: String
   primary: Boolean
   table: Int
-  updated_at: timestamptz
   wedding_group: wedding_groups_obj_rel_insert_input
 }
 
@@ -11657,7 +11669,6 @@ type wedding_guests_max_fields {
   more_info: String
   phone: String
   table: Int
-  updated_at: timestamptz
 }
 
 """
@@ -11673,7 +11684,6 @@ input wedding_guests_max_order_by {
   more_info: order_by
   phone: order_by
   table: order_by
-  updated_at: order_by
 }
 
 """aggregate min on columns"""
@@ -11687,7 +11697,6 @@ type wedding_guests_min_fields {
   more_info: String
   phone: String
   table: Int
-  updated_at: timestamptz
 }
 
 """
@@ -11703,7 +11712,6 @@ input wedding_guests_min_order_by {
   more_info: order_by
   phone: order_by
   table: order_by
-  updated_at: order_by
 }
 
 """
@@ -11739,7 +11747,6 @@ input wedding_guests_order_by {
   phone: order_by
   primary: order_by
   table: order_by
-  updated_at: order_by
   wedding_group: wedding_groups_order_by
 }
 
@@ -11784,9 +11791,6 @@ enum wedding_guests_select_column {
 
   """column name"""
   table
-
-  """column name"""
-  updated_at
 }
 
 """
@@ -11826,7 +11830,6 @@ input wedding_guests_set_input {
   phone: String
   primary: Boolean
   table: Int
-  updated_at: timestamptz
 }
 
 """aggregate stddev on columns"""
@@ -11889,7 +11892,6 @@ input wedding_guests_stream_cursor_value_input {
   phone: String
   primary: Boolean
   table: Int
-  updated_at: timestamptz
 }
 
 """aggregate sum on columns"""
@@ -11940,9 +11942,6 @@ enum wedding_guests_update_column {
 
   """column name"""
   table
-
-  """column name"""
-  updated_at
 }
 
 input wedding_guests_updates {

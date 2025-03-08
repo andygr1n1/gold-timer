@@ -36,7 +36,7 @@ export const apiWeddingStorySlice = createApi({
         }),
         insertWeddingGroup: builder.mutation<
             IWeddingGroup,
-            { object: { id: string; name: string; booking_number: string } }
+            { object: { id: string; name: string; booking_number: string; solo?: boolean } }
         >({
             query: (variables) => ({
                 body: mutationInsertWeddingGroup(),
